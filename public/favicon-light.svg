@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="rocketGrad" x1="20" y1="180" x2="170" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C3AED"/>
+      <stop offset="0.45" stop-color="#F0553C"/>
+      <stop offset="1" stop-color="#FBBF24"/>
+    </linearGradient>
+    <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0D182C" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <!-- P bowl -->
+    <circle cx="112" cy="72" r="42" fill="url(#rocketGrad)"/>
+    <circle cx="112" cy="72" r="23" fill="#FCFAF5"/>
+
+    <!-- P stem: also reads as the rocket's rising body -->
+    <path d="M99 70 L125 70 L125 158 C 125 164 120 169 113 169 L111 169 C 104 169 99 164 99 158 Z"
+          fill="url(#rocketGrad)"/>
+
+    <!-- upward arrow inside the bowl -->
+    <path d="M112 56 L124 70 L116 70 L116 88 L108 88 L108 70 L100 70 Z" fill="url(#rocketGrad)"/>
+
+    <!-- flame fins at the base of the stem -->
+    <path d="M99 140 C 78 144 62 156 52 174 C 72 174 88 166 99 154 Z" fill="#7C3AED"/>
+    <path d="M104 156 C 90 166 82 180 79 196 C 96 190 105 178 111 164 Z" fill="#F0553C"/>
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" font-family="'IBM Plex Sans Thai','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="rocketGrad" x1="20" y1="220" x2="200" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C3AED"/>
+      <stop offset="0.45" stop-color="#F0553C"/>
+      <stop offset="1" stop-color="#FBBF24"/>
+    </linearGradient>
+    <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0D182C" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- mark, scaled/translated from the 200x200 icon -->
+  <g transform="translate(10,10) scale(1.05)" filter="url(#softShadow)">
+    <circle cx="112" cy="72" r="42" fill="url(#rocketGrad)"/>
+    <circle cx="112" cy="72" r="23" fill="#FCFAF5"/>
+    <path d="M99 70 L125 70 L125 158 C 125 164 120 169 113 169 L111 169 C 104 169 99 164 99 158 Z" fill="url(#rocketGrad)"/>
+    <path d="M112 56 L124 70 L116 70 L116 88 L108 88 L108 70 L100 70 Z" fill="url(#rocketGrad)"/>
+    <path d="M99 140 C 78 144 62 156 52 174 C 72 174 88 166 99 154 Z" fill="#7C3AED"/>
+    <path d="M104 156 C 90 166 82 180 79 196 C 96 190 105 178 111 164 Z" fill="#F0553C"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="260" y="150" font-size="110" font-weight="700" fill="#172033">Puch<tspan fill="url(#rocketGrad)">Up</tspan></text>
+
+  <!-- tagline -->
+  <text x="264" y="188" font-size="24" letter-spacing="2" fill="#596273">LEVEL UP YOUR BUSINESS &amp; LIFE.</text>
+  <text x="264" y="222" font-size="26" font-weight="700" letter-spacing="1" fill="url(#rocketGrad)">PUCHUP.COM</text>
+</svg>

@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base: #fcfaf5;
+  --color-cream: #f5eedc;
+  --color-ink: #172033;
+  --color-muted: #596273;
+  --color-navy: #0d182c;
+  --color-apurple: #7c3aed;
+  --color-aorange: #f0553c;
+  --color-aamber: #fbbf24;
+  --font-sans: var(--font-ibm-thai), var(--font-ibm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm-mono), ui-monospace, monospace;
+  --radius-xl2: 1.25rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-ink);
+}
+
+.grad-text {
+  background: linear-gradient(90deg, #7c3aed, #f0553c 55%, #fbbf24);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grad-bg {
+  background: linear-gradient(90deg, #7c3aed, #f0553c 55%, #fbbf24);
+}
+
+.grad-ring {
+  background: linear-gradient(135deg, #7c3aed, #f0553c 55%, #fbbf24);
+}
+
+::selection {
+  background: #f0553c;
+  color: #fff;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+}
+
+.rounded-xl2 {
+  border-radius: var(--radius-xl2);
+}
