@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Thai } from "next/font/google";
-import { SiteFooter } from "@/components/SiteFooter";
-import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -42,11 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="th"
       className={`${ibmThai.variable} ${ibmSans.variable} ${ibmMono.variable}`}
     >
-      <body className="font-sans antialiased">
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

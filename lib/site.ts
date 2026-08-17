@@ -19,11 +19,40 @@ export const site = {
 } as const;
 
 export const navLinks = [
+  { href: "/ProjectONE/", label: "Project ONE" },
+  { href: "/ProjectONE/Demo/", label: "Demo" },
   { href: "/build/", label: "Build" },
   { href: "/showcase/", label: "Showcase" },
   { href: "/products/", label: "Products" },
   { href: "/how-we-work/", label: "How We Work" },
   { href: "/about/", label: "About" },
+] as const;
+
+/** Featured demos shown on homepage + showcase */
+export const featuredDemos = [
+  {
+    name: "Project ONE",
+    subtitle: "One Page. Full Business.",
+    href: "/ProjectONE/",
+    badge: "Product",
+    blurb:
+      "เว็บไซต์หน้าเดียว ที่ทำให้ลูกค้ารู้จักธุรกิจ ตัดสินใจ และอยากมาที่ร้าน",
+  },
+  {
+    name: "AeroPulse",
+    subtitle: "Bike Studio",
+    href: "/sites/aeropulse/",
+    external: "https://aeropulse.puchup.com",
+    badge: "Demo",
+    blurb: "ระบบช่วยลูกค้าเลือกจักรยาน แทนการไล่ดูสเปกทีละคัน",
+  },
+  {
+    name: "บ้านสวนไทย",
+    subtitle: "Restaurant Demo",
+    href: "/sites/restaurant/",
+    badge: "Demo",
+    blurb: "เดโมร้านอาหารแนว Project ONE — หน้าเดียวครบเรื่องราว เมนู และจองโต๊ะ",
+  },
 ] as const;
 
 export const buildCards = [

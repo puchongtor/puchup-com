@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PuchUp ONE — Demo Library | ตัวอย่างธุรกิจทั้งหมด</title>
+<!-- Production URL for this page: www.puchup.com/ProjectONE/Demo -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --bg:#FCFAF5; --bg-alt:#F3EEE0; --ink:#0D182C; --ink-soft:#5B6472; --ink-faint:#8C93A0;
+    --purple:#6B4EFF; --orange:#FF8A45; --line:#E4DECB; --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans Thai','Fraunces',sans-serif; -webkit-font-smoothing:antialiased; }
+  .font-display{ font-family:'Fraunces','Noto Sans Thai',serif; font-optical-sizing:auto; }
+  .font-mono{ font-family:'IBM Plex Mono',monospace; letter-spacing:.08em; }
+  .grad-text{ background:linear-gradient(100deg,var(--purple),var(--orange)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .grad-bg{ background:linear-gradient(120deg,var(--purple),var(--orange)); }
+  .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--purple); font-weight:500; }
+  .hairline{ border-color:var(--line); }
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .sticky-nav{ backdrop-filter: blur(10px); background:rgba(252,250,245,.86); }
+  ::selection{ background:var(--purple); color:#fff; }
+
+  /* breakout image */
+  .cat-card{ overflow:visible; }
+  .breakout-wrap{
+    width:150px; height:150px; flex-shrink:0;
+    margin-top:-2.6rem; margin-left:-1.2rem;
+    filter: drop-shadow(0 18px 26px rgba(13,24,44,.22));
+    transition: transform .35s ease;
+  }
+  .cat-card:hover .breakout-wrap{ transform: translateY(-6px) rotate(-2deg); }
+  .breakout-wrap img{
+    width:100%; height:100%; object-fit:cover;
+    border-radius:62% 38% 55% 45% / 45% 55% 45% 55%;
+    border:4px solid var(--bg);
+  }
+  @media (max-width:767px){
+    .breakout-wrap{ margin:-3rem auto 0; }
+  }
+
+  .quicknav-link{ color:var(--ink-faint); border:1px solid var(--line); transition:.2s; white-space:nowrap; }
+  .quicknav-link:hover{ color:var(--ink); border-color:var(--ink); }
+
+  .biz-link{
+    font-size:.8rem; color:var(--ink-soft); border:1px solid var(--line); border-radius:999px;
+    padding:.4rem .85rem; transition:.2s; display:inline-flex; align-items:center; gap:.3rem;
+  }
+  .biz-link:hover{ color:#fff; background:var(--ink); border-color:var(--ink); }
+
+  @media (prefers-reduced-motion: reduce){ .reveal{ transition:none; } }
+</style>
+</head>
+<body class="antialiased">
+
+<nav id="mainnav" class="fixed top-0 left-0 right-0 z-50 border-b hairline sticky-nav">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-16">
+    <a href="index.html" class="flex items-center gap-2 font-display font-semibold text-lg">
+      <span class="w-7 h-7 rounded-md grad-bg inline-block"></span>
+      PuchUp
+    </a>
+    <a href="index.html" class="text-sm text-[var(--ink-soft)] hover:text-[var(--ink)] transition flex items-center gap-1.5">
+      ← กลับหน้า Project ONE
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="pt-36 pb-16 md:pt-44 md:pb-20 text-center px-5">
+  <p class="eyebrow mb-4">PUCHUP ONE — DEMO LIBRARY</p>
+  <h1 class="font-display font-semibold text-[clamp(2.1rem,5.5vw,3.6rem)] leading-tight">
+    ธุรกิจของคุณ<br class="md:hidden"> ก็มี <span class="grad-text">ONE</span> ได้
+  </h1>
+  <p class="mt-5 text-[var(--ink-soft)] max-w-xl mx-auto">
+    เลือกดูตัวอย่างตามประเภทธุรกิจของคุณ แล้วลองนึกภาพว่าร้านของคุณจะดูดีขนาดไหน
+  </p>
+
+  <!-- quick category nav -->
+  <div id="quickNav" class="mt-9 flex flex-wrap justify-center gap-2 max-w-3xl mx-auto"></div>
+</header>
+
+<!-- ============ CATEGORY LIST ============ -->
+<main class="max-w-5xl mx-auto px-5 md:px-8 pb-28 space-y-8" id="catList"></main>
+
+<!-- ============ FOOTER CTA ============ -->
+<section class="section-pad text-center px-5 pb-28">
+  <p class="font-display text-2xl md:text-3xl mb-2">ไม่เจอธุรกิจของคุณในลิสต์?</p>
+  <p class="text-[var(--ink-soft)] mb-8">บอกเรามาได้เลย เราออกแบบ ONE ให้เข้ากับธุรกิจของคุณโดยเฉพาะ</p>
+  <a href="index.html#final-cta" class="grad-bg text-white rounded-full px-8 py-3.5 font-medium text-sm hover:opacity-90 transition">คุยกับ PuchUp</a>
+</section>
+
+<footer class="border-t hairline py-10 text-center">
+  <p class="font-mono text-xs text-[var(--ink-faint)]">puchup.com/oneproject/[ชื่อธุรกิจ]</p>
+  <p class="text-xs text-[var(--ink-faint)] mt-3">© PuchUp</p>
+</footer>
+
+<script>
+/* =========================================================
+   IMAGE GENERATION — Google Imagen (Gemini API) wiring
+   Each category image has data-prompt with an isolated-subject,
+   transparent-background cutout prompt — swap the placeholder
+   src for a real generated PNG (transparent bg) later for the
+   full "breaking out of the card" effect. See index.html script
+   comments for the backend call pattern (imagen-4.0-generate-001).
+   ========================================================= */
+const BASE_URL = 'https://www.puchup.com/oneproject/';
+
+const categories = [
+  {
+    id:'food', name:'อาหารและเครื่องดื่ม', emoji:'🍜',
+    desc:'ร้านที่ขายด้วยรสชาติและบรรยากาศ — ให้ลูกค้าเห็นเมนู รีวิว และอยากมานั่งกินทันที',
+    img:'https://picsum.photos/seed/puchup-cat-food/400/400',
+    prompt:'Steaming bowl of Thai noodles with chopsticks, isolated subject, professional food photography, transparent background cutout',
+    items:[
+      {name:'ร้านอาหาร', slug:'restaurant'}, {name:'คาเฟ่', slug:'cafe'}, {name:'ร้านกาแฟ', slug:'coffee-shop'},
+      {name:'ร้านอาหารทะเล', slug:'seafood-restaurant'}, {name:'ร้านหมูกระทะ', slug:'moo-kratha'},
+      {name:'ร้านชาบู', slug:'shabu'}, {name:'เบเกอรี่', slug:'bakery'}, {name:'ร้านอาหารสุขภาพ', slug:'healthy-food'},
+    ]
+  },
+  {
+    id:'health', name:'สุขภาพและความงาม', emoji:'💆',
+    desc:'ธุรกิจที่ลูกค้าต้องการความมั่นใจก่อนตัดสินใจ — รีวิว ผลงาน และความน่าเชื่อถือคือหัวใจ',
+    img:'https://picsum.photos/seed/puchup-cat-health/400/400',
+    prompt:'White orchid flower and smooth spa stones, isolated subject, soft studio lighting, transparent background cutout',
+    items:[
+      {name:'คลินิกทันตกรรม', slug:'dental-clinic'}, {name:'คลินิกเสริมความงาม', slug:'beauty-clinic'}, {name:'Spa', slug:'spa'},
+      {name:'ร้านทำผม', slug:'hair-salon'}, {name:'ร้านทำเล็บ', slug:'nail-salon'}, {name:'คลินิกสัตว์', slug:'vet-clinic'},
+      {name:'กายภาพบำบัด', slug:'physiotherapy'}, {name:'Barber', slug:'barber'}, {name:'Tattoo', slug:'tattoo-studio'},
+    ]
+  },
+  {
+    id:'pets', name:'สัตว์เลี้ยง', emoji:'🐶',
+    desc:'ร้านที่ขายความน่ารัก — รูปน้องหมาน้องแมวคือสิ่งแรกที่ทำให้คนหยุดดู',
+    img:'https://picsum.photos/seed/puchup-cat-pets/400/400',
+    prompt:'Happy golden retriever dog and orange tabby cat sitting together, isolated subject, joyful studio photography, transparent background cutout',
+    items:[ {name:'Pet Shop', slug:'pet-shop'}, {name:'Pet Grooming', slug:'pet-grooming'} ]
+  },
+  {
+    id:'stay', name:'ที่พักและท่องเที่ยว', emoji:'🏨',
+    desc:'ธุรกิจที่ขายประสบการณ์ — ภาพบรรยากาศต้องทำให้คนอยากจองทันทีที่เห็น',
+    img:'https://picsum.photos/seed/puchup-cat-stay/400/400',
+    prompt:'Tropical palm leaf and a boutique hotel key with tassel, isolated subject, warm editorial photography, transparent background cutout',
+    items:[
+      {name:'Resort', slug:'resort'}, {name:'Boutique Hotel', slug:'boutique-hotel'}, {name:'Pool Villa', slug:'pool-villa'},
+      {name:'Villa', slug:'villa'}, {name:'Homestay', slug:'homestay'}, {name:'Glamping', slug:'glamping'},
+      {name:'บริษัททัวร์', slug:'tour-company'}, {name:'Local Tour', slug:'local-tour'},
+    ]
+  },
+  {
+    id:'plants', name:'ต้นไม้และสวน', emoji:'🌿',
+    desc:'ธุรกิจสีเขียวที่ต้องการความสดชื่นและความเป็นธรรมชาติในทุกภาพ',
+    img:'https://picsum.photos/seed/puchup-cat-plants/400/400',
+    prompt:'Potted monstera plant with fresh green leaves, isolated subject, natural light, transparent background cutout',
+    items:[ {name:'ร้านต้นไม้', slug:'plant-shop'}, {name:'รับจัดสวน', slug:'garden-design'}, {name:'ร้านดอกไม้', slug:'flower-shop'} ]
+  },
+  {
+    id:'retail', name:'ค้าปลีกและของสะสม', emoji:'💎',
+    desc:'ร้านที่ขายของชิ้นพิเศษ — ต้องการภาพสินค้าที่ดูมีคุณค่าและน่าสะสม',
+    img:'https://picsum.photos/seed/puchup-cat-retail/400/400',
+    prompt:'Faceted amethyst crystal and a gold ring, isolated subject, premium jewelry photography, transparent background cutout',
+    items:[
+      {name:'Jewelry', slug:'jewelry'}, {name:'ร้านหิน', slug:'crystal-shop'}, {name:'ร้านแว่น', slug:'optical-shop'},
+      {name:'ร้านจักรยาน', slug:'bike-shop'}, {name:'ร้านของสะสม', slug:'collectibles-shop'}, {name:'อะไหล่การเกษตร', slug:'agri-parts'},
+    ]
+  },
+  {
+    id:'creator', name:'ศิลปะ สร้างสรรค์ และอินทีเรีย', emoji:'🎨',
+    desc:'ธุรกิจที่ขายฝีมือและมุมมอง — ผลงานคือสิ่งที่พูดแทนตัวตนได้ดีที่สุด',
+    img:'https://picsum.photos/seed/puchup-cat-creator/400/400',
+    prompt:'Vintage film camera and a paintbrush bundle, isolated subject, editorial still life, transparent background cutout',
+    items:[ {name:'Gallery', slug:'gallery'}, {name:'ช่างภาพ', slug:'photographer'}, {name:'ศิลปิน', slug:'artist'}, {name:'Interior', slug:'interior-design'} ]
+  },
+  {
+    id:'sports', name:'กีฬาและการเรียนรู้', emoji:'🎓',
+    desc:'ธุรกิจที่ขายความก้าวหน้า — ผลลัพธ์และความน่าเชื่อถือคือสิ่งที่ลูกค้ามองหา',
+    img:'https://picsum.photos/seed/puchup-cat-sports/400/400',
+    prompt:'Basketball and a graduation cap side by side, isolated subject, clean studio photography, transparent background cutout',
+    items:[ {name:'Sports Academy', slug:'sports-academy'}, {name:'Tutor', slug:'tutor'}, {name:'Fitness Coach', slug:'fitness-coach'} ]
+  },
+  {
+    id:'professional', name:'ธุรกิจส่วนตัวและมืออาชีพ', emoji:'💼',
+    desc:'ธุรกิจที่ขายความน่าเชื่อถือ — เว็บไซต์ต้องดูเป็นมืออาชีพตั้งแต่แรกเห็น',
+    img:'https://picsum.photos/seed/puchup-cat-professional/400/400',
+    prompt:'Leather briefcase and a small solar panel model, isolated subject, clean professional photography, transparent background cutout',
+    items:[
+      {name:'Personal Brand', slug:'personal-brand'}, {name:'บริษัท Solar', slug:'solar-company'}, {name:'สำนักงานบัญชี', slug:'accounting-office'},
+      {name:'อสังหาริมทรัพย์', slug:'real-estate'}, {name:'ประกัน', slug:'insurance'},
+    ]
+  },
+  {
+    id:'construction', name:'ก่อสร้างและบ้าน', emoji:'🏠',
+    desc:'ธุรกิจที่ขายความไว้ใจได้ — ผลงานจริงและความเรียบร้อยคือสิ่งที่ปิดการขาย',
+    img:'https://picsum.photos/seed/puchup-cat-construction/400/400',
+    prompt:'Small house model and a wrench tool, isolated subject, clean product photography, transparent background cutout',
+    items:[ {name:'รับสร้างบ้าน', slug:'home-builder'}, {name:'กำจัดปลวก', slug:'pest-control'} ]
+  },
+];
+
+document.getElementById('quickNav').innerHTML = categories.map(c =>
+  `<a href="#${c.id}" class="quicknav-link rounded-full px-3.5 py-1.5 text-xs font-mono">${c.emoji} ${c.name}</a>`
+).join('');
+
+document.getElementById('catList').innerHTML = categories.map((c, i) => `
+  <div id="${c.id}" class="cat-card reveal rounded-2xl bg-white border hairline p-6 md:p-8 flex flex-col md:flex-row ${i % 2 === 1 ? 'md:flex-row-reverse' : ''} gap-6 md:gap-10 items-center md:items-start scroll-mt-24">
+    <div class="breakout-wrap relative z-10">
+      <img src="${c.img}" alt="${c.name}">
+    </div>
+    <div class="flex-1 text-center md:text-left">
+      <p class="font-display font-medium text-xl mb-1.5">${c.emoji} ${c.name}</p>
+      <p class="text-sm text-[var(--ink-soft)] mb-5 max-w-md mx-auto md:mx-0">${c.desc}</p>
+      <div class="flex flex-wrap justify-center md:justify-start gap-2">
+        ${c.items.map(it => `<a href="${BASE_URL}${it.slug}" class="biz-link">${it.name} <span aria-hidden="true">→</span></a>`).join('')}
+      </div>
+    </div>
+  </div>
+`).join('');
+
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{ threshold:.08 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

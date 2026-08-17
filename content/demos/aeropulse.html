@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AeroPulse Bike Studio — ผู้ช่วยเลือกจักรยาน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{navy:'#0d182c',cream:'#FCFAF5',purple:'#6B4EFF',orange:'#FF8A45','orange-deep':'#F0553C','ink-soft':'#5B6472',line:'#E4DECB'}}}}
+</script>
+<style>
+body{font-family:'Noto Sans Thai',sans-serif;background:#FCFAF5;color:#0d182c;-webkit-font-smoothing:antialiased}
+.font-display{font-family:'Fraunces','Noto Sans Thai',serif}
+.font-mono{font-family:'IBM Plex Mono',monospace;letter-spacing:.06em}
+.grad-bg{background:linear-gradient(120deg,#6B4EFF,#F0553C)}
+.chat-in{animation:slideIn .35s ease}@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.opt-btn{transition:.2s;border:1px solid #E4DECB}.opt-btn:hover{border-color:#6B4EFF;background:rgba(107,78,255,.06)}
+.opt-btn:disabled{opacity:.45;pointer-events:none}
+.bike-card{border:1px solid #E4DECB;background:#fff;transition:.25s}.bike-card:hover{border-color:#6B4EFF;box-shadow:0 8px 24px rgba(13,24,44,.08)}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- HERO -->
+<header class="bg-navy text-cream">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+    <p class="font-mono text-[10px] uppercase tracking-widest text-orange mb-4">AeroPulse Bike Studio</p>
+    <h1 class="font-display text-3xl md:text-4xl font-semibold leading-tight">
+      ไม่ใช่แค่ดูสเปก<br><span class="text-orange">แต่ช่วยคุณเลือกจักรยานที่ใช่</span>
+    </h1>
+    <p class="mt-4 text-cream/70 max-w-lg text-sm leading-relaxed">ผู้ช่วยอัจฉริยะถามคำถามสำคัญ แล้วคัดจักรยานที่เหมาะกับงบ สไตล์ และเส้นทางของคุณ</p>
+  </div>
+</header>
+
+<!-- FINDER MOCK -->
+<main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 md:py-14">
+  <div class="rounded-2xl border border-line bg-white shadow-sm overflow-hidden">
+    <!-- chat header -->
+    <div class="flex items-center gap-3 px-5 py-4 border-b border-line bg-cream/50">
+      <span class="w-9 h-9 rounded-full grad-bg flex items-center justify-center text-white text-sm font-bold">A</span>
+      <div>
+        <p class="font-semibold text-sm">AeroPulse Finder</p>
+        <p class="text-xs text-ink-soft">ออนไลน์ · ตอบภายในไม่กี่วินาที</p>
+      </div>
+    </div>
+
+    <!-- chat body -->
+    <div id="chat" class="p-5 space-y-4 min-h-[320px] max-h-[480px] overflow-y-auto">
+      <div class="chat-in flex gap-3">
+        <span class="w-8 h-8 rounded-full grad-bg shrink-0 flex items-center justify-center text-white text-xs font-bold">A</span>
+        <div class="bg-cream rounded-2xl rounded-tl-sm px-4 py-3 text-sm max-w-[85%]">
+          สวัสดีครับ! ผมช่วยหาจักรยานที่เหมาะกับคุณได้ — ขอถามสัก 2–3 ข้อนะครับ คุณจะใช้จักรยานส่วนใหญ่แบบไหน?
+        </div>
+      </div>
+    </div>
+
+    <!-- options -->
+    <div id="options" class="px-5 pb-5 flex flex-wrap gap-2">
+      <button class="opt-btn rounded-full px-4 py-2 text-sm font-medium" data-step="0" data-answer="commute">ปั่นไปทำงานในเมือง</button>
+      <button class="opt-btn rounded-full px-4 py-2 text-sm font-medium" data-step="0" data-answer="trail">ปั่นเส้นทางธรรมชาติ / Trail</button>
+      <button class="opt-btn rounded-full px-4 py-2 text-sm font-medium" data-step="0" data-answer="road">ปั่นถนนระยะไกล / Road</button>
+    </div>
+  </div>
+
+  <!-- result (hidden until flow complete) -->
+  <div id="result" class="hidden mt-8">
+    <p class="font-mono text-[10px] uppercase tracking-widest text-purple mb-3">Top Match</p>
+    <div class="bike-card rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-3 gap-5 items-center">
+      <div class="aspect-[4/3] rounded-xl bg-gradient-to-br from-purple/10 to-orange/10 flex items-center justify-center text-4xl">🚴</div>
+      <div class="sm:col-span-2">
+        <h3 id="bikeName" class="font-display text-xl font-semibold"></h3>
+        <p id="bikeDesc" class="text-sm text-ink-soft mt-2 leading-relaxed"></p>
+        <p id="bikePrice" class="font-mono text-sm text-orange mt-3"></p>
+        <button class="mt-4 grad-bg text-white rounded-full px-6 py-2.5 text-sm font-medium hover:opacity-90 transition">นัดทดลองปั่น</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-center text-xs text-ink-soft mt-8">Demo concept · AeroPulse Bike Studio · PuchUp</p>
+</main>
+
+<script>
+const flow={
+  0:{user:{commute:'ปั่นไปทำงานในเมือง',trail:'ปั่นเส้นทางธรรมชาติ / Trail',road:'ปั่นถนนระยะไกล / Road'},
+     bot:'เข้าใจครับ! งบประมาณของคุณอยู่ที่ประมาณเท่าไหร่?',
+     opts:[{v:'budget',l:'ต่ำกว่า ฿30,000'},{v:'mid',l:'฿30,000 – ฿60,000'},{v:'high',l:'มากกว่า ฿60,000'}]},
+  1:{user:{budget:'ต่ำกว่า ฿30,000',mid:'฿30,000 – ฿60,000',high:'มากกว่า ฿60,000'},
+     bot:'สุดท้าย — คุณให้ความสำคัญกับอะไรมากที่สุด?',
+     opts:[{v:'comfort',l:'ความสบาย & น้ำหนักเบา'},{v:'speed',l:'ความเร็ว & สมรรถนะ'},{v:'durability',l:'ทนทาน & ซ่อมง่าย'}]}
+};
+const bikes={
+  'commute-budget-comfort':{name:'Urban Glide 300',desc:'จักรยานเมืองน้ำหนักเบา มีที่วางของ ยางกันหนาม — เหมาะปั่นไปทำงานทุกวัน',price:'฿18,900'},
+  'commute-mid-speed':{name:'Swift Commuter Pro',desc:'เฟรมอลูมิเนียม เกียร์ 11 สปีด ดิสก์เบรกไฮดรอลิก — เร็วและมั่นใจในเมือง',price:'฿42,500'},
+  'trail-mid-durability':{name:'TrailForge 29',desc:'Hardtail ล้อ 29 นิ้ว ช่วงล่างแข็งแรง — พร้อมลุยเส้นทางภูเขาและ Singletrack',price:'฿48,000'},
+  'road-high-speed':{name:'AeroPulse R7',desc:'เฟรมคาร์บอน Aero เกียร์ Shimano 105 — ออกแบบมาเพื่อความเร็วบนถนนเรียบ',price:'฿89,000'},
+  'default':{name:'All-Rounder S5',desc:'จักรยานครบเครื่อง ใช้ได้ทั้งเมืองและทางลูกรัง — ตัวเลือกยอดนิยมของร้าน',price:'฿35,900'}
+};
+let step=0,answers=[];
+const chat=document.getElementById('chat'),opts=document.getElementById('options'),result=document.getElementById('result');
+
+function addMsg(role,text){
+  const d=document.createElement('div');
+  d.className='chat-in flex gap-3'+(role==='user'?' justify-end':'');
+  if(role==='user'){
+    d.innerHTML=`<div class="bg-navy text-cream rounded-2xl rounded-tr-sm px-4 py-3 text-sm max-w-[85%]">${text}</div>`;
+  }else{
+    d.innerHTML=`<span class="w-8 h-8 rounded-full grad-bg shrink-0 flex items-center justify-center text-white text-xs font-bold">A</span><div class="bg-cream rounded-2xl rounded-tl-sm px-4 py-3 text-sm max-w-[85%]">${text}</div>`;
+  }
+  chat.appendChild(d);chat.scrollTop=chat.scrollHeight;
+}
+
+function showOpts(items,s){
+  opts.innerHTML='';
+  items.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='opt-btn rounded-full px-4 py-2 text-sm font-medium';
+    b.textContent=o.l;
+    b.onclick=()=>pick(s,o.v,o.l);
+    opts.appendChild(b);
+  });
+}
+
+function pick(s,val,label){
+  answers[s]=val;
+  addMsg('user',label);
+  opts.querySelectorAll('button').forEach(b=>b.disabled=true);
+  setTimeout(()=>{
+    if(s<1){
+      addMsg('bot',flow[s+1].bot);
+      showOpts(flow[s+1].opts,s+1);
+      step=s+1;
+    }else{
+      addMsg('bot','เจอแล้วครับ! จากคำตอบของคุณ ผมแนะนำรุ่นนี้:');
+      const key=answers.join('-');
+      const bike=bikes[key]||bikes.default;
+      document.getElementById('bikeName').textContent=bike.name;
+      document.getElementById('bikeDesc').textContent=bike.desc;
+      document.getElementById('bikePrice').textContent=bike.price;
+      result.classList.remove('hidden');
+      opts.innerHTML='<button class="opt-btn rounded-full px-4 py-2 text-sm font-medium" onclick="location.reload()">เริ่มใหม่</button>';
+      result.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+  },500);
+}
+
+document.querySelectorAll('.opt-btn').forEach(b=>{
+  b.onclick=()=>pick(0,b.dataset.answer,b.textContent);
+});
+</script>
+</body>
+</html>

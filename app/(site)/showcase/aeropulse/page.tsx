@@ -64,16 +64,25 @@ export default function AeroPulsePage() {
               ))}
             </ol>
           </div>
-          <div>
-            <a
-              href="https://aeropulse.puchup.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex text-[15px] font-semibold text-aorange underline underline-offset-4"
-            >
-              เปิด Live Demo →
-            </a>
-          </div>
+            <div>
+              <a
+                href="/sites/aeropulse/"
+                className="inline-flex text-[15px] font-semibold text-aorange underline underline-offset-4"
+              >
+                เปิด Live Demo บนเว็บ →
+              </a>
+              <p className="mt-2 text-[13px] text-muted">
+                หรือ{" "}
+                <a
+                  href="https://aeropulse.puchup.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline underline-offset-2"
+                >
+                  aeropulse.puchup.com
+                </a>
+              </p>
+            </div>
         </div>
 
         <div className="mt-14 rounded-xl2 bg-navy p-8 text-center text-base">

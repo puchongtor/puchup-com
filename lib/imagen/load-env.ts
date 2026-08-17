@@ -1,0 +1,37 @@
+import { existsSync, readFileSync } from "fs";
+import path from "path";
+
+let loaded = false;
+
+/**
+ * Load .env.local / .env into process.env for standalone scripts (tsx).
+ * Does not override variables already set in the shell.
+ * Next.js already loads these for the app/API; this is for npm run generate:images.
+ */
+export function loadEnvFiles(cwd = process.cwd()): void {
+  if (loaded) return;
+  loaded = true;
+
+  for (const name of [".env.local", ".env"]) {
+    const file = path.join(cwd, name);
+    if (!existsSync(file)) continue;
+    const text = readFileSync(file, "utf8");
+    for (const line of text.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) continue;
+      const eq = trimmed.indexOf("=");
+      if (eq <= 0) continue;
+      const key = trimmed.slice(0, eq).trim();
+      let value = trimmed.slice(eq + 1).trim();
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+      if (process.env[key] === undefined) {
+        process.env[key] = value;
+      }
+    }
+  }
+}

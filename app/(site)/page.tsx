@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BusinessAssistant } from "@/components/BusinessAssistant";
 import { StickyAssistantLauncher } from "@/components/StickyAssistantLauncher";
-import { buildCards, labProducts, processSteps, site } from "@/lib/site";
+import { buildCards, featuredDemos, labProducts, processSteps, site } from "@/lib/site";
 
 export default function HomePage() {
   return (
@@ -50,6 +50,56 @@ export default function HomePage() {
               </div>
             </div>
             <BusinessAssistant />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-base">
+        <div className="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+          <div className="mb-10 max-w-2xl">
+            <span className="eyebrow text-[11px] uppercase text-apurple">Project ONE</span>
+            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+              One Page. Full Business.
+            </h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-muted">
+              เว็บไซต์หน้าเดียว ที่ทำให้ลูกค้ารู้จักธุรกิจ ตัดสินใจ และอยากมาที่ร้าน —
+              พร้อมเดโมร้านจริงที่ปรับเนื้อหาได้ผ่าน Sanity
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {featuredDemos.map((demo) => (
+              <Link
+                key={demo.href}
+                href={demo.href}
+                className="group flex flex-col rounded-xl2 border border-cream bg-cream/40 p-6 transition hover:border-aorange/40 hover:bg-base hover:shadow-lg"
+              >
+                <span className="eyebrow mb-3 inline-block w-fit rounded-full bg-aamber/15 px-2.5 py-1 text-[10px] uppercase text-aamber">
+                  {demo.badge}
+                </span>
+                <h3 className="text-xl font-semibold text-ink">{demo.name}</h3>
+                <p className="mt-1 text-[13px] text-muted">{demo.subtitle}</p>
+                <p className="mt-4 flex-1 text-[14px] leading-relaxed text-muted">
+                  {demo.blurb}
+                </p>
+                <span className="mt-5 text-[14px] font-semibold text-aorange group-hover:underline">
+                  เปิดดู →
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              href="/ProjectONE/"
+              className="inline-flex items-center gap-2 rounded-full bg-navy px-5 py-3 text-[14px] font-semibold text-base hover:opacity-90"
+            >
+              เปิด Project ONE
+            </Link>
+            <Link
+              href="/ProjectONE/Demo/"
+              className="inline-flex items-center gap-2 rounded-full border border-navy/20 px-5 py-3 text-[14px] font-semibold text-ink hover:bg-cream/60"
+            >
+              เข้า Demo Hub
+            </Link>
           </div>
         </div>
       </section>
@@ -180,8 +230,23 @@ export default function HomePage() {
               </div>
             </div>
           </Link>
-          <div className="mt-5 rounded-xl2 border border-dashed border-cream p-6 text-center text-[14px] text-muted">
-            กำลังเพิ่ม Showcase ใหม่เรื่อยๆ
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <Link
+              href="/sites/aeropulse/"
+              className="rounded-xl2 border border-cream bg-base p-5 transition hover:border-aorange/40"
+            >
+              <p className="text-[13px] font-medium text-apurple">Live Demo</p>
+              <p className="mt-1 font-semibold">aeropulse.puchup.com</p>
+              <p className="mt-2 text-[14px] text-muted">เปิดเดโม Smart Finder บนเว็บ</p>
+            </Link>
+            <Link
+              href="/sites/restaurant/"
+              className="rounded-xl2 border border-cream bg-base p-5 transition hover:border-aorange/40"
+            >
+              <p className="text-[13px] font-medium text-apurple">Restaurant Demo</p>
+              <p className="mt-1 font-semibold">restaurant.puchup.com</p>
+              <p className="mt-2 text-[14px] text-muted">เดโมร้านอาหารแนว Project ONE</p>
+            </Link>
           </div>
         </div>
       </section>
