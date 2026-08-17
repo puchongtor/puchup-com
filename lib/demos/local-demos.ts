@@ -19,17 +19,17 @@ export function getLocalDemoSite(subdomain: string): DemoSite | null {
     const html = loadDemoHtml("restaurant.html");
     return {
       _id: "local-restaurant",
-      title: "บ้านสวนไทย — Restaurant Demo",
+      title: "บ้านข้าวหอม — Restaurant Demo",
       subdomain: "restaurant",
       brandDetails: {
-        name: "บ้านสวนไทย",
+        name: "บ้านข้าวหอม",
         description:
-          "เดโมร้านอาหารแนว Project ONE — หน้าเดียวครบเรื่องราว เมนู และจองโต๊ะ",
+          "อาหารบ้านๆ ที่ทำให้คิดถึงบ้าน — เดโมร้านอาหารไทยโฮมเมดแนว Project ONE",
         theme: {
-          primary: "#0D182C",
-          accent: "#F0553C",
-          background: "#FCFAF5",
-          text: "#172033",
+          primary: "#1C1712",
+          accent: "#D8A13B",
+          background: "#FAF5E9",
+          text: "#241C14",
         },
         menuLinks: [
           { label: "Project ONE", href: "/ProjectONE/" },
@@ -37,7 +37,7 @@ export function getLocalDemoSite(subdomain: string): DemoSite | null {
         ],
       },
       codeEmbed: {
-        title: "Restaurant One-Pager",
+        title: "บ้านข้าวหอม One-Pager",
         html,
         fullPage: true,
         minHeight: 900,
@@ -46,20 +46,20 @@ export function getLocalDemoSite(subdomain: string): DemoSite | null {
         {
           slotName: "hero",
           promptText:
-            "Traditional Thai restaurant courtyard with wooden tables and lush greenery, warm daylight, editorial travel photography",
+            "Subject: overhead flat-lay of a steaming bowl of Thai tom yum goong on a dark reclaimed-teak table. Lighting: warm low-key restaurant lighting. Aspect ratio: 16:9. Style: commercial editorial food photography.",
           aspectRatio: "16:9",
         },
         {
           slotName: "signature-dish",
           promptText:
-            "Close-up of Thai green curry and jasmine rice on ceramic plate, natural window light, premium food photography",
+            "Subject: close-up 45-degree angle of tom yum goong with visible river prawns and floating chili. Aspect ratio: 4:3. Style: commercial menu photography.",
           aspectRatio: "4:3",
         },
       ],
       seo: {
-        metaTitle: "บ้านสวนไทย — Restaurant Demo | PuchUp",
+        metaTitle: "บ้านข้าวหอม — Restaurant Demo | PuchUp",
         metaDescription:
-          "เดโมร้านอาหารหน้าเดียว สไตล์ Project ONE โดย PuchUp",
+          "เดโมร้านอาหารไทยโฮมเมดหน้าเดียว สไตล์ Project ONE โดย PuchUp",
       },
     };
   }

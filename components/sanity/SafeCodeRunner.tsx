@@ -27,7 +27,7 @@ export function SafeCodeRunner({ embed, className = "" }: Props) {
       <iframe
         title={embed.title || "Sandboxed demo"}
         srcDoc={srcDoc}
-        sandbox="allow-scripts allow-forms allow-popups allow-modals"
+        sandbox="allow-scripts allow-forms allow-popups allow-modals allow-same-origin allow-popups-to-escape-sandbox"
         className={`block w-full border-0 ${className}`}
         style={{ height: "100dvh", minHeight: minHeight || "100dvh" }}
         loading="eager"

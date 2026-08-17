@@ -245,7 +245,7 @@ export default function HomePage() {
             >
               <p className="text-[13px] font-medium text-apurple">Restaurant Demo</p>
               <p className="mt-1 font-semibold">restaurant.puchup.com</p>
-              <p className="mt-2 text-[14px] text-muted">เดโมร้านอาหารแนว Project ONE</p>
+              <p className="mt-2 text-[14px] text-muted">บ้านข้าวหอม — เดโมร้านอาหารไทยโฮมเมด</p>
             </Link>
           </div>
         </div>

@@ -47,11 +47,11 @@ export const featuredDemos = [
     blurb: "ระบบช่วยลูกค้าเลือกจักรยาน แทนการไล่ดูสเปกทีละคัน",
   },
   {
-    name: "บ้านสวนไทย",
+    name: "บ้านข้าวหอม",
     subtitle: "Restaurant Demo",
     href: "/sites/restaurant/",
     badge: "Demo",
-    blurb: "เดโมร้านอาหารแนว Project ONE — หน้าเดียวครบเรื่องราว เมนู และจองโต๊ะ",
+    blurb: "อาหารบ้านๆ ที่ทำให้คิดถึงบ้าน — เดโมร้านอาหารไทยโฮมเมดแนว Project ONE",
   },
 ] as const;
 
