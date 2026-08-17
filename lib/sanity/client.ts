@@ -10,7 +10,7 @@ export const sanityClient = isSanityConfigured()
       perspective: "published",
       stega: {
         enabled: false,
-        studioUrl: "/studio",
+        studioUrl: "/admin",
       },
     })
   : null;

@@ -1,0 +1,4 @@
+/studio /admin/ 301
+/studio/* /admin/:splat 301
+/projectone /ProjectONE/ 301
+/projectone/* /ProjectONE/:splat 301

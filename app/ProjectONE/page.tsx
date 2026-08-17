@@ -6,8 +6,6 @@ import { pageBySlugQuery } from "@/lib/sanity/queries";
 import type { CmsPage } from "@/lib/sanity/types";
 import { imageUrl } from "@/lib/sanity/image";
 
-export const dynamic = "force-dynamic";
-
 async function getProjectOnePage() {
   return sanityFetch<CmsPage>({
     query: pageBySlugQuery,

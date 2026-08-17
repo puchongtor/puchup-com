@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DemoSiteView } from "@/components/sanity/DemoSiteView";
-import { getLocalDemoSite } from "@/lib/demos/local-demos";
+import {
+  getLocalDemoSite,
+  LOCAL_DEMO_SUBDOMAINS,
+} from "@/lib/demos/local-demos";
 import { sanityFetch } from "@/lib/sanity/client";
 import { demoSiteBySubdomainQuery } from "@/lib/sanity/queries";
 import type { DemoSite } from "@/lib/sanity/types";
@@ -10,6 +13,10 @@ import { imageUrl } from "@/lib/sanity/image";
 type Props = {
   params: Promise<{ site: string }>;
 };
+
+export function generateStaticParams() {
+  return LOCAL_DEMO_SUBDOMAINS.map((site) => ({ site }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { site: subdomain } = await params;
