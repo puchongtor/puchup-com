@@ -23,3 +23,11 @@ export function imageUrl(
   if (!img) return null;
   return (width ? img.width(width) : img).url();
 }
+
+export function cmsMediaUrl(
+  image: SanityImage | null | undefined,
+  fallbackUrl?: string | null,
+  width?: number,
+): string | null {
+  return imageUrl(image, width) || fallbackUrl || null;
+}

@@ -19,6 +19,7 @@ export const siteSettingsQuery = /* groq */ `*[_type == "siteSettings"][0]{
   siteName,
   tagline,
   logo${imageFields},
+  favicon${imageFields},
   mainNav[]{ label, href, openInNewTab },
   footerNav[]{ label, href, openInNewTab },
   footerText,
@@ -43,6 +44,15 @@ export const pageBySlugQuery = /* groq */ `*[_type == "page" && slug.current == 
     items[]{
       ...,
       image${imageFields}
+    },
+    plans[]{
+      name,
+      price,
+      blurb,
+      features,
+      ctaLabel,
+      ctaHref,
+      highlighted
     },
     ctas[]{ label, href, style }
   },
@@ -84,3 +94,65 @@ export const demoSiteBySubdomainQuery = /* groq */ `*[_type == "demoSite" && sub
 }`;
 
 export const demoSiteSubdomainsQuery = /* groq */ `*[_type == "demoSite" && published != false && defined(subdomain.current)].subdomain.current`;
+
+const projectOneDemoFields = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  businessType,
+  published,
+  architectureStack,
+  hero{
+    heading,
+    tagline,
+    image${imageFields},
+    imageUrl
+  },
+  menuOrServices[]{
+    _key,
+    name,
+    description,
+    price,
+    category,
+    image${imageFields},
+    imageUrl
+  },
+  reviews[]{
+    _key,
+    rating,
+    quote,
+    author,
+    context
+  },
+  locationInfo{
+    address,
+    hours[]{ days, time },
+    phone,
+    mapsUrl,
+    mapsEmbedUrl
+  },
+  gallery[]{
+    _key,
+    image${imageFields},
+    imageUrl,
+    alt,
+    caption
+  },
+  ${seoFields}
+`;
+
+export const projectOneDemoBySlugQuery = /* groq */ `*[_type == "projectOneDemo" && slug.current == $slug && published != false][0]{
+  ${projectOneDemoFields}
+}`;
+
+export const projectOneDemoLinksQuery = /* groq */ `*[_type == "projectOneDemo" && defined(slug.current)]{
+  title,
+  "slug": slug.current,
+  businessType,
+  published,
+  architectureStack,
+  "heroImageUrl": coalesce(hero.image.asset->url, hero.imageUrl)
+}`;
+
+export const projectOneDemoSlugsQuery = /* groq */ `*[_type == "projectOneDemo" && published != false && defined(slug.current)].slug.current`;
+

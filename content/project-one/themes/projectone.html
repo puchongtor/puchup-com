@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PuchUp — Project ONE | One Page. Full Business.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --bg:#FAF8F5;
+    --bg-alt:#F3ECE0;
+    --ink:#0B132B;
+    --ink-soft:#4B5565;
+    --ink-faint:#8C95A6;
+    --purple:#6344F5;
+    --orange:#FF6B35;
+    --line:#E6DFD1;
+    --dark:#090E1A;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans Thai','Fraunces',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .font-display{ font-family:'Fraunces','Noto Sans Thai',serif; }
+  .font-mono{ font-family:'IBM Plex Mono',monospace; letter-spacing:.05em; }
+  .grad-text{
+    background:linear-gradient(105deg, var(--purple) 0%, var(--orange) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .grad-bg{ background:linear-gradient(120deg, var(--purple), var(--orange)); }
+  .grad-border{
+    position:relative;
+    background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                linear-gradient(135deg, var(--purple), var(--orange)) border-box;
+    border: 1px solid transparent;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--purple); font-weight:600;
+  }
+  .hairline{ border-color:var(--line); }
+  .section-pad{ padding-top:clamp(4.5rem,9vw,8rem); padding-bottom:clamp(4.5rem,9vw,8rem); }
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  ::selection{ background:var(--purple); color:#fff; }
+  ::-webkit-scrollbar{ display:none; } * { scrollbar-width:none; }
+
+  /* Background Glow Canvas */
+  .hero-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; max-width: 950px; height: 600px;
+    background: radial-gradient(circle at 35% 45%, rgba(99,68,245,.14) 0%, transparent 60%),
+                radial-gradient(circle at 65% 55%, rgba(255,107,53,.13) 0%, transparent 60%);
+    filter: blur(50px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Floating Badges Canvas in Hero */
+  .hero-stage { position: relative; width: 100%; max-width: 820px; margin: 0 auto; }
+  .floating-pill {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    padding: .6rem 1.1rem;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--ink);
+    box-shadow: 0 16px 36px -12px rgba(11,19,43,0.12);
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    z-index: 10;
+    transition: all .3s cubic-bezier(.16,1,.3,1);
+    white-space: nowrap;
+    animation: floatSlow 6s ease-in-out infinite alternate;
+  }
+  .floating-pill:hover {
+    transform: scale(1.08) translateY(-4px);
+    border-color: var(--purple);
+    box-shadow: 0 20px 40px -10px rgba(99,68,245,0.22);
+  }
+
+  @keyframes floatSlow {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-12px); }
+  }
+
+  /* Card and Demo styling */
+  .demo-card {
+    transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1);
+  }
+  .demo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px -15px rgba(11,19,43,0.14);
+  }
+
+  /* Tabs */
+  .tab-btn{ color:var(--ink-faint); border-bottom:2px solid transparent; transition:.25s; }
+  .tab-btn.active{ color:var(--ink); border-bottom-color:var(--purple); }
+  .filter-chip{ border:1px solid var(--line); color:var(--ink-soft); transition:.2s; }
+  .filter-chip.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+  .sticky-nav{ backdrop-filter: blur(12px); background:rgba(250,248,245,.88); }
+</style>
+</head>
+<body class="antialiased">
+
+<nav id="mainnav" class="fixed top-0 left-0 right-0 z-50 border-b hairline sticky-nav transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-20">
+    <a href="#top" class="flex items-center gap-2.5 font-display font-bold text-xl tracking-tight">
+      <span class="w-6 h-6 rounded-md grad-bg inline-block"></span>
+      PuchUp
+    </a>
+    <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-[var(--ink-soft)]">
+      <a href="#one" class="hover:text-[var(--ink)] transition">แนวคิด ONE</a>
+      <a href="#how" class="hover:text-[var(--ink)] transition">Customer Journey</a>
+      <a href="demo.html" class="hover:text-[var(--ink)] transition">Showroom 50 ธุรกิจ</a>
+      <a href="#google" class="hover:text-[var(--ink)] transition">Google Business</a>
+      <a href="#engine" class="hover:text-[var(--ink)] transition">The Engine</a>
+      <a href="#pricing" class="hover:text-[var(--ink)] transition">แพ็กเกจ</a>
+    </div>
+    <a href="#final-cta" class="text-xs font-mono font-bold tracking-wider uppercase bg-[var(--ink)] text-white rounded-full px-6 py-3 hover:opacity-90 transition">
+      Build My ONE →
+    </a>
+  </div>
+</nav>
+
+<header id="top" class="relative pt-36 md:pt-48 pb-20 md:pb-32 overflow-hidden">
+  <div class="hero-glow"></div>
+  <div class="max-w-5xl mx-auto px-5 md:px-8 text-center relative z-10">
+    <p class="eyebrow mb-6">PuchUp Project ONE</p>
+    <h1 class="font-display font-semibold leading-[0.95] text-[clamp(2.8rem,7.5vw,5.6rem)] tracking-tight">
+      One Page.<br><span class="grad-text">Full Business.</span>
+    </h1>
+    <p class="mt-8 text-base md:text-xl text-[var(--ink-soft)] max-w-2xl mx-auto leading-relaxed">
+      ไม่ใช่ Landing Page ธรรมดา แต่คือเว็บไซต์หน้าเดียวที่รวมระบบ เรื่องราว ความน่าเชื่อถือ และจุดตัดสินใจของธุรกิจไว้ในประสบการณ์เดียว
+    </p>
+    
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#one" class="w-full sm:w-auto grad-bg text-white rounded-full px-8 py-4 font-medium text-sm hover:opacity-95 transition shadow-lg shadow-purple-500/20">
+        ดูความพิเศษของ ONE
+      </a>
+      <a href="demo.html" class="w-full sm:w-auto border hairline bg-white rounded-full px-8 py-4 font-medium text-sm text-[var(--ink)] hover:border-[var(--ink)] transition shadow-sm">
+        ดูตัวอย่าง 50 ธุรกิจจริง →
+      </a>
+    </div>
+
+    <div class="hero-stage mt-16 md:mt-24 aspect-[16/11] md:aspect-[16/9] flex items-center justify-center">
+      
+      <div class="relative w-full max-w-[460px] bg-white rounded-2xl md:rounded-3xl border border-[var(--line)] p-3 md:p-4 shadow-[0_30px_70px_-20px_rgba(11,19,43,0.18)] z-10">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b hairline px-2">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+          </div>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">yourbrand.puchup.com</span>
+          <span class="text-[9px] font-mono font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded-full">ACTIVE</span>
+        </div>
+
+        <div class="bg-[var(--bg-alt)] rounded-xl overflow-hidden text-left border hairline">
+          <div class="relative h-32 md:h-44 bg-cover bg-center flex flex-col justify-end p-4 text-white" style="background-image: linear-gradient(to top, rgba(9,14,26,0.85), transparent), url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80');">
+            <span class="text-[10px] font-mono text-[var(--orange)] font-bold uppercase tracking-wider">Authentic Experience</span>
+            <h3 class="font-display text-lg md:text-xl font-medium">เรื่องราวและตัวตนที่ครบถ้วน</h3>
+            <p class="text-[10px] text-gray-300">รวบรวมทุกมิติของธุรกิจไว้ในที่เดียว</p>
+          </div>
+          
+          <div class="p-3 grid grid-cols-3 gap-2 text-center text-[10px] font-medium text-[var(--ink-soft)] bg-white border-t hairline">
+            <div class="p-2 bg-[var(--bg)] rounded-lg border hairline">⭐ 4.9 รีวิว</div>
+            <div class="p-2 bg-[var(--bg)] rounded-lg border hairline">📍 นำทางหน้าร้าน</div>
+            <div class="p-2 bg-[var(--ink)] text-white rounded-lg">จอง / สั่งซื้อ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-pill" style="top: 8%; left: 6%; animation-delay: 0s;">
+        <span class="text-base">📖</span>
+        <div><p class="text-[11px] leading-tight">Story & Identity</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">เรื่องเล่าแบรนด์</p></div>
+      </div>
+
+      <div class="floating-pill" style="top: 4%; right: 8%; animation-delay: 0.8s;">
+        <span class="text-base">✨</span>
+        <div><p class="text-[11px] leading-tight">Interactive Menu / Services</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">บริการและสินค้า</p></div>
+      </div>
+
+      <div class="floating-pill hidden sm:flex" style="top: 48%; right: -2%; animation-delay: 1.4s;">
+        <span class="text-base">⭐️</span>
+        <div><p class="text-[11px] leading-tight">Google Trust & Reviews</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">รีวิวจริงจากลูกค้า</p></div>
+      </div>
+
+      <div class="floating-pill" style="bottom: 12%; right: 4%; animation-delay: 2.1s;">
+        <span class="text-base">📍</span>
+        <div><p class="text-[11px] leading-tight">Map & Direct Navigation</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">แผนที่นำทางสู่ร้าน</p></div>
+      </div>
+
+      <div class="floating-pill" style="bottom: 8%; left: 8%; animation-delay: 2.8s;">
+        <span class="text-base">💬</span>
+        <div><p class="text-[11px] leading-tight">Action & Instant Booking</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">ปิดการตัดสินใจ</p></div>
+      </div>
+
+      <div class="floating-pill hidden sm:flex" style="top: 48%; left: -2%; animation-delay: 1.9s;">
+        <span class="text-base">📸</span>
+        <div><p class="text-[11px] leading-tight">Vibe & High-Res Gallery</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">บรรยากาศจริง</p></div>
+      </div>
+
+    </div>
+
+    <p class="mt-8 text-sm text-[var(--ink-soft)] font-medium">หลายสิ่งที่ลูกค้าต้องรู้ ไม่จำเป็นต้องคลิกกระโดดไป 7 หน้าต่างกัน</p>
+    <p class="mt-1 font-mono text-xs uppercase tracking-widest text-[var(--purple)]">Designed Specifically for Local Businesses</p>
+  </div>
+</header>
+
+<section class="section-pad reveal bg-white border-y hairline">
+  <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
+    <p class="eyebrow mb-4">THE REALITY</p>
+    <h2 class="font-display font-semibold text-[clamp(2rem,4.5vw,3rem)] leading-tight tracking-tight">
+      เว็บไซต์ไม่จำเป็นต้องซับซ้อนหลายสิบหน้า<br class="hidden md:block"> เพื่อให้ธุรกิจดูน่าเชื่อถือ
+    </h2>
+    <p class="mt-6 text-[var(--ink-soft)] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+      เว็บไซต์ธุรกิจจำนวนมากมีหลายหน้า — Home, About, Services, Gallery, Contact —
+      แต่ลูกค้าจริง ๆ มีเวลาสั้นมาก เขาต้องการรู้เพียงว่า: <strong>คุณคือใคร มีอะไร ดีอย่างไร คนอื่นคิดอย่างไร
+      อยู่ที่ไหน และควรเดินทางไปหาคุณไหม</strong>
+    </p>
+    <div class="mt-8 inline-block p-4 px-6 rounded-2xl bg-[var(--bg-alt)] border hairline">
+      <p class="font-display italic text-[var(--ink)] text-base md:text-lg">
+        "Project ONE จึงออกแบบทุกคำตอบเหล่านี้ให้จบอย่างน่าประทับใจ ภายใน 1 การเลื่อนดู"
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="section-pad bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-16">
+      <p class="eyebrow mb-3">HOW ONE WORKS</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">From "Who are you?" <span class="grad-text">to "I'm coming."</span></h2>
+      <p class="text-sm text-[var(--ink-soft)] mt-3">วางลำดับจิตวิทยาให้ลูกค้าตัดสินใจง่ายที่สุด</p>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--ink-faint)]">01 / DISCOVER</span>
+          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">สะดุดตา</h3>
+        </div>
+        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">พบคุณผ่าน Google, Search หรือโซเชียล ด้วยภาพและ First Impression ที่โดดเด่น</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--purple)]">02 / EXPLORE</span>
+          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">เข้าใจ</h3>
+        </div>
+        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">ดูเมนู บริการ คอร์ส หรือตัวเลือกสินค้าได้อย่างลื่นไหล ไม่ต้องโหลดหน้าใหม่</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--ink-faint)]">03 / TRUST</span>
+          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">เชื่อมั่น</h3>
+        </div>
+        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">ซึมซับรีวิวจริง ใบรับรอง และภาพบรรยากาศร้านที่พิสูจน์คุณภาพจริง</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--orange)]">04 / DECIDE</span>
+          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">ตัดสินใจ</h3>
+        </div>
+        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">เช็กเวลาเปิด-ปิด ราคา พิกัดที่จอดรถ เคลียร์ทุกข้อสงสัยในใจ</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm col-span-1 sm:col-span-2 md:col-span-1 bg-gradient-to-b from-white to-[var(--line)]/30">
+        <div>
+          <span class="font-mono text-xs font-bold text-green-600">05 / ACTION</span>
+          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">มาที่ร้าน</h3>
+        </div>
+        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">กดนำทาง Google Maps, ทัก LINE หรือกดจองนัดทันที</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="one" class="section-pad reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="eyebrow mb-4">NOT WHAT YOU THINK</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)] leading-tight">หน้าเดียว<br>ไม่ได้แปลว่ามีแค่หน้าเดียว</h2>
+      <p class="mt-6 text-[var(--ink-soft)] leading-relaxed text-sm md:text-base">
+        Project ONE ใช้หน้าเดียวเป็นแกนหลักเพื่อความเร็วและความราบรื่น แต่ภายในแบ่งออกเป็น Section Experiences ที่มีโครงสร้างสมบูรณ์แบบเสมือนเว็บไซต์ขนาดใหญ่ ลูกค้าจึงได้ข้อมูลที่ครบถ้วนโดยไม่ต้องกดย้อนกลับไปมา
+      </p>
+      <div class="mt-8 pt-6 border-t hairline">
+        <p class="font-display text-xl leading-snug">One URL. One Experience.<br><span class="grad-text">Everything your customer needs.</span></p>
+      </div>
+    </div>
+
+    <div class="rounded-3xl border hairline bg-white overflow-hidden shadow-xl">
+      <div class="flex items-center justify-between px-5 py-3.5 border-b hairline bg-[var(--bg-alt)]">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+          <span class="ml-2 text-xs font-mono text-[var(--ink-faint)]">System Architecture</span>
+        </div>
+        <span class="text-[10px] font-mono font-bold text-[var(--purple)]">8 IN 1 STACK</span>
+      </div>
+      <div class="p-6 md:p-8 grid grid-cols-2 gap-4 text-xs font-mono">
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
+          <span class="text-[var(--purple)] font-bold block mb-1">01. STORY</span>
+          ตัวตนและจุดเด่นร้าน
+        </div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
+          <span class="text-[var(--orange)] font-bold block mb-1">02. SERVICES</span>
+          เมนู / บริการ / ราคา
+        </div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
+          <span class="text-[var(--purple)] font-bold block mb-1">03. GALLERY</span>
+          ภาพบรรยากาศจริง
+        </div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
+          <span class="text-[var(--orange)] font-bold block mb-1">04. REVIEWS</span>
+          คะแนน Google & Social
+        </div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
+          <span class="text-[var(--purple)] font-bold block mb-1">05. LOCATION</span>
+          แผนที่และจุดสังเกต
+        </div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
+          <span class="text-[var(--orange)] font-bold block mb-1">06. HOURS</span>
+          เวลาเปิดปิดและสถานะ
+        </div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
+          <span class="text-[var(--purple)] font-bold block mb-1">07. ARTICLES</span>
+          เรื่องราวและ SEO
+        </div>
+        <div class="p-3.5 rounded-xl bg-[var(--ink)] text-white">
+          <span class="text-green-400 font-bold block mb-1">08. ACTION</span>
+          โทร / จอง / นำทาง
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo" class="section-pad bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">CURATED EXAMPLES</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">See it. <span class="grad-text">Before you build it.</span></h2>
+      <p class="mt-4 text-[var(--ink-soft)] max-w-2xl mx-auto text-sm md:text-base">
+        ดูตัวอย่างการแปลงโฉมธุรกิจประเภทต่างๆ ให้กลายเป็น Project ONE ที่มีชีวิตและตรงเป้าหมาย
+      </p>
+    </div>
+
+    <div id="filterTabs" class="flex flex-wrap justify-center gap-2 mb-12">
+      <button data-filter="all" class="filter-chip active rounded-full px-5 py-2 text-xs font-mono font-medium">All Types</button>
+      <button data-filter="restaurant" class="filter-chip rounded-full px-5 py-2 text-xs font-mono font-medium">Restaurant</button>
+      <button data-filter="cafe" class="filter-chip rounded-full px-5 py-2 text-xs font-mono font-medium">Café</button>
+      <button data-filter="health" class="filter-chip rounded-full px-5 py-2 text-xs font-mono font-medium">Clinic & Spa</button>
+      <button data-filter="hotel" class="filter-chip rounded-full px-5 py-2 text-xs font-mono font-medium">Hotel & Stay</button>
+    </div>
+
+    <div id="demoGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+
+    <div class="text-center mt-14">
+      <a href="demo.html" class="inline-flex items-center gap-3 text-sm font-bold tracking-wider uppercase bg-[var(--ink)] text-white px-8 py-4 rounded-full hover:opacity-90 transition shadow-md">
+        สำรวจโชว์รูมครบทั้ง 50 ธุรกิจ →
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="google" class="section-pad bg-white reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">ECOSYSTEM INTEGRATION</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">เว็บไซต์ของคุณ<br>ไม่ควรอยู่อย่างโดดเดี่ยว</h2>
+      <p class="mt-4 text-[var(--ink-soft)] max-w-2xl mx-auto text-sm md:text-base">
+        ลูกค้าเกือบทั้งหมดเริ่มต้นจาก Google Search หรือ Google Maps ดังนั้น Project ONE จึงถูกออกแบบให้ทำงานร่วมกับ Google Business Profile ได้อย่างราบรื่น
+      </p>
+    </div>
+
+    <div class="flex justify-center gap-6 md:gap-10 border-b hairline mb-12 text-sm font-medium">
+      <button data-gtab="website" class="tab-btn active pb-3 font-mono text-xs md:text-sm">01. WEBSITE</button>
+      <button data-gtab="gbusiness" class="tab-btn pb-3 font-mono text-xs md:text-sm">02. GOOGLE PROFILE</button>
+      <button data-gtab="growth" class="tab-btn pb-3 font-mono text-xs md:text-sm">03. LOCAL POWER</button>
+    </div>
+
+    <div id="panel-website" class="gpanel grid md:grid-cols-2 gap-10 items-center">
+      <div class="rounded-2xl overflow-hidden border hairline shadow-md aspect-[4/3]">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=80" alt="Café storefront" class="w-full h-full object-cover">
+      </div>
+      <div class="space-y-4">
+        <h3 class="font-display text-2xl font-semibold">One page, everything a customer needs to decide.</h3>
+        <p class="text-[var(--ink-soft)] text-sm md:text-base leading-relaxed">
+          เรื่องราว บรรยากาศ เมนูยอดนิยม รีวิวจริง และช่องทางเดินทาง รวมอยู่ในหน้าเดียวที่โหลดเร็วและลื่นไหล พร้อมเปลี่ยนผู้ค้นหาให้กลายเป็นลูกค้าหน้าร้าน
+        </p>
+      </div>
+    </div>
+
+    <div id="panel-gbusiness" class="gpanel hidden grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h3 class="font-display text-2xl font-semibold mb-3">เมื่อคนค้นหา คุณต้องพร้อมให้เขาเจอ</h3>
+        <p class="text-[var(--ink-soft)] text-sm mb-6 leading-relaxed">เชื่อมพิกัด ข้อมูลเวลาเปิด-ปิด และคะแนนดาวเข้าสู่ระบบอย่างเป็นเนื้อเดียวกัน</p>
+        <div class="rounded-2xl border hairline bg-[var(--bg)] p-5 shadow-sm">
+          <div class="flex gap-4 items-center">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=150&q=80" class="w-16 h-16 rounded-xl object-cover" alt="Shop logo">
+            <div>
+              <p class="font-bold text-sm">Sunday Yard Coffee</p>
+              <p class="text-xs text-[var(--ink-soft)]">⭐ 4.9 (180+ รีวิว) · คาเฟ่ · ยานนาวา กรุงเทพฯ</p>
+              <p class="text-xs text-green-600 font-semibold mt-0.5">● เปิดให้บริการอยู่</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border hairline aspect-[4/3] bg-[var(--bg-alt)] flex items-center justify-center">
+        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover" alt="Map concept">
+      </div>
+    </div>
+
+    <div id="panel-growth" class="gpanel hidden">
+      <div class="max-w-3xl mx-auto text-center py-8">
+        <h3 class="font-display text-2xl font-semibold mb-4">ไม่ใช่แค่ทำเว็บทิ้งไว้ แต่คือการสร้างตัวตนบนโลกจริง</h3>
+        <div class="flex flex-wrap justify-center items-center gap-3 mt-8 text-xs font-mono">
+          <span class="px-4 py-2 rounded-full border hairline bg-[var(--bg)]">Google Profile</span>
+          <span class="text-[var(--ink-faint)]">+</span>
+          <span class="px-4 py-2 rounded-full border hairline bg-[var(--bg)]">Project ONE</span>
+          <span class="text-[var(--ink-faint)]">+</span>
+          <span class="px-4 py-2 rounded-full border hairline bg-[var(--bg)]">Local Reviews</span>
+          <span class="text-[var(--ink-faint)]">=</span>
+          <span class="px-5 py-2.5 rounded-full grad-bg text-white font-bold">Strong Local Dominance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="engine" class="section-pad bg-[var(--dark)] text-white reveal">
+  <div class="max-w-5xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-16">
+      <p class="eyebrow mb-3" style="color:var(--orange)">UNDER THE HOOD</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,3rem)] tracking-tight">สิ่งที่คุณเห็นคือดีไซน์ที่สวยงาม<br><span class="text-gray-400">แต่สิ่งที่ขับเคลื่อนอยู่ข้างในคือระบบ</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="rounded-3xl border border-white/10 p-8 bg-white/5 backdrop-blur">
+        <p class="font-mono text-xs text-[var(--purple)] font-bold mb-3">01 / FRONT EXPERIENCE</p>
+        <h3 class="font-display text-xl font-medium mb-3">Editorial Aesthetics & Speed</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">ดีไซน์เฉพาะตัว ไม่ใช้ธีมโหล โหลดรูปภาพแบบ Lazy-load รวดเร็วเด็ดขาด สร้างความประทับใจตั้งแต่เสี้ยววินาทีแรก</p>
+      </div>
+      <div class="rounded-3xl border border-white/10 p-8 bg-white/5 backdrop-blur">
+        <p class="font-mono text-xs text-[var(--orange)] font-bold mb-3">02 / CORE ENGINE</p>
+        <h3 class="font-display text-xl font-medium mb-3">Semantic SEO & Action Systems</h3>
+        <p class="text-sm text-gray-400 leading-relaxed">โครงสร้างโค้ดตามมาตรฐานการค้นหา พร้อมรองรับการเชื่อมต่อกับระบบจอง โทรออก หรือส่งข้อความปิดการขายได้ทันที</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section-pad bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-16">
+      <p class="eyebrow mb-3">INVESTMENT</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">เลือกจุดเริ่มต้นที่ใช่สำหรับธุรกิจคุณ</h2>
+      <p class="mt-3 inline-block text-xs font-mono font-semibold rounded-full px-4 py-1.5 grad-bg text-white shadow-sm">แพ็กเกจเปิดตัวพิเศษ</p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 items-stretch">
+      <div class="rounded-3xl bg-white border hairline p-8 flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs text-[var(--ink-faint)] font-bold">PACKAGE 01</span>
+          <h3 class="font-display text-2xl font-semibold mt-2 mb-2">ONE Standard</h3>
+          <p class="text-xs text-[var(--ink-soft)] mb-6">สำหรับธุรกิจที่ต้องการเว็บไซต์หน้าเดียวระดับพรีเมียม</p>
+          <div class="flex items-baseline gap-2 mb-6">
+            <span class="text-sm text-[var(--ink-faint)] line-through">฿19,900</span>
+            <span class="font-display text-3xl font-bold">฿9,900</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-[var(--ink-soft)] border-t hairline pt-6">
+            <li>✓ Custom Editorial Design</li>
+            <li>✓ Responsive ทุกอุปกรณ์</li>
+            <li>✓ โครงสร้างข้อมูล 8 มอดูลครบ</li>
+          </ul>
+        </div>
+        <a href="#final-cta" class="block text-center mt-8 border border-[var(--ink)] rounded-full py-3 text-xs font-mono font-bold uppercase tracking-wider hover:bg-[var(--ink)] hover:text-white transition">เริ่มต้นปรึกษา</a>
+      </div>
+
+      <div class="rounded-3xl bg-[var(--ink)] text-white p-8 md:scale-105 shadow-2xl flex flex-col justify-between relative border border-purple-500/30">
+        <span class="absolute -top-3.5 right-6 text-[10px] font-mono font-bold tracking-wider uppercase px-3 py-1 rounded-full grad-bg text-white">Recommended</span>
+        <div>
+          <span class="font-mono text-xs text-[var(--orange)] font-bold">PACKAGE 02</span>
+          <h3 class="font-display text-2xl font-semibold mt-2 mb-2 text-white">ONE + Local</h3>
+          <p class="text-xs text-gray-300 mb-6">สำหรับธุรกิจที่มีหน้าร้าน และต้องการให้คนค้นหาเจอบน Google</p>
+          <div class="flex items-baseline gap-2 mb-6">
+            <span class="font-display text-3xl font-bold text-white">฿15,900</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-gray-300 border-t border-white/10 pt-6">
+            <li>✓ ครบทุกอย่างใน ONE Standard</li>
+            <li>✓ Setup Google Business Profile</li>
+            <li>✓ วางระบบ Local SEO เชื่อมพิกัด</li>
+            <li>✓ ฝังระบบ Review & Directions</li>
+          </ul>
+        </div>
+        <a href="#final-cta" class="block text-center mt-8 grad-bg rounded-full py-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/30 hover:opacity-90 transition">เลือกแพ็กเกจนี้</a>
+      </div>
+
+      <div class="rounded-3xl bg-white border hairline p-8 flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs text-[var(--ink-faint)] font-bold">PACKAGE 03</span>
+          <h3 class="font-display text-2xl font-semibold mt-2 mb-2">ONE + Growth</h3>
+          <p class="text-xs text-[var(--ink-soft)] mb-6">สำหรับธุรกิจที่ต้องการขยายคอนเทนต์และบทความต่อเนื่อง</p>
+          <div class="flex items-baseline gap-2 mb-6">
+            <span class="font-display text-3xl font-bold">฿24,900</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-[var(--ink-soft)] border-t hairline pt-6">
+            <li>✓ ครบทุกอย่างใน ONE + Local</li>
+            <li>✓ ระบบบทความและสตอรี่ประจำเดือน</li>
+            <li>✓ Monthly Performance Report</li>
+          </ul>
+        </div>
+        <a href="#final-cta" class="block text-center mt-8 border border-[var(--ink)] rounded-full py-3 text-xs font-mono font-bold uppercase tracking-wider hover:bg-[var(--ink)] hover:text-white transition">เริ่มต้นปรึกษา</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad bg-white reveal border-t hairline">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">QUESTIONS</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.6rem)]">คำถามที่พบบ่อย</h2>
+    </div>
+    <div id="faqList" class="space-y-3.5"></div>
+  </div>
+</section>
+
+<section id="final-cta" class="section-pad bg-[var(--dark)] text-white text-center relative overflow-hidden">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 relative z-10">
+    <p class="eyebrow mb-4" style="color:var(--orange)">START YOUR PRESENCE</p>
+    <h2 class="font-display font-semibold text-[clamp(2.4rem,5.5vw,3.6rem)] leading-tight mb-6">
+      Your Business.<br><span class="grad-text">Your ONE.</span>
+    </h2>
+    <p class="text-gray-400 text-sm md:text-base mb-10 max-w-xl mx-auto leading-relaxed">
+      ให้ทีมดีไซเนอร์ของ PuchUp ช่วยวิเคราะห์และออกแบบเว็บไซต์หน้าเดียวที่ทรงพลังและตอบโจทย์ธุรกิจของคุณจริง
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="mailto:contact@puchup.com" class="w-full sm:w-auto grad-bg text-white rounded-full px-8 py-4 font-medium text-sm hover:opacity-95 transition shadow-lg shadow-purple-500/20">
+        คุยกับเราเพื่อเริ่มโปรเจกต์
+      </a>
+      <a href="demo.html" class="w-full sm:w-auto border border-white/20 bg-white/5 rounded-full px-8 py-4 font-medium text-sm text-white hover:bg-white/10 transition">
+        ดูตัวอย่าง 50 ธุรกิจ
+      </a>
+    </div>
+    <p class="mt-14 font-mono text-xs text-gray-500 uppercase tracking-widest">PuchUp — Level Up Your Business Presence.</p>
+  </div>
+</section>
+
+<footer class="border-t hairline py-12 bg-[var(--bg)] text-xs text-[var(--ink-faint)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2 font-display font-bold text-base text-[var(--ink)]">
+      <span class="w-5 h-5 rounded grad-bg inline-block"></span> PuchUp
+    </div>
+    <p class="font-mono">puchup.com/projectone/[your-business]</p>
+    <p>© 2026 PuchUp. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* Demos preview list */
+const demos = [
+  { name:'บ้านข้าวหอม', type:'Thai Cuisine / Bangkok', cat:'restaurant', img:'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=600&q=80', href:'/projectone/baankhaokhom' },
+  { name:'Sunday Yard Coffee', type:'Specialty Café / Bangkok', cat:'cafe', img:'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80', href:'/projectone/sunday-yard-coffee' },
+  { name:'Bright Smile Dental', type:'Dental Clinic / Bangkok', cat:'health', img:'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80', href:'/projectone/bright-smile-dental' },
+  { name:'Amber Cove Resort', type:'Boutique Resort / Phuket', cat:'hotel', img:'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80', href:'/projectone/amber-cove-resort' },
+  { name:'Still Water Spa', type:'Wellness Spa / Hua Hin', cat:'health', img:'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', href:'/projectone/still-water-spa' },
+  { name:'Maison Aurelia', type:'Jewelry Studio / Bangkok', cat:'restaurant', img:'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80', href:'/projectone/maison-aurelia' },
+];
+
+const demoGrid = document.getElementById('demoGrid');
+function renderDemos(filter){
+  demoGrid.innerHTML = demos
+    .filter(d => filter==='all' || d.cat===filter)
+    .map(d => `
+      <div class="demo-card rounded-2xl overflow-hidden border hairline bg-white flex flex-col justify-between">
+        <div>
+          <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+            <img src="${d.img}" alt="${d.name}" loading="lazy" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <p class="font-mono text-[10px] font-bold text-[var(--purple)] uppercase">${d.type}</p>
+            <h4 class="font-display font-semibold text-lg text-[var(--ink)] mt-1">${d.name}</h4>
+          </div>
+        </div>
+        <div class="p-5 pt-0">
+          <a href="${d.href}" class="block text-center text-xs font-mono font-bold tracking-wider uppercase border border-[var(--ink)] text-[var(--ink)] py-3 rounded-full hover:bg-[var(--ink)] hover:text-white transition">
+            View ONE Demo →
+          </a>
+        </div>
+      </div>
+    `).join('');
+}
+renderDemos('all');
+
+document.querySelectorAll('#filterTabs button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#filterTabs button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderDemos(btn.dataset.filter);
+  });
+});
+
+/* Google tabs toggle */
+document.querySelectorAll('[data-gtab]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-gtab]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gpanel').forEach(p=>p.classList.add('hidden'));
+    document.getElementById('panel-'+btn.dataset.gtab).classList.remove('hidden');
+  });
+});
+
+/* FAQ logic */
+const faqs = [
+  { q:'Project ONE ต่างจาก Landing Page ราคาถูกทั่วไปอย่างไร?', a:'Landing Page ส่วนใหญ่ออกแบบมาเพื่อขายสินค้าชิ้นเดียวแบบรีบปิดการขาย แต่ Project ONE ออกแบบมาเพื่อเป็น "ตัวตนดิจิทัลของธุรกิจ" ที่รวบรวมทั้งเรื่องเล่า ความเชี่ยวชาญ สินค้า/บริการ รีวิว แผนที่ และระบบนำทางไว้ครบถ้วนในที่เดียว' },
+  { q:'มีหน้าร้านจริง ต้องเตรียมข้อมูลอะไรบ้าง?', a:'เตรียมเพียงรูปถ่ายบรรยากาศร้าน เมนู/บริการ ข้อมูลเวลาเปิด-ปิด และลิงก์ Google Maps ทางทีม PuchUp จะนำมาร้อยเรียงสถาปัตยกรรมข้อมูลให้ทั้งหมด' },
+  { q:'สามารถเชื่อมต่อกับ Google Business Profile ได้อย่างไร?', a:'เราจะวางโครงสร้าง Local SEO และเชื่อมพิกัด รวมถึงจัดวางปุ่ม Google Maps และดึงรีวิวจริงมาแสดงบนหน้าเว็บ เพื่อให้ลูกค้าที่ค้นหาบน Google มั่นใจและกดนำทางมาได้ทันที' },
+  { q:'ในอนาคตถ้าต้องการเพิ่มระบบหรือขยายหน้าทำได้ไหม?', a:'ทำได้ทันที โครงสร้างโค้ดของ Project ONE ถูกวางแบบ Semantic Clean Code ที่พร้อมต่อยอดเป็นเว็บไซต์หลายหน้า หรือเชื่อมต่อระบบ CRM/Booking ภายนอกได้ตลอดเวลา' },
+];
+document.getElementById('faqList').innerHTML = faqs.map((f,i)=>`
+  <div class="border hairline rounded-2xl bg-white overflow-hidden shadow-sm">
+    <button class="faq-q w-full text-left px-6 py-4 flex items-center justify-between gap-4 font-medium text-sm text-[var(--ink)]">
+      <span>${f.q}</span>
+      <span class="faq-icon text-[var(--ink-faint)] font-mono text-base">+</span>
+    </button>
+    <div class="faq-a hidden px-6 pb-5 text-[var(--ink-soft)] text-xs leading-relaxed border-t hairline pt-3">${f.a}</div>
+  </div>
+`).join('');
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const ans = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const open = !ans.classList.contains('hidden');
+    document.querySelectorAll('.faq-a').forEach(a=>a.classList.add('hidden'));
+    document.querySelectorAll('.faq-icon').forEach(i=>i.textContent='+');
+    if(!open){ ans.classList.remove('hidden'); icon.textContent='–'; }
+  });
+});
+
+/* Reveal on scroll */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{ threshold:.08 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

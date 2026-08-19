@@ -6,7 +6,10 @@ import {
   LOCAL_DEMO_SUBDOMAINS,
 } from "@/lib/demos/local-demos";
 import { sanityFetch } from "@/lib/sanity/client";
-import { demoSiteBySubdomainQuery } from "@/lib/sanity/queries";
+import {
+  demoSiteBySubdomainQuery,
+  demoSiteSubdomainsQuery,
+} from "@/lib/sanity/queries";
 import type { DemoSite } from "@/lib/sanity/types";
 import { imageUrl } from "@/lib/sanity/image";
 
@@ -14,8 +17,23 @@ type Props = {
   params: Promise<{ site: string }>;
 };
 
-export function generateStaticParams() {
-  return LOCAL_DEMO_SUBDOMAINS.map((site) => ({ site }));
+export const dynamic = "force-static";
+export const dynamicParams = false;
+export const revalidate = false;
+
+export async function generateStaticParams() {
+  const fromSanity = await sanityFetch<string[]>({
+    query: demoSiteSubdomainsQuery,
+    tags: ["demoSite"],
+  });
+  const sites = new Set<string>([
+    ...LOCAL_DEMO_SUBDOMAINS,
+    ...(fromSanity ?? []),
+  ]);
+  return [...sites]
+    .map((site) => site.trim().toLowerCase())
+    .filter(Boolean)
+    .map((site) => ({ site }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

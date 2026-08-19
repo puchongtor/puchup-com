@@ -16,25 +16,30 @@ Source of truth: `_prototype/` + `HANDOFF.md`
 
 ## พัฒนา
 
+คัดลอก `.env.example` เป็น `.env.local` แล้วใส่ Sanity project ID (ถ้ามี)
+
+โปรเจกต์นี้**ไม่มี Supabase** — CMS คือ Sanity อย่างเดียว
+
 ```bash
 npm install
 npm run dev
 ```
 
-## Build (static — พร้อม Cloudflare Pages)
+เปิด http://localhost:3000  
+เดโม: http://localhost:3000/sites/restaurant/ และ `/sites/aeropulse/`
 
-```bash
-npm run build
-```
+## Deploy (Next.js static บน Vercel)
 
-ผลลัพธ์อยู่ที่โฟลเดอร์ `out/`
+ไซต์ถูก build เป็นไฟล์ใน `out/` (`output: "export"`) เพื่อไม่ใช้ Vercel Functions / Image Optimization
 
-### Cloudflare Pages
+1. Import Git repo ใน Vercel (Framework: Next.js — `vercel.json` ชี้ `outputDirectory` เป็น `out`)
+2. Environment variables ให้ตรงกับ `.env.example` โดยเฉพาะ `NEXT_PUBLIC_SANITY_*`
+3. ผูกโดเมน `puchup.com` / `www` เท่านั้น — **อย่าทับ** `puchong.puchup.com`
+4. เดโม subdomain (`restaurant.puchup.com` ฯลฯ) ชี้มาที่โปรเจกต์นี้ได้ — rewrite ไป `/sites/[site]/` ใน `vercel.json`
 
-1. สร้างโปรเจกต์ใหม่ (อย่าทับ `puchong.puchup.com`)
-2. Build command: `npm run build`
-3. Output directory: `out`
-4. ผูกเฉพาะ `puchup.com` / `www` — คง subdomain `puchong` ไว้ที่เดิม
+อัปเดตเนื้อหา Sanity: ตั้ง Deploy Hook ของ Vercel แล้วยิงจาก Sanity webhook (rebuild ครั้งละครั้ง ถูกกว่า ISR ทุก request)
+
+Studio: `npm run sanity` หรือ iframe ที่ `/admin` → `NEXT_PUBLIC_SANITY_STUDIO_URL`
 
 ## ห้ามแตะ
 

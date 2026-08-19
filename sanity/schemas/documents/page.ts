@@ -31,15 +31,18 @@ export const page = defineType({
             .slice(0, 96),
       },
       description:
-        "Use `projectone` for /projectone. Use `home` for the main landing page.",
+        "Use `home` (or `index`) for the landing page `/`. Use `demo` for Showroom. Use `projectone` for /ProjectONE.",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "sections",
-      title: "Page Sections (Block Builder)",
+      title: "Page Builder Blocks",
       type: "array",
       of: [
         defineArrayMember({ type: "heroSection" }),
+        defineArrayMember({ type: "featuresSection" }),
+        defineArrayMember({ type: "pricingSection" }),
+        defineArrayMember({ type: "ctaSection" }),
         defineArrayMember({
           type: "object",
           name: "richTextSection",

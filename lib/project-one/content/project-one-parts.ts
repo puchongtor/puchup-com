@@ -102,7 +102,7 @@ export const PROJECT_ONE_BODY = `
     <div class="hidden lg:flex items-center gap-8 text-sm text-[var(--ink-soft)]">
       <a href="#one" class="hover:text-[var(--ink)]">Project ONE</a>
       <a href="#how" class="hover:text-[var(--ink)]">How It Works</a>
-      <a href="/ProjectONE/Demo/" class="hover:text-[var(--ink)]">ตัวอย่างธุรกิจ</a>
+      <a href="/demo/" class="hover:text-[var(--ink)]">ตัวอย่างธุรกิจ</a>
       <a href="#google" class="hover:text-[var(--ink)]">Google Business</a>
       <a href="#growth" class="hover:text-[var(--ink)]">Growth</a>
       <a href="#demo" class="hover:text-[var(--ink)]">Demo</a>
@@ -124,7 +124,7 @@ export const PROJECT_ONE_BODY = `
     </p>
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
       <a href="#one" class="grad-bg text-white rounded-full px-7 py-3.5 font-medium text-sm hover:opacity-90 transition">ดู Project ONE</a>
-      <a href="/ProjectONE/Demo/" class="border hairline rounded-full px-7 py-3.5 font-medium text-sm text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition">ดูตัวอย่างธุรกิจ</a>
+      <a href="/demo/" class="border hairline rounded-full px-7 py-3.5 font-medium text-sm text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition">ดูตัวอย่างธุรกิจ</a>
     </div>
 
     <!-- Hero convergence visual -->
@@ -264,7 +264,7 @@ export const PROJECT_ONE_BODY = `
     <div id="demoGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
 
     <div class="text-center mt-12">
-      <a href="/ProjectONE/Demo/" class="inline-flex items-center gap-2 text-sm font-medium text-[var(--purple)] hover:opacity-75 transition">
+      <a href="/demo/" class="inline-flex items-center gap-2 text-sm font-medium text-[var(--purple)] hover:opacity-75 transition">
         ดูตัวอย่างธุรกิจทั้งหมด 50+ ประเภท →
       </a>
     </div>
@@ -577,7 +577,7 @@ export const PROJECT_ONE_BODY = `
     <p class="text-[var(--ink-soft)] mb-10">ให้เราลองออกแบบธุรกิจของคุณ ในแบบ Project ONE</p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a href="#" class="grad-bg text-white rounded-full px-8 py-4 font-medium hover:opacity-90 transition">Build My ONE</a>
-      <a href="/ProjectONE/Demo/" class="border hairline rounded-full px-8 py-4 font-medium text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition">ดูตัวอย่างธุรกิจ</a>
+      <a href="/demo/" class="border hairline rounded-full px-8 py-4 font-medium text-[var(--ink-soft)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition">ดูตัวอย่างธุรกิจ</a>
     </div>
     <p class="mt-12 eyebrow">PuchUp — Level Up Your Life.</p>
   </div>
@@ -595,7 +595,7 @@ export const PROJECT_ONE_BODY = `
       <ul class="space-y-1.5 text-[var(--ink-soft)]">
         <li><a href="#one" class="hover:text-[var(--ink)]">Project ONE</a></li>
         <li><a href="#demo" class="hover:text-[var(--ink)]">Demo Library</a></li>
-        <li><a href="/ProjectONE/Demo/" class="hover:text-[var(--ink)]">ตัวอย่างธุรกิจทั้งหมด</a></li>
+        <li><a href="/demo/" class="hover:text-[var(--ink)]">ตัวอย่างธุรกิจทั้งหมด</a></li>
         <li><a href="#google" class="hover:text-[var(--ink)]">Google Business</a></li>
         <li><a href="#growth" class="hover:text-[var(--ink)]">Local Growth</a></li>
       </ul>

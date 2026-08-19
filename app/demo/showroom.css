@@ -1,0 +1,53 @@
+.showroom-root {
+  --bg: #fcfaf5;
+  --bg-alt: #f3eee0;
+  --ink: #0d182c;
+  --ink-soft: #4a5463;
+  --ink-faint: #8c93a0;
+  --purple: #6b4eff;
+  --orange: #ff8a45;
+  --line: #e4decb;
+  --dark-section: #0b111e;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-showroom-sans), "Noto Sans Thai", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.showroom-root .font-display {
+  font-family: var(--font-showroom-display), "Fraunces", serif;
+}
+
+.showroom-root .font-mono {
+  font-family: var(--font-ibm-mono), "IBM Plex Mono", monospace;
+  letter-spacing: 0.05em;
+}
+
+.showroom-root .grad-text {
+  background: linear-gradient(102deg, var(--purple), var(--orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.showroom-root .sticky-nav {
+  backdrop-filter: blur(12px);
+  background: rgba(252, 250, 245, 0.85);
+}
+
+.showroom-root .biz-card {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showroom-root .biz-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px -12px rgba(13, 24, 44, 0.12);
+}
+
+.showroom-root .filter-btn.active {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}

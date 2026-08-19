@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paw & Co. | ศูนย์รวมสินค้าสัตว์เลี้ยงพรีเมียม</title>
+<meta name="description" content="Paw & Co. Premium Pet Lifestyle Store คัดสรรอาหาร ขนม ของใช้ ดีไซน์ และไลฟ์สไตล์สำหรับสมาชิกสี่ขาในครอบครัวคุณ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PetStore",
+  "name": "Paw & Co.",
+  "description": "ศูนย์รวมสินค้าสัตว์เลี้ยงพรีเมียมและไลฟ์สไตล์บูทีค",
+  "telephone": "02-123-4567",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ถนนพระราม 3",
+    "addressLocality": "เขตยานนาวา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10120",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F3EFEA;
+    --ink: #191716;
+    --ink-soft: #524D49;
+    --ink-faint: #8E8680;
+    --amber: #C67D3B;
+    --amber-dark: #A15E26;
+    --sage: #4E5E52;
+    --line: #E8E2DA;
+    --line-dark: #D8D0C5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+    line-height: 1.7;
+  }
+  .font-display {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif;
+    letter-spacing: -0.03em;
+  }
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .hairline { border-color: var(--line); }
+  .hairline-dark { border-color: var(--line-dark); }
+  ::selection { background-color: var(--amber); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 248, 245, 0.95);
+  }
+  .navlink {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+  .navlink:hover { color: var(--amber); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .product-card:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-primary {
+    background-color: var(--ink);
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover {
+    background-color: var(--amber);
+    box-shadow: 0 12px 28px -10px rgba(198, 125, 59, 0.45);
+  }
+
+  .btn-outline {
+    border: 1.5px solid var(--line-dark);
+    color: var(--ink);
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: #FFF;
+    transition: all 0.25s ease;
+  }
+  .btn-outline:hover {
+    border-color: var(--ink);
+    background-color: var(--bg-alt);
+  }
+
+  .category-pill {
+    border: 1px solid var(--line);
+    background: #FFF;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .category-pill:hover, .category-pill.active {
+    background: var(--ink);
+    color: #FFF;
+    border-color: var(--ink);
+  }
+
+  .horizontal-scroll-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  .horizontal-scroll-container::-webkit-scrollbar-track {
+    background: var(--bg-alt);
+    border-radius: 999px;
+  }
+  .horizontal-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--line-dark);
+    border-radius: 999px;
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-24 md:pb-0">
+
+<div class="bg-[var(--ink)] text-[#E8E2DA] text-center text-xs font-mono py-2 px-4 tracking-wider">
+  PUCHUP ONE — PET LIFESTYLE STORE · ตัวอย่างหน้าธุรกิจสำหรับ Paw & Co. ·
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างธุรกิจอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    
+    <a href="#hero" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-full bg-[var(--ink)] flex items-center justify-center text-white transition-transform group-hover:scale-105">
+        <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 10.5C10.3431 10.5 9 12.067 9 14C9 15.6569 10.3431 17.5 12 17.5C13.6569 17.5 15 15.6569 15 14C15 12.067 13.6569 10.5 12 10.5Z"/>
+          <circle cx="6.5" cy="10" r="2"/>
+          <circle cx="9.5" cy="5.5" r="2"/>
+          <circle cx="14.5" cy="5.5" r="2"/>
+          <circle cx="17.5" cy="10" r="2"/>
+        </svg>
+      </div>
+      <div>
+        <span class="font-display text-xl font-bold tracking-tight leading-none block text-[var(--ink)]">Paw & Co.</span>
+        <span class="text-[10px] text-[var(--ink-faint)] tracking-widest font-mono uppercase block mt-1 font-semibold">Pet Lifestyle Store</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-8">
+      <a href="#needs" class="navlink">เลือกตามความต้องการ</a>
+      <a href="#curated" class="navlink">สินค้าแนะนำ</a>
+      <a href="#why" class="navlink">ปรัชญาของเรา</a>
+      <a href="#world" class="navlink">Paw & Co. World</a>
+      <a href="#new-selected" class="navlink">เพิ่งเข้าร้าน</a>
+      <a href="#visit" class="navlink">หน้าร้านจริง</a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <a href="tel:021234567" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-soft)] hover:text-[var(--amber)] font-medium">
+        <span>📍</span> พระราม 3
+      </a>
+      <a href="#visit" class="btn-primary px-5 py-2.5 rounded-full text-xs md:text-sm">
+        มาที่ร้านวันนี้
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center px-6 py-20 overflow-hidden bg-[#1A1817] text-[#FAF8F5]">
+  <div class="absolute inset-0 opacity-60 mix-blend-luminosity">
+    <img src="https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=2000&q=85" alt="Warm Natural Pet Boutique Vibe" class="w-full h-full object-cover">
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-[#1A1817] via-black/45 to-black/30"></div>
+
+  <div class="relative max-w-4xl mx-auto text-center z-10">
+    <p class="eyebrow text-[#E3A368] mb-4">Paw & Co. — Everything they deserve.</p>
+    <h1 class="font-display text-[clamp(2.5rem,6.5vw,4.8rem)] font-bold leading-[1.08] mb-6 text-[#FAF8F5]">
+      ศูนย์รวมสินค้าสัตว์เลี้ยงพรีเมียม<br>
+      <span class="font-normal italic text-[#D8CFBF]">เพื่อสมาชิกคนสำคัญในบ้าน</span>
+    </h1>
+    <p class="text-base md:text-xl text-[#D8D0C5] max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+      คัดสรรอาหาร ขนมเพื่อสุขภาพ ปลอกคอแฮนด์เมด เบาะนอนดีไซน์ และของใช้ที่เข้าใจธรรมชาติของน้อง ๆ อย่างแท้จริง
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#needs" class="btn-primary bg-[#FFF] text-[#191716] hover:bg-[var(--amber)] hover:text-white w-full sm:w-auto px-8 py-4 rounded-full text-center text-sm md:text-base font-semibold">
+        ดูสินค้าที่ร้าน
+      </a>
+      <a href="#visit" class="btn-outline bg-transparent border-white/30 text-white hover:bg-white hover:text-[#191716] w-full sm:w-auto px-8 py-4 rounded-full text-center text-sm md:text-base">
+        พาไปที่ร้าน →
+      </a>
+    </div>
+
+    <div class="mt-14 flex items-center justify-center gap-6 text-xs font-mono text-[#C4BCAF] tracking-wider uppercase">
+      <span class="flex items-center gap-1.5">📍 กรุงเทพฯ (พระราม 3)</span>
+      <span>•</span>
+      <span class="flex items-center gap-1.5">⭐ Pet Lifestyle Boutique</span>
+      <span>•</span>
+      <span>🐾 Pet-Friendly Store</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — SHOP BY NEED (20 REAL PRODUCTS & INTERACTIVE FILTER) ============ -->
+<section id="needs" class="py-20 md:py-28 px-6 md:px-10 reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+      <div>
+        <p class="eyebrow mb-2">Shop by Need</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold">เลือกตามสิ่งที่น้องต้องการ</h2>
+      </div>
+      <p class="text-sm text-[var(--ink-faint)] mt-2 md:mt-0 font-mono" id="itemCountDisplay">
+        แสดงทั้งหมด 20 รายการ
+      </p>
+    </div>
+
+    <!-- Category Filter Menu -->
+    <div class="flex flex-wrap gap-2.5 mb-10" id="categoryChips">
+      <button data-cat="all" class="category-pill active px-5 py-2.5 rounded-full">ทั้งหมด (20)</button>
+      <button data-cat="dog" class="category-pill px-5 py-2.5 rounded-full">🐶 สำหรับน้องหมา</button>
+      <button data-cat="cat" class="category-pill px-5 py-2.5 rounded-full">🐱 สำหรับน้องแมว</button>
+      <button data-cat="food" class="category-pill px-5 py-2.5 rounded-full">🥣 อาหาร & ขนม</button>
+      <button data-cat="toys" class="category-pill px-5 py-2.5 rounded-full">🧸 ของเล่น</button>
+      <button data-cat="bedding" class="category-pill px-5 py-2.5 rounded-full">🛏️ บ้าน & ที่นอน</button>
+      <button data-cat="grooming" class="category-pill px-5 py-2.5 rounded-full">🧴 Grooming & Care</button>
+    </div>
+
+    <!-- 20 Product Grid -->
+    <div id="needGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Dynamically Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — FEATURED PRODUCTS ============ -->
+<section id="curated" class="py-20 md:py-28 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-3">Curated with Love</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold">ของที่เราเลือกมาให้น้อง</h2>
+      <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mt-3">
+        เหมือนมาเดินเลือกชมด้วยตัวเอง ทุกชิ้นผ่านการทดสอบเรื่องความปลอดภัยและวัสดุที่ไม่เป็นพิษ
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      <!-- Card 1 -->
+      <div class="product-card bg-white rounded-2xl p-5 border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[1/1] mb-5">
+            <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=600&q=80" alt="Freeze-Dried Raw Treats on Wooden Surface">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-[10px] font-mono px-2.5 py-1 rounded-full uppercase tracking-wider">Nutrition</span>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-1.5">Premium Raw Treats</h3>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ขนมฟรีซดรายเนื้ออกไก่และปลาแซลมอนแท้ 100% ปราศจากสารกันเสียและกลูเตน รางวัลคุณภาพสำหรับน้อง
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">ราคาหน้าร้าน</span>
+            <span class="font-display text-base font-bold text-[var(--amber-dark)]">฿390 – ฿750</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-semibold text-[var(--ink)] hover:text-[var(--amber)] flex items-center gap-1">
+            เช็กสต็อกที่ร้าน →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="product-card bg-white rounded-2xl p-5 border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[1/1] mb-5">
+            <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=600&q=80" alt="Handcrafted Leather Collar in Boutique">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-[10px] font-mono px-2.5 py-1 rounded-full uppercase tracking-wider">Lifestyle</span>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-1.5">Handcrafted Leather Collar</h3>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ปลอกคอหนังวัวแท้สัมผัสนุ่ม ไม่ดึงขนหรือระคายเคืองคอ สำหรับวันที่ออกไปเดินเล่นและเที่ยวคาเฟ่ด้วยกัน
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">ราคาหน้าร้าน</span>
+            <span class="font-display text-base font-bold text-[var(--amber-dark)]">฿890 – ฿1,490</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-semibold text-[var(--ink)] hover:text-[var(--amber)] flex items-center gap-1">
+            เช็กสต็อกที่ร้าน →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="product-card bg-white rounded-2xl p-5 border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[1/1] mb-5">
+            <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=600&q=80" alt="Natural Cotton Toy in Basket">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-[10px] font-mono px-2.5 py-1 rounded-full uppercase tracking-wider">Playtime</span>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-1.5">Natural Cotton Tug Toy</h3>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ของเล่นถักจากเชือกฝ้ายธรรมชาติ ย้อมสีออร์แกนิก ปลอดภัยต่อฟันและระบบย่อยอาหาร ออกแบบมาให้เล่นได้ทุกวัน
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">ราคาหน้าร้าน</span>
+            <span class="font-display text-base font-bold text-[var(--amber-dark)]">฿290 – ฿520</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-semibold text-[var(--ink)] hover:text-[var(--amber)] flex items-center gap-1">
+            เช็กสต็อกที่ร้าน →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="product-card bg-white rounded-2xl p-5 border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[1/1] mb-5">
+            <img src="https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=600&q=80" alt="Orthopedic Memory Foam Pet Bed in Living Room">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-[10px] font-mono px-2.5 py-1 rounded-full uppercase tracking-wider">Comfort</span>
+          </div>
+          <h3 class="font-display font-bold text-lg mb-1.5">Orthopedic Memory Foam Bed</h3>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            เบาะนอนเมมโมรี่โฟมรองรับกระดูกและข้อต่อ ผ้าหุ้มกันน้ำซักถอดง่าย มุมพักผ่อนที่น้องจะไม่อยากลุก
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">ราคาหน้าร้าน</span>
+            <span class="font-display text-base font-bold text-[var(--amber-dark)]">฿1,890 – ฿3,400</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-semibold text-[var(--ink)] hover:text-[var(--amber)] flex items-center gap-1">
+            เช็กสต็อกที่ร้าน →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="#visit" class="btn-primary px-8 py-3.5 rounded-full inline-flex items-center gap-2 text-sm">
+        <span>แวะมาชมสินค้าจริงที่ร้าน</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — WHY PAW & CO. ============ -->
+<section id="why" class="py-20 md:py-28 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-4 gap-8 md:gap-10">
+      <div class="border-t-2 border-[var(--ink)] pt-6">
+        <span class="font-mono text-sm text-[var(--amber)] block mb-3 font-semibold">✦ 01 / CURATED</span>
+        <h3 class="font-display text-xl font-bold mb-2">คัดเฉพาะที่เราเลือกเอง</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          ไม่มีสินค้าแบบสุ่ม สินค้าทุกชิ้นในร้านผ่านการตรวจสอบส่วนผสม วัตถุดิบ และความปลอดภัยเหมือนซื้อให้สัตว์เลี้ยงของเราเอง
+        </p>
+      </div>
+
+      <div class="border-t-2 border-[var(--ink)] pt-6">
+        <span class="font-mono text-sm text-[var(--amber)] block mb-3 font-semibold">✦ 02 / PREMIUM</span>
+        <h3 class="font-display text-xl font-bold mb-2">เน้นคุณภาพและดีไซน์</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          ของใช้สัตว์เลี้ยงที่วางในบ้านแล้วสวยงาม ผสานดีไซน์มินิมอลเข้ากับฟังก์ชันการใช้งานที่ทนทานและปลอดภัย
+        </p>
+      </div>
+
+      <div class="border-t-2 border-[var(--ink)] pt-6">
+        <span class="font-mono text-sm text-[var(--amber)] block mb-3 font-semibold">✦ 03 / FOR THEIR LIFE</span>
+        <h3 class="font-display text-xl font-bold mb-2">เข้ากับชีวิตจริงของน้อง</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          ไม่ใช่ของเล่นตั้งโชว์ แต่เป็นของที่น้องเล่นจริง กินจริง นอนสบายจริง และเสริมสร้างสุขภาวะที่ดีในระยะยาว
+        </p>
+      </div>
+
+      <div class="border-t-2 border-[var(--ink)] pt-6">
+        <span class="font-mono text-sm text-[var(--amber)] block mb-3 font-semibold">✦ 04 / PERSONAL SERVICE</span>
+        <h3 class="font-display text-xl font-bold mb-2">คำแนะนำเฉพาะตัว</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          พาน้องมาที่ร้านเพื่อลองขนาดปลอกคอ ชิมขนมตัวอย่าง หรือปรึกษาเรื่องอาหารที่เหมาะกับสายพันธุ์และอาการแพ้
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — THE PAW & CO. WORLD ============ -->
+<section id="world" class="py-24 md:py-32 bg-[#1C1A19] text-[#FAF8F5] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <div class="lg:col-span-6">
+        <p class="eyebrow text-[#E3A368] mb-4">Our Core Philosophy</p>
+        <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.15] mb-8">
+          เพราะเขาไม่ได้เป็นแค่สัตว์เลี้ยง<br>
+          <span class="font-normal italic text-[#D8CFBF]">แต่เขาคือสมาชิกในครอบครัว</span>
+        </h2>
+        <p class="text-[#BBB2A6] text-base md:text-lg font-light leading-relaxed mb-10">
+          ความสุขของพวกเขาเรียบง่ายกว่าที่เราคิด... พื้นที่นอนที่นุ่มสบาย อาหารที่ไม่ทำร้ายไต ของเล่นที่ได้วิ่งไล่กับเรา และความใส่ใจในทุกรายละเอียดเล็ก ๆ ที่ทำให้ทุกวันของเขามีคุณภาพชีวิตที่ดีที่สุด
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/15">
+          <div>
+            <span class="font-mono text-xs text-[#E3A368] block mb-1">01 / NUTRITION</span>
+            <p class="font-display font-semibold text-base">อาหารที่ดีและปลอดภัย</p>
+          </div>
+          <div>
+            <span class="font-mono text-xs text-[#E3A368] block mb-1">02 / PLAY</span>
+            <p class="font-display font-semibold text-base">ของเล่นที่กระตุ้นสัญชาตญาณ</p>
+          </div>
+          <div>
+            <span class="font-mono text-xs text-[#E3A368] block mb-1">03 / REST</span>
+            <p class="font-display font-semibold text-base">พื้นที่พักผ่อนที่ผ่อนคลาย</p>
+          </div>
+          <div>
+            <span class="font-mono text-xs text-[#E3A368] block mb-1">04 / HAPPINESS</span>
+            <p class="font-display font-semibold text-base">รอยยิ้มในทุกวันที่อยู่ด้วยกัน</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6">
+        <div class="img-slot rounded-3xl aspect-[4/5] shadow-2xl border border-white/10">
+          <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1000&q=80" alt="Golden Retriever at Home with Loved Lifestyle Goods">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — NEW & SELECTED ============ -->
+<section id="new-selected" class="py-20 md:py-28 px-6 md:px-10 reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p class="eyebrow mb-2">Fresh In Store</p>
+        <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold">เพิ่งเข้าร้านประจำสัปดาห์นี้</h2>
+      </div>
+      <span class="text-xs font-mono text-[var(--ink-faint)] hidden sm:block">เลื่อนดูสินค้าใหม่ →</span>
+    </div>
+
+    <div class="horizontal-scroll-container flex gap-6 overflow-x-auto pb-6 -mx-6 px-6 md:mx-0 md:px-0">
+      
+      <!-- Card 1 -->
+      <div class="w-[280px] md:w-[320px] shrink-0 bg-white p-5 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/3] mb-4">
+            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" alt="Ceramic Cat Bowl in Kitchen">
+            <span class="absolute top-3 left-3 bg-[#4E5E52] text-white text-[10px] font-mono px-2.5 py-0.5 rounded-full uppercase tracking-wider">NEW</span>
+          </div>
+          <h4 class="font-display font-bold text-base mb-1">Ceramic Elevated Bowl</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-3">ชามเซรามิกยกสูง ปรับองศาการกิน ป้องกันการสำลักและถนอมกระดูกคอ</p>
+        </div>
+        <div class="pt-3 border-t hairline flex items-center justify-between text-xs">
+          <span class="font-mono font-bold text-[var(--amber-dark)]">฿690</span>
+          <span class="text-[var(--ink-faint)]">มีสินค้าหน้าร้าน</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="w-[280px] md:w-[320px] shrink-0 bg-white p-5 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/3] mb-4">
+            <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="Organic Pet Grooming Bottle">
+            <span class="absolute top-3 left-3 bg-[var(--amber)] text-white text-[10px] font-mono px-2.5 py-0.5 rounded-full uppercase tracking-wider">POPULAR</span>
+          </div>
+          <h4 class="font-display font-bold text-base mb-1">Oatmeal & Honey Shampoo</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-3">แชมพูสูตรข้าวโอ๊ตออร์แกนิก สำหรับผิวแพ้ง่าย ลดอาการคันและขนร่วง</p>
+        </div>
+        <div class="pt-3 border-t hairline flex items-center justify-between text-xs">
+          <span class="font-mono font-bold text-[var(--amber-dark)]">฿450</span>
+          <span class="text-[var(--ink-faint)]">มีสินค้าหน้าร้าน</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="w-[280px] md:w-[320px] shrink-0 bg-white p-5 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/3] mb-4">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80" alt="Cat with Interactive Toy">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-[10px] font-mono px-2.5 py-0.5 rounded-full uppercase tracking-wider">OUR PICK</span>
+          </div>
+          <h4 class="font-display font-bold text-base mb-1">Smart Feather Teaser</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-3">ของเล่นขนนกหมุนอัตโนมัติ กระตุ้นการเคลื่อนไหวสำหรับน้องแมวเลี้ยงในบ้าน</p>
+        </div>
+        <div class="pt-3 border-t hairline flex items-center justify-between text-xs">
+          <span class="font-mono font-bold text-[var(--amber-dark)]">฿890</span>
+          <span class="text-[var(--ink-faint)]">มีสินค้าหน้าร้าน</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="w-[280px] md:w-[320px] shrink-0 bg-white p-5 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/3] mb-4">
+            <img src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80" alt="Dog in Travel Bag on Cafe Patio">
+            <span class="absolute top-3 left-3 bg-[#4E5E52] text-white text-[10px] font-mono px-2.5 py-0.5 rounded-full uppercase tracking-wider">NEW</span>
+          </div>
+          <h4 class="font-display font-bold text-base mb-1">Minimalist Canvas Carrier</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-3">กระเป๋าสะพายผ้าแคนวาสระบายอากาศ พาน้องเดินทางได้อย่างสบายใจ</p>
+        </div>
+        <div class="pt-3 border-t hairline flex items-center justify-between text-xs">
+          <span class="font-mono font-bold text-[var(--amber-dark)]">฿2,200</span>
+          <span class="text-[var(--ink-faint)]">มีสินค้าหน้าร้าน</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — CUSTOMER LOVE ============ -->
+<section id="reviews" class="py-20 md:py-28 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Customer Love</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] font-bold">เสียงจากครอบครัว Paw & Co.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      <div class="bg-white p-8 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--amber)] mb-4 text-sm font-mono">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            "ของในร้านคัดมาดีมากจริง ๆ ไม่ใช่แค่แพ็กเกจสวย แต่อ่านส่วนผสมแล้วรู้เลยว่าใส่ใจสุขภาพน้อง ที่สำคัญพนักงานแนะนำได้ตรงกับน้องหมาที่บ้านที่แพ้ง่ายมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-sm">คุณมณฑิรา & น้องมิลค์กี้ (โกลเด้น)</p>
+          <p class="text-xs text-[var(--ink-faint)] font-mono">ลูกค้าย่านพระราม 3</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--amber)] mb-4 text-sm font-mono">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            "บรรยากาศร้านดีมาก พาน้องแมวใส่กระเป๋ามาลองเบาะนอนได้ พนักงานใจดีไม่ยัดเยียดขาย เบาะเมมโมรี่โฟมที่ซื้อไปน้องติดมาก นอนทั้งวันเลยครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-sm">คุณกิตติศักดิ์ & น้องถุงทอง</p>
+          <p class="text-xs text-[var(--ink-faint)] font-mono">ลูกค้าย่านสาธุประดิษฐ์</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--amber)] mb-4 text-sm font-mono">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            "ชอบของเล่นและปลอกคอหนังแฮนด์เมดมาก ดีไซน์เรียบหรูเข้ากับบ้าน ไม่ดูเกะกะสายตา แวะมาเดินดูทีไรได้ของติดมือกลับไปฝากลูก ๆ ทุกครั้ง"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-sm">คุณพรรณทิพา & น้องโอลิเวอร์</p>
+          <p class="text-xs text-[var(--ink-faint)] font-mono">ลูกค้าย่านยานนาวา</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — VISIT US ============ -->
+<section id="visit" class="py-20 md:py-28 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Visit Our Boutique</p>
+      <h2 class="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold">มาเจอกันที่ Paw & Co.</h2>
+      <p class="text-sm text-[var(--ink-soft)] font-light mt-3">
+        ยินดีต้อนรับทั้งคุณและน้อง ๆ มาร่วมเปิดประสบการณ์เลือกของใช้ที่ดีที่สุดด้วยกัน
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+      <div class="lg:col-span-5 bg-white p-8 md:p-10 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="flex items-center gap-2 text-xs font-mono text-[var(--amber-dark)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> Open Daily · ยินดีต้อนรับสัตว์เลี้ยง
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">Paw & Co. Flagship Store</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ริมถนนพระราม 3 (ระหว่างซอยสาธุประดิษฐ์ 58 และวัดด่าน) แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120
+          </p>
+
+          <div class="space-y-3.5 text-xs font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-[var(--ink)]">🕐 เวลาเปิดทำการ:</span>
+              <span class="font-mono font-medium">เปิดทุกวัน 10:00 – 20:00 น.</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-[var(--ink)]">🚗 ที่จอดรถ:</span>
+              <span>มีที่จอดรถหน้าร้านสะดวกสบาย</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-semibold text-[var(--ink)]">🐾 Pet Policy:</span>
+              <span class="text-[#4E5E52] font-semibold">ยินดีต้อนรับน้องหมาน้องแมว</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-8 border-t hairline mt-6">
+          <a href="https://maps.google.com/?q=Rama+3+Bangkok" target="_blank" rel="noopener" class="btn-primary w-full text-center py-3.5 rounded-full text-xs md:text-sm block">
+            📍 นำทางมาที่ร้าน (Google Maps)
+          </a>
+          <div class="flex gap-3">
+            <a href="tel:021234567" class="btn-outline flex-1 text-center py-3 rounded-full text-xs flex items-center justify-center gap-1.5">
+              <span>📞</span> โทรสอบถาม
+            </a>
+            <a href="https://line.me" target="_blank" rel="noopener" class="btn-outline flex-1 text-center py-3 rounded-full text-xs text-[#06C755] border-[#06C755]/30 hover:bg-[#06C755] hover:text-white flex items-center justify-center gap-1.5">
+              <span>💬</span> แอด LINE
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 rounded-2xl overflow-hidden border hairline min-h-[380px] shadow-sm">
+        <iframe 
+          title="Paw & Co. Store Map"
+          class="w-full h-full"
+          style="border:0; min-height: 380px;" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade" 
+          src="https://www.google.com/maps?q=Rama+3,Bangkok,Thailand&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — FINAL CTA ============ -->
+<section class="py-24 md:py-32 bg-[#1C1A19] text-[#FAF8F5] text-center px-6 reveal relative overflow-hidden">
+  <div class="max-w-2xl mx-auto relative z-10">
+    <div class="w-12 h-12 rounded-full bg-[var(--amber)] text-white flex items-center justify-center mx-auto mb-6 shadow-md">
+      <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 10.5C10.3431 10.5 9 12.067 9 14C9 15.6569 10.3431 17.5 12 17.5C13.6569 17.5 15 15.6569 15 14C15 12.067 13.6569 10.5 12 10.5Z"/>
+        <circle cx="6.5" cy="10" r="2"/>
+        <circle cx="9.5" cy="5.5" r="2"/>
+        <circle cx="14.5" cy="5.5" r="2"/>
+        <circle cx="17.5" cy="10" r="2"/>
+      </svg>
+    </div>
+    <p class="eyebrow text-[#E3A368] mb-3">Better Life for Your Pets</p>
+    <h2 class="font-display text-[clamp(2.2rem,4.8vw,3.6rem)] font-bold leading-tight mb-6">
+      ของดีสำหรับเขา<br>
+      <span class="font-normal italic text-[#D8CFBF]">เริ่มต้นจากการเลือกของที่ใช่</span>
+    </h2>
+    <p class="text-[#BBB2A6] text-base md:text-lg font-light leading-relaxed mb-10">
+      พาน้องมาเดินเล่น เลือกชิมขนม และสัมผัสสินค้าของจริงได้ทุกวันที่ร้าน Paw & Co.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#visit" class="btn-primary bg-[#FFF] text-[#191716] hover:bg-[var(--amber)] hover:text-white w-full sm:w-auto px-9 py-4 rounded-full text-center text-sm md:text-base font-semibold">
+        แวะมาที่ Paw & Co. →
+      </a>
+      <a href="https://line.me" target="_blank" rel="noopener" class="btn-outline bg-transparent border-white/30 text-white hover:bg-white hover:text-[#191716] w-full sm:w-auto px-9 py-4 rounded-full text-center text-sm md:text-base">
+        ทักคุยกับผู้เชี่ยวชาญ (LINE)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-16 bg-[#141211] text-[#E8E2DA] border-t border-white/10 px-6 md:px-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-10 text-xs font-light">
+    <div>
+      <p class="font-display text-base font-bold text-[#FAF8F5] tracking-tight mb-3">Paw & Co.</p>
+      <p class="text-[#9E958C] leading-relaxed">
+        Premium Pet Lifestyle Store.<br>
+        Everything they deserve. เพื่อความสุขและสุขภาพที่ดีของสมาชิกสี่ขา
+      </p>
+    </div>
+    <div>
+      <p class="font-mono text-[#E3A368] uppercase tracking-widest mb-3 font-semibold">หน้าร้าน</p>
+      <p class="text-[#9E958C] leading-relaxed">
+        ถนนพระราม 3 แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120
+      </p>
+    </div>
+    <div>
+      <p class="font-mono text-[#E3A368] uppercase tracking-widest mb-3 font-semibold">ติดต่อเรา</p>
+      <ul class="space-y-2 text-[#9E958C]">
+        <li>โทร: 02-123-4567</li>
+        <li>LINE Official: @pawandco</li>
+        <li>Instagram: @pawandco.bkk</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-mono text-[#E3A368] uppercase tracking-widest mb-3 font-semibold">เวลาเปิดทำการ</p>
+      <p class="text-[#9E958C] leading-relaxed">
+        เปิดให้บริการทุกวัน<br>
+        10:00 – 20:00 น.<br>
+        มีที่จอดรถหน้าร้าน
+      </p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto border-t border-white/10 mt-12 pt-8 text-center text-[11px] text-[#7A726A] font-mono">
+    © 2026 Paw & Co. Premium Pet Lifestyle Store. All rights reserved. Created with PuchUp Project ONE.
+  </div>
+</footer>
+
+<!-- Bottom Mobile Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)] border-t hairline px-5 py-3 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-[10px] text-[var(--ink-faint)] font-mono block">Paw & Co. พระราม 3</span>
+    <span class="font-display text-sm font-bold text-[var(--ink)]">เปิดบริการ 10:00–20:00</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:021234567" class="btn-outline px-3.5 py-2 rounded-full text-xs flex items-center justify-center">
+      📞
+    </a>
+    <a href="#visit" class="btn-primary px-5 py-2 rounded-full text-xs">
+      นำทางมาที่ร้าน
+    </a>
+  </div>
+</div>
+
+<script>
+/* ---------- 20 REAL IN-STORE PRODUCTS DATABASE ---------- */
+const products20 = [
+  // 1. อาหาร & ขนม
+  {
+    id: 1,
+    cats: ['all', 'dog', 'food'],
+    tag: 'FREEZE-DRIED',
+    title: 'Freeze-Dried Chicken Breast Bites',
+    desc: 'อกไก่ฟรีซดรายเกรดคนทาน 100% ปราศจากสารกันบูด โปรตีนสูง ไขมันต่ำ เหมาะเป็นรางวัลฝึก',
+    price: '฿390',
+    img: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 2,
+    cats: ['all', 'cat', 'food'],
+    tag: 'OMEGA-3 BOOST',
+    title: 'Wild Atlantic Salmon Cubes',
+    desc: 'เนื้อปลาแซลมอนแอตแลนติกอบแห้ง บำรุงขนเงางาม ผิวหนังชุ่มชื้น กลิ่นหอมกระตุ้นความอยากอาหาร',
+    price: '฿490',
+    img: 'https://images.unsplash.com/photo-1535294435445-d7249524ef2e?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 3,
+    cats: ['all', 'dog', 'food'],
+    tag: 'GRAIN-FREE',
+    title: 'Grass-Fed Beef Liver Crisp',
+    desc: 'ตับวัวเลี้ยงด้วยหญ้าธรรมชาติ อุดมด้วยธาตุเหล็กและวิตามินเอ กลิ่นหอมเข้มข้นที่สุนัขชื่นชอบ',
+    price: '฿420',
+    img: 'https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 4,
+    cats: ['all', 'cat', 'food'],
+    tag: 'ORGANIC CAT GRASS',
+    title: 'DIY Organic Wheatgrass Grow Kit',
+    desc: 'ชุดปลูกต้นข้าวสาลีออร์แกนิก ช่วยขับก้อนขน เสริมวิตามินและไฟเบอร์ธรรมชาติสำหรับแมว',
+    price: '฿180',
+    img: 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=600&q=80'
+  },
+
+  // 2. ปลอกคอ & สายจูง (สำหรับสุนัขและแมว)
+  {
+    id: 5,
+    cats: ['all', 'dog'],
+    tag: 'HANDCRAFTED',
+    title: 'Italian Leather Dog Collar (Amber)',
+    desc: 'ปลอกคอหนังวัวแท้นำเข้าจากอิตาลี นุ่มพิเศษ ไม่บาดคอ ไม่ดึงขน พร้อมอะไหล่ทองเหลืองรมดำ',
+    price: '฿890',
+    img: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 6,
+    cats: ['all', 'dog'],
+    tag: 'OUTDOOR GEAR',
+    title: 'Braided Climbing Rope Leash',
+    desc: 'สายจูงเชือกปีนเขาถักแน่น แข็งแรงทนแรงดึงสูง จับนุ่มมือ ซับแรงกระชากขณะเดินเล่น',
+    price: '฿650',
+    img: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 7,
+    cats: ['all', 'cat'],
+    tag: 'SAFETY BREAKAWAY',
+    title: 'Velvet Breakaway Cat Collar',
+    desc: 'ปลอกคอกำมะหยี่พร้อมหัวล็อกนิรภัย ปลดล็อกอัตโนมัติเมื่อติดกิ่งไม้ ปลอดภัย 100%',
+    price: '฿320',
+    img: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 8,
+    cats: ['all', 'dog'],
+    tag: 'ERGONOMIC',
+    title: 'Breathable No-Pull Dog Harness',
+    desc: 'สายรัดอกรูปทรง Y ออกแบบตามสรีระ ไม่กดทับหลอดลม บุผ้าตาข่ายระบายอากาศได้ดีเยี่ยม',
+    price: '฿1,150',
+    img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=600&q=80'
+  },
+
+  // 3. ของเล่น & ฝึกทักษะ
+  {
+    id: 9,
+    cats: ['all', 'dog', 'toys'],
+    tag: 'NATURAL TOY',
+    title: 'Organic Cotton Tug Rope Toy',
+    desc: 'ของเล่นเชือกฝ้ายธรรมชาติ 100% ย้อมสีจากพืช ปลอดภัยเมื่อเคี้ยว ช่วยขัดคราบหินปูน',
+    price: '฿290',
+    img: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 10,
+    cats: ['all', 'dog', 'toys'],
+    tag: 'DENTAL CARE',
+    title: 'Natural Rubber Treat Dispenser Ball',
+    desc: 'ลูกบอลยางพาราแท้ ซ่อนขนมด้านใน ฝึกทักษะการดมกลิ่นและแก้เบื่อเวลาอยู่บ้านตัวเดียว',
+    price: '฿420',
+    img: 'https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 11,
+    cats: ['all', 'cat', 'toys'],
+    tag: 'INTERACTIVE',
+    title: 'Wooden Track Ball Cat Toy',
+    desc: 'รางบอลไม้เนื้อแข็ง 3 ชั้น ฝึกสัญชาตญาณการล่าและสายตา แข็งแรง ไม่โยกเยก',
+    price: '฿790',
+    img: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 12,
+    cats: ['all', 'cat', 'toys'],
+    tag: 'CATNIP INFUSED',
+    title: 'Handmade Wool Felt Mice (Set of 3)',
+    desc: 'หนูขนแกะแท้แฮนด์เมด อัดแน่นด้วยแคทนิปออร์แกนิกเกรดพรีเมียม สนุกได้ทั้งวัน',
+    price: '฿260',
+    img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80'
+  },
+
+  // 4. บ้าน, ที่นอน & ชามอาหาร
+  {
+    id: 13,
+    cats: ['all', 'dog', 'bedding'],
+    tag: 'ORTHOPEDIC',
+    title: 'Memory Foam Orthopedic Bed (M/L)',
+    desc: 'เบาะนอนเพื่อสุขภาพเมมโมรี่โฟมความหนาแน่นสูง รองรับข้อต่อและกระดูกสันหลัง ผ้าถอดซักได้',
+    price: '฿2,490',
+    img: 'https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 14,
+    cats: ['all', 'cat', 'bedding'],
+    tag: 'SCANDINAVIAN',
+    title: 'Nordic Felt Cat Cave & Bed',
+    desc: 'โดมที่นอนผ้าสักหลาดทรงถ้ำ ให้ความรู้สึกปลอดภัยและอบอุ่น พับเปลี่ยนเป็นเบาะนั่งได้',
+    price: '฿950',
+    img: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 15,
+    cats: ['all', 'cat', 'bedding'],
+    tag: 'NATURAL SISAL',
+    title: 'Solid Oak Wood Cat Scratching Post',
+    desc: 'เสาลับเล็บฐานไม้โอ๊คแท้ พันด้วยเชือกป่านศรนารายณ์ธรรมชาติ ไม่ทิ้งขุยฝุ่นผงในบ้าน',
+    price: '฿1,390',
+    img: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 16,
+    cats: ['all', 'dog', 'cat', 'food'],
+    tag: 'CERAMIC DESIGN',
+    title: 'Elevated Matte Ceramic Bowl',
+    desc: 'ชามเซรามิกยกสูง 15 องศา ช่วยให้การกลืนอาหารเป็นธรรมชาติ ลดแรงกดบริเวณต้นคอ',
+    price: '฿690',
+    img: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80'
+  },
+
+  // 5. Grooming, Care & Travel
+  {
+    id: 17,
+    cats: ['all', 'dog', 'cat', 'grooming'],
+    tag: 'ORGANIC CARE',
+    title: 'Oatmeal & Honey Hypoallergenic Shampoo',
+    desc: 'แชมพูสูตรข้าวโอ๊ตและน้ำผึ้งธรรมชาติ อ่อนโยนเป็นพิเศษ สำหรับผิวแพ้ง่าย ลดอาการคัน',
+    price: '฿450',
+    img: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 18,
+    cats: ['all', 'dog', 'cat', 'grooming'],
+    tag: 'PAW CARE',
+    title: 'Organic Shea Butter Paw Balm',
+    desc: 'บาล์มบำรุงอุ้งเท้าและจมูกแห้งแตก ผสมเชียบัตเตอร์ออร์แกนิกและขี้ผึ้งธรรมชาติ เลียได้ปลอดภัย',
+    price: '฿280',
+    img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 19,
+    cats: ['all', 'dog', 'grooming'],
+    tag: 'GROOMING TOOL',
+    title: 'Bamboo Handle Slicker Brush',
+    desc: 'แปรงสลิกเกอร์ด้ามไม้ไผ่ธรรมชาติ หัวหมุดมนช่วยสางขนพันกันและผลัดเซลล์ผิวอย่างนุ่มนวล',
+    price: '฿380',
+    img: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=80'
+  },
+  {
+    id: 20,
+    cats: ['all', 'dog', 'cat'],
+    tag: 'TRAVEL CARRIER',
+    title: 'Minimalist Canvas Pet Travel Carrier',
+    desc: 'กระเป๋าเดินทางผ้าแคนวาสกันน้ำ บุตาข่ายระบายอากาศรอบทิศทาง พกพาสะดวกสำหรับทริปคาเฟ่',
+    price: '฿2,200',
+    img: 'https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&w=600&q=80'
+  }
+];
+
+function renderProductGrid(filter) {
+  const grid = document.getElementById('needGrid');
+  const countText = document.getElementById('itemCountDisplay');
+  
+  const filtered = filter === 'all' 
+    ? products20 
+    : products20.filter(item => item.cats.includes(filter));
+
+  countText.textContent = `แสดง ${filtered.length} รายการ`;
+
+  grid.innerHTML = filtered.map(item => `
+    <div class="product-card bg-white rounded-2xl p-4 border hairline flex flex-col justify-between shadow-sm transition hover:shadow-md">
+      <div>
+        <div class="img-slot rounded-xl aspect-[1/1] mb-3">
+          <img src="${item.img}" alt="${item.title}" loading="lazy">
+          <span class="absolute top-2.5 left-2.5 bg-[var(--ink)] text-white text-[9px] font-mono px-2 py-0.5 rounded-full uppercase tracking-wider font-semibold">${item.tag}</span>
+        </div>
+        <h4 class="font-display font-bold text-sm md:text-base mb-1 text-[var(--ink)] leading-snug line-clamp-1">${item.title}</h4>
+        <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-3 line-clamp-2">${item.desc}</p>
+      </div>
+      <div class="pt-3 border-t hairline flex items-center justify-between text-xs mt-2">
+        <div>
+          <span class="text-[10px] text-[var(--ink-faint)] font-mono block">ราคาหน้าร้าน</span>
+          <span class="font-mono font-bold text-sm text-[var(--amber-dark)]">${item.price}</span>
+        </div>
+        <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-semibold text-[var(--ink)] hover:text-[var(--amber)] transition">
+          เช็กของที่ร้าน →
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Initial Render
+renderProductGrid('all');
+
+// Category Menu Interaction
+document.querySelectorAll('#categoryChips button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#categoryChips button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProductGrid(btn.dataset.cat);
+  });
+});
+
+/* ---------- Scroll Reveal Observer ---------- */
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

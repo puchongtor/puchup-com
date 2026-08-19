@@ -36,6 +36,12 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: "favicon",
+      title: "Favicon",
+      type: "image",
+      description: "ใช้ไฟล์สี่เหลี่ยม (PNG/SVG/ICO) — แสดงที่แท็บเบราว์เซอร์",
+    }),
+    defineField({
       name: "mainNav",
       title: "Main Menu",
       type: "array",

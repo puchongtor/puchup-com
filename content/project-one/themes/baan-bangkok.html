@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บ้านบางกอก บูทีคโฮเทล | Baan Bangkok Boutique Hotel</title>
+<meta name="description" content="บ้านบางกอก บูทีคโฮเทล ที่พักสไตล์ Thai Heritage ร่วมสมัย ริมแม่น้ำเจ้าพระยา ถนนพระอาทิตย์ เขตพระนคร กรุงเทพฯ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Serif+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  "name": "บ้านบางกอก บูทีคโฮเทล",
+  "alternateName": "Baan Bangkok Boutique Hotel",
+  "description": "ที่พักบูทีคสไตล์ Thai Heritage ร่วมสมัย ริมแม่น้ำเจ้าพระยา ถนนพระอาทิตย์ เขตพระนคร กรุงเทพมหานคร",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "48 ถนนพระอาทิตย์ แขวงชนะสงคราม",
+    "addressLocality": "เขตพระนคร",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10200",
+    "addressCountry": "TH"
+  },
+  "telephone": "+6621234567",
+  "priceRange": "฿฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #F9F6F0;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F1ECE1;
+    --ink: #1C1917;
+    --ink-soft: #443E38;
+    --ink-faint: #73695E;
+    --terracotta: #A44C34;
+    --terracotta-dark: #823824;
+    --line: #E5DDD0;
+    --line-dark: #D2C6B5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Serif Thai', serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.015em;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .font-display {
+    font-family: 'Cinzel', 'Noto Serif Thai', serif;
+    letter-spacing: 0.04em;
+  }
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.06em;
+  }
+  .hairline { border-color: var(--line); }
+  .hairline-dark { border-color: var(--line-dark); }
+  ::selection { background-color: var(--terracotta); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'Cinzel', 'IBM Plex Mono', monospace;
+    font-size: 0.88rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(249, 246, 240, 0.96);
+  }
+  .navlink {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-weight: 500;
+    padding: 0.35rem 0.65rem;
+    border-radius: 3px;
+  }
+  .navlink:hover { 
+    color: var(--terracotta); 
+    background-color: rgba(164, 76, 52, 0.07);
+  }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .img-slot:hover img { transform: scale(1.03); }
+
+  .btn-primary {
+    background-color: var(--terracotta);
+    color: #FFFFFF;
+    font-family: 'Cinzel', 'Noto Serif Thai', serif;
+    letter-spacing: 0.1em;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: var(--terracotta-dark);
+    box-shadow: 0 10px 24px -10px rgba(164, 76, 52, 0.45);
+  }
+
+  .btn-outline {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    font-family: 'Cinzel', 'Noto Serif Thai', serif;
+    letter-spacing: 0.1em;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    background-color: var(--ink);
+    color: var(--bg);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<div class="bg-[var(--ink)] text-[#E5DDD0] text-center text-xs md:text-sm font-mono py-2 px-4 tracking-wider">
+  PUCHUP ONE — BANGKOK RIVERSIDE BOUTIQUE HOTEL · ตัวอย่างเว็บไซต์โรงแรมริมแม่น้ำเจ้าพระยา กรุงเทพฯ ·
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างธุรกิจอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR (CLEAN BOUTIQUE SINGLE ROW) ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    
+    <!-- 1. Logo Left -->
+    <a href="#hero" class="flex items-center gap-3.5 shrink-0 group">
+      <div class="w-11 h-11 rounded-sm border-2 border-[var(--terracotta)] flex items-center justify-center transition-colors group-hover:bg-[var(--terracotta)]">
+        <svg viewBox="0 0 32 32" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 26V14C6 8.5 10.5 4 16 4C21.5 4 26 8.5 26 14V26" stroke="var(--terracotta)" stroke-width="1.8" stroke-linecap="round" class="group-hover:stroke-white"/>
+          <path d="M9 22C12 20.5 14 20.5 16 22C18 23.5 20 23.5 23 22" stroke="var(--terracotta)" stroke-width="1.6" stroke-linecap="round" class="group-hover:stroke-white"/>
+        </svg>
+      </div>
+      <div>
+        <span class="font-display text-xl md:text-2xl font-bold tracking-[0.08em] leading-none block text-[var(--ink)]">BAAN BANGKOK</span>
+        <span class="text-xs text-[var(--ink-faint)] tracking-[0.24em] font-mono uppercase block mt-1 font-semibold">Chao Phraya Boutique Hotel</span>
+      </div>
+    </a>
+
+    <!-- 2. Core Menus Center (จัด 5 เมนูหลัก แถวเดียว ไม่ล้น ไม่ต้องเลื่อน) -->
+    <div class="hidden lg:flex items-center gap-7 text-sm">
+      <a href="#about" class="navlink">เรื่องราว</a>
+      <a href="#rooms" class="navlink">ห้องพักริมน้ำ</a>
+      <a href="#dining" class="navlink">อาหารริมเจ้าพระยา</a>
+      <a href="#facilities" class="navlink">สิ่งอำนวยความสะดวก</a>
+      <a href="#location" class="navlink">ย่านพระนคร & การเดินทาง</a>
+    </div>
+
+    <!-- 3. Contact & CTA Right -->
+    <div class="flex items-center gap-5 shrink-0">
+      <a href="tel:+6621234567" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] hover:text-[var(--terracotta)] font-medium">
+        <span>📞</span> +66 (0) 2 123 4567
+      </a>
+      <a href="#booking" class="btn-primary px-6 py-2.5 rounded-sm shadow-sm text-sm">
+        จองห้องพัก
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ============ 1. HERO ============ -->
+<header id="hero" class="relative min-h-[85vh] md:min-h-[92vh] flex items-center justify-center px-6 py-20 overflow-hidden bg-[#161412] text-[#FAF7F2]">
+  <div class="absolute inset-0 opacity-45 mix-blend-luminosity">
+    <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=2000&q=85" alt="Chao Phraya River Bangkok" class="w-full h-full object-cover">
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-[#161412] via-black/35 to-black/55"></div>
+
+  <div class="relative max-w-4xl mx-auto text-center z-10">
+    <p class="eyebrow text-[#E2A695] mb-5">Phra Athit Road, Chao Phraya Riverfront, Bangkok</p>
+    <h1 class="font-display text-[clamp(2.4rem,5.8vw,4.5rem)] font-normal leading-[1.18] mb-8 text-[#FAF7F2]">
+      เสน่ห์กรุงเทพฯ ริมสายน้ำ<br>
+      <span class="italic font-light text-[#EFE3D3]">ในบรรยากาศบูทีคอันเงียบสงบ</span>
+    </h1>
+    <p class="text-lg md:text-xl text-[#DCD4CA] max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+      ดื่มด่ำทัศนียภาพโค้งน้ำเจ้าพระยาและสถาปัตยกรรมไทยร่วมสมัยใจกลางเกาะรัตนโกสินทร์<br class="hidden md:inline">
+      ที่พักส่วนตัว 18 ห้อง บนถนนพระอาทิตย์ เดินถึงวัดพระแก้ว ท่าเตียน และย่านเมืองเก่ากรุงเทพฯ
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+      <a href="#booking" class="btn-primary w-full sm:w-auto px-9 py-4 rounded-sm text-center text-base">
+        ตรวจสอบห้องว่างและราคาตรง
+      </a>
+      <a href="#rooms" class="btn-outline border-[#E5DDD0] text-[#FAF7F2] hover:bg-[#FAF7F2] hover:text-[#1C1917] w-full sm:w-auto px-9 py-4 rounded-sm text-center text-base">
+        เลือกชมห้องพัก
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 inset-x-0 border-t border-white/10 bg-black/40 backdrop-blur-md py-4 hidden md:block">
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-around text-sm font-mono text-[#E5DDD0] tracking-wider">
+      <span>✦ จองตรงการันตีราคาดีที่สุด</span>
+      <span>✦ ฟรี ชายามบ่ายและของว่างไทยริมน้ำ</span>
+      <span>✦ ท่าเรือด่วนพระอาทิตย์ห่างเพียง 150 เมตร</span>
+      <span>✦ เช็กเอาต์ได้ถึง 14:00 น. (ขึ้นกับห้องว่าง)</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 2. WHY STAY HERE ============ -->
+<section id="about" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div class="lg:col-span-5">
+        <p class="eyebrow mb-4">Old Town Riverside Sanctuary</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-[1.2] mb-6">
+          ความสงบส่วนตัว<br>
+          <span class="italic text-[var(--terracotta)] font-normal">ริมสายน้ำเจ้าพระยา</span>
+        </h2>
+        <p class="text-[var(--ink-soft)] text-lg leading-relaxed mb-6 font-light">
+          บ้านบางกอก รีโนเวตจากเรือนคหบดีเก่าในย่านถนนพระอาทิตย์ โดยอนุรักษ์งานไม้สักฉลุลาย ผสานการตกแต่งแบบร่วมสมัยสไตล์กรุงเทพฯ ดั้งเดิม ให้คุณสัมผัสชีวิตริมน้ำที่แท้จริง พร้อมความสะดวกสบายระดับโรงแรมบูทีคชั้นนำ
+        </p>
+        <div class="space-y-5 pt-5 border-t hairline">
+          <div class="flex items-start gap-4">
+            <span class="text-[var(--terracotta)] font-mono text-base font-bold">01</span>
+            <p class="text-base text-[var(--ink-soft)] leading-relaxed"><strong class="text-[var(--ink)] font-semibold">ความเป็นส่วนตัวเพียง 18 ห้อง:</strong> ปลอดโปร่ง เงียบสงบ ไม่แออัด ปราศจากกรุ๊ปทัวร์ขนาดใหญ่</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="text-[var(--terracotta)] font-mono text-base font-bold">02</span>
+            <p class="text-base text-[var(--ink-soft)] leading-relaxed"><strong class="text-[var(--ink)] font-semibold">เชื่อมต่อการเดินทางทางเรือและเมืองเก่า:</strong> เดินเพียง 2 นาทีถึงท่าเรือพระอาทิตย์ เดินทางสู่วัดอรุณฯ ท่าเตียน และไอคอนสยามได้สะดวก</p>
+          </div>
+          <div class="flex items-start gap-4">
+            <span class="text-[var(--terracotta)] font-mono text-base font-bold">03</span>
+            <p class="text-base text-[var(--ink-soft)] leading-relaxed"><strong class="text-[var(--ink)] font-semibold">บริการอบอุ่นแบบไทย:</strong> ทีมงานท้องถิ่นพร้อมแนะนำร้านอาหารลับและพิพิธภัณฑ์รอบเกาะรัตนโกสินทร์</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5 md:gap-7">
+        <div class="img-slot rounded-sm aspect-[4/5] shadow-sm">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80" alt="Baan Bangkok Boutique Courtyard & Pool">
+        </div>
+        <div class="img-slot rounded-sm aspect-[4/5] shadow-sm sm:translate-y-8">
+          <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=900&q=80" alt="Baan Bangkok Heritage Room Interior">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. ROOMS ============ -->
+<section id="rooms" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline-dark">
+      <div>
+        <p class="eyebrow mb-3">Accommodation</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-tight">ห้องพักและห้องสวีท</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        ทุกห้องได้รับการออกแบบอย่างประณีตด้วยเฟอร์นิเจอร์ไม้สักแท้ พื้นหินขัด และชุดเครื่องนอนผ้าฝ้ายธรรมชาติ 500 เส้นด้าย
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Room 1 -->
+      <article class="bg-white rounded-sm overflow-hidden border hairline flex flex-col justify-between group shadow-sm">
+        <div>
+          <div class="img-slot aspect-[16/11]">
+            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80" alt="Deluxe Heritage Room">
+            <span class="absolute top-3 right-3 bg-[var(--ink)] text-white text-xs font-mono uppercase px-3 py-1 tracking-wider font-semibold">34 ตร.ม.</span>
+          </div>
+          <div class="p-7 md:p-8">
+            <p class="eyebrow text-xs mb-2">Old Town City View</p>
+            <h3 class="font-display text-2xl font-bold mb-3">Deluxe Heritage Room</h3>
+            <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+              ห้องพักมาตรฐานสไตล์ไทยร่วมสมัย หน้าต่างบานใหญ่เปิดรับวิวสถาปัตยกรรมเมืองเก่าและสวนคอร์ทยาร์ด ร่มรื่น เงียบสงบ
+            </p>
+            <ul class="text-sm text-[var(--ink-soft)] space-y-2.5 border-t hairline pt-5 font-light">
+              <li class="flex items-center gap-2">✓ เตียง King Bed หรือ Twin Beds</li>
+              <li class="flex items-center gap-2">✓ ห้องน้ำหินขัดพร้อม Rain Shower</li>
+              <li class="flex items-center gap-2">✓ เครื่องชงกาแฟดริป เมล็ดกาแฟไทยคั่วพิเศษ</li>
+            </ul>
+          </div>
+        </div>
+        <div class="p-7 md:p-8 pt-0 border-t hairline flex items-center justify-between mt-6">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block uppercase">เริ่มต้นที่</span>
+            <span class="font-display text-2xl font-bold text-[var(--terracotta)]">฿3,800</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/ คืน</span>
+          </div>
+          <a href="#booking" class="btn-primary px-6 py-3 rounded-sm text-sm">จองห้องนี้</a>
+        </div>
+      </article>
+
+      <!-- Room 2 (Featured Riverfront) -->
+      <article class="bg-white rounded-sm overflow-hidden border-2 border-[var(--terracotta)] flex flex-col justify-between relative shadow-lg group">
+        <div class="absolute top-0 inset-x-0 bg-[var(--terracotta)] text-white text-xs font-mono uppercase text-center py-1.5 tracking-widest z-10 font-semibold">
+          RECOMMENDED · วิวแม่น้ำเจ้าพระยา
+        </div>
+        <div class="pt-7">
+          <div class="img-slot aspect-[16/11]">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Chao Phraya Riverfront Balcony Suite">
+            <span class="absolute top-3 right-3 bg-[var(--ink)] text-white text-xs font-mono uppercase px-3 py-1 tracking-wider font-semibold">48 ตร.ม.</span>
+          </div>
+          <div class="p-7 md:p-8">
+            <p class="eyebrow text-xs mb-2">Panoramic Chao Phraya River View</p>
+            <h3 class="font-display text-2xl font-bold mb-3">Riverfront Balcony Suite</h3>
+            <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+              ห้องสวีทพร้อมระเบียงไม้สักส่วนตัว ชมเรือสัญจรและพระอาทิตย์ตกดินริมแม่น้ำเจ้าพระยา พร้อมอ่างอาบน้ำลอยตัวชมวิว
+            </p>
+            <ul class="text-sm text-[var(--ink-soft)] space-y-2.5 border-t hairline pt-5 font-light">
+              <li class="flex items-center gap-2">✓ ระเบียงส่วนตัวชมวิวโค้งน้ำเจ้าพระยา 180°</li>
+              <li class="flex items-center gap-2">✓ อ่างอาบน้ำลอยตัว (Freestanding Bathtub)</li>
+              <li class="flex items-center gap-2">✓ บริการเสิร์ฟอาหารเช้าบนระเบียงห้องพัก</li>
+            </ul>
+          </div>
+        </div>
+        <div class="p-7 md:p-8 pt-0 border-t hairline flex items-center justify-between mt-6">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block uppercase">เริ่มต้นที่</span>
+            <span class="font-display text-2xl font-bold text-[var(--terracotta)]">฿5,600</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/ คืน</span>
+          </div>
+          <a href="#booking" class="btn-primary px-6 py-3 rounded-sm text-sm">จองห้องนี้</a>
+        </div>
+      </article>
+
+      <!-- Room 3: The Siamese Master Suite -->
+      <article class="bg-white rounded-sm overflow-hidden border hairline flex flex-col justify-between group shadow-sm">
+        <div>
+          <div class="img-slot aspect-[16/11]">
+            <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80" alt="The Siamese Master Suite">
+            <span class="absolute top-3 right-3 bg-[var(--ink)] text-white text-xs font-mono uppercase px-3 py-1 tracking-wider font-semibold">65 ตร.ม.</span>
+          </div>
+          <div class="p-7 md:p-8">
+            <p class="eyebrow text-xs mb-2">Top Floor Riverfront Living</p>
+            <h3 class="font-display text-2xl font-bold mb-3">The Siamese Master Suite</h3>
+            <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+              ห้องพักขนาดใหญ่ที่สุดบนชั้นบนสุด แบ่งสัดส่วนห้องนั่งเล่นและห้องนอนอย่างโอ่โถง พร้อมมุมมองเห็นสะพานพระราม 8
+            </p>
+            <ul class="text-sm text-[var(--ink-soft)] space-y-2.5 border-t hairline pt-5 font-light">
+              <li class="flex items-center gap-2">✓ ห้องนั่งเล่นแยกส่วน และเตียง King Size หรูหรา</li>
+              <li class="flex items-center gap-2">✓ ลำโพง Marshall Bluetooth Speaker</li>
+              <li class="flex items-center gap-2">✓ ฟรี รถรับส่งสนามบินสุวรรณภูมิ/ดอนเมือง 1 เที่ยว</li>
+            </ul>
+          </div>
+        </div>
+        <div class="p-7 md:p-8 pt-0 border-t hairline flex items-center justify-between mt-6">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block uppercase">เริ่มต้นที่</span>
+            <span class="font-display text-2xl font-bold text-[var(--terracotta)]">฿7,900</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/ คืน</span>
+          </div>
+          <a href="#booking" class="btn-primary px-6 py-3 rounded-sm text-sm">จองห้องนี้</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. FACILITIES ============ -->
+<section id="facilities" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-3">Every Detail Considered</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-tight">สิ่งอำนวยความสะดวก</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-4">
+        มอบความสบายใจในทุกช่วงเวลาของการพักผ่อนริมแม่น้ำเจ้าพระยา
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- 01 / POOL -->
+      <div class="border-t hairline pt-6 flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-sm aspect-[4/3] mb-5 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80" alt="สระน้ำเกลือคอร์ทยาร์ด">
+          </div>
+          <span class="font-mono text-sm text-[var(--terracotta)] block mb-2 font-bold">01 / POOL</span>
+          <h4 class="font-display text-xl font-bold mb-2">สระน้ำเกลือคอร์ทยาร์ด</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            สระว่ายน้ำระบบเกลือกลางสวนร่มรื่น ผ่อนคลายหลังกลับจากการเดินชมเมืองเก่ากรุงเทพฯ
+          </p>
+        </div>
+      </div>
+
+      <!-- 02 / DINE -->
+      <div class="border-t hairline pt-6 flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-sm aspect-[4/3] mb-5 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="ห้องอาหารระเบียงเจ้าพระยา">
+          </div>
+          <span class="font-mono text-sm text-[var(--terracotta)] block mb-2 font-bold">02 / DINE</span>
+          <h4 class="font-display text-xl font-bold mb-2">ห้องอาหารระเบียงเจ้าพระยา</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เสิร์ฟอาหารไทยตำรับชาววังและอาหารเช้าปรุงสดใหม่ริมแม่น้ำ ลมพัดเย็นสบายตลอดวัน
+          </p>
+        </div>
+      </div>
+
+      <!-- 03 / LIBRARY & BAR -->
+      <div class="border-t hairline pt-6 flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-sm aspect-[4/3] mb-5 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="The Heritage Lounge & Bar">
+          </div>
+          <span class="font-mono text-sm text-[var(--terracotta)] block mb-2 font-bold">03 / LIBRARY & BAR</span>
+          <h4 class="font-display text-xl font-bold mb-2">THE HERITAGE LOUNGE</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ห้องสมุดประวัติศาสตร์กรุงเทพฯ เสิร์ฟชาไทยเบลนด์พิเศษยามบ่าย และค็อกเทลยามค่ำคืน
+          </p>
+        </div>
+      </div>
+
+      <!-- 04 / CONCIERGE -->
+      <div class="border-t hairline pt-6 flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-sm aspect-[4/3] mb-5 shadow-sm">
+            <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=600&q=80" alt="บริการแนะนำเส้นทางเมืองเก่า">
+          </div>
+          <span class="font-mono text-sm text-[var(--terracotta)] block mb-2 font-bold">04 / CONCIERGE</span>
+          <h4 class="font-display text-xl font-bold mb-2">บริการแนะนำเส้นทางเมืองเก่า</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ทีมงานพร้อมดูแลการจองตั๋วเรือท่องเที่ยว รถรับส่ง และแนะนำร้านอาหารมิชลินใกล้เคียง
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. DINING ============ -->
+<section id="dining" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+    <div class="img-slot rounded-sm aspect-[4/3] shadow-md">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80" alt="Chao Phraya Riverfront Thai Dining">
+    </div>
+    <div>
+      <p class="eyebrow mb-4">Riverside Culinary</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-tight mb-6">
+        สำรับไทยริมแม่น้ำเจ้าพระยา<br>
+        <span class="italic text-[var(--terracotta)] font-normal">รสชาติต้นตำรับ บรรยากาศริมน้ำ</span>
+      </h2>
+      <p class="text-[var(--ink-soft)] text-lg leading-relaxed mb-6 font-light">
+        ห้องอาหาร ‘ท่าพระอาทิตย์’ นำเสนออาหารไทยตำรับชาววังและเมนูพื้นบ้านภาคกลาง ปรุงด้วยวัตถุดิบท้องถิ่นสดใหม่ พร้อมที่นั่งริมระเบียงไม้ชมวิถีชีวิตริมสายน้ำเจ้าพระยาอย่างใกล้ชิด
+      </p>
+      <div class="space-y-3 font-mono text-sm text-[var(--ink-soft)] border-t hairline-dark pt-6">
+        <p>✦ อาหารเช้า: 07:00 – 10:30 น. (เสิร์ฟริมแม่น้ำหรือบนห้องพัก)</p>
+        <p>✦ มื้อกลางวัน & ค่ำ: 11:30 – 22:00 น. (ชมแสงไฟสะพานพระราม 8)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. BANGKOK OLD TOWN & CHAO PHRAYA ============ -->
+<section id="oldtown" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-3">Bangkok Old Town Neighbourhood</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-tight">ย่านเมืองเก่ารอบตัวคุณ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-4">
+        เมื่อก้าวออกจากโรงแรม คุณจะพบกับประวัติศาสตร์ วัฒนธรรม และร้านอาหารชื่อดังของกรุงเทพฯ ในระยะเดินถึง
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Spot 1 -->
+      <div class="group">
+        <div class="img-slot rounded-sm aspect-[4/3] mb-5 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=800&q=80" alt="Wat Phra Kaew Bangkok">
+        </div>
+        <span class="font-mono text-sm text-[var(--terracotta)] font-bold tracking-wider block mb-1">เดินเท้า 8 นาที</span>
+        <h4 class="font-display text-xl font-bold mb-2">วัดพระแก้ว & พระบรมมหาราชวัง</h4>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          ตื่นเช้าเดินไปชมความงดงามของสถาปัตยกรรมระดับโลกริมกำแพงวังสีขาวอันเงียบสงบ ก่อนนักท่องเที่ยวหนาแน่น
+        </p>
+      </div>
+
+      <!-- Spot 2 -->
+      <div class="group">
+        <div class="img-slot rounded-sm aspect-[4/3] mb-5 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80" alt="Chao Phraya River Boat Tour Bangkok">
+        </div>
+        <span class="font-mono text-sm text-[var(--terracotta)] font-bold tracking-wider block mb-1">เดินเท้า 2 นาที ถึงท่าพระอาทิตย์</span>
+        <h4 class="font-display text-xl font-bold mb-2">ล่องเรือเจ้าพระยา สู่ท่าเตียน & วัดอรุณฯ</h4>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          ขึ้นเรือด่วนเจ้าพระยาหน้าโรงแรม เดินทางไปยังวัดอรุณฯ ท่าเตียน ตลาดน้อย และไอคอนสยามได้อย่างรวดเร็ว
+        </p>
+      </div>
+
+      <!-- Spot 3 -->
+      <div class="group">
+        <div class="img-slot rounded-sm aspect-[4/3] mb-5 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Phra Athit Road Cafe and Art Galleries">
+        </div>
+        <span class="font-mono text-sm text-[var(--terracotta)] font-bold tracking-wider block mb-1">หน้าประตูโรงแรม</span>
+        <h4 class="font-display text-xl font-bold mb-2">ถนนพระอาทิตย์ & สวนสันติชัยปราการ</h4>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          ย่านที่มีชีวิตชีวาด้วยคาเฟ่ Specialty Coffee, ร้านอาหารเก่าแก่ระดับตำนาน และสวนสาธารณะริมแม่น้ำเจ้าพระยา
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. PHOTO STORY ============ -->
+<section id="story" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-3">Visual Narrative</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-tight">หนึ่งวัน ณ บ้านบางกอก</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-4">
+        สัมผัสช่วงเวลาอันแสนผ่อนคลายริมแม่น้ำเจ้าพระยา ใจกลางพระนคร
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-7">
+      <!-- 07:30 -->
+      <div class="space-y-3">
+        <div class="img-slot rounded-sm aspect-[3/4] shadow-sm">
+          <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=600&q=80" alt="กาแฟดริปและมื้อเช้าริมแม่น้ำเจ้าพระยา">
+        </div>
+        <p class="text-sm font-mono text-[var(--ink-faint)] text-center font-medium">07:30 — กาแฟดริป & มื้อเช้าริมน้ำ</p>
+      </div>
+
+      <!-- 10:30 -->
+      <div class="space-y-3 md:translate-y-6">
+        <div class="img-slot rounded-sm aspect-[3/4] shadow-sm">
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=600&q=80" alt="เดินชมเสน่ห์เมืองเก่าพระนคร">
+        </div>
+        <p class="text-sm font-mono text-[var(--ink-faint)] text-center font-medium">10:30 — เดินชมเสน่ห์พระนคร</p>
+      </div>
+
+      <!-- 15:00 -->
+      <div class="space-y-3">
+        <div class="img-slot rounded-sm aspect-[3/4] shadow-sm">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="พักผ่อนริมสระน้ำคอร์ทยาร์ดบูทีค">
+        </div>
+        <p class="text-sm font-mono text-[var(--ink-faint)] text-center font-medium">15:00 — เอนกายริมสระคอร์ทยาร์ด</p>
+      </div>
+
+      <!-- 18:30 -->
+      <div class="space-y-3 md:translate-y-6">
+        <div class="img-slot rounded-sm aspect-[3/4] shadow-sm">
+          <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80" alt="บรรยากาศยามเย็นริมแม่น้ำเจ้าพระยา">
+        </div>
+        <p class="text-sm font-mono text-[var(--ink-faint)] text-center font-medium">18:30 — ยามเย็นริมแม่น้ำเจ้าพระยา</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. REVIEWS ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Guest Reflections</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-tight">ความประทับใจจากผู้เข้าพัก</h2>
+      </div>
+      <div class="flex items-center gap-3 mt-4 md:mt-0 font-mono text-sm">
+        <span class="text-[var(--terracotta)] font-bold text-lg">★ 4.9 / 5.0</span>
+        <span class="text-[var(--ink-faint)]">จาก 380+ รีวิวที่ได้รับการยืนยัน</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-sm border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--terracotta)] mb-4 tracking-widest text-base">★★★★★</div>
+          <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6 italic">
+            "ทำเลริมแม่น้ำเจ้าพระยาดีมาก ห้องพัก Riverfront สวยงามและเงียบสงบ อาหารเช้าริมน้ำรสชาติดี พนักงานน่ารักดูแลเหมือนคนในครอบครัว แนะนำเลยครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-base">คุณอรุณศรี พ.</p>
+          <p class="text-sm text-[var(--ink-faint)] font-mono">กรุงเทพฯ · เข้าพักเมื่อ ก.พ. 2026</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-sm border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--terracotta)] mb-4 tracking-widest text-base">★★★★★</div>
+          <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6 italic">
+            "Exceptional boutique hotel right on the Chao Phraya River. Perfect location for exploring Bangkok Old Town and temples by boat. Quiet, authentic, and beautifully decorated."
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-base">Thomas & Laura V.</p>
+          <p class="text-sm text-[var(--ink-faint)] font-mono">Switzerland · Stayed March 2026</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-sm border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--terracotta)] mb-4 tracking-widest text-base">★★★★★</div>
+          <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6 italic">
+            "ชอบบรรยากาศความเป็นส่วนตัว เตียงนอนสบายมาก เดินไปถนนพระอาทิตย์และวัดพระแก้วง่ายมาก นั่งจิบค็อกเทลริมน้ำตอนเย็นคือไฮไลต์ของการมาพักผ่อน"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-base">คุณกิตติศักดิ์ ช.</p>
+          <p class="text-sm text-[var(--ink-faint)] font-mono">เชียงใหม่ · เข้าพักเมื่อ เม.ย. 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. LOCATION & ACCESS ============ -->
+<section id="location" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-3">Location & Access</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] leading-tight">การเดินทางสู่บ้านบางกอก</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-4">
+        ตั้งอยู่ริมแม่น้ำเจ้าพระยา ถนนพระอาทิตย์ เขตพระนคร กรุงเทพฯ
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+      <div class="lg:col-span-5 bg-white p-8 md:p-10 rounded-sm border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <h3 class="font-display text-2xl font-bold mb-3">บ้านบางกอก บูทีคโฮเทล</h3>
+          <p class="text-sm text-[var(--ink-soft)] leading-relaxed font-light mb-6">
+            48 ถนนพระอาทิตย์ แขวงชนะสงคราม เขตพระนคร กรุงเทพฯ 10200
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div>
+              <strong class="text-[var(--ink)] block font-semibold mb-1">🚢 ทางเรือด่วนเจ้าพระยา (แนะนำ):</strong>
+              ลงที่ <span class="font-medium text-[var(--ink)]">ท่าเรือพระอาทิตย์ (N13)</span> เดินเลียบถนนพระอาทิตย์เพียง 150 เมตรถึงโรงแรม
+            </div>
+            <div>
+              <strong class="text-[var(--ink)] block font-semibold mb-1">🚇 รถไฟฟ้า MRT:</strong>
+              ลงสถานี <span class="font-medium text-[var(--ink)]">สนามไชย</span> หรือ <span class="font-medium text-[var(--ink)]">สามยอด</span> ต่อรถแท็กซี่ประมาณ 8-10 นาที
+            </div>
+            <div>
+              <strong class="text-[var(--ink)] block font-semibold mb-1">🚗 รถยนต์ส่วนตัว & ที่จอดรถ:</strong>
+              มีที่จอดรถส่วนตัวภายในโรงแรมสำหรับผู้เข้าพัก (มีเจ้าหน้าที่ดูแล 24 ชม.)
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-8 border-t hairline mt-6">
+          <a href="https://maps.google.com/?q=Phra+Athit+Road+Bangkok" target="_blank" rel="noopener" class="btn-primary flex-1 text-center py-3.5 rounded-sm text-sm">
+            เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:+6621234567" class="btn-outline flex-1 text-center py-3.5 rounded-sm text-sm">
+            โทรติดต่อฟรอนต์
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 rounded-sm overflow-hidden border hairline min-h-[380px] shadow-sm">
+        <iframe 
+          title="Baan Bangkok Hotel Map"
+          class="w-full h-full"
+          style="border:0; min-height: 380px;" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade" 
+          src="https://www.google.com/maps?q=Phra+Athit+Road,Phra+Nakhon,Bangkok,Thailand&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. DIRECT BOOKING ENGINE ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal bg-[#161412] text-[#FAF7F2]">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="eyebrow text-[#D89B88] mb-3">Direct Reservation & Best Rates</p>
+    <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-normal leading-tight mb-6">
+      จองตรงกับบ้านบางกอก
+    </h2>
+    <p class="text-[#DCD4CA] text-lg font-light max-w-xl mx-auto leading-relaxed mb-10">
+      รับสิทธิ์การันตีราคาดีที่สุด พร้อมชุดน้ำชายามบ่ายริมแม่น้ำเจ้าพระยาฟรีเมื่อจองตรงผ่านเว็บไซต์
+    </p>
+
+    <div class="bg-[#24201D] p-7 md:p-9 rounded-sm border border-white/10 shadow-2xl text-left mb-8">
+      <form id="bookingForm" onsubmit="event.preventDefault(); alert('ระบบกำลังค้นหาห้องว่างริมแม่น้ำเจ้าพระยาพร้อมราคาพิเศษ...');" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-end">
+        <div>
+          <label class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">วันเช็กอิน</label>
+          <input type="date" id="checkin" class="w-full bg-[#161412] border border-white/20 rounded-sm px-4 py-3.5 text-sm text-[#FAF7F2] focus:outline-none focus:border-[#D89B88]" required>
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">วันเช็กเอาต์</label>
+          <input type="date" id="checkout" class="w-full bg-[#161412] border border-white/20 rounded-sm px-4 py-3.5 text-sm text-[#FAF7F2] focus:outline-none focus:border-[#D89B88]" required>
+        </div>
+        <div>
+          <label class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">จำนวนผู้เข้าพัก</label>
+          <select class="w-full bg-[#161412] border border-white/20 rounded-sm px-4 py-3.5 text-sm text-[#FAF7F2] focus:outline-none focus:border-[#D89B88]">
+            <option value="2">2 ท่าน (1 ห้อง)</option>
+            <option value="1">1 ท่าน (1 ห้อง)</option>
+            <option value="4">4 ท่าน (2 ห้อง)</option>
+            <option value="more">ครอบครัว / กลุ่มใหญ่</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit" class="w-full btn-primary py-4 rounded-sm flex items-center justify-center gap-2 text-base">
+            <span>ตรวจสอบห้องว่าง</span>
+            <span>→</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-[#BDB4A8] font-mono">
+      <span>🔒 การันตีราคาดีที่สุด และยกเลิกฟรีล่วงหน้า 48 ชม.</span>
+      <span>•</span>
+      <span>💬 สอบถามทาง LINE: @baanbangkok</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-16 bg-[#161412] text-[#E5DDD0] border-t border-white/10 px-6 md:px-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-10 text-sm font-light">
+    <div>
+      <p class="font-display text-lg font-bold text-[#FAF7F2] tracking-wider mb-3">BAAN BANGKOK</p>
+      <p class="text-[#A89F93] leading-relaxed">
+        Chao Phraya Riverfront Boutique Hotel.<br>
+        ความเงียบสงบอันประณีต ใจกลางเมืองเก่ากรุงเทพฯ
+      </p>
+    </div>
+    <div>
+      <p class="font-mono text-[#D89B88] uppercase tracking-widest mb-3 font-semibold">ที่ตั้ง</p>
+      <p class="text-[#A89F93] leading-relaxed">
+        48 ถนนพระอาทิตย์ แขวงชนะสงคราม เขตพระนคร กรุงเทพฯ 10200
+      </p>
+    </div>
+    <div>
+      <p class="font-mono text-[#D89B88] uppercase tracking-widest mb-3 font-semibold">ติดต่อสอบถาม</p>
+      <ul class="space-y-2 text-[#A89F93]">
+        <li>โทร: +66 (0) 2 123 4567</li>
+        <li>อีเมล: stay@baanbangkokhotel.com</li>
+        <li>LINE: @baanbangkok</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-mono text-[#D89B88] uppercase tracking-widest mb-3 font-semibold">เวลาบริการ</p>
+      <p class="text-[#A89F93] leading-relaxed">
+        เช็กอิน: 14:00 น. | เช็กเอาต์: 12:00 น.<br>
+        แผนกต้อนรับบริการตลอด 24 ชั่วโมง
+      </p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto border-t border-white/10 mt-12 pt-8 text-center text-xs text-[#8A8177] font-mono">
+    © 2026 Baan Bangkok Boutique Hotel. All rights reserved. Created with PuchUp Project ONE[cite: 1].
+  </div>
+</footer>
+
+<!-- Bottom Mobile Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)] border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--ink-faint)] font-mono block">ราคาพิเศษเริ่มต้น</span>
+    <span class="font-display text-lg font-bold text-[var(--terracotta)]">฿3,800</span>
+    <span class="text-xs text-[var(--ink-faint)] font-mono">/คืน</span>
+  </div>
+  <div class="flex gap-2.5">
+    <a href="tel:+6621234567" class="btn-outline px-3.5 py-2.5 rounded-sm text-sm flex items-center justify-center">
+      📞
+    </a>
+    <a href="#booking" class="btn-primary px-6 py-2.5 rounded-sm text-sm">
+      จองห้องพัก
+    </a>
+  </div>
+</div>
+
+<script>
+/* ---------- Set Default Dates for Booking Form ---------- */
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
+
+const formatDate = (date) => date.toISOString().split('T')[0];
+document.getElementById('checkin').value = formatDate(today);
+document.getElementById('checkout').value = formatDate(tomorrow);
+document.getElementById('checkin').min = formatDate(today);
+document.getElementById('checkout').min = formatDate(tomorrow);
+
+/* ---------- Scroll Reveal Observer ---------- */
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

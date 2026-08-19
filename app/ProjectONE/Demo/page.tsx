@@ -1,12 +1,18 @@
-import type { Metadata } from "next";
-import DemoClient from "@/components/project-one/DemoClient";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Demo Library | ตัวอย่างธุรกิจทั้งหมด",
-  description:
-    "เลือกดูตัวอย่างตามประเภทธุรกิจของคุณ แล้วลองนึกภาพว่าร้านของคุณจะดูดีขนาดไหน",
-};
+import { useEffect } from "react";
 
-export default function ProjectOneDemoPage() {
-  return <DemoClient />;
+export default function ProjectOneDemoRedirect() {
+  useEffect(() => {
+    window.location.replace("/demo/");
+  }, []);
+
+  return (
+    <p className="p-8 text-center text-slate-600">
+      กำลังไป Showroom ที่{" "}
+      <a href="/demo/" className="underline">
+        /demo/
+      </a>
+    </p>
+  );
 }

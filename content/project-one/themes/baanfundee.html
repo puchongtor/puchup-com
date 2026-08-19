@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บ้านฟันดี คลินิกทันตกรรม พระราม 3 | ดูแลสุขภาพฟันทุกคนในครอบครัว</title>
+<meta name="description" content="บ้านฟันดี คลินิกทันตกรรม ย่านพระราม 3 ดูแลสุขภาพช่องปากสำหรับทุกคนในครอบครัว หมอใจดี มือเบา เป็นกันเอง ราคาย่อมเยา ใช้สิทธิประกันสังคมได้">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "name": "บ้านฟันดี คลินิกทันตกรรม",
+  "description": "คลินิกทันตกรรมชุมชนย่านพระราม 3 บริการเป็นกันเอง ราคาย่อมเยา",
+  "telephone": "02-123-4567",
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root{
+    --bg:#FBFBF8; --bg-alt:#F1F5F3; --ink:#15263F; --ink-soft:#52657C; --ink-faint:#8B98A8;
+    --teal:#3EA292; --teal-deep:#296E63; --line:#E2E8E4; --amber:#D8A13B;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans Thai',sans-serif; -webkit-font-smoothing:antialiased; }
+  .font-display{ font-family:'Noto Sans Thai',sans-serif; font-weight:700; }
+  .font-mono{ font-family:'IBM Plex Mono',monospace; letter-spacing:.07em; }
+  .hairline{ border-color:var(--line); }
+  ::selection{ background:var(--teal); color:#fff; }
+  .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--teal-deep); font-weight:600; }
+  .note-demo{ font-size:.72rem; color:var(--ink-faint); }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .sticky-nav{ backdrop-filter: blur(12px); background:rgba(251,251,248,.94); }
+  .navtab{ color:var(--ink-faint); border-bottom:2px solid transparent; padding-bottom:2px; transition:.2s; white-space:nowrap; font-size:.88rem; }
+  .navtab.active{ color:var(--ink); border-color:var(--teal); font-weight:600; }
+
+  .img-slot{ position:relative; overflow:hidden; background:var(--bg-alt); }
+  .img-slot img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+  .img-slot:hover img{ transform:scale(1.025); }
+
+  .svc-card{ border:1px solid var(--line); background:#fff; transition:.2s; cursor:pointer; }
+  .svc-card:hover, .svc-card.active{ border-color:var(--teal); box-shadow:0 12px 24px -16px rgba(62,162,146,.35); }
+
+  .concern-chip{ border:1px solid var(--line); color:var(--ink-soft); transition:.2s; background:#fff; }
+  .concern-chip.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  .day-pill{ width:26px; height:26px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:.65rem; border:1px solid var(--line); color:var(--ink-faint); }
+  .day-pill.on{ background:var(--teal); color:#fff; border-color:var(--teal); font-weight:600; }
+
+  #mobileCta{ backdrop-filter: blur(10px); }
+
+  @media (prefers-reduced-motion: reduce){ .reveal{ transition:none; } }
+</style>
+</head>
+<body class="antialiased pb-20 md:pb-0">
+
+<div class="bg-[var(--ink)] text-white text-center text-[11px] font-mono py-1.5 px-4">
+  PUCHUP ONE — DEMO #002 · ตัวอย่างเว็บไซต์คลินิกทันตกรรมชุมชน ย่านพระราม 3 ·
+  <a href="demo.html" class="underline hover:no-underline">ดูตัวอย่างธุรกิจอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR WITH LOGO ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between gap-6">
+    <a href="#hero" class="flex items-center gap-3 group">
+      <!-- Premium Tooth + Home SVG Logo -->
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm transition-transform group-hover:scale-105" style="background: linear-gradient(135deg, #4DB9A8 0%, #257064 100%);">
+        <svg viewBox="0 0 40 40" class="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- หลังคาบ้านมินิมอล -->
+          <path d="M7 16.5L20 6.5L33 16.5" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- ฟันยิ้มสะอาด -->
+          <path d="M13.5 17C13.5 13.8 16.2 12.5 20 12.5C23.8 12.5 26.5 13.8 26.5 17C26.5 21.8 24.5 28.5 22.5 28.5C21.2 28.5 20.6 26 20 26C19.4 26 18.8 28.5 17.5 28.5C15.5 28.5 13.5 21.8 13.5 17Z" fill="#FFFFFF"/>
+          <!-- ประกายฟันขาวสะอาด -->
+          <path d="M25 10L26 12L28 13L26 14L25 16L24 14L22 13L24 12L25 10Z" fill="#FFDE72"/>
+        </svg>
+      </div>
+      <div>
+        <span class="font-display text-lg tracking-tight leading-none block text-[var(--ink)]">บ้านฟันดี</span>
+        <span class="text-[10px] text-[var(--teal-deep)] font-semibold tracking-wider font-mono uppercase block mt-0.5">Dental Clinic</span>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-6 overflow-x-auto">
+      <a href="#services" data-tab="services" class="navtab active">บริการ</a>
+      <a href="#doctors" data-tab="doctors" class="navtab">ทีมทันตแพทย์</a>
+      <a href="#pricing" data-tab="pricing" class="navtab">ราคา</a>
+      <a href="#reviews" data-tab="reviews" class="navtab">รีวิว</a>
+      <a href="#location" data-tab="location" class="navtab">ที่ตั้ง & นัดหมาย</a>
+    </div>
+    <a href="https://line.me/R/ti/p/@baanfundee" target="_blank" rel="noopener" class="shrink-0 text-sm font-medium rounded-full px-5 py-2 text-white hover:opacity-90 transition shadow-sm" style="background:var(--teal);">นัดหมอ / สอบถาม</a>
+  </div>
+</nav>
+
+<!-- ============ 1. HERO ============ -->
+<header id="hero" class="pt-12 md:pt-16 pb-14 md:pb-20 px-5">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+    <div>
+      <p class="eyebrow mb-3">คลินิกทันตกรรมชุมชน · สาขาพระราม 3</p>
+      <h1 class="font-display text-[clamp(2rem,4.8vw,3.2rem)] leading-[1.15] mb-4">ทำฟันสบายใจ<br>เป็นกันเอง เหมือนคนในบ้าน</h1>
+      <p class="text-[var(--ink-soft)] text-base md:text-lg leading-relaxed mb-6 max-w-md">
+        ดูแลสุขภาพช่องปากทุกคนในครอบครัว หมอมือเบา อธิบายเข้าใจง่าย ราคาย่อมเยา ชี้แจงราคาก่อนทำ ไม่ยัดเยียดคอร์ส
+      </p>
+      <div class="flex flex-wrap gap-3 mb-6">
+        <a href="https://line.me/R/ti/p/@baanfundee" target="_blank" rel="noopener" class="rounded-full px-6 py-3 text-sm font-medium text-white hover:opacity-90 transition shadow-sm" style="background:var(--teal);">นัดตรวจฟัน / จองคิว</a>
+        <a href="tel:021234567" class="rounded-full px-6 py-3 text-sm font-medium border hairline text-[var(--ink-soft)] hover:border-[var(--ink)] hover:text-[var(--ink)] transition">โทรสอบถามคิว</a>
+      </div>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-[var(--ink-soft)]">
+        <li class="flex items-center gap-1.5"><span style="color:var(--teal);">✓</span> ใช้สิทธิประกันสังคม 900 บ./ปี ไม่ต้องสำรองจ่าย</li>
+        <li class="flex items-center gap-1.5"><span style="color:var(--teal);">✓</span> มีที่จอดรถหน้าร้านสะดวกสบาย</li>
+      </ul>
+    </div>
+    <div class="img-slot rounded-2xl aspect-[4/3] md:aspect-[5/4] shadow-sm border hairline overflow-hidden">
+      <!-- ภาพ Hero: ทันตแพทย์คนไทยขณะดูแลให้คำแนะนำคนไข้อย่างเป็นกันเอง -->
+      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80" alt="ทันตแพทย์กำลังให้คำปรึกษาคนไข้อย่างอบอุ่น">
+    </div>
+  </div>
+</header>
+
+<!-- ============ 2. TRUST BAR ============ -->
+<div class="border-y hairline bg-[var(--bg-alt)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-5">
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-2.5 text-sm text-[var(--ink-soft)] font-medium">
+      <span>🩺 ตรวจเช็กสุขภาพฟันเบื้องต้นฟรี</span>
+      <span>💳 ประกันสังคม 900 บ./ปี ไม่ต้องสำรองจ่าย</span>
+      <span>👧 หมอฟันเด็กใจดี มีของขวัญให้น้องๆ</span>
+      <span>📍 ริมถนนพระราม 3 หาง่าย จอดรถสะดวก</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 3. SERVICES ============ -->
+<section id="services" class="py-14 md:py-20 reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center max-w-xl mx-auto mb-10">
+      <p class="eyebrow mb-2">บริการของเรา</p>
+      <h2 class="font-display text-[clamp(1.6rem,3.5vw,2.2rem)] leading-tight">บริการทำฟันครบวงจร</h2>
+      <p class="note-demo mt-2">รักษาตรงจุด ชี้แจงราคาก่อนเริ่มทำทุกครั้ง</p>
+    </div>
+
+    <div id="serviceGrid" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3"></div>
+    <div id="serviceDetail" class="hidden mt-6 rounded-2xl border hairline bg-white p-6 md:p-8"></div>
+  </div>
+</section>
+
+<!-- ============ 4. DOCTORS ============ -->
+<section id="doctors" class="py-14 md:py-20 bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center max-w-xl mx-auto mb-4">
+      <p class="eyebrow mb-2">ทีมทันตแพทย์ประจำคลินิก</p>
+      <h2 class="font-display text-[clamp(1.6rem,3.5vw,2.2rem)] leading-tight">คุณหมอใจดี มือเบา เป็นกันเอง</h2>
+    </div>
+    <p class="note-demo text-center mb-8">ทันตแพทยศาสตรบัณฑิต มีใบประกอบวิชาชีพถูกต้องทุกท่าน</p>
+
+    <div id="concernChips" class="flex flex-wrap justify-center gap-2 mb-8">
+      <button data-concern="all" class="concern-chip active rounded-full px-4 py-1.5 text-sm">คุณหมอทั้งหมด</button>
+      <button data-concern="ทันตกรรมทั่วไป" class="concern-chip rounded-full px-4 py-1.5 text-sm">🦷 ทั่วไป / อุด-ขูด-ถอน</button>
+      <button data-concern="ทันตกรรมเด็ก" class="concern-chip rounded-full px-4 py-1.5 text-sm">👧 หมอฟันเด็ก</button>
+      <button data-concern="จัดฟัน" class="concern-chip rounded-full px-4 py-1.5 text-sm">😁 จัดฟัน</button>
+      <button data-concern="รักษารากและฟันปลอม" class="concern-chip rounded-full px-4 py-1.5 text-sm">🧓 ฟันปลอม / ผู้สูงอายุ</button>
+    </div>
+
+    <div id="doctorGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+
+<!-- ============ 5. PRICE ============ -->
+<section id="pricing" class="py-14 md:py-20 reveal">
+  <div class="max-w-5xl mx-auto px-5 md:px-8">
+    <div class="text-center max-w-xl mx-auto mb-4">
+      <p class="eyebrow mb-2">ค่ารักษาโปร่งใส</p>
+      <h2 class="font-display text-[clamp(1.6rem,3.5vw,2.2rem)]">อัตราค่าบริการมาตรฐาน</h2>
+    </div>
+    <p class="note-demo text-center mb-8">ราคาชัดเจน ไม่มีค่าบริการแอบแฝง</p>
+    <div id="priceGrid" class="grid sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+  </div>
+</section>
+
+<!-- ============ 6. REVIEWS ============ -->
+<section id="reviews" class="py-14 md:py-20 bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center max-w-xl mx-auto mb-8">
+      <p class="eyebrow mb-2">รีวิวจากเพื่อนบ้าน</p>
+      <h2 class="font-display text-[clamp(1.6rem,3.5vw,2.2rem)]">คนย่านพระราม 3 พูดถึงเรา</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="rounded-xl bg-white border hairline p-6">
+        <p style="color:var(--amber);" class="mb-2">★★★★★</p>
+        <p class="text-[var(--ink-soft)] mb-4 text-sm leading-relaxed">"พาคุณแม่ไปทำฟันปลอม หมอนัทใจเย็นและอธิบายละเอียดมาก ไม่รีบทำ ราคาไม่แพงเหมือนคลินิกใหญ่ๆ แนะนำเลยครับ"</p>
+        <p class="text-sm font-semibold text-[var(--ink)]">คุณสมชาย (ชุมชนวัดด่าน)</p>
+        <p class="text-xs text-[var(--ink-faint)]">ทำฟันปลอมถอดได้</p>
+      </div>
+      <div class="rounded-xl bg-white border hairline p-6">
+        <p style="color:var(--amber);" class="mb-2">★★★★★</p>
+        <p class="text-[var(--ink-soft)] mb-4 text-sm leading-relaxed">"พาลูกสาว 5 ขวบมาอุดฟัน หมอผึ้งใจดีมาก ชวนคุยจนน้องเพลินไม่ร้องไห้สักแอะ มีสติกเกอร์แจกให้เด็กด้วย ประทับใจค่ะ"</p>
+        <p class="text-sm font-semibold text-[var(--ink)]">คุณวรรณา (สาธุประดิษฐ์)</p>
+        <p class="text-xs text-[var(--ink-faint)]">ทันตกรรมเด็ก</p>
+      </div>
+      <div class="rounded-xl bg-white border hairline p-6">
+        <p style="color:var(--amber);" class="mb-2">★★★★★</p>
+        <p class="text-[var(--ink-soft)] mb-4 text-sm leading-relaxed">"ใช้สิทธิประกันสังคมมาขูดหินปูน ไม่ต้องจ่ายเพิ่มเลยสักบาท หมอมือเบามาก คลินิกสะอาดตรงเวลา ไม่ต้องรอนาน"</p>
+        <p class="text-sm font-semibold text-[var(--ink)]">คุณเอกชัย (พระราม 3)</p>
+        <p class="text-xs text-[var(--ink-faint)]">ขูดหินปูน ประกันสังคม</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. GALLERY (เกี่ยวกับงานทันตกรรมโดยตรง) ============ -->
+<section class="py-14 md:py-20 reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center max-w-xl mx-auto mb-10">
+      <p class="eyebrow mb-2">บรรยากาศคลินิก</p>
+      <h2 class="font-display text-[clamp(1.6rem,3.5vw,2.2rem)]">สะอาด ได้มาตรฐาน สบายตา</h2>
+      <p class="note-demo mt-1">คลินิกตึกแถวริมถนน เดินทางสะดวก จอดรถง่าย</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <!-- 1. บริเวณต้อนรับ / รอตรวจ -->
+      <div class="img-slot rounded-xl aspect-[4/3] border hairline">
+        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=600&q=80" alt="มุมต้อนรับและรอตรวจ">
+      </div>
+      <!-- 2. เตียงและยูนิตทำฟันมาตรฐาน -->
+      <div class="img-slot rounded-xl aspect-[4/3] border hairline">
+        <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=600&q=80" alt="เตียงทำฟันสะอาดได้มาตรฐาน">
+      </div>
+      <!-- 3. เครื่องมือตรวจฟันและกระจกส่องฟัน -->
+      <div class="img-slot rounded-xl aspect-[4/3] border hairline">
+        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&q=80" alt="อุปกรณ์ตรวจสุขภาพฟันปลอดเชื้อ">
+      </div>
+      <!-- 4. โมเดลฟันและมุมปรึกษาคุณหมอ -->
+      <div class="img-slot rounded-xl aspect-[4/3] border hairline">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80" alt="เคาน์เตอร์และมุมแนะนำการดูแลสุขภาพฟัน">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. LOCATION ============ -->
+<section id="location" class="py-14 md:py-20 bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center max-w-xl mx-auto mb-10">
+      <p class="eyebrow mb-2">แผนที่ & การเดินทาง</p>
+      <h2 class="font-display text-[clamp(1.6rem,3.5vw,2.2rem)]">บ้านฟันดี พระราม 3</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="rounded-2xl border hairline bg-white p-7 flex flex-col justify-between">
+        <div>
+          <p class="font-display text-lg mb-4">เวลาเปิดทำการ</p>
+          <ul class="space-y-2 text-sm mb-6">
+            <li class="flex justify-between border-b hairline pb-2"><span class="text-[var(--ink-soft)]">จันทร์ – ศุกร์</span><span class="font-semibold">10:00 – 20:00 น. (เลิกงานมาทัน)</span></li>
+            <li class="flex justify-between border-b hairline pb-2"><span class="text-[var(--ink-soft)]">เสาร์ – อาทิตย์</span><span class="font-semibold">09:00 – 18:00 น.</span></li>
+            <li class="flex justify-between text-red-600 font-medium pt-1"><span>วันหยุดนักขัตฤกษ์</span><span>เปิดตามปกติ (โทรเช็กคิวก่อนได้ครับ)</span></li>
+          </ul>
+          <div class="pt-4 border-t hairline mb-6">
+            <p class="font-display text-base mb-1">ที่ตั้งคลินิก</p>
+            <p class="text-sm text-[var(--ink-soft)] leading-relaxed">ริมถนนพระราม 3 (ใกล้ซอยสาธุประดิษฐ์ 58 / วัดด่าน) แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ มีที่จอดรถหน้าร้าน</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Rama+3+Bangkok" target="_blank" rel="noopener" class="flex-1 text-center rounded-full py-3 text-sm font-medium text-white shadow-sm" style="background:var(--teal);">เปิด Google Maps นำทาง</a>
+          <a href="tel:021234567" class="flex-1 text-center rounded-full py-3 text-sm font-medium border hairline hover:border-[var(--teal)] transition">โทร: 02-123-4567</a>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border hairline">
+        <iframe title="แผนที่บ้านฟันดี พระราม 3" class="w-full h-[320px] md:h-full" style="border:0; min-height:300px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Rama+3,Bangkok,Thailand&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. FINAL CTA ============ -->
+<section class="py-16 md:py-20 text-center reveal" style="background:var(--ink); color:#fff;">
+  <div class="max-w-xl mx-auto px-5">
+    <p class="font-display text-[clamp(1.6rem,3.8vw,2.4rem)] leading-tight mb-4">มีปัญหาเรื่องฟัน ปรึกษาเราก่อนได้ครับ</p>
+    <p class="text-sm opacity-80 mb-8">ทักไลน์ส่งรูปมาให้คุณหมอประเมินเบื้องต้น หรือโทรจองคิวตรวจได้เลย</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="tel:021234567" class="rounded-full px-7 py-3 text-sm font-medium shadow-sm" style="background:var(--teal); color:#fff;">📞 โทรนัดคิว: 02-123-4567</a>
+      <a href="https://line.me/R/ti/p/@baanfundee" target="_blank" rel="noopener" class="rounded-full px-7 py-3 text-sm font-medium bg-[#06C755] text-white hover:opacity-90 transition shadow-sm">💬 ทักไลน์ @baanfundee</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER WITH LOGO ============ -->
+<footer class="py-12 text-center border-t hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col items-center justify-center">
+    <div class="flex items-center gap-2.5 mb-3">
+      <div class="w-7 h-7 rounded-lg flex items-center justify-center shadow-sm" style="background: linear-gradient(135deg, #4DB9A8 0%, #257064 100%);">
+        <svg viewBox="0 0 40 40" class="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 16.5L20 6.5L33 16.5" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.5 17C13.5 13.8 16.2 12.5 20 12.5C23.8 12.5 26.5 13.8 26.5 17C26.5 21.8 24.5 28.5 22.5 28.5C21.2 28.5 20.6 26 20 26C19.4 26 18.8 28.5 17.5 28.5C15.5 28.5 13.5 21.8 13.5 17Z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <p class="font-display text-base text-[var(--ink)]">บ้านฟันดี คลินิกทันตกรรม พระราม 3</p>
+    </div>
+    <p class="text-xs text-[var(--ink-faint)]">เว็บไซต์ตัวอย่างสำหรับ Local Business โดย PuchUp Project ONE[cite: 1]</p>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Bar -->
+<div id="mobileCta" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white border-t hairline grid grid-cols-3 text-center text-xs">
+  <a href="tel:021234567" class="py-3 flex flex-col items-center gap-0.5"><span class="text-base">📞</span>โทรสอบถาม</a>
+  <a href="https://line.me/R/ti/p/@baanfundee" target="_blank" rel="noopener" class="py-3 flex flex-col items-center gap-0.5 border-x hairline text-[#06C755] font-medium"><span class="text-base">💬</span>แอด LINE</a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Rama+3+Bangkok" target="_blank" rel="noopener" class="py-3 flex flex-col items-center gap-0.5" style="background:var(--teal); color:#fff;"><span class="text-base">📍</span>แผนที่ร้าน</a>
+</div>
+
+<script>
+/* ---------- Services ---------- */
+const services = [
+  { icon:'🩺', name:'ตรวจฟัน & ปรึกษา', forWho:'ทุกคนในครอบครัว ตรวจประจำปี', about:'ตรวจสภาพฟัน เหงือก และให้คำปรึกษาแนวทางรักษาตรงไปตรงมา', faq:'ตรวจอย่างเดียวมีค่าใช้จ่ายไหม? — ปรึกษาและตรวจเบื้องต้นฟรีครับ' },
+  { icon:'✨', name:'ขูดหินปูน', forWho:'ผู้มีคราบชากาแฟ หินปูนสะสม กลิ่นปาก', about:'ขูดหินปูนทั้งปาก ขัดคราบฟันสะอาด ใช้สิทธิประกันสังคมได้เต็มจำนวน', faq:'เจ็บไหม? — หมอมือเบา สามารถแจ้งระดับความเสียวฟันได้ตลอดครับ' },
+  { icon:'🦷', name:'อุดฟัน (สีเหมือนฟัน)', forWho:'ผู้มีฟันผุ ฟันแตก ฟันบิ่น เสียวฟัน', about:'กรอฟันผุและบูรณะด้วยวัสดุเรซินคอมโพสิตสีเนียนเหมือนฟันจริง', faq:'ทำกี่นาที? — ซี่ละประมาณ 20–30 นาที เสร็จในครั้งเดียว' },
+  { icon:'🪥', name:'ถอนฟัน & ผ่าฟันคุด', forWho:'ฟันผุทะลุโพรงประสาท หรือฟันคุดดันเหงือก', about:'ฉีดยาชาไม่เจ็บ ถอนฟันและผ่าฟันคุดอย่างนุ่มนวล พร้อมยาแก้ปวด/แก้อักเสบ', faq:'บวมกี่วัน? — ถอนฟันทั่วไปไม่บวม ส่วนผ่าฟันคุดบวมเล็กน้อย 2-3 วัน' },
+  { icon:'👧', name:'ทำฟันเด็ก', forWho:'เด็กเล็กตั้งแต่ฟันน้ำนมเริ่มขึ้น', about:'เคลือบฟลูออไรด์ อุดฟันน้ำนม เคลือบหลุมร่องฟัน บรรยากาศเป็นกันเอง', faq:'น้องไม่ยอมอ้าปากทำอย่างไร? — คุณหมอมีเทคนิคปรับพฤติกรรมเด็ก ค่อยๆ ทำความคุ้นเคย ไม่บังคับ' },
+  { icon:'🧓', name:'ฟันปลอมฐานพลาสติก/โลหะ', forWho:'ผู้สูงอายุ หรือผู้ที่สูญเสียฟันเคี้ยวอาหาร', about:'ทำฟันปลอมถอดได้ ฟันปลอมทั้งปาก ช่วยให้บดเคี้ยวอาหารได้ปกติและยิ้มมั่นใจ', faq:'ใช้เวลากี่วัน? — พิมพ์ปากและลองเทียบฟันประมาณ 2–3 สัปดาห์' },
+  { icon:'😁', name:'จัดฟันลวด / จัดฟันใส', forWho:'วัยรุ่นและผู้ใหญ่ที่ฟันซ้อนเก ฟันยื่น', about:'จัดฟันปรับโครงสร้างฟันให้เรียงสวย สบฟันดี ผ่อนชำระรายเดือนสบายกระเป๋า', faq:'มีโปรโมชั่นไหม? — ติดตามโปรโมชั่นแบ่งจ่ายรายเดือนที่คลินิกได้เลย' },
+  { icon:'🌱', name:'รักษารากฟัน', forWho:'ผู้ที่ปวดฟันตอนกลางคืน ฟันผุลึกถึงเส้นประสาท', about:'รักษาและทำความสะอาดคลองรากฟัน เพื่อเก็บฟันแท้ไว้ ไม่ต้องถอนทิ้ง', faq:'ต้องมากี่ครั้ง? — ส่วนใหญ่ประมาณ 2–3 ครั้ง ขึ้นกับระดับการติดเชื้อ' },
+];
+
+document.getElementById('serviceGrid').innerHTML = services.map((s,i) => `
+  <button data-i="${i}" class="svc-card rounded-xl p-3.5 text-left">
+    <p class="text-xl mb-1.5">${s.icon}</p>
+    <p class="text-sm font-semibold leading-snug text-[var(--ink)]">${s.name}</p>
+  </button>
+`).join('');
+
+document.querySelectorAll('.svc-card').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.svc-card').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const s = services[btn.dataset.i];
+    const panel = document.getElementById('serviceDetail');
+    panel.classList.remove('hidden');
+    panel.innerHTML = `
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-2xl">${s.icon}</span>
+        <p class="font-display text-lg text-[var(--ink)]">${s.name}</p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-5 text-sm">
+        <div><p class="font-semibold mb-1 text-[var(--ink)]">เหมาะสำหรับ</p><p class="text-[var(--ink-soft)]">${s.forWho}</p></div>
+        <div><p class="font-semibold mb-1 text-[var(--ink)]">ขั้นตอนการดูแล</p><p class="text-[var(--ink-soft)]">${s.about}</p></div>
+        <div><p class="font-semibold mb-1 text-[var(--ink)]">คำถามที่พบบ่อย</p><p class="text-[var(--ink-soft)]">${s.faq}</p></div>
+      </div>
+      <a href="https://line.me/R/oaMessage/@baanfundee/?${encodeURIComponent('สวัสดีครับ สนใจสอบถามบริการ: ' + s.name)}" target="_blank" rel="noopener" class="inline-block mt-5 rounded-full px-5 py-2 text-xs font-medium text-white shadow-sm" style="background:var(--teal);">ปรึกษาหรือนัดคิวบริการนี้ทาง LINE</a>
+    `;
+    panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
+});
+
+/* ---------- Doctors (แพทย์คนไทย 100% รูปโหลดติดแน่นอน) ---------- */
+const doctors = [
+  { 
+    name:'หมอผึ้ง (ทพญ. ปิยะดา)', 
+    tag:'ทันตกรรมทั่วไป', 
+    desc:'ใจดี มือเบา ชวนคุยเก่ง คนไข้ขี้กลัวชอบมาก',
+    img:'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80', 
+    days:['จ','อ','พ','พฤ','ศ'] 
+  },
+  { 
+    name:'หมอกอล์ฟ (ทพ. กิตติศักดิ์)', 
+    tag:'ทันตกรรมเด็ก', 
+    desc:'เชี่ยวชาญการปรับพฤติกรรมเด็ก หลอกล่อเก่ง น้องๆ ไม่ร้องไห้',
+    img:'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80', 
+    days:['อ','พฤ','ส','อา'] 
+  },
+  { 
+    name:'หมอนัท (ทพ. ชนกันต์)', 
+    tag:'รักษารากและฟันปลอม', 
+    desc:'ดูแลคนไข้ผู้ใหญ่และผู้สูงอายุ อธิบายขั้นตอนละเอียด ใจเย็นมาก',
+    img:'https://images.unsplash.com/photo-1622902046580-2b47f47f5471?auto=format&fit=crop&w=400&q=80', 
+    days:['จ','พ','ศ','อา'] 
+  },
+  { 
+    name:'หมอมุก (ทพญ. นภัสสร)', 
+    tag:'จัดฟัน', 
+    desc:'ให้คำปรึกษาโครงหน้าและการเรียงตัวของฟัน วางแผนเคสบายเคส',
+    img:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80', 
+    days:['ส','อา'] 
+  }
+];
+
+const allDays = ['จ','อ','พ','พฤ','ศ','ส','อา'];
+function renderDoctors(filter){
+  const grid = document.getElementById('doctorGrid');
+  const list = filter === 'all' ? doctors : doctors.filter(d => d.tag.includes(filter));
+  grid.innerHTML = list.map((d,i) => `
+    <div class="rounded-xl border hairline bg-white p-5 flex flex-col justify-between">
+      <div>
+        <div class="w-24 h-24 rounded-full overflow-hidden mb-3 border hairline mx-auto shadow-sm bg-gray-50">
+          <img src="${d.img}" alt="${d.name}" class="w-full h-full object-cover">
+        </div>
+        <p class="font-display text-center text-base mb-0.5 text-[var(--ink)]">${d.name}</p>
+        <p class="text-xs text-center font-medium text-[var(--teal-deep)] mb-2">${d.tag}</p>
+        <p class="text-xs text-[var(--ink-soft)] text-center mb-3 leading-relaxed">${d.desc}</p>
+        
+        <div class="bg-[var(--bg-alt)] p-2 rounded-lg mb-4">
+          <p class="text-[10px] text-[var(--ink-faint)] text-center mb-1 font-mono">วันที่เข้าตรวจประจำสัปดาห์</p>
+          <div class="flex justify-center gap-1">
+            ${allDays.map(day => `<span class="day-pill text-[10px] w-6 h-6 ${d.days.includes(day) ? 'on' : ''}">${day}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+      
+      <a href="https://line.me/R/oaMessage/@baanfundee/?${encodeURIComponent('สวัสดีครับ อยากสอบถามคิวนัดตรวจกับ ' + d.name)}" 
+         target="_blank" 
+         rel="noopener"
+         class="text-center rounded-full py-2.5 text-xs font-medium text-white block shadow-sm hover:opacity-90 transition" 
+         style="background:var(--teal);">
+        นัดตรวจกับหมอท่านนี้ (ทาง LINE)
+      </a>
+    </div>
+  `).join('');
+}
+renderDoctors('all');
+
+document.querySelectorAll('#concernChips button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#concernChips button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderDoctors(btn.dataset.concern);
+  });
+});
+
+/* ---------- Pricing ---------- */
+const prices = [
+  { name:'ตรวจฟัน & ปรึกษา', range:'ฟรี (ไม่มีค่าใช้จ่าย)' },
+  { name:'ขูดหินปูน (ทั้งปาก)', range:'฿700 – ฿900 (ใช้สิทธิ ปกส. ได้ฟรี)' },
+  { name:'อุดฟันสีเหมือนฟัน', range:'เริ่มต้น ซี่ละ ฿600' },
+  { name:'ถอนฟันธรรมดา', range:'เริ่มต้น ซี่ละ ฿500' },
+  { name:'ผ่าฟันคุด', range:'฿1,500 – ฿3,500' },
+  { name:'เคลือบฟลูออไรด์เด็ก', range:'฿400 / ครั้ง' },
+];
+
+document.getElementById('priceGrid').innerHTML = prices.map(p => `
+  <div class="rounded-xl border hairline bg-white p-5">
+    <p class="font-medium text-sm text-[var(--ink)] mb-1">${p.name}</p>
+    <p class="text-base font-display" style="color:var(--teal-deep);">${p.range}</p>
+  </div>
+`).join('');
+
+/* ---------- Scroll Reveal & Spy ---------- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{ threshold:.1 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const sections = ['services','doctors','pricing','reviews','location'].map(id=>document.getElementById(id));
+const navtabs = document.querySelectorAll('.navtab');
+const spy = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navtabs.forEach(t=>t.classList.remove('active'));
+      const active = document.querySelector(`.navtab[data-tab="${e.target.id}"]`);
+      if(active) active.classList.add('active');
+    }
+  });
+},{ rootMargin:'-40% 0px -50% 0px' });
+sections.forEach(s=> s && spy.observe(s));
+</script>
+</body>
+</html>

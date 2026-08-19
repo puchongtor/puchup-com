@@ -9,7 +9,7 @@ import {
 import { resolveImageSrc } from "@/lib/project-one/generated-map";
 import { DEMO_CATEGORIES } from "@/lib/project-one/slots";
 
-const BASE_URL = "https://www.puchup.com/oneproject/";
+const BASE_URL = "/ProjectONE/";
 
 export default function DemoClient() {
   const onReady = useCallback((root: HTMLElement) => {

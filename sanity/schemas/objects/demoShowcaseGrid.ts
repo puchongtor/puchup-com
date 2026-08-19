@@ -17,6 +17,14 @@ export const demoShowcaseGrid = defineType({
       rows: 2,
     }),
     defineField({
+      name: "useShowroomCatalog",
+      title: "แสดง Showroom 50 ธุรกิจอัตโนมัติ",
+      type: "boolean",
+      initialValue: false,
+      description:
+        "ดึงรายการจากคลัง Showroom ของเว็บ (รวมสถานะ Live จาก Sanity) ไม่ต้องกรอกทีละใบ",
+    }),
+    defineField({
       name: "items",
       title: "Demo Items",
       type: "array",

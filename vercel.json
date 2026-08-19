@@ -1,0 +1,80 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "outputDirectory": "out",
+  "redirects": [
+    {
+      "source": "/studio",
+      "destination": "/admin/",
+      "permanent": true
+    },
+    {
+      "source": "/studio/:path*",
+      "destination": "/admin/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/projectone",
+      "destination": "/ProjectONE/",
+      "permanent": true
+    },
+    {
+      "source": "/projectone/:path*",
+      "destination": "/ProjectONE/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<site>[^.]+).puchup.com"
+        }
+      ],
+      "missing": [
+        { "type": "host", "value": "www.puchup.com" },
+        { "type": "host", "value": "puchup.com" },
+        { "type": "host", "value": "puchong.puchup.com" }
+      ],
+      "destination": "/sites/:site/"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<site>[^.]+).puchup.com"
+        }
+      ],
+      "missing": [
+        { "type": "host", "value": "www.puchup.com" },
+        { "type": "host", "value": "puchup.com" },
+        { "type": "host", "value": "puchong.puchup.com" }
+      ],
+      "destination": "/sites/:site/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

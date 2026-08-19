@@ -60,7 +60,7 @@ export default function ProjectOneClient() {
             <p class="font-display font-medium">${d.name}</p>
             <p class="text-xs text-[var(--ink-faint)] font-mono mt-0.5">${d.type}</p>
           </div>
-          <a href="#" class="text-sm font-medium text-[var(--purple)] whitespace-nowrap ml-3">View ONE</a>
+          <a href="${d.href}" class="text-sm font-medium text-[var(--purple)] whitespace-nowrap ml-3">View ONE</a>
         </div>
       </div>
     `,

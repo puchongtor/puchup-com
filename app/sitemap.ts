@@ -6,7 +6,6 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "",
-    "admin/",
     "build/",
     "showcase/",
     "showcase/aeropulse/",
@@ -15,7 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "about/",
     "contact/",
     "ProjectONE/",
-    "ProjectONE/Demo/",
+    "demo/",
+    "ProjectONE/baankhaokhom/",
+    "ProjectONE/baanfundee/",
+    "ProjectONE/baan-bangkok/",
+    "ProjectONE/paw-and-co/",
+    "ProjectONE/petal-stem-florist/",
     "sites/aeropulse/",
     "sites/restaurant/",
   ];

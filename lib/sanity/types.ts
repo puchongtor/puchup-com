@@ -44,6 +44,7 @@ export type SiteSettings = {
   footerText?: string;
   socialLinks?: { platform: string; url: string; label?: string }[];
   contactEmail?: string;
+  favicon?: SanityImage;
   seo?: SeoFields;
 };
 
@@ -77,10 +78,50 @@ export type DemoShowcaseGrid = {
   _type: "demoShowcaseGrid";
   heading?: string;
   intro?: string;
+  useShowroomCatalog?: boolean;
   items?: DemoShowcaseItem[];
 };
 
-export type PageSection = HeroSection | RichTextSection | DemoShowcaseGrid;
+export type FeaturesSection = {
+  _key: string;
+  _type: "featuresSection";
+  heading?: string;
+  intro?: string;
+  items?: { _key?: string; icon?: string; title: string; body?: string }[];
+};
+
+export type PricingSection = {
+  _key: string;
+  _type: "pricingSection";
+  heading?: string;
+  intro?: string;
+  plans?: {
+    _key?: string;
+    name: string;
+    price?: string;
+    blurb?: string;
+    features?: string[];
+    ctaLabel?: string;
+    ctaHref?: string;
+    highlighted?: boolean;
+  }[];
+};
+
+export type CtaSection = {
+  _key: string;
+  _type: "ctaSection";
+  heading?: string;
+  body?: string;
+  ctas?: CtaButton[];
+};
+
+export type PageSection =
+  | HeroSection
+  | RichTextSection
+  | DemoShowcaseGrid
+  | FeaturesSection
+  | PricingSection
+  | CtaSection;
 
 export type CmsPage = {
   _id: string;
@@ -130,3 +171,69 @@ export type DemoSite = {
   body?: PortableTextValue;
   seo?: SeoFields;
 };
+
+export type ProjectOneHero = {
+  heading: string;
+  tagline?: string;
+  image?: SanityImage;
+  imageUrl?: string;
+};
+
+export type MenuOrServiceItem = {
+  _key?: string;
+  name: string;
+  description?: string;
+  price?: string;
+  category?: string;
+  image?: SanityImage;
+  imageUrl?: string;
+};
+
+export type ReviewItem = {
+  _key?: string;
+  rating?: number;
+  quote: string;
+  author: string;
+  context?: string;
+};
+
+export type LocationInfo = {
+  address?: string;
+  hours?: { days?: string; time?: string }[];
+  phone?: string;
+  mapsUrl?: string;
+  mapsEmbedUrl?: string;
+};
+
+export type GalleryImageItem = {
+  _key?: string;
+  image?: SanityImage;
+  imageUrl?: string;
+  alt?: string;
+  caption?: string;
+};
+
+export type ProjectOneDemo = {
+  _id: string;
+  title: string;
+  slug: string;
+  businessType?: string;
+  published?: boolean;
+  architectureStack?: string;
+  hero?: ProjectOneHero;
+  menuOrServices?: MenuOrServiceItem[];
+  reviews?: ReviewItem[];
+  locationInfo?: LocationInfo;
+  gallery?: GalleryImageItem[];
+  seo?: SeoFields;
+};
+
+export type ProjectOneDemoLink = {
+  slug: string;
+  title: string;
+  businessType?: string;
+  published?: boolean;
+  architectureStack?: string;
+  heroImageUrl?: string | null;
+};
+

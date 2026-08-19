@@ -17,5 +17,6 @@ export const structure: StructureResolver = (S) =>
         ),
       S.divider(),
       S.documentTypeListItem("page").title("Pages"),
-      S.documentTypeListItem("demoSite").title("Demo Sites"),
+      S.documentTypeListItem("projectOneDemo").title("Project ONE Demos"),
+      S.documentTypeListItem("demoSite").title("Demo Sites (subdomain)"),
     ]);

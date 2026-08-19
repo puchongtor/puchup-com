@@ -33,7 +33,7 @@ export function getLocalDemoSite(subdomain: string): DemoSite | null {
         },
         menuLinks: [
           { label: "Project ONE", href: "/ProjectONE/" },
-          { label: "Demo Hub", href: "/ProjectONE/Demo/" },
+          { label: "Demo Hub", href: "/demo/" },
         ],
       },
       codeEmbed: {

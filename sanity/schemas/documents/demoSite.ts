@@ -2,7 +2,7 @@ import { EarthGlobeIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 /**
- * Demo storefront mapped to [sub].puchup.com via middleware rewrite → /sites/[site].
+ * Demo storefront mapped to [sub].puchup.com via Vercel host rewrites → /sites/[site].
  */
 export const demoSite = defineType({
   name: "demoSite",

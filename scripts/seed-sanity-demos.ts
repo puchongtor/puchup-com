@@ -62,7 +62,7 @@ const demos = [
       },
       menuLinks: [
         { label: "Project ONE", href: "/ProjectONE/" },
-        { label: "Demo Hub", href: "/ProjectONE/Demo/" },
+        { label: "Demo Hub", href: "/demo/" },
       ],
     },
     codeEmbed: {
@@ -145,7 +145,7 @@ async function main() {
     tagline: "สร้างระบบผู้ช่วยธุรกิจ",
     mainNav: [
       { label: "Project ONE", href: "/ProjectONE/" },
-      { label: "Demo", href: "/ProjectONE/Demo/" },
+      { label: "Demo", href: "/demo/" },
       { label: "Build", href: "/build/" },
       { label: "Showcase", href: "/showcase/" },
       { label: "Products", href: "/products/" },
@@ -182,7 +182,7 @@ async function main() {
           },
           {
             label: "ดู Demo Hub",
-            href: "/ProjectONE/Demo/",
+            href: "/demo/",
             style: "secondary",
           },
         ],
@@ -205,7 +205,7 @@ async function main() {
             _key: "rest",
             title: "บ้านข้าวหอม",
             subtitle: "Restaurant",
-            href: "/sites/restaurant/",
+            href: "/ProjectONE/baankhaokhom/",
             promptText:
               "Overhead flat-lay of Thai tom yum goong on dark teak table, warm restaurant lighting, 16:9",
           },

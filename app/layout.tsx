@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Thai } from "next/font/google";
+import { sanityFetch } from "@/lib/sanity/client";
+import { imageUrl } from "@/lib/sanity/image";
+import { siteSettingsQuery } from "@/lib/sanity/queries";
+import type { SiteSettings } from "@/lib/sanity/types";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -24,15 +28,25 @@ const ibmMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s — ${site.name}`,
-  },
-  description: site.description,
-  icons: { icon: "/favicon.svg" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await sanityFetch<SiteSettings>({
+    query: siteSettingsQuery,
+    tags: ["siteSettings"],
+    revalidate: 3600,
+  });
+
+  const favicon = imageUrl(settings?.favicon, 64) || "/favicon.svg";
+
+  return {
+    metadataBase: new URL(site.url),
+    title: {
+      default: settings?.seo?.metaTitle || `${site.name} — ${site.tagline}`,
+      template: `%s — ${settings?.siteName || site.name}`,
+    },
+    description: settings?.seo?.metaDescription || site.description,
+    icons: { icon: favicon },
+  };
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

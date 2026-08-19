@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บ้านข้าวหอม — อาหารบ้านๆ ที่ทำให้คิดถึงบ้าน | PuchUp ONE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --ink-dark:#1C1712;      /* charred wok black-brown — hero / footer / dark accents */
+    --bg:#FAF5E9;            /* rice cream */
+    --bg-alt:#F1E8D3;        /* toasted rice / wheat */
+    --ink:#241C14;           /* body text */
+    --ink-soft:#6B5D4A;
+    --ink-faint:#9C9080;
+    --gold:#D8A13B;          /* marigold / turmeric */
+    --gold-deep:#B9812A;
+    --chili:#A6382E;         /* chili red — sparing accent */
+    --herb:#5B6B3E;          /* herb green — sparing accent */
+    --line:#E6DCC3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--ink); font-family:'Noto Sans Thai',sans-serif; -webkit-font-smoothing:antialiased; }
+  .font-display{ font-family:'Noto Serif Thai',serif; }
+  .font-accent{ font-family:'Fraunces',serif; font-style:italic; }
+  .font-mono{ font-family:'IBM Plex Mono',monospace; letter-spacing:.07em; }
+  .hairline{ border-color:var(--line); }
+  ::selection{ background:var(--gold); color:#1C1712; }
+
+  .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-deep); font-weight:600; }
+  .note-demo{ font-size:.72rem; color:var(--ink-faint); }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* Top Sticky Navigation Bar */
+  .sticky-nav{ backdrop-filter: blur(12px); background:rgba(250,245,233,.94); }
+  .navtab{
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+    padding: 0.35rem 0.2rem;
+    transition:all .2s ease;
+    white-space:nowrap;
+    font-size:.88rem;
+    font-weight:500;
+  }
+  .navtab:hover{ color:var(--ink); }
+  .navtab.active{ color:var(--ink-dark); border-color:var(--gold-deep); font-weight:700; }
+
+  .badge-star{ color:var(--gold-deep); letter-spacing:.05em; }
+
+  /* Premium Paper Price-Tag on Menu Cards */
+  .price-tag{
+    position:absolute; top:12px; right:12px;
+    background:rgba(28, 23, 18, 0.92); color:#FFF5EA;
+    font-family:'Fraunces',serif; font-weight:700;
+    font-size:.95rem; padding:.3rem .75rem; border-radius:8px;
+    box-shadow:0 8px 18px -4px rgba(0,0,0,.5);
+    border:1px solid rgba(216,161,59,.4);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+  }
+  .dish-badge{
+    position:absolute; top:12px; left:12px; font-family:'IBM Plex Mono',monospace;
+    font-size:.65rem; letter-spacing:.06em; padding:.3rem .65rem; border-radius:999px;
+    background:rgba(250,245,233,.96); color:var(--chili); font-weight:700;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    z-index: 10;
+  }
+
+  .dish-card{ transition: transform .35s ease, box-shadow .35s ease; }
+  .dish-card:hover{ transform:translateY(-5px); box-shadow:0 24px 40px -20px rgba(28,23,18,.35); }
+
+  .menu-filter{ border:1px solid var(--line); color:var(--ink-soft); transition:.2s; }
+  .menu-filter.active{ background:var(--ink-dark); color:var(--bg); border-color:var(--ink-dark); }
+
+  /* Image slots with zoom */
+  .img-slot{ position:relative; overflow:hidden; background:var(--bg-alt); }
+  .img-slot img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .65s cubic-bezier(0.16, 1, 0.3, 1); }
+  .dish-card:hover .img-slot img, .img-slot:hover img{ transform:scale(1.06); }
+
+  /* Trust Bar */
+  .trust-item{ position:relative; padding:0 1.4rem; }
+  .trust-item:not(:last-child)::after{
+    content:''; position:absolute; right:0; top:50%; translate:0 -50%;
+    width:1px; height:22px; background:var(--line);
+  }
+  @media (max-width:767px){ .trust-item:not(:last-child)::after{ display:none; } }
+
+  /* Why Us */
+  .why-item{ border-top:1px solid var(--line); padding-top:1.4rem; }
+  .why-icon{
+    width:46px; height:46px; border-radius:999px; background:var(--bg-alt);
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;
+  }
+
+  /* Photo Story Bento */
+  .bento{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:140px; gap:.75rem; }
+  .bento .b1{ grid-column:span 2; grid-row:span 3; }
+  .bento .b2{ grid-column:span 2; grid-row:span 2; }
+  .bento .b3{ grid-column:span 2; grid-row:span 2; }
+  .bento .b4{ grid-column:span 2; grid-row:span 1; }
+  @media (max-width:767px){
+    .bento{ grid-template-columns:repeat(2,1fr); grid-auto-rows:120px; }
+    .bento .b1{ grid-column:span 2; grid-row:span 3; }
+    .bento .b2,.bento .b3{ grid-column:span 1; grid-row:span 2; }
+    .bento .b4{ grid-column:span 2; grid-row:span 1; }
+  }
+  .bento-caption{
+    position:absolute; bottom:.75rem; left:.75rem; color:#fff; font-family:'IBM Plex Mono',monospace;
+    font-size:.68rem; letter-spacing:.05em; z-index:2;
+  }
+  .bento-scrim{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.65), transparent 50%); z-index:1; }
+
+  /* Google Connect Stepper */
+  .flow-step{ display:flex; flex-direction:column; align-items:center; gap:.6rem; width:88px; }
+  .flow-circle{ width:52px; height:52px; border-radius:999px; border:1px solid var(--line); background:#fff; display:flex; align-items:center; justify-content:center; font-size:1.25rem; }
+  .flow-line{ flex:1; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 11px); margin-top:-38px; min-width:20px; }
+
+  /* Grand Signature Spotlight Effect */
+  .tomyum-grand-glow {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #D8A13B 0%, #A6382E 50%, #B9812A 100%);
+    border-radius: 1.25rem;
+    z-index: 0;
+    opacity: 0.7;
+    filter: blur(10px);
+  }
+
+  @media (prefers-reduced-motion: reduce){ .reveal{ transition:none; } .dish-card{ transition:none; } }
+</style>
+</head>
+<body class="antialiased pb-24 md:pb-0">
+
+<div class="bg-[var(--ink-dark)] text-[var(--bg)] text-center text-[11px] font-mono py-1.5 px-4">
+  PUCHUP ONE — DEMO #001 · เว็บไซต์ตัวอย่างเพื่อสาธิตการนำเสนอ ไม่ใช่ร้านอาหารจริง ข้อมูลทั้งหมดเป็นข้อมูลสมมติ ·
+  <a href="demo.html" class="underline hover:no-underline">ดูตัวอย่างธุรกิจอื่น →</a>
+</div>
+
+<nav id="mainnav" class="sticky top-0 z-40 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-6xl mx-auto px-4 md:px-8">
+    <div class="h-16 flex items-center justify-between gap-4">
+      
+      <a href="#hero" class="flex items-center gap-2 font-display font-bold text-lg md:text-xl shrink-0 text-[var(--ink-dark)]">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--gold-deep)] inline-block"></span>
+        บ้านข้าวหอม
+      </a>
+
+      <div class="hidden md:flex items-center gap-7 overflow-x-auto py-1">
+        <a href="#about" data-tab="about" class="navtab active">ทำไมต้องเรา</a>
+        <a href="#menu" data-tab="menu" class="navtab">เมนูแนะนำ</a>
+        <a href="#story" data-tab="story" class="navtab">เรื่องราวร้าน</a>
+        <a href="#reviews" data-tab="reviews" class="navtab">รีวิวลูกค้า</a>
+        <a href="#location" data-tab="location" class="navtab">ที่ตั้ง & เวลาเปิด</a>
+        <a href="#cta" data-tab="cta" class="navtab">ติดต่อเรา</a>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <a href="tel:0812345678" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono font-semibold px-3.5 py-2 rounded-full border hairline hover:border-[var(--gold)] transition">
+          <span>📞</span> 081-234-5678
+        </a>
+        <a href="#location" class="shrink-0 text-xs md:text-sm font-medium bg-[var(--ink-dark)] text-[var(--bg)] rounded-full px-4 md:px-5 py-2 hover:opacity-85 transition shadow-sm">
+          นำทางมาร้าน
+        </a>
+      </div>
+
+    </div>
+
+    <div class="flex md:hidden items-center gap-5 overflow-x-auto pb-2 pt-1 border-t hairline scrollbar-none text-xs">
+      <a href="#about" data-tab="about" class="navtab active">ทำไมต้องเรา</a>
+      <a href="#menu" data-tab="menu" class="navtab">เมนูอาหาร</a>
+      <a href="#story" data-tab="story" class="navtab">เรื่องราว</a>
+      <a href="#reviews" data-tab="reviews" class="navtab">รีวิว</a>
+      <a href="#location" data-tab="location" class="navtab">ที่ตั้ง</a>
+      <a href="#cta" data-tab="cta" class="navtab">ติดต่อ</a>
+    </div>
+  </div>
+</nav>
+
+<header id="hero" class="relative">
+  <div class="img-slot h-[64vh] md:h-[82vh]">
+    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1920&q=85" alt="บ้านข้าวหอม ร้านอาหารไทยโฮมเมด" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(20,16,12,.92) 0%, rgba(20,16,12,.48) 50%, rgba(20,16,12,.15) 75%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-10 md:pb-14 px-5 md:px-8 z-10">
+    <div class="max-w-6xl mx-auto text-[var(--bg)]">
+      <p class="eyebrow mb-3" style="color:var(--gold)">ร้านอาหารไทยโฮมเมด · ซอยทองหล่อ กรุงเทพฯ</p>
+      <h1 class="font-display font-bold text-[clamp(2.3rem,6.5vw,4.4rem)] leading-[1.03] mb-3">บ้านข้าวหอม</h1>
+      <p class="text-[15px] md:text-lg opacity-90 max-w-lg mb-7">อาหารบ้านๆ ที่ทำให้คิดถึงบ้าน — ปรุงสดใหม่ทุกจาน ด้วยสูตรที่ส่งต่อกันมาสามรุ่น</p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-1.5 text-sm bg-white/10 border border-white/25 rounded-full px-3.5 py-1.5 backdrop-blur-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#8FCB8F]"></span>เปิดอยู่ตอนนี้ · ปิด 22:00
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <a href="#menu" class="rounded-full px-7 py-3 text-sm font-medium transition hover:opacity-90 shadow-md" style="background:var(--gold); color:var(--ink-dark);">ดูเมนูอาหาร</a>
+        <a href="#location" class="rounded-full px-7 py-3 text-sm font-medium border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">นำทางมาร้าน</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="border-b hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm">
+    <span class="trust-item flex items-center gap-1.5"><span class="badge-star">★★★★★</span> 4.8 <span class="text-[var(--ink-faint)]">(1,250 รีวิว)</span></span>
+    <span class="trust-item text-[var(--ink-soft)]">🕙 เปิดวันนี้ 10:00–22:00</span>
+    <span class="trust-item text-[var(--ink-soft)]">🍜 อาหารไทยโฮมเมด</span>
+    <span class="trust-item text-[var(--ink-soft)]">🅿️ ที่จอดรถสะดวก</span>
+    <span class="text-[var(--ink-soft)]">📅 รับจองโต๊ะล่วงหน้า</span>
+  </div>
+</div>
+
+<section id="about" class="py-16 md:py-24 reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="max-w-xl mb-12">
+      <p class="eyebrow mb-4">ทำไมต้องบ้านข้าวหอม</p>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.6rem)] leading-tight">ร้านเล็กๆ ที่ตั้งใจทุกจาน<br>เหมือนทำให้คนในครอบครัวกิน</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-x-10 gap-y-8">
+      <div class="why-item flex gap-4">
+        <div class="why-icon">🌿</div>
+        <div>
+          <p class="font-display font-semibold mb-1">วัตถุดิบสดใหม่ทุกเช้า</p>
+          <p class="text-sm text-[var(--ink-soft)]">ไปตลาดเองทุกวัน ไม่มีของแช่แข็งค้างคืน</p>
+        </div>
+      </div>
+      <div class="why-item flex gap-4">
+        <div class="why-icon">🔥</div>
+        <div>
+          <p class="font-display font-semibold mb-1">ปรุงตามออเดอร์ ไม่อุ่นซ้ำ</p>
+          <p class="text-sm text-[var(--ink-soft)]">ทุกจานลงกระทะเมื่อคุณสั่งเท่านั้น</p>
+        </div>
+      </div>
+      <div class="why-item flex gap-4">
+        <div class="why-icon">👨‍👩‍👧</div>
+        <div>
+          <p class="font-display font-semibold mb-1">เหมาะกับมื้อครอบครัว</p>
+          <p class="text-sm text-[var(--ink-soft)]">โต๊ะกว้าง ที่นั่งสบาย พาเด็กเล็กมาได้</p>
+        </div>
+      </div>
+      <div class="why-item flex gap-4">
+        <div class="why-icon">🅿️</div>
+        <div>
+          <p class="font-display font-semibold mb-1">จอดรถง่าย ไม่ต้องวนหา</p>
+          <p class="text-sm text-[var(--ink-soft)]">มีที่จอดรถของร้านรองรับกว่า 15 คัน</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="py-16 md:py-24 bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">เมนูของเรา</p>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.6rem)]">รสชาติที่ทำให้อยากกลับมาอีก</h2>
+    </div>
+
+    <div class="relative mb-16 rounded-2xl p-1 md:p-1.5">
+      <div class="tomyum-grand-glow"></div>
+      <div class="relative bg-gradient-to-br from-[#241A14] via-[#1C1712] to-[#2B1B15] text-[var(--bg)] rounded-2xl overflow-hidden border border-amber-500/40 shadow-2xl">
+        <div class="grid md:grid-cols-12 gap-0 items-stretch">
+          
+          <div class="md:col-span-7 relative min-h-[320px] md:min-h-[420px] overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=1200&q=85" alt="ต้มยำกุ้งแม่น้ำน้ำข้น" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent via-transparent to-[#1C1712]/90"></div>
+            
+            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+              <span class="inline-flex items-center gap-1.5 bg-gradient-to-r from-red-600 to-amber-600 text-white font-mono font-bold text-[11px] px-3.5 py-1.5 rounded-full shadow-lg">
+                🔥 SIGNATURE DISH
+              </span>
+              <span class="inline-flex items-center gap-1 bg-black/70 backdrop-blur text-amber-300 font-mono text-[10px] px-3 py-1 rounded-full border border-amber-500/30">
+                ⭐ ลูกค้าสั่งซ้ำอันดับ 1
+              </span>
+            </div>
+          </div>
+
+          <div class="md:col-span-5 p-7 md:p-10 flex flex-col justify-between relative z-10">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-amber-400 font-mono text-xs tracking-wider uppercase">
+                <span>Traditional Recipe</span>
+                <span>•</span>
+                <span>สูตรคุณแม่ 30 ปี</span>
+              </div>
+              <h3 class="font-display font-bold text-2xl md:text-4xl text-white mb-3 tracking-tight">
+                ต้มยำกุ้งแม่น้ำน้ำข้น
+              </h3>
+              <p class="text-stone-300 text-sm leading-relaxed mb-6">
+                กุ้งแม่น้ำตัวโต สดใหม่ทุกเช้า ตะไคร้ ใบมะกรูด พริกขี้หนูสวนสวนสด เคี่ยวจนน้ำซุปข้นหอมมันกุ้งแท้ จัดจ้านถึงเครื่องตามแบบฉบับไทยดั้งเดิม
+              </p>
+              
+              <div class="grid grid-cols-2 gap-2 text-[11px] text-stone-300 font-mono mb-8 border-y border-stone-700/80 py-3">
+                <div>🦐 กุ้งแม่น้ำคัดไซส์พิเศษ</div>
+                <div>🌿 สมุนไพรไทยแท้สดใหม่</div>
+                <div>🌶️ รสจัดจ้านกลมกล่อม</div>
+                <div>🍲 น้ำซุปเคี่ยวสดทุกหม้อ</div>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-amber-950/70 to-stone-900/90 p-4.5 rounded-xl border border-amber-500/50 flex items-center justify-between shadow-inner">
+              <div>
+                <span class="text-[11px] font-mono text-amber-300 block">ราคาโปรโมชั่นพิเศษ</span>
+                <span class="text-xs text-stone-400 line-through">ปกติ ฿220</span>
+              </div>
+              <div class="flex items-baseline gap-1">
+                <span class="font-accent text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 drop-shadow-md">
+                  ฿159
+                </span>
+                <span class="text-xs font-mono text-amber-200">/ ที่</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="menuFilters" class="flex flex-wrap justify-center gap-2 mb-10">
+      <button data-cat="all" class="menu-filter active rounded-full px-4 py-1.5 text-sm">ทั้งหมด</button>
+      <button data-cat="starter" class="menu-filter rounded-full px-4 py-1.5 text-sm">ของทานเล่น</button>
+      <button data-cat="main" class="menu-filter rounded-full px-4 py-1.5 text-sm">จานหลัก</button>
+      <button data-cat="drink" class="menu-filter rounded-full px-4 py-1.5 text-sm">เครื่องดื่ม & ของหวาน</button>
+    </div>
+
+    <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<section class="py-16 md:py-24 reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="max-w-xl mb-10">
+      <p class="eyebrow mb-4">บรรยากาศร้าน</p>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.6rem)] leading-tight">ไม่ว่าจะมากับใคร ก็มีมุมที่ใช่</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="img-slot rounded-2xl aspect-[4/5] relative group shadow-md">
+        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1000&q=80" alt="มื้อกลางวันกับครอบครัว" class="w-full h-full object-cover">
+        <div class="bento-scrim"></div>
+        <p class="bento-caption" style="bottom:1.2rem; left:1.2rem; font-size:.85rem; font-weight:600;">👨‍👩‍👧 มื้อกลางวันกับครอบครัว</p>
+      </div>
+      <div class="img-slot rounded-2xl aspect-[4/5] relative group shadow-md">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" alt="มื้อเย็นกับเพื่อน" class="w-full h-full object-cover">
+        <div class="bento-scrim"></div>
+        <p class="bento-caption" style="bottom:1.2rem; left:1.2rem; font-size:.85rem; font-weight:600;">✨ มื้อเย็นและสังสรรค์กับเพื่อน</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story" class="py-16 md:py-24 bg-[var(--ink-dark)] text-[var(--bg)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-2 gap-10 items-end mb-10">
+      <div>
+        <p class="eyebrow mb-4" style="color:var(--gold)">เรื่องราวของเรา</p>
+        <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.6rem)] leading-tight">จากครัวเล็กในบ้าน<br>สู่ร้านที่คนกลับมาอีกครั้ง</h2>
+      </div>
+      <p class="opacity-75 leading-relaxed text-sm md:text-base">บ้านข้าวหอมเริ่มจากครัวเล็กๆ ที่คุณแม่ทำกับข้าวขายให้เพื่อนบ้านในซอย จนมีคนมาต่อแถวซื้อทุกเช้า เราจึงเปิดเป็นร้านเล็กๆ เมื่อ 12 ปีก่อน วันนี้ลูกสาวเข้ามาช่วยดูแลร้านต่อ แต่สูตรและความตั้งใจยังเหมือนวันแรก</p>
+    </div>
+
+    <div class="bento">
+      <div class="img-slot b1 relative rounded-xl shadow-lg">
+        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="การปรุงอาหารในครัว" class="w-full h-full object-cover">
+        <div class="bento-scrim"></div><p class="bento-caption">🔥 พิถีพิถันทุกขั้นตอนในครัว</p>
+      </div>
+      <div class="img-slot b2 relative rounded-xl shadow-lg">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="หน้าร้านยามเย็น" class="w-full h-full object-cover">
+        <div class="bento-scrim"></div><p class="bento-caption">🏡 หน้าร้านยามเย็น</p>
+      </div>
+      <div class="img-slot b3 relative rounded-xl shadow-lg">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="โต๊ะอาหารที่คุ้นเคย" class="w-full h-full object-cover">
+        <div class="bento-scrim"></div><p class="bento-caption">🪑 โต๊ะรับรองบรรยากาศอบอุ่น</p>
+      </div>
+      <div class="img-slot b4 relative rounded-xl shadow-lg">
+        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="สูตรเครื่องแกงสามรุ่น" class="w-full h-full object-cover">
+        <div class="bento-scrim"></div><p class="bento-caption">📜 สมุนไพรและสูตรสามรุ่น</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="py-16 md:py-24 reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-4">
+      <p class="eyebrow mb-3">เสียงจากคนที่เคยมาที่นี่</p>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.6rem)] mb-3">4.8 จาก 1,250 รีวิว</h2>
+      <p class="badge-star text-lg mb-2">★★★★★</p>
+      <p class="note-demo">*รีวิวตัวอย่างสำหรับสาธิตการนำเสนอ Project ONE ยังไม่ใช่รีวิวจริงจากลูกค้า</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-x-10 gap-y-8 mt-12 md:divide-x md:divide-[var(--line)]">
+      <div class="md:pr-8">
+        <p class="font-accent text-3xl mb-2" style="color:var(--gold-deep);">"</p>
+        <p class="badge-star mb-3 text-sm">★★★★★</p>
+        <p class="text-[var(--ink-soft)] mb-4 leading-relaxed">ต้มยำกุ้งที่นี่จัดจ้านมาก กลิ่นตะไคร้ใบมะกรูดหอมจริง กุ้งแม่น้ำตัวใหญ่คุ้มราคา 159 บาทมาก</p>
+        <p class="text-sm font-medium">คุณนิด <span class="text-[var(--ink-faint)] font-normal">— ลูกค้าตัวอย่าง</span></p>
+      </div>
+      <div class="md:px-8">
+        <p class="font-accent text-3xl mb-2" style="color:var(--gold-deep);">"</p>
+        <p class="badge-star mb-3 text-sm">★★★★★</p>
+        <p class="text-[var(--ink-soft)] mb-4 leading-relaxed">บรรยากาศดี ที่จอดรถสะดวก พาลูกค้ามาทานมื้อเที่ยงได้สบายใจทุกครั้ง</p>
+        <p class="text-sm font-medium">พี่โอ๊ต <span class="text-[var(--ink-faint)] font-normal">— ลูกค้าตัวอย่าง</span></p>
+      </div>
+      <div class="md:pl-8">
+        <p class="font-accent text-3xl mb-2" style="color:var(--gold-deep);">"</p>
+        <p class="badge-star mb-3 text-sm">★★★★☆</p>
+        <p class="text-[var(--ink-soft)] mb-4 leading-relaxed">อาหารอร่อย ราคาสมเหตุสมผล แนะนำให้จองโต๊ะล่วงหน้าช่วงเที่ยงเพราะคนเยอะ</p>
+        <p class="text-sm font-medium">น้องแนน <span class="text-[var(--ink-faint)] font-normal">— ลูกค้าตัวอย่าง</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="location" class="py-16 md:py-24 bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">ที่ตั้งร้าน</p>
+      <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.6rem)]">วันนี้แวะมาหาเรา</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="rounded-2xl border hairline bg-white p-7 shadow-sm">
+        <p class="font-display font-semibold text-lg mb-5">เวลาทำการ</p>
+        <ul class="space-y-2.5 text-sm mb-6">
+          <li class="flex justify-between border-b hairline pb-2.5"><span class="text-[var(--ink-soft)]">จันทร์ – ศุกร์</span><span class="font-medium">10:00 – 22:00</span></li>
+          <li class="flex justify-between border-b hairline pb-2.5"><span class="text-[var(--ink-soft)]">เสาร์ – อาทิตย์</span><span class="font-medium">09:00 – 22:30</span></li>
+          <li class="flex justify-between"><span class="text-[var(--ink-soft)]">ครัวปิดรับออเดอร์</span><span class="font-medium">ก่อนปิดร้าน 30 นาที</span></li>
+        </ul>
+        <div class="pt-5 border-t hairline mb-6">
+          <p class="font-display font-semibold text-lg mb-2">ที่อยู่</p>
+          <p class="text-sm text-[var(--ink-soft)]">123 ซอยทองหล่อ 10 แขวงคลองตันเหนือ<br>เขตวัฒนา กรุงเทพฯ 10110</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Thonglor+Bangkok" target="_blank" rel="noopener" class="flex-1 text-center rounded-full py-3 text-sm font-medium transition hover:opacity-90 shadow" style="background:var(--ink-dark); color:var(--bg);">นำทางมาร้าน</a>
+          <a href="tel:0812345678" class="flex-1 text-center rounded-full py-3 text-sm font-medium border hairline hover:border-[var(--gold)] transition">โทรจองโต๊ะ</a>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border hairline shadow-sm">
+        <iframe title="แผนที่ร้านบ้านข้าวหอม" class="w-full h-[340px] md:h-full" style="border:0; min-height:340px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Thonglor,Bangkok,Thailand&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 md:py-20 reveal">
+  <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
+    <p class="eyebrow mb-3">ONE + GOOGLE BUSINESS</p>
+    <h2 class="font-display font-bold text-[clamp(1.5rem,3.2vw,2rem)] mb-10">จากการค้นหาบน Google ถึงโต๊ะอาหารของคุณ</h2>
+    <div class="flex items-start justify-center overflow-x-auto px-2">
+      <div class="flow-step"><div class="flow-circle shadow-sm">🔍</div><p class="text-xs text-[var(--ink-soft)]">ค้นหา</p></div>
+      <div class="flow-line"></div>
+      <div class="flow-step"><div class="flow-circle shadow-sm">📍</div><p class="text-xs text-[var(--ink-soft)]">Google Business</p></div>
+      <div class="flow-line"></div>
+      <div class="flow-step"><div class="flow-circle shadow-sm" style="background:var(--ink-dark); color:var(--bg);">🌐</div><p class="text-xs font-medium">บ้านข้าวหอม</p></div>
+      <div class="flow-line"></div>
+      <div class="flow-step"><div class="flow-circle shadow-sm">📖</div><p class="text-xs text-[var(--ink-soft)]">รู้จักร้าน</p></div>
+      <div class="flow-line"></div>
+      <div class="flow-step"><div class="flow-circle shadow-sm">🚗</div><p class="text-xs text-[var(--ink-soft)]">มาที่ร้าน</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 md:py-24 bg-[var(--bg-alt)] reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-4">
+      <p class="eyebrow mb-3">เนื้อหาที่ช่วยให้ร้านถูกค้นพบ</p>
+      <h2 class="font-display font-bold text-[clamp(1.6rem,3.6vw,2.2rem)]">คำถามที่คนแถวทองหล่อค้นหาบ่อยๆ</h2>
+      <p class="note-demo mt-2">ตัวอย่างหัวข้อเนื้อหา — ยังไม่ได้เผยแพร่จริง</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="bg-white rounded-xl border hairline p-6 shadow-sm">
+        <p class="text-xs font-mono text-[var(--gold-deep)] mb-2">ตัวอย่างหัวข้อ</p>
+        <p class="font-display font-semibold leading-snug">ร้านอาหารไทยสำหรับครอบครัว ย่านทองหล่อ ที่จอดรถสะดวก</p>
+      </div>
+      <div class="bg-white rounded-xl border hairline p-6 shadow-sm">
+        <p class="text-xs font-mono text-[var(--gold-deep)] mb-2">ตัวอย่างหัวข้อ</p>
+        <p class="font-display font-semibold leading-snug">เมนูแนะนำเมื่อมาบ้านข้าวหอมครั้งแรก ควรสั่งอะไร</p>
+      </div>
+      <div class="bg-white rounded-xl border hairline p-6 shadow-sm">
+        <p class="text-xs font-mono text-[var(--gold-deep)] mb-2">ตัวอย่างหัวข้อ</p>
+        <p class="font-display font-semibold leading-snug">ร้านอาหารมื้อเย็นใกล้ทองหล่อ ที่จองโต๊ะล่วงหน้าได้</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta" class="py-20 md:py-28 bg-[var(--ink-dark)] text-[var(--bg)] text-center reveal">
+  <div class="max-w-2xl mx-auto px-5 md:px-8">
+    <p class="font-display font-bold text-[clamp(1.9rem,4.5vw,2.9rem)] leading-tight mb-8">มื้อต่อไปของคุณ<br><span style="color:var(--gold)">เจอกันที่บ้านข้าวหอม</span></p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Thonglor+Bangkok" target="_blank" rel="noopener" class="rounded-full px-7 py-3.5 text-sm font-medium shadow-md transition hover:opacity-90" style="background:var(--gold); color:var(--ink-dark);">ดูแผนที่</a>
+      <a href="tel:0812345678" class="rounded-full px-7 py-3.5 text-sm font-medium border border-white/40 hover:bg-white/10 transition">โทรจองโต๊ะ</a>
+    </div>
+  </div>
+</section>
+
+<footer class="py-10 text-center border-t hairline">
+  <p class="font-display font-medium">บ้านข้าวหอม</p>
+  <p class="text-xs text-[var(--ink-faint)] mt-2">Demo #001 · Powered by <a href="index.html" class="underline">PuchUp ONE</a> · <a href="demo.html" class="underline">ดูตัวอย่างธุรกิจอื่น</a></p>
+</footer>
+
+<div class="fixed bottom-4 inset-x-4 z-50 md:hidden">
+  <div class="bg-[#1C1712]/90 backdrop-blur-md text-[#FAF5E9] border border-amber-500/30 rounded-full p-1.5 shadow-[0_16px_36px_-10px_rgba(0,0,0,0.5)] grid grid-cols-3 gap-1.5 text-center text-xs items-center">
+    <a href="tel:0812345678" class="py-2.5 flex items-center justify-center gap-1.5 rounded-full hover:bg-white/10 transition active:scale-95 text-stone-200">
+      <span class="text-sm">📞</span>
+      <span class="font-medium font-mono tracking-tight">โทรจอง</span>
+    </a>
+    <a href="https://line.me" target="_blank" rel="noopener" class="py-2.5 flex items-center justify-center gap-1.5 rounded-full hover:bg-white/10 transition active:scale-95 text-stone-200 border-x border-white/10">
+      <span class="text-sm">💬</span>
+      <span class="font-medium font-mono tracking-tight">LINE</span>
+    </a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Thonglor+Bangkok" target="_blank" rel="noopener" class="py-2.5 flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#D8A13B] to-[#B9812A] text-[#1C1712] font-bold shadow-sm active:scale-95">
+      <span class="text-sm">📍</span>
+      <span class="font-mono tracking-tight">นำทาง</span>
+    </a>
+  </div>
+</div>
+
+<div id="floatContact" class="hidden md:block fixed bottom-8 right-8 z-50">
+  
+  <div id="floatPanel" class="hidden mb-4 rounded-2xl border border-amber-500/30 bg-[#1C1712]/95 backdrop-blur-xl text-[#FAF5E9] shadow-[0_25px_50px_-15px_rgba(0,0,0,0.6)] overflow-hidden w-80 transition-all duration-300 transform scale-95 opacity-0">
+    
+    <div class="px-5 py-4 border-b border-white/10 bg-white/5 flex items-center justify-between">
+      <div>
+        <p class="font-display font-bold text-sm text-amber-400">ติดต่อและสำรองที่นั่ง</p>
+        <p class="text-[10px] text-stone-400 font-mono mt-0.5">บ้านข้าวหอม · ซอยทองหล่อ 10</p>
+      </div>
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+    </div>
+
+    <div class="p-3 space-y-1.5">
+      
+      <a href="tel:0812345678" class="flex items-center gap-3.5 p-3 rounded-xl hover:bg-white/10 transition group border border-transparent hover:border-white/10">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg group-hover:scale-105 transition-transform">
+          📞
+        </div>
+        <div class="flex-1">
+          <p class="text-xs font-semibold text-white group-hover:text-amber-400 transition-colors">โทรศัพท์สำรองโต๊ะ</p>
+          <p class="text-[11px] font-mono text-stone-400">081-234-5678 (10:00–22:00)</p>
+        </div>
+      </a>
+
+      <a href="https://line.me" target="_blank" rel="noopener" class="flex items-center gap-3.5 p-3 rounded-xl hover:bg-white/10 transition group border border-transparent hover:border-white/10">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg group-hover:scale-105 transition-transform">
+          💬
+        </div>
+        <div class="flex-1">
+          <p class="text-xs font-semibold text-white group-hover:text-emerald-400 transition-colors">LINE Official Account</p>
+          <p class="text-[11px] font-mono text-stone-400">@baankhaokhom (ตอบกลับไว)</p>
+        </div>
+      </a>
+
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Thonglor+Bangkok" target="_blank" rel="noopener" class="flex items-center gap-3.5 p-3 rounded-xl bg-gradient-to-r from-amber-500/10 to-transparent hover:from-amber-500/20 transition group border border-amber-500/20">
+        <div class="w-10 h-10 rounded-xl bg-[#D8A13B] text-[#1C1712] flex items-center justify-center text-lg font-bold shadow-md group-hover:scale-105 transition-transform">
+          📍
+        </div>
+        <div class="flex-1">
+          <p class="text-xs font-bold text-amber-300">เปิด Google Maps นำทาง</p>
+          <p class="text-[11px] text-stone-300">มีที่จอดรถส่วนตัว 15 คัน</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="px-5 py-2.5 bg-black/40 border-t border-white/10 flex justify-between items-center text-[10px] font-mono text-stone-400">
+      <span>ครัวปิดรับออเดอร์ 21:30</span>
+      <span class="text-amber-400/80 font-medium">ยินดีต้อนรับทุกท่าน</span>
+    </div>
+  </div>
+
+  <button id="floatToggle" class="relative group ml-auto flex items-center gap-3 bg-[#1C1712] border border-amber-500/40 text-[#FAF5E9] px-5 py-3.5 rounded-full shadow-[0_16px_36px_-8px_rgba(0,0,0,0.5)] hover:border-amber-400 transition-all duration-300 active:scale-95" aria-label="เปิดเมนูติดต่อ">
+    <span class="relative flex h-2.5 w-2.5">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+    </span>
+    <span class="font-display font-medium text-xs tracking-wider text-amber-200 group-hover:text-white transition-colors">ติดต่อ / นำทาง</span>
+    <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs font-mono text-amber-400 transition-transform group-hover:rotate-12">💬</span>
+  </button>
+
+</div>
+
+<script>
+/* ---------- Curated Menu with Real Photos & Prices ---------- */
+const menu = [
+  { name:'ผัดกะเพราหมูสับ ไข่ดาว', desc:'กะเพราใบสด พริกแกง เสิร์ฟพร้อมข้าวสวยร้อนๆ', price:120, cat:'main', badge:'ขายดี',
+    img:'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80' },
+  { name:'แกงเขียวหวานไก่', desc:'เข้มข้นด้วยกะทิสด มะเขือเปราะ ใบโหระพา', price:160, cat:'main', badge:'แนะนำ',
+    img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=600&q=80' },
+  { name:'ปีกไก่ทอดน้ำปลา', desc:'ปีกไก่กรอบนอกนุ่มใน หมักน้ำปลาสูตรลับ', price:140, cat:'starter', badge:null,
+    img:'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=600&q=80' },
+  { name:'ยำวุ้นเส้นทะเล', desc:'กุ้ง หมึก วุ้นเส้น รสจัดจ้าน เปรี้ยวเผ็ดกำลังดี', price:180, cat:'starter', badge:null,
+    img:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80' },
+  { name:'ปลากะพงทอดน้ำปลา', desc:'ปลากะพงทอดกรอบทั้งตัว ราดน้ำปลามะม่วงยำ', price:380, cat:'main', badge:'แนะนำ',
+    img:'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80' },
+  { name:'คั่วกลิ้งหมู', desc:'สูตรใต้แท้ เผ็ดร้อน หอมพริกแกงคั่วสด', price:150, cat:'main', badge:null,
+    img:'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80' },
+  { name:'น้ำมะนาวโซดา', desc:'คั้นมะนาวสด หวานน้อย สดชื่นตัดเลี่ยน', price:60, cat:'drink', badge:null,
+    img:'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80' },
+  { name:'ข้าวเหนียวมะม่วง', desc:'มะม่วงน้ำดอกไม้สุก ข้าวเหนียวมูนกะทิสด', price:120, cat:'drink', badge:'ขายดี',
+    img:'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80' },
+];
+
+const menuGrid = document.getElementById('menuGrid');
+function renderMenu(filter){
+  menuGrid.innerHTML = menu
+    .filter(m => filter==='all' || m.cat===filter)
+    .map(m => `
+      <div class="dish-card rounded-2xl overflow-hidden border hairline bg-white shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="img-slot aspect-[4/3] relative">
+            <img src="${m.img}" alt="${m.name}" loading="lazy" class="w-full h-full object-cover">
+            ${m.badge ? `<span class="dish-badge">${m.badge}</span>` : ''}
+            <span class="price-tag">฿${m.price}</span>
+          </div>
+          <div class="p-5">
+            <p class="font-display font-semibold text-lg text-[var(--ink)]">${m.name}</p>
+            <p class="text-xs text-[var(--ink-soft)] mt-1.5 leading-relaxed">${m.desc}</p>
+          </div>
+        </div>
+      </div>
+    `).join('');
+}
+renderMenu('all');
+
+document.querySelectorAll('#menuFilters button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#menuFilters button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMenu(btn.dataset.cat);
+  });
+});
+
+/* ---------- Scroll reveal ---------- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{ threshold:.1 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- Scroll-spy nav tabs ---------- */
+const sections = ['about','menu','story','reviews','location','cta'].map(id=>document.getElementById(id));
+const navtabs = document.querySelectorAll('.navtab');
+const spy = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navtabs.forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll(`.navtab[data-tab="${e.target.id}"]`).forEach(active=>{
+        active.classList.add('active');
+      });
+    }
+  });
+},{ rootMargin:'-35% 0px -45% 0px' });
+sections.forEach(s=> s && spy.observe(s));
+
+/* ---------- Floating contact interactive animation ---------- */
+const floatToggle = document.getElementById('floatToggle');
+const floatPanel = document.getElementById('floatPanel');
+
+function toggleDesktopPanel(open) {
+  if (open) {
+    floatPanel.classList.remove('hidden');
+    setTimeout(() => {
+      floatPanel.classList.remove('scale-95', 'opacity-0');
+      floatPanel.classList.add('scale-100', 'opacity-100');
+    }, 10);
+  } else {
+    floatPanel.classList.remove('scale-100', 'opacity-100');
+    floatPanel.classList.add('scale-95', 'opacity-0');
+    setTimeout(() => floatPanel.classList.add('hidden'), 200);
+  }
+}
+
+floatToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isClosed = floatPanel.classList.contains('hidden');
+  toggleDesktopPanel(isClosed);
+});
+
+document.addEventListener('click', (e) => {
+  if (!document.getElementById('floatContact').contains(e.target)) {
+    toggleDesktopPanel(false);
+  }
+});
+</script>
+</body>
+</html>

@@ -14,84 +14,63 @@ export type ImageSlot = {
 /** Demo cards rendered by JS on Project ONE page */
 export const PROJECT_ONE_DEMOS = [
   {
-    name: "Mellow House Café",
-    type: "Café / Bangkok",
-    cat: "cafe",
-    prompt:
-      "Bright minimalist café interior with warm wood tones, editorial lifestyle photography",
-    slotId: "one-demo-mellow-house-cafe",
-    fallbackSrc: "https://picsum.photos/seed/puchup-demo-MellowHouseCafé/600/450",
-  },
-  {
-    name: "Baan Suan Thai",
-    type: "Restaurant / Chiang Mai",
+    name: "บ้านข้าวหอม",
+    type: "Restaurant / Bangkok",
     cat: "restaurant",
+    href: "/ProjectONE/baankhaokhom/",
     prompt:
       "Traditional Thai restaurant courtyard with wooden tables and lush greenery, warm daylight",
     slotId: "one-demo-baan-suan-thai",
     fallbackSrc: "https://picsum.photos/seed/puchup-demo-BaanSuanThai/600/450",
   },
   {
-    name: "Aura Dental Clinic",
-    type: "Health / Bangkok",
+    name: "บ้านฟันดี",
+    type: "Dental / Bangkok",
     cat: "health",
+    href: "/ProjectONE/baanfundee/",
     prompt:
       "Clean modern dental clinic reception, soft light, premium healthcare interior",
     slotId: "one-demo-aura-dental",
     fallbackSrc: "https://picsum.photos/seed/puchup-demo-AuraDentalClinic/600/450",
   },
   {
-    name: "Velora Resort",
-    type: "Hotel / Phuket",
+    name: "บ้านบางกอก",
+    type: "Boutique Hotel / Bangkok",
     cat: "hotel",
-    prompt: "Boutique beachfront resort pool at sunset, premium travel photography",
+    href: "/ProjectONE/baan-bangkok/",
+    prompt: "Boutique heritage hotel on the Chao Phraya, premium travel photography",
     slotId: "one-demo-velora-resort",
     fallbackSrc: "https://picsum.photos/seed/puchup-demo-VeloraResort/600/450",
   },
   {
-    name: "Amethez Crystals",
-    type: "Retail / Bangkok",
+    name: "Paw & Co.",
+    type: "Pet Shop / Bangkok",
     cat: "retail",
+    href: "/ProjectONE/paw-and-co/",
     prompt:
-      "Elegant crystal and gemstone display on a wooden shelf, soft studio light",
+      "Happy golden retriever in a premium pet boutique, warm editorial photography",
     slotId: "one-demo-amethez-crystals",
     fallbackSrc: "https://picsum.photos/seed/puchup-demo-AmethezCrystals/600/450",
   },
   {
-    name: "Nol Studio",
-    type: "Creator / Bangkok",
+    name: "Petal & Stem",
+    type: "Florist / Bangkok",
     cat: "creator",
+    href: "/ProjectONE/petal-stem-florist/",
     prompt:
-      "Photographer working in a bright minimal studio with camera equipment, editorial tone",
+      "Artisan floral bouquet on a wooden table, soft natural light, editorial still life",
     slotId: "one-demo-nol-studio",
     fallbackSrc: "https://picsum.photos/seed/puchup-demo-NolStudio/600/450",
   },
   {
-    name: "Green Table Bistro",
-    type: "Restaurant / Bangkok",
-    cat: "restaurant",
-    prompt:
-      "Cozy bistro table setting with plants and warm lighting, editorial food photography",
-    slotId: "one-demo-green-table-bistro",
-    fallbackSrc: "https://picsum.photos/seed/puchup-demo-GreenTableBistro/600/450",
-  },
-  {
-    name: "Solace Spa",
-    type: "Health / Hua Hin",
-    cat: "health",
-    prompt:
-      "Serene spa treatment room with candles and soft textiles, calm premium interior",
-    slotId: "one-demo-solace-spa",
-    fallbackSrc: "https://picsum.photos/seed/puchup-demo-SolaceSpa/600/450",
-  },
-  {
-    name: "Craft & Bean",
+    name: "Mellow House Café",
     type: "Café / Bangkok",
     cat: "cafe",
+    href: "/demo/",
     prompt:
-      "Specialty coffee bar with barista pouring latte art, warm editorial lighting",
-    slotId: "one-demo-craft-bean",
-    fallbackSrc: "https://picsum.photos/seed/puchup-demo-Craft&Bean/600/450",
+      "Bright minimalist café interior with warm wood tones, editorial lifestyle photography",
+    slotId: "one-demo-mellow-house-cafe",
+    fallbackSrc: "https://picsum.photos/seed/puchup-demo-MellowHouseCafé/600/450",
   },
 ] as const;
 
@@ -106,7 +85,7 @@ export const DEMO_CATEGORIES = [
     prompt:
       "Steaming bowl of Thai noodles with chopsticks, isolated subject, professional food photography, transparent background cutout",
     items: [
-      { name: "ร้านอาหาร", slug: "restaurant" },
+      { name: "ร้านอาหาร", slug: "baankhaokhom" },
       { name: "คาเฟ่", slug: "cafe" },
       { name: "ร้านกาแฟ", slug: "coffee-shop" },
       { name: "ร้านอาหารทะเล", slug: "seafood-restaurant" },
@@ -126,7 +105,7 @@ export const DEMO_CATEGORIES = [
     prompt:
       "White orchid flower and smooth spa stones, isolated subject, soft studio lighting, transparent background cutout",
     items: [
-      { name: "คลินิกทันตกรรม", slug: "dental-clinic" },
+      { name: "คลินิกทันตกรรม", slug: "baanfundee" },
       { name: "คลินิกเสริมความงาม", slug: "beauty-clinic" },
       { name: "Spa", slug: "spa" },
       { name: "ร้านทำผม", slug: "hair-salon" },
@@ -147,7 +126,7 @@ export const DEMO_CATEGORIES = [
     prompt:
       "Happy golden retriever dog and orange tabby cat sitting together, isolated subject, joyful studio photography, transparent background cutout",
     items: [
-      { name: "Pet Shop", slug: "pet-shop" },
+      { name: "Pet Shop", slug: "paw-and-co" },
       { name: "Pet Grooming", slug: "pet-grooming" },
     ],
   },
@@ -162,7 +141,7 @@ export const DEMO_CATEGORIES = [
       "Tropical palm leaf and a boutique hotel key with tassel, isolated subject, warm editorial photography, transparent background cutout",
     items: [
       { name: "Resort", slug: "resort" },
-      { name: "Boutique Hotel", slug: "boutique-hotel" },
+      { name: "Boutique Hotel", slug: "baan-bangkok" },
       { name: "Pool Villa", slug: "pool-villa" },
       { name: "Villa", slug: "villa" },
       { name: "Homestay", slug: "homestay" },
@@ -183,7 +162,7 @@ export const DEMO_CATEGORIES = [
     items: [
       { name: "ร้านต้นไม้", slug: "plant-shop" },
       { name: "รับจัดสวน", slug: "garden-design" },
-      { name: "ร้านดอกไม้", slug: "flower-shop" },
+      { name: "ร้านดอกไม้", slug: "petal-stem-florist" },
     ],
   },
   {

@@ -1,23 +1,37 @@
+import { ShowroomPage } from "@/components/demos/ShowroomPage";
 import { ImagePromptFallback } from "@/components/sanity/ImagePromptFallback";
+import {
+  liveItemsFromCategories,
+  mergeShowroomWithCms,
+} from "@/lib/demos/showroom-catalog";
+import { sanityFetch } from "@/lib/sanity/client";
 import { imageUrl } from "@/lib/sanity/image";
+import { projectOneDemoLinksQuery } from "@/lib/sanity/queries";
 import type { DemoShowcaseGrid as DemoShowcaseGridData } from "@/lib/sanity/types";
+import type { ProjectOneDemoLink } from "@/lib/sanity/types";
 
-export function DemoShowcaseGridBlock({
+export async function DemoShowcaseGridBlock({
   data,
 }: {
   data: DemoShowcaseGridData;
 }) {
+  if (data.useShowroomCatalog) {
+    const cms = await sanityFetch<ProjectOneDemoLink[]>({
+      query: projectOneDemoLinksQuery,
+      tags: ["projectOneDemo"],
+    });
+    const categories = mergeShowroomWithCms(cms);
+    const liveItems = liveItemsFromCategories(categories);
+    return <ShowroomPage categories={categories} liveItems={liveItems} />;
+  }
+
   return (
     <section className="py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {data.heading ? (
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900">
-            {data.heading}
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900">{data.heading}</h2>
         ) : null}
-        {data.intro ? (
-          <p className="mt-3 max-w-2xl text-slate-600">{data.intro}</p>
-        ) : null}
+        {data.intro ? <p className="mt-3 max-w-2xl text-slate-600">{data.intro}</p> : null}
 
         <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {(data.items || []).map((item, index) => {
@@ -46,9 +60,7 @@ export function DemoShowcaseGridBlock({
               <>
                 {content}
                 <div className="mt-3">
-                  <h3 className="text-lg font-semibold text-slate-900">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
                   {item.subtitle ? (
                     <p className="text-sm text-slate-500">{item.subtitle}</p>
                   ) : null}

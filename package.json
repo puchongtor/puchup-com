@@ -15,7 +15,8 @@
     "sanity:cors": "sanity cors add http://localhost:3333 --credentials && sanity cors add http://localhost:3000 --credentials && sanity cors add https://puchup.com --credentials && sanity cors add https://www.puchup.com --credentials",
     "sanity:cors:list": "sanity cors list",
     "sanity:manage": "sanity manage",
-    "sanity:seed-demos": "tsx scripts/seed-sanity-demos.ts"
+    "sanity:seed-demos": "tsx scripts/seed-sanity-demos.ts",
+    "sanity:seed-project-one": "node scripts/seed-demos.js"
   },
   "dependencies": {
     "@portabletext/react": "^3.2.1",
