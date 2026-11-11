@@ -84,11 +84,6 @@ export function buildWebsiteGlossary(): GlossaryTerm[] {
 
   for (const product of MAIN_PRODUCTS) {
     terms.push(term(product.name, "สินค้าหลัก", [product.slug, product.summary.slice(0, 40)]));
-    for (const child of product.children || []) {
-      terms.push(
-        term(child.name, product.name, [child.slug, product.name]),
-      );
-    }
   }
 
   for (const brand of BRAND_CATALOG) {
@@ -99,11 +94,6 @@ export function buildWebsiteGlossary(): GlossaryTerm[] {
         ...(brand.bullets || []).slice(0, 2),
       ]),
     );
-    for (const model of brand.models || []) {
-      terms.push(
-        term(model.name, brand.name, [model.slug, brand.name]),
-      );
-    }
   }
 
   // รวม canonical ซ้ำ — เก็บอันแรก แล้วรวม alias
