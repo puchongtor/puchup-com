@@ -1,10 +1,12 @@
-# PuchUp.com (v2)
+# PuchUp.com
 
 Business System Builder — **PuchUp สร้างระบบผู้ช่วยธุรกิจ**
 
-Source of truth: `_prototype/` + `HANDOFF.md`
+โครงสร้างแยกโปรเจกต์: หน้าหลัก PuchUp กับ **Project ONE** (เว็บหน้าร้านหน้าเดียว) อยู่คนละชุด route
 
-## หน้าเว็บ
+## Routes
+
+### หน้าหลัก PuchUp (จะปรับทีหลัง)
 
 - `/` Home + Live Business Assistant
 - `/build` What We Build
@@ -14,11 +16,23 @@ Source of truth: `_prototype/` + `HANDOFF.md`
 - `/about`
 - `/contact`
 
+### Project ONE (หน้าร้านหน้าเดียว → LINE / Maps)
+
+| Path | เนื้อหา |
+|------|---------|
+| `/ProjectONE/` | หน้าขาย Project ONE |
+| `/ProjectONE/demo/` | Showroom ธุรกิจตัวอย่าง |
+| `/ProjectONE/google/` | หน้าร้านบน Google |
+| `/ProjectONE/[slug]/` | เดโมร้านจริง (เช่น `/ProjectONE/restaurant/`) |
+| `/demo/` | alias → showroom เดียวกัน |
+
+แหล่ง HTML ชั่วคราว (จาก Gemini): `content/project-one/pages/` + `content/project-one/themes/`  
+รูป: `public/images/project-one/`  
+ตัว rewrite ลิงก์/รูป: `lib/project-one/html.ts`
+
 ## พัฒนา
 
 คัดลอก `.env.example` เป็น `.env.local` แล้วใส่ Sanity project ID (ถ้ามี)
-
-โปรเจกต์นี้**ไม่มี Supabase** — CMS คือ Sanity อย่างเดียว
 
 ```bash
 npm install
@@ -26,20 +40,17 @@ npm run dev
 ```
 
 เปิด http://localhost:3000  
-เดโม: http://localhost:3000/sites/restaurant/ และ `/sites/aeropulse/`
+Project ONE: http://localhost:3000/ProjectONE/  
+Showroom: http://localhost:3000/ProjectONE/demo/  
+เดโมร้าน: http://localhost:3000/ProjectONE/restaurant/
 
 ## Deploy (Next.js static บน Vercel)
 
-ไซต์ถูก build เป็นไฟล์ใน `out/` (`output: "export"`) เพื่อไม่ใช้ Vercel Functions / Image Optimization
+ไซต์ถูก build เป็นไฟล์ใน `out/` (`output: "export"`)
 
-1. Import Git repo ใน Vercel (Framework: Next.js — `vercel.json` ชี้ `outputDirectory` เป็น `out`)
-2. Environment variables ให้ตรงกับ `.env.example` โดยเฉพาะ `NEXT_PUBLIC_SANITY_*`
+1. Import Git repo ใน Vercel — `vercel.json` ชี้ `outputDirectory` เป็น `out`
+2. Environment variables ให้ตรงกับ `.env.example`
 3. ผูกโดเมน `puchup.com` / `www` เท่านั้น — **อย่าทับ** `puchong.puchup.com`
-4. เดโม subdomain (`restaurant.puchup.com` ฯลฯ) ชี้มาที่โปรเจกต์นี้ได้ — rewrite ไป `/sites/[site]/` ใน `vercel.json`
-
-อัปเดตเนื้อหา Sanity: ตั้ง Deploy Hook ของ Vercel แล้วยิงจาก Sanity webhook (rebuild ครั้งละครั้ง ถูกกว่า ISR ทุก request)
-
-Studio: `npm run sanity` หรือ iframe ที่ `/admin` → `NEXT_PUBLIC_SANITY_STUDIO_URL`
 
 ## ห้ามแตะ
 

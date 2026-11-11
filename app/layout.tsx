@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
     revalidate: 3600,
   });
 
-  const favicon = imageUrl(settings?.favicon, 64) || "/favicon.svg";
+  const favicon = imageUrl(settings?.favicon, 64) || "/brand/favicon.png";
 
   return {
     metadataBase: new URL(site.url),
@@ -44,7 +44,10 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s — ${settings?.siteName || site.name}`,
     },
     description: settings?.seo?.metaDescription || site.description,
-    icons: { icon: favicon },
+    icons: {
+      icon: [{ url: favicon }, { url: "/brand/favicon.png", type: "image/png" }],
+      apple: [{ url: "/brand/logo-1x1-dark.jpg" }],
+    },
   };
 }
 

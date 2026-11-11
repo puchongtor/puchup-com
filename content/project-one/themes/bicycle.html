@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velo Union Bicycles — ร้านจักรยานประกอบ ฟิตติ้ง & อุปกรณ์ตกแต่ง สุขุมวิท 71</title>
+<meta name="description" content="Velo Union Bicycles ร้านจักรยานคัสตอม Road Bike, Gravel, Touring ปรีดี พนมยงค์ (สุขุมวิท 71) บริการ Bike Fitting มาตรฐาน เวิร์กช็อปซ่อมบำรุง ล้างชุดขับ เซ็ตเกียร์ อะไหล่แบรนด์ชั้นนำ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BikeStore",
+  "name": "Velo Union Bicycles",
+  "alternateName": "เวโล ยูเนียน ไบซิเคิล",
+  "description": "ร้านจักรยานประกอบสั่งตัด คัสตอม ฟิตติ้ง และเวิร์กช็อปซ่อมบำรุง สุขุมวิท 71 ปรีดีพนมยงค์",
+  "telephone": "02-123-6699",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "114 ถนนสุขุมวิท 71 (ปรีดี พนมยงค์ 26)",
+    "addressLocality": "แขวงพระโขนงเหนือ เขตวัฒนา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10110",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #F8FAF9;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #EEF2F0;
+    --ink: #18221D;
+    --ink-soft: #415249;
+    --ink-faint: #73857C;
+    --racing-green: #1F4E3B;
+    --racing-dark: #143527;
+    --orange: #E66A2C;
+    --amber: #D97706;
+    --line: #DCE3E0;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; font-weight: 700; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--racing-green); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--racing-green);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(248, 250, 249, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--racing-green); }
+  .navtab.active { color: var(--racing-green); border-color: var(--racing-green); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-racing {
+    background: linear-gradient(135deg, #1F4E3B 0%, #143527 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-racing:hover {
+    background: linear-gradient(135deg, #2B6B52 0%, #1F4E3B 100%);
+    box-shadow: 0 10px 24px -8px rgba(31, 78, 59, 0.5);
+  }
+
+  .bike-card { transition: all 0.25s ease; cursor: pointer; }
+  .bike-card:hover, .bike-card.active {
+    border-color: var(--racing-green);
+    background-color: #EBF3EF;
+    transform: translateY(-2px);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  /* Compact Mobile Sticky Bar */
+  .mobile-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    text-align: center;
+    font-size: 0.75rem;
+  }
+  @media (min-width: 768px) {
+    .mobile-bottom-bar { display: none; }
+  }
+
+  /* Desktop Floating Action Button (FAB) */
+  .desktop-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+  }
+  .fab-toggle {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: var(--racing-green);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px -6px rgba(31, 78, 59, 0.5);
+    transition: all 0.25s ease;
+  }
+  .fab-toggle:hover {
+    background: var(--racing-dark);
+    transform: scale(1.05);
+  }
+  .fab-menu {
+    position: absolute;
+    bottom: 68px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+  }
+  .desktop-fab.open .fab-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .fab-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 16px 6px 6px;
+    box-shadow: 0 8px 20px -8px rgba(24, 34, 29, 0.3);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.15s ease;
+  }
+  .fab-item:hover {
+    transform: translateX(-4px);
+  }
+  .fab-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 14px;
+  }
+
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-16 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#FAF8F5] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ VELO UNION BICYCLES — คัสตอมไบค์ สตูดิโอฟิตติ้ง & เซอร์วิส สุขุมวิท 71 (ปรีดี 26) · ตัวแทนจำหน่ายอะไหล่แบรนด์แท้ ·</span>
+  <a href="demo.html" class="underline hover:text-emerald-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-40 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--racing-green)] flex items-center justify-center text-white text-2xl shadow-sm group-hover:scale-105 transition-transform">
+        🚲
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Velo Union</span>
+        <span class="text-xs text-[var(--racing-green)] tracking-widest font-mono uppercase block mt-1 font-semibold">Custom Bicycle & Workshop · Sukhumvit 71</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#custom" class="navtab active">จักรยานประกอบสั่งตัด</a>
+      <a href="#fitting" class="navtab">Bike Fitting มาตรฐาน</a>
+      <a href="#workshop" class="navtab">อัตราค่าบริการเซอร์วิส</a>
+      <a href="#reviews" class="navtab">รีวิวจากนักปั่น</a>
+      <a href="#gallery" class="navtab">แกลเลอรี 12 ภาพ</a>
+      <a href="#team" class="navtab">ทีมช่างประกอบ</a>
+      <a href="#location" class="navtab">ที่ตั้ง & นัดหมาย</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:021236699" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-123-6699
+      </a>
+      <a href="#booking" class="btn-racing px-6 py-3 rounded-full text-sm shadow-sm">
+        นัดปรึกษาสเปกจักรยาน
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — FULL-BLEED HERO ============ -->
+<header id="hero" class="relative">
+  <div class="img-slot h-[70vh] md:h-[84vh]">
+    <img src="./images/bike-hero.webp" alt="ช่างประกอบจักรยานคนไทย Velo Union Bicycles สุขุมวิท 71" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(16,28,22,0.96) 0%, rgba(16,28,22,0.65) 45%, rgba(16,28,22,0.3) 100%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+    <div class="max-w-6xl mx-auto text-[#F8FAF9]">
+      <p class="eyebrow mb-3" style="color:#A3E635;">CUSTOM BIKE BUILDER & PROFESSIONAL WORKSHOP · สุขุมวิท 71</p>
+      <h1 class="font-display font-bold text-[clamp(2.4rem,6.2vw,4.5rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        ประกอบคันในฝันของคุณ<br>
+        <span class="text-[#A3E635] italic font-normal">ด้วยสรีระและความต้องการที่พอดีตัว 100%</span>
+      </h1>
+      <p class="text-base md:text-xl text-stone-100 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        สตูดิโอจักรยานครบวงจรสำหรับคนรักการปั่น Road Bike, Gravel, Touring และ City Commuter ประกอบด้วยเครื่องมือทอร์กมาตรฐาน Bike Fitting ตามสรีระ และอะไหล่แบรนด์ระดับโลก
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span> เปิดบริการ อังคาร – อาทิตย์ 10:00–19:30 น.
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          🔧 เซอร์วิสด้วยเครื่องมือ Park Tool & Shimano แท้
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#custom" class="btn-racing rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+          เลือกประเภทเฟรม & สเปกประกอบ
+        </a>
+        <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+          แผนที่ร้าน & พื้นที่จอดรถ
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="border-b hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+    <span class="trust-item flex items-center gap-1.5"><span class="text-amber-500 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(310+ รีวิว)</span></span>
+    <span class="trust-item">🚴 Custom Bike Build ตามงบประมาณ</span>
+    <span class="trust-item">📐 Bike Fitting แก้ปัญหาเมื่อยล้า/ชา</span>
+    <span class="trust-item">⚙️ ล้างชุดขับแบบ Ultrasonic สะอาดลึก</span>
+    <span>🚗 มีที่จอดรถสะดวกหน้าร้าน</span>
+  </div>
+</div>
+
+<!-- ============ 02 — CUSTOM BIKE BUILDER MATRIX ============ -->
+<section id="custom" class="py-24 md:py-32 px-6 md:px-10 bg-[#EEF2F0] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Custom Build Selection</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เลือกสไตล์จักรยานที่คุณต้องการประกอบ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกประเภทเฟรมและรูปแบบการใช้งาน เพื่อดูตัวเลือกกรุ๊ปเซ็ตและงบประมาณเบื้องต้น
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="bikeSelector">
+      <button data-type="road" class="bike-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">⚡</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Road Bike (เสือหมอบ)</strong>
+        <span class="text-xs text-[var(--racing-green)]">All-Round / Aero คาร์บอน & อลูมิเนียม</span>
+      </button>
+
+      <button data-type="gravel" class="bike-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🌲</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Gravel Bike (กราเวล)</strong>
+        <span class="text-xs text-[var(--racing-green)]">ลุยทางดิน ทางเรียบ ใส่ยางหน้ากว้าง</span>
+      </button>
+
+      <button data-type="touring" class="bike-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏕️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Touring & Bikepacking</strong>
+        <span class="text-xs text-[var(--racing-green)]">เฟรมโครโมลี่ แข็งแรง ติดตะแกรงกระเป๋า</span>
+      </button>
+
+      <button data-type="commuter" class="bike-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏙️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">City Commuter & Mini Velo</strong>
+        <span class="text-xs text-[var(--racing-green)]">ปั่นไปทำงาน คล่องตัว สไตล์วินเทจ</span>
+      </button>
+    </div>
+
+    <div id="bikeResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — BIKE FITTING STUDIO ============ -->
+<section id="fitting" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-emerald-100 text-[var(--racing-green)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          DYNAMIC BIKE FITTING STUDIO
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          ปั่นสบาย ไม่เจ็บ ไม่ชา<br>
+          <span class="text-[var(--racing-green)]">ส่งแรงได้เต็มประสิทธิภาพด้วยการฟิตติ้ง</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          บริการปรับตั้งตำแหน่งเบาะ สเต็ม แฮนด์ และคลีตรองเท้าตามมุมข้อต่อและสรีระของผู้ปั่นอย่างละเอียด ช่วยแก้ปัญหาอาการปวดหลัง ชามือ เจ็บเข่า และเพิ่มความลื่นไหลในการควงขา
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">📐 วัดมุมองศาเข่า สะโพก ข้อเท้า</div>
+          <div class="bg-white p-4 rounded-xl border hairline">👟 ปรับตั้งตำแหน่งคลีตรองเท้า (Cleat Alignment)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🪑 ทดลองขนาดเบาะวัดระยะกระดูกรองนั่ง (Sit Bone)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">📊 รายงานสเปกมิติตัวถัง (Bike Fit Chart)</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/bike-fitting-action.webp" alt="การฟิตติ้งจักรยานบนเทรนเนอร์">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/bike-workshop-tools.webp" alt="แผงเครื่องมือช่างจักรยานมาตรฐาน">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — WORKSHOP SERVICE RATES ============ -->
+<section id="workshop" class="py-24 md:py-32 bg-[#EEF2F0] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Transparent Rates</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">อัตราค่าบริการเวิร์กช็อปมาตรฐาน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ราคาชัดเจน ดูแลโดยช่างผู้เชี่ยวชาญ พร้อมการันตีความปลอดภัยและฟิลลิ่งการปั่น
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-mono text-[var(--racing-green)] font-bold uppercase">SERVICE 01</span>
+          <h4 class="font-display font-bold text-lg mt-1 mb-2">ล้างชุดขับ Ultrasonic</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ถอดโซ่ เฟือง จานหน้า ตีนผี สลายคราบน้ำมันและฝุ่นด้วยคลื่นอัลตราโซนิก พร้อมลงแว็กซ์โซ่คุณภาพสูง
+          </p>
+        </div>
+        <div class="border-t hairline pt-4 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาค่าบริการ</span>
+          <strong class="text-[var(--racing-green)] font-bold text-base">฿650 / ครั้ง</strong>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-mono text-[var(--racing-green)] font-bold uppercase">SERVICE 02</span>
+          <h4 class="font-display font-bold text-lg mt-1 mb-2">Full Overhaul ล้างอัดจาระบี</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            รื้อชิ้นส่วนทั้งคัน เช็กตลับลูกปืน กะโหลก ถ้วยคอ ดุมล้อ อัดจาระบีเกรดกันน้ำ และเซ็ตเกียร์เนียนกริบ
+          </p>
+        </div>
+        <div class="border-t hairline pt-4 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาค่าบริการ</span>
+          <strong class="text-[var(--racing-green)] font-bold text-base">฿1,800 – ฿2,500</strong>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-mono text-[var(--racing-green)] font-bold uppercase">SERVICE 03</span>
+          <h4 class="font-display font-bold text-lg mt-1 mb-2">ขึ้นล้อ & ดัดล้อ (Wheel Truing)</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ดัดล้อคด ตั้งความตึงซี่ลวดด้วยเครื่องมือวัด Tensiometer แม่นยำ และขึ้นล้อคัสตอมตามสเปก
+          </p>
+        </div>
+        <div class="border-t hairline pt-4 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาค่าบริการ</span>
+          <strong class="text-[var(--racing-green)] font-bold text-base">฿300 – ฿600 / ล้อ</strong>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-mono text-[var(--racing-green)] font-bold uppercase">SERVICE 04</span>
+          <h4 class="font-display font-bold text-lg mt-1 mb-2">ไล่น้ำมันดิสก์เบรกไฮดรอลิก</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            Bleeding ไล่ฟองอากาศในสายเบรก Shimano, SRAM, Campagnolo เติมน้ำมันเบรกใหม่ กำเบรกแน่นตึงมือ
+          </p>
+        </div>
+        <div class="border-t hairline pt-4 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาค่าบริการ</span>
+          <strong class="text-[var(--racing-green)] font-bold text-base">฿400 – ฿600 / ข้าง</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS SECTION ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Rider Testimonials</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ความประทับใจจากนักปั่น</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (310+ รีวิวบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "มาประกอบคัน Gravel Bike ที่นี่ ช่างให้คำปรึกษาดีมาก ไม่ยัดของเกินจำเป็น เลือกเฟรมกับชุดขับที่เหมาะกับการใช้งาน ล้างชุดขับ Ultrasonic โซ่เงาวับ ปั่นลื่นขึ้นเยอะครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณธีรเดช (ปรีดี พนมยงค์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Custom Gravel Bike Build</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ก่อนหน้าปั่นเสือหมอบแล้วปวดคอกับชามือตลอด มาทำ Bike Fitting ที่ร้านช่างปรับสเต็มและตำแหน่งคลีตให้ใหม่ ตอนนี้ปั่นทริป 100 กม. สบายตัวขึ้นมาก คุ้มค่าที่สุดครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณณัฐนนท์ (เอกมัย)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Dynamic Road Bike Fitting</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ร้านจักรยานที่จริงใจ ช่างตรวจเช็กละเอียด ขันน็อตทุกตัวด้วยประแจทอร์ก อะไหล่แบรนด์แท้ครบ มีกาแฟให้จิบนั่งรอระหว่างเซอร์วิส ประทับใจมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณมนัสวี (สุขุมวิท 71)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Full Overhaul & Service</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — VISUAL GALLERY (12 รูปภาพเต็มชุด) ============ -->
+<section id="gallery" class="py-24 md:py-32 bg-[#EEF2F0] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">12 Workshop Showcase</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีผลงานประกอบและเซอร์วิส (12 ภาพ)</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพการประกอบจักรยานคัสตอม อุปกรณ์ตกแต่ง และบรรยากาศเวิร์กช็อปมาตรฐาน
+      </p>
+    </div>
+
+    <!-- 12-Image Grid Gallery (3x4 or 4x3 responsive) -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-custom-road.webp" alt="จักรยานเสือหมอบประกอบคัสตอม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Custom Aero Road Bike</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เกียร์ไฟฟ้า Di2 เดินสายในเฟรม</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-gravel-outdoor.webp" alt="จักรยานกราเวลแต่งพร้อมลุย">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Gravel Adventure Setup</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ยาง 700x42c พร้อมกระเป๋าแฮนด์</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-drivetrain-clean.webp" alt="ชุดขับล้างสะอาดด้วยอัลตราโซนิก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Ultrasonic Drivetrain</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">สะอาดทุกข้อต่อ ปราศจากคราบดิน</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-fitting-action.webp" alt="ห้องฟิตติ้งจักรยานมาตรฐาน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Precision Bike Fit</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปรับตั้งองศาข้อต่อแม่นยำ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-wheel-build.webp" alt="การขึ้นล้อคัสตอม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Handmade Wheelset</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ขึ้นวงล้อคาร์บอน ดุมเสียงเพราะ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-components-shelf.webp" alt="เชลฟ์อะไหล่และอุปกรณ์ตกแต่ง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Premium Components</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">แฮนด์ เบาะ บันได ไฟ ขากระติก</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-workshop-tools.webp" alt="เครื่องมือช่างจักรยานมืออาชีพ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Professional Toolset</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ประแจวัดแรงทอร์กทุกจุด</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-cafe-lounge.webp" alt="มุมกาแฟรับรองในร้าน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Cyclist Coffee Bar</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">จุดนัดพบจิบกาแฟของชาวนักปั่น</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-touring-setup.webp" alt="จักรยานทัวร์ริ่งสัมภาระครบ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Touring Chromoly Bike</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เฟรมโครโมลี่ แข็งแกร่ง บรรทุกหนัก</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-disc-bleed.webp" alt="การไล่น้ำมันดิสก์เบรกไฮดรอลิก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Hydraulic Disc Bleed</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ไล่ฟองอากาศ เบรกแน่นมั่นใจ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-tire-tubeless.webp" alt="ติดตั้งยางทูบเลส">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Tubeless Tire Setup</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ลงน้ำยากันรั่ว ปั่นไร้ยางใน</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/bike-stand-prep.webp" alt="การตั้งระยะเกียร์บนแท่นซ่อม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Precision Gear Tuning</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เซ็ตระยะเกียร์เนียน เงียบ นุ่มนวล</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — MECHANIC TEAM (100% THAI MECHANICS) ============ -->
+<section id="team" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Master Bike Mechanics</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมช่างประกอบ & ฟิตเตอร์ผู้เชี่ยวชาญ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ช่างไทยหัวใจรักการปั่น ผ่านการรับรองจากสถาบันจักรยานระดับสากล Shimano T.E.C. & Retül Fit
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--racing-green)] shadow-md">
+          <img src="./images/team-mechanic-arm.webp" alt="ช่างอาร์ม หัวหน้าช่างประกอบจักรยาน" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--racing-green)] font-bold uppercase">Head Bike Builder & Founder</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">ช่างอาร์ม (ธนากร สิทธิเดช)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Shimano Certified Master Mechanic (ประสบการณ์ 12 ปี)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการประกอบจักรยานคาร์บอนและไทเทเนียมระดับแข่งขัน การเดินสายเกียร์ไฟฟ้า Di2/AXS ซ่อนในเฟรม และการขึ้นล้อคัสตอม
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--racing-green)] shadow-md">
+          <img src="./images/team-fitter-nut.webp" alt="โค้ชนัท ผู้เชี่ยวชาญ Bike Fitting" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--racing-green)] font-bold uppercase">Certified Dynamic Bike Fitter</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">โค้ชนัท (ณัฐพล วงศ์สวัสดิ์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Retül & IBFI Certified Bike Fitter (ประสบการณ์ 9 ปี)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ผู้เชี่ยวชาญด้านสรีระศาสตร์การปั่น วิเคราะห์แนวกระดูกและมุมข้อต่อ แก้ปัญหาอาการบาดเจ็บเรื้อรังจากการปั่นจักรยาน
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#EEF2F0] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Location & Workshop Hours</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่ร้าน & เวลาเปิดบริการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ตั้งอยู่ริมถนนสุขุมวิท 71 (ปากซอยปรีดี พนมยงค์ 26) ใกล้ BTS พระโขนง
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">อังคาร – อาทิตย์:</span>
+              <span class="font-mono">10:00 – 19:30 น.</span>
+            </div>
+            <div class="flex justify-between text-amber-700 font-medium pt-1">
+              <span>วันจันทร์:</span>
+              <span>ปิดทำการ (หยุดประจำสัปดาห์)</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งร้าน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            114 ถนนสุขุมวิท 71 (ปากซอยปรีดี พนมยงค์ 26) แขวงพระโขนงเหนือ เขตวัฒนา กรุงเทพฯ 10110
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚆 BTS สถานีพระโขนง (ทางออก 3) ต่อวินมอเตอร์ไซค์ 3 นาที</div>
+            <div>🚗 มีที่จอดรถหน้าร้าน 4 คัน สำหรับขนย้ายจักรยานสะดวก</div>
+            <div>☕ มีมุมกาแฟสด Slow Bar ให้นั่งพักผ่อนระหว่างรอเซอร์วิส</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Pridi+Phanomyong+26+Bangkok" target="_blank" rel="noopener" class="btn-racing flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:021236699" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 02-123-6699
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="Velo Union Bicycles Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.7654321098!2d100.595!3d13.725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fa123456789%3A0xabcdef9876543210!2sSukhumvit%2071%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — SMART CONSULTATION & WORKSHOP BOOKING ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Custom Build & Fitting Booking</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">นัดหมายประกอบจักรยาน / จองคิวเซอร์วิส</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      กรอกข้อมูลสเปกหรือบริการที่สนใจล่วงหน้า หรือกดทักแชตคุยกับช่างทาง LINE ได้ทันทีโดยไม่ต้องกรอกฟอร์ม
+    </p>
+    
+    <form id="bikeContactForm" onsubmit="handleBikeSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์ <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="bikeNamePhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--racing-green)]" placeholder="เช่น คุณณัฐนนท์ 081-xxx-xxxx">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวกนำรถเข้า / ปรึกษา <span class="text-stone-400 font-normal text-xs">(กรณีจองคิว)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--racing-green)]">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">งบประมาณ / สเปกที่เล็งไว้</label>
+          <input type="text" id="bikeBudget" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--racing-green)]" placeholder="เช่น งบ 40k-60k หรือ ชุดขับ 105 Di2">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">บริการที่สนใจ / เรื่องที่ต้องการติดต่อ</label>
+        <select id="bikeTopic" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--racing-green)]">
+          <option value="ปรึกษาประกอบจักรยานคัสตอม (Road / Gravel / Touring)">🚴 ปรึกษาประกอบจักรยานคัสตอม (Road / Gravel / Touring)</option>
+          <option value="จองคิว Bike Fitting ปรับสรีระท่านั่งปั่น">📐 จองคิว Dynamic Bike Fitting</option>
+          <option value="จองคิวล้างชุดขับ Ultrasonic Deep Clean (฿650)">⚙️ ล้างชุดขับ Ultrasonic Deep Clean (฿650)</option>
+          <option value="จองคิว Full Overhaul รื้อล้างอัดจาระบีทั้งคัน">🔧 Full Overhaul เซอร์วิสทั้งคัน</option>
+          <option value="ดัดล้อ / ขึ้นล้อคัสตอม / ไล่น้ำมันดิสก์เบรก">🛞 ดัดล้อ / ขึ้นล้อคัสตอม / ไล่น้ำมันเบรกไฮดรอลิก</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-racing py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / ปรึกษาช่างทาง LINE →
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--racing-green)] hover:underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-emerald-50/80 border border-emerald-200/60 transition hover:bg-emerald-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อคุยกับช่างได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#F8FAF9] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">Velo Union Bicycles (Sukhumvit 71 - Pridi 26)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      114 ถนนสุขุมวิท 71 แขวงพระโขนงเหนือ เขตวัฒนา กรุงเทพฯ 10110 | โทร 02-123-6699 | LINE: @velounion
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Velo Union Bicycles. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Action Bar (3 Buttons) -->
+<div class="mobile-bottom-bar">
+  <a href="tel:021236699" class="py-2.5 flex flex-col items-center gap-0.5 text-[var(--ink-soft)] active:bg-slate-100 transition">
+    <span class="text-sm">📞</span>
+    <span class="text-[11px] font-medium">โทรสอบถาม</span>
+  </a>
+  <a href="https://line.me" target="_blank" rel="noopener" class="py-2.5 flex flex-col items-center gap-0.5 border-x hairline text-[#06C755] font-semibold active:bg-slate-100 transition">
+    <span class="text-sm">💬</span>
+    <span class="text-[11px]">แอด LINE</span>
+  </a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Sukhumvit+71+Bangkok" target="_blank" rel="noopener" class="py-2.5 flex flex-col items-center gap-0.5 text-white font-medium active:opacity-90 transition" style="background:var(--racing-green);">
+    <span class="text-sm">📍</span>
+    <span class="text-[11px]">แผนที่ร้าน</span>
+  </a>
+</div>
+
+<!-- Desktop Floating Action Button (FAB) -->
+<div id="desktopFab" class="hidden md:block desktop-fab">
+  <div id="fabMenu" class="fab-menu">
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Sukhumvit+71+Bangkok" target="_blank" rel="noopener" class="fab-item">
+      <span class="fab-item-icon" style="background:var(--racing-green);">📍</span>
+      <span class="text-xs font-bold text-[var(--ink)]">แผนที่ร้าน</span>
+    </a>
+    <a href="https://line.me" target="_blank" rel="noopener" class="fab-item">
+      <span class="fab-item-icon" style="background:#06C755;">💬</span>
+      <span class="text-xs font-bold text-[var(--ink)]">แชตผ่าน LINE</span>
+    </a>
+    <a href="tel:021236699" class="fab-item">
+      <span class="fab-item-icon" style="background:var(--ink);">📞</span>
+      <span class="text-xs font-bold text-[var(--ink)]">โทรสอบถาม</span>
+    </a>
+  </div>
+  <button id="fabToggle" class="fab-toggle" aria-label="ช่องทางติดต่อ" aria-expanded="false">
+    <span class="text-2xl">💬</span>
+  </button>
+</div>
+
+<script>
+/* Smart Form Handler */
+function handleBikeSubmit(e) {
+  e.preventDefault();
+  const namePhone = document.getElementById('bikeNamePhone').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const budget = document.getElementById('bikeBudget').value.trim();
+  const topic = document.getElementById('bikeTopic').value;
+
+  let msg = `สวัสดีครับ สนใจติดต่อ Velo Union Bicycles\n- เรื่องที่ติดต่อ: ${topic}`;
+  if (namePhone) msg += `\n- ผู้ติดต่อ: ${namePhone}`;
+  if (date) msg += `\n- วันที่สะดวก: ${date}`;
+  if (budget) msg += `\n- งบ/สเปก: ${budget}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const bikeData = {
+  road: {
+    title: 'Custom Road Bike (เสือหมอบสายความเร็ว & ไต่เขา)',
+    desc: 'ประกอบเฟรมคาร์บอนหรืออลูมิเนียมเกรดท็อป เลือกชิ้นส่วนแฮนด์ integrated ซ่อนสายเต็มระบบ กรุ๊ปเซ็ตเกียร์ไฟฟ้า Shimano Di2 / SRAM AXS และล้อคาร์บอนขอบสูงตามระยะปั่น',
+    specs: 'น้ำหนักเบา แอโรไดนามิกสูง ส่งกำลังเหยียบได้เต็ม 100%',
+    price: 'งบประมาณประกอบเริ่มต้น ฿38,000 – ฿150,000+',
+    img: './images/bike-custom-road.webp'
+  },
+  gravel: {
+    title: 'Custom Gravel Bike (กราเวลสายลุย All-Road)',
+    desc: 'จักรยานที่ตอบโจทย์ทั้งถนนเรียบและทางลูกรัง รองรับยางหน้ากว้าง 700x38c–45c ชุดขับ 1x หรือ 2x จานหน้ากันโซ่ตก และจุดยึดกระเป๋าสำหรับสายทัวร์ริ่งผจญภัย',
+    specs: 'ซับแรงสะเทือนยอดเยี่ยม องศาเฟรมนั่งสบาย ทรงตัวนิ่ง',
+    price: 'งบประมาณประกอบเริ่มต้น ฿32,000 – ฿95,000',
+    img: './images/bike-gravel-outdoor.webp'
+  },
+  touring: {
+    title: 'Bikepacking & Long Distance Touring (ทัวร์ริ่งทางไกล)',
+    desc: 'เฟรมเหล็กโครโมลี่ 4130 หรือไทเทเนียม ทนทาน บรรทุกสัมภาระหนักได้เสถียร รองรับบังโคลน ตะแกรงหน้า-หลัง ระบบดุมปั่นไฟ (Dynamo Hub) สำหรับเดินทางข้ามจังหวัด',
+    specs: 'แข็งแกร่ง ซ่อมบำรุงง่าย นุ่มนวลตลอดการเดินทาง',
+    price: 'งบประมาณประกอบเริ่มต้น ฿28,000 – ฿75,000',
+    img: './images/bike-components-shelf.webp'
+  },
+  commuter: {
+    title: 'City Commuter & Mini Velo (จักรยานเมือง & วินเทจ)',
+    desc: 'จักรยานปั่นในเมือง คล่องตัว น้ำหนักเบา สไตล์มินิมอลวินเทจ เกียร์ดุมดูแลรักษาง่ายหรือ Single Speed เบาะหนังแท้ และแฮนด์ตรงควบคุมง่ายในตรอกซอกซอย',
+    specs: 'คล่องตัว ดูแลง่าย ดีไซน์สวยงามเข้ากับไลฟ์สไตล์เมือง',
+    price: 'งบประมาณประกอบเริ่มต้น ฿15,000 – ฿35,000',
+    img: './images/bike-cafe-lounge.webp'
+  }
+};
+
+function renderBike(key) {
+  const data = bikeData[key];
+  const box = document.getElementById('bikeResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-emerald-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Custom Specification</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--racing-green)] font-semibold">จุดเด่น:</span> ${data.specs}</div>
+          <div class="text-[var(--racing-green)] font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">งบประมาณ:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-racing px-7 py-3 rounded-full text-sm font-bold shadow-md">ปรึกษาสเปกคันนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderBike('road');
+document.querySelectorAll('#bikeSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#bikeSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderBike(btn.dataset.type);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+/* ---------- Desktop FAB Toggle ---------- */
+const desktopFab = document.getElementById('desktopFab');
+const fabToggle = document.getElementById('fabToggle');
+if (desktopFab && fabToggle) {
+  fabToggle.addEventListener('click', () => {
+    desktopFab.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!desktopFab.contains(e.target)) {
+      desktopFab.classList.remove('open');
+    }
+  });
+}
+
+/* ---------- Scroll Reveal & Spy ---------- */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{ threshold:.1 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const sections = ['custom','fitting','workshop','reviews','gallery','team','location'].map(id=>document.getElementById(id));
+const navtabs = document.querySelectorAll('.navtab');
+const spy = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navtabs.forEach(t=>t.classList.remove('active'));
+      const active = document.querySelector(`.navtab[href="#${e.target.id}"]`);
+      if(active) active.classList.add('active');
+    }
+  });
+},{ rootMargin:'-40% 0px -50% 0px' });
+sections.forEach(s=> s && spy.observe(s));
+</script>
+</body>
+</html>

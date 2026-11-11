@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craft & Clay Art Space — สตูดิโอศิลปะเด็ก & เวิร์กช็อปเซรามิก อารีย์</title>
+<meta name="description" content="Craft & Clay สตูดิโอศิลปะและเซรามิก อารีย์-ประดิพัทธ์ คลาสศิลปะเด็กสร้างสรรค์ 4-12 ปี และเวิร์กช็อปปั้นดินเซรามิกแป้นหมุนผู้ใหญ่ จองคลาสเรียนวันหยุด">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Craft & Clay Art Space",
+  "alternateName": "สตูดิโอศิลปะและเซรามิก อารีย์",
+  "description": "สตูดิโอศิลปะเด็กสร้างสรรค์ และเวิร์กช็อปปั้นดินเซรามิกแป้นหมุนสำหรับผู้ใหญ่ อารีย์ ประดิพัทธ์",
+  "telephone": "02-278-9988",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "36/4 ซอยประดิพัทธ์ 15",
+    "addressLocality": "แขวงพญาไท เขตพญาไท",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10400",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FAF6F0;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F2EAE0;
+    --ink: #2B2118;
+    --ink-soft: #5C4A3A;
+    --ink-faint: #917B68;
+    --terracotta: #C46244;
+    --terracotta-dark: #A24B30;
+    --sage: #4E6E5D;
+    --sage-light: #E2ECE6;
+    --amber: #D97706;
+    --line: #E8DCCF;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--terracotta); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 246, 240, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--terracotta); }
+  .navtab.active { color: var(--terracotta); border-color: var(--terracotta); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-terracotta {
+    background-color: var(--terracotta);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+  .btn-terracotta:hover {
+    background-color: var(--terracotta-dark);
+    box-shadow: 0 10px 24px -8px rgba(196, 98, 68, 0.45);
+  }
+
+  .tab-btn.active {
+    background-color: var(--ink);
+    color: #FFF;
+    border-color: var(--ink);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#FAF6F0] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ CRAFT & CLAY STUDIO — พื้นที่ศิลปะเด็ก & เวิร์กช็อปเซรามิก อารีย์-ประดิพัทธ์ · คลาสกลุ่มเล็กไม่เกิน 6 ท่าน ·</span>
+  <a href="demo.html" class="underline hover:text-amber-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--terracotta)] flex items-center justify-center text-white text-2xl shadow-sm group-hover:scale-105 transition-transform">
+        🎨
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Craft & Clay</span>
+        <span class="text-xs text-[var(--terracotta)] tracking-widest font-mono uppercase block mt-1 font-semibold">Art Space & Pottery Studio · Ari</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#workshops" class="navtab active">คอร์สเรียนทั้งหมด</a>
+      <a href="#kids-zone" class="navtab">ศิลปะเด็ก (4-12 ปี)</a>
+      <a href="#adults-zone" class="navtab">เซรามิกผู้ใหญ่ (15 ปี+)</a>
+      <a href="#reviews" class="navtab">รีวิวผู้เรียน</a>
+      <a href="#gallery" class="navtab">แกลเลอรีผลงาน</a>
+      <a href="#team" class="navtab">คุณครูผู้สอน</a>
+      <a href="#location" class="navtab">ที่ตั้ง & จองคลาส</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:022789988" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-278-9988
+      </a>
+      <a href="#booking" class="btn-terracotta px-6 py-3 rounded-full text-sm shadow-sm">
+        จองคลาส / ติดต่อสตูดิโอ
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — FULL-BLEED HERO ============ -->
+<header id="hero" class="relative">
+  <div class="img-slot h-[70vh] md:h-[84vh]">
+    <img src="./images/craft-hero.webp" alt="Craft & Clay สตูดิโอศิลปะเด็กและเซรามิก อารีย์" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(15,10,7,0.96) 0%, rgba(15,10,7,0.72) 45%, rgba(15,10,7,0.35) 100%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+    <div class="max-w-6xl mx-auto text-[#FAF6F0]">
+      <p class="eyebrow mb-3" style="color:#F4A261;">CREATIVE ART SPACE & POTTERY STUDIO · อารีย์-ประดิพัทธ์</p>
+      <h1 class="font-display font-bold text-[clamp(2.4rem,6.2vw,4.5rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        ปลดปล่อยจินตนาการ<br>
+        <span class="text-[#F4A261] italic font-normal">ผ่านสีสันและศิลปะปั้นดินเซรามิก</span>
+      </h1>
+      <p class="text-base md:text-xl text-stone-100 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        พื้นที่สร้างสรรค์งานศิลปะบรรยากาศอบอุ่น แสงธรรมชาติ คลาสศิลปะเด็กสร้างสรรค์ 4–12 ปี และเวิร์กช็อปปั้นแป้นหมุนเซรามิกผ่อนคลายความเครียดสำหรับผู้ใหญ่
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> เปิดบริการ พุธ – อาทิตย์ 09:30–18:30 น.
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          🏺 มีเตาเผาเคลือบจริงในสตูดิโอ (Food-Safe 100%)
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#workshops" class="btn-terracotta rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+          เลือกคอร์ส & ตารางเรียน
+        </a>
+        <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+          แผนที่สตูดิโอ & ที่จอดรถ
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="border-b hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+    <span class="trust-item flex items-center gap-1.5"><span class="text-amber-500 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(290+ รีวิว)</span></span>
+    <span class="trust-item">👥 คลาสกลุ่มเล็ก 4–6 ท่าน ดูแลทั่วถึง</span>
+    <span class="trust-item">🎨 ฟรี รวมอุปกรณ์ & ดินไม่อั้น</span>
+    <span class="trust-item">☕ มีมุมนั่งรอ & คาเฟ่ในสวน</span>
+    <span>🚗 มีที่จอดรถหน้าร้าน</span>
+  </div>
+</div>
+
+<!-- ============ 02 — WORKSHOPS INTERACTIVE SELECTOR ============ -->
+<section id="workshops" class="py-24 md:py-32 px-6 md:px-10 bg-[#F2EAE0] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Curated Workshops</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เลือกคอร์สเรียนที่คุณสนใจ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        แบ่งสัดส่วนการเรียนการสอนอย่างชัดเจน ทั้งคลาสเด็กเสริมสร้างจินตนาการ และคลาสผู้ใหญ่เพื่อความผ่อนคลาย
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-10" id="wsSelector">
+      <button data-ws="kids" class="tab-btn active px-6 py-3 rounded-full border hairline bg-white font-semibold text-sm">
+        🧒 ศิลปะเด็กสร้างสรรค์ (4–12 ปี)
+      </button>
+      <button data-ws="pottery" class="tab-btn px-6 py-3 rounded-full border hairline bg-white font-semibold text-sm">
+        🏺 เซรามิกแป้นหมุน & ปั้นมือ (15 ปี+)
+      </button>
+      <button data-ws="painting" class="tab-btn px-6 py-3 rounded-full border hairline bg-white font-semibold text-sm">
+        🖌️ เพ้นท์สีเซรามิกใต้เคลือบ (ทุกวัย)
+      </button>
+      <button data-ws="private" class="tab-btn px-6 py-3 rounded-full border hairline bg-white font-semibold text-sm">
+        👥 Private Group / กิจกรรมครอบครัว
+      </button>
+    </div>
+
+    <div id="workshopResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — KIDS ART ZONE DETAILS ============ -->
+<section id="kids-zone" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-[var(--sage-light)] text-[var(--sage)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          KIDS CREATIVE ZONE (4–12 YEARS)
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          เสริมสมาธิ & จินตนาการ<br>
+          <span class="text-[var(--sage)]">ผ่านศิลปะที่ไม่จำกัดกรอบความคิด</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          ให้เด็กๆ ได้ทดลองผสมสีน้ำ เทคนิคสีอะคริลิกบนผืนผ้าใบ ปั้นดินเบา และงานคราฟต์จากธรรมชาติ ช่วยพัฒนากล้ามเนื้อมัดเล็ก เสริมสร้างความมั่นใจในตนเอง โดยคุณครูผู้เชี่ยวชาญด้านศิลปศึกษา
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🎨 สีน้ำ & สีอะคริลิกปลอดภัย</div>
+          <div class="bg-white p-4 rounded-xl border hairline">👐 ปั้นดินเสริมพัฒนากล้ามเนื้อมือ</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🏆 ได้ผลงานภาพวาดกลับบ้านทุกสัปดาห์</div>
+          <div class="bg-white p-4 rounded-xl border hairline">☕ มีมุมนั่งรอสำหรับผู้ปกครอง</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/kids-watercolor.webp" alt="เด็กๆ กำลังวาดภาพระบายสีน้ำ">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/kids-canvas-art.webp" alt="คุณครูสอนศิลปะเด็กอย่างใกล้ชิด">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — ADULT CERAMIC POTTERY DETAILS ============ -->
+<section id="adults-zone" class="py-24 md:py-32 bg-[#F2EAE0] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-2 gap-5 order-2 lg:order-1">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/pottery-wheel.webp" alt="การขึ้นรูปดินบนแป้นหมุนไฟฟ้า">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/pottery-handbuild.webp" alt="คู่รักร่วมกิจกรรมปั้นดินเซรามิก">
+        </div>
+      </div>
+
+      <div class="space-y-6 order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 bg-orange-100 text-[var(--terracotta)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          ADULT POTTERY WORKSHOP (15+ YEARS)
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          สัมผัสความสงบของดิน<br>
+          <span class="text-[var(--terracotta)]">พักผ่อนสมองและสร้างสรรค์ของใช้ชิ้นเดียวในโลก</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          หลีกหนีความวุ่นวายมาจดจ่ออยู่กับสัมผัสดินเหนียวบนแป้นหมุนไฟฟ้า (Wheel Throwing) เรียนรู้การขึ้นรูปทรงแก้ว จาน ชาม แจกัน พร้อมบริการเผาเคลือบแบบ Food-Safe สามารถนำไปใส่อาหารและเข้าไมโครเวฟได้จริง
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🏺 แป้นหมุน 1 ท่านต่อ 1 เครื่อง</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🔥 ฟรี บริการเผาดิบ & เคลือบใส</div>
+          <div class="bg-white p-4 rounded-xl border hairline">☕ ชิ้นงานนำไปใช้ดื่มกาแฟได้จริง</div>
+          <div class="bg-white p-4 rounded-xl border hairline">📦 จัดส่งผลงานถึงบ้านหลังเผาเสร็จ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS SECTION ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Student Stories</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ความสุขจากผู้เรียนจริง</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (290+ รีวิวจากผู้ปกครองและนักเรียน)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "พาลูกสาว 6 ขวบมาเรียนคอร์สศิลปะเด็ก ครูตี๋ใจเย็นมาก คอยกระตุ้นให้น้องกล้าใช้สี ตอนนี้น้องมีสมาธิขึ้นมาก วาดรูปทำการบ้านเองได้แบบไม่งอแงเลยค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณภัสสร (อารีย์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ผู้ปกครองคลาสศิลปะเด็กสร้างสรรค์</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "มา Workshop ปั้นแป้นหมุนวันหยุดกับแฟน สนุกมากและฮีลใจสุดๆ ครูพลอยประกบตัวต่อตัว สอนเทคนิคขึ้นรูปเข้าใจง่าย ได้แก้วกาแฟฝีมือตัวเองกลับไปใช้งานจริง ปลื้มมากครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณณัฐนนท์ (สะพานควาย)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">คอร์สเซรามิกแป้นหมุนผู้ใหญ่</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "สตูดิโอน่ารัก แสงสวย สะอาดมาก จัดกิจกรรม Private กับเพื่อนที่ทำงาน 6 คน สนุกและเป็นกันเองมาก มีชาขนมให้ทานช่วงพักเบรก บริการจัดส่งงานเผาถึงบ้านแพ็กแน่นหนาดีมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณลลิตา (พญาไท)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Private Group Workshop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — VISUAL GALLERY ============ -->
+<section id="gallery" class="py-24 md:py-32 bg-[#F2EAE0] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Visual Showcase</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีบรรยากาศและผลงาน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพบรรยากาศห้องเรียนสตูดิโอ แสงธรรมชาติ และผลงานจริงของนักเรียนทุกช่วงวัย
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/kids-clay-craft.webp" alt="งานปั้นดินของเด็กๆ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ปั้นดินเบาแฟนตาซี</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">คลาสเด็ก 4–8 ปี</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/pottery-painting.webp" alt="การเพ้นท์สีใต้เคลือบเซรามิก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Underglaze Painting</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เพ้นท์ลวดลายบนจานดินเผา</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/pottery-kiln-shelf.webp" alt="ชั้นวางเซรามิกหลังเผาเสร็จ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">เซรามิกเคลือบเงาจริง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เข้าไมโครเวฟได้ Food-Safe</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/studio-ambience.webp" alt="บรรยากาศภายในสตูดิโอ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">สตูดิโอแสงธรรมชาติ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">โปร่งสบาย ร่มรื่นด้วยต้นไม้</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/kids-watercolor.webp" alt="ภาพวาดสีน้ำเด็ก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">จิตรกรรมสีน้ำเด็ก</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ฝึกผสมสีและสมาธิ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/pottery-handbuild.webp" alt="การปั้นแก้วกาแฟด้วยมือ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Hand-Building Mug</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปั้นแก้วกาแฟทรงคราฟต์</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/studio-garden-break.webp" alt="สวนพักผ่อนนอกสตูดิโอ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">มุมสวนพักผ่อน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">นั่งจิบชาช่วงพักเบรก</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/craft-hero.webp" alt="การเรียนการสอนในสตูดิโอ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Community Art Space</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">พื้นที่สร้างสรรค์ของทุกคน</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — TEACHING TEAM ============ -->
+<section id="team" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Our Instructors</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">คุณครูผู้สอนประจำสตูดิโอ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        จบการศึกษาตรงด้านทัศนศิลป์และเซรามิก มีใจรักการสอน เป็นกันเอง ใจเย็น และพร้อมดูแลอย่างใกล้ชิด
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--terracotta)] shadow-md">
+          <img src="./images/team-kru-ploy.webp" alt="ครูพลอย ศิลปินเซรามิก" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--terracotta)] font-bold uppercase">ครูผู้สอนเซรามิก & ผู้ก่อตั้ง</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">ครูพลอย (พัชรพร วงศ์ศิลป์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ศิลปบัณฑิต (เครื่องเคลือบดินเผา) ม.ศิลปากร</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ประสบการณ์ด้านงานปั้นเซรามิกกว่า 8 ปี เชี่ยวชาญเทคนิคแป้นหมุนและการเคลือบสีธรรมชาติ สอนสนุกเข้าใจง่าย
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--sage)] shadow-md">
+          <img src="./images/team-kru-tee.webp" alt="ครูตี๋ ศิลปะเด็ก" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--sage)] font-bold uppercase">ครูผู้สอนศิลปะเด็กสร้างสรรค์</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">ครูตี๋ (ธีรเดช เจริญสุข)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ครุศาสตรบัณฑิต (ศิลปศึกษา) จุฬาฯ</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการจัดกิจกรรมศิลปะบำบัดและพัฒนาการเด็กเล็ก ใจเย็น เข้ากับเด็กได้ดี ช่วยกระตุ้นความคิดสร้างสรรค์
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#F2EAE0] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Studio Location</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่สตูดิโอ & เวลาเปิด</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ตั้งอยู่ในซอยประดิพัทธ์ 15 ใกล้ BTS สะพานควาย และอารีย์
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">พุธ – อาทิตย์:</span>
+              <span class="font-mono">09:30 – 18:30 น.</span>
+            </div>
+            <div class="flex justify-between text-amber-700 font-medium pt-1">
+              <span>จันทร์ – อังคาร:</span>
+              <span>ปิดทำการ (รอบเผาชิ้นงานเซรามิก)</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งสตูดิโอ</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            36/4 ซอยประดิพัทธ์ 15 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚇 BTS สะพานควาย (ทางออก 1) หรือ BTS อารีย์ ต่อวินมอเตอร์ไซค์ 3 นาที</div>
+            <div>🚗 มีที่จอดรถหน้าร้าน 4 คัน (กรุณาแจ้งล่วงหน้าก่อนเข้าเรียน)</div>
+            <div>📦 มีบริการจัดส่งผลงานเซรามิกหลังเผาเสร็จถึงบ้าน</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Pradipat+15+Bangkok" target="_blank" rel="noopener" class="btn-terracotta flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:022789988" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 02-278-9988
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="Craft & Clay Studio Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.987654321012!2d100.540!3d13.785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ec123456789%3A0xabcdef0123456789!2sPradiphat%2015%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — SMART CLASS BOOKING / GENERAL INQUIRY ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Reservation & Inquiry</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">จองคลาสเรียน / สอบถามข้อมูล</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      สามารถกรอกข้อมูลเพื่อจองรอบเรียนล่วงหน้า หรือกดทักคุยกับแอดมินทาง LINE ได้ทันทีโดยไม่ต้องกรอกฟอร์ม
+    </p>
+    
+    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / ชื่อผู้เรียน <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="formName" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--terracotta)]" placeholder="เช่น คุณณัฐพร หรือชื่อน้อง">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เบอร์โทรศัพท์ / LINE ID <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+          <input type="text" id="formPhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--terracotta)]" placeholder="081-xxx-xxxx">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการจอง <span class="text-stone-400 font-normal text-xs">(กรณีจองคลาส)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--terracotta)]">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">หัวข้อที่ต้องการติดต่อ</label>
+        <select id="formTopic" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--terracotta)]">
+          <option value="จองคลาสศิลปะเด็กสร้างสรรค์ (4-12 ปี)">🎨 จองคลาสศิลปะเด็กสร้างสรรค์ (4–12 ปี)</option>
+          <option value="จองคอร์สเซรามิกแป้นหมุน (15 ปี+)">🏺 จองคอร์สเซรามิกแป้นหมุน Wheel Throwing (15 ปี+)</option>
+          <option value="จองคลาสปั้นมือ Hand-Building">👐 จองคลาสปั้นมือ Hand-Building แก้ว/จาน</option>
+          <option value="จองเวิร์กช็อปเพ้นท์สีใต้เคลือบ">🖌️ จองเวิร์กช็อปเพ้นท์สีใต้เคลือบ (Underglaze)</option>
+          <option value="สอบถามจัด Private Group / วันเกิด / องค์กร">👥 สอบถามจัด Private Group / อีเวนต์องค์กร</option>
+          <option value="สอบถามตารางเรียน / ค่าบริการ / โปรโมชัน">📋 สอบถามตารางเรียน / ค่าบริการ / โปรโมชัน</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-terracotta py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / จองคิวทาง LINE →
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--terracotta-dark)] hover:text-[var(--terracotta)] underline inline-flex items-center justify-center gap-2 p-2 rounded-xl bg-orange-50/80 border border-orange-200/60 transition hover:bg-orange-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อคุยกับครูได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#FAF6F0] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">Craft & Clay Art Space (Ari-Pradipat)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      36/4 ซอยประดิพัทธ์ 15 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 | โทร 02-278-9988 | LINE: @craftandclay
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Craft & Clay Studio. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--terracotta)] font-mono block">ศิลปะเด็ก & เซรามิกผู้ใหญ่</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Craft & Clay อารีย์</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:022789988" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-terracotta px-5 py-2.5 rounded-full text-sm font-bold">จองคลาส / ติดต่อ</a>
+  </div>
+</div>
+
+<script>
+/* Smart Form Handler: ส่งข้อมูลได้แม้ไม่กรอกข้อมูลส่วนตัว หรือกดทักตรง */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('formName').value.trim();
+  const phone = document.getElementById('formPhone').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const topic = document.getElementById('formTopic').value;
+
+  let msg = `สวัสดีครับ สนใจติดต่อ Craft & Clay Art Space\n- เรื่องที่ติดต่อ: ${topic}`;
+  if (name) msg += `\n- ผู้ติดต่อ: ${name}`;
+  if (phone) msg += `\n- เบอร์โทร/LINE: ${phone}`;
+  if (date) msg += `\n- วันที่สะดวก: ${date}`;
+
+  // เปิดแอป LINE พร้อมส่งข้อความ (ในระบบจริงเปลี่ยนเป็น LINE OA ID ของร้าน)
+  window.open(`https://line.me`, '_blank');
+}
+
+const wsData = {
+  kids: {
+    title: 'คลาสศิลปะเด็กสร้างสรรค์ (Kids Creative Art 4–12 ปี)',
+    scope: 'วาดภาพระบายสีน้ำ สีอะคริลิกบนผืนผ้าใบ ปั้นดินเบาแฟนตาซี และงานคราฟต์พัฒนาจินตนาการ ไม่มีการตัดสินถูกผิด ช่วยฝึกสมาธิและความมั่นใจ',
+    time: 'รอบละ 1.5 ชั่วโมง (เสาร์-อาทิตย์ 10:00-11:30 น. / 13:30-15:00 น.)',
+    price: 'ทดลองเรียน ฿650 / ครั้ง | คอร์ส 4 สัปดาห์ ฿2,400 (รวมอุปกรณ์ครบ)',
+    img: './images/kids-watercolor.webp'
+  },
+  pottery: {
+    title: 'เซรามิกแป้นหมุน & ปั้นมือ (Adult Wheel Throwing 15 ปี+)',
+    scope: 'เรียนรู้เทคนิคการนวดดิน เซนเตอร์ดิน และขึ้นรูปทรงกระบอก แก้ว ชาม แจกันบนแป้นหมุนไฟฟ้า 1 ท่านต่อ 1 เครื่อง พร้อมบริการเผาเคลือบจริงนำไปใช้ใส่อาหารได้',
+    time: 'รอบละ 2.5–3 ชั่วโมง (พุธ-อาทิตย์ รอบเช้า 10:00 น. / รอบบ่าย 14:00 น.)',
+    price: '฿1,850 / ท่าน (รวมดินไม่อั้น + ฟรีเผาเคลือบชิ้นงาน 2 ชิ้น)',
+    img: './images/pottery-wheel.webp'
+  },
+  painting: {
+    title: 'เพ้นท์สีเซรามิกใต้เคลือบ (Underglaze Painting Workshop)',
+    scope: 'เพ้นท์ลวดลายด้วยสีเฉพาะทางลงบนจาน ชาม หรือแก้วกาแฟดินเผาแบบบิสก์ (Bisque) เหมาะสำหรับผู้ที่ชอบงานวาดเขียนและอยากได้ของแต่งบ้านชิ้นพิเศษ',
+    time: 'รอบละ 2 ชั่วโมง (เปิดทุกวันทำการ)',
+    price: '฿750 – ฿1,200 / ชิ้น (ขึ้นอยู่กับขนาดชิ้นงานเซรามิกที่เลือก)',
+    img: './images/pottery-painting.webp'
+  },
+  private: {
+    title: 'Private Group Workshop / จัดกิจกรรมองค์กร & วันเกิด',
+    scope: 'ปิดสตูดิโอจัดเวิร์กช็อปส่วนตัวสำหรับกลุ่มเพื่อน 4–8 ท่าน กิจกรรม Team Building บริษัท หรืองานวันเกิด สามารถเลือกหัวข้อการเรียนและนำเครื่องดื่มของว่างมาได้',
+    time: 'กำหนดวันและเวลาตามสะดวก (นัดล่วงหน้า 5-7 วัน)',
+    price: 'เริ่มต้น ฿6,900 / กลุ่ม (4 ท่านแรก) ท่านต่อไป ฿1,500',
+    img: './images/pottery-handbuild.webp'
+  }
+};
+
+function renderWorkshop(key) {
+  const data = wsData[key];
+  const box = document.getElementById('workshopResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-amber-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Workshop Details</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.scope}</p>
+        
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">ระยะเวลาเรียน</span><strong class="text-[var(--ink)] font-bold text-xs md:text-sm">${data.time}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">ค่าเรียน</span><strong class="text-[var(--terracotta)] font-bold text-sm md:text-base">${data.price}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-terracotta px-7 py-3 rounded-full text-sm font-bold shadow-md">จองรอบเรียนคอร์สนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderWorkshop('kids');
+document.querySelectorAll('#wsSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#wsSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderWorkshop(btn.dataset.ws);
+  });
+});
+
+const sat = new Date();
+sat.setDate(sat.getDate() + ((6 - sat.getDay() + 7) % 7 || 7));
+document.getElementById('bookDate').value = sat.toISOString().split('T')[0];
+document.getElementById('bookDate').min = new Date().toISOString().split('T')[0];
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

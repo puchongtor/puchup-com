@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iFixPro & Phone Studio — ศูนย์ซ่อมมือถือด่วน & ซื้อมือสอง ฟอร์จูน พระราม 9</title>
+<meta name="description" content="iFixPro ฟอร์จูนทาวน์ พระราม 9 ซ่อมมือถือด่วนรอรับได้ เปลี่ยนจอ เปลี่ยนแบต ซ่อมบอร์ด รับซื้อ-เทิร์น ขายมือถือมือสองเกรด A ตรวจ 30 จุด ประกันสูงสุด 180 วัน">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #0B0F19;
+    --bg-surface: #131B2E;
+    --bg-card: #1E293B;
+    --ink: #F8FAFC;
+    --ink-soft: #94A3B8;
+    --ink-faint: #64748B;
+    --blue: #38BDF8;
+    --blue-dark: #0284C7;
+    --emerald: #10B981;
+    --line: #334155;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--blue); color: #0B0F19; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(11, 15, 25, 0.94);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--blue); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-surface);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.05); }
+
+  .btn-blue {
+    background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+    color: #0B0F19;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-blue:hover {
+    background: linear-gradient(135deg, #7DD3FC 0%, #38BDF8 100%);
+    box-shadow: 0 10px 24px -8px rgba(56, 189, 248, 0.5);
+  }
+
+  .fix-card { transition: all 0.25s ease; cursor: pointer; }
+  .fix-card:hover, .fix-card.active {
+    border-color: var(--blue);
+    background-color: var(--bg-card);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-black/90 border-b border-white/10 text-sky-200 text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ IFIXPRO — ศูนย์ซ่อมด่วน & มือสองเกรด A ฟอร์จูนทาวน์ ชั้น 2 · นั่งรอรับได้ใน 30–60 นาที ·</span>
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-xl">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--blue)] flex items-center justify-center text-slate-950 text-2xl font-bold shadow-md group-hover:bg-white transition-colors">
+        ⚡
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">iFixPro</span>
+        <span class="text-xs text-[var(--blue)] tracking-widest font-mono uppercase block mt-1 font-semibold">Repair & Mobile Studio · Fortune Town</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#repair-check" class="navlink font-semibold">เช็กราคาประเมินค่าซ่อม</a>
+      <a href="#used-phones" class="navlink">มือถือมือสองตรวจ 30 จุด</a>
+      <a href="#trade-in" class="navlink">รับซื้อ & เทิร์นเครื่องเก่า</a>
+      <a href="#guarantee" class="navlink">การรับประกันร้าน 180 วัน</a>
+      <a href="#location" class="navlink">ที่ตั้ง & จองคิวช่าง</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:022458899" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-245-8899
+      </a>
+      <a href="#booking" class="btn-blue px-6 py-3 rounded-full text-sm shadow-sm">
+        เช็กคิวซ่อม / ปรึกษาฟรี
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-[#131B2E] to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-sky-950/80 border border-sky-500/40 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-sky-300 font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--blue)] animate-pulse"></span> อะไหล่แท้แกะกล่อง · นั่งดูช่างซ่อมต่อหน้าได้ 100%
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        ซ่อมมือถือด่วนตรงจุด<br>
+        <span class="text-[var(--blue)]">พร้อมศูนย์เครื่องมือสองมั่นใจ 100%</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        ตรวจเช็กเครื่องฟรี เปลี่ยนหน้าจอ แบตเตอรี่ กล้อง และซ่อมเมนบอร์ดดับเปิดไม่ติด หรือเทิร์นเครื่องพังแลกเครื่องมือสองสภาพนางฟ้า รับประกันงานซ่อมนานสูงสุด 180 วัน
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#repair-check" class="btn-blue px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          ประเมินค่าซ่อมเบื้องต้น →
+        </a>
+        <a href="#used-phones" class="border border-slate-700 bg-slate-800/80 text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-slate-700 transition">
+          ดูสต็อกมือสองพร้อมส่ง
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">30–60 น.</strong>
+          <span class="text-sm text-[var(--ink-faint)]">รอรับเครื่องกลับได้</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">0 บาท</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ตรวจเช็กอาการฟรี</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">180 วัน</strong>
+          <span class="text-sm text-[var(--ink-faint)]">รับประกันอะไหล่แท้</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-700 bg-[var(--bg-surface)]">
+        <img src="./images/repair-hero.webp" alt="ช่างซ่อมมือถือฟอร์จูนทาวน์ iFixPro" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-[var(--bg-surface)] p-5 rounded-2xl border hairline shadow-2xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-[var(--emerald)] flex items-center justify-center font-bold text-2xl shrink-0">🛡️</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ไม่ลบข้อมูลในเครื่อง</strong>
+          <span class="text-[var(--ink-faint)]">ข้อมูล รูปภาพ และแอปพลิเคชันอยู่ครบ 100%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — SMART REPAIR ESTIMATOR ============ -->
+<section id="repair-check" class="py-24 md:py-32 px-6 md:px-10 bg-[var(--bg-surface)] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Instant Repair Cost Estimator</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">มือถือของคุณมีอาการแบบไหน?</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกอาการเสียเพื่อดูราคาประเมิน ระยะเวลาซ่อม และเกรดอะไหล่ที่ทางร้านเลือกใช้
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="repairSelector">
+      <button data-issue="screen" class="fix-card active p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">📱</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">จอแตก / ทัชไม่ไป / เส้นขึ้น</strong>
+        <span class="text-xs text-[var(--blue)]">เปลี่ยนจอแท้ / ลอกกระจก</span>
+      </button>
+
+      <button data-issue="battery" class="fix-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🔋</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">แบตเสื่อม / บวม / ดับเอง</strong>
+        <span class="text-xs text-[var(--blue)]">เปลี่ยนแบต มอก. สุขภาพ 100%</span>
+      </button>
+
+      <button data-issue="board" class="fix-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🔬</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">เปิดไม่ติด / ตกน้ำ / บอร์ดช็อต</strong>
+        <span class="text-xs text-[var(--blue)]">ซ่อมชิป IC ไมโครสโคป</span>
+      </button>
+
+      <button data-issue="camera" class="fix-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">📸</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">กล้องสั่น / ชาร์จไม่เข้า / ลำโพง</strong>
+        <span class="text-xs text-[var(--blue)]">เปลี่ยนแพรชาร์จ / โมดูลกล้อง</span>
+      </button>
+    </div>
+
+    <div id="repairResultBox" class="bg-[var(--bg-card)] rounded-3xl p-8 md:p-12 border hairline shadow-2xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — 30-POINT INSPECTED USED PHONES ============ -->
+<section id="used-phones" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Certified Pre-Owned Devices</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">มือถือมือสองคัดเกรด A+ (ตรวจเช็ก 30 จุด)</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        เครื่องแท้ศูนย์ไทย ไม่ติดสัญญา ไม่ติดไอคลาวด์ แบตเตอรี่ 90%+ พร้อมประกันร้านเปลี่ยนเครื่องใน 7 วัน
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square">
+            <img src="./images/phone-stock-01.webp" alt="iPhone 15 Pro Max มือสองสภาพนางฟ้า">
+            <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-mono font-bold px-2.5 py-0.5 rounded-full uppercase">เกรด A+ 99%</span>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-mono text-[var(--blue)] block">Apple TH Official</span>
+            <h4 class="font-display font-bold text-lg text-white mt-1">iPhone 15 Pro 256GB</h4>
+            <p class="text-xs text-[var(--ink-soft)] mt-1">สี Natural Titanium แบต 95% อุปกรณ์ครบกล่อง</p>
+          </div>
+        </div>
+        <div class="p-5 pt-0 border-t hairline flex items-center justify-between mt-3">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาเพียง</span>
+            <span class="font-display font-bold text-xl text-[var(--blue)]">฿29,900</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-bold text-white bg-slate-700 px-3.5 py-2 rounded-full hover:bg-[var(--blue)] hover:text-slate-950 transition">จองเครื่อง →</a>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square">
+            <img src="./images/phone-stock-02.webp" alt="iPhone 14 Pro มือสอง">
+            <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-mono font-bold px-2.5 py-0.5 rounded-full uppercase">เกรด A 98%</span>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-mono text-[var(--blue)] block">Apple TH Official</span>
+            <h4 class="font-display font-bold text-lg text-white mt-1">iPhone 14 Pro 128GB</h4>
+            <p class="text-xs text-[var(--ink-soft)] mt-1">สี Deep Purple สภาพไร้รอย แบต 92%</p>
+          </div>
+        </div>
+        <div class="p-5 pt-0 border-t hairline flex items-center justify-between mt-3">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาเพียง</span>
+            <span class="font-display font-bold text-xl text-[var(--blue)]">฿22,500</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-bold text-white bg-slate-700 px-3.5 py-2 rounded-full hover:bg-[var(--blue)] hover:text-slate-950 transition">จองเครื่อง →</a>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square">
+            <img src="./images/phone-stock-01.webp" alt="Samsung Galaxy S24 Ultra มือสอง">
+            <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-mono font-bold px-2.5 py-0.5 rounded-full uppercase">เกรด A+ 99%</span>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-mono text-[var(--blue)] block">Samsung Thailand</span>
+            <h4 class="font-display font-bold text-lg text-white mt-1">S24 Ultra 512GB</h4>
+            <p class="text-xs text-[var(--ink-soft)] mt-1">สี Titanium Black ประกันศูนย์เหลือ 6 เดือน</p>
+          </div>
+        </div>
+        <div class="p-5 pt-0 border-t hairline flex items-center justify-between mt-3">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาเพียง</span>
+            <span class="font-display font-bold text-xl text-[var(--blue)]">฿31,900</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-bold text-white bg-slate-700 px-3.5 py-2 rounded-full hover:bg-[var(--blue)] hover:text-slate-950 transition">จองเครื่อง →</a>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square">
+            <img src="./images/phone-stock-02.webp" alt="iPhone 13 มือสองราคาประหยัด">
+            <span class="absolute top-3 left-3 bg-emerald-500 text-slate-950 text-xs font-mono font-bold px-2.5 py-0.5 rounded-full uppercase">เกรด A 95%</span>
+          </div>
+          <div class="p-5">
+            <span class="text-xs font-mono text-[var(--blue)] block">Apple TH Official</span>
+            <h4 class="font-display font-bold text-lg text-white mt-1">iPhone 13 128GB</h4>
+            <p class="text-xs text-[var(--ink-soft)] mt-1">สี Starlight เครื่องเดิมๆ แบตเปลี่ยนใหม่แท้</p>
+          </div>
+        </div>
+        <div class="p-5 pt-0 border-t hairline flex items-center justify-between mt-3">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาเพียง</span>
+            <span class="font-display font-bold text-xl text-[var(--blue)]">฿13,900</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-xs font-bold text-white bg-slate-700 px-3.5 py-2 rounded-full hover:bg-[var(--blue)] hover:text-slate-950 transition">จองเครื่อง →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — TRADE-IN & BUYBACK ============ -->
+<section id="trade-in" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-[var(--bg-card)] rounded-3xl p-8 md:p-12 border hairline grid lg:grid-cols-12 gap-8 items-center shadow-xl">
+      <div class="lg:col-span-8 space-y-4">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-[var(--blue)] font-bold uppercase">
+          <span>🔄</span> บริการรับซื้อ เทิร์น และแลกเปลี่ยนเครื่องเก่า
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl font-bold">เครื่องพัง จอแตก เปิดไม่ติด เราก็รับซื้อ!</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed">
+          หากค่าซ่อมไม่คุ้ม สามารถนำเครื่องเก่ามาประเมินราคาเพื่อแลกซื้อเครื่องใหม่ได้ทันที ตีราคาตามสภาพจริง ไม่กดราคา โอนเงินสดเข้าบัญชีภายใน 10 นาที หรือใช้เป็นส่วนลดเทิร์นเครื่องมือสองในร้าน
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2 text-xs md:text-sm font-mono text-[var(--ink-faint)]">
+          <span>• เช็กราคารับซื้อฟรีผ่าน LINE</span>
+          <span>• ล้างข้อมูลเครื่องเก่าปลอดภัย 100%</span>
+          <span>• รับเครื่องทุกสภาพ</span>
+        </div>
+      </div>
+      <div class="lg:col-span-4 bg-[var(--bg-surface)] p-6 rounded-2xl border hairline text-center space-y-3 shadow-md">
+        <div class="text-4xl">💰</div>
+        <div class="font-display font-bold text-lg text-white">ประเมินราคาเครื่องเก่าด่วน</div>
+        <p class="text-xs text-[var(--ink-faint)]">ส่งรูปถ่ายและรุ่นเครื่องมาให้แอดมินตีราคาได้ทันที</p>
+        <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue w-full py-3 rounded-full text-xs font-bold block">
+          ส่งรูปเช็กราคาทาง LINE →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-[var(--bg-surface)] p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--blue)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 10:30 – 20:00 น.
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">iFixPro (ฟอร์จูนทาวน์ พระราม 9)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            อาคารฟอร์จูนทาวน์ ชั้น 2 ห้อง 2045 (ใกล้ลิฟต์แก้วฝั่งโลตัส) ถนนรัชดาภิเษก แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">🚇 MRT:</strong>
+              <span>ลงสถานี <span class="text-[var(--blue)] font-bold">พระราม 9 ทางออก 1</span> มีทางเชื่อมเข้าห้าง</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">🚗 ที่จอดรถ:</strong>
+              <span>มีที่จอดรถฟอร์จูนทาวน์ ประทับตราจอดฟรี 2 ชั่วโมง</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">📦 ส่งซ่อมทางพัสดุ:</strong>
+              <span>รับเครื่องซ่อมทั่วประเทศผ่าน Kerry / Flash ส่งกลับในวันเดียว</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Fortune+Town+Bangkok" target="_blank" rel="noopener" class="btn-blue flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 นำทางด้วย Google Maps
+          </a>
+          <a href="tel:022458899" class="border hairline bg-white/5 flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">
+            📞 โทร 02-245-8899
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-[var(--bg-surface)] p-8 md:p-10 rounded-3xl border hairline shadow-xl" id="booking">
+        <span class="eyebrow text-xs block mb-2">Fast Repair Booking</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">จองคิวซ่อม / ปรึกษาช่างล่วงหน้า</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">จองเวลาล่วงหน้าเพื่อเตรียมสต็อกอะไหล่แท้ ไม่ต้องนั่งรอคิวนาน</p>
+        
+        <form onsubmit="event.preventDefault(); alert('ระบบบันทึกคิวเรียบร้อยแล้ว ช่างจะเตรียมอะไหล่และติดต่อยืนยันครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์</label>
+            <input type="text" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white" placeholder="เช่น คุณธนกร 081-xxx-xxxx" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">รุ่นมือถือ (เช่น iPhone 14 Pro)</label>
+              <input type="text" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white" placeholder="iPhone / Samsung" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวกนำเครื่องเข้า</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">อาการเสียที่ต้องการซ่อม</label>
+            <select class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white">
+              <option>เปลี่ยนหน้าจอแท้ / จอแตก / จอเส้น</option>
+              <option>เปลี่ยนแบตเตอรี่ใหม่ (สุขภาพ 100%)</option>
+              <option>เครื่องเปิดไม่ติด / โดนน้ำ / ซ่อมเมนบอร์ด</option>
+              <option>เปลี่ยนกระจกฝาหลัง / เปลี่ยนกล้อง</option>
+              <option>สนใจนำเครื่องเก่ามาเทิร์น / ขายเครื่อง</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-blue py-4 rounded-full text-base font-bold mt-4 shadow-md">
+            ยืนยันการจองคิวซ่อม →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-black border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">iFixPro & Phone Studio (Fortune Town Rama 9)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      อาคารฟอร์จูนทาวน์ ชั้น 2 ห้อง 2045 เขตดินแดง กรุงเทพฯ 10400 | เปิดบริการทุกวัน 10:30 – 20:00 น.
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 iFixPro. All rights reserved. Created with PuchUp Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)]/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--blue)] font-mono block">ซ่อมด่วนรอรับใน 30 นาที</span>
+    <span class="font-display text-base font-bold text-white">iFixPro ฟอร์จูน</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:022458899" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center text-white">📞</a>
+    <a href="#booking" class="btn-blue px-6 py-2.5 rounded-full text-sm font-bold">จองคิวซ่อม</a>
+  </div>
+</div>
+
+<script>
+const repairData = {
+  screen: {
+    title: 'บริการเปลี่ยนหน้าจอแท้ & ลอกกระจกจอ',
+    specs: 'หน้าจอ OLED / Super Retina XDR แท้ แสดงผลสีตรง True Tone อยู่ครบ',
+    time: 'ระยะเวลาซ่อม 30–45 นาที (รอรับได้)',
+    price: 'เริ่มต้น ฿1,200 – ฿4,500 (ขึ้นกับรุ่น)',
+    warranty: 'รับประกันหน้าจอนาน 90 วัน',
+    img: './images/repair-screen.webp'
+  },
+  battery: {
+    title: 'บริการเปลี่ยนแบตเตอรี่ใหม่ สุขภาพ 100%',
+    specs: 'แบตเตอรี่มาตรฐาน มอก. เซลล์คุณภาพสูง ไม่ฟ้องข้อความเตือน ชาร์จเร็ว ปลอดภัย',
+    time: 'ระยะเวลาซ่อม 20–30 นาที',
+    price: 'เริ่มต้น ฿850 – ฿1,800',
+    warranty: 'รับประกันแบตเตอรี่นาน 180 วัน (บวม/เสื่อม เปลี่ยนฟรี)',
+    img: './images/repair-battery.webp'
+  },
+  board: {
+    title: 'ซ่อมเมนบอร์ด ยกชิป IC เครื่องดับเปิดไม่ติด',
+    specs: 'ซ่อมลายวงจรไฟช็อต ยกชิป Power IC, Audio IC ด้วยกล้องไมโครสโคปความแม่นยำสูง',
+    time: 'ระยะเวลาซ่อม 1–3 ชั่วโมง หรือ 1 วันทำการ',
+    price: 'เริ่มต้น ฿1,500 – ฿3,500',
+    warranty: 'รับประกันจุดซ่อมบอร์ดนาน 90 วัน (ไม่หายไม่คิดเงิน)',
+    img: './images/repair-board.webp'
+  },
+  camera: {
+    title: 'เปลี่ยนโมดูลกล้อง แพรชาร์จ ลำโพง และปุ่มกด',
+    specs: 'อะไหล่แท้ตรงรุ่น โฟกัสเร็ว ระบบกันสั่น OIS ทำงาน 100% ไมค์ชัด ชาร์จไว',
+    time: 'ระยะเวลาซ่อม 30–45 นาที',
+    price: 'เริ่มต้น ฿750 – ฿2,200',
+    warranty: 'รับประกันอะไหล่นาน 90 วัน',
+    img: './images/repair-screen.webp'
+  }
+};
+
+function renderRepair(key) {
+  const data = repairData[key];
+  const box = document.getElementById('repairResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Diagnostic Protocol</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-2">${data.title}</h3>
+        <p class="text-xs font-mono text-[var(--blue)] mb-3 font-semibold">สเปกอะไหล่: ${data.specs}</p>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">ซ่อมโดยช่างชำนาญการ นั่งดูขั้นตอนการแกะประกอบเครื่องได้ต่อหน้า ไม่สับเปลี่ยนอะไหล่ ข้อมูลในเครื่องอยู่ครบ 100%</p>
+        
+        <div class="grid grid-cols-3 gap-3 border-t hairline pt-4 text-center font-mono">
+          <div class="bg-[var(--bg-surface)] p-3 rounded-xl border hairline">
+            <span class="text-xs text-[var(--ink-faint)] block">เวลาซ่อม</span>
+            <strong class="text-white font-bold text-xs md:text-sm">${data.time}</strong>
+          </div>
+          <div class="bg-[var(--bg-surface)] p-3 rounded-xl border hairline">
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาประเมิน</span>
+            <strong class="text-[var(--blue)] font-bold text-sm md:text-base">${data.price}</strong>
+          </div>
+          <div class="bg-[var(--bg-surface)] p-3 rounded-xl border hairline">
+            <span class="text-xs text-[var(--ink-faint)] block">การรับประกัน</span>
+            <strong class="text-emerald-400 font-bold text-xs md:text-sm">${data.warranty}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-blue px-7 py-3 rounded-full text-sm font-bold shadow-md">จองคิวซ่อมอาการนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderRepair('screen');
+document.querySelectorAll('#repairSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#repairSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderRepair(btn.dataset.issue);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

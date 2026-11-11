@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komorebi Coffee & Bakes — สเปเชียลตี้คอฟฟี่ & โฮมเมดเบเกอรี ทองหล่อ-สุขุมวิท 49</title>
+<meta name="description" content="Komorebi คาเฟ่ Slow Bar และโฮมเมดเบเกอรี สุขุมวิท 49 (ทองหล่อ) เมล็ดกาแฟ Specialty Single Origin ดริปมือ ขนมอบเนยสดฝรั่งเศสสดใหม่ทุกเช้า บรรยากาศสวนร่มรื่น Pet-Friendly">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Komorebi Coffee & Bakes",
+  "alternateName": "โคโมเรบิ คอฟฟี่ แอนด์ เบคส์",
+  "description": "ร้านกาแฟ Specialty Slow Bar และโฮมเมดเบเกอรี สุขุมวิท 49 ทองหล่อ",
+  "telephone": "080-996-9495",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "78 ซอยสุขุมวิท 49 (ซอยกลาง)",
+    "addressLocality": "แขวงคลองตันเหนือ เขตวัฒนา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10110",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F4ECE1;
+    --ink: #2B2118;
+    --ink-soft: #5C4C3E;
+    --ink-faint: #8E7C6C;
+    --coffee: #8C5835;
+    --coffee-dark: #63381C;
+    --coffee-light: #F3E5D8;
+    --amber: #D97706;
+    --line: #E8DACB;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Playfair Display', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--coffee-light); color: var(--coffee-dark); }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--coffee);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 248, 245, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--coffee); }
+  .navtab.active { color: var(--coffee); border-color: var(--coffee); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-coffee {
+    background: linear-gradient(135deg, #8C5835 0%, #63381C 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-coffee:hover {
+    background: linear-gradient(135deg, #A26B44 0%, #8C5835 100%);
+    box-shadow: 0 10px 24px -8px rgba(140, 88, 53, 0.45);
+  }
+
+  .menu-card { transition: all 0.25s ease; cursor: pointer; }
+  .menu-card:hover, .menu-card.active {
+    border-color: var(--coffee);
+    background-color: var(--coffee-light);
+    transform: translateY(-2px);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#FAF8F5] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ KOMOREBI COFFEE & BAKES — สุขุมวิท 49 (ทองหล่อ) · กาแฟดริป Specialty & เบเกอรีอบสดใหม่ทุกเช้า Pet-Friendly ·</span>
+  <a href="demo.html" class="underline hover:text-amber-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--coffee)] flex items-center justify-center text-white text-2xl font-serif shadow-sm group-hover:scale-105 transition-transform">
+        ☕
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Komorebi</span>
+        <span class="text-xs text-[var(--coffee)] tracking-widest font-mono uppercase block mt-1 font-semibold">Specialty Coffee & Bakes · Thonglor</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#menu" class="navtab active">เมนูกาแฟ & ขนมอบ</a>
+      <a href="#beans" class="navtab">เมล็ดกาแฟ Single Origin</a>
+      <a href="#space" class="navtab">บรรยากาศสวน</a>
+      <a href="#reviews" class="navtab">รีวิวลูกค้า</a>
+      <a href="#gallery" class="navtab">แกลเลอรีร้าน</a>
+      <a href="#team" class="navtab">บาริสต้า & เชฟ</a>
+      <a href="#location" class="navtab">ที่ตั้ง & สั่งจอง</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:0809969495" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 080-996-9495
+      </a>
+      <a href="#booking" class="btn-coffee px-6 py-3 rounded-full text-sm shadow-sm">
+        สั่งขนม / จองโต๊ะ
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — FULL-BLEED HERO ============ -->
+<header id="hero" class="relative">
+  <div class="img-slot h-[70vh] md:h-[84vh]">
+    <img src="./images/cafe-hero.webp" alt="บาริสต้ากำลังดริปกาแฟ Komorebi Coffee ทองหล่อ" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(20,15,10,0.96) 0%, rgba(20,15,10,0.65) 45%, rgba(20,15,10,0.3) 100%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+    <div class="max-w-6xl mx-auto text-[#FAF8F5]">
+      <p class="eyebrow mb-3" style="color:#F4A261;">SPECIALTY COFFEE & ARTISAN BAKES · สุขุมวิท 49 (ทองหล่อ)</p>
+      <h1 class="font-display font-bold text-[clamp(2.4rem,6.2vw,4.5rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        ละเมียดละไมกับทุกแก้ว<br>
+        <span class="text-[#F4A261] italic font-normal">และขนมอบโฮมเมดที่กรุ่นกลิ่นทุกเช้า</span>
+      </h1>
+      <p class="text-base md:text-xl text-stone-100 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        คาเฟ่ Slow Bar และโฮมเมดเบเกอรีสไตล์อบอุ่นใจกลางทองหล่อ เสิร์ฟกาแฟคัดสรรพิเศษ ครัวซองต์เนยสด AOP คาเนเล่ และชีสเค้กหน้าไหม้ ในบรรยากาศสวนธรรมชาติ Pet-Friendly
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> เปิดบริการทุกวัน 07:30–17:30 น.
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          🐕 สวนร่มรื่น ต้อนรับสัตว์เลี้ยง 100%
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#menu" class="btn-coffee rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+          ดูเมนูกาแฟ & ขนมประจำวัน
+        </a>
+        <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+          เส้นทางมาร้าน & ที่จอดรถ
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="border-b hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+    <span class="trust-item flex items-center gap-1.5"><span class="text-amber-500 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(340+ รีวิว)</span></span>
+    <span class="trust-item">☕ เมล็ดกาแฟ Specialty Single Origin</span>
+    <span class="trust-item">🥐 อบสดใหม่ทุกเช้า เนยฝรั่งเศส AOP แท้</span>
+    <span class="trust-item">⚡ ปลั๊กไฟ & Wi-Fi พร้อมนั่งทำงาน</span>
+    <span>🚗 มีที่จอดรถหน้าร้าน 6 คัน</span>
+  </div>
+</div>
+
+<!-- ============ 02 — MENU SELECTOR ============ -->
+<section id="menu" class="py-24 md:py-32 px-6 md:px-10 bg-[#F4ECE1] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Artisan Drinks & Bakery</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เมนูซิกเนเจอร์ยอดนิยม</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกหมวดหมู่เพื่อดูรสชาติ ส่วนผสม และราคาของเครื่องดื่มและขนมอบประจำวัน
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="menuSelector">
+      <button data-type="pourover" class="menu-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">☕</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Slow Bar Hand Drip</strong>
+        <span class="text-xs text-[var(--coffee)]">เมล็ดไทย & ต่างประเทศ</span>
+      </button>
+
+      <button data-type="espresso" class="menu-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🥛</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Dirty & Milk Coffee</strong>
+        <span class="text-xs text-[var(--coffee)]">นมนัวเย็นจัด สกัดช็อตเข้ม</span>
+      </button>
+
+      <button data-type="bakery" class="menu-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🥐</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Artisan Croissant & Bakes</strong>
+        <span class="text-xs text-[var(--coffee)]">เนยฝรั่งเศส AOP แท้</span>
+      </button>
+
+      <button data-type="noncoffee" class="menu-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🍵</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Uji Matcha & Refreshers</strong>
+        <span class="text-xs text-[var(--coffee)]">มัทฉะพิธีการ ชงสดถ้วยต่อถ้วย</span>
+      </button>
+    </div>
+
+    <div id="menuResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — SPECIALTY BEANS SPECTRUM ============ -->
+<section id="beans" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-[var(--coffee-light)] text-[var(--coffee-dark)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          CURATED SPECIALTY ORIGINS
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          เมล็ดกาแฟคั่วพิเศษ<br>
+          <span class="text-[var(--coffee)]">สัมผัสโน้ตดอกไม้ ผลไม้ และความหวานธรรมชาติ</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          เราทำงานร่วมกับเกษตรกรผู้ปลูกกาแฟบนดอยสูงในเชียงราย (แม่แดดน้อย / ปางขอน) และนำเข้าเมล็ด Single Origin ชื่อดังจากเอธิโอเปีย กัวเตมาลา และเคนยา คั่วระดับ Light ถึง Medium Roast เพื่อดึงรสชาติอันเป็นเอกลักษณ์ของแต่ละแหล่งปลูกออกมาอย่างสมบูรณ์แบบ
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🌸 Ethiopia Yirgacheffe (มะลิ เลมอน พีช)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🍫 Chiang Rai Anaerobic (ช็อกโกแลต เบอร์รี)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🍊 Guatemala Antigua (ส้ม ช็อกโกแลตหวานมัน)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🍯 House Blend (นัตตี้ คาราเมล นุ่มนวล)</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/cafe-pourover-drip.webp" alt="การดริปกาแฟ V60">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/cafe-beans-jar.webp" alt="ขวดโหลใส่เมล็ดกาแฟ Specialty">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — GARDEN & PET-FRIENDLY SPACE ============ -->
+<section id="space" class="py-24 md:py-32 bg-[#F4ECE1] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-2 gap-5 order-2 lg:order-1">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/cafe-garden-seating.webp" alt="โซนสวนธรรมชาติ Pet-Friendly">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/cafe-interior-minimal.webp" alt="โซนที่นั่งทำงาน Co-working">
+        </div>
+      </div>
+
+      <div class="space-y-6 order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-900 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          PET-FRIENDLY & CO-WORKING SANCTUARY
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          พื้นที่พักผ่อนใต้ร่มเงาไม้<br>
+          <span class="text-[var(--coffee)]">พร้อมสิ่งอำนวยความสะดวกสำหรับคนทำงาน</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          แบ่งสัดส่วนพื้นที่อย่างลงตัว โซน Outdoor ในสวนร่มรื่นสามารถพาน้องหมาน้องแมวมานั่งเล่นได้ มีชามน้ำบริการ และโซน Indoor ติดแอร์เงียบสงบ พร้อมปลั๊กไฟทุกโต๊ะและ Wi-Fi ความเร็วสูง เหมาะสำหรับนั่งจิบกาแฟอ่านหนังสือหรือทำงานอย่างมีสมาธิ
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🐕 Pet-Friendly ต้อนรับสัตว์เลี้ยง 100%</div>
+          <div class="bg-white p-4 rounded-xl border hairline">⚡ ปลั๊กไฟ & Wi-Fi ฟรีทุกโต๊ะ</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🚗 มีที่จอดรถสะดวกสบายหน้าร้าน</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🌿 สวนธรรมชาติ ร่มรื่น เงียบสงบ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS SECTION ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Customer Reflections</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ความประทับใจจากลูกค้าประจำ</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (340+ รีวิวบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "กาแฟดริป Ethiopia หอมดอกไม้ชัดเจนมาก ดื่มง่าย สดชื่น ครัวซองต์เนยสดกรอบนอกนุ่มใน นั่งทำงานในสวนร่มรื่นมาก มีน้องหมาวิ่งเล่น บรรยากาศฮีลใจสุดๆ ค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณณิชาภา (ทองหล่อ)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Hand Drip & French Butter Croissant</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "Dirty Coffee ที่นี่คือเดอะเบสท์ นมนัวเย็นจัดตัดกับช็อตเอสเปรสโซเข้มๆ ชีสเค้กหน้าไหม้ก็เนื้อเนียนละมุน ที่จอดรถหน้าร้านสะดวกมากครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณธนภัทร (สุขุมวิท 49)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Signature Dirty & Basque Cheesecake</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "พาน้องหมามานั่งเล่นได้จริง สตาฟน่ารักเอาน้ำมาให้น้องด้วย มัทฉะลาเต้เกรดพิธีการเข้มข้นไม่หวานเกินไป สั่งเซ็ตขนมอบกลับบ้านแพ็กเกจสวยมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณวรัญญา (พร้อมพงษ์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Uji Matcha & Pastry Gift Box</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — VISUAL GALLERY ============ -->
+<section id="gallery" class="py-24 md:py-32 bg-[#F4ECE1] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Cafe Vibe Gallery</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีภาพบรรยากาศร้าน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สัมผัสความอบอุ่น ละมุนตา และกลิ่นหอมของกาแฟและเบเกอรีอบสดใหม่
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-espresso-shot.webp" alt="การสกัดช็อตเอสเปรสโซ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Perfect Espresso Crema</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">สกัดเข้มข้น หอมหวาน</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-croissant-fresh.webp" alt="ครัวซองต์เนยฝรั่งเศสอบสด">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">French Butter Croissant</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">กรอบนอก นุ่มชุ่มเนยแท้</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-basque-cheesecake.webp" alt="บาสก์ชีสเค้กหน้าไหม้">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Basque Burnt Cheesecake</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เนื้อเนียนละมุน ครีมมี่</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-matcha-latte.webp" alt="ชาเขียวมัทฉะอุจิลาเต้">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Ceremonial Uji Matcha</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">มัทฉะแท้เกรดพิธีการญี่ปุ่น</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-garden-seating.webp" alt="โซนสวนร่มรื่นหน้าร้าน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Pet Garden Courtyard</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ชิลในสวนกับสัตว์เลี้ยง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-interior-minimal.webp" alt="มุมที่นั่งทำงานในร้าน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Co-working Friendly</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปลั๊กไฟ & Wi-Fi พร้อม</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-takeaway-box.webp" alt="กล่องเบเกอรีของขวัญ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Pastry Gift Box</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">กล่องของขวัญเบเกอรีพรีเมียม</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cafe-beans-jar.webp" alt="เมล็ดกาแฟ Specialty Single Origin">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Coffee Beans Retail</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">มีเมล็ดกาแฟคั่วจำหน่ายกลับบ้าน</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — BARISTA & BAKER TEAM ============ -->
+<section id="team" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">The Artisans</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมบาริสต้าและเชฟขนม</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        หลงใหลในกลิ่นหอมของกาแฟและความสุขจากขนมอบที่ทำด้วยความตั้งใจในทุกๆ วัน
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--coffee)] shadow-md">
+          <img src="./images/team-barista-ken.webp" alt="คุณเคน Head Barista & Roaster" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--coffee)] font-bold uppercase">Head Barista & Roaster</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">คุณเคน (กฤษฎา ว่องไว)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Q Arabica Grader Certified (ประสบการณ์ 8 ปี)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ผู้เชี่ยวชาญการคัดเลือกและคั่วเมล็ดกาแฟ Single Origin ใส่ใจในทุกตัวแปรการสกัดกาแฟ เพื่อส่งมอบรสชาติที่ดีที่สุดในทุกแก้ว
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--coffee)] shadow-md">
+          <img src="./images/team-baker-ploy.webp" alt="เชฟพลอย Head Pastry Baker" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--coffee)] font-bold uppercase">Head Pastry Chef</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">เชฟพลอย (พลอยไพลิน สุขสวัสดิ์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Diplôme de Boulangerie (ประสบการณ์ 6 ปี)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการทำขนมอบฝรั่งเศส คัดสรรเนยสดแท้ AOP นำเข้า อดทนกับการหมักแป้งข้ามคืนเพื่อให้ได้ครัวซองต์และคาเนเล่ที่สมบูรณ์แบบ
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#F4ECE1] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Cafe Location & Hours</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่ร้าน & เวลาเปิดบริการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ตั้งอยู่ในซอยสุขุมวิท 49 (ซอยกลาง) ใกล้โรงพยาบาลสมิติเวช สุขุมวิท
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">จันทร์ – ศุกร์:</span>
+              <span class="font-mono">07:30 – 17:30 น.</span>
+            </div>
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">เสาร์ – อาทิตย์ & นักขัตฤกษ์:</span>
+              <span class="font-mono">07:30 – 18:00 น.</span>
+            </div>
+            <div class="flex justify-between text-emerald-700 font-medium pt-1">
+              <span>เตาขนมอบเสร็จรอบเช้า:</span>
+              <span>08:00 น. (ครัวซองต์ & ขนมปังสด)</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งร้าน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            78 ซอยสุขุมวิท 49 (ซอยกลาง ใกล้สมิติเวช สุขุมวิท) แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚆 BTS สถานีทองหล่อ / พร้อมพงษ์ ต่อวินมอเตอร์ไซค์ 3 นาที</div>
+            <div>🚗 มีที่จอดรถหน้าร้าน 6 คัน สะดวก ปลอดภัย</div>
+            <div>🛵 เดลิเวอรีผ่าน GrabFood / Lineman พิมพ์ค้นหา "Komorebi Coffee"</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Sukhumvit+49+Bangkok" target="_blank" rel="noopener" class="btn-coffee flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:0809969495" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 080-996-9495
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="Komorebi Cafe Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.6543210987!2d100.578!3d13.734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29fa123456789%3A0xabcdef9876543210!2sSukhumvit%2049%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — SMART PRE-ORDER & TABLE BOOKING ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Pre-Order & Reservation</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">จองขนมอบล่วงหน้า / จองโต๊ะ</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      สั่งจองขนมอบกล่องของขวัญ หรือสำรองที่นั่งในสวนล่วงหน้า หรือกดทักแชตทาง LINE ได้ทันทีโดยไม่ต้องกรอกฟอร์ม
+    </p>
+    
+    <form id="cafeContactForm" onsubmit="handleCafeSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์ <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="cafeNamePhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--coffee)]" placeholder="เช่น คุณวรัญญา 081-xxx-xxxx">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการรับ / ใช้บริการ <span class="text-stone-400 font-normal text-xs">(กรณีจองล่วงหน้า)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--coffee)]">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เวลาโดยประมาณ</label>
+          <select id="cafeTimeSlot" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--coffee)]">
+            <option value="ช่วงเช้า 08:00 - 11:00 น.">ช่วงเช้า (08:00 – 11:00 น.)</option>
+            <option value="ช่วงกลางวัน 11:00 - 14:00 น.">ช่วงกลางวัน (11:00 – 14:00 น.)</option>
+            <option value="ช่วงบ่าย 14:00 - 17:00 น.">ช่วงบ่าย (14:00 – 17:00 น.)</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ความต้องการ / เรื่องที่ต้องการติดต่อ</label>
+        <select id="cafeTopic" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--coffee)]">
+          <option value="สั่งจองเซ็ตขนมอบล่วงหน้า (Pastry Gift Box)">🎁 สั่งจองเซ็ตขนมอบล่วงหน้า (Pastry Gift Box)</option>
+          <option value="จองโต๊ะโซนสวน Pet-Friendly (มีสัตว์เลี้ยง)">🐕 จองโต๊ะโซนสวน Pet-Friendly (มีสัตว์เลี้ยง)</option>
+          <option value="จองโต๊ะทำงานโซน Indoor แอร์เย็น">💻 จองโต๊ะทำงานโซน Indoor (ปลั๊กไฟ & Wi-Fi)</option>
+          <option value="สั่งเมล็ดกาแฟ Specialty Single Origin คั่วบด">☕ สั่งเมล็ดกาแฟ Specialty Single Origin</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-coffee py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / จองโต๊ะทาง LINE →
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--coffee-dark)] hover:text-[var(--coffee)] underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/60 transition hover:bg-amber-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อคุยกับร้านได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#FAF8F5] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">Komorebi Specialty Coffee & Bakes (Sukhumvit 49 - Thonglor)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      78 ซอยสุขุมวิท 49 แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110 | โทร 080-996-9495 | LINE: @komorebicoffee
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Komorebi Coffee. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--coffee)] font-mono block">Specialty Coffee & Bakes</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Komorebi ทองหล่อ</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:0809969495" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-coffee px-5 py-2.5 rounded-full text-sm font-bold">สั่งขนม / จอง</a>
+  </div>
+</div>
+
+<script>
+/* Smart Form Handler */
+function handleCafeSubmit(e) {
+  e.preventDefault();
+  const namePhone = document.getElementById('cafeNamePhone').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const slot = document.getElementById('cafeTimeSlot').value;
+  const topic = document.getElementById('cafeTopic').value;
+
+  let msg = `สวัสดีครับ สนใจติดต่อ Komorebi Coffee & Bakes\n- เรื่องที่ติดต่อ: ${topic}`;
+  if (namePhone) msg += `\n- ผู้ติดต่อ: ${namePhone}`;
+  if (date) msg += `\n- วันที่: ${date}`;
+  if (slot) msg += `\n- เวลา: ${slot}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const menuData = {
+  pourover: {
+    title: 'Slow Bar Pour-over Filter Drip Coffee',
+    desc: 'กาแฟดริปมือชงอย่างประณีตผ่านกรวยแก้ว V60 สกัดกลิ่นหอมของดอกไม้และผลไม้อย่างชัดเจน บอดี้คลีน ดื่มง่าย สดชื่น มีเมล็ดกาแฟ Single Origin ให้เลือกตามฤดูกาล',
+    notes: 'Ethiopia Yirgacheffe / Chiang Rai Washed / Guatemala Antigua',
+    price: 'ร้อน ฿130 | เย็น ฿140',
+    img: './images/cafe-pourover-drip.webp'
+  },
+  espresso: {
+    title: 'Signature Dirty Coffee & Milk-based Drinks',
+    desc: 'นมสดปรุงสูตรพิเศษแช่เย็นจัด เสิร์ฟคู่กับเอสเปรสโซช็อตเข้มข้นสกัดร้อนด้านบน สัมผัสความต่างของอุณหภูมิและความนัวละมุนในคำแรกโดยไม่ต้องคน',
+    notes: 'ใช้เมล็ด House Blend คั่วกลาง โน้ตนัตตี้ช็อกโกแลต คาราเมล',
+    price: 'Dirty ฿120 | Flat White ฿105 | Iced Caffe Latte ฿115',
+    img: './images/cafe-espresso-shot.webp'
+  },
+  bakery: {
+    title: 'Artisan French Butter Croissant & Canelé',
+    desc: 'ครัวซองต์เนยสดแท้จากแคว้นนอร์มังดี ประเทศฝรั่งเศส อบสดใหม่ทุกเช้า แป้งกรอบร่วนเป็นชั้นโพรงสวย หอมฟุ้ง และคาเนเล่สไตล์บอร์กโดซ์ ผิวนอกคาราเมลกรอบไส้ในคัสตาร์ดนุ่มหนึบ',
+    notes: 'เนยสดแท้ AOP 100% ไร้ไขมันทรานส์และวัตถุกันเสีย',
+    price: 'Plain Croissant ฿85 | Almond Croissant ฿110 | Canelé ฿75 / ชิ้น',
+    img: './images/cafe-croissant-fresh.webp'
+  },
+  noncoffee: {
+    title: 'Ceremonial Uji Matcha & Fruit Cold Brew',
+    desc: 'ผงมัทฉะเกรดพิธีการนำเข้าจากเมืองอุจิ เกียวโต ตีสดชามต่อชามด้วยแปรงไม้ไผ่ หอมกลิ่นอูมามิ ไม่ขมฝาด และกาแฟสกัดเย็นผสมน้ำส้มยูซุสดชื่น คลายร้อน',
+    notes: 'Uji Ceremonial Matcha / Yuzu Cold Brew / Valrhona Chocolate',
+    price: 'Matcha Latte ฿135 | Yuzu Cold Brew ฿130 | Dark Chocolate ฿120',
+    img: './images/cafe-matcha-latte.webp'
+  }
+};
+
+function renderMenu(key) {
+  const data = menuData[key];
+  const box = document.getElementById('menuResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-amber-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Item Details & Tasting Notes</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--ink-faint)]">Tasting Profile:</span> ${data.notes}</div>
+          <div class="text-[var(--coffee)] font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">ราคา:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-coffee px-7 py-3 rounded-full text-sm font-bold shadow-md">สั่งล่วงหน้า / จองโต๊ะ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderMenu('pourover');
+document.querySelectorAll('#menuSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#menuSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMenu(btn.dataset.type);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

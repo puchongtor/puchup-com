@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CurtainCraft Studio — ผ้าม่านสั่งตัด วอลเปเปอร์ & มู่ลี่ ราชพฤกษ์-ปิ่นเกล้า</title>
+<meta name="description" content="CurtainCraft Studio บริการตัดเย็บและติดตั้งผ้าม่าน ม่านลอน ม่านตาไก่ มู่ลี่ไม้ วอลเปเปอร์นำเข้า บริการวัดพื้นที่หน้างานและเทียบแบบผ้าจริงฟรีถึงบ้าน ราชพฤกษ์ ปิ่นเกล้า กัลปพฤกษ์">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeGoodsStore",
+  "name": "CurtainCraft Studio",
+  "alternateName": "เคอร์เทนคราฟต์ สตูดิโอ ผ้าม่านและมู่ลี่",
+  "description": "บริการออกแบบ ตัดเย็บ และติดตั้งผ้าม่าน มู่ลี่ไม้ วอลเปเปอร์ ราชพฤกษ์ ปิ่นเกล้า",
+  "telephone": "02-888-9977",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "88/12 ถนนราชพฤกษ์ (ใกล้ The Crystal SB ราชพฤกษ์)",
+    "addressLocality": "อำเภอบางกรวย",
+    "addressRegion": "นนทบุรี",
+    "postalCode": "11130",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F3ECE2;
+    --ink: #26201B;
+    --ink-soft: #574B40;
+    --ink-faint: #8A7B6E;
+    --sand: #B8926A;
+    --sand-dark: #916E47;
+    --sand-light: #F7F1E8;
+    --amber: #D97706;
+    --line: #E5DACD;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Fraunces', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--sand); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 248, 245, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--sand); }
+  .navtab.active { color: var(--sand-dark); border-color: var(--sand); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-sand {
+    background: linear-gradient(135deg, #B8926A 0%, #916E47 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-sand:hover {
+    background: linear-gradient(135deg, #CCA67F 0%, #B8926A 100%);
+    box-shadow: 0 10px 24px -8px rgba(184, 146, 106, 0.5);
+  }
+
+  .curtain-card { transition: all 0.25s ease; cursor: pointer; }
+  .curtain-card:hover, .curtain-card.active {
+    border-color: var(--sand);
+    background-color: var(--sand-light);
+    transform: translateY(-2px);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#F7F1E8] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ CURTAINCRAFT STUDIO — บริการผ้าม่านสั่งตัด มู่ลี่ วอลเปเปอร์ ราชพฤกษ์-ปิ่นเกล้า · บริการวัดพื้นที่หน้างาน & นำแคตตาล็อกเทียบสีฟรี ·</span>
+  <a href="demo.html" class="underline hover:text-amber-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--sand)] flex items-center justify-center text-white text-2xl shadow-sm group-hover:scale-105 transition-transform">
+        🪟
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">CurtainCraft</span>
+        <span class="text-xs text-[var(--sand-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Custom Drapes & Blinds · Ratchaphruek</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#styles" class="navtab active">รูปแบบม่าน & มู่ลี่</a>
+      <a href="#fabrics" class="navtab">เกรดผ้า & กันแสง</a>
+      <a href="#steps" class="navtab">ขั้นตอนบริการ</a>
+      <a href="#reviews" class="navtab">รีวิวลูกค้า</a>
+      <a href="#gallery" class="navtab">ผลงานจริง</a>
+      <a href="#team" class="navtab">ทีมช่างติดตั้ง</a>
+      <a href="#location" class="navtab">ที่ตั้ง & วัดพื้นที่</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:028889977" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-888-9977
+      </a>
+      <a href="#booking" class="btn-sand px-6 py-3 rounded-full text-sm shadow-sm">
+        นัดวัดพื้นที่หน้างานฟรี
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — FULL-BLEED HERO ============ -->
+<header id="hero" class="relative">
+  <div class="img-slot h-[70vh] md:h-[84vh]">
+    <img src="./images/curtain-hero.webp" alt="บริการติดตั้งผ้าม่าน CurtainCraft Studio ราชพฤกษ์" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(20,15,10,0.96) 0%, rgba(20,15,10,0.65) 45%, rgba(20,15,10,0.3) 100%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+    <div class="max-w-6xl mx-auto text-[#F7F1E8]">
+      <p class="eyebrow mb-3" style="color:#E5B887;">CUSTOM DRAPES & BLINDS STUDIO · ราชพฤกษ์-ปิ่นเกล้า</p>
+      <h1 class="font-display font-bold text-[clamp(2.4rem,6.2vw,4.5rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        ผ้าม่านสั่งตัดระดับประณีต<br>
+        <span class="text-[#E5B887] italic font-normal">เติมเต็มบรรยากาศบ้านสวยและเป็นส่วนตัว</span>
+      </h1>
+      <p class="text-base md:text-xl text-stone-100 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        ศูนย์บริการออกแบบและติดตั้งผ้าม่าน ม่านลอน ม่านพับ มู่ลี่ไม้ ม่านม้วนมอเตอร์ และวอลเปเปอร์นำเข้า คัดสรรผ้าทอเกรดพรีเมียมกันแสง UV 100% รีดไอน้ำขึ้นลอนสวยงามถึงบ้านคุณ
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> บริการวัดพื้นที่ & เทียบผ้าฟรีถึงบ้าน
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          🛡️ รับประกันรางม่านและงานติดตั้ง 1 ปีเต็ม
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#styles" class="btn-sand rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+          เลือกชมสไตล์ม่าน & มู่ลี่
+        </a>
+        <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+          แผนที่โชว์รูม & พื้นที่บริการ
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="border-b hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+    <span class="trust-item flex items-center gap-1.5"><span class="text-amber-500 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(310+ รีวิว)</span></span>
+    <span class="trust-item">📐 วัดพื้นที่หน้างาน & ประเมินราคาฟรี</span>
+    <span class="trust-item">✨ รีดไอน้ำจับลอนเนี้ยบหน้างาน</span>
+    <span class="trust-item">🧵 ช่างตัดเย็บและติดตั้งประจำร้าน</span>
+    <span>🚗 โชว์รูมมีที่จอดรถสะดวก</span>
+  </div>
+</div>
+
+<!-- ============ 02 — CURTAIN STYLES MATRIX ============ -->
+<section id="styles" class="py-24 md:py-32 px-6 md:px-10 bg-[#F3ECE2] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Curtain & Blind Styles</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เลือกสไตล์ม่านที่เข้ากับบ้านคุณ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ดีไซน์ม่านยอดนิยมที่ช่วยยกระดับความหรูหรา เรียบง่าย และตอบโจทย์ฟังก์ชันการใช้งานในแต่ละห้อง
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="curtainSelector">
+      <button data-type="wave" class="curtain-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">✨</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ม่านลอน (Wave Curtains)</strong>
+        <span class="text-xs text-[var(--sand-dark)]">ลอนสวย สไตล์มินิมอลโมเดิร์น</span>
+      </button>
+
+      <button data-type="roman" class="curtain-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏡</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ม่านพับ (Roman Blinds)</strong>
+        <span class="text-xs text-[var(--sand-dark)]">ประหยัดพื้นที่ เหมาะกับหน้าต่างบานเล็ก</span>
+      </button>
+
+      <button data-type="wood" class="curtain-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🪵</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">มู่ลี่ไม้แท้ (Wooden Blinds)</strong>
+        <span class="text-xs text-[var(--sand-dark)]">ไม้รามิน/บาสวูด ปรับองศาแสงได้</span>
+      </button>
+
+      <button data-type="motor" class="curtain-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">📱</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ม่านมอเตอร์ Smart Home</strong>
+        <span class="text-xs text-[var(--sand-dark)]">สั่งงานผ่านรีโมต & สมาร์ตโฟน</span>
+      </button>
+    </div>
+
+    <div id="curtainResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — FABRIC & BLACKOUT GRADES ============ -->
+<section id="fabrics" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-[var(--sand-light)] text-[var(--sand-dark)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          PREMIUM TEXTILE SELECTION
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          คัดสรรเนื้อผ้าคุณภาพสูง<br>
+          <span class="text-[var(--sand-dark)]">ป้องกันรังสี UV และความร้อนได้ดีเยี่ยม</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          มีตัวอย่างผ้าจริงให้สัมผัส ทั้งผ้า Blackout เคลือบซิลิโคนกันแสง 100% สำหรับห้องนอนที่ต้องการความมืดสนิท ผ้า Dimout ทอเส้นด้ายดำช่วยลดอุณหภูมิในบ้าน และผ้าโปร่งเนื้อละเอียดนำเข้าจากยุโรป
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🌑 Blackout 100% กันแสงสนิท</div>
+          <div class="bg-white p-4 rounded-xl border hairline">⛅ Dimout 80–90% ซอฟต์ละมุน</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🌬️ ผ้าโปร่งชีฟองกรองแสงนุ่มตา</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🛡️ เคลือบสารกันไรฝุ่น & ไม่ลามไฟ</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/fabric-sample-book.webp" alt="เล่มตัวอย่างผ้าผ้าม่านจริง">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/curtain-sheer-light.webp" alt="ผ้าม่านโปร่งกรองแสงแดด">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — 6-STEP SERVICE WORKFLOW ============ -->
+<section id="steps" class="py-24 md:py-32 bg-[#F3ECE2] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Our Process</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">6 ขั้นตอนการบริการมาตรฐาน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ดูแลครบวงจรตั้งแต่การปรึกษาหน้างาน จนถึงการรีดไอน้ำส่งมอบผลงานติดตั้ง
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 01</span>
+          <h4 class="font-display font-bold text-xl mb-2">นัดหมายวัดพื้นที่หน้างานฟรี</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ทีมงานเข้าวัดขนาดหน้าต่างและประตูด้วยเลเซอร์วัดระยะความแม่นยำสูง พร้อมให้คำแนะนำรูปแบบม่านที่เหมาะสม
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Free Onsite Survey</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 02</span>
+          <h4 class="font-display font-bold text-xl mb-2">เทียบสีผ้าจริงกับแสงในบ้าน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            นำเล่มตัวอย่างผ้ากว่า 500 ลวดลายไปให้เลือกถึงบ้าน เทียบสีกับโทนผนัง พื้นกระเบื้อง และเฟอร์นิเจอร์จริง
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Real Fabric Swatches</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 03</span>
+          <h4 class="font-display font-bold text-xl mb-2">ประเมินราคาโปร่งใสตามขนาดจริง</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            สรุปใบเสนอราคาแยกรายการชัดเจน ไม่มีค่าใช้จ่ายแอบแฝง พร้อมระบุเกรดรางและสเปกผ้าอย่างละเอียด
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Clear Quotation</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 04</span>
+          <h4 class="font-display font-bold text-xl mb-2">ตัดเย็บประณีตโดยช่างฝีมือ</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ตัดเย็บด้วยความประณีต ซ่อนรอยต่อผ้า เว้นระยะลอนม่านสม่ำเสมอ เย็บพับขอบริมและชายผ้าถ่วงโซ่อย่างดี
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Custom Tailoring</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 05</span>
+          <h4 class="font-display font-bold text-xl mb-2">ติดตั้งสะอาด & รีดไอน้ำขึ้นลอน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ทีมช่างเจาะติดตั้งพร้อมดูดฝุ่นหน้างาน รีดไอน้ำจับลอนผ้าให้ทิ้งตัวสลวยสวยงาม ไร้รอยยับ
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Clean & Steam Press</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 06</span>
+          <h4 class="font-display font-bold text-xl mb-2">ตรวจรับมอบงาน & รับประกัน 1 ปี</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ตรวจเช็กความเรียบร้อยร่วมกับลูกค้า พร้อมออกใบรับประกันรางม่าน มอเตอร์ และงานติดตั้ง 1 ปีเต็ม
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ 1-Year Warranty</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS SECTION ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Customer Testimonials</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เสียงตอบรับจากเจ้าของบ้าน</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (310+ รีวิวบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ประทับใจมากค่ะ ทีมงานเอาเล่มผ้ามาให้เลือกถึงบ้าน เทียบสีกับโซฟาได้เป๊ะ ม่านลอนติดออกมาสวยมาก ลอนทิ้งตัวสม่ำเสมอ รีดไอน้ำให้เรียบร้อย บ้านดูอบอุ่นขึ้นเยอะเลยค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณภัสสร (ม.เศรษฐสิริ ราชพฤกษ์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ม่านลอน 2 ชั้นทั้งหลัง</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ห้องนอนติดม่าน Blackout 100% กันแสงได้มืดสนิทตามที่ต้องการจริงๆ มู่ลี่ไม้ในห้องทำงานก็งานเนี๊ยบมาก ช่างติดตั้งสุภาพ มีดูดฝุ่นให้สะอาดหมดจดครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณธนกร (ปิ่นเกล้า)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ม่าน Blackout & มู่ลี่ไม้แท้</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ติดตั้งม่านมอเตอร์ Smart Home สั่งงานผ่านแอปได้สะดวกมาก เสียงมอเตอร์เงียบกริบ ราคาคุ้มค่าเมื่อเทียบกับคุณภาพผ้าและการบริการ แนะนำร้านนี้เลยค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณลลิตา (กัลปพฤกษ์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ม่านมอเตอร์ไฟฟ้า Smart Home</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — VISUAL GALLERY ============ -->
+<section id="gallery" class="py-24 md:py-32 bg-[#F3ECE2] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Real Project Archive</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ผลงานติดตั้งจริงในบ้าน & คอนโด</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพผลงานจริงจากบ้านเดี่ยว ทาวน์โฮม และคอนโดมิเนียมย่านราชพฤกษ์ ปิ่นเกล้า และกัลปพฤกษ์
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/curtain-wave-living.webp" alt="ม่านลอนในห้องนั่งเล่น">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ม่านลอนห้องนั่งเล่น</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ลอนสม่ำเสมอ ทิ้งตัวสวย</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/curtain-roman-bed.webp" alt="ม่านพับห้องนอน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ม่านพับผ้าลินินห้องนอน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">กันแสง 100% นอนหลับสนิท</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/blind-wood-dining.webp" alt="มู่ลี่ไม้ในห้องรับประทานอาหาร">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">มู่ลี่ไม้แท้ห้องทานข้าว</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปรับทิศทางแสงธรรมชาติ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/blind-roller-office.webp" alt="ม่านม้วนในห้องทำงาน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ม่านม้วน Sunscreen</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">กันความร้อน มองเห็นวิวด้านนอก</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/wallpaper-accent.webp" alt="งานติดตั้งวอลเปเปอร์ผนังหัวเตียง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">วอลเปเปอร์ผนังหัวเตียง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ลวดลายมินิมอล มีมิติสัมผัส</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/curtain-steaming.webp" alt="การรีดไอน้ำขึ้นลอนผ้าม่าน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">บริการรีดไอน้ำหน้างาน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">จับลอนคมกริบ ไร้รอยยับ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/curtain-motorized.webp" alt="ม่านมอเตอร์ไฟฟ้า Smart Home">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ม่านมอเตอร์ไฟฟ้า</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เสียงเงียบ ควบคุมผ่านแอป</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/curtain-sheer-light.webp" alt="ผ้าม่านโปร่งชีฟอง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ผ้าม่านโปร่งพรีเมียม</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">แสงนุ่มละมุน สบายตา</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — SPECIALIST TEAM ============ -->
+<section id="team" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Our Specialists</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมผู้เชี่ยวชาญด้านผ้าม่าน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ช่างตัดเย็บและทีมติดตั้งประจำร้าน ใส่ใจในทุกฝีเข็ม มีประสบการณ์ดูแลบ้านและโครงการกว่า 10 ปี
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--sand)] shadow-md">
+          <img src="./images/team-curtain-ek.webp" alt="ช่างเอก หัวหน้าทีมติดตั้งผ้าม่าน" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--sand-dark)] font-bold uppercase">หัวหน้าทีมวัดพื้นที่และติดตั้ง</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">ช่างเอก (เอกชัย ภูมิวิเศษ)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Master Drapery & Blind Installer</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการติดตั้งรางม่านดัดโค้ง ม่านมอเตอร์ Smart Home และการติดตั้งผ้าม่านโถงบันไดทรงสูง (Double Volume) อย่างปลอดภัยและแม่นยำ
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--sand)] shadow-md">
+          <img src="./images/team-curtain-nan.webp" alt="คุณแนน ผู้เชี่ยวชาญการเลือกโทนผ้า" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--sand-dark)] font-bold uppercase">ผู้เชี่ยวชาญการออกแบบและคัดสรรผ้า</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">คุณแนน (นลินธร สิทธิเดช)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Interior & Drapery Stylist</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ให้คำแนะนำการเลือกเฉดสีผ้า ลวดลาย และประเภทม่านให้กลมกลืนกับสไตล์การตกแต่งบ้าน ทั้งแบบ Modern Luxury, Japandi, และ Minimalist
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#F3ECE2] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Showroom Location</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่โชว์รูม & เวลาทำการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        โชว์รูมตั้งอยู่ริมถนนราชพฤกษ์ มีตัวอย่างม่านขนาดจริงให้ชม
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">เปิดบริการทุกวัน:</span>
+              <span class="font-mono">09:00 – 19:00 น.</span>
+            </div>
+            <div class="flex justify-between text-emerald-700 font-medium pt-1">
+              <span>บริการวัดพื้นที่หน้างาน:</span>
+              <span>นัดหมายได้ทุกวัน (รวมเสาร์-อาทิตย์)</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งโชว์รูม</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            88/12 ถนนราชพฤกษ์ (ใกล้ The Crystal SB ราชพฤกษ์) ตำบลมหาสวัสดิ์ อำเภอบางกรวย จังหวัดนนทบุรี 11130
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚚 บริการวัดพื้นที่ฟรี: ราชพฤกษ์, ปิ่นเกล้า, กัลปพฤกษ์, กาญจนาภิเษก, พระราม 5, บางใหญ่</div>
+            <div>🚗 โชว์รูมมีที่จอดรถสะดวกสบายหน้าร้าน</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Ratchaphruek+Bangkok" target="_blank" rel="noopener" class="btn-sand flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:028889977" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 02-888-9977
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="CurtainCraft Studio Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.5678901234!2d100.445!3d13.805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29b123456789%3A0xabcdef456789012!2sRatchaphruek%20Rd%2C%20Nonthaburi!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — SMART ONSITE BOOKING FORM / GENERAL INQUIRY ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Free Onsite Measurement & Inquiry</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">นัดหมายวัดพื้นที่หน้างานฟรี / ปรึกษาแบบม่าน</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      สามารถกรอกข้อมูลเพื่อนัดหมายวัดพื้นที่และดูเล่มตัวอย่างผ้าถึงบ้าน หรือกดทักคุยกับทีมงานทาง LINE ได้ทันที
+    </p>
+    
+    <form id="curtainContactForm" onsubmit="handleCurtainSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์ <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="curtainNamePhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]" placeholder="เช่น คุณวริศ 081-xxx-xxxx">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ทำเล / ชื่อหมู่บ้าน / คอนโด <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+          <input type="text" id="curtainLocation" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]" placeholder="เช่น ม.เศรษฐสิริ ราชพฤกษ์">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวกให้เข้าวัดพื้นที่ <span class="text-stone-400 font-normal text-xs">(กรณีจองคิว)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ประเภทม่านที่สนใจ / เรื่องที่ต้องการติดต่อ</label>
+        <select id="curtainTopic" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]">
+          <option value="ม่านลอนรางเทป (ผ้าม่านทึบ + ผ้าโปร่ง)">✨ ม่านลอนรางเทป (ผ้าม่านทึบ Dimout/Blackout + ผ้าโปร่ง)</option>
+          <option value="ม่านพับสไตล์มินิมอล (Roman Blinds)">🏡 ม่านพับสไตล์มินิมอล (Roman Blinds)</option>
+          <option value="มู่ลี่ไม้แท้ธรรมชาติ (Wooden Blinds)">🪵 มู่ลี่ไม้แท้ธรรมชาติ (Basswood / Ramin)</option>
+          <option value="ม่านม้วนกันแดด / ม่านมอเตอร์ Smart Home">📱 ม่านม้วนกันแดด / ม่านมอเตอร์ไฟฟ้า Smart Home</option>
+          <option value="แพ็กเกจตกแต่งครบชุดทั้งหลัง (ผ้าม่าน + วอลเปเปอร์)">🏠 ตกแต่งครบชุดทั้งหลัง (ผ้าม่าน + วอลเปเปอร์)</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-sand py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / นัดวัดพื้นที่ทาง LINE →
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--sand-dark)] hover:text-[var(--sand)] underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/60 transition hover:bg-amber-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อปรึกษาแบบม่านได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#F7F1E8] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">CurtainCraft Custom Drapery Studio (Ratchaphruek)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      88/12 ถนนราชพฤกษ์ อำเภอบางกรวย จังหวัดนนทบุรี 11130 | โทร 02-888-9977 | LINE: @curtaincraft
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 CurtainCraft Studio. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--sand-dark)] font-mono block">วัดพื้นที่หน้างานฟรี</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">CurtainCraft ราชพฤกษ์</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:028889977" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-sand px-5 py-2.5 rounded-full text-sm font-bold">นัดวัดพื้นที่</a>
+  </div>
+</div>
+
+<script>
+/* Smart Form Handler */
+function handleCurtainSubmit(e) {
+  e.preventDefault();
+  const namePhone = document.getElementById('curtainNamePhone').value.trim();
+  const loc = document.getElementById('curtainLocation').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const topic = document.getElementById('curtainTopic').value;
+
+  let msg = `สวัสดีครับ สนใจติดต่อ CurtainCraft Studio\n- รายการ: ${topic}`;
+  if (namePhone) msg += `\n- ผู้ติดต่อ: ${namePhone}`;
+  if (loc) msg += `\n- ทำเล/หมู่บ้าน: ${loc}`;
+  if (date) msg += `\n- วันที่สะดวก: ${date}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const curtainData = {
+  wave: {
+    title: 'ม่านลอนรางเทป (Wave Fold Curtains)',
+    desc: 'ดีไซน์ลอนม่านทิ้งตัวโค้งมนสม่ำเสมอตั้งแต่ด้านบนจรดพื้น สไตล์โมเดิร์นเรียบหรู ไร้ห่วงตาไก่ เหมาะสำหรับห้องนั่งเล่น ห้องรับแขก และห้องนอนที่มีช่องกระจกบานใหญ่',
+    fabric: 'ผ้าทึบกันแสง Dimout / Blackout + ผ้าโปร่งชีฟองกรองแสง',
+    price: 'คอนโดมิเนียม เริ่มต้น ฿12,000 – ฿25,000 | บ้านเดี่ยวทั้งหลัง เริ่มต้น ฿45,000 – ฿85,000',
+    img: './images/curtain-wave-living.webp'
+  },
+  roman: {
+    title: 'ม่านพับสไตล์โมเดิร์น (Roman Blinds)',
+    desc: 'เปิด-ปิดด้วยการดึงพับทบเป็นชั้นๆ ขึ้นไปด้านบนอย่างเป็นระเบียบ ประหยัดพื้นที่ใช้งาน เหมาะสำหรับหน้าต่างบานแคบทรงสูง ห้องนอนเด็ก ห้องทำงาน หรือโถงบันได',
+    fabric: 'ผ้าลินินธรรมชาติ ผ้าคอตตอนทอแน่น พร้อมซับในกันแสง',
+    price: 'เริ่มต้น ฿1,200 – ฿2,500 / ชุด (ตามขนาดบานหน้าต่าง)',
+    img: './images/curtain-roman-bed.webp'
+  },
+  wood: {
+    title: 'มู่ลี่ไม้แท้ธรรมชาติ (Timber Wooden Blinds)',
+    desc: 'ผลิตจากไม้บาสวูด (Basswood) และไม้รามินแท้ นำเข้า อบแห้งกันปลวกและเชื้อรา สามารถปรับเอียงองศาใบมู่ลี่เพื่อควบคุมทิศทางแสงแดดได้อย่างอิสระ ให้กลิ่นอายธรรมชาติอบอุ่น',
+    fabric: 'ใบไม้ขนาด 35mm และ 50mm พร้อมแถบผ้าคาดบันได (Ladder Tape)',
+    price: 'เริ่มต้น ฿1,800 – ฿3,200 / ตารางหลา',
+    img: './images/blind-wood-dining.webp'
+  },
+  motor: {
+    title: 'ม่านมอเตอร์อัจฉริยะ Smart Home (Motorized Drapes)',
+    desc: 'ควบคุมการเปิด-ปิดผ้าม่านได้อย่างนุ่มนวลและเงียบกริบผ่านรีโมตคอนโทรล สวิตช์ติดผนัง หรือสั่งงานด้วยเสียงผ่านแอปพลิเคชันบนสมาร์ตโฟน รองรับการตั้งเวลาเปิดม่านรับแสงยามเช้าอัตโนมัติ',
+    fabric: 'รองรับทั้งม่านลอน ม่านจีบ และม่านม้วนทุกขนาด',
+    price: 'เพิ่มระบบมอเตอร์พร้อมราง เริ่มต้น ฿6,500 / ชุด',
+    img: './images/curtain-motorized.webp'
+  }
+};
+
+function renderCurtain(key) {
+  const data = curtainData[key];
+  const box = document.getElementById('curtainResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-amber-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Curtain Style Details</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--ink-faint)]">เนื้อผ้าแนะนำ:</span> ${data.fabric}</div>
+          <div class="text-[var(--sand-dark)] font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">งบประมาณประเมิน:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-sand px-7 py-3 rounded-full text-sm font-bold shadow-md">นัดวัดพื้นที่สำหรับสไตล์นี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderCurtain('wave');
+document.querySelectorAll('#curtainSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#curtainSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCurtain(btn.dataset.type);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

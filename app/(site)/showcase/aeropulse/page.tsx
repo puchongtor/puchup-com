@@ -5,12 +5,12 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = { title: "AeroPulse — Showcase" };
 
 const journey = [
-  "ลูกค้าเล่าความต้องการ",
-  "ระบบถามคำถามสำคัญ",
-  "คัดตัวเลือกที่เหมาะ",
-  "เปรียบเทียบสั้นๆ",
-  "ลูกค้าตัดสินใจง่ายขึ้น",
-  "ทีมได้ Lead ที่ชัดเจน",
+  "บอกความต้องการผ่านคำถามสั้นๆ หรือแชทกับผู้ช่วย",
+  "ระบบคัดรุ่นที่เหมาะกับงบ เส้นทาง และประสบการณ์",
+  "ดูผลลัพธ์พร้อมเหตุผลที่แนะนำ",
+  "เปรียบเทียบรุ่นและเช็คสต็อกตามไซซ์",
+  "ส่งสรุปไปยังทีมร้านทาง LINE",
+  "ร้านติดต่อต่อได้โดยไม่ต้องถามซ้ำ",
 ];
 
 export default function AeroPulsePage() {
@@ -22,37 +22,42 @@ export default function AeroPulsePage() {
         </Link>
         <div className="mt-6 mb-8">
           <span className="eyebrow mb-4 inline-block rounded-full bg-aamber/15 px-2.5 py-1 text-[10px] uppercase text-aamber">
-            Demo / Concept
+            ตัวอย่างระบบ · ShopGuide
           </span>
-          <h1 className="mb-4 text-4xl font-bold md:text-5xl">
-            เราไม่ได้สร้างเว็บจักรยาน
+          <h1 className="mb-4 text-4xl font-semibold tracking-[-0.025em] md:text-5xl">
+            ช่วยลูกค้าเลือกจักรยานได้เร็วขึ้น
             <br />
-            เราสร้างระบบช่วยลูกค้าเลือกจักรยาน
+            โดยไม่ต้องไล่สเปกเองทั้งร้าน
           </h1>
           <p className="text-[17px] text-muted">AeroPulse Bike Studio</p>
         </div>
 
-        <div className="space-y-10 text-[15px] leading-relaxed">
+        <div className="space-y-10 text-[15px] leading-[1.7]">
           <div>
-            <h2 className="mb-2 text-xl font-semibold">Problem</h2>
+            <h2 className="mb-2 text-xl font-semibold">ความท้าทาย</h2>
             <p className="text-muted">
-              ลูกค้าต้องไล่ดูสเปกจำนวนมากก่อนซื้อ ทำให้ตัดสินใจช้า และร้านเสียโอกาสปิดการขาย
+              สินค้ามีหลายรุ่น แต่ลูกค้ามักเลือกไม่ถูก ใช้เวลานาน หรือออกจากเว็บไปก่อนตัดสินใจ
+              ร้านจึงเสียโอกาสปิดการขาย
             </p>
           </div>
           <div>
-            <h2 className="mb-2 text-xl font-semibold">Insight</h2>
+            <h2 className="mb-2 text-xl font-semibold">แนวทาง</h2>
             <p className="border-l-2 border-aorange/40 pl-4 font-medium text-ink">
-              &quot;การให้ข้อมูลมากขึ้นไม่ได้แปลว่าลูกค้าจะตัดสินใจง่ายขึ้น&quot;
+              เว็บไม่ควรแค่โชว์ข้อมูลให้ครบ — ควรช่วยลูกค้าไปถึงคำตอบที่ใช่เร็วขึ้น
             </p>
           </div>
           <div>
-            <h2 className="mb-2 text-xl font-semibold">System</h2>
+            <h2 className="mb-2 text-xl font-semibold">สิ่งที่ระบบทำได้</h2>
             <p className="text-muted">
-              ผู้ช่วยในเว็บช่วยถาม แนะนำ และคัดจักรยานให้ตรงกับงบและสไตล์การใช้งาน — แล้วส่งต่อเป็น Lead ให้ทีม
+              ผู้ช่วยแนะนำสินค้า คัดรุ่นที่เหมาะ เปรียบเทียบ เช็คสต็อก และส่งต่อทีมร้านทาง LINE
+              พร้อมบริบทที่คุยไว้ — เป็นแนวทางเดียวกับสินค้า{" "}
+              <Link href="/shopguide/" className="font-semibold text-aorange underline underline-offset-2">
+                ShopGuide
+              </Link>
             </p>
           </div>
           <div>
-            <h2 className="mb-4 text-xl font-semibold">User Journey</h2>
+            <h2 className="mb-4 text-xl font-semibold">เส้นทางของลูกค้า</h2>
             <ol className="grid gap-3 sm:grid-cols-2">
               {journey.map((step, i) => (
                 <li key={step} className="rounded-xl2 border border-cream p-4">
@@ -64,32 +69,29 @@ export default function AeroPulsePage() {
               ))}
             </ol>
           </div>
-            <div>
-              <a
-                href="/sites/aeropulse/"
-                className="inline-flex text-[15px] font-semibold text-aorange underline underline-offset-4"
-              >
-                เปิด Live Demo บนเว็บ →
+          <div>
+            <a
+              href="https://aeropulse.puchup.com"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex text-[15px] font-semibold text-aorange underline underline-offset-4"
+            >
+              เปิดตัวอย่างระบบ →
+            </a>
+            <p className="mt-2 text-[13px] text-muted">
+              หรือดูพรีวิวบนไซต์ที่{" "}
+              <a href="/sites/aeropulse/" className="underline underline-offset-2">
+                /sites/aeropulse/
               </a>
-              <p className="mt-2 text-[13px] text-muted">
-                หรือ{" "}
-                <a
-                  href="https://aeropulse.puchup.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline underline-offset-2"
-                >
-                  aeropulse.puchup.com
-                </a>
-              </p>
-            </div>
+            </p>
+          </div>
         </div>
 
         <div className="mt-14 rounded-xl2 bg-navy p-8 text-center text-base">
-          <h2 className="mb-3 text-2xl font-bold">อยากได้ระบบแบบนี้กับธุรกิจของคุณ?</h2>
+          <h2 className="mb-3 text-2xl font-semibold">สนใจระบบช่วยเลือกสินค้าแบบนี้?</h2>
           <Link
             href="/contact/"
-            className="mt-4 inline-flex rounded-full bg-base px-5 py-3 text-[15px] font-semibold text-navy"
+            className="mt-4 inline-flex rounded-xl bg-base px-5 py-3 text-[15px] font-semibold text-navy"
           >
             {site.cta.primary}
           </Link>

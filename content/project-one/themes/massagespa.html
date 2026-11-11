@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prana Wellness & Thai Massage — นวดแผนไทย สปาอโรมา & แก้ออฟฟิศซินโดรม สุขุมวิท 39</title>
+<meta name="description" content="Prana Wellness สตูดิโอนวดแผนไทยและสปาอโรมาบำบัด สุขุมวิท 39 (พร้อมพงษ์) นวดคลายกล้ามเนื้อแก้อาการ นวดน้ำมันออร์แกนิก ประคบสมุนไพรสด ห้องเดี่ยวส่วนตัวบรรยากาศเงียบสงบ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F3ECE1;
+    --ink: #26201B;
+    --ink-soft: #5A4E44;
+    --ink-faint: #8E7F73;
+    --sand: #C29B38;
+    --sand-dark: #8F6F1A;
+    --sand-light: #F7EEDB;
+    --earth: #543D2B;
+    --line: #E8DCCB;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Playfair Display', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--sand-light); color: var(--sand-dark); }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sand-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 247, 242, 0.96);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--sand-dark); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-sand {
+    background: linear-gradient(135deg, #C29B38 0%, #8F6F1A 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-sand:hover {
+    background: linear-gradient(135deg, #D4B04C 0%, #C29B38 100%);
+    box-shadow: 0 10px 24px -8px rgba(194, 155, 56, 0.45);
+  }
+
+  .program-card { transition: all 0.25s ease; cursor: pointer; }
+  .program-card:hover, .program-card.active {
+    border-color: var(--sand);
+    background-color: var(--sand-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#FAF7F2] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ PRANA WELLNESS & MASSAGE — สุขุมวิท 39 (พร้อมพงษ์) · สปาอโรมาบำบัด & นวดแผนไทยแก้อาการ ห้องส่วนตัว VIP ·</span>
+  <a href="demo.html" class="underline hover:text-amber-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--sand)] flex items-center justify-center text-white text-2xl font-serif shadow-sm group-hover:scale-105 transition-transform">
+        🪷
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Prana</span>
+        <span class="text-xs text-[var(--sand-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Wellness & Spa · Sukhumvit 39</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#programs" class="navlink font-semibold">โปรแกรมนวด & ราคา</a>
+      <a href="#aroma-oils" class="navlink">น้ำมันหอมระเหยออร์แกนิก</a>
+      <a href="#steps" class="navlink">ขั้นตอนการรับบริการ</a>
+      <a href="#gallery" class="navlink">บรรยากาศสปา</a>
+      <a href="#team" class="navlink">เธอราปิสต์ผู้เชี่ยวชาญ</a>
+      <a href="#location" class="navlink">ที่ตั้ง & จองเวลา</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:021234568" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-123-4568
+      </a>
+      <a href="#booking" class="btn-sand px-6 py-3 rounded-full text-sm shadow-sm">
+        จองเวลาล่วงหน้า
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--sand-light)] border border-[var(--sand)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--sand-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--sand)] animate-pulse"></span> ห้องเดี่ยวส่วนตัว VIP · น้ำมันอโรมาสกัดแท้ 100% · เธอราปิสต์มีใบรับรอง
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        ปลดปล่อยความตึงล้า<br>
+        <span class="text-[var(--sand-dark)]">คืนความสมดุลให้ร่างกายและจิตใจ</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        สัมผัสศิลปะการนวดบำบัดชั้นสูง นวดแผนไทยคลายเส้นกดจุดราชสำนัก นวดน้ำมันอโรมาเธอราปี คอร์สแก้ออฟฟิศซินโดรมคอบ่าไหล่ และประคบสมุนไพรสดออร์แกนิก ในบรรยากาศเงียบสงบใจกลางสุขุมวิท
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#booking" class="btn-sand px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          จองห้องนวดส่วนตัว (Online) →
+        </a>
+        <a href="#programs" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          ดูเมนูสปา & โปรแกรมทั้งหมด
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">VIP Suite</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ห้องนวดเดี่ยว & คู่ส่วนตัว</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">Organic Essential Oil</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">500+ ชม.</strong>
+          <span class="text-sm text-[var(--ink-faint)]">มาตรฐานชั่วโมงรับรองครู</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/massage-hero.webp" alt="บรรยากาศนวดอโรมาเธอราปี Prana Wellness สุขุมวิท 39" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-100 text-[var(--sand-dark)] flex items-center justify-center font-bold text-2xl shrink-0">🌿</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ประคบสมุนไพรสดอุ่นๆ</strong>
+          <span class="text-[var(--ink-faint)]">ไพล ขมิ้น ตะไคร้หอม ช่วยคลายเส้นพังผืดลึก</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — MASSAGE & SPA PROGRAMS ============ -->
+<section id="programs" class="py-24 md:py-32 px-6 md:px-10 bg-[#F3ECE1] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Signature Spa & Therapy</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">โปรแกรมการนวดผ่อนคลาย & บำบัด</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกโปรแกรมที่ตอบโจทย์ความเมื่อยล้าของร่างกาย พร้อมปรับระดับน้ำหนักการนวดได้ตามต้องการ
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="programSelector">
+      <button data-type="thai" class="program-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🧘</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">นวดไทยราชสำนักคลายเส้น</strong>
+        <span class="text-xs text-[var(--sand-dark)]">กดจุดตามแนวเส้นประธานสิบ</span>
+      </button>
+
+      <button data-type="aroma" class="program-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🌸</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">นวดน้ำมันอโรมาออร์แกนิก</strong>
+        <span class="text-xs text-[var(--sand-dark)]">สวีดิช + ออยล์บำรุงผิวล้ำลึก</span>
+      </button>
+
+      <button data-type="office" class="program-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💻</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">แก้ออฟฟิศซินโดรมลึก</strong>
+        <span class="text-xs text-[var(--sand-dark)]">เน้นคอบ่าไหล่ สะบัก & ไมเกรน</span>
+      </button>
+
+      <button data-type="herbal" class="program-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🍃</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">นวดประคบสมุนไพรสด</strong>
+        <span class="text-xs text-[var(--sand-dark)]">สมุนไพรสดนึ่งอุ่น ขับพิษกล้ามเนื้อ</span>
+      </button>
+    </div>
+
+    <div id="programResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — ORGANIC ESSENTIAL OILS ============ -->
+<section id="aroma-oils" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-[var(--sand-light)] text-[var(--sand-dark)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          100% PURE ESSENTIAL OILS
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          ศาสตร์แห่งสุคนธบำบัด<br>
+          <span class="text-[var(--sand-dark)]">เลือกกลิ่นหอมเฉพาะที่เข้ากับอารมณ์ของคุณ</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          เราใช้ Base Oil จากน้ำมันโจโจ้บาและสวีทอัลมอนด์บริสุทธิ์ ผสานน้ำมันหอมระเหยเกรดบำบัดนำเข้า ทดสอบดมกลิ่นก่อนเข้ารับบริการ ช่วยคลายความเครียดสะสม ปรับคลื่นสมอง และบำรุงผิวให้นุ่มชุ่มชื้น
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">💜 Lavender & Chamomile (หลับลึก สบายใจ)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🌿 Lemongrass & Eucalyptus (สดชื่น หายใจโล่ง)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🍊 Sweet Orange & Bergamot (ปรับอารมณ์เบิกบาน)</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🪵 Siam Sandalwood & Cedar (สงบ สมาธิลึก)</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/massage-oils-selection.webp" alt="ชุดขวดแก้วน้ำมันหอมระเหยอโรมา">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/massage-herbal-compress.webp" alt="ลูกประคบสมุนไพรสดนึ่งอุ่น">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — 5-STEP WELCOME RITUAL ============ -->
+<section id="steps" class="py-24 md:py-32 bg-[#F3ECE1] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Our Experience Ritual</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">5 ขั้นตอนการปรนนิบัติมาตรฐาน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ดูแลทุกสัมผัสอย่างประณีต ตั้งแต่ก้าวแรกจนถึงการดื่มชาสมุนไพรปิดท้าย
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 01</span>
+          <h4 class="font-display font-bold text-base mb-2">ต้อนรับด้วยเวลคัมดริงก์</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            จิบน้ำสมุนไพรเกสรบัวหลวงเย็นชื่นใจ พร้อมประเมินจุดปวดเมื่อยบนร่างกาย
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Welcome Herbal Drink</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 02</span>
+          <h4 class="font-display font-bold text-base mb-2">สครับล้างเท้ากลีบกุหลาบ</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            แช่เท้าในน้ำอุ่นสมุนไพร ขัดสครับเกลือหิมาลายันและมะกรูดฆ่าเชื้อแบคทีเรีย
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Floral Foot Cleansing</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 03</span>
+          <h4 class="font-display font-bold text-base mb-2">เลือกกลิ่นน้ำมันอโรมา</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            ทดสอบดมกลิ่นน้ำมันหอมระเหย 4 สูตร เพื่อเลือกกลิ่นที่ร่างกายต้องการที่สุด
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Aroma Scent Test</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 04</span>
+          <h4 class="font-display font-bold text-base mb-2">นวดบำบัดในห้องส่วนตัว</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            เธอราปิสต์นวดตามโปรแกรมที่เลือก ปรับแรงตามใจชอบ มีดนตรีบำบัดคลอเบาๆ
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Private Therapy</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--sand)] uppercase block mb-3">STEP 05</span>
+          <h4 class="font-display font-bold text-base mb-2">ชาอุ่น & ผลไม้อบแห้ง</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            เสิร์ฟชาใบเตยมะตูมอุ่นเพื่อปรับอุณหภูมิร่างกายหลังนวดเสร็จอย่างสมบูรณ์
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-[var(--sand-dark)] font-semibold mt-4">✓ Warm Tea & Refreshment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — VISUAL GALLERY (12 รูปภาพ) ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Sanctuary Gallery</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีบรรยากาศและมุมสปา</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สัมผัสความโปร่งสบาย ตกแต่งด้วยไม้สักธรรมชาติ แสงวอร์มไลท์ละมุน และความสะอาดระดับพรีเมียม
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-thai-stretch.webp" alt="การนวดแผนไทยยืดกล้ามเนื้อ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">นวดแผนไทยคลายเส้น</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ยืดเหยียดตามแนวกล้ามเนื้อ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-aroma-back.webp" alt="การนวดน้ำมันอโรมาแผ่นหลัง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">นวดอโรมาเธอราปี</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">รีดเส้นเบา ลื่นไหล ผ่อนคลาย</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-head-neck.webp" alt="การนวดศีรษะและคอบ่าไหล่">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">นวดศีรษะอินเดีย & คอบ่า</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">แก้ไมเกรน นอนหลับสบาย</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-foot-scrub.webp" alt="อ่างล้างเท้าลอยกลีบดอกไม้">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">พิธีล้างเท้าสมุนไพร</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ขัดสครับเกลือหิมาลายัน</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-vip-room.webp" alt="ห้องนวดส่วนตัวเตียงเดี่ยว VIP">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ห้องเดี่ยวส่วนตัว VIP</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ห้องน้ำในตัว เป็นส่วนตัว 100%</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-couple-room.webp" alt="ห้องนวดคู่สำหรับคู่รัก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ห้องนวดคู่ Suite Room</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">สำหรับคู่รักและเพื่อนสนิท</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-tea-lounge.webp" alt="มุมพักผ่อนจิบชาหลังนวด">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">มุมจิบชาหลังนวด</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ชาสมุนไพรและผลไม้อบแห้ง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/massage-towel-folded.webp" alt="ผ้าขนหนูและชุดนวดสะอาด">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ความสะอาดระดับ 5 ดาว</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ผ้าและชุดนวดซักฆ่าเชื้อใหม่ทุกผืน</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — EXPERIENCED THERAPISTS ============ -->
+<section id="team" class="py-24 md:py-32 bg-[#F3ECE1] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Certified Therapists</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมเธอราปิสต์ผู้ชำนาญการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ผ่านการอบรมหลักสูตรนวดไทยและสปาเพื่อสุขภาพมากกว่า 500 ชั่วโมง สุภาพ น้ำหนักมือนิ่ง และเข้าใจสรีระกล้ามเนื้อเป็นอย่างดี
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--sand)] shadow-md">
+          <img src="./images/team-therapist-fon.webp" alt="คุณฝน หัวหน้าครูฝึกเธอราปิสต์" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--sand-dark)] font-bold uppercase">Lead Spa Master & Trainer</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">คุณฝน (กานดา ศรีสุวรรณ)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ใบรับรองผู้ดำเนินการสปาเพื่อสุขภาพ (ประสบการณ์ 14 ปี)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            อดีต Spa Supervisor โรงแรม 5 ดาว เชี่ยวชาญการนวดอโรมาคลายพังผืดลึก (Deep Tissue) และการกดจุดสะท้อนเท้าปรับสมดุลธาตุ
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--sand)] shadow-md">
+          <img src="./images/team-therapist-pim.webp" alt="คุณพิมพ์ ผู้เชี่ยวชาญนวดแก้ออฟฟิศซินโดรม" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--sand-dark)] font-bold uppercase">Senior Office Syndrome Therapist</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">คุณพิมพ์ (พิมพ์ชนก วัฒนา)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ประกาศนียบัตรนวดไทยราชสำนัก (ประสบการณ์ 9 ปี)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการแก้ปัญหากล้ามเนื้อคอบ่าไหล่ตึงสะสม ไมเกรนเรื้อรัง และการประคบสมุนไพรคลายจุด Trigger Point ได้อย่างแม่นยำ นุ่มนวล
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--sand-dark)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 10:00 – 22:00 น. (รับคิวสุดท้าย 20:30 น.)
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">Prana Wellness (สุขุมวิท 39)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            55/8 ซอยสุขุมวิท 39 (ซอยพร้อมพงษ์ ห่างจาก BTS พร้อมพงษ์ 600 เมตร) แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚆 รถไฟฟ้า BTS:</strong>
+              <span>BTS สถานีพร้อมพงษ์ (ทางออก 3) มีบริการรถรับส่งฟรีเมื่อโทรแจ้ง</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚗 ที่จอดรถส่วนตัว:</strong>
+              <span>มีที่จอดรถสะดวกหน้าร้าน 8 คัน พร้อมระบบ รปภ.</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">💳 การชำระเงิน:</strong>
+              <span>รับเงินสด สแกน QR Code บัตรเครดิต และบัตรเดบิตทุกธนาคาร</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Sukhumvit+39+Bangkok" target="_blank" rel="noopener" class="btn-sand flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 แผนที่สตูดิโอสปา
+          </a>
+          <a href="tel:021234568" class="border hairline bg-white flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-[var(--bg-alt)] transition">
+            📞 โทร 02-123-4568
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm" id="booking">
+        <span class="eyebrow text-xs block mb-2">Reserve Your Relaxation</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">จองห้องนวดล่วงหน้า</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">กรอกข้อมูลเพื่อสำรองห้องนวดส่วนตัวและล็อกคิวเธอราปิสต์</p>
+        
+        <form onsubmit="event.preventDefault(); alert('สตูดิโอได้รับข้อมูลแล้ว เจ้าหน้าที่จะติดต่อยืนยันห้องนวดและรอบเวลาทาง LINE ครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้จอง / เบอร์โทรศัพท์</label>
+            <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]" placeholder="เช่น คุณพิมพ์พิศา 081-xxx-xxxx" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการรับบริการ</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เวลาที่ต้องการ</label>
+              <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]">
+                <option>10:30 น.</option>
+                <option>13:00 น.</option>
+                <option>15:30 น.</option>
+                <option>18:00 น.</option>
+                <option>20:00 น.</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">โปรแกรมการนวด</label>
+              <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]">
+                <option>นวดแผนไทยคลายเส้น (90 นาที)</option>
+                <option>นวดน้ำมันอโรมาออร์แกนิก (90 นาที)</option>
+                <option>คอร์สแก้ออฟฟิศซินโดรมคอบ่าไหล่ (90 นาที)</option>
+                <option>นวดประคบสมุนไพรสด (120 นาที)</option>
+                <option>สปาขัดผิว + นวดอโรมา (120 นาที)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ประเภทห้อง</label>
+              <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sand)]">
+                <option>ห้องเดี่ยวส่วนตัว (Single VIP)</option>
+                <option>ห้องคู่ส่วนตัว (Couple Suite)</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="w-full btn-sand py-4 rounded-full text-base font-bold mt-4 shadow-md">
+            ยืนยันการจองห้องนวด →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#FAF7F2] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">Prana Wellness & Spa (Sukhumvit 39 - Phrom Phong)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      55/8 ซอยสุขุมวิท 39 แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110 | เปิดบริการทุกวัน 10:00 – 22:00 น.
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Prana Wellness & Spa. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--sand-dark)] font-mono block">นวดไทย & สปาอโรมา</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Prana สุขุมวิท 39</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:021234568" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-sand px-5 py-2.5 rounded-full text-sm font-bold">จองคิว</a>
+  </div>
+</div>
+
+<script>
+const programData = {
+  thai: {
+    title: 'นวดแผนไทยราชสำนักคลายเส้น (Traditional Royal Thai Massage)',
+    desc: 'ศาสตร์การนวดกดจุดสัญญาณตามแนวเส้นประธานสิบ ผสานการยืดเหยียดร่างกายแบบโยคะดัดตน ช่วยคลายปมกล้ามเนื้อที่ตึงแข็ง เพิ่มความยืดหยุ่นให้ข้อต่อ และกระตุ้นการไหลเวียนของโลหิตทั่วเรือนร่าง',
+    time: '60 นาที / 90 นาที / 120 นาที',
+    price: '60 นาที ฿550 | 90 นาที ฿750 | 120 นาที ฿950',
+    img: './images/massage-thai-stretch.webp'
+  },
+  aroma: {
+    title: 'นวดน้ำมันอโรมาออร์แกนิกบำบัด (Organic Aromatherapy Massage)',
+    desc: 'การนวดสวีดิชผสานสุคนธบำบัดด้วยน้ำมันหอมระเหยสกัดแท้ 100% ลูบไล้ด้วยจังหวะที่นุ่มนวลและต่อเนื่อง ช่วยผ่อนคลายระบบประสาท ลดความตึงเครียด ปรับสมดุลอารมณ์ และเติมความชุ่มชื้นให้ผิวพรรณอย่างล้ำลึก',
+    time: '60 นาที / 90 นาที / 120 นาที',
+    price: '60 นาที ฿890 | 90 นาที ฿1,250 | 120 นาที ฿1,590',
+    img: './images/massage-aroma-back.webp'
+  },
+  office: {
+    title: 'คอร์สบำบัดออฟฟิศซินโดรมลึก (Deep Tissue Office Syndrome Relief)',
+    desc: 'ออกแบบเฉพาะสำหรับคนทำงานออฟฟิศ เน้นรีดเส้นสลายพังผืดบริเวณคอ บ่า ไหล่ สะบักหลัง และฐานกะโหลกศีรษะ ร่วมกับการใช้บาล์มสมุนไพรสูตรเย็น ช่วยลดอาการปวดตึงสะสมและไมเกรนได้อย่างตรงจุด',
+    time: '60 นาที / 90 นาที',
+    price: '60 นาที ฿790 | 90 นาที ฿1,090',
+    img: './images/massage-head-neck.webp'
+  },
+  herbal: {
+    title: 'นวดประคบสมุนไพรสดอุ่น (Warm Herbal Compress Therapy)',
+    desc: 'นวดแผนไทยควบคู่กับการประคบด้วยลูกประคบสมุนไพรสดนึ่งอุ่น (ไพล, ขมิ้นอ้อย, ตะไคร้, ผิวมะกรูด, การบูร) ไอความร้อนและตัวยาสมุนไพรจะซึมลึกเข้าสู่ชั้นกล้ามเนื้อ ช่วยลดการอักเสบและคลายกล้ามเนื้อชั้นลึกอย่างอ่อนโยน',
+    time: '90 นาที / 120 นาที',
+    price: '90 นาที ฿990 | 120 นาที ฿1,290',
+    img: './images/massage-herbal-compress.webp'
+  }
+};
+
+function renderProgram(key) {
+  const data = programData[key];
+  const box = document.getElementById('programResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-amber-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Program Details & Pricing</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--ink-faint)]">ระยะเวลา:</span> ${data.time}</div>
+          <div class="text-[var(--sand-dark)] font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">อัตราค่าบริการ:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-sand px-7 py-3 rounded-full text-sm font-bold shadow-md">จองเวลาโปรแกรมนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderProgram('thai');
+document.querySelectorAll('#programSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#programSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProgram(btn.dataset.type);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -2,9 +2,9 @@ export const site = {
   name: "PuchUp",
   domain: "puchup.com",
   url: "https://puchup.com",
-  tagline: "สร้างระบบผู้ช่วยธุรกิจ",
+  tagline: "Level up your business",
   description:
-    "PuchUp สร้างระบบผู้ช่วยธุรกิจ — เว็บไซต์และระบบดิจิทัลที่ช่วยให้ธุรกิจทำงานได้ดีขึ้น",
+    "PuchUp สร้างเว็บไซต์และระบบดิจิทัลที่ช่วยธุรกิจหาลูกค้า ปิดการขาย และทำงานได้เร็วขึ้น",
   email: "hello@puchup.com",
   year: 2026,
   philosophyLines: [
@@ -12,49 +12,116 @@ export const site = {
     "PuchUp สร้างระบบที่ช่วยให้ธุรกิจทำงานได้ดีขึ้น",
   ] as const,
   cta: {
-    primary: "เล่าธุรกิจให้ PuchUp ฟัง",
-    explore: "ดูสิ่งที่เราสร้าง →",
+    primary: "คุยกับ PuchUp",
+    explore: "ดูสินค้าทั้งหมด",
     understand: "ดูว่า PuchUp ทำงานอย่างไร →",
   },
 } as const;
 
+/** Slim primary navigation — homepage is the product launchpad */
 export const navLinks = [
-  { href: "/ProjectONE/", label: "Project ONE" },
-  { href: "/demo/", label: "Showroom" },
-  { href: "/build/", label: "Build" },
+  { href: "/#products", label: "Products & Services" },
   { href: "/showcase/", label: "Showcase" },
-  { href: "/products/", label: "Products" },
-  { href: "/how-we-work/", label: "How We Work" },
   { href: "/about/", label: "About" },
+  { href: "/contact/", label: "Contact" },
 ] as const;
 
-/** Featured demos shown on homepage + showcase */
-export const featuredDemos = [
+export type CatalogProduct = {
+  id: string;
+  name: string;
+  nameTh: string;
+  href: string;
+  blurb: string;
+  price?: string;
+  status: "พร้อมขาย" | "เปิดรับพาร์ทเนอร์" | "กำลังพัฒนา" | "คุยเคสต่อเคส";
+  image: string;
+  accent: string;
+};
+
+/** Six revenue products on the homepage grid */
+export const catalogProducts: CatalogProduct[] = [
   {
+    id: "project-one",
     name: "Project ONE",
-    subtitle: "One Page. Full Business.",
+    nameTh: "เว็บหน้าเดียว × Google Business",
     href: "/ProjectONE/",
-    badge: "Product",
     blurb:
-      "เว็บไซต์หน้าเดียว ที่ทำให้ลูกค้ารู้จักธุรกิจ ตัดสินใจ และอยากมาที่ร้าน",
+      "เว็บไซต์หน้าเดียวที่เชื่อม Google Business ให้ลูกค้ารู้จัก ร้าน ตัดสินใจ และอยากมาที่ร้าน",
+    status: "พร้อมขาย",
+    image: "/images/home/product-project-one.jpg",
+    accent: "จากร้านจริงสู่หน้าเว็บ",
   },
   {
-    name: "AeroPulse",
-    subtitle: "Bike Studio",
-    href: "/sites/aeropulse/",
-    external: "https://aeropulse.puchup.com",
-    badge: "Demo",
-    blurb: "ระบบช่วยลูกค้าเลือกจักรยาน แทนการไล่ดูสเปกทีละคัน",
+    id: "corporate",
+    name: "Corporate Site",
+    nameTh: "เว็บบริษัท SEO / AEO",
+    href: "/corporate/",
+    blurb:
+      "เว็บไซต์บริษัท 20–30 หน้า โครงสร้างชัด เน้นค้นหาเจอและตอบคำถามธุรกิจได้",
+    price: "เริ่มต้น 25,000 บาท",
+    status: "พร้อมขาย",
+    image: "/images/products/corporate/hero.jpg",
+    accent: "สร้างความน่าเชื่อถือ",
   },
   {
-    name: "บ้านข้าวหอม",
-    subtitle: "Restaurant Demo",
-    href: "/ProjectONE/baankhaokhom/",
-    badge: "Demo",
-    blurb: "อาหารบ้านๆ ที่ทำให้คิดถึงบ้าน — เดโมร้านอาหารไทยโฮมเมดแนว Project ONE",
+    id: "shopguide",
+    name: "ShopGuide",
+    nameTh: "แชท AI พาสู่สินค้าและ Line OA",
+    href: "/shopguide/",
+    blurb:
+      "เว็บสินค้าที่มีช่องแชทนำทาง คุยกับ AI แล้วพาไปสินค้าที่ต้องการ — เชื่อมต่อ Line OA",
+    price: "เริ่มต้น 35,000 บาท + AI รายเดือน",
+    status: "พร้อมขาย",
+    image: "/images/products/shopguide/sg-hero-bike.jpg",
+    accent: "ช่วยลูกค้าเลือกสินค้า",
+  },
+  {
+    id: "partner",
+    name: "PuchUp Partner",
+    nameTh: "พาร์ทเนอร์ฝ่ายการตลาดออนไลน์",
+    href: "/partner/",
+    blurb:
+      "ให้ PuchUp เป็นฝ่ายการตลาดออนไลน์ของคุณ — สร้างเว็บ จัดระบบ และเดินหน้าไปด้วยกัน",
+    price: "รายละเอียดตามข้อตกลง",
+    status: "เปิดรับพาร์ทเนอร์",
+    image: "/images/products/partner/hero.jpg",
+    accent: "เติบโตไปด้วยกัน",
+  },
+  {
+    id: "saledesk",
+    name: "SaleDesk",
+    nameTh: "ทีมงาน AI สำหรับทีมขาย",
+    href: "/sale/",
+    blurb:
+      "ช่วยทีมขายบันทึกงานเยี่ยม มีเลขา AI และให้ผู้จัดการเห็นงานค้างได้ชัด — เหมาะกับทีมภาคสนาม",
+    price: "เริ่มต้น 19,000 บาท + รายเดือนตามทีม",
+    status: "พร้อมขาย",
+    image: "/images/products/saledesk/hero.jpg",
+    accent: "ปิดดีลได้เร็วขึ้น",
+  },
+  {
+    id: "opscraft",
+    name: "OpsCraft",
+    nameTh: "ออกแบบระบบด้วย AI ตามเคส",
+    href: "/opscraft/",
+    blurb:
+      "ลดงานซ้ำด้วยระบบที่ออกแบบตามวิธีทำงานของธุรกิจคุณ — กรอกข้อมูล สรุปด้วย AI และเก็บในที่เดียว",
+    price: "ประเมินตามงาน",
+    status: "คุยเคสต่อเคส",
+    image: "/images/products/opscraft/hero.jpg",
+    accent: "ลดขั้นตอนทำงาน",
+  },
+];
+
+export const labProducts = [
+  {
+    name: "คุณเจริญ",
+    body: "ระบบช่วยพัฒนาชีวิตและการเงินในชีวิตประจำวัน",
+    status: "กำลังพัฒนา",
   },
 ] as const;
 
+/** Kept for legacy inner pages (build / how-we-work) */
 export const buildCards = [
   {
     icon: "🔎",
@@ -116,20 +183,11 @@ export const processSteps = [
   },
 ] as const;
 
-export const labProducts = [
-  {
-    name: "คุณเจริญ",
-    body: "ระบบช่วยพัฒนาชีวิตและการเงินในชีวิตประจำวัน",
-    status: "กำลังพัฒนา",
-  },
-  {
-    name: "ระบบพัฒนาชีวิตขั้นสูง",
-    body: "โครงระบบติดตามเป้าหมาย พลังงาน และวินัยระยะยาว",
-    status: "กำลังพัฒนา",
-  },
-  {
-    name: "Vlog AI",
-    body: "ระบบช่วยสร้างและจัดระเบียบคอนเทนต์จากชีวิตจริง",
-    status: "กำลังพัฒนา",
-  },
-] as const;
+/** @deprecated Prefer catalogProducts — kept for any leftover imports */
+export const featuredDemos = catalogProducts.map((p) => ({
+  name: p.name,
+  subtitle: p.nameTh,
+  href: p.href,
+  badge: p.status,
+  blurb: p.blurb,
+}));

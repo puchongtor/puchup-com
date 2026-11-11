@@ -9,16 +9,16 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root{
-    --ink-dark:#1C1712;      /* charred wok black-brown — hero / footer / dark accents */
-    --bg:#FAF5E9;            /* rice cream */
-    --bg-alt:#F1E8D3;        /* toasted rice / wheat */
-    --ink:#241C14;           /* body text */
+    --ink-dark:#1C1712;
+    --bg:#FAF5E9;
+    --bg-alt:#F1E8D3;
+    --ink:#241C14;
     --ink-soft:#6B5D4A;
     --ink-faint:#9C9080;
-    --gold:#D8A13B;          /* marigold / turmeric */
+    --gold:#D8A13B;
     --gold-deep:#B9812A;
-    --chili:#A6382E;         /* chili red — sparing accent */
-    --herb:#5B6B3E;          /* herb green — sparing accent */
+    --chili:#A6382E;
+    --herb:#5B6B3E;
     --line:#E6DCC3;
   }
   *{box-sizing:border-box;}
@@ -36,7 +36,6 @@
   .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
 
-  /* Top Sticky Navigation Bar */
   .sticky-nav{ backdrop-filter: blur(12px); background:rgba(250,245,233,.94); }
   .navtab{
     color:var(--ink-soft);
@@ -52,7 +51,6 @@
 
   .badge-star{ color:var(--gold-deep); letter-spacing:.05em; }
 
-  /* Premium Paper Price-Tag on Menu Cards */
   .price-tag{
     position:absolute; top:12px; right:12px;
     background:rgba(28, 23, 18, 0.92); color:#FFF5EA;
@@ -77,12 +75,10 @@
   .menu-filter{ border:1px solid var(--line); color:var(--ink-soft); transition:.2s; }
   .menu-filter.active{ background:var(--ink-dark); color:var(--bg); border-color:var(--ink-dark); }
 
-  /* Image slots with zoom */
   .img-slot{ position:relative; overflow:hidden; background:var(--bg-alt); }
   .img-slot img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .65s cubic-bezier(0.16, 1, 0.3, 1); }
   .dish-card:hover .img-slot img, .img-slot:hover img{ transform:scale(1.06); }
 
-  /* Trust Bar */
   .trust-item{ position:relative; padding:0 1.4rem; }
   .trust-item:not(:last-child)::after{
     content:''; position:absolute; right:0; top:50%; translate:0 -50%;
@@ -90,14 +86,12 @@
   }
   @media (max-width:767px){ .trust-item:not(:last-child)::after{ display:none; } }
 
-  /* Why Us */
   .why-item{ border-top:1px solid var(--line); padding-top:1.4rem; }
   .why-icon{
     width:46px; height:46px; border-radius:999px; background:var(--bg-alt);
     display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;
   }
 
-  /* Photo Story Bento */
   .bento{ display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:140px; gap:.75rem; }
   .bento .b1{ grid-column:span 2; grid-row:span 3; }
   .bento .b2{ grid-column:span 2; grid-row:span 2; }
@@ -115,12 +109,10 @@
   }
   .bento-scrim{ position:absolute; inset:0; background:linear-gradient(0deg, rgba(0,0,0,.65), transparent 50%); z-index:1; }
 
-  /* Google Connect Stepper */
   .flow-step{ display:flex; flex-direction:column; align-items:center; gap:.6rem; width:88px; }
   .flow-circle{ width:52px; height:52px; border-radius:999px; border:1px solid var(--line); background:#fff; display:flex; align-items:center; justify-content:center; font-size:1.25rem; }
   .flow-line{ flex:1; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 11px); margin-top:-38px; min-width:20px; }
 
-  /* Grand Signature Spotlight Effect */
   .tomyum-grand-glow {
     position: absolute;
     inset: -2px;
@@ -145,9 +137,12 @@
   <div class="max-w-6xl mx-auto px-4 md:px-8">
     <div class="h-16 flex items-center justify-between gap-4">
       
-      <a href="#hero" class="flex items-center gap-2 font-display font-bold text-lg md:text-xl shrink-0 text-[var(--ink-dark)]">
-        <span class="w-2.5 h-2.5 rounded-full bg-[var(--gold-deep)] inline-block"></span>
-        บ้านข้าวหอม
+      <a href="#hero" class="flex items-center gap-2.5 shrink-0">
+        <span class="text-2xl">🌾</span>
+        <div>
+          <span class="font-display font-bold text-lg md:text-xl text-[var(--ink-dark)] block leading-none">บ้านข้าวหอม</span>
+          <span class="text-[10px] text-amber-800 tracking-wider font-mono uppercase block mt-0.5">Homestyle Thai Cuisine</span>
+        </div>
       </a>
 
       <div class="hidden md:flex items-center gap-7 overflow-x-auto py-1">
@@ -183,7 +178,7 @@
 
 <header id="hero" class="relative">
   <div class="img-slot h-[64vh] md:h-[82vh]">
-    <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1920&q=85" alt="บ้านข้าวหอม ร้านอาหารไทยโฮมเมด" class="w-full h-full object-cover">
+    <img src="./images/rice-hero.webp" alt="บ้านข้าวหอม ร้านอาหารไทยโฮมเมด" class="w-full h-full object-cover">
     <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(20,16,12,.92) 0%, rgba(20,16,12,.48) 50%, rgba(20,16,12,.15) 75%);"></div>
   </div>
 
@@ -269,7 +264,7 @@
         <div class="grid md:grid-cols-12 gap-0 items-stretch">
           
           <div class="md:col-span-7 relative min-h-[320px] md:min-h-[420px] overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?auto=format&fit=crop&w=1200&q=85" alt="ต้มยำกุ้งแม่น้ำน้ำข้น" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <img src="./images/rice-tomyum-grand.webp" alt="ต้มยำกุ้งแม่น้ำน้ำข้น" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
             <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-transparent via-transparent to-[#1C1712]/90"></div>
             
             <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
@@ -342,12 +337,12 @@
     </div>
     <div class="grid md:grid-cols-2 gap-6">
       <div class="img-slot rounded-2xl aspect-[4/5] relative group shadow-md">
-        <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1000&q=80" alt="มื้อกลางวันกับครอบครัว" class="w-full h-full object-cover">
+        <img src="./images/rice-family.webp" alt="มื้อกลางวันกับครอบครัว" class="w-full h-full object-cover">
         <div class="bento-scrim"></div>
         <p class="bento-caption" style="bottom:1.2rem; left:1.2rem; font-size:.85rem; font-weight:600;">👨‍👩‍👧 มื้อกลางวันกับครอบครัว</p>
       </div>
       <div class="img-slot rounded-2xl aspect-[4/5] relative group shadow-md">
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" alt="มื้อเย็นกับเพื่อน" class="w-full h-full object-cover">
+        <img src="./images/rice-friends.webp" alt="มื้อเย็นกับเพื่อน" class="w-full h-full object-cover">
         <div class="bento-scrim"></div>
         <p class="bento-caption" style="bottom:1.2rem; left:1.2rem; font-size:.85rem; font-weight:600;">✨ มื้อเย็นและสังสรรค์กับเพื่อน</p>
       </div>
@@ -367,19 +362,19 @@
 
     <div class="bento">
       <div class="img-slot b1 relative rounded-xl shadow-lg">
-        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="การปรุงอาหารในครัว" class="w-full h-full object-cover">
+        <img src="./images/rice-kitchen.webp" alt="การปรุงอาหารในครัว" class="w-full h-full object-cover">
         <div class="bento-scrim"></div><p class="bento-caption">🔥 พิถีพิถันทุกขั้นตอนในครัว</p>
       </div>
       <div class="img-slot b2 relative rounded-xl shadow-lg">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="หน้าร้านยามเย็น" class="w-full h-full object-cover">
+        <img src="./images/rice-storefront.webp" alt="หน้าร้านยามเย็น" class="w-full h-full object-cover">
         <div class="bento-scrim"></div><p class="bento-caption">🏡 หน้าร้านยามเย็น</p>
       </div>
       <div class="img-slot b3 relative rounded-xl shadow-lg">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="โต๊ะอาหารที่คุ้นเคย" class="w-full h-full object-cover">
+        <img src="./images/rice-table.webp" alt="โต๊ะอาหารที่คุ้นเคย" class="w-full h-full object-cover">
         <div class="bento-scrim"></div><p class="bento-caption">🪑 โต๊ะรับรองบรรยากาศอบอุ่น</p>
       </div>
       <div class="img-slot b4 relative rounded-xl shadow-lg">
-        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" alt="สูตรเครื่องแกงสามรุ่น" class="w-full h-full object-cover">
+        <img src="./images/rice-herbs.webp" alt="สูตรเครื่องแกงสามรุ่น" class="w-full h-full object-cover">
         <div class="bento-scrim"></div><p class="bento-caption">📜 สมุนไพรและสูตรสามรุ่น</p>
       </div>
     </div>
@@ -584,24 +579,23 @@
 </div>
 
 <script>
-/* ---------- Curated Menu with Real Photos & Prices ---------- */
 const menu = [
   { name:'ผัดกะเพราหมูสับ ไข่ดาว', desc:'กะเพราใบสด พริกแกง เสิร์ฟพร้อมข้าวสวยร้อนๆ', price:120, cat:'main', badge:'ขายดี',
-    img:'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80' },
+    img:'./images/rice-menu-kaprao.webp' },
   { name:'แกงเขียวหวานไก่', desc:'เข้มข้นด้วยกะทิสด มะเขือเปราะ ใบโหระพา', price:160, cat:'main', badge:'แนะนำ',
-    img:'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=600&q=80' },
+    img:'./images/rice-menu-curry.webp' },
   { name:'ปีกไก่ทอดน้ำปลา', desc:'ปีกไก่กรอบนอกนุ่มใน หมักน้ำปลาสูตรลับ', price:140, cat:'starter', badge:null,
-    img:'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=600&q=80' },
+    img:'./images/rice-menu-wings.webp' },
   { name:'ยำวุ้นเส้นทะเล', desc:'กุ้ง หมึก วุ้นเส้น รสจัดจ้าน เปรี้ยวเผ็ดกำลังดี', price:180, cat:'starter', badge:null,
-    img:'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80' },
+    img:'./images/rice-menu-yum.webp' },
   { name:'ปลากะพงทอดน้ำปลา', desc:'ปลากะพงทอดกรอบทั้งตัว ราดน้ำปลามะม่วงยำ', price:380, cat:'main', badge:'แนะนำ',
-    img:'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80' },
+    img:'./images/rice-menu-fish.webp' },
   { name:'คั่วกลิ้งหมู', desc:'สูตรใต้แท้ เผ็ดร้อน หอมพริกแกงคั่วสด', price:150, cat:'main', badge:null,
-    img:'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80' },
+    img:'./images/rice-menu-kuakling.webp' },
   { name:'น้ำมะนาวโซดา', desc:'คั้นมะนาวสด หวานน้อย สดชื่นตัดเลี่ยน', price:60, cat:'drink', badge:null,
     img:'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80' },
   { name:'ข้าวเหนียวมะม่วง', desc:'มะม่วงน้ำดอกไม้สุก ข้าวเหนียวมูนกะทิสด', price:120, cat:'drink', badge:'ขายดี',
-    img:'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80' },
+    img:'./images/rice-menu-mango.webp' },
 ];
 
 const menuGrid = document.getElementById('menuGrid');
@@ -634,13 +628,11 @@ document.querySelectorAll('#menuFilters button').forEach(btn=>{
   });
 });
 
-/* ---------- Scroll reveal ---------- */
 const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 },{ threshold:.1 });
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ---------- Scroll-spy nav tabs ---------- */
 const sections = ['about','menu','story','reviews','location','cta'].map(id=>document.getElementById(id));
 const navtabs = document.querySelectorAll('.navtab');
 const spy = new IntersectionObserver(entries=>{
@@ -655,7 +647,6 @@ const spy = new IntersectionObserver(entries=>{
 },{ rootMargin:'-35% 0px -45% 0px' });
 sections.forEach(s=> s && spy.observe(s));
 
-/* ---------- Floating contact interactive animation ---------- */
 const floatToggle = document.getElementById('floatToggle');
 const floatPanel = document.getElementById('floatPanel');
 

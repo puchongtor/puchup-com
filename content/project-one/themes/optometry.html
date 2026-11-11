@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OptiCraft Vision Center — ศูนย์ตรวจวัดสายตาและตัดแว่นโปรเกรสซีฟ สาทร</title>
+<meta name="description" content="ศูนย์ตรวจวัดสายตาเฉพาะทางโดยทัศนมาตร (Doctor of Optometry) ตรวจ 18 ระบบมาตรฐาน ตัดแว่นโปรเกรสซีฟเฉพาะบุคคล เลนส์เยอรมัน-ญี่ปุ่นแท้ 100% สาทร-พระราม 3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Optician",
+  "name": "OptiCraft Vision Center",
+  "alternateName": "ออพติคราฟต์ ศูนย์ตรวจวัดสายตาเฉพาะทาง",
+  "description": "ศูนย์ตรวจวัดสายตาและออกแบบเลนส์เฉพาะบุคคลโดยนักทัศนมาตรวิชาชีพ",
+  "telephone": "+6628887766",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "128 ถนนสาทรใต้ แขวงยานนาวา",
+    "addressLocality": "เขตสาทร",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10120",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #F9FAFB;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F0F3F6;
+    --ink: #111827;
+    --ink-soft: #374151;
+    --ink-faint: #6B7280;
+    --cyan: #0284C7;
+    --cyan-dark: #0369A1;
+    --cyan-light: #E0F2FE;
+    --line: #E5E7EB;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--cyan); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cyan-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.96);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--cyan); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.035); }
+
+  .btn-cyan {
+    background-color: var(--cyan);
+    color: #FFFFFF;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-cyan:hover {
+    background-color: var(--cyan-dark);
+    box-shadow: 0 10px 24px -8px rgba(2, 132, 199, 0.45);
+  }
+
+  .lens-card { transition: all 0.25s ease; cursor: pointer; }
+  .lens-card:hover, .lens-card.active {
+    border-color: var(--cyan);
+    background-color: var(--cyan-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#E0F2FE] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ OPTICRAFT — ศูนย์วัดสายตาเฉพาะบุคคลโดยทัศนมาตร สาทร · ตรวจวัด 18 ขั้นตอนมาตรฐาน ·</span>
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--ink)] flex items-center justify-center text-white text-xl font-mono font-bold shadow-sm group-hover:bg-[var(--cyan)] transition-colors">
+        👓
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">OptiCraft</span>
+        <span class="text-xs text-[var(--cyan-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Vision Center · Sathorn</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#lenses" class="navlink font-semibold">เลือกเลนส์ตามการใช้งาน</a>
+      <a href="#protocol" class="navlink">ขั้นตอนตรวจ 18 ระบบ</a>
+      <a href="#brands" class="navlink">แบรนด์เลนส์ & กรอบแว่น</a>
+      <a href="#team" class="navlink">ทีมนักทัศนมาตร</a>
+      <a href="#guarantee" class="navlink">การรับประกันการมองเห็น</a>
+      <a href="#location" class="navlink">ที่ตั้ง & นัดตรวจ</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:028887766" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-888-7766
+      </a>
+      <a href="#booking" class="btn-cyan px-6 py-3 rounded-full text-sm shadow-sm">
+        นัดตรวจสายตา (Private Slot)
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--cyan-light)] border border-[var(--cyan)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--cyan-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--cyan)] animate-pulse"></span> ตรวจละเอียด 45 นาที 1-on-1 โดย Doctor of Optometry
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        มองเห็นคมชัด เบาสบายตา<br>
+        <span class="text-[var(--cyan)]">ด้วยแว่นตาที่ออกแบบเฉพาะคุณ</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        ศูนย์ตรวจวัดสายตาและตัดเลนส์โปรเกรสซีฟชั้นสูง วิเคราะห์พฤติกรรมการใช้สายตาด้วยระบบ 3D Digital Tracking รับประกันปรับตัวกับเลนส์ได้ 100%
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#lenses" class="btn-cyan px-8 py-4 rounded-full text-center text-base md:text-lg shadow-md">
+          เลือกเลนส์ตามการใช้งานของคุณ →
+        </a>
+        <a href="#booking" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          จองคิวตรวจสายตา (สาทร)
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">18 ระบบ</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ตรวจวัดกล้ามเนื้อตาครบ</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">90 วัน</strong>
+          <span class="text-sm text-[var(--ink-faint)]">รับประกันเปลี่ยนค่าสายตา</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ทัศนมาตรมีใบประกอบโรคฯ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/optic-hero.webp" alt="นักทัศนมาตรตรวจสายตาให้ลูกค้า" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-2xl shrink-0">👁️</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ระบบทดลองเลนส์จริง</strong>
+          <span class="text-[var(--ink-faint)]">Trial Lens Kit จำลองโต๊ะทำงานก่อนตัด</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — LENS & LIFESTYLE MATRIX ============ -->
+<section id="lenses" class="py-24 md:py-32 px-6 md:px-10 bg-[#EDF2F7] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Tailored Lens Technology</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">คุณใช้สายตากับกิจกรรมใดมากที่สุด?</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกไลฟ์สไตล์หลักเพื่อดูเทคโนโลยีโครงสร้างเลนส์และระดับความสบายตาที่ตอบโจทย์คุณ
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="lensSelector">
+      <button data-lens="prog" class="lens-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">👓</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">วัย 40+ มองใกล้-ไกล</strong>
+        <span class="text-xs text-[var(--ink-faint)]">Individual Progressive</span>
+      </button>
+
+      <button data-lens="digital" class="lens-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💻</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">หน้าจอ & ออฟฟิศซินโดรม</strong>
+        <span class="text-xs text-[var(--ink-faint)]">Blue Control / Relax Lens</span>
+      </button>
+
+      <button data-lens="drive" class="lens-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🚗</span>
+        <strong class="text-xs md:text-base font-bold block text-[var(--ink)]">ขับรถ & แพ้แสงกลางคืน</strong>
+        <span class="text-xs text-[var(--ink-faint)]">DriveSafe / Contrast Tech</span>
+      </button>
+
+      <button data-lens="photo" class="lens-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">☀️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">เลนส์ออกแดดเปลี่ยนสี</strong>
+        <span class="text-xs text-[var(--ink-faint)]">Transitions Gen S</span>
+      </button>
+    </div>
+
+    <div id="lensResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-md grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — 18-STEP CLINICAL PROTOCOL ============ -->
+<section id="protocol" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Standard Clinical Protocol</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">6 ขั้นตอนการตรวจวัดสายตา 18 ระบบ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ไม่ได้ตรวจแค่สั้น-ยาว-เอียง แต่ตรวจวิเคราะห์การทำงานร่วมกันของตาทั้งสองข้างและสุขภาพตาเบื้องต้น
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 01</span>
+          <h4 class="font-display font-bold text-xl mb-2">ซักประวัติและพฤติกรรมสายตา</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            สอบถามระยะหน้าจอคอมพิวเตอร์ การขับรถ งานอดิเรก และโรคประจำตัว เพื่อนำมาคำนวณโครงสร้างเลนส์
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Lifestyle Analysis</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 02</span>
+          <h4 class="font-display font-bold text-xl mb-2">ตรวจวัดค่าสายตาแบบละเอียด</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            วัดหาจุดโฟกัสที่คมชัดสูงสุดโดยไม่ทำให้กล้ามเนื้อตาเพ่งเกร็ง (Subjective Refraction)
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ No Over-Correction</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 03</span>
+          <h4 class="font-display font-bold text-xl mb-2">ตรวจกล้ามเนื้อตาและการรวมภาพ</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ตรวจภาวะตาเหล่ซ่อนเร้น (Phoria) กำลังการรวมภาพ (Binocular Vision) ป้องกันอาการมึนหัวหรือภาพซ้อน
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Binocular Balance</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 04</span>
+          <h4 class="font-display font-bold text-xl mb-2">ทดลองเลนส์จริงในพื้นที่จำลอง</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ใส่ชุดเลนส์ทดลองเดินจริง ก้มมองมือถือ อ่านหนังสือขึ้น-ลงบันได เพื่อให้มั่นใจในความสบายตาก่อนสั่งตัด
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Real-World Trial</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 05</span>
+          <h4 class="font-display font-bold text-xl mb-2">3D Digital Parameter Fitting</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            วัดตำแหน่งตาดำ (PD), ระยะห่างกระจกตาถึงเลนส์ (CVD) และมุมเอียงของกรอบแว่นบนใบหน้าจริงด้วยกล้องดิจิทัล
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ 0.1 mm Precision</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 06</span>
+          <h4 class="font-display font-bold text-xl mb-2">ดัดปรับกรอบ & นัดรับแว่นตา</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ช่างประกอบแว่นปรับบาลานซ์แป้นจมูกและขาแว่นให้กระจายน้ำหนัก ไม่กดทับหลังหู พร้อมการดูแลหลังการขาย
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Lifetime Service</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — LENS BRANDS & CRAFT ============ -->
+<section id="brands" class="py-24 md:py-32 bg-[#EDF2F7] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <p class="eyebrow mb-2">Authorized Dealer</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          พันธมิตรเลนส์ระดับโลก<br>
+          <span class="text-[var(--cyan)]">เยอรมนี ญี่ปุ่น ฝรั่งเศส แท้ 100%</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          ทุกคู่มาพร้อมการ์ดรับประกันคุณภาพจากบริษัทผู้ผลิตเลนส์โดยตรง (Official Warranty Card) สลักเลเซอร์สัญลักษณ์แบรนด์บนผิวเลนส์เพื่อความมั่นใจ
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🇩🇪 Rodenstock Germany</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🇫🇷 Essilor Varilux France</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🇯🇵 Hoya Vision Japan</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🇩🇪 Carl Zeiss Vision</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/optic-exam-room.webp" alt="ห้องตรวจวัดสายตาระบบดิจิทัล">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/optic-frame-craft.webp" alt="ช่างฝีมือดัดปรับแต่งกรอบแว่น">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — OPTOMETRIST TEAM ============ -->
+<section id="team" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Vision Specialists</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมนักทัศนมาตรประจำการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ทัศนมาตรศาสตร์บัณฑิต (O.D.) ผู้ถือใบอนุญาตประกอบโรคศิลปะโดยอาศัยทัศนมาตรศาสตร์
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-32 h-32 rounded-full overflow-hidden shrink-0 border-2 border-[var(--cyan)] shadow-md">
+          <img src="./images/team-dr-opt.webp" alt="ทัศนมาตร ธีรภัทร เอกวิริยะกุล" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--cyan)] font-bold uppercase">ผู้เชี่ยวชาญเลนส์โปรเกรสซีฟ</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-1">ดร.ทัศนมาตร ธีรภัทร (หมอภัทร)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">ทัศนมาตรศาสตร์บัณฑิต ม.นเรศวร (ทศ.ม. 412)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ผู้เชี่ยวชาญการฟิตติ้งเลนส์โปรเกรสซีฟเคสยาก ค่าสายตายาวตามวัยร่วมกับสายตาเอียงสูง ประสบการณ์กว่า 9 ปี
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-32 h-32 rounded-full overflow-hidden shrink-0 border-2 border-[var(--cyan)] shadow-md">
+          <img src="./images/team-dr-opt2.webp" alt="ทัศนมาตร ณัฐชยา วัฒนาพานิช" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--cyan)] font-bold uppercase">ผู้เชี่ยวชาญกล้ามเนื้อตา & เด็ก</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-1">ทัศนมาตร ณัฐชยา (หมอส้ม)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">ทัศนมาตรศาสตร์บัณฑิต ม.รามคำแหง (ทศ.ม. 589)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการตรวจกล้ามเนื้อตา อาการล้าตาจากการทำงานหน้าจอคอมพิวเตอร์ และเลนส์ชะลอสายตาสั้นในเด็ก
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 bg-[#EDF2F7] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--cyan)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการ อังคาร – อาทิตย์ 10:30 – 19:30 น. (หยุดวันจันทร์)
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">OptiCraft Vision Center (สาทร)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            128 ถนนสาทรใต้ (ใกล้แยกนราธิวาสฯ / BTS ช่องนนทรี) แขวงยานนาวา เขตสาทร กรุงเทพฯ 10120
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚗 ที่จอดรถ:</strong>
+              <span>มีที่จอดรถหน้าร้าน 5 คัน จอดฟรีตลอดเวลาตรวจ</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚇 BTS:</strong>
+              <span>ลงสถานีช่องนนทรี ทางออก 2 เดินต่อเพียง 350 เมตร</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🛡️ นโยบายการนัด:</strong>
+              <span>ตรวจรอบละ 1 ท่าน เพื่อความเป็นส่วนตัวและความละเอียดสูงสุด</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Sathorn+Bangkok" target="_blank" rel="noopener" class="btn-cyan flex-1 text-center py-3.5 rounded-full text-sm font-semibold shadow-md">
+            📍 นำทางด้วย Google Maps
+          </a>
+          <a href="tel:028887766" class="border hairline bg-white flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-[var(--bg-alt)] transition">
+            📞 โทร 02-888-7766
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm" id="booking">
+        <span class="eyebrow text-xs block mb-2">Private Examination Slot</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">นัดหมายตรวจวัดสายตาล่วงหน้า</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">จองเวลาตรวจ 45 นาที 1-on-1 โดยไม่มีค่าใช้จ่ายในการตรวจวัด</p>
+        
+        <form onsubmit="event.preventDefault(); alert('ศูนย์ตรวจได้รับข้อมูลการจองแล้ว เจ้าหน้าที่จะติดต่อยืนยันคิวตรวจครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อ-นามสกุล</label>
+            <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]" placeholder="เช่น คุณธนกร สิทธิโชค" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เบอร์โทรศัพท์</label>
+              <input type="tel" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]" placeholder="081-xxx-xxxx" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวก</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ปัญหาหรือประเภทเลนส์ที่สนใจ</label>
+            <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]">
+              <option>ตัดแว่นโปรเกรสซีฟ (มองใกล้-ไกลในอันเดียว)</option>
+              <option>ตัดแว่นสำหรับทำงานหน้าจอคอมฯ / ลดตาล้า</option>
+              <option>ตัดแว่นสายตาสั้น-เอียงสูง / เลนส์ย่อบาง</option>
+              <option>ตรวจวัดสายตาและสุขภาพตาประจำปี</option>
+              <option>ดัดปรับทรงกรอบแว่น / ซ่อมแซม</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-cyan py-4 rounded-full text-base font-semibold mt-4 shadow-md">
+            ยืนยันการจองรอบตรวจ →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-white border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">OptiCraft Vision Center (Sathorn)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      128 ถนนสาทรใต้ แขวงยานนาวา เขตสาทร กรุงเทพฯ 10120 | ใบอนุญาตสถานพยาบาลโดยอาศัยทัศนมาตรศาสตร์ถูกต้อง
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 OptiCraft Eyewear. All rights reserved. Created with PuchUp Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--ink-faint)] font-mono block">OptiCraft สาทร</span>
+    <span class="font-display text-base font-bold text-[var(--cyan)]">ตรวจ 18 ระบบฟรี</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:028887766" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-cyan px-6 py-2.5 rounded-full text-sm font-semibold">จองเวลาตรวจ</a>
+  </div>
+</div>
+
+<script>
+const lensData = {
+  prog: {
+    title: 'เลนส์โปรเกรสซีฟเฉพาะบุคคล (Individual Progressive)',
+    tech: 'Rodenstock B.I.G. Exact / Essilor Varilux XR Series',
+    desc: 'มองเห็นคมชัดทุกระยะ ไร้รอยต่อ ไร้ภาพวูบวาบด้านข้าง ออกแบบโครงสร้างเลนส์ตามขนาดรูม่านตาและระยะห่างตาดำจริง เหมาะสำหรับผู้มีปัญหาเริ่มมองใกล้ไม่ชัดหลังอายุ 40 ปี',
+    time: 'ระยะเวลาผลิต 7–10 วันทำการ',
+    price: 'เริ่มต้น ฿9,900 – ฿24,500',
+    img: './images/optic-progressive.webp'
+  },
+  digital: {
+    title: 'เลนส์ตัดแสงสีฟ้า & บรรเทาตาล้า (Blue Relax Lens)',
+    tech: 'Hoya Sync III / Zeiss Digital Lens SmartLife',
+    desc: 'เคลือบผิวตัดแสงสีฟ้าคลื่นพลังงานสูงจากหน้าจอมือถือและแท็บเล็ต พร้อมโซนผ่อนคลายกล้ามเนื้อตาด้านล่าง ลดอาการปวดเบ้าตา ปวดศีรษะ และตาแห้งสะสม',
+    time: 'ระยะเวลาผลิต 3–5 วันทำการ',
+    price: 'เริ่มต้น ฿3,800 – ฿7,500',
+    img: './images/optic-blueblock.webp'
+  },
+  drive: {
+    title: 'เลนส์เพิ่มคอนทราสต์สำหรับการขับรถ (DriveSafe Lens)',
+    tech: 'Zeiss DriveSafe Coating / Rodenstock Road',
+    desc: 'ตัดแสงสะท้อนไฟหน้ารถสวนทางและแสงไฟริมถนนเวลากลางคืนได้สูงสุด 64% เพิ่มความคมชัดในสภาวะฝนตกหรือแสงน้อย ช่วยให้กะระยะเบรกได้แม่นยำ ปลอดภัยยิ่งขึ้น',
+    time: 'ระยะเวลาผลิต 5–7 วันทำการ',
+    price: 'เริ่มต้น ฿6,500 – ฿12,000',
+    img: './images/optic-drive.webp'
+  },
+  photo: {
+    title: 'เลนส์เปลี่ยนสีอัจฉริยะในที่ร่ม-กลางแจ้ง (Transitions Gen S)',
+    tech: 'Transitions Gen S Ultra-Fast Darkening',
+    desc: 'ใสเคลียร์คมชัด 100% ในอาคาร และเปลี่ยนสีเข้มเป็นแว่นกันแดดภายในเสี้ยววินาทีเมื่อสัมผัสรังสี UV ปกป้องดวงตาจากแสงจ้า สะดวกสบายไม่ต้องพกแว่น 2 อัน',
+    time: 'ระยะเวลาผลิต 3–5 วันทำการ',
+    price: 'เริ่มต้น ฿5,200 – ฿9,800',
+    img: './images/optic-progressive.webp'
+  }
+};
+
+function renderLens(key) {
+  const data = lensData[key];
+  const box = document.getElementById('lensResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-stone-100 shadow-sm">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Tailored Optical Design</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-xs font-mono text-[var(--cyan)] mb-3 font-semibold">เทคโนโลยี: ${data.tech}</p>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        <div class="flex items-center gap-6 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">ระยะเวลาสั่งตัด</span><strong class="text-[var(--ink)] font-bold text-base">${data.time}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">ราคาประเมิน</span><strong class="text-[var(--cyan)] font-bold text-lg">${data.price}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-cyan px-7 py-3 rounded-full text-sm font-semibold shadow-sm">นัดทดลองเลนส์จริงตัวนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderLens('prog');
+document.querySelectorAll('#lensSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#lensSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderLens(btn.dataset.lens);
+  });
+});
+
+const tom = new Date();
+tom.setDate(tom.getDate() + 1);
+document.getElementById('bookDate').value = tom.toISOString().split('T')[0];
+document.getElementById('bookDate').min = tom.toISOString().split('T')[0];
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rebalance Physiotherapy Clinic — คลินิกกายภาพบำบัดเฉพาะทาง พระราม 3</title>
+<meta name="description" content="คลินิกกายภาพบำบัดรักษาออฟฟิศซินโดรม หมอนรองกระดูกทับเส้นประสาท โดยนักกายภาพบำบัดวิชาชีพตัวต่อตัว 1 ชั่วโมงเต็ม ใบอนุญาตถูกต้อง ติดถนนพระราม 3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "Rebalance Physiotherapy Clinic",
+  "alternateName": "รีบาลานซ์ คลินิกกายภาพบำบัด",
+  "description": "คลินิกกายภาพบำบัดเฉพาะทาง รักษาอาการปวดกล้ามเนื้อเรื้อรัง ออฟฟิศซินโดรม และข้อต่อ",
+  "telephone": "+6629876543",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "88/4 ถนนพระราม 3 แขวงบางโพงพาง",
+    "addressLocality": "เขตยานนาวา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10120",
+    "addressCountry": "TH"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    }
+  ],
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #F8FAF9;
+    --ink: #14211D;
+    --ink-soft: #384A45;
+    --ink-faint: #637772;
+    --teal: #198774;
+    --teal-dark: #116254;
+    --teal-light: #E4F4F0;
+    --line: #DCE8E3;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; }
+  .hairline { border-color: var(--line); }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .pain-card { transition: all 0.25s ease; cursor: pointer; }
+  .pain-card:hover, .pain-card.active {
+    border-color: var(--teal);
+    background-color: var(--teal-light);
+    transform: translateY(-2px);
+  }
+  .btn-teal {
+    background-color: var(--teal);
+    color: #FFFFFF;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+  .btn-teal:hover {
+    background-color: var(--teal-dark);
+    box-shadow: 0 10px 24px -8px rgba(25, 135, 116, 0.45);
+  }
+  #mobileBar { backdrop-filter: blur(14px); }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP BAR DEMO NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#E4F4F0] text-center text-sm font-mono py-2.5 px-4 tracking-wider">
+  PUCHUP ONE — DEMO · คลินิกกายภาพบำบัดรักษาตรงจุด พระราม 3 ·
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างธุรกิจอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR (TYPOGRAPHIC LOGO) ============ -->
+<nav class="sticky top-0 z-50 border-b hairline bg-white/95 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
+    <a href="#hero" class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-xl bg-[var(--teal)] flex items-center justify-center text-white font-bold text-xl shadow-sm">
+        R
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight block leading-none text-[var(--ink)]">Rebalance</span>
+        <span class="text-xs text-[var(--ink-faint)] tracking-widest font-mono uppercase block mt-1 font-semibold">Physiotherapy Clinic</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-8 text-base font-medium text-[var(--ink-soft)]">
+      <a href="#assessment" class="hover:text-[var(--teal)] transition">เช็กจุดที่ปวด</a>
+      <a href="#steps" class="hover:text-[var(--teal)] transition">ขั้นตอนการรักษา</a>
+      <a href="#services" class="hover:text-[var(--teal)] transition">โปรแกรม & ค่าบริการ</a>
+      <a href="#license" class="hover:text-[var(--teal)] transition">ใบอนุญาต & เครื่องมือ</a>
+      <a href="#team" class="hover:text-[var(--teal)] transition">ทีมนักกายภาพ</a>
+      <a href="#location" class="hover:text-[var(--teal)] transition">การเดินทาง</a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <a href="tel:029876543" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-semibold">
+        <span>📞</span> 02-987-6543
+      </a>
+      <a href="#booking" class="btn-teal px-6 py-3 rounded-full text-sm shadow-sm">
+        นัดหมายตรวจประเมิน
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--teal-light)] border border-[var(--teal)]/20 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--teal-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--teal)] animate-pulse"></span> ใบอนุญาตสถานพยาบาลเลขที่ 10101004567
+      </div>
+      <h1 class="font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        บอกลาอาการปวดเรื้อรัง<br>
+        <span class="text-[var(--teal)]">ฟื้นฟูกล้ามเนื้อถึงต้นเหตุ</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        คลินิกกายภาพบำบัดรักษาออฟฟิศซินโดรม ปวดคอบ่าหลัง หมอนรองกระดูกทับเส้นประสาท โดยนักกายภาพบำบัดวิชาชีพตัวต่อตัว 1 ชั่วโมงเต็ม พร้อมเครื่องมือมาตรฐานสากลจากยุโรป
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#assessment" class="btn-teal px-8 py-4 rounded-full text-center text-base md:text-lg shadow-md">
+          เช็กอาการปวดเบื้องต้น →
+        </a>
+        <a href="#booking" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          จองคิวตรวจวันนี้ (พระราม 3)
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">1-on-1</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ดูแลเดี่ยวตลอด 60 นาที</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">4,500+</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เคสฟื้นฟูอาการสำเร็จ</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">นักกายภาพมีใบประกอบฯ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/physio-hero.webp" alt="นักกายภาพบำบัดคนไทยตรวจรักษาอาการปวดคอบ่าไหล่" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xl shrink-0">✓</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">เบิกประกันสุขภาพ / OPD ได้</strong>
+          <span class="text-[var(--ink-faint)]">ออกใบรับรองแพทย์และเอกสารเคลมครบชุด</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ INTERACTIVE PAIN ASSESSMENT ============ -->
+<section id="assessment" class="py-20 md:py-28 px-6 bg-[#EEF4F1]">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Interactive Self-Check</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold">คุณกำลังมีอาการปวดตรงไหน?</h2>
+      <p class="text-base md:text-lg text-[var(--ink-soft)] font-light mt-3">
+        เลือกจุดที่รู้สึกตึงหรือปวด เพื่อดูแนวทางการรักษาและเครื่องมือที่ตรงกับอาการของคุณ
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 mb-10" id="painSelector">
+      <button data-pain="neck" class="pain-card active p-5 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💆</span>
+        <strong class="text-sm font-bold block text-[var(--ink)]">คอ บ่า ไหล่</strong>
+        <span class="text-xs text-[var(--ink-faint)]">ออฟฟิศซินโดรม</span>
+      </button>
+
+      <button data-pain="back" class="pain-card p-5 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">⚡</span>
+        <strong class="text-sm font-bold block text-[var(--ink)]">หลังส่วนล่าง</strong>
+        <span class="text-xs text-[var(--ink-faint)]">ปวดหลังเรื้อรัง</span>
+      </button>
+
+      <button data-pain="sciatica" class="pain-card p-5 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🦵</span>
+        <strong class="text-sm font-bold block text-[var(--ink)]">สะโพก ร้าวลงขา</strong>
+        <span class="text-xs text-[var(--ink-faint)]">หมอนรองกระดูก</span>
+      </button>
+
+      <button data-pain="wrist" class="pain-card p-5 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">✋</span>
+        <strong class="text-sm font-bold block text-[var(--ink)]">ข้อมือ นิ้วล็อก</strong>
+        <span class="text-xs text-[var(--ink-faint)]">ใช้เมาส์ / พิมพ์งาน</span>
+      </button>
+
+      <button data-pain="knee" class="pain-card p-5 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏃</span>
+        <strong class="text-sm font-bold block text-[var(--ink)]">เข่า & ข้อเท้า</strong>
+        <span class="text-xs text-[var(--ink-faint)]">จากการเล่นกีฬา</span>
+      </button>
+
+      <button data-pain="postop" class="pain-card p-5 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏥</span>
+        <strong class="text-sm font-bold block text-[var(--ink)]">ฟื้นฟูหลังผ่าตัด</strong>
+        <span class="text-xs text-[var(--ink-faint)]">เพิ่มองศาข้อต่อ</span>
+      </button>
+    </div>
+
+    <div id="painResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-md grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 CLINICAL WORKFLOW STEPS ============ -->
+<section id="steps" class="py-20 md:py-28 px-6 bg-white border-y hairline">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Standard Treatment Process</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold">4 ขั้นตอนการรักษามาตรฐานสากล</h2>
+      <p class="text-base md:text-lg text-[var(--ink-soft)] font-light mt-3">
+        รักษาอย่างมีแบบแผน ตรวจหาสาเหตุที่แท้จริง ไม่ขายคอร์สล่วงหน้า และวัดผลความต่างหลังรักษาทันที
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-[var(--bg)] p-7 rounded-3xl border hairline flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-sm font-bold text-[var(--teal)] uppercase block mb-3">STEP 01</span>
+          <h3 class="font-display font-bold text-xl mb-2">ตรวจประเมิน 20 รายการ (20 นาที)</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ตรวจวิเคราะห์แนวกระดูก ทดสอบการดึงรั้งของเส้นประสาท และคลำหากล้ามเนื้อมัดลึกที่มีพังผืดเกาะ เพื่อวางแผนเฉพาะบุคคล
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ หาสาเหตุตรงจุด</div>
+      </div>
+
+      <div class="bg-[var(--bg)] p-7 rounded-3xl border hairline flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-sm font-bold text-[var(--teal)] uppercase block mb-3">STEP 02</span>
+          <h3 class="font-display font-bold text-xl mb-2">หัตถการคลายปมกล้ามเนื้อ</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ใช้เทคนิค Manual Therapy ดัดดึงข้อต่อ (Joint Mobilization) และสลาย Trigger Point ด้วยมือนักกายภาพบำบัดวิชาชีพ
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ นุ่มนวล ไม่กระชาก</div>
+      </div>
+
+      <div class="bg-[var(--bg)] p-7 rounded-3xl border hairline flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-sm font-bold text-[var(--teal)] uppercase block mb-3">STEP 03</span>
+          <h3 class="font-display font-bold text-xl mb-2">รักษาด้วยเครื่องมือเจาะจง</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ยิง Shockwave สลายพังผืด, ใช้ High Power Laser ลดปวดลึก หรือใช้เครื่องดึงคอ-หลังระบบคอมพิวเตอร์ตามแผน
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ เครื่องมือนำเข้า EU</div>
+      </div>
+
+      <div class="bg-[var(--bg)] p-7 rounded-3xl border hairline flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-sm font-bold text-[var(--teal)] uppercase block mb-3">STEP 04</span>
+          <h3 class="font-display font-bold text-xl mb-2">Re-check & ท่ายืดเฉพาะบุคคล</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            วัดองศาการเคลื่อนไหวซ้ำทันทีหลังรักษา พร้อมสอนท่ายืดปรับบุคลิกภาพสำหรับทำเองที่บ้านเพื่อไม่ให้กลับมาปวดซ้ำ
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ หายขาดอย่างยั่งยืน</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES & PRICING TRANSPARENCY ============ -->
+<section id="services" class="py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Transparent Treatment Program</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold">โปรแกรมการรักษาและค่าบริการ</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-3 md:mt-0 font-light">
+        ไม่มีคอร์สผูกมัด จ่ายรายครั้งตามจริง ทุกโปรแกรมรวมการตรวจประเมินร่างกาย 20 รายการ
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-2">Standard Session · 60 นาที</span>
+          <h3 class="font-display font-bold text-2xl mb-3">Office Syndrome Relief</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            รักษาอาการปวดคอ บ่า สะบักจม จากการนั่งทำงานนาน คลายปมกล้ามเนื้อ Trigger Point ด้วยเทคนิค Manual Therapy ร่วมกับ Ultrasound ความร้อนลึก
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ ตรวจวิเคราะห์แนวกระดูกและสรีระ</li>
+            <li class="flex items-center gap-2">✓ การคลายกล้ามเนื้อมืออาชีพ (Manual)</li>
+            <li class="flex items-center gap-2">✓ Ultrasound Therapy ลดการอักเสบ</li>
+            <li class="flex items-center gap-2">✓ สอนท่ายืดปรับ Ergonomics ส่วนตัว</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาต่อครั้ง</span>
+            <span class="font-display text-3xl font-bold text-[var(--teal)]">฿1,200</span>
+          </div>
+          <a href="#booking" class="btn-teal px-6 py-3 rounded-full text-sm">จองเวลานี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border-2 border-[var(--teal)] flex flex-col justify-between shadow-xl relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[var(--teal)] text-white text-xs font-mono uppercase px-4 py-1.5 rounded-full tracking-wider font-bold">
+          RECOMMENDED · อาการปวดสะสม
+        </div>
+        <div class="pt-2">
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-2">Deep Advanced Session · 75 นาที</span>
+          <h3 class="font-display font-bold text-2xl mb-3">Shockwave Deep Therapy</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            สลายพังผืดและเส้นเอ็นอักเสบเรื้อรัง ด้วยคลื่นกระแทก Focus / Radial Shockwave มาตรฐานยุโรป เหมาะกับอาการปวดหลังเรื้อรัง รองช้ำ และเอ็นข้อมือ
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ ตรวจประเมินโครงสร้างและเส้นประสาท</li>
+            <li class="flex items-center gap-2">✓ <strong>Radial / Focus Shockwave</strong> 2,000 ช็อต</li>
+            <li class="flex items-center gap-2">✓ High Power Laser Therapy ลดปวดทันที</li>
+            <li class="flex items-center gap-2">✓ จัดโปรแกรมออกกำลังกายแกนกลางลำตัว</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาต่อครั้ง</span>
+            <span class="font-display text-3xl font-bold text-[var(--teal)]">฿1,850</span>
+          </div>
+          <a href="#booking" class="btn-teal px-6 py-3 rounded-full text-sm">จองเวลานี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-2">Targeted Care · 90 นาที</span>
+          <h3 class="font-display font-bold text-2xl mb-3">Spine & Nerve Decompression</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            โปรแกรมฟื้นฟูกระดูกสันหลัง หมอนรองกระดูกทับเส้นประสาท และอาการชาสะโพกร้าวลงขา ด้วยเครื่องดึงคอ-หลังระบบคอมพิวเตอร์ผสานการดัดดึงข้อต่อ
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ ตรวจเช็กระบบประสาทและการรับความรู้สึก</li>
+            <li class="flex items-center gap-2">✓ ดึงหลัง/คอผ่อนแรงกดหมอนรองกระดูก</li>
+            <li class="flex items-center gap-2">✓ Joint Mobilization ขยับข้อต่อเฉพาะจุด</li>
+            <li class="flex items-center gap-2">✓ ติดตามอาการหลังรักษาอย่างใกล้ชิด</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาต่อครั้ง</span>
+            <span class="font-display text-3xl font-bold text-[var(--teal)]">฿2,200</span>
+          </div>
+          <a href="#booking" class="btn-teal px-6 py-3 rounded-full text-sm">จองเวลานี้</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 CLINICAL TRUST & LICENSE BADGE ============ -->
+<section id="license" class="py-16 px-6 bg-white border-y hairline">
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-[var(--bg)] rounded-3xl p-8 md:p-12 border hairline grid lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-8 space-y-3">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-[var(--teal)] font-bold uppercase">
+          <span>🏛</span> มาตรฐานสถานพยาบาลเวชกรรมถูกต้องตามกฎหมาย
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl font-bold">รีบาลานซ์ คลินิกกายภาพบำบัด (สาขาพระราม 3)</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed">
+          ได้รับใบอนุญาตประกอบกิจการสถานพยาบาลเลขที่ <strong>10101004567</strong> ดำเนินการรักษาโดยนักกายภาพบำบัดที่ได้รับใบอนุญาตประกอบโรคศิลปะ สาขากายภาพบำบัด ทุกท่าน พร้อมเครื่องมือนำเข้าที่ผ่านการรับรองมาตรฐาน อย. ไทยและ CE ยุโรป
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2 text-xs md:text-sm font-mono text-[var(--ink-faint)]">
+          <span>• เครื่อง Shockwave มาตรฐานสวิส</span>
+          <span>• ระบบห้องตรวจแยกส่วนตัว</span>
+          <span>• ฆ่าเชื้ออุปกรณ์ 100% ทุกเคส</span>
+        </div>
+      </div>
+      <div class="lg:col-span-4 bg-white p-6 rounded-2xl border hairline text-center space-y-2 shadow-sm">
+        <span class="text-4xl">🛡️</span>
+        <div class="font-display font-bold text-lg text-[var(--ink)]">ใบอนุญาตสถานพยาบาล</div>
+        <div class="font-mono text-sm text-[var(--teal)] font-bold">เลขที่ 10101004567</div>
+        <p class="text-xs text-[var(--ink-faint)]">กรมสนับสนุนบริการสุขภาพ กระทรวงสาธารณสุข</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section id="team" class="py-20 md:py-28 px-6 bg-[#EEF4F1]">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-14">
+      <p class="eyebrow mb-2">Certified Specialists</p>
+      <h2 class="font-display text-3xl md:text-4xl font-bold">ทีมนักกายภาพบำบัดวิชาชีพ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ดูแลโดยนักกายภาพบำบัดที่มีใบประกอบโรคศิลปะ ผ่านการอบรมด้าน Manual Therapy และการฟื้นฟูระบบกล้ามเนื้อและกระดูก
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl border hairline overflow-hidden shadow-sm">
+        <div class="aspect-[4/3] bg-stone-100 overflow-hidden">
+          <img src="./images/team-dr-phon.webp" alt="กภ. ธนพล วิริยะกุล" class="w-full h-full object-cover">
+        </div>
+        <div class="p-7">
+          <span class="text-xs font-mono text-[var(--teal)] uppercase font-semibold">วท.บ. กายภาพบำบัด (เกียรตินิยม)</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">กภ. ธนพล วิริยะกุล (หมอพล)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">ใบประกอบโรคศิลปะ ก. 14205</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ผู้เชี่ยวชาญการรักษาออฟฟิศซินโดรม กระดูกสันหลังคด และ Manual Therapy ประสบการณ์กว่า 9 ปี
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border hairline overflow-hidden shadow-sm">
+        <div class="aspect-[4/3] bg-stone-100 overflow-hidden">
+          <img src="./images/team-dr-noon.webp" alt="กภ. ณิชานันท์ ธนากุล" class="w-full h-full object-cover">
+        </div>
+        <div class="p-7">
+          <span class="text-xs font-mono text-[var(--teal)] uppercase font-semibold">วท.บ. กายภาพบำบัด ม.มหิดล</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">กภ. ณิชานันท์ ธนากุล (หมอนุ่น)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">ใบประกอบโรคศิลปะ ก. 16890</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ผู้เชี่ยวชาญด้านการฟื้นฟูอาการบาดเจ็บจากการเล่นกีฬา (Sports Injury) และข้อต่อหัวเข่า-ข้อเท้า
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border hairline overflow-hidden shadow-sm">
+        <div class="aspect-[4/3] bg-stone-100 overflow-hidden">
+          <img src="./images/team-dr-nam.webp" alt="กภ. ชลธิชา พงษ์ศิริ" class="w-full h-full object-cover">
+        </div>
+        <div class="p-7">
+          <span class="text-xs font-mono text-[var(--teal)] uppercase font-semibold">วท.บ. กายภาพบำบัด จุฬาลงกรณ์</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">กภ. ชลธิชา พงษ์ศิริ (หมอน้ำ)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">ใบประกอบโรคศิลปะ ก. 18542</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญด้านการฟื้นฟูกล้ามเนื้อสะโพก เส้นประสาทกดทับ และการปรับสรีระโครงสร้างร่างกาย
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION & BOOKING ============ -->
+<section id="location" class="py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--teal)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 09:00 – 20:00 น.
+          </div>
+          <h3 class="font-display text-2xl md:text-3xl font-bold mb-3">รีบาลานซ์ คลินิกกายภาพบำบัด</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            88/4 ถนนพระราม 3 (ติดซอยสาธุประดิษฐ์ 58 ใกล้สะพานภูมิพล) แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120
+          </p>
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚗 ที่จอดรถ:</strong>
+              <span>มีที่จอดรถส่วนตัวหน้าร้าน 8 คัน</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚌 BRT:</strong>
+              <span>ลงสถานีวัดด่าน เดินต่อเพียง 200 เมตร</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">💳 การชำระเงิน:</strong>
+              <span>เงินสด, สแกน QR, บัตรเครดิต, เบิกประกันสุขภาพ</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-8 border-t hairline mt-6">
+          <a href="tel:029876543" class="w-full text-center py-4 rounded-full text-base btn-teal block shadow-md">
+            📞 โทรจองคิว 02-987-6543
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm" id="booking">
+        <span class="eyebrow text-xs block mb-2">Fast Online Reservation</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">นัดหมายตรวจประเมินล่วงหน้า</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">กรอกข้อมูลเพื่อนัดหมาย เจ้าหน้าที่จะติดต่อยืนยันคิวภายใน 15 นาที</p>
+        <form onsubmit="event.preventDefault(); alert('คลินิกได้รับข้อมูลแล้ว เจ้าหน้าที่จะติดต่อกลับครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อ-นามสกุล</label>
+            <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]" placeholder="เช่น คุณสมชาย รักษาดี" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เบอร์โทรศัพท์</label>
+              <input type="tel" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]" placeholder="081-xxx-xxxx" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวก</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">อาการปวดที่ต้องการปรึกษา</label>
+            <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]">
+              <option>คอ บ่า สะบัก (ออฟฟิศซินโดรม)</option>
+              <option>หลังส่วนล่างเรื้อรัง</option>
+              <option>สะโพกร้าวลงขา / ชาปลายเท้า</option>
+              <option>ข้อมือ / นิ้วล็อก</option>
+              <option>หัวเข่า / รองช้ำ / ข้อเท้า</option>
+              <option>ฟื้นฟูหลังผ่าตัด / อื่นๆ</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-teal py-4 rounded-full text-base font-semibold mt-4 shadow-md">
+            ยืนยันการนัดหมายตรวจ →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-white border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">Rebalance Physiotherapy Clinic</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      88/4 ถนนพระราม 3 แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120 | ใบอนุญาตสถานพยาบาลเลขที่ 10101004567
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Rebalance Physiotherapy Clinic. All rights reserved. Created with PuchUp Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE STICKY BAR ============ -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--ink-faint)] font-mono block">ตรวจประเมิน 1-on-1</span>
+    <span class="font-display text-base font-bold text-[var(--teal)]">฿1,200 / ครั้ง</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:029876543" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-teal px-6 py-2.5 rounded-full text-sm">นัดหมายตรวจ</a>
+  </div>
+</div>
+
+<script>
+const painData = {
+  neck: {
+    title: 'ปวดคอ บ่า สะบักจม (Office Syndrome)',
+    symptoms: 'รู้สึกคอตึง ปวดลึกสะบัก ปวดศีรษะไมเกรน หันคอได้ไม่สุดจากการนั่งหน้าจอนาน',
+    solution: 'Manual Therapy คลายปมพังผืด Trigger Point ร่วมกับคลื่น Ultrasound ความร้อนลึก และปรับท่านั่ง Ergo',
+    time: '60 นาที',
+    rate: '฿1,200 / ครั้ง',
+    img: './images/pain-neck.webp'
+  },
+  back: {
+    title: 'ปวดหลังส่วนล่างเรื้อรัง (Chronic Lower Back Pain)',
+    symptoms: 'ปวดตื้อบริเวณเอว ลุกยืนหรือนั่งนานแล้วปวด ตึงกล้ามเนื้อมัดลึกแกนกลางลำตัว',
+    solution: 'Focus Shockwave สลายพังผืดกล้ามเนื้อหลังส่วนล่าง ร่วมกับการฝึก Core Stability',
+    time: '75 นาที',
+    rate: '฿1,850 / ครั้ง',
+    img: './images/pain-back.webp'
+  },
+  sciatica: {
+    title: 'หมอนรองกระดูก / สะโพกร้าวลงขา (Sciatica)',
+    symptoms: 'ปวดสะโพกแปลบ มีอาการชาร้าวลงตามแนวขาหรือปลายเท้า อ่อนแรงเวลาก้าวเดิน',
+    solution: 'Decompression Traction ดึงลดแรงกดทับเส้นประสาท ร่วมกับ High Power Laser',
+    time: '90 นาที',
+    rate: '฿2,200 / ครั้ง',
+    img: './images/pain-sciatica.webp'
+  },
+  wrist: {
+    title: 'พังผืดข้อมือ & นิ้วล็อก (Trigger Finger)',
+    symptoms: 'งอนิ้วแล้วสะดุด ปวดโคนนิ้ว ชาปลายนิ้วมือจากการใช้เมาส์ จับปากกา หรือยกของ',
+    solution: 'Ultrasound บำบัดร่วมกับการขยับข้อต่อขนาดเล็ก (Joint Mobilization)',
+    time: '60 นาที',
+    rate: '฿1,200 / ครั้ง',
+    img: './images/pain-wrist.webp'
+  },
+  knee: {
+    title: 'ปวดเข่า รองช้ำ & ข้อเท้า (Knee & Plantar)',
+    symptoms: 'ปวดส้นเท้าก้าวแรกตอนเช้า เจ็บเข่าเวลาเดินขึ้น-ลงบันได หรือบาดเจ็บจากการวิ่ง',
+    solution: 'Radial Shockwave กระตุ้นการซ่อมแซมเส้นเอ็นฝ่าเท้าและรอบเข่า',
+    time: '75 นาที',
+    rate: '฿1,850 / ครั้ง',
+    img: './images/pain-knee.webp'
+  },
+  postop: {
+    title: 'ฟื้นฟูหลังผ่าตัด & อุบัติเหตุ (Rehab)',
+    symptoms: 'ข้อต่อติด ขยับได้ไม่เต็มองศา กล้ามเนื้อลีบอ่อนแรงหลังใส่เฝือกหรือผ่าตัด',
+    solution: 'Active-Passive Range of Motion Exercise และ Manual Therapy',
+    time: '90 นาที',
+    rate: '฿2,200 / ครั้ง',
+    img: './images/pain-postop.webp'
+  }
+};
+
+function renderPainResult(key) {
+  const data = painData[key];
+  const box = document.getElementById('painResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-stone-100 shadow-sm">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Targeted Program</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-3"><strong>อาการที่พบ:</strong> ${data.symptoms}</p>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4"><strong>แนวทางการรักษา:</strong> ${data.solution}</p>
+        <div class="flex items-center gap-6 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">ระยะเวลา</span><strong class="text-[var(--ink)] font-bold text-base">${data.time}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">ค่าบริการ</span><strong class="text-[var(--teal)] font-bold text-lg">${data.rate}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-teal px-7 py-3 rounded-full text-sm font-semibold shadow-sm">นัดตรวจโปรแกรมนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderPainResult('neck');
+document.querySelectorAll('#painSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#painSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPainResult(btn.dataset.pain);
+  });
+});
+
+const tom = new Date();
+tom.setDate(tom.getDate() + 1);
+document.getElementById('bookDate').value = tom.toISOString().split('T')[0];
+document.getElementById('bookDate').min = tom.toISOString().split('T')[0];
+</script>
+</body>
+</html>

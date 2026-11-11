@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoolMaster Air Service — บริการล้างแอร์บ้านด่วน ซ่อม เติมน้ำยา บางนา-ศรีนครินทร์</title>
+<meta name="description" content="CoolMaster บริการล้างแอร์บ้านด่วน ซ่อมแอร์น้ำหยด แอร์ไม่เย็น เติมน้ำยา R32/R410 ปูผ้าคลุมกันเลอะ 100% รับประกันงานล้าง 30 วัน พื้นที่บางนา ศรีนครินทร์ สมุทรปราการ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  "name": "CoolMaster Air Service",
+  "alternateName": "คูลมาสเตอร์ บริการล้างและซ่อมแอร์บ้าน",
+  "description": "บริการล้างแอร์บ้านด่วน ซ่อมแอร์น้ำหยด เติมน้ำยาแอร์ บางนา ศรีนครินทร์ สมุทรปราการ",
+  "telephone": "02-748-9988",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "158 ถนนบางนา-ตราด (ซอยบางนา-ตราด 23)",
+    "addressLocality": "แขวงบางนาเหนือ เขตบางนา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10260",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #EFF6FF;
+    --ink: #0F172A;
+    --ink-soft: #334155;
+    --ink-faint: #64748B;
+    --cyan: #0284C7;
+    --cyan-dark: #0369A1;
+    --cyan-light: #E0F2FE;
+    --blue: #2563EB;
+    --amber: #D97706;
+    --line: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--cyan); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cyan-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--cyan); }
+  .navtab.active { color: var(--cyan-dark); border-color: var(--cyan); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-cyan {
+    background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-cyan:hover {
+    background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+    box-shadow: 0 10px 24px -8px rgba(2, 132, 199, 0.45);
+  }
+
+  .service-card { transition: all 0.25s ease; cursor: pointer; }
+  .service-card:hover, .service-card.active {
+    border-color: var(--cyan);
+    background-color: var(--cyan-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-white text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ COOLMASTER AIR SERVICE — บริการล้างแอร์บ้านด่วน ซ่อมแอร์ บางนา-ศรีนครินทร์ · รับประกันน้ำไม่หยด 30 วัน ·</span>
+  <a href="demo.html" class="underline hover:text-sky-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--cyan)] flex items-center justify-center text-white text-2xl font-bold shadow-md group-hover:scale-105 transition-transform">
+        ❄️
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">CoolMaster</span>
+        <span class="text-xs text-[var(--cyan-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Express Air Conditioning Service</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#services" class="navtab active">อัตราค่าบริการ</a>
+      <a href="#standards" class="navtab">มาตรฐานล้าง 9 ขั้นตอน</a>
+      <a href="#repairs" class="navtab">งานซ่อม & เติมน้ำยา</a>
+      <a href="#reviews" class="navtab">รีวิวลูกค้า</a>
+      <a href="#team" class="navtab">ทีมช่างประจำ</a>
+      <a href="#location" class="navtab">พื้นที่บริการ & แผนที่</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:027489988" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-748-9988
+      </a>
+      <a href="#booking" class="btn-cyan px-6 py-3 rounded-full text-sm shadow-sm">
+        จองคิวช่างด่วน
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--cyan-light)] border border-[var(--cyan)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--cyan-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--cyan)] animate-pulse"></span> ปูผ้าใบกันเปื้อน 100% · เก็บงานสะอาดเรียบร้อย · ช่างสุภาพ
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        ล้างแอร์สะอาดหมดจด ลึกถึงรังผึ้ง<br>
+        <span class="text-[var(--cyan)]">แอร์เย็นฉ่ำ ไร้กลิ่นอับ ประหยัดไฟขึ้นทันที</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        ศูนย์บริการล้างแอร์บ้าน ซ่อมแอร์น้ำหยด แอร์ไม่เย็น เติมน้ำยาแอร์ และติดตั้งแอร์บ้านทุกระบบ โดยทีมช่างผู้ชำนาญการ มีใบรับรองช่างไฟฟ้าภายในอาคาร ราคาสบายกระเป๋า รับประกันงาน 30 วัน
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#booking" class="btn-cyan px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          จองคิวล้างแอร์ (เริ่มต้น ฿500) →
+        </a>
+        <a href="#services" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          ดูตารางราคาบริการ
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">30 วัน</strong>
+          <span class="text-sm text-[var(--ink-faint)]">รับประกันน้ำไม่หยด</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ปูผ้าใบคลุมเตียง/เฟอร์ฯ</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">0 บาท</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ตรวจเช็กน้ำยาแอร์ฟรี</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/air-hero.webp" alt="ช่างล้างแอร์บ้าน CoolMaster บางนา" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-100 text-[var(--cyan-dark)] flex items-center justify-center font-bold text-2xl shrink-0">🛡️</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ช่างมีใบประกอบวิชาชีพ</strong>
+          <span class="text-[var(--ink-faint)]">ผ่านการตรวจสอบประวัติอาชญากรรม มั่นใจ ปลอดภัย</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — PRICING & SERVICE ESTIMATOR ============ -->
+<section id="services" class="py-24 md:py-32 px-6 md:px-10 bg-[#EFF6FF] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Service & Pricing</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">อัตราค่าบริการล้างแอร์มาตรฐาน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ราคาชัดเจน ไม่มีบวกเพิ่มหน้างาน รวมล้างคอยล์เย็น + ล้างคอยล์ร้อนนอกบ้านเรียบร้อย
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="serviceSelector">
+      <button data-type="wall" class="service-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">❄️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">แอร์ติดผนัง (Wall Type)</strong>
+        <span class="text-xs text-[var(--cyan-dark)]">9,000 – 24,000 BTU</span>
+      </button>
+
+      <button data-type="cassette" class="service-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏢</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">แอร์ 4 ทิศทาง (Cassette)</strong>
+        <span class="text-xs text-[var(--cyan-dark)]">แอร์ฝังฝ้าเพดาน</span>
+      </button>
+
+      <button data-type="repair" class="service-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🔧</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ซ่อมแอร์น้ำหยด / ไม่เย็น</strong>
+        <span class="text-xs text-[var(--cyan-dark)]">ตรวจหาสาเหตุตรงจุด</span>
+      </button>
+
+      <button data-type="gas" class="service-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">⛽</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ตรวจเช็ก & เติมน้ำยาแอร์</strong>
+        <span class="text-xs text-[var(--cyan-dark)]">R32 / R410A / R22</span>
+      </button>
+    </div>
+
+    <div id="serviceResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — 9-STEP CLEANING PROTOCOL ============ -->
+<section id="standards" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Our Standard Protocol</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">9 ขั้นตอนการล้างแอร์ระดับพรีเมียม</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ดูแลทุกจุดอย่างประณีต ไม่ใช้น้ำยาที่เป็นกรดกัดรังผึ้ง พร้อมเป่าแห้งสนิทก่อนประกอบเครื่อง
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 01</span>
+          <h4 class="font-display font-bold text-xl mb-2">ตรวจเช็กระบบก่อนล้าง & ปูผ้าคลุม</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            วัดอุณหภูมิความเย็น เช็กเสียงการทำงานของพัดลม และปูผ้ายางกันน้ำคลุมพื้น เตียง โซฟา ป้องกันละอองน้ำกระเด็น
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Full Protection</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 02</span>
+          <h4 class="font-display font-bold text-xl mb-2">ถอดหน้ากาก แผ่นกรอง & รางน้ำทิ้ง</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ถอดชิ้นส่วนภายนอกและรางรับน้ำทิ้งออก นำไปล้างทำความสะอาด ขัดคราบเมือกและตะไคร่น้ำที่สะสม
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Deep Dismantle</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 03</span>
+          <h4 class="font-display font-bold text-xl mb-2">สวมผ้าใบล้างแอร์ครอบตัวเครื่อง</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ติดตั้งกรวยผ้าใบลำเลียงน้ำเสียลงถังอย่างมิดชิด ปิดคลุมแผงวงจรไฟฟ้า (PCB) เพื่อความปลอดภัย 100%
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Circuit Safe</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 04</span>
+          <h4 class="font-display font-bold text-xl mb-2">ฉีดล้างรังผึ้งคอยล์เย็นแรงดันสูง</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ฉีดล้างฟินคอยล์ด้วยปั๊มน้ำแรงดันสูง ปรับองศาหัวฉีดเพื่อไม่ให้ครีบอลูมิเนียมล้ม ชะล้างฝุ่น PM2.5 ที่อุดตัน
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ High-Pressure Wash</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 05</span>
+          <h4 class="font-display font-bold text-xl mb-2">ล้างพัดลมกรงกระรอก (Blower)</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ฉีดล้างใบพัดลมกรงกระรอกทุกซี่ ขจัดฝุ่นเหนียวดำและเชื้อราที่เกาะตัว ช่วยให้แอร์พ่นลมแรงสม่ำเสมอ
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Blower Clean</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 06</span>
+          <h4 class="font-display font-bold text-xl mb-2">เป่าล้างท่อน้ำทิ้งป้องกันน้ำหยด</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ใช้น้ำแรงดันสูงและเครื่องเป่าลมดันคราบวุ้นเมือกในท่อน้ำทิ้งทิ้งลงท่อระบาย ป้องกันปัญหาน้ำล้นหยดใส่ห้อง
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Drain Line Flush</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 07</span>
+          <h4 class="font-display font-bold text-xl mb-2">ล้างคอยล์ร้อนนอกบ้าน (Condenser)</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ฉีดล้างแผงระบายความร้อนด้านนอก ชะล้างคราบฝุ่นและควันรถ ช่วยให้คอมเพรสเซอร์ระบายความร้อนได้ดี ไม่ตัดบ่อย
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Outdoor Unit Wash</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 08</span>
+          <h4 class="font-display font-bold text-xl mb-2">พ่นน้ำยาฆ่าเชื้อรา & เคลือบกันสนิม</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            พ่นสเปรย์ฆ่าเชื้อราและแบคทีเรียกลิ่นธรรมชาติ ช่วยให้อากาศในห้องหอมสดชื่น ไร้กลิ่นอับชื้นเวลากดเปิดแอร์
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ Anti-Bacterial Spray</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--cyan)] uppercase block mb-3">STEP 09</span>
+          <h4 class="font-display font-bold text-xl mb-2">ประกอบเครื่อง เป่าแห้ง & วัดกระแสไฟ</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ประกอบชิ้นส่วน เช็ดทำความสะอาดรอบตัวเครื่อง วัดแรงดันน้ำยาแอร์และกระแสไฟฟ้า พร้อมเซ็นต์ใบรับประกัน 30 วัน
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--cyan)] font-semibold mt-4">✓ 30-Day Warranty</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — REPAIRS & GAS PRICING SHEET ============ -->
+<section id="repairs" class="py-24 md:py-32 bg-[#EFF6FF] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Common Repairs</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ราคาซ่อมอาการยอดนิยม (อะไหล่แท้)</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        ตรวจเช็กและแจ้งราคาประเมินให้ลูกค้าอนุมัติก่อนลงมือซ่อมทุกครั้ง อะไหล่รับประกัน 90 วัน
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm">
+        <span class="text-xs font-mono text-[var(--cyan-dark)] font-bold uppercase">อาการที่ 01</span>
+        <h4 class="font-display font-bold text-lg mt-1 mb-2">แอร์มีน้ำหยด / น้ำล้นราง</h4>
+        <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+          แก้ไขท่อน้ำทิ้งตัน ตัดต่อท่อน้ำทิ้งใหม่ หรือซ่อมแซมถาดน้ำทิ้งชำรุด
+        </p>
+        <div class="border-t hairline pt-3 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาซ่อม</span>
+          <strong class="text-[var(--cyan)] font-bold text-base">฿400 – ฿600</strong>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm">
+        <span class="text-xs font-mono text-[var(--cyan-dark)] font-bold uppercase">อาการที่ 02</span>
+        <h4 class="font-display font-bold text-lg mt-1 mb-2">คอมเพรสเซอร์ไม่ทำงาน (มีแต่ลม)</h4>
+        <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+          เปลี่ยนแคปรัน (Capacitor) มอเตอร์พัดลม หรือเช็กแมกเนติกสวิตช์
+        </p>
+        <div class="border-t hairline pt-3 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาซ่อม</span>
+          <strong class="text-[var(--cyan)] font-bold text-base">฿850 – ฿1,400</strong>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm">
+        <span class="text-xs font-mono text-[var(--cyan-dark)] font-bold uppercase">อาการที่ 03</span>
+        <h4 class="font-display font-bold text-lg mt-1 mb-2">เช็กหารอยรั่ว & เติมน้ำยาเต็มระบบ</h4>
+        <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+          บานแฟร์ใหม่ เชื่อมรอยรั่วท่อทองแดง และแวคคั่มเติมน้ำยา R32/R410A
+        </p>
+        <div class="border-t hairline pt-3 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาซ่อม</span>
+          <strong class="text-[var(--cyan)] font-bold text-base">฿1,200 – ฿2,500</strong>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm">
+        <span class="text-xs font-mono text-[var(--cyan-dark)] font-bold uppercase">อาการที่ 04</span>
+        <h4 class="font-display font-bold text-lg mt-1 mb-2">แผงวงจรช็อต / จิ้งจกเข้าบอร์ด</h4>
+        <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+          ซ่อมแผงวงจรอินเวอร์เตอร์ หรือเปลี่ยนบอร์ดคอนโทรลแท้ศูนย์
+        </p>
+        <div class="border-t hairline pt-3 font-mono text-sm">
+          <span class="text-xs text-[var(--ink-faint)] block">ราคาซ่อม</span>
+          <strong class="text-[var(--cyan)] font-bold text-base">฿1,500 – ฿3,200</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS SECTION (ADDED TO MATCH ARCHITECTURE) ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Verified Customer Reviews</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เสียงตอบรับจากลูกค้าในพื้นที่</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (350+ รีวิวจริงบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ช่างสุภาพมาก ปูผ้ายางคลุมเตียงและทีวีให้อย่างดี ไม่มีน้ำกระเด็นเลอะเลย ล้างเสร็จเช็ดทำความสะอาดห้องเรียบร้อย แอร์เย็นฉ่ำ ลมแรงขึ้นเยอะมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณพิมพ์ใจ (คอนโด ลาซาล)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ล้างแอร์ติดผนัง 2 เครื่อง</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "แอร์น้ำหยดใส่โต๊ะทำงาน เรียกช่างแถวบ้านแก้ไม่หาย ช่างสมชายมาดูแป๊บเดียวรู้เลยว่าท่อตันเป่าล้างท่อและตัดต่อใหม่ หายสนิท มีใบประกันให้ 30 วัน สบายใจครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณธนภัทร (บางนา กม.4)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ซ่อมแอร์น้ำหยดเรื้อรัง</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "จองคิวผ่านไลน์ง่ายมาก ช่างมาตรงเวลาเป๊ะ ล้างแอร์ 4 ทิศทางที่ออฟฟิศ 4 เครื่อง ทำงานเป็นระบบ รวดเร็ว ตรวจเช็กน้ำยาแอร์ฟรี แนะนำต่อแน่นอนครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณวิทวัส (ศรีนครินทร์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ล้างแอร์ 4 ทิศทางสำนักงาน</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — VISUAL GALLERY ============ -->
+<section id="gallery" class="py-24 md:py-32 bg-[#EFF6FF] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Work Showcase</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีภาพการทำงานจริง</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพขั้นตอนการล้างแอร์ในบ้านและคอนโดลูกค้า พื้นที่สะอาด ไร้รอยเปื้อน พร้อมเครื่องมือครบชุด
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-wall-clean.webp" alt="การฉีดล้างฟินคอยล์แอร์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ล้างคอยล์เย็นแรงดันสูง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ขจัดฝุ่น PM2.5 แน่นรังผึ้ง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-cassette-clean.webp" alt="ล้างแอร์ 4 ทิศทางฝังฝ้า">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ล้างแอร์ 4 ทิศทาง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ถอดล้างใบพัดและถาดน้ำทิ้ง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-condenser.webp" alt="ล้างคอยล์ร้อนนอกบ้าน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ล้างคอมเพรสเซอร์นอกบ้าน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ช่วยระบายความร้อน กินไฟลดลง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-gas-check.webp" alt="การวัดแรงดันน้ำยาแอร์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ตรวจแรงดันน้ำยาแอร์</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เกจวัดดิจิทัลแม่นยำสูง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-floor-protect.webp" alt="การปูผ้าใบป้องกันเฟอร์นิเจอร์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ปูผ้าใบคลุมกันเลอะ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เตียงและพื้นห้องไม่เปียก 100%</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-disinfectant.webp" alt="พ่นน้ำยาฆ่าเชื้อรา">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">พ่นน้ำยาฆ่าเชื้อรา</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">กลิ่นหอม สดชื่น ปลอดภัย</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tools-gear-kit.webp" alt="ชุดเครื่องมือช่างแอร์มาตรฐาน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">เครื่องมือช่างมืออาชีพ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปั๊มไร้สาย เสียงเงียบ สะอาด</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/van-service-fleet.webp" alt="รถบริการเคลื่อนที่ CoolMaster">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ทีมช่างประจำพื้นที่</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ถึงหน้างานตรงเวลา</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — CERTIFIED TECHNICIANS ============ -->
+<section id="team" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Our Certified Team</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมช่างผู้ชำนาญการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ผ่านการรับรองมาตรฐานฝีมือแรงงานแห่งชาติ สุภาพ ตรงต่อเวลา ไม่ทิ้งงาน พร้อมดูแลอย่างเป็นกันเอง
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--cyan)] shadow-md">
+          <img src="./images/team-tech-somchai.webp" alt="ช่างสมชาย หัวหน้าทีมช่างแอร์" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--cyan-dark)] font-bold uppercase">หัวหน้าทีมช่างเทคนิค</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">ช่างสมชาย (สมชาย มั่นคง)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">หนังสือรับรองช่างไฟฟ้าและเครื่องปรับอากาศ (DSD)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ประสบการณ์งานล้างและซ่อมแอร์กว่า 14 ปี เชี่ยวชาญระบบแอร์อินเวอร์เตอร์ แอร์ต่อท่อดักท์ และการแก้ไขปัญหาแอร์น้ำหยดเรื้อรัง
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--cyan)] shadow-md">
+          <img src="./images/team-tech-arm.webp" alt="ช่างอาร์ม ผู้เชี่ยวชาญระบบน้ำยาแอร์" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--cyan-dark)] font-bold uppercase">ช่างซ่อมบำรุงและระบบน้ำยา</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">ช่างอาร์ม (ธนากร เกียรติสกุล)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ช่างเทคนิคเครื่องปรับอากาศ R32/R410A</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการเช็กรอยรั่วท่อทองแดง ตรวจสอบกระแสไฟฟ้าแอร์ และการล้างแอร์ 4 ทิศทางในคอนโดมิเนียมและทาวน์โฮม
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#EFF6FF] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Service Area & Location</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">พื้นที่ให้บริการ & ศูนย์บริการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ครอบคลุมโซนบางนา ศรีนครินทร์ และสมุทรปราการ พร้อมทีมช่างสแตนด์บายทุกวัน
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Coverage -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดรับคิวบริการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">จันทร์ – อาทิตย์:</span>
+              <span class="font-mono">08:00 – 19:30 น. (เปิดทุกวัน)</span>
+            </div>
+            <div class="flex justify-between text-emerald-700 font-medium pt-1">
+              <span>วันหยุดนักขัตฤกษ์:</span>
+              <span>มีทีมช่างให้บริการตามปกติ</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ศูนย์บริการและพื้นที่ครอบคลุม</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            158 ถนนบางนา-ตราด (ซอยบางนา-ตราด 23) แขวงบางนาเหนือ เขตบางนา กรุงเทพฯ 10260
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚚 บางนา, ศรีนครินทร์, แบริ่ง, ลาซาล, อุดมสุข, สำโรง, ปากน้ำ, เทพารักษ์, กิ่งแก้ว</div>
+            <div>🏢 บริการทั้งบ้านเดี่ยว ทาวน์โฮม อาคารพาณิชย์ และคอนโดมิเนียม</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Bangna+Trat+23+Bangkok" target="_blank" rel="noopener" class="btn-cyan flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:027489988" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 02-748-9988
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="CoolMaster Service Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.885623190868!2d100.6385!3d13.6675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d5fc123456789%3A0xabcdef1234567890!2sBangna-Trat%2023%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — FAST BOOKING FORM ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Fast Queue Booking</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">จองคิวช่างล้างแอร์ล่วงหน้า</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      เลือกวันและรอบเวลาที่สะดวก ช่างจะโทรยืนยันคิวก่อนเข้าบริการ 30 นาที หรือส่งข้อมูลทาง LINE
+    </p>
+    
+    <form onsubmit="event.preventDefault(); window.open('https://line.me', '_blank');" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์</label>
+        <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]" placeholder="เช่น คุณวิรัช 081-xxx-xxxx" required>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ทำเล / ซอย / ชื่อหมู่บ้าน</label>
+          <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]" placeholder="เช่น ม.เพอร์เฟค บางนา" required>
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวก</label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]" required>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">จำนวนแอร์ (เครื่อง)</label>
+          <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]">
+            <option>1 เครื่อง (฿550)</option>
+            <option>2 เครื่อง (฿1,000 / เครื่องละ ฿500)</option>
+            <option>3 เครื่อง (฿1,400 / เครื่องละ ฿466)</option>
+            <option>4 เครื่องขึ้นไป (เครื่องละ ฿450)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ช่วงเวลาที่สะดวก</label>
+          <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)]">
+            <option>รอบเช้า (09:00 – 12:00 น.)</option>
+            <option>รอบบ่าย (13:00 – 16:00 น.)</option>
+            <option>รอบเย็น (16:30 – 19:00 น.)</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="w-full btn-cyan py-4 rounded-full text-base font-bold mt-4 shadow-md">
+        ส่งข้อมูลจองคิวทาง LINE →
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-white border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">CoolMaster Air Conditioning Service (Bangna-Srinakarin)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      158 ถนนบางนา-ตราด 23 แขวงบางนาเหนือ เขตบางนา กรุงเทพฯ 10260 | โทร 02-748-9988 | LINE: @coolmaster
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 CoolMaster Air Service. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--cyan)] font-mono block">ล้างแอร์เริ่มต้น ฿500</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">CoolMaster บางนา</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:027489988" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-cyan px-5 py-2.5 rounded-full text-sm font-bold">จองคิวช่าง</a>
+  </div>
+</div>
+
+<script>
+const serviceData = {
+  wall: {
+    title: 'บริการล้างแอร์ติดผนัง (Wall Type 9,000 – 24,000 BTU)',
+    scope: 'ล้างคอยล์เย็น + ล้างคอยล์ร้อนนอกบ้าน ฉีดล้างใบพัดลมกรงกระรอก เป่าท่อน้ำทิ้ง ปูผ้ายางกันเปื้อน พ่นน้ำยาฆ่าเชื้อรา และตรวจเช็กแรงดันน้ำยาแอร์ฟรี',
+    time: 'ระยะเวลาล้าง 45–60 นาทีต่อเครื่อง',
+    price: '1 เครื่อง ฿550 | 2 เครื่อง ฿1,000 (เฉลี่ย ฿500/เครื่อง) | 3 เครื่องขึ้นไป ฿450/เครื่อง',
+    warranty: 'รับประกันน้ำไม่หยดหลังล้างนาน 30 วัน',
+    img: './images/service-wall-clean.webp'
+  },
+  cassette: {
+    title: 'บริการล้างแอร์ 4 ทิศทาง & แอร์ฝังฝ้า (Cassette Type)',
+    scope: 'ถอดหน้ากาก 4 ทิศทาง ล้างถาดน้ำทิ้ง ปั๊มเดรนน้ำทิ้ง ฉีดล้างฟินคอยล์ด้วยปืนฉีดเฉพาะทาง และตรวจเช็กกระแสไฟคอมเพรสเซอร์',
+    time: 'ระยะเวลาล้าง 1.5–2 ชั่วโมงต่อเครื่อง',
+    price: 'เริ่มต้น ฿1,200 – ฿1,800 / เครื่อง (ตามขนาด BTU)',
+    warranty: 'รับประกันน้ำไม่หยดหลังล้างนาน 30 วัน',
+    img: './images/service-cassette-clean.webp'
+  },
+  repair: {
+    title: 'บริการตรวจเช็กและซ่อมแอร์บ้านทุกอาการ',
+    scope: 'ซ่อมแอร์มีน้ำหยด แอร์เปิดไม่ติด แอร์มีแต่ลมไม่เย็น แอร์เสียงดัง คอมเพรสเซอร์ไม่ตัด หรือแผงวงจรอินเวอร์เตอร์ชำรุด ใช้อะไหล่แท้ตรงรุ่น',
+    time: 'ซ่อมเสร็จภายในวันเดียว (มีอะไหล่พร้อมเปลี่ยน)',
+    price: 'ค่าตรวจเช็กหน้างาน ฿300 (ฟรีค่าตรวจเมื่อตกลงซ่อม)',
+    warranty: 'รับประกันงานซ่อมและอะไหล่นาน 90 วัน',
+    img: './images/service-leak-repair.webp'
+  },
+  gas: {
+    title: 'บริการตรวจวัดแรงดันและเติมน้ำยาแอร์ (R32 / R410A / R22)',
+    scope: 'ตรวจวัดแรงดันน้ำยาแอร์ด้วยเกจวัดดิจิทัล ตรวจหารอยรั่วซึมบริเวณข้อต่อท่อทองแดง แวคคั่มระบบ และเติมน้ำยาแอร์ตามสเปกโรงงาน',
+    time: 'ระยะเวลา 30–45 นาที',
+    price: 'เติมเพิ่ม ฿20–฿30 / ปอนด์ (PSI) | เติมเต็มระบบเริ่มต้น ฿1,200',
+    warranty: 'รับประกันความเย็นฉ่ำ',
+    img: './images/service-gas-check.webp'
+  }
+};
+
+function renderService(key) {
+  const data = serviceData[key];
+  const box = document.getElementById('serviceResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-sky-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Service Details</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.scope}</p>
+        
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">เวลาบริการ</span><strong class="text-[var(--ink)] font-bold text-xs md:text-sm">${data.time}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">อัตราค่าบริการ</span><strong class="text-[var(--cyan)] font-bold text-sm md:text-base">${data.price}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-cyan px-7 py-3 rounded-full text-sm font-bold shadow-md">จองคิวบริการนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderService('wall');
+document.querySelectorAll('#serviceSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#serviceSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderService(btn.dataset.type);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

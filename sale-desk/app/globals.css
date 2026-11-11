@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --sale-navy: #0d182c;
+  --sale-muted: #596273;
+  --sale-cream: #f5eedc;
+  --sale-base: #fcfaf5;
+  --sale-line: #e2e8f0;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--sale-base);
+  color: var(--sale-navy);
+  font-family:
+    "IBM Plex Sans Thai",
+    "IBM Plex Sans",
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+}

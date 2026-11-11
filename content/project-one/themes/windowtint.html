@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProShield Tint & PPF Studio — ฟิล์มกรองแสงรถยนต์ อาคาร & ฟิล์มกันรอย พระราม 2</title>
+<meta name="description" content="ProShield พระราม 2 ศูนย์ติดตั้งฟิล์มเซรามิกแท้ 100% ฟิล์มกันรอยสะเก็ดหิน PPF TPU และฟิล์มกรองแสงอาคารบ้าน-คอนโด ติดตั้งในห้องแอร์ปลอดฝุ่น รับประกันสูงสุด 10 ปี">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #090D16;
+    --bg-surface: #111827;
+    --bg-card: #1E293B;
+    --ink: #F8FAFC;
+    --ink-soft: #94A3B8;
+    --ink-faint: #64748B;
+    --cyan: #06B6D4;
+    --cyan-dark: #0891B2;
+    --amber: #F59E0B;
+    --line: #1E293B;
+    --line-light: #334155;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line-light); }
+  ::selection { background-color: var(--cyan); color: #090D16; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(9, 13, 22, 0.94);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--cyan); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-surface);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.05); }
+
+  .btn-cyan {
+    background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+    color: #090D16;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-cyan:hover {
+    background: linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%);
+    box-shadow: 0 10px 24px -8px rgba(6, 182, 212, 0.5);
+  }
+
+  .spec-pill { transition: all 0.25s ease; cursor: pointer; }
+  .spec-pill:hover, .spec-pill.active {
+    border-color: var(--cyan);
+    background-color: var(--bg-card);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-black/90 border-b border-white/10 text-cyan-200 text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ PROSHIELD TINT & PPF — ศูนย์ติดตั้งฟิล์มเซรามิกแท้ & ฟิล์มกันรอยสะเก็ดหิน พระราม 2 · ห้องแอร์ปลอดฝุ่น 100% ·</span>
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-xl">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--cyan)] flex items-center justify-center text-slate-950 text-2xl font-bold shadow-md group-hover:scale-105 transition-transform">
+        🛡️
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">ProShield</span>
+        <span class="text-xs text-[var(--cyan)] tracking-widest font-mono uppercase block mt-1 font-semibold">Tint & PPF Studio · Rama 2</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#films" class="navlink font-semibold">เทียบสเปกฟิล์ม</a>
+      <a href="#ppf" class="navlink">ฟิล์มกันรอย PPF</a>
+      <a href="#building" class="navlink">ฟิล์มอาคารบ้าน/คอนโด</a>
+      <a href="#standards" class="navlink">มาตรฐานห้องปลอดฝุ่น</a>
+      <a href="#gallery" class="navlink">แกลเลอรีผลงาน</a>
+      <a href="#location" class="navlink">ที่ตั้ง & จองคิว</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:028978899" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-897-8899
+      </a>
+      <a href="#booking" class="btn-cyan px-6 py-3 rounded-full text-sm shadow-sm">
+        ประเมินราคา / นัดติดตั้ง
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-[#111827] to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-cyan-950/80 border border-cyan-500/40 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-cyan-300 font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--cyan)] animate-pulse"></span> ฟิล์มเซรามิกแท้ 100% · ตัดด้วยระบบคอมพิวเตอร์ CNC ไร้รอยกรีดกระจก
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        กันความร้อนสูงสุด 95%<br>
+        <span class="text-[var(--cyan)]">มืดนอก สว่างใน ไม่บล็อกสัญญาณ Easy Pass</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        ศูนย์ติดตั้งฟิล์มกรองแสงรถยนต์ ฟิล์มอาคารบ้านพักอาศัย และฟิล์มกันรอยสะเก็ดหิน PPF เนื้อ TPU ชั้นพรีเมียม ติดตั้งในห้องควบคุมฝุ่นมาตรฐานสากล พร้อมเครื่องทดสอบความร้อนก่อนติดตั้งจริง
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#booking" class="btn-cyan px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          จองคิวติดตั้ง / ขอใบเสนอราคา →
+        </a>
+        <a href="#films" class="border border-slate-700 bg-slate-800/80 text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-slate-700 transition">
+          ดูสเปกฟิล์มแต่ละรุ่น
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">99%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">กันรังสี UV 400</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ห้องแอร์ Clean Room</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">7–10 ปี</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ใบรับประกันบริษัทแท้</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-700 bg-[var(--bg-surface)]">
+        <img src="./images/tint-hero.webp" alt="ทีมช่างติดตั้งฟิล์มกรองแสงรถยนต์ ProShield พระราม 2" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-[var(--bg-surface)] p-5 rounded-2xl border hairline shadow-2xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-[var(--cyan)] flex items-center justify-center font-bold text-2xl shrink-0">💻</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ระบบตัดฟิล์มคอมพิวเตอร์</strong>
+          <span class="text-[var(--ink-faint)]">เข้ารูปกระจก 100% ไม่ต้องใช้คัตเตอร์กรีดบนตัวรถ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — FILM SPECS & COMPARISON ============ -->
+<section id="films" class="py-24 md:py-32 px-6 md:px-10 bg-[var(--bg-surface)] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Film Series & Specifications</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เปรียบเทียบซีรีส์ฟิล์มยอดนิยม</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกฟิล์มที่ตรงกับการใช้งานของคุณ ทั้งความเข้ม ความเป็นส่วนตัว และระดับการตัดความร้อน
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="specSelector">
+      <button data-series="ceramic" class="spec-pill active p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🌑</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Nano Ceramic Dark Night</strong>
+        <span class="text-xs text-[var(--cyan)]">มืดนอก สว่างใน ยอดนิยม #1</span>
+      </button>
+
+      <button data-series="super" class="spec-pill p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💎</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Super Ceramic Plus</strong>
+        <span class="text-xs text-[var(--cyan)]">กันความร้อนสูงสุด 95%</span>
+      </button>
+
+      <button data-series="ppf" class="spec-pill p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🛡️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ฟิล์มกันรอย TPU PPF</strong>
+        <span class="text-xs text-[var(--cyan)]">กันสะเก็ดหิน ฟื้นฟูรอยเอง</span>
+      </button>
+
+      <button data-series="building" class="spec-pill p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏢</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ฟิล์มอาคารบ้าน & คอนโด</strong>
+        <span class="text-xs text-[var(--cyan)]">ลดค่าไฟ แดดไม่แสบตา</span>
+      </button>
+    </div>
+
+    <div id="specResultBox" class="bg-[var(--bg-card)] rounded-3xl p-8 md:p-12 border hairline shadow-2xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — PPF PAINT PROTECTION FILM ============ -->
+<section id="ppf" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-cyan-950/80 text-cyan-300 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          PAINT PROTECTION FILM (PPF TPU 100%)
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          เกราะป้องกันสีรถขั้นสุด<br>
+          <span class="text-[var(--cyan)]">หมดกังวลเรื่องสะเก็ดหินและรอยขูดขีด</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          ฟิล์มใสกันรอยเนื้อ TPU เกรดพรีเมียมจากสหรัฐอเมริกา ความหนา 7.5 – 8.5 mil ยืดหยุ่นสูง พร้อมเทคโนโลยี Self-Healing คืนตัวลบรอยขีดข่วนได้เองเมื่อโดนความร้อน เคลือบสาร Hydrophobic น้ำไม่เกาะ ฝุ่นไม่ติด
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-[var(--bg-surface)] p-4 rounded-xl border hairline">✨ เพิ่มความเงาฉ่ำ High-Gloss 40%</div>
+          <div class="bg-[var(--bg-surface)] p-4 rounded-xl border hairline">♨️ Self-Healing หายเองเมื่อโดนแดด</div>
+          <div class="bg-[var(--bg-surface)] p-4 rounded-xl border hairline">🛡️ ทนแรงกระแทกสะเก็ดหิน 100%</div>
+          <div class="bg-[var(--bg-surface)] p-4 rounded-xl border hairline">📜 รับประกันฟิล์มไม่เหลือง ไม่ลอก 5 ปี</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/ppf-hood-install.webp" alt="การติดตั้งฟิล์มกันรอย PPF ฝากระโปรง">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/ppf-self-healing.webp" alt="ฟิล์มกันรอยฟื้นฟูรอยขีดข่วนเอง">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — ARCHITECTURAL BUILDING FILM ============ -->
+<section id="building" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-2 gap-5 order-2 lg:order-1">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/film-building-window.webp" alt="ช่างติดตั้งฟิล์มกรองแสงบ้านพักอาศัย">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/building-balcony-view.webp" alt="กระจกบ้านติดฟิล์มเซรามิกมองเห็นวิวชัดเจน">
+        </div>
+      </div>
+
+      <div class="space-y-6 order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 bg-amber-950/80 text-amber-300 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          ARCHITECTURAL WINDOW TINTING
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          ฟิล์มกรองแสงบ้าน & คอนโด<br>
+          <span class="text-[var(--amber)]">บ้านเย็นลงชัดเจน ลดภาระแอร์ ประหยัดไฟ</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          บริการติดตั้งฟิล์มกันความร้อนสำหรับกระจกบ้านเดี่ยว ทาวน์โฮม คอนโด และอาคารสำนักงาน ลดความร้อนสะสมในห้องได้สูงสุด 10°C กรองแสงจ้าไม่แสบตา ป้องกันเฟอร์นิเจอร์และพื้นไม้จากรังสี UV ซีดจาง
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">📉 ประหยัดค่าไฟแอร์สูงสุด 30%</div>
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">👀 เพิ่มความเป็นส่วนตัว มองไม่เห็นจากด้านนอก</div>
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">📏 บริการวัดพื้นที่หน้างานฟรี กทม./ปริมณฑล</div>
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">🛡️ ฟิล์มนิรภัยป้องกันกระจกแตกกระจาย</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — VISUAL GALLERY (12 รูปภาพ) ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Our Real Craft</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีผลงานและความประณีต</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพบรรยากาศห้องติดตั้ง Clean Room และความคมชัดของฟิล์มหลังติดตั้งเสร็จเรียบร้อย
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/film-ceramic-auto.webp" alt="การติดตั้งฟิล์มเซรามิกกระจกหน้ารถ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ติดฟิล์มเซรามิกบานหน้า</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ใส เคลียร์ วิสัยทัศน์คมชัด</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/ppf-hood-install.webp" alt="งานติดตั้งฟิล์มกันรอยรอบคัน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ติดตั้งฟิล์มกันรอย PPF</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เก็บขอบเนียน ไม่เห็นรอยต่อ</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/film-building-window.webp" alt="ฟิล์มกรองแสงอาคารบ้าน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ฟิล์มกรองแสงบ้านหรู</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ตัดความร้อน แสงไม่สะท้อน</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/film-cnc-cutting.webp" alt="เครื่องตัดฟิล์มคอมพิวเตอร์ CNC">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ตัดฟิล์มระบบ CNC</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ตรงรุ่นรถ 100% ปลอดภัย</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/heat-demo-lamp.webp" alt="เครื่องทดสอบความร้อนสปอตไลท์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">เครื่องทดสอบความร้อน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">วัดค่ากันความร้อนจริงหน้างาน</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/car-interior-protect.webp" alt="การคลุมเบาะและแผงประตูรถยนต์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ปูผ้าคลุมป้องกันภายใน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เบาะและแผงประตูไม่เปียกชื้น</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/studio-clean-room.webp" alt="ห้องแอร์ติดตั้งปลอดฝุ่น">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ห้องติดตั้ง Clean Room</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ไร้เม็ดฝุ่นสะสม 100%</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/building-balcony-view.webp" alt="กระจกคอนโดหลังติดฟิล์ม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ทัศนวิสัยกระจกคอนโด</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">มองเห็นวิวเมือง สบายตา</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — EXPERIENCED INSTALLERS ============ -->
+<section id="team" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Master Installers</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมช่างติดตั้งมาตรฐานระดับสูง</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ผ่านการฝึกอบรมการติดตั้งฟิล์มกรองแสงและ PPF โดยตรง มือเบา ละเอียด และผ่านงานติดตั้งรถยนต์ระดับซูเปอร์คาร์และบ้านหรูกว่า 5,000 คัน
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-[var(--bg-card)] rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--cyan)] shadow-md">
+          <img src="./images/team-installer-wit.webp" alt="ช่างวิทย์ หัวหน้าช่างติดตั้งฟิล์ม" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--cyan)] font-bold uppercase">หัวหน้าทีมเทคนิค & PPF Master</span>
+          <h4 class="font-display font-bold text-xl text-white mt-1 mb-1">ช่างวิทย์ (วรวิทย์ บุญรักษา)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Certified Automotive Tint & PPF Specialist</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ประสบการณ์ติดตั้งฟิล์มกรองแสงและฟิล์มกันรอยสะเก็ดหินกว่า 12 ปี เชี่ยวชาญการเก็บขอบเนียน ไร้ฟองอากาศ และเทคนิคการขึ้นรูปฟิล์มกระจกโค้งยาก
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--cyan)] shadow-md">
+          <img src="./images/team-advisor-bell.webp" alt="คุณเบลล์ ผู้เชี่ยวชาญสเปกฟิล์ม" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--cyan)] font-bold uppercase">ที่ปรึกษาด้านฟิล์มกรองแสงและอาคาร</span>
+          <h4 class="font-display font-bold text-xl text-white mt-1 mb-1">คุณเบลล์ (ชนิกานต์ วรรณพงศ์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Architectural & Automotive Film Consultant</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ให้คำแนะนำเลือกระดับความเข้มและสเปกฟิล์มที่ตอบโจทย์การขับขี่กลางวัน/กลางคืน พร้อมดูแลงานประเมินพื้นที่ฟิล์มกรองแสงบ้านพักอาศัย
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-[var(--bg-surface)] p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--cyan)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 08:30 – 18:30 น. (ห้องติดตั้งรองรับ 4 คัน/รอบ)
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3 text-white">ProShield Studio (พระราม 2)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            288 ถนนพระราม 2 (ปากซอยพระราม 2 ซอย 54 ใกล้เซ็นทรัล พระราม 2) แขวงแสมดำ เขตบางขุนเทียน กรุงเทพฯ 10150
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">🚗 สถานที่ & ห้องรับรอง:</strong>
+              <span>ห้องรับรองติดแอร์ Wi-Fi เครื่องดื่ม และจอ CCTV ดูกระบวนการติดตั้ง</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">🏢 บริการติดฟิล์มอาคาร:</strong>
+              <span>บริการวัดพื้นที่และนำตัวอย่างฟิล์มทดสอบความร้อนฟรีถึงบ้าน</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">💳 การชำระเงิน:</strong>
+              <span>รองรับเงินสด โอนเงิน และผ่อนชำระ 0% สูงสุด 6 เดือน</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Rama+2+Bangkok" target="_blank" rel="noopener" class="btn-cyan flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 แผนที่ศูนย์บริการ
+          </a>
+          <a href="tel:028978899" class="border hairline bg-white/5 flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white/10 transition text-white">
+            📞 โทร 02-897-8899
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-[var(--bg-surface)] p-8 md:p-10 rounded-3xl border hairline shadow-xl" id="booking">
+        <span class="eyebrow text-xs block mb-2">Get A Quote & Booking</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2 text-white">ประเมินราคา / จองคิวติดตั้ง</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">ระบุรุ่นรถยนต์หรือขนาดพื้นที่กระจก เจ้าหน้าที่จะแจ้งราคาและล็อกคิวห้องติดตั้งให้ทันที</p>
+        
+        <form onsubmit="event.preventDefault(); alert('ศูนย์บริการได้รับข้อมูลแล้ว เจ้าหน้าที่จะติดต่อกลับพร้อมใบเสนอราคาและยืนยันคิวติดตั้งครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์</label>
+            <input type="text" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)] text-white" placeholder="เช่น คุณธนพล 081-xxx-xxxx" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">รุ่นรถยนต์ / ขนาดบ้าน</label>
+              <input type="text" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)] text-white" placeholder="เช่น Honda CR-V หรือ บ้านเดี่ยว" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวก</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)] text-white" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">บริการที่สนใจ</label>
+            <select class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--cyan)] text-white">
+              <option>ติดฟิล์มเซรามิกกรองแสงรถยนต์รอบคัน (Nano Ceramic)</option>
+              <option>ติดฟิล์มกันรอยสะเก็ดหิน PPF รอบคัน / เฉพาะจุดเสี่ยง</option>
+              <option>ติดฟิล์มกรองแสงบ้านพักอาศัย / คอนโดมิเนียม</option>
+              <option>ลอกฟิล์มเก่าและเปลี่ยนฟิล์มใหม่</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-cyan py-4 rounded-full text-base font-bold mt-4 shadow-md">
+            ยืนยันการขอใบเสนอราคา / จองคิว →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-black border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">ProShield Tint & PPF Studio (Rama 2)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      288 ถนนพระราม 2 แขวงแสมดำ เขตบางขุนเทียน กรุงเทพฯ 10150 | เปิดบริการทุกวัน 08:30 – 18:30 น.
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 ProShield Studio. All rights reserved. Created with PuchUp Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)]/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--cyan)] font-mono block">ฟิล์มเซรามิกแท้ 100%</span>
+    <span class="font-display text-base font-bold text-white">ProShield พระราม 2</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:028978899" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center text-white">📞</a>
+    <a href="#booking" class="btn-cyan px-5 py-2.5 rounded-full text-sm font-bold">จองคิวช่าง</a>
+  </div>
+</div>
+
+<script>
+const specData = {
+  ceramic: {
+    title: 'Nano Ceramic Dark Night Series (มืดนอก สว่างใน)',
+    desc: 'ฟิล์มเซรามิกอนุภาคนาโนแท้ สีดำชาโคลดุดันจากภายนอก เพิ่มความเป็นส่วนตัวสูง แต่วิสัยทัศน์มองออกจากภายในคมชัดเคลียร์ใส ไม่สะท้อนแสงหลอกตา ไม่บล็อกสัญญาณ Easy Pass, M-Pass, GPS และสัญญาณมือถือ 5G ทุกเครือข่าย',
+    spec: 'กันความร้อนรวม (TSER) 65–78% | กันรังสี UV 99% | มีระดับความเข้ม 40%, 60%, 80%',
+    price: 'รถเก๋งขนาดเล็ก-กลาง เริ่มต้น ฿6,500 – ฿9,500 | รถ SUV ขนาดใหญ่ ฿11,000 – ฿14,000',
+    warranty: 'รับประกันฟิล์มแท้นาน 7 ปี (ฟองอากาศ ลอก หลุด ร่อน)',
+    img: './images/film-ceramic-auto.webp'
+  },
+  super: {
+    title: 'Super Ceramic Plus Series (กันความร้อนสูงสุด)',
+    desc: 'เทคโนโลยีเซรามิกผสานอนุภาคคริสตัลอัดแน่นหลายชั้น ป้องกันรังสีอินฟราเรด (IRR) สูงสุดถึง 95% ห้องโดยสารเย็นลงอย่างรวดเร็วหลังจอดตากแดด เหมาะสำหรับผู้ที่ต้องการประสิทธิภาพการกันความร้อนสูงสุด',
+    spec: 'กันความร้อนรวม (TSER) 75–88% | กันความร้อนรังสีอินฟราเรด (IRR) 95% | กัน UV 99.9%',
+    price: 'รถเก๋งขนาดเล็ก-กลาง เริ่มต้น ฿12,000 – ฿16,500 | รถ SUV ขนาดใหญ่ ฿18,000 – ฿22,000',
+    warranty: 'รับประกันฟิล์มแท้นาน 10 ปีเต็ม',
+    img: './images/heat-demo-lamp.webp'
+  },
+  ppf: {
+    title: 'Paint Protection Film (PPF TPU Film กันสะเก็ดหิน)',
+    desc: 'ฟิล์มใสกันรอยขีดข่วนและสะเก็ดหินเนื้อ TPU แท้ 100% ความหนา 8 mil มีความเหนียวและยืดหยุ่นสูง ป้องกันหินดีดใส่สีรถ รอยเบียดเฉี่ยวชน และยางมะตอย พร้อมคุณสมบัติ Self-Healing คืนตัวลบรอยขนแมวได้เองเมื่อสัมผัสความร้อน',
+    spec: 'ความหนา 8.0 mil | High-Gloss ใสเงาฉ่ำ | ผิว Hydrophobic ไม่เกาะน้ำ',
+    price: 'แพ็กเกจหน้ารถ (กันชนหน้า+ฝากระโปรง+ไฟหน้า) ฿25,000 | ติดตั้งรอบคัน ฿65,000 – ฿95,000',
+    warranty: 'รับประกันฟิล์ม TPU ไม่เหลือง ไม่กรอบแตกนาน 5 ปี',
+    img: './images/ppf-hood-install.webp'
+  },
+  building: {
+    title: 'Architectural Window Film (ฟิล์มกรองแสงบ้าน & คอนโด)',
+    desc: 'ฟิล์มกันความร้อนสำหรับกระจกบ้านพักอาศัยและอาคารสำนักงาน ลดความร้อนและแสงจ้าได้อย่างมีประสิทธิภาพ ช่วยให้แอร์ทำงานเบาลง ประหยัดค่าไฟฟ้า และปกป้องเฟอร์นิเจอร์ พื้นไม้ ผ้าม่าน จากการซีดจาง',
+    spec: 'กันรังสี UV 99% | ลดความร้อนรวม 60–82% | มีทั้งแบบใสและแบบเพิ่มความเป็นส่วนตัว',
+    price: 'ประเมินราคาเริ่มต้น ฿65 – ฿150 / ตารางฟุต (วัดพื้นที่หน้างานฟรี)',
+    warranty: 'รับประกันงานติดตั้งและฟิล์มอาคารนาน 7 ปี',
+    img: './images/film-building-window.webp'
+  }
+};
+
+function renderSpec(key) {
+  const data = specData[key];
+  const box = document.getElementById('specResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Film Specification</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--cyan)] font-semibold">สเปกการกันความร้อน:</span> ${data.spec}</div>
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--cyan)] font-semibold">ราคาประเมิน:</span> ${data.price}</div>
+          <div class="text-emerald-400 font-semibold"><span class="text-[var(--ink-faint)] font-normal">การรับประกัน:</span> ${data.warranty}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-cyan px-7 py-3 rounded-full text-sm font-bold shadow-md">จองคิวติดตั้งซีรีส์นี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderSpec('ceramic');
+document.querySelectorAll('#specSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#specSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSpec(btn.dataset.series);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

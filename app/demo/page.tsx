@@ -1,42 +1,30 @@
 import type { Metadata } from "next";
-import { ShowroomPage } from "@/components/demos/ShowroomPage";
-import { PageBuilder } from "@/components/sanity/PageBuilder";
-import {
-  liveItemsFromCategories,
-  mergeShowroomWithCms,
-} from "@/lib/demos/showroom-catalog";
-import { sanityFetch } from "@/lib/sanity/client";
-import { pageBySlugQuery, projectOneDemoLinksQuery } from "@/lib/sanity/queries";
-import type { CmsPage, ProjectOneDemoLink } from "@/lib/sanity/types";
+import { ThemeDocument } from "@/components/demos/ThemeDocument";
+import { loadProjectOnePage } from "@/lib/project-one/html";
 
 export const dynamic = "force-static";
-export const revalidate = 3600;
+export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: "PuchUp ONE — Showroom | เว็บไซต์หน้าเดียวที่เรื่องราวธุรกิจครบ",
+  title: "Project ONE — Business Showroom",
   description:
-    "สำรวจ 50 ไอเดียธุรกิจแบบ Project ONE และเปิดเดโมร้านที่ทำแล้ว เช่น บ้านข้าวหอม บ้านฟันดี บ้านบางกอก Paw & Co. และ Petal & Stem",
+    "สำรวจโชว์รูมตัวอย่างเว็บไซต์ธุรกิจท้องถิ่นใน Project ONE — หน้าเดียวจบ ปิดการขายด้วย LINE และ Google Maps",
+  alternates: { canonical: "/ProjectONE/demo/" },
 };
 
-export default async function DemoShowroomRoute() {
-  const cmsPage = await sanityFetch<CmsPage>({
-    query: pageBySlugQuery,
-    params: { slug: "demo" },
-    tags: ["page:demo"],
-    revalidate: 3600,
-  });
-
-  if (cmsPage?.sections?.length) {
-    return <PageBuilder sections={cmsPage.sections} />;
+/**
+ * Legacy alias for /ProjectONE/demo/ (same Gemini showroom HTML).
+ * Prefer /ProjectONE/demo/ in new links.
+ */
+export default function DemoShowroomAliasPage() {
+  const html = loadProjectOnePage("demo");
+  if (!html) {
+    return (
+      <div className="flex min-h-dvh items-center justify-center p-8 text-center">
+        <p>ไม่พบไฟล์ demo showroom</p>
+      </div>
+    );
   }
 
-  const cms = await sanityFetch<ProjectOneDemoLink[]>({
-    query: projectOneDemoLinksQuery,
-    tags: ["projectOneDemo"],
-    revalidate: 3600,
-  });
-  const categories = mergeShowroomWithCms(cms);
-  const liveItems = liveItemsFromCategories(categories);
-
-  return <ShowroomPage categories={categories} liveItems={liveItems} />;
+  return <ThemeDocument title="Project ONE Showroom" srcDoc={html} />;
 }

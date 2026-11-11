@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petal & Stem Florist | ร้านดอกไม้สดและดีไซน์ช่อดอกไม้ กรุงเทพฯ</title>
+<meta name="description" content="Petal & Stem Florist — Flowers for every feeling. สตูดิโอดอกไม้สดและช่อดอกไม้สั่งทำตามความรู้สึก พร้อมบริการจัดส่งด่วนในกรุงเทพฯ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Florist",
+  "name": "Petal & Stem Florist",
+  "description": "ร้านดอกไม้สดและดีไซน์ช่อดอกไม้สั่งทำตามความรู้สึก",
+  "telephone": "+66-2-890-1234",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "42 ซอยสุขุมวิท 49 แขวงคลองตันเหนือ",
+    "addressLocality": "เขตวัฒนา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10110",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F3ECE2;
+    --ink: #1F1B18;
+    --ink-soft: #4A423A;
+    --ink-faint: #7A7066;
+    --terracotta: #A85A48;
+    --terracotta-dark: #884333;
+    --moss: #465345;
+    --moss-soft: #707E6F;
+    --line: #E8DFD3;
+    --line-dark: #D4C7B5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Serif Thai', serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .font-display {
+    font-family: 'Cormorant Garamond', 'Noto Serif Thai', serif;
+    letter-spacing: 0.02em;
+  }
+  .font-sans-ui { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .hairline { border-color: var(--line); }
+  .hairline-dark { border-color: var(--line-dark); }
+  ::selection { background-color: var(--terracotta); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 247, 242, 0.96);
+  }
+  .navlink {
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.25s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--terracotta); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.035); }
+
+  .btn-primary {
+    background-color: var(--ink);
+    color: #FFFFFF;
+    font-family: 'Cormorant Garamond', 'Noto Serif Thai', serif;
+    letter-spacing: 0.08em;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: var(--terracotta);
+    box-shadow: 0 10px 24px -10px rgba(168, 90, 72, 0.5);
+  }
+
+  .btn-outline {
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', 'Noto Serif Thai', serif;
+    letter-spacing: 0.08em;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    background-color: var(--ink);
+    color: var(--bg);
+  }
+
+  .occasion-pill {
+    border: 1px solid var(--line);
+    background: #FFF;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .occasion-pill:hover, .occasion-pill.active {
+    background: var(--ink);
+    color: #FFF;
+    border-color: var(--ink);
+  }
+
+  .color-chip {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .color-chip.active {
+    transform: scale(1.08);
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<div class="bg-[var(--ink)] text-[#E8DFD3] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider">
+  PUCHUP ONE — FLORAL DESIGN STUDIO · ตัวอย่างเว็บไซต์สตูดิโอดอกไม้สด สุขุมวิท 49 ·
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างธุรกิจอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    
+    <a href="#hero" class="flex items-center gap-3.5 shrink-0 group">
+      <div class="w-11 h-11 rounded-full border-2 border-[var(--terracotta)] flex items-center justify-center transition-colors group-hover:bg-[var(--terracotta)]">
+        <svg viewBox="0 0 24 24" class="w-6 h-6 fill-none stroke-[var(--terracotta)] group-hover:stroke-white transition-colors" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21C12 21 8 16 8 11C8 7 10 4 12 3C14 4 16 7 16 11C16 16 12 21 12 21Z"/>
+          <path d="M8 11C4 11 2 9 3 7C5 5 8 8 8 11Z"/>
+          <path d="M16 11C20 11 22 9 21 7C19 5 16 8 16 11Z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="font-display text-2xl md:text-3xl font-bold tracking-[0.06em] leading-none block text-[var(--ink)]">Petal & Stem</span>
+        <span class="text-xs text-[var(--ink-faint)] tracking-[0.24em] font-mono uppercase block mt-1 font-semibold">Artisan Florist Studio</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#occasions" class="navlink">เลือกตามโอกาส</a>
+      <a href="#sizes" class="navlink">ขนาดช่อดอกไม้</a>
+      <a href="#edit" class="navlink">ช่อคัดสรรประจำฤดู</a>
+      <a href="#custom" class="navlink">สั่งจัดเฉพาะคุณ</a>
+      <a href="#menu" class="navlink">ดอกไม้สดวันนี้</a>
+      <a href="#visit" class="navlink">สตูดิโอ & จัดส่ง</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:028901234" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] hover:text-[var(--terracotta)] font-medium">
+        <span>📞</span> 02-890-1234
+      </a>
+      <a href="#occasions" class="btn-primary px-6 py-3 rounded-full text-sm">
+        เลือกดอกไม้ของคุณ
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative min-h-[85vh] md:min-h-[92vh] flex items-center justify-center px-6 py-20 overflow-hidden bg-[#181513] text-[#FAF7F2]">
+  <div class="absolute inset-0 opacity-60 mix-blend-luminosity">
+    <img src="./images/florist-hero.webp" alt="Fresh artisan floral arrangement" class="w-full h-full object-cover">
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-[#181513] via-black/45 to-black/35"></div>
+
+  <div class="relative max-w-4xl mx-auto text-center z-10">
+    <p class="eyebrow text-[#E0A89B] mb-4">Petal & Stem — Flowers for every feeling.</p>
+    <h1 class="font-display text-[clamp(2.7rem,6.8vw,5.2rem)] font-normal leading-[1.08] mb-7 text-[#FAF7F2]">
+      ดอกไม้สดและช่อดอกไม้<br>
+      <span class="italic font-light text-[#E5D7C5]">ที่ออกแบบให้เหมาะกับทุกความรู้สึก</span>
+    </h1>
+    <p class="text-lg md:text-xl text-[#D8CEBF] max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+      เราช่วยคุณเลือกช่อดอกไม้ที่บอกเล่าความรู้สึกได้อย่างลึกซึ้ง ไม่ว่าจะเพื่อบอกรัก ขอบคุณ หรือทำให้วันธรรมดาของคนสำคัญกลายเป็นวันพิเศษ
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#occasions" class="btn-primary bg-[#FFF] text-[#181513] hover:bg-[var(--terracotta)] hover:text-white w-full sm:w-auto px-9 py-4 rounded-full text-center text-base font-semibold">
+        เลือกดอกไม้ของคุณ →
+      </a>
+      <a href="#edit" class="btn-outline border-white/40 text-[#FAF7F2] hover:bg-[#FAF7F2] hover:text-[#181513] w-full sm:w-auto px-9 py-4 rounded-full text-center text-base">
+        ดูช่อดอกไม้คัดสรร
+      </a>
+    </div>
+
+    <div class="mt-14 flex flex-wrap items-center justify-center gap-6 text-xs md:text-sm font-mono text-[#D4C8B8] tracking-wider uppercase">
+      <span>🌸 Fresh Seasonal Blooms</span>
+      <span>•</span>
+      <span>🎁 Tailored Custom Design</span>
+      <span>•</span>
+      <span>🚚 Bangkok Next-Day Delivery</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — CHOOSE BY OCCASION ============ -->
+<section id="occasions" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-3">The Decision Matrix</p>
+      <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] leading-tight">ดอกไม้สำหรับวันนี้</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ไม่ต้องจำชื่อดอกไม้ เพียงเลือก "เหตุผลและโอกาสที่คุณกำลังส่งมอบ" ระบบจะคัดสรรช่อที่สื่อความหมายได้ตรงใจที่สุด
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-12" id="occasionFilterPills">
+      <button data-occ="love" class="occasion-pill active px-6 py-3 rounded-full">❤️ บอกรัก & โรแมนติก</button>
+      <button data-occ="birthday" class="occasion-pill px-6 py-3 rounded-full">🎂 วันเกิด</button>
+      <button data-occ="congrats" class="occasion-pill px-6 py-3 rounded-full">🌷 แสดงความยินดี</button>
+      <button data-occ="thanks" class="occasion-pill px-6 py-3 rounded-full">🤍 ขอบคุณ & ซาบซึ้ง</button>
+      <button data-occ="getwell" class="occasion-pill px-6 py-3 rounded-full">💐 เยี่ยมไข้ & ให้กำลังใจ</button>
+      <button data-occ="anniversary" class="occasion-pill px-6 py-3 rounded-full">💍 วันครบรอบ</button>
+      <button data-occ="sympathy" class="occasion-pill px-6 py-3 rounded-full">🕊️ แสดงความเสียใจ</button>
+      <button data-occ="everyday" class="occasion-pill px-6 py-3 rounded-full">✨ วันธรรมดาที่อยากให้พิเศษ</button>
+    </div>
+
+    <div id="occasionSpotlight" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-sm grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — BOUQUET SIZES ============ -->
+<section id="sizes" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline-dark">
+      <div>
+        <p class="eyebrow mb-2">Proportions & Scales</p>
+        <h2 class="font-display text-[clamp(2rem,4vw,3.2rem)] leading-tight">เลือกขนาดที่ใช่</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-3 md:mt-0 font-light">
+        เราจัดสัดส่วนช่อดอกไม้อย่างประณีต เข้าใจง่าย ไม่ต้องกังวลเรื่องศัพท์เฉพาะของนักจัดดอกไม้
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      <div class="bg-white rounded-2xl p-6 border hairline flex flex-col justify-between group shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/5] mb-5">
+            <img src="./images/size-petite.webp" alt="Petite Bouquet in Hand">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider">Ø 20–25 cm</span>
+          </div>
+          <span class="eyebrow text-xs block mb-1">Small Gesture</span>
+          <h3 class="font-display text-2xl font-bold mb-2">Petite</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ช่อกะทัดรัด น่ารัก เหมาะสำหรับเซอร์ไพรส์ในวันธรรมดา วางบนโต๊ะทำงาน หรือมอบให้เพื่อนร่วมงาน
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">เริ่มต้นที่</span>
+            <span class="font-display text-2xl font-bold text-[var(--terracotta)]">฿1,450</span>
+          </div>
+          <a href="#custom" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">เลือกดู →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 border-2 border-[var(--terracotta)] flex flex-col justify-between group shadow-md relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[var(--terracotta)] text-white text-xs font-mono uppercase px-3.5 py-1 rounded-full tracking-widest z-10 font-semibold">
+          MOST POPULAR
+        </div>
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/5] mb-5">
+            <img src="./images/size-classic.webp" alt="Classic Bouquet with Wrapping">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider">Ø 35–40 cm</span>
+          </div>
+          <span class="eyebrow text-xs block mb-1">Balanced Form</span>
+          <h3 class="font-display text-2xl font-bold mb-2">Classic</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ช่อขนาดมาตรฐานยอดนิยม สมดุลทั้งชนิดดอกไม้และใบประดับ ถือถ่ายรูปสวยพอดีตัวในทุกโอกาส
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">เริ่มต้นที่</span>
+            <span class="font-display text-2xl font-bold text-[var(--terracotta)]">฿2,650</span>
+          </div>
+          <a href="#custom" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">เลือกดู →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 border hairline flex flex-col justify-between group shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/5] mb-5">
+            <img src="./images/size-grand.webp" alt="Grand Premium Bouquet">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider">Ø 50–55 cm</span>
+          </div>
+          <span class="eyebrow text-xs block mb-1">Special Milestone</span>
+          <h3 class="font-display text-2xl font-bold mb-2">Grand</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ช่อขนาดใหญ่ โดดเด่นด้วยดอกไม้นำเข้าคัดเกรดพรีเมียม สำหรับวันครบรอบ รับปริญญา หรืองานสำคัญ
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">เริ่มต้นที่</span>
+            <span class="font-display text-2xl font-bold text-[var(--terracotta)]">฿4,200</span>
+          </div>
+          <a href="#custom" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">เลือกดู →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 border hairline flex flex-col justify-between group shadow-sm">
+        <div>
+          <div class="img-slot rounded-xl aspect-[4/5] mb-5">
+            <img src="./images/size-statement.webp" alt="Statement Masterpiece Bouquet">
+            <span class="absolute top-3 left-3 bg-[var(--ink)] text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider">Ø 65+ cm</span>
+          </div>
+          <span class="eyebrow text-xs block mb-1">Unforgettable Impact</span>
+          <h3 class="font-display text-2xl font-bold mb-2">Statement</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ช่อจัดเต็มระดับงานมาสเตอร์พีซ ดอกไม้บานสะพรั่งรอบทิศทาง สำหรับวันที่อยากให้คนรับประทับใจไม่รู้ลืม
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] font-mono block">เริ่มต้นที่</span>
+            <span class="font-display text-2xl font-bold text-[var(--terracotta)]">฿6,800</span>
+          </div>
+          <a href="#custom" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">เลือกดู →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — THE BOUQUET EDIT ============ -->
+<section id="edit" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <p class="eyebrow mb-2">Curated Signatures</p>
+        <h2 class="font-display text-[clamp(2rem,4vw,3.2rem)] leading-tight">ช่อที่เราเลือกมาให้</h2>
+      </div>
+      <span class="text-xs font-mono text-[var(--ink-faint)] hidden sm:block">เลื่อนเพื่อชมดีไซน์ →</span>
+    </div>
+
+    <div class="flex gap-6 overflow-x-auto pb-6 -mx-6 px-6 md:mx-0 md:px-0">
+      <div class="w-[300px] md:w-[340px] shrink-0 bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm group">
+        <div>
+          <div class="img-slot rounded-xl aspect-[3/4] mb-4">
+            <img src="./images/edit-morning.webp" alt="Morning Garden Fresh Bouquet">
+          </div>
+          <span class="text-xs font-mono text-[var(--moss)] uppercase tracking-wider bg-[var(--bg-alt)] px-2.5 py-1 rounded-sm font-semibold">สดใส / อ่อนโยน</span>
+          <h4 class="font-display text-2xl font-bold mt-2 mb-1">Morning Garden</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">ไฮเดรนเยีย ทิวลิปพาสเทล และดอกไม้ป่า ให้ความรู้สึกเหมือนเดินในสวนยามเช้า</p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between mt-4">
+          <span class="font-display text-xl font-bold text-[var(--terracotta)]">฿2,450</span>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">ดูช่อนี้ →</a>
+        </div>
+      </div>
+
+      <div class="w-[300px] md:w-[340px] shrink-0 bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm group">
+        <div>
+          <div class="img-slot rounded-xl aspect-[3/4] mb-4">
+            <img src="./images/edit-blush.webp" alt="Rose & Blush Romance Bouquet">
+          </div>
+          <span class="text-xs font-mono text-[var(--terracotta)] uppercase tracking-wider bg-[var(--bg-alt)] px-2.5 py-1 rounded-sm font-semibold">โรแมนติก / หวาน</span>
+          <h4 class="font-display text-2xl font-bold mt-2 mb-1">Rose & Blush</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">กุหลาบอังกฤษสีนู้ดและชมพูตุ่น แซมดอกสวีทพี กลิ่นหอมละมุนคลาสสิก</p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between mt-4">
+          <span class="font-display text-xl font-bold text-[var(--terracotta)]">฿3,200</span>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">ดูช่อนี้ →</a>
+        </div>
+      </div>
+
+      <div class="w-[300px] md:w-[340px] shrink-0 bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm group">
+        <div>
+          <div class="img-slot rounded-xl aspect-[3/4] mb-4">
+            <img src="./images/edit-wild.webp" alt="Wild & Natural Botanical Bouquet">
+          </div>
+          <span class="text-xs font-mono text-[var(--moss)] uppercase tracking-wider bg-[var(--bg-alt)] px-2.5 py-1 rounded-sm font-semibold">เป็นธรรมชาติ</span>
+          <h4 class="font-display text-2xl font-bold mt-2 mb-1">Wild & Natural</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">กิ่งยูคาลิปตัส ดอกเอรินเจียม และดอกไม้ฟอร์มฟรีสไตล์ สวยงามไร้กรอบ</p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between mt-4">
+          <span class="font-display text-xl font-bold text-[var(--terracotta)]">฿2,850</span>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">ดูช่อนี้ →</a>
+        </div>
+      </div>
+
+      <div class="w-[300px] md:w-[340px] shrink-0 bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm group">
+        <div>
+          <div class="img-slot rounded-xl aspect-[3/4] mb-4">
+            <img src="./images/edit-white.webp" alt="Pure White Elegant Bouquet">
+          </div>
+          <span class="text-xs font-mono text-[var(--ink-soft)] uppercase tracking-wider bg-[var(--bg-alt)] px-2.5 py-1 rounded-sm font-semibold">เรียบ / Elegant</span>
+          <h4 class="font-display text-2xl font-bold mt-2 mb-1">Pure White</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">กล้วยไม้ฟาแลนนอปซิส ดอกคาล่าลิลลี่ และทิวลิปสีขาวบริสุทธิ์ สง่างามเหนือกาลเวลา</p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between mt-4">
+          <span class="font-display text-xl font-bold text-[var(--terracotta)]">฿3,600</span>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm font-semibold text-[var(--ink)] hover:text-[var(--terracotta)]">ดูช่อนี้ →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — CUSTOM DESIGN ============ -->
+<section id="custom" class="py-24 md:py-32 bg-[#1E1B18] text-[#FAF7F2] px-6 md:px-10 reveal">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow text-[#E0A89B] mb-3">Bespoke Floral Tailoring</p>
+      <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] leading-tight mb-4">
+        อยากได้ช่อที่เป็นของคุณโดยเฉพาะ?
+      </h2>
+      <p class="text-lg italic font-light text-[#D8CEBF]">
+        “Tell us the feeling. We’ll create the flowers.”
+      </p>
+      <p class="text-sm md:text-base text-[#A89F95] font-light mt-3">
+        คุณไม่จำเป็นต้องจำชื่อสายพันธุ์ดอกไม้ เพียงบอกโทนสีและอารมณ์ความรู้สึกที่ต้องการส่งมอบ
+      </p>
+    </div>
+
+    <div class="bg-[#2A2522] rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+      <div class="grid md:grid-cols-2 gap-10">
+        <div>
+          <label class="block text-xs font-mono text-[#E0A89B] uppercase tracking-wider mb-4 font-semibold">
+            01 / เลือกโทนสีที่ชอบ
+          </label>
+          <div class="grid grid-cols-3 gap-3" id="colorChoice">
+            <button data-color="White & Cream" class="color-chip active p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10">
+              <span class="w-4 h-4 rounded-full bg-[#FAF5EE] inline-block border border-black/20 mr-1.5 align-middle"></span>
+              <span class="text-xs font-medium">White</span>
+            </button>
+            <button data-color="Soft Pink & Blush" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10">
+              <span class="w-4 h-4 rounded-full bg-[#E8B4B8] inline-block mr-1.5 align-middle"></span>
+              <span class="text-xs font-medium">Pink</span>
+            </button>
+            <button data-color="Deep Crimson Red" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10">
+              <span class="w-4 h-4 rounded-full bg-[#8E2828] inline-block mr-1.5 align-middle"></span>
+              <span class="text-xs font-medium">Red</span>
+            </button>
+            <button data-color="Pastel Meadow" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10">
+              <span class="w-4 h-4 rounded-full bg-[#D5CBE5] inline-block mr-1.5 align-middle"></span>
+              <span class="text-xs font-medium">Pastel</span>
+            </button>
+            <button data-color="Warm Sunburst Bright" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10">
+              <span class="w-4 h-4 rounded-full bg-[#E5A84B] inline-block mr-1.5 align-middle"></span>
+              <span class="text-xs font-medium">Bright</span>
+            </button>
+            <button data-color="Florist Signature Choice" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10">
+              <span class="w-4 h-4 rounded-full bg-gradient-to-tr from-[#E8B4B8] to-[#465345] inline-block mr-1.5 align-middle"></span>
+              <span class="text-xs font-medium">Florist Pick</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-[#E0A89B] uppercase tracking-wider mb-4 font-semibold">
+            02 / เลือกอารมณ์และความรู้สึก (Mood)
+          </label>
+          <div class="grid grid-cols-2 gap-3" id="moodChoice">
+            <button data-mood="Romantic & Warm" class="color-chip active p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10 text-xs">
+              ❤️ Romantic
+            </button>
+            <button data-mood="Sophisticated & Elegant" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10 text-xs">
+              ✨ Elegant
+            </button>
+            <button data-mood="Wild & Botanical Natural" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10 text-xs">
+              🌿 Natural
+            </button>
+            <button data-mood="Vibrant & Cheerful" class="color-chip p-3.5 rounded-xl border border-white/15 bg-white/5 text-left hover:bg-white/10 text-xs">
+              🌻 Cheerful
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs text-[#A89F95] font-mono block">สรุปแนวทางการออกแบบของคุณ:</span>
+          <p id="customSummary" class="text-lg font-display font-bold text-[#FAF7F2] mt-0.5">
+            โทน White & Cream · สไตล์ Romantic & Warm
+          </p>
+        </div>
+        <a id="customLineBtn" href="https://line.me" target="_blank" rel="noopener" class="btn-primary bg-[#E0A89B] text-[#1E1B18] hover:bg-white px-8 py-3.5 rounded-full text-base font-semibold whitespace-nowrap">
+          ให้เราออกแบบช่อนี้ให้ →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — FLOWER MENU ============ -->
+<section id="menu" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Fresh Stems In Studio</p>
+        <h2 class="font-display text-[clamp(2rem,4vw,3.2rem)] leading-tight">วันนี้มีดอกอะไรในสตูดิโอ?</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-2 md:mt-0">
+        ดอกไม้สดคัดพิเศษประจำวัน นำเข้าจากเนเธอร์แลนด์ เอกวาดอร์ และสวนในไทย
+      </p>
+    </div>
+
+    <div class="grid grid-cols-3 gap-6">
+      <div class="bg-white p-5 rounded-2xl border hairline text-center group shadow-sm">
+        <div class="img-slot rounded-xl aspect-square mb-3">
+          <img src="./images/stem-rose.webp" alt="Rose Stems">
+        </div>
+        <span class="text-xs font-mono bg-[var(--bg-alt)] text-[var(--terracotta)] px-3 py-1 rounded-full font-semibold uppercase">IN SEASON</span>
+        <h4 class="font-display font-bold text-lg mt-2">🌹 Rose</h4>
+        <p class="text-xs text-[var(--ink-faint)] font-light">กุหลาบอังกฤษ / นำเข้า</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl border hairline text-center group shadow-sm">
+        <div class="img-slot rounded-xl aspect-square mb-3">
+          <img src="./images/stem-tulip.webp" alt="Tulip Stems">
+        </div>
+        <span class="text-xs font-mono bg-[var(--bg-alt)] text-[var(--moss)] px-3 py-1 rounded-full font-semibold uppercase">POPULAR</span>
+        <h4 class="font-display font-bold text-lg mt-2">🌷 Tulip</h4>
+        <p class="text-xs text-[var(--ink-faint)] font-light">ทิวลิปฮอลแลนด์</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl border hairline text-center group shadow-sm">
+        <div class="img-slot rounded-xl aspect-square mb-3">
+          <img src="./images/stem-peony.webp" alt="Peony Stems">
+        </div>
+        <span class="text-xs font-mono bg-[var(--bg-alt)] text-[var(--terracotta)] px-3 py-1 rounded-full font-semibold uppercase">LIMITED</span>
+        <h4 class="font-display font-bold text-lg mt-2">🌸 Peony</h4>
+        <p class="text-xs text-[var(--ink-faint)] font-light">โบตั๋นกลีบซ้อน</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — VISIT & ORDER ============ -->
+<section id="visit" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Visit & Order</p>
+      <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] leading-tight">เจอกันที่ Petal & Stem</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สตูดิโอดอกไม้สดใจกลางสุขุมวิท พร้อมบริการจัดส่งทั่วกรุงเทพฯ และปริมณฑล
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+      <div class="lg:col-span-5 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <h3 class="font-display text-2xl font-bold mb-3">Petal & Stem Studio</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed font-light mb-6">
+            42 ซอยสุขุมวิท 49 แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between items-center">
+              <span class="font-medium text-[var(--ink)]">🕐 เวลาเปิดสตูดิโอ:</span>
+              <span class="font-mono">ทุกวัน 09:00 – 19:00 น.</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium text-[var(--ink)]">🚚 บริการจัดส่ง:</span>
+              <span>รถยนต์ปรับอากาศควบคุมอุณหภูมิ</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="font-medium text-[var(--ink)]">🚗 ที่จอดรถ:</span>
+              <span>มีที่จอดรถหน้าร้าน</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3.5 pt-8 border-t hairline mt-6">
+          <a href="https://line.me" target="_blank" rel="noopener" class="btn-primary w-full text-center py-4 rounded-full text-sm md:text-base bg-[#06C755] hover:bg-[#05b34c] block shadow-md">
+            💬 สั่งดอกไม้ผ่าน LINE: @petalandstem
+          </a>
+          <div class="flex gap-3">
+            <a href="https://maps.google.com/?q=Sukhumvit+49+Bangkok" target="_blank" rel="noopener" class="btn-outline flex-1 text-center py-3 rounded-full text-sm">
+              📍 แผนที่ร้าน
+            </a>
+            <a href="tel:028901234" class="btn-outline flex-1 text-center py-3 rounded-full text-sm">
+              📞 โทรติดต่อ
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 rounded-3xl overflow-hidden border hairline min-h-[380px] shadow-sm">
+        <iframe 
+          title="Petal and Stem Florist Map"
+          class="w-full h-full"
+          style="border:0; min-height: 380px;" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade" 
+          src="https://www.google.com/maps?q=Sukhumvit+49,Watthan,Bangkok,Thailand&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-16 bg-[#12100E] text-[#E8DFD3] border-t border-white/10 px-6 md:px-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-10 text-sm font-light">
+    <div>
+      <p class="font-display text-xl font-bold text-[#FAF7F2] tracking-wider mb-3">PETAL & STEM</p>
+      <p class="text-[#9E958C] leading-relaxed">
+        Artisan Florist Studio, Bangkok.<br>
+        Flowers for every feeling. ช่อดอกไม้สดที่คัดสรรด้วยหัวใจ
+      </p>
+    </div>
+    <div>
+      <p class="font-mono text-[#E0A89B] uppercase tracking-widest mb-3 font-semibold text-xs">สตูดิโอ</p>
+      <p class="text-[#9E958C] leading-relaxed">
+        42 ซอยสุขุมวิท 49 แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110
+      </p>
+    </div>
+    <div>
+      <p class="font-mono text-[#E0A89B] uppercase tracking-widest mb-3 font-semibold text-xs">ติดต่อเรา</p>
+      <ul class="space-y-1.5 text-[#9E958C]">
+        <li>โทร: 02-890-1234</li>
+        <li>LINE: @petalandstem</li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-mono text-[#E0A89B] uppercase tracking-widest mb-3 font-semibold text-xs">เวลาเปิดทำการ</p>
+      <p class="text-[#9E958C] leading-relaxed">
+        เปิดบริการทุกวัน: 09:00 – 19:00 น.<br>
+        บริการจัดส่งทั่วกรุงเทพฯ และปริมณฑล
+      </p>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto border-t border-white/10 mt-12 pt-8 text-center text-xs text-[#7A726A] font-mono">
+    © 2026 Petal & Stem Florist. All rights reserved. Created with PuchUp Project ONE[cite: 1].
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)] border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--ink-faint)] font-mono block">Petal & Stem สุขุมวิท 49</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">สั่งดอกไม้รอบวันนี้</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:028901234" class="btn-outline px-3.5 py-2 rounded-full text-sm flex items-center justify-center">📞</a>
+    <a href="#occasions" class="btn-primary px-5 py-2 rounded-full text-sm">เลือกดอกไม้</a>
+  </div>
+</div>
+
+<script>
+const occasionData = {
+  love: {
+    title: 'บอกรัก & ความรู้สึกโรแมนติก',
+    subtitle: 'สื่อความในใจอย่างนุ่มนวลและลึกซึ้ง',
+    desc: 'เน้นกุหลาบอังกฤษสีนู้ดและชมพูตุ่น แซมดอกสวีทพีและยูคาลิปตัส กลิ่นหอมละมุน เหมาะสำหรับวันพิเศษหรือเซอร์ไพรส์คนรัก',
+    recommend: 'Rose & Blush (Classic Size)',
+    price: '฿2,650 – ฿4,200',
+    img: './images/occ-love.webp'
+  },
+  birthday: {
+    title: 'วันเกิด (Birthday Celebration)',
+    subtitle: 'สดใส เติมเต็มพลังบวก และสร้างรอยยิ้ม',
+    desc: 'ผสมผสานดอกทิวลิปพาสเทล เยอบีร่า และดอกไม้ป่าหลากสีสัน ให้ความรู้สึกสดชื่น มีชีวิตชีวา ถ่ายรูปคู่กับเค้กวันเกิดสวยเด่น',
+    recommend: 'Morning Garden (Classic Size)',
+    price: '฿2,450 – ฿3,800',
+    img: './images/occ-birthday.webp'
+  },
+  congrats: {
+    title: 'แสดงความยินดี (Congratulations)',
+    subtitle: 'สง่างาม โดดเด่น ในทุกก้าวแห่งความสำเร็จ',
+    desc: 'เน้นดอกไม้ฟอร์มใหญ่ เช่น ดอกลิลลี่ ไฮเดรนเยีย และกล้วยไม้ฟาแลนนอปซิส ช่อแน่น อยู่ทรง สำหรับงานรับปริญญาหรือเปิดธุรกิจใหม่',
+    recommend: 'Grand Meadow Bouquet',
+    price: '฿3,200 – ฿5,500',
+    img: './images/occ-congrats.webp'
+  },
+  thanks: {
+    title: 'ขอบคุณ & ซาบซึ้ง (Appreciation)',
+    subtitle: 'ส่งต่อคำขอบคุณที่อบอุ่นและจริงใจ',
+    desc: 'ใช้โทนสีครีม ขาว แซมพีชอ่อน ดอกคาร์เนชั่นและกุหลาบสวน แสดงความเคารพและความขอบคุณต่อผู้ใหญ่หรือคนสำคัญ',
+    recommend: 'Warm Whisper Bouquet',
+    price: '฿1,850 – ฿3,200',
+    img: './images/occ-thanks.webp'
+  },
+  getwell: {
+    title: 'เยี่ยมไข้ & ให้กำลังใจ (Get Well Soon)',
+    subtitle: 'ละมุนสายตา ปราศจากเกสรฟุ้งกระจาย',
+    desc: 'คัดสรรดอกไม้ที่ไม่มีกลิ่นฉุนและละอองเกสรน้อย เช่น ไฮเดรนเยีย ทิวลิป และใบเขียวสบายตา เติมความสดชื่นให้กับห้องพักฟื้น',
+    recommend: 'Gentle Recovery Bloom',
+    price: '฿1,950 – ฿3,400',
+    img: './images/occ-getwell.webp'
+  },
+  anniversary: {
+    title: 'วันครบรอบ (Anniversary Milestone)',
+    subtitle: 'ความทรงจำที่เติบโตและงดงามเหนือกาลเวลา',
+    desc: 'ช่อกุหลาบเอกวาดอร์คัดเกรดพรีเมียมและดอกพีโอนีบานสะพรั่ง ดีไซน์ทรงสูงสง่างาม บ่งบอกถึงคุณค่าของช่วงเวลาที่เดินทางร่วมกัน',
+    recommend: 'Timeless Grand Romance',
+    price: '฿4,200 – ฿6,800',
+    img: './images/occ-anniversary.webp'
+  },
+  sympathy: {
+    title: 'แสดงความเสียใจ & ไว้อาลัย (Sympathy)',
+    subtitle: 'ความสงบ บริสุทธิ์ และการให้เกียรติสูงสุด',
+    desc: 'โทนสีขาวบริสุทธิ์และเขียวธรรมชาติ ดอกคาล่าลิลลี่ กล้วยไม้ และกุหลาบขาว จัดเรียงอย่างสงบนิ่ง สุภาพและประณีต',
+    recommend: 'Pure Serenity Arrangement',
+    price: '฿2,500 – ฿4,800',
+    img: './images/occ-sympathy.webp'
+  },
+  everyday: {
+    title: 'วันธรรมดาที่อยากให้พิเศษ (Just Because)',
+    subtitle: 'ความสุขเรียบง่ายที่ไม่ต้องรอโอกาสพิเศษ',
+    desc: 'ช่อดอกไม้สไตล์มินิมอล ดอกไม้ตามฤดูกาลสดใหม่ในราคาจับต้องได้ เติมความสดชื่นให้กับบ้านหรือโต๊ะทำงาน',
+    recommend: 'Petite Everyday Posy',
+    price: '฿1,450 – ฿2,200',
+    img: './images/occ-everyday.webp'
+  }
+};
+
+function renderOccasion(key) {
+  const data = occasionData[key];
+  const container = document.getElementById('occasionSpotlight');
+  
+  container.innerHTML = `
+    <div class="lg:col-span-6 img-slot rounded-2xl aspect-[4/3] shadow-md">
+      <img src="${data.img}" alt="${data.title}">
+    </div>
+    <div class="lg:col-span-6 flex flex-col justify-between">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Occasion Recommendation</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-1">${data.title}</h3>
+        <p class="text-xs font-mono text-[var(--terracotta)] mb-4 font-semibold">${data.subtitle}</p>
+        <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">${data.desc}</p>
+        
+        <div class="space-y-3 border-t hairline pt-4 text-sm font-light text-[var(--ink-soft)]">
+          <div class="flex justify-between">
+            <span class="font-medium text-[var(--ink)]">ช่อที่แนะนำ:</span>
+            <span class="font-serif font-semibold text-[var(--ink)]">${data.recommend}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="font-medium text-[var(--ink)]">งบประมาณเริ่มต้น:</span>
+            <span class="font-mono font-bold text-[var(--terracotta)] text-lg">${data.price}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t hairline mt-6 flex flex-wrap gap-3">
+        <a href="https://line.me" target="_blank" rel="noopener" class="btn-primary flex-1 text-center py-3.5 rounded-full text-sm font-semibold">
+          สั่งช่อสำหรับโอกาสนี้ (LINE) →
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+renderOccasion('love');
+
+document.querySelectorAll('#occasionFilterPills button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#occasionFilterPills button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderOccasion(btn.dataset.occ);
+  });
+});
+
+let selectedColor = 'White & Cream';
+let selectedMood = 'Romantic & Warm';
+
+function updateCustomSummary() {
+  document.getElementById('customSummary').textContent = `โทน ${selectedColor} · สไตล์ ${selectedMood}`;
+}
+
+document.querySelectorAll('#colorChoice button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#colorChoice button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedColor = btn.dataset.color;
+    updateCustomSummary();
+  });
+});
+
+document.querySelectorAll('#moodChoice button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#moodChoice button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedMood = btn.dataset.mood;
+    updateCustomSummary();
+  });
+});
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Supabase local/project config for PuchUp (project name: puchup)
+# Create empty project at https://supabase.com then link:
+#   npx supabase link --project-ref <ref>
+#   npx supabase db push
+#   npx supabase functions deploy contact-chat
+
+[functions.contact-chat]
+verify_jwt = false

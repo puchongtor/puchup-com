@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Elite Aesthetic Clinic — คลินิกเวชกรรมความงามและเลเซอร์ ทองหล่อ</title>
+<meta name="description" content="Aura Elite Clinic ทองหล่อ คลินิกปรับรูปหน้า ยกกระชับ เลเซอร์ผิวพรรณ ด้วยเครื่องแท้ US/EU 100% แกะกล่องต่อหน้า โดยแพทย์ผู้เชี่ยวชาญทุกเคส">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "name": "Aura Elite Aesthetic Clinic",
+  "alternateName": "ออร่า อีลิท คลินิกเวชกรรม",
+  "description": "คลินิกความงามเฉพาะทาง ปรับรูปหน้า ยกกระชับ และเลเซอร์ผิวพรรณ ทองหล่อ",
+  "telephone": "02-555-6789",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "55 ซอยสุขุมวิท 55 (ทองหล่อ 13) แขวงคลองตันเหนือ",
+    "addressLocality": "เขตวัฒนา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10110",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F3EFE9;
+    --ink: #1A1613;
+    --ink-soft: #423B35;
+    --ink-faint: #786E65;
+    --gold: #C5A059;
+    --gold-dark: #9E7D3B;
+    --gold-light: #F7F1E5;
+    --line: #E8E0D5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Cinzel', 'Noto Sans Thai', serif; letter-spacing: 0.04em; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--gold); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'Cinzel', 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 248, 245, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--gold-dark); }
+  .navtab.active { color: var(--gold-dark); border-color: var(--gold); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.035); }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #C5A059 0%, #A8823E 100%);
+    color: #FFFFFF;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .btn-gold:hover {
+    background: linear-gradient(135deg, #B38E49 0%, #8E6C2E 100%);
+    box-shadow: 0 10px 24px -8px rgba(197, 160, 89, 0.5);
+  }
+
+  .concern-card { transition: all 0.25s ease; cursor: pointer; }
+  .concern-card:hover, .concern-card.active {
+    border-color: var(--gold);
+    background-color: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#F7F1E5] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ AURA ELITE — คลินิกเวชกรรมความงามเฉพาะทาง ทองหล่อ 13 · ใบอนุญาตสถานพยาบาลเลขที่: 10102005678 ·</span>
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3.5 shrink-0 group">
+      <div class="w-11 h-11 rounded-full border-2 border-[var(--gold)] flex items-center justify-center text-[var(--gold-dark)] font-display text-xl font-bold transition-colors group-hover:bg-[var(--gold)] group-hover:text-white shadow-sm">
+        A
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-wider leading-none block text-[var(--ink)]">Aura Elite</span>
+        <span class="text-xs text-[var(--gold-dark)] tracking-[0.24em] font-mono uppercase block mt-1 font-semibold">Aesthetic Clinic · Thonglor</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#analyzer" class="navtab active">วิเคราะห์ปัญหาผิว</a>
+      <a href="#machines" class="navtab">มาตรฐานเครื่องแท้ 100%</a>
+      <a href="#doctors" class="navtab">ทีมแพทย์ประจำ</a>
+      <a href="#reviews" class="navtab">รีวิวผลลัพธ์</a>
+      <a href="#location" class="navtab">แผนที่ & นัดปรึกษา</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:025556789" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-555-6789
+      </a>
+      <a href="#booking" class="btn-gold px-6 py-3 rounded-full text-sm shadow-sm">
+        นัดปรึกษาคุณหมอ (ฟรี)
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--gold-light)] border border-[var(--gold)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--gold-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--gold)] animate-pulse"></span> ปรับรูปหน้าอย่างเป็นธรรมชาติ · ดึงเอกลักษณ์ความงามของคุณ
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        เผยความงามที่มั่นใจ<br>
+        <span class="text-[var(--gold-dark)]">ด้วยมาตรฐานความปลอดภัยระดับสากล</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        คลินิกเวชกรรมความงามชั้นนำย่านทองหล่อ ดูแลโดยแพทย์ผู้เชี่ยวชาญตัวต่อตัว เครื่องแท้และตัวยานำเข้าผ่าน อย. ไทยและ US FDA แกะกล่องให้ตรวจสอบต่อหน้าทุกเคส
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#analyzer" class="btn-gold px-8 py-4 rounded-full text-center text-base md:text-lg shadow-md">
+          เช็กปัญหาผิว & โปรแกรมที่เหมาะ →
+        </a>
+        <a href="#booking" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          จองคิวตรวจกับแพทย์ (ทองหล่อ)
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เครื่องแท้ ตรวจสอบได้</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">10,000+</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เคสปรับรูปหน้าสำเร็จ</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">0% Force</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ไม่บังคับขายคอร์ส</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/clinic-hero.webp" alt="บรรยากาศคลินิกและการปรึกษาแพทย์" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-2xl shrink-0">🛡️</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ใบอนุญาตสถานพยาบาล</strong>
+          <span class="text-[var(--ink-faint)]">เลขที่ 10102005678 กระทรวงสาธารณสุข</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — INTERACTIVE SKIN CONCERN ANALYZER ============ -->
+<section id="analyzer" class="py-24 md:py-32 px-6 md:px-10 bg-[#F3EFE9] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Personalized Aesthetic Matrix</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">คุณต้องการดูแลจุดไหนเป็นพิเศษ?</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกความกังวลของคุณ เพื่อดูแนวทางการรักษา เทคโนโลยีเครื่องมือ และการประเมินราคาล่วงหน้า
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="concernSelector">
+      <button data-concern="lift" class="concern-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">✨</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ยกกระชับ & ปรับกรอบหน้า</strong>
+        <span class="text-xs text-[var(--ink-faint)]">Ultherapy / Oligio</span>
+      </button>
+
+      <button data-concern="contour" class="concern-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💉</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ฟิลเลอร์ & ปรับมิติใบหน้า</strong>
+        <span class="text-xs text-[var(--ink-faint)]">ใต้ตา / ร่องแก้ม / คาง</span>
+      </button>
+
+      <button data-concern="skin" class="concern-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💧</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">งานผิวฉ่ำวาว & หลุมสิว</strong>
+        <span class="text-xs text-[var(--ink-faint)]">Pico Laser / Rejuran</span>
+      </button>
+
+      <button data-concern="wrinkle" class="concern-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🕊️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ลดริ้วรอย & ลิฟต์กรอบหน้า</strong>
+        <span class="text-xs text-[var(--ink-faint)]">Botox US / Allergan</span>
+      </button>
+    </div>
+
+    <div id="concernResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-md grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — GENUINE EQUIPMENT GUARANTEE ============ -->
+<section id="machines" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">100% Certified Machines</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">นวัตกรรมเครื่องแท้มาตรฐานโลก</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        ตรวจสอบใบรับรองตัวแทนจำหน่ายอย่างเป็นทางการและสแกน QR Code ตรวจเช็กเครื่องแท้ได้ทุกเครื่อง
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-5">
+            <img src="./images/machine-therma.webp" alt="Oligio Monopolar RF">
+          </div>
+          <span class="text-xs font-mono text-[var(--gold-dark)] font-bold uppercase">LIFTING & TIGHTENING</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-2">Oligio Monopolar RF</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            คลื่นวิทยุความถี่สูงส่งผ่านพลังงานลงลึกถึงชั้นหนังแท้ กระตุ้นคอลลาเจนสลายไขมันแก้ม เหนียง กรอบหน้าชัด ไม่เจ็บ
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+          <span>✓ มีใบ Certificate รับรอง</span>
+          <span>US & Thai FDA</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border-2 border-[var(--gold)] shadow-md flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-5">
+            <img src="./images/machine-pico.webp" alt="Discovery Pico Laser">
+          </div>
+          <span class="text-xs font-mono text-[var(--gold-dark)] font-bold uppercase">SKIN RESURFACING</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-2">Discovery Pico Laser</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            เลเซอร์ความเร็วระดับพิโควินาที จัดการเม็ดสี ฝ้า กระ รอยดำจากสิว และรักษาหลุมสิวด้วยโหมด Fractional Rejuvenation
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+          <span>✓ หัวเลเซอร์แท้ Italy</span>
+          <span>CE & Thai FDA</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-5">
+            <img src="./images/clinic-vip-lounge.webp" alt="VIP Private Suite">
+          </div>
+          <span class="text-xs font-mono text-[var(--gold-dark)] font-bold uppercase">PRIVATE CLINICAL SUITE</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-2">ห้องหัตถการ VIP ส่วนตัว</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            รักษาความเป็นส่วนตัวสูงสุด ห้องหัตถการเดี่ยวแยกสัดส่วน ปลอดเชื้อด้วยระบบหมุนเวียนอากาศ Clean Room
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+          <span>✓ ฆ่าเชื้อ 100% ทุกเคส</span>
+          <span>Discreet Service</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — LICENSED MEDICAL DOCTORS ============ -->
+<section id="doctors" class="py-24 md:py-32 bg-[#F3EFE9] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Certified Physicians</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมแพทย์ประจำคลินิก</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        แพทย์มีใบประกอบวิชาชีพเวชกรรม ผ่านการอบรมเทคนิคการฉีดปรับรูปหน้าและการใช้เครื่องเลเซอร์ระดับสูง
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-32 h-32 rounded-full overflow-hidden shrink-0 border-2 border-[var(--gold)] shadow-md">
+          <img src="./images/doctor-dr-ploy.webp" alt="พญ. พลอยไพลิน ศรีสวัสดิ์" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--gold-dark)] font-bold uppercase">แพทย์ผู้เชี่ยวชาญด้านการปรับรูปหน้า</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-1">พญ. พลอยไพลิน ศรีสวัสดิ์ (หมอพลอย)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">แพทยศาสตรบัณฑิต จุฬาฯ (ว. 45890)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ผู้เชี่ยวชาญด้าน Filler สถาปัตยกรรมใบหน้าชั้นสูง และการยกกระชับด้วย Oligio ประสบการณ์กว่า 10 ปี
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-32 h-32 rounded-full overflow-hidden shrink-0 border-2 border-[var(--gold)] shadow-md">
+          <img src="./images/doctor-dr-karn.webp" alt="นพ. กานต์ ชัยเจริญ" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--gold-dark)] font-bold uppercase">แพทย์ผู้เชี่ยวชาญด้านเลเซอร์ผิวพรรณ</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-1">นพ. กานต์ ชัยเจริญ (หมอกานต์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">แพทยศาสตรบัณฑิต รามาธิบดี (ว. 48120)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ผู้เชี่ยวชาญด้าน Pico Laser งานฟื้นฟูหลุมสิว และการดีไซน์ Skin Booster ฟื้นฟูคอลลาเจนผิว
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS SECTION (ADDED TO MATCH ARCHITECTURE) ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Patient Reflections</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ความประทับใจจากคนไข้จริง</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (420+ รีวิวบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ฉีดฟิลเลอร์ใต้ตากับหมอพลอย ละมุนมาก ไม่เป็นก้อนเลย รอยคล้ำจางลงทันที หมอมือเบาสุดๆ แกะกล่องสแกน QR Code ตรวจสอบกล่องให้ดูตรงหน้า มั่นใจมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณพิมพ์ชนก (ทองหล่อ)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ฟิลเลอร์ใต้ตา & ร่องแก้ม</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ทำ Oligio ยกกระชับกรอบหน้ากับหมอกานต์ ไม่เจ็บอย่างที่คิด เหนียงยุบ กรอบหน้าชัดขึ้นมากหลังทำ 1 เดือน ที่สำคัญพนักงานไม่ยัดเยียดคอร์ส สบายใจมากครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณอัครเดช (เอกมัย)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Oligio Lifting 600 Shots</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "รักษาหลุมสิวด้วย Discovery Pico หน้าไม่เยิน รอยแดงหายไว รูขุมขนกระชับขึ้นชัดเจน คลินิกสะอาด มีที่จอดรถ Valet สะดวกมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณวรัญญา (พร้อมพงษ์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Discovery Pico Rejuvenation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#F3EFE9] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Location & Access</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่คลินิก & เวลาทำการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ตั้งอยู่ใจกลางทองหล่อ 13 เดินทางสะดวก พร้อมบริการ Valet Parking
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">จันทร์ – อาทิตย์:</span>
+              <span class="font-mono">11:00 – 20:00 น. (เปิดทุกวัน)</span>
+            </div>
+            <div class="flex justify-between text-emerald-700 font-medium pt-1">
+              <span>วันหยุดนักขัตฤกษ์:</span>
+              <span>เปิดให้บริการตามปกติ</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งคลินิก</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            55 ซอยสุขุมวิท 55 (ทองหล่อ 13) แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚗 บริการ Valet Parking และที่จอดรถส่วนตัว 12 คัน</div>
+            <div>🚇 BTS สถานีทองหล่อ ทางออก 3 (มีรถ Shuttle รับ-ส่ง)</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Thonglor+13+Bangkok" target="_blank" rel="noopener" class="btn-gold flex-1 text-center py-3.5 rounded-full text-sm font-semibold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:025556789" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 02-555-6789
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="Aura Elite Clinic Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.768132986427!2d100.5815!3d13.7325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29e5555555555%3A0x123456789abcdef!2sThonglor%2013%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — PRIVATE CONSULTATION BOOKING ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Private Consultation</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">นัดหมายปรึกษาแพทย์ล่วงหน้า</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      ปรึกษาและประเมินโครงสร้างใบหน้าโดยไม่มีค่าใช้จ่าย แพทย์เป็นผู้วางแผนการรักษาแบบตัวต่อตัว
+    </p>
+    
+    <form id="aesContactForm" onsubmit="handleAesSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อ-นามสกุล <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="aesName" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--gold)]" placeholder="เช่น คุณวรัญญา สุขสว่าง">
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เบอร์โทรศัพท์ / LINE ID <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+          <input type="tel" id="aesPhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--gold)]" placeholder="081-xxx-xxxx">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวก <span class="text-stone-400 font-normal text-xs">(กรณีจองคิว)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--gold)]">
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">โปรแกรมที่สนใจปรึกษา / เรื่องที่ต้องการติดต่อ</label>
+        <select id="aesService" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--gold)]">
+          <option value="ยกกระชับ ปรับกรอบหน้า (Oligio / Ulthera)">✨ ยกกระชับ ปรับกรอบหน้า (Oligio / Ulthera)</option>
+          <option value="ฟิลเลอร์ปรับมิติใบหน้า (ใต้ตา / ร่องแก้ม / คาง)">💉 ฟิลเลอร์ปรับมิติใบหน้า (ใต้ตา / ร่องแก้ม / คาง)</option>
+          <option value="เลเซอร์ผิวพรรณ หลุมสิว รอยดำ (Pico Laser)">💧 เลเซอร์ผิวพรรณ หลุมสิว รอยดำ (Discovery Pico Laser)</option>
+          <option value="โบท็อกซ์ลดริ้วรอย / ลิฟต์กรอบหน้า (US / Korea)">🕊️ โบท็อกซ์ลดริ้วรอย / ลิฟต์กรอบหน้า (US / Korea)</option>
+          <option value="ฟื้นฟูผิว Glass Skin (Rejuran / Skin Booster)">🌸 ฟื้นฟูผิว Glass Skin (Rejuran / Skin Booster)</option>
+          <option value="ส่งรูปประเมินใบหน้ากับแพทย์เบื้องต้น">📸 ส่งรูปประเมินใบหน้ากับแพทย์เบื้องต้น</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-gold py-4 rounded-full text-base font-semibold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / นัดปรึกษาทาง LINE →
+        </button>
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--gold-dark)] hover:text-[var(--gold)] underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/60 transition hover:bg-amber-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อปรึกษาผู้เชี่ยวชาญได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-white border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">Aura Elite Aesthetic Clinic (Thonglor)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      55 ซอยทองหล่อ 13 แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110 | ใบอนุญาตสถานพยาบาลเลขที่ 10102005678
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Aura Elite Clinic. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--ink-faint)] font-mono block">Aura Elite ทองหล่อ 13</span>
+    <span class="font-display text-base font-bold text-[var(--gold-dark)]">ปรึกษาแพทย์ฟรี</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:025556789" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-gold px-6 py-2.5 rounded-full text-sm font-semibold">จองคิว</a>
+  </div>
+</div>
+
+<script>
+
+function handleAesSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('aesName').value.trim();
+  const phone = document.getElementById('aesPhone').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const service = document.getElementById('aesService').value;
+
+  let msg = `สวัสดีค่ะ สนใจติดต่อ Aura Elite Clinic\n- เรื่องที่ติดต่อ: ${service}`;
+  if (name) msg += `\n- ผู้ติดต่อ: ${name}`;
+  if (phone) msg += `\n- เบอร์โทร/LINE: ${phone}`;
+  if (date) msg += `\n- วันที่สะดวก: ${date}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const concernData = {
+  lift: {
+    title: 'โปรแกรมยกกระชับ & สลายไขมันกรอบหน้า',
+    tech: 'Oligio Monopolar RF + Tightening Vector',
+    desc: 'ส่งพลังงานความร้อนลึกลงสู่ชั้นหนังแท้ กระตุ้นการสร้างคอลลาเจนใหม่ทันที สลายไขมันแก้มและเหนียง กรอบหน้าคมชัด ไม่ต้องพักฟื้น',
+    time: '45–60 นาที',
+    price: '฿12,900 / 300 ช็อต',
+    img: './images/skin-lift.webp'
+  },
+  contour: {
+    title: 'โปรแกรมฟิลเลอร์ปรับสถาปัตยกรรมใบหน้า',
+    tech: 'Hyaluronic Acid Filler (US / Sweden) แท้แกะกล่อง',
+    desc: 'เติมเต็มใต้ตาที่ลึกคล้ำ ร่องแก้ม และปรับมิติคางให้เรียวละมุนอย่างเป็นธรรมชาติ โดยแพทย์ผู้เชี่ยวชาญด้านกายวิภาคใบหน้า',
+    time: '30–45 นาที',
+    price: '฿11,500 / 1 cc',
+    img: './images/skin-filler.webp'
+  },
+  skin: {
+    title: 'โปรแกรม Discovery Pico Rejuvenation',
+    tech: 'Picosecond Laser + Hydro Skin Glow',
+    desc: 'ยิงสลายเม็ดสี รอยดำสิว ฝ้า กระ พร้อมเปิดรูขุมขนเพื่อผลักดันตัวยา Rejuran เพิ่มความฉ่ำวาวและรักษาหลุมสิวให้ตื้นขึ้นอย่างเห็นได้ชัด',
+    time: '45 นาที',
+    price: '฿4,900 / ครั้ง',
+    img: './images/skin-glow.webp'
+  },
+  wrinkle: {
+    title: 'โปรแกรมลดริ้วรอย & ลิฟต์กรอบหน้า Nefertiti',
+    tech: 'Botulinum Toxin A (Allergan US แท้ 100%)',
+    desc: 'ลดริ้วรอยหางตา หน้าผาก หว่างคิ้ว และเทคนิคลิฟต์คลายกล้ามเนื้อคอเพื่อดึงกรอบหน้าให้กระชับขึ้นอย่างเป็นธรรมชาติ ไม่ตึงแข็ง',
+    time: '20 นาที',
+    price: '฿6,500 / จุด',
+    img: './images/skin-acne.webp'
+  }
+};
+
+function renderConcern(key) {
+  const data = concernData[key];
+  const box = document.getElementById('concernResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-stone-100 shadow-sm">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Targeted Medical Protocol</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-xs font-mono text-[var(--gold-dark)] mb-3 font-semibold">เทคโนโลยี: ${data.tech}</p>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        <div class="flex items-center gap-6 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">ระยะเวลาทำ</span><strong class="text-[var(--ink)] font-bold text-base">${data.time}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">ราคาประเมิน</span><strong class="text-[var(--gold-dark)] font-bold text-lg">${data.price}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-gold px-7 py-3 rounded-full text-sm font-semibold shadow-sm">นัดตรวจโปรแกรมนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderConcern('lift');
+document.querySelectorAll('#concernSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#concernSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderConcern(btn.dataset.concern);
+  });
+});
+
+const tom = new Date();
+tom.setDate(tom.getDate() + 1);
+document.getElementById('bookDate').value = tom.toISOString().split('T')[0];
+document.getElementById('bookDate').min = tom.toISOString().split('T')[0];
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

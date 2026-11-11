@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoreFlow Studio — โยคะ & พิลาทิส รีฟอร์เมอร์ ทองหล่อ-เอกมัย</title>
+<meta name="description" content="CoreFlow Studio สตูดิโอพิลาทิส Reformer และโยคะพรีเมียม คลาสกลุ่มเล็กไม่เกิน 6 ท่าน ปรับบุคลิกภาพ แก้ออฟฟิศซินโดรม โดยครูผู้สอนมาตรฐานสากล ทองหล่อ ซอย 10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F2ECE4;
+    --ink: #2C2621;
+    --ink-soft: #5C5248;
+    --ink-faint: #8E8276;
+    --sage: #5B7065;
+    --sage-dark: #3F5248;
+    --sage-light: #E4EBE7;
+    --clay: #C28268;
+    --line: #E8DFD5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Fraunces', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--sage); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 248, 245, 0.96);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--sage); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.05); }
+
+  .btn-sage {
+    background: linear-gradient(135deg, #5B7065 0%, #3F5248 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-sage:hover {
+    background: linear-gradient(135deg, #6E8579 0%, #5B7065 100%);
+    box-shadow: 0 10px 24px -8px rgba(91, 112, 101, 0.5);
+  }
+
+  .class-pill { transition: all 0.25s ease; cursor: pointer; }
+  .class-pill:hover, .class-pill.active {
+    border-color: var(--sage);
+    background-color: var(--sage-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#F2ECE4] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ COREFLOW STUDIO — โยคะ & พิลาทิส รีฟอร์เมอร์ ทองหล่อ ซอย 10 · คลาสทดลองเล่น First Trial เพียง ฿690 ·</span>
+  <a href="demo.html" class="underline hover:text-emerald-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--sage)] flex items-center justify-center text-white text-2xl shadow-sm group-hover:scale-105 transition-transform">
+        🌿
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">CoreFlow</span>
+        <span class="text-xs text-[var(--sage-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Pilates & Yoga Studio · Thonglor</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#classes" class="navlink font-semibold">คลาสเรียนทั้งหมด</a>
+      <a href="#schedule" class="navlink">ตารางคลาสประจำสัปดาห์</a>
+      <a href="#pricing" class="navlink">แพ็กเกจ & ราคา</a>
+      <a href="#gallery" class="navlink">แกลเลอรีสตูดิโอ</a>
+      <a href="#team" class="navlink">ทีมครูผู้สอน</a>
+      <a href="#location" class="navlink">ที่ตั้ง & จองคลาส</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:023819988" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-381-9988
+      </a>
+      <a href="#booking" class="btn-sage px-6 py-3 rounded-full text-sm shadow-sm">
+        จองคลาสทดลองเล่น
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--sage-light)] border border-[var(--sage)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--sage-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--sage)] animate-pulse"></span> คลาสกลุ่มเล็กสูงสุด 6 ท่าน · ปรับสรีระเฉพาะบุคคล
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        สร้างแกนกลางที่แข็งแรง<br>
+        <span class="text-[var(--sage)]">ปรับบุคลิกภาพ คลายออฟฟิศซินโดรม</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        สตูดิโอพิลาทิส Reformer และโยคะสไตล์บูทีคใจกลางทองหล่อ แสงธรรมชาติโปร่งสบาย ดูแลการเคลื่อนไหวอย่างปลอดภัยโดยครูผู้สอนที่ผ่านการรับรองมาตรฐานสากล
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#booking" class="btn-sage px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          จองคลาสทดลอง (First Trial ฿690) →
+        </a>
+        <a href="#schedule" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          ดูตารางเรียนสัปดาห์นี้
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">Max 6</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เครื่องต่อคลาส ดูแลทั่วถึง</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">Certified Master Trainer</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">Private</strong>
+          <span class="text-sm text-[var(--ink-faint)]">มีห้องเรียนเดี่ยว 1-on-1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/pilates-hero.webp" alt="บรรยากาศการเรียนพิลาทิส Reformer ที่ CoreFlow Studio" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[var(--sage-dark)] flex items-center justify-center font-bold text-2xl shrink-0">✨</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">เครื่อง Reformer ไม้แท้</strong>
+          <span class="text-[var(--ink-faint)]">ระบบสปริงนุ่มนวล ลดแรงกระแทกข้อต่อ 100%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — CLASSES INTERACTIVE SELECTOR ============ -->
+<section id="classes" class="py-24 md:py-32 px-6 md:px-10 bg-[#F2ECE4] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Class Disciplines</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เลือกคลาสที่ตอบโจทย์ร่างกายคุณ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        มีตั้งแต่ระดับเริ่มต้น (Beginner) ไปจนถึงระดับเข้มข้นเพื่อสร้างกล้ามเนื้อและยืดเหยียดลึก
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="classSelector">
+      <button data-class="reformer" class="class-pill active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🤸‍♀️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Pilates Reformer</strong>
+        <span class="text-xs text-[var(--sage-dark)]">กระชับสัดส่วน & แกนกลาง</span>
+      </button>
+
+      <button data-class="cadillac" class="class-pill p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🩰</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Private Cadillac 1-on-1</strong>
+        <span class="text-xs text-[var(--sage-dark)]">ฟื้นฟูกระดูกสันหลัง & กายภาพ</span>
+      </button>
+
+      <button data-class="vinyasa" class="class-pill p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🧘‍♀️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Vinyasa & Hatha Yoga</strong>
+        <span class="text-xs text-[var(--sage-dark)]">เพิ่มความยืดหยุ่น & ลมหายใจ</span>
+      </button>
+
+      <button data-class="soundbath" class="class-pill p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🥣</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Sound Bath & Deep Stretch</strong>
+        <span class="text-xs text-[var(--sage-dark)]">คลื่นเสียงบำบัด & ผ่อนคลายลึก</span>
+      </button>
+    </div>
+
+    <div id="classResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — WEEKLY SCHEDULE ============ -->
+<section id="schedule" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Timetable</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ตารางคลาสเรียนประจำวัน</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        เปิดสอนตั้งแต่เช้าตรู่ 07:30 น. จนถึงรอบค่ำ 20:00 น. รองรับทุกไลฟ์สไตล์
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase block mb-2">MORNING SESSIONS</span>
+          <h4 class="font-display font-bold text-2xl mb-4">ช่วงเช้า (07:30 – 11:30 น.)</h4>
+          <div class="space-y-4 text-sm text-[var(--ink-soft)] border-t hairline pt-4">
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">07:30 – 08:30</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Morning Flow Yoga (ครูอาร์ต)</span>
+              </div>
+              <span class="text-xs font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">All Levels</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">09:00 – 10:00</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Reformer Tone & Core (ครูโบว์)</span>
+              </div>
+              <span class="text-xs font-mono bg-blue-100 text-blue-800 px-2 py-0.5 rounded">Reformer</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">10:30 – 11:30</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Spine Align Reformer (ครูโบว์)</span>
+              </div>
+              <span class="text-xs font-mono bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Office Fix</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t hairline text-center">
+          <a href="#booking" class="text-xs font-bold text-[var(--sage)] hover:underline">จองรอบเช้า →</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border-2 border-[var(--sage)] shadow-xl flex flex-col justify-between relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[var(--sage)] text-white text-xs font-mono uppercase px-4 py-1 rounded-full tracking-wider font-bold">
+          POPULAR SLOTS
+        </div>
+        <div class="pt-2">
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase block mb-2">AFTERNOON SESSIONS</span>
+          <h4 class="font-display font-bold text-2xl mb-4">ช่วงบ่าย (13:00 – 17:00 น.)</h4>
+          <div class="space-y-4 text-sm text-[var(--ink-soft)] border-t hairline pt-4">
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">13:00 – 14:00</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Private 1-on-1 Cadillac (นัดหมาย)</span>
+              </div>
+              <span class="text-xs font-mono bg-purple-100 text-purple-800 px-2 py-0.5 rounded">Private</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">14:30 – 15:30</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Gentle Hatha & Stretch (ครูอาร์ต)</span>
+              </div>
+              <span class="text-xs font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Beginner</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">16:00 – 17:00</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Reformer Jumpboard Cardio (ครูโบว์)</span>
+              </div>
+              <span class="text-xs font-mono bg-rose-100 text-rose-800 px-2 py-0.5 rounded">Burn Max</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t hairline text-center">
+          <a href="#booking" class="text-xs font-bold text-[var(--sage)] hover:underline">จองรอบบ่าย →</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase block mb-2">EVENING SESSIONS</span>
+          <h4 class="font-display font-bold text-2xl mb-4">ช่วงค่ำ (17:30 – 20:30 น.)</h4>
+          <div class="space-y-4 text-sm text-[var(--ink-soft)] border-t hairline pt-4">
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">17:30 – 18:30</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Reformer Core & Glutes (ครูโบว์)</span>
+              </div>
+              <span class="text-xs font-mono bg-blue-100 text-blue-800 px-2 py-0.5 rounded">Reformer</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">18:45 – 19:45</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Office Syndrome Relief Yoga (ครูอาร์ต)</span>
+              </div>
+              <span class="text-xs font-mono bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Relax</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="block text-[var(--ink)]">20:00 – 21:00</strong>
+                <span class="text-xs text-[var(--ink-faint)]">Crystal Sound Bath Healing (ครูอาร์ต)</span>
+              </div>
+              <span class="text-xs font-mono bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded">Healing</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-6 pt-4 border-t hairline text-center">
+          <a href="#booking" class="text-xs font-bold text-[var(--sage)] hover:underline">จองรอบค่ำ →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — PRICING & PACKAGES ============ -->
+<section id="pricing" class="py-24 md:py-32 bg-[#F2ECE4] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Flexible Memberships</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แพ็กเกจคอร์สเรียนสุดคุ้ม</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        ไม่มีค่าแรกเข้า ไม่มีสัญญาผูกมัดระยะยาว เลือกลงคลาสได้ตามความสะดวก
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase block mb-2">FIRST TRIAL</span>
+          <h3 class="font-display font-bold text-2xl mb-3">ทดลองเล่นครั้งแรก (1 Class)</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            สำหรับผู้ที่ไม่เคยเรียนพิลาทิสหรือโยคะกับเรามาก่อน เพื่อประเมินสรีระและทำความรู้จักเครื่อง
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ เลือกเรียนได้ทั้ง Reformer หรือ Yoga</li>
+            <li class="flex items-center gap-2">✓ วิเคราะห์โครงสร้างกระดูกและแนวกระดูกสันหลังฟรี</li>
+            <li class="flex items-center gap-2">✓ ฟรี ยืมถุงเท้ากันลื่น (Grip Socks) สำหรับครั้งแรก</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาพิเศษเพียง</span>
+            <span class="font-display text-3xl font-bold text-[var(--sage)]">฿690</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/ครั้ง (ปกติ ฿1,200)</span>
+          </div>
+          <a href="#booking" class="btn-sage px-5 py-2.5 rounded-full text-xs font-bold">จองทดลอง</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border-2 border-[var(--sage)] shadow-xl flex flex-col justify-between relative group">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[var(--sage)] text-white text-xs font-mono uppercase px-4 py-1 rounded-full tracking-wider font-bold">
+          BEST VALUE
+        </div>
+        <div class="pt-2">
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase block mb-2">GROUP PASS (10 CLASSES)</span>
+          <h3 class="font-display font-bold text-2xl mb-3">แพ็กเกจ 10 คลาส (3 เดือน)</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            แพ็กเกจยอดนิยมสำหรับผู้ที่ต้องการสร้างกล้ามเนื้อ ปรับสรีระ และลดอาการปวดเมื่อยอย่างต่อเนื่อง
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ คละเรียนได้ทั้ง Reformer, Yoga และ Sound Bath</li>
+            <li class="flex items-center gap-2">✓ อายุการใช้งานนาน 90 วัน นับจากคลาสแรก</li>
+            <li class="flex items-center gap-2">✓ ยกเลิกหรือเปลี่ยนรอบได้ล่วงหน้า 12 ชม. ไม่ตัดสิทธิ์</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาแพ็กเกจ</span>
+            <span class="font-display text-3xl font-bold text-[var(--sage)]">฿6,500</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/10 คลาส (เฉลี่ย ฿650/คลาส)</span>
+          </div>
+          <a href="#booking" class="btn-sage px-5 py-2.5 rounded-full text-xs font-bold">สมัครแพ็กนี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase block mb-2">PRIVATE 1-ON-1 (5 SESSIONS)</span>
+          <h3 class="font-display font-bold text-2xl mb-3">ส่วนตัวตัวต่อตัว (5 ครั้ง)</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ดูแลเข้มข้นเฉพาะบุคคล ออกแบบท่าตามปัญหาข้อต่อ หมอนรองกระดูก หรือคุณแม่หลังคลอด
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ ใช้เครื่อง Cadillac, Reformer, Wunda Chair ครบชุด</li>
+            <li class="flex items-center gap-2">✓ กำหนดวันและเวลาเรียนได้ตามสะดวก 100%</li>
+            <li class="flex items-center gap-2">✓ ติดตามผลการเปลี่ยนแปลงของสรีระทุกสัปดาห์</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาแพ็กเกจ</span>
+            <span class="font-display text-3xl font-bold text-[var(--sage)]">฿9,500</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/5 ครั้ง (เฉลี่ย ฿1,900/ครั้ง)</span>
+          </div>
+          <a href="#booking" class="btn-sage px-5 py-2.5 rounded-full text-xs font-bold">สมัครแพ็กนี้</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — VISUAL GALLERY (12 รูปภาพ) ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Studio Spaces</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีบรรยากาศสตูดิโอ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        พื้นที่สงบ สะอาด แสงธรรมชาติละมุน พร้อมสิ่งอำนวยความสะดวกครบครันระดับพรีเมียม
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/class-reformer.webp" alt="การเรียนคลาสพิลาทิสรีฟอร์เมอร์กลุ่มเล็ก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Reformer Group</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">คลาสกลุ่มเล็กไม่เกิน 6 ท่าน</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/class-yoga-flow.webp" alt="คลาสโยคะ Vinyasa Flow">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Vinyasa Yoga Flow</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ยืดเหยียดและฝึกสมาธิ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/class-cadillac.webp" alt="เตียงพิลาทิส Cadillac ส่วนตัว">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Private Cadillac</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ฟื้นฟูกระดูกสันหลังตัวต่อตัว</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/class-soundbath.webp" alt="คลาสคลื่นเสียงบำบัด Sound Bath">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Crystal Sound Bath</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">คลื่นเสียงคริสตัลบำบัดความเครียด</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/studio-reformer-line.webp" alt="แถวเครื่อง Reformer ไม้แท้">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Custom Wood Reformer</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เครื่องไม้นำเข้า มาตรฐานสากล</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/studio-mat-lounge.webp" alt="มุมพักผ่อนจิบน้ำดีท็อกซ์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Relaxation Lounge</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">มุมจิบชาและน้ำสมุนไพรฟรี</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/studio-locker-shower.webp" alt="ห้องแต่งตัวและอาบน้ำ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Locker & Vanity Room</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ห้องอาบน้ำและไดร์เป่าผมครบ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/studio-entrance-desk.webp" alt="เคาน์เตอร์ต้อนรับสตูดิโอ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Welcome Reception</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">บรรยากาศอบอุ่น เป็นกันเอง</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — CERTIFIED INSTRUCTORS ============ -->
+<section id="team" class="py-24 md:py-32 bg-[#F2ECE4] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Certified Instructors</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมครูผู้สอนที่มีใบรับรองระดับสากล</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ผ่านการอบรมหลักสูตร Pilates Method Alliance (PMA) และ Yoga Alliance มาตรฐานโลก ปรับท่าทางถูกต้อง ปลอดภัย
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-32 h-32 rounded-full overflow-hidden shrink-0 border-2 border-[var(--sage)] shadow-md">
+          <img src="./images/team-kru-bow.webp" alt="ครูโบว์ หัวหน้าผู้ฝึกสอนพิลาทิส" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase">Master Pilates Trainer & Founder</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-1">ครูโบว์ (วริษา สุขเกษม)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">Certified Comprehensive Pilates (500+ Hours)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการใช้เครื่อง Reformer และ Cadillac เพื่อปรับโครงสร้างสรีระ กระชับกล้ามเนื้อแกนกลาง และฟื้นฟูอาการบาดเจ็บจากการทำงาน ประสบการณ์สอนกว่า 9 ปี
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-32 h-32 rounded-full overflow-hidden shrink-0 border-2 border-[var(--sage)] shadow-md">
+          <img src="./images/team-kru-art.webp" alt="ครูอาร์ต ผู้เชี่ยวชาญโยคะและซาวด์บาธ" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--sage-dark)] font-bold uppercase">Lead Yoga & Sound Therapist</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-1">ครูอาร์ต (ธนภัทร ธรรมรักษ์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-3">Yoga Alliance RYT-500 & Certified Sound Healer</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญโยคะ Vinyasa เชื่อมต่อลมหายใจ และศาสตร์คลื่นเสียงคริสตัลซาวด์บาธเพื่อลดความเครียดสะสม ช่วยให้การนอนหลับลึกและผ่อนคลายกล้ามเนื้ออย่างแท้จริง
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--sage)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 07:00 – 21:00 น.
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">CoreFlow Studio (ทองหล่อ)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ชั้น 3 อาคาร The Marche Thonglor (ทองหล่อ ซอย 10) แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚇 BTS:</strong>
+              <span>BTS ทองหล่อ หรือ BTS เอกมัย (มีทางเชื่อมและรถรับส่ง)</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚗 ที่จอดรถ:</strong>
+              <span>มีที่จอดรถในอาคาร ประทับตราจอดฟรี 3 ชั่วโมงเต็ม</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚿 สิ่งอำนวยความสะดวก:</strong>
+              <span>ห้องอาบน้ำ ผ้าเช็ดตัว ล็อกเกอร์ และไดร์เป่าผม Dyson บริการฟรี</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Thonglor+10+Bangkok" target="_blank" rel="noopener" class="btn-sage flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 นำทางด้วย Google Maps
+          </a>
+          <a href="tel:023819988" class="border hairline bg-white flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-[var(--bg-alt)] transition">
+            📞 โทร 02-381-9988
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm" id="booking">
+        <span class="eyebrow text-xs block mb-2">Class Reservation</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">จองคลาสเรียนล่วงหน้า</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">จำกัดจำนวน 6 ท่านต่อคลาส เพื่อให้ครูผู้สอนดูแลจัดสรีระอย่างใกล้ชิด</p>
+        
+        <form onsubmit="event.preventDefault(); alert('สตูดิโอได้รับข้อมูลแล้ว เจ้าหน้าที่จะส่งรายละเอียดรอบคลาสและยืนยันการจองทาง LINE ครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อ-นามสกุล</label>
+            <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sage)]" placeholder="เช่น คุณวริศรา เจริญผล" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เบอร์โทรศัพท์ / LINE ID</label>
+              <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sage)]" placeholder="081-xxx-xxxx" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการเข้าเรียน</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sage)]" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">คลาสที่สนใจจอง</label>
+            <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--sage)]">
+              <option>First Trial คลาสทดลองเล่นครั้งแรก (฿690)</option>
+              <option>Pilates Reformer Group Class (คลาสกลุ่มไม่เกิน 6 ท่าน)</option>
+              <option>Private 1-on-1 Cadillac & Reformer (คลาสส่วนตัว)</option>
+              <option>Vinyasa & Hatha Yoga Flow</option>
+              <option>Crystal Sound Bath & Deep Stretch Meditation</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-sage py-4 rounded-full text-base font-bold mt-4 shadow-md">
+            ยืนยันการจองคลาสเรียน →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#FAF8F5] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">CoreFlow Pilates & Yoga Studio (Thonglor)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      อาคาร The Marche Thonglor ชั้น 3 ซอยสุขุมวิท 55 (ทองหล่อ 10) กรุงเทพฯ 10110 | เปิดบริการทุกวัน 07:00 – 21:00 น.
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 CoreFlow Studio. All rights reserved. Created with PuchUp Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--sage)] font-mono block">First Trial ฿690</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">CoreFlow ทองหล่อ</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:023819988" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-sage px-5 py-2.5 rounded-full text-sm font-bold">จองคลาส</a>
+  </div>
+</div>
+
+<script>
+const classData = {
+  reformer: {
+    title: 'Pilates Reformer Group Class (คลาสกลุ่มไม่เกิน 6 ท่าน)',
+    desc: 'ใช้เครื่องรีฟอร์เมอร์ไม้แท้พร้อมระบบสปริงแรงต้านเพื่อสร้างกล้ามเนื้อแกนกลาง (Core Muscle) กระชับหน้าท้อง ต้นขา และสะโพก พร้อมช่วยปรับแนวกระดูกสันหลังให้ตั้งตรงอย่างเป็นธรรมชาติ',
+    level: 'เหมาะสำหรับ: ผู้เริ่มต้นจนถึงระดับกลาง (Beginner to Intermediate)',
+    duration: 'ระยะเวลา 55 นาทีต่อคลาส (เผาผลาญประมาณ 300–450 kcal)',
+    price: 'First Trial ฿690 | คลาสเดี่ยว ฿1,200 | แพ็กเกจ 10 คลาส ฿6,500',
+    img: './images/class-reformer.webp'
+  },
+  cadillac: {
+    title: 'Private 1-on-1 Cadillac & Reformer (คลาสส่วนตัวตัวต่อตัว)',
+    desc: 'คลาสเรียนเดี่ยวที่ออกแบบโปรแกรมการเคลื่อนไหวตามสรีระและข้อจำกัดของร่างกายคุณโดยเฉพาะ ฟื้นฟูอาการออฟฟิศซินโดรมเรื้อรัง หมอนรองกระดูกทับเส้นประสาท หรือฟื้นฟูหลังคลอดบุตรอย่างปลอดภัยสูงสุด',
+    level: 'เหมาะสำหรับ: ผู้ต้องการการดูแลเฉพาะบุคคล หรือผู้มีอาการบาดเจ็บเฉพาะจุด',
+    duration: 'ระยะเวลา 60 นาทีเต็ม (วิเคราะห์โครงสร้างร่างกายละเอียด)',
+    price: 'ทดลองเรียนเดี่ยว ฿1,900 | แพ็กเกจ 5 ครั้ง ฿9,500 | 10 ครั้ง ฿18,000',
+    img: './images/class-cadillac.webp'
+  },
+  vinyasa: {
+    title: 'Vinyasa & Hatha Yoga Flow (โยคะเพิ่มความยืดหยุ่น)',
+    desc: 'เคลื่อนไหวร่างกายอย่างต่อเนื่องสอดประสานกับลมหายใจเข้า-ออก ช่วยเปิดสะโพก ยืดกล้ามเนื้อหลังและหัวไหล่ที่ตึงเกร็ง เสริมสร้างความสมดุลทั้งร่างกายและสมาธิบนเสื่อโยคะไม้คอร์กธรรมชาติ',
+    level: 'เหมาะสำหรับ: ทุกระดับ (All Levels)',
+    duration: 'ระยะเวลา 60 นาทีต่อคลาส',
+    price: 'คลาสเดี่ยว ฿650 | แพ็กเกจ 10 คลาส ฿4,900 (คละคลาสโยคะได้)',
+    img: './images/class-yoga-flow.webp'
+  },
+  soundbath: {
+    title: 'Crystal Sound Bath & Deep Stretch Meditation (คลื่นเสียงบำบัด)',
+    desc: 'ผสมผสานการยืดเหยียดกล้ามเนื้ออย่างนุ่มนวลเข้ากับคลื่นเสียงบำบัดความถี่ 432Hz จาก Crystal Singing Bowls ช่วยปรับคลื่นสมองสู่สภาวะ Alpha และ Theta ลดความเครียด คลายความวิตกกังวล และช่วยให้นอนหลับลึก',
+    level: 'เหมาะสำหรับ: ผู้ที่เหนื่อยล้า พักผ่อนน้อย หรือต้องการฟื้นฟูจิตใจ',
+    duration: 'ระยะเวลา 60 นาที (รอบค่ำสัปดาห์ละ 3 วัน)',
+    price: 'คลาสเดี่ยว ฿750 | แพ็กเกจ 5 คลาส ฿3,250',
+    img: './images/class-soundbath.webp'
+  }
+};
+
+function renderClass(key) {
+  const data = classData[key];
+  const box = document.getElementById('classResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-emerald-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Class Specification</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--ink-faint)]">ระดับ:</span> ${data.level}</div>
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--ink-faint)]">ระยะเวลา:</span> ${data.duration}</div>
+          <div class="text-[var(--sage-dark)] font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">อัตราค่าเรียน:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-sage px-7 py-3 rounded-full text-sm font-bold shadow-md">จองคลาสนี้ทันที →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderClass('reformer');
+document.querySelectorAll('#classSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#classSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderClass(btn.dataset.class);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

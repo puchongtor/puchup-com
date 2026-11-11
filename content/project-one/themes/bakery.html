@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komorebi Bakehouse — คราฟต์เบเกอรี & ขนมปังอบสดโฮมเมด อารีย์</title>
+<meta name="description" content="Komorebi Bakehouse ร้านขนมปังอบสดสไตล์อาร์ติซาน ย่านอารีย์ ครัวซองต์เนยฝรั่งเศส โชคุปังนุ่มฉ่ำ ซาวเออร์โดว์ธรรมชาติ อบสดใหม่จากเตาทุกเช้า">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Komorebi Bakehouse",
+  "alternateName": "โคโมเรบิ เบคเฮ้าส์ อารีย์",
+  "description": "ร้านคราฟต์เบเกอรีและขนมปังอบสดสไตล์อาร์ติซาน อารีย์ ซอย 4",
+  "telephone": "02-123-8899",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "18/2 ซอยอารีย์ 4 (ฝั่งเหนือ)",
+    "addressLocality": "แขวงพญาไท เขตพญาไท",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10400",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FDFBF7;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F6EFE3;
+    --ink: #2C221A;
+    --ink-soft: #5C4B3E;
+    --ink-faint: #947E6F;
+    --butter: #D9822B;
+    --butter-dark: #B36314;
+    --butter-light: #FDF4E7;
+    --amber: #D97706;
+    --line: #E8DCCB;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Fraunces', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--butter); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--butter-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(253, 251, 247, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--butter); }
+  .navtab.active { color: var(--butter-dark); border-color: var(--butter); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.06); }
+
+  .btn-butter {
+    background: linear-gradient(135deg, #D9822B 0%, #B36314 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-butter:hover {
+    background: linear-gradient(135deg, #EFA04D 0%, #D9822B 100%);
+    box-shadow: 0 10px 24px -8px rgba(217, 130, 43, 0.45);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#FDF4E7] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ KOMOREBI BAKEHOUSE — คราฟต์เบเกอรีอบสดใหม่ทุกเช้า อารีย์ ซอย 4 (ฝั่งเหนือ) ·</span>
+  <a href="demo.html" class="underline hover:text-amber-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--butter)] flex items-center justify-center text-white text-2xl shadow-sm group-hover:scale-105 transition-transform">
+        🥐
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Komorebi</span>
+        <span class="text-xs text-[var(--butter-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Artisan Bakehouse · Ari</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#menu" class="navtab active">เมนูขนมปัง 10 รายการ</a>
+      <a href="#ambience" class="navtab">บรรยากาศร้าน</a>
+      <a href="#schedule" class="navtab">รอบเตาอบสด</a>
+      <a href="#ingredients" class="navtab">วัตถุดิบเนยแท้</a>
+      <a href="#reviews" class="navtab">รีวิวลูกค้า</a>
+      <a href="#location" class="navtab">ที่ตั้ง & สั่งจอง</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:021238899" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-123-8899
+      </a>
+      <a href="#order" class="btn-butter px-6 py-3 rounded-full text-sm shadow-sm">
+        สั่งจองขนมปังล่วงหน้า
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — FULL-BLEED HERO ============ -->
+<header id="hero" class="relative">
+  <div class="img-slot h-[70vh] md:h-[84vh]">
+    <img src="./images/bakery-hero.webp" alt="บรรยากาศหน้าร้านและขนมปังอบสด Komorebi Bakehouse อารีย์" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(20,15,10,0.96) 0%, rgba(20,15,10,0.72) 45%, rgba(20,15,10,0.3) 100%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+    <div class="max-w-6xl mx-auto text-[#FDF4E7]">
+      <p class="eyebrow mb-3" style="color:#F4A261;">ARTISAN BREAD & PASTRY · ซอยอารีย์ 4 (ฝั่งเหนือ)</p>
+      <h1 class="font-display font-bold text-[clamp(2.4rem,6.2vw,4.5rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        กลิ่นหอมกรุ่นจากเตาอบ<br>
+        <span class="text-[#F4A261] italic font-normal">สัมผัสความนุ่มฉ่ำเนยแท้ทุกคำ</span>
+      </h1>
+      <p class="text-base md:text-xl text-stone-100 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        เบเกอรีสไตล์อาร์ติซานคราฟต์ด้วยมือทุกชิ้น หมักยีสต์ธรรมชาติข้ามคืน ใช้เนยแท้จากฝรั่งเศสและแป้งสาลีไม่ขัดสีนำเข้าจากญี่ปุ่น อบสดใหม่วันต่อวัน
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> เตาแรกพร้อมเสิร์ฟ 07:30 น.
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          🧈 เนยสดฝรั่งเศส AOP แท้ 100% ไร้สารกันเสีย
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#menu" class="btn-butter rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+          เลือกชมขนมปัง 10 รายการยอดนิยม
+        </a>
+        <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+          แผนที่ร้าน & ที่จอดรถ
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="border-b hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+    <span class="trust-item flex items-center gap-1.5"><span class="text-amber-500 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(380+ รีวิว)</span></span>
+    <span class="trust-item">🥐 ครัวซองต์เนยแท้ AOP ฝรั่งเศส</span>
+    <span class="trust-item">🍞 โชคุปังนมสดนุ่มฉ่ำดึงเป็นใย</span>
+    <span class="trust-item">☕ Specialty Coffee Slow Bar</span>
+    <span>🚗 มีที่จอดรถหน้าร้าน 4 คัน</span>
+  </div>
+</div>
+
+<!-- ============ 02 — 10 SIGNATURE BREAD SHOWCASE ============ -->
+<section id="menu" class="py-24 md:py-32 px-6 md:px-10 bg-[var(--bg-surface)] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Artisan Bakery Selection</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">10 ขนมปังซิกเนเจอร์น่ากินที่สุด</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        คัดสรรเมนูขายดีประจำร้าน กรอบนอกนุ่มใน หอมฟุ้งกลิ่นเนยและยีสต์ธรรมชาติ
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+      <!-- 01 Shokupan -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-shokupan.webp" alt="Nama Shokupan โชคุปังนมสด">
+            <span class="absolute top-2.5 left-2.5 bg-rose-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase shadow">BEST SELLER #1</span>
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Nama Shokupan</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">โชคุปังนมสดฮอกไกโด นุ่มฉ่ำ ดึงเป็นใยได้</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿180</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">แถวใหญ่</span>
+        </div>
+      </div>
+
+      <!-- 02 Croissant -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-croissant.webp" alt="French Butter Croissant">
+            <span class="absolute top-2.5 left-2.5 bg-rose-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase shadow">BEST SELLER #2</span>
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">French Butter Croissant</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">ครัวซองต์เนยสดฝรั่งเศส กรอบนอกโพรงสวย</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿95</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ชิ้นละ</span>
+        </div>
+      </div>
+
+      <!-- 03 Sourdough -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-sourdough.webp" alt="Rustic Country Sourdough">
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Country Sourdough</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">ซาวเออร์โดว์เปลือกกรอบ หมักยีสต์ 24 ชม.</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿160</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ก้อนละ</span>
+        </div>
+      </div>
+
+      <!-- 04 Garlic Cream Cheese -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-garlic-cheese.webp" alt="Korean Garlic Cream Cheese Bread">
+            <span class="absolute top-2.5 left-2.5 bg-amber-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase shadow">MUST TRY</span>
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Garlic Cream Cheese</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">ขนมปังเนยกระเทียม ครีมชีสล้นทะลัก</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿120</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ชิ้นละ</span>
+        </div>
+      </div>
+
+      <!-- 05 Cinnamon Roll -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-cinnamon.webp" alt="Pecan Cinnamon Roll">
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Pecan Cinnamon Roll</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">ชินนามอนโรลหอมอบเชย ราดครีมชีสเกลซ</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿110</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ชิ้นละ</span>
+        </div>
+      </div>
+
+      <!-- 06 Pain au Chocolat -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-pain-choc.webp" alt="Pain au Chocolat">
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Pain au Chocolat</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">แป้งพายกรอบ ไส้ดาร์กช็อกโกแลตเข้มข้น</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿105</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ชิ้นละ</span>
+        </div>
+      </div>
+
+      <!-- 07 Brioche Custard -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-brioche-custard.webp" alt="Vanilla Custard Brioche">
+            <span class="absolute top-2.5 left-2.5 bg-amber-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase shadow">RECOMMENDED</span>
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Custard Brioche</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">บริออชนุ่มหอมเนย ไส้วานิลลาคัสตาร์ดสด</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿85</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ชิ้นละ</span>
+        </div>
+      </div>
+
+      <!-- 08 Everything Bagel -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-bagel.webp" alt="Everything Bagel">
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Everything Bagel</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">เบเกิลหนึบหนับ โรยงาและกระเทียมกรอบ</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿75</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ชิ้นละ</span>
+        </div>
+      </div>
+
+      <!-- 09 Traditional Baguette -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-baguette.webp" alt="French Baguette">
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">French Baguette</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">บาแกตต์ฝรั่งเศส เปลือกกรอบ รวงผึ้งโปร่ง</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿90</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">เส้นละ</span>
+        </div>
+      </div>
+
+      <!-- 10 Rosemary Focaccia -->
+      <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot aspect-square relative">
+            <img src="./images/bread-focaccia.webp" alt="Rosemary Olive Oil Focaccia">
+          </div>
+          <div class="p-4">
+            <h4 class="font-display font-bold text-base text-[var(--ink)]">Rosemary Focaccia</h4>
+            <p class="text-xs text-[var(--ink-soft)] font-light mt-1">ฟอกกาเซียน้ำมันมะกอกเอ็กซ์ตร้าเวอร์จิ้น</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0 flex justify-between items-center border-t hairline mt-2">
+          <span class="font-display font-bold text-base text-[var(--butter-dark)]">฿130</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">ชิ้นละ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — COZY BAKERY AMBIENCE GALLERY ============ -->
+<section id="ambience" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Cozy Bakery Space</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">บรรยากาศภายในร้าน & โซนคาเฟ่</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        พื้นที่อบอุ่นสไตล์คราฟต์เบเกอรี แสงธรรมชาติละมุน พร้อมที่นั่งจิบกาแฟ Specialty ทานคู่กับขนมปังอบร้อน
+      </p>
+    </div>
+
+    <!-- 5-Image Bakery Atmosphere Bento Grid -->
+    <div class="grid md:grid-cols-12 gap-6 items-stretch">
+      <div class="md:col-span-8 bg-white rounded-3xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-[16/10] md:h-full">
+          <img src="./images/bakery-interior-counter.webp" alt="เคาน์เตอร์ไม้แสดงขนมปังอบสด">
+        </div>
+      </div>
+      <div class="md:col-span-4 grid grid-rows-2 gap-6">
+        <div class="bg-white rounded-3xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-[4/3] h-full">
+            <img src="./images/bakery-seating.webp" alt="มุมที่นั่งจิบกาแฟริมหน้าต่าง">
+          </div>
+        </div>
+        <div class="bg-white rounded-3xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-[4/3] h-full">
+            <img src="./images/bakery-oven-action.webp" alt="เชฟกำลังนำขนมปังออกจากเตาหิน">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-6">
+      <div class="bg-white rounded-3xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-[16/9]">
+          <img src="./images/bakery-outdoor.webp" alt="หน้าร้าน Komorebi Bakehouse อารีย์">
+        </div>
+      </div>
+      <div class="bg-white rounded-3xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-[16/9]">
+          <img src="./images/bakery-flour-prep.webp" alt="การนวดแป้งซาวเออร์โดว์ด้วยมือ">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — FRESH BAKING SCHEDULE ============ -->
+<section id="schedule" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Fresh Out Of Oven</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ตารางเวลานำขนมปังออกจากเตา</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เพื่อความอร่อยและกลิ่นหอมกรุ่นสูงสุด แวะมารับตอนอบเสร็จใหม่ๆ ได้ตามเวลานี้
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-8">
+      <div class="bg-[var(--bg)] p-8 rounded-3xl border hairline shadow-sm text-center flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-2xl font-bold text-[var(--butter)] block mb-1">07:30 น.</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-[var(--ink-faint)] block mb-4">BATCH 01 · MORNING RUSH</span>
+          <h4 class="font-display font-bold text-xl mb-2">ครัวซองต์ & บาแกตต์</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            French Butter Croissant, Pain au Chocolat, Baguette ร้อนๆ พร้อมเสิร์ฟคู่กาแฟยามเช้า
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t hairline text-xs font-mono text-emerald-600 font-semibold">● อบเสร็จพร้อมเปิดร้าน</div>
+      </div>
+
+      <div class="bg-[var(--bg)] p-8 rounded-3xl border-2 border-[var(--butter)] shadow-md text-center flex flex-col justify-between relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--butter)] text-white text-[10px] font-mono uppercase px-3 py-1 rounded-full tracking-wider font-bold">
+          POPULAR BATCH
+        </div>
+        <div>
+          <span class="font-mono text-2xl font-bold text-[var(--butter)] block mb-1">11:30 น.</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-[var(--ink-faint)] block mb-4">BATCH 02 · LUNCH SPECIAL</span>
+          <h4 class="font-display font-bold text-xl mb-2">โชคุปัง & ขนมปังกระเทียม</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            Nama Shokupan เนื้อนุ่ม, ขนมปังกระเทียมครีมชีส และฟอกกาเซียมะเขือเทศสด
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t hairline text-xs font-mono text-emerald-600 font-semibold">● หมดไว แนะนำจองล่วงหน้า</div>
+      </div>
+
+      <div class="bg-[var(--bg)] p-8 rounded-3xl border hairline shadow-sm text-center flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-2xl font-bold text-[var(--butter)] block mb-1">15:00 น.</span>
+          <span class="text-xs font-mono uppercase tracking-widest text-[var(--ink-faint)] block mb-4">BATCH 03 · AFTERNOON TEA</span>
+          <h4 class="font-display font-bold text-xl mb-2">ซาวเออร์โดว์ & บริออช</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            Country Sourdough พักคลายร้อนผ่าเนื้อแน่น และ Custard Brioche พร้อมชินนามอนโรล
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t hairline text-xs font-mono text-emerald-600 font-semibold">● สั่งกลับบ้านมื้อเย็น</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — QUALITY INGREDIENTS ============ -->
+<section id="ingredients" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <p class="eyebrow mb-2">Uncompromised Quality</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          คัดสรรเฉพาะวัตถุดิบแท้<br>
+          <span class="text-[var(--butter)]">เพื่อรสสัมผัสที่ดีที่สุด</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          เราเชื่อว่าขนมปังที่ดี เริ่มต้นจากความซื่อสัตย์ในวัตถุดิบ ปราศจากสารเสริมคุณภาพ มาการีน และสารกันบูด ทุกขั้นตอนทำสดแบบโฮมเมดวันต่อวัน
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🧈 เนยสดฝรั่งเศสแท้ AOP 100%</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🌾 แป้งสาลีไม่ฟอกสีจากญี่ปุ่น</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🥛 นมสดฮอกไกโดแท้เข้มข้น</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🌱 ยีสต์ธรรมชาติเลี้ยงเอง 4 ปี</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/bread-croissant.webp" alt="เนยฝรั่งเศสและโพรงครัวซองต์">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/bread-shokupan.webp" alt="เนื้อโชคุปังดึงมือ">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — REVIEWS SECTION ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Customer Testimonials</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เสียงตอบรับจากคนรักขนมปัง</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (380+ รีวิวบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "โชคุปังนุ่มมากกก ดึงเป็นใย หอมเนยนมธรรมชาติ กินเปล่าๆ ก็อร่อยมาก ซื้อซ้ำทุกอาทิตย์ แนะนำให้โทรจองรอบเที่ยงก่อนเพราะหมดไวสุดๆ ครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณภคพล (อารีย์สัมพันธ์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ลูกค้าประจำ Nama Shokupan</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ครัวซองต์เนยฝรั่งเศสกรอบนอกนุ่มใน โพรงสวย กัดแล้วเนยฉ่ำแต่ไม่เลี่ยนเลย กาแฟ Dirty ของที่ร้านก็เข้ากันมาก บรรยากาศร้านนั่งทำงานชิลล์มากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณวรรณิสา (สะพานควาย)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">French Butter Croissant & Coffee</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ซาวเออร์โดว์ที่นี่เนื้อสัมผัสดีมาก เปลือกกรอบเหนียวกำลังดี เปรี้ยวละมุนธรรมชาติ กินกับเนยหรือทำโทสต์ตอนเช้าคือที่สุด แนะนำเลยครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณกิตติธัช (พญาไท)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Country Sourdough Bread</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#F6EFE3] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Bakehouse Location</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่ร้าน & เวลาเปิดบริการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ตั้งอยู่ในซอยอารีย์ 4 (ฝั่งเหนือ) เดินทางสะดวกด้วย BTS อารีย์
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">เปิดบริการทุกวัน:</span>
+              <span class="font-mono">07:30 – 18:30 น. (หรือจนกว่าขนมปังจะหมด)</span>
+            </div>
+            <div class="flex justify-between text-emerald-700 font-medium pt-1">
+              <span>เตาแรกพร้อมเสิร์ฟ:</span>
+              <span>07:30 น. (ครัวซองต์ & บาแกตต์)</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งร้าน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            18/2 ซอยอารีย์ 4 (ฝั่งเหนือ) แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚇 BTS สถานีอารีย์ (ทางออก 3) เดินเข้าซอยอารีย์ 4 เพียง 300 เมตร</div>
+            <div>🚗 มีที่จอดรถหน้าร้าน 4 คัน (แวะรับขนมปังสะดวก)</div>
+            <div>🛵 เดลิเวอรีผ่าน GrabFood / Lineman พิมพ์ค้นหา "Komorebi Bakehouse"</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Ari+Soi+4+Bangkok" target="_blank" rel="noopener" class="btn-butter flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:021238899" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 02-123-8899
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="Komorebi Bakehouse Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.123456789!2d100.542!3d13.782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ec123456789%3A0xabcdef0123456789!2sAri%20Soi%204%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — SMART PRE-ORDER FORM / GENERAL INQUIRY ============ -->
+<section id="order" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Pre-Order & Table Booking</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">สั่งจองขนมปังล่วงหน้า / จองโต๊ะ</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      สั่งจองขนมปังเพื่อล็อกรอบเตาอบล่วงหน้า หรือกดทักแชตสั่งกับหน้าร้านทาง LINE ได้ทันทีโดยไม่ต้องกรอกฟอร์ม
+    </p>
+    
+    <form id="bakeryContactForm" onsubmit="handleBakerySubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์ <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="bakeryNamePhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--butter)]" placeholder="เช่น คุณณิชา 081-xxx-xxxx">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการรับขนม <span class="text-stone-400 font-normal text-xs">(กรณีจองล่วงหน้า)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--butter)]">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">รอบเวลาที่สะดวกแวะรับ</label>
+          <select id="bakeryTimeBatch" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--butter)]">
+            <option value="รอบเช้า 07:30 - 10:30 น. (ครัวซองต์/บาแกตต์)">รอบเช้า (07:30 – 10:30 น.)</option>
+            <option value="รอบกลางวัน 11:30 - 14:00 น. (โชคุปัง/กระเทียม)">รอบกลางวัน (11:30 – 14:00 น.)</option>
+            <option value="รอบบ่าย 15:00 - 18:00 น. (ซาวเออร์โดว์/บริออช)">รอบบ่าย (15:00 – 18:00 น.)</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เมนูที่ต้องการจอง / เรื่องที่ต้องการติดต่อ</label>
+        <select id="bakeryTopic" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--butter)]">
+          <option value="จอง Nama Shokupan โชคุปังนมสด (แถวใหญ่ ฿180)">🍞 จอง Nama Shokupan โชคุปังนมสด (฿180)</option>
+          <option value="จอง French Butter Croissant (ชิ้นละ ฿95)">🥐 จอง French Butter Croissant (฿95)</option>
+          <option value="จอง Country Sourdough ซาวเออร์โดว์ (ก้อนละ ฿160)">🥖 จอง Country Sourdough ซาวเออร์โดว์ (฿160)</option>
+          <option value="จอง Garlic Cream Cheese ขนมปังกระเทียมชีส (฿120)">🧄 จอง Garlic Cream Cheese ขนมปังกระเทียม (฿120)</option>
+          <option value="สั่งจัดชุดขนมเบเกอรีกล่องของขวัญ / Snack Box">🎁 สั่งจัดเซ็ตเบเกอรีกล่องของขวัญ / Snack Box งานประชุม</option>
+          <option value="จองที่นั่งโซนคาเฟ่ / นั่งทำงาน">☕ จองที่นั่งโซนคาเฟ่ / นัดพบปะ</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-butter py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / จองขนมปังทาง LINE →
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--butter-dark)] hover:text-[var(--butter)] underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/60 transition hover:bg-amber-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อสั่งขนมกับหน้าร้านได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#FDF4E7] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">Komorebi Artisan Bakehouse (Ari)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      18/2 ซอยอารีย์ 4 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 | โทร 02-123-8899 | LINE: @komorebibakery
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Komorebi Bakehouse. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--butter)] font-mono block">อบสดใหม่จากเตา</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Komorebi อารีย์</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:021238899" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#order" class="btn-butter px-5 py-2.5 rounded-full text-sm font-bold">จองขนมปัง</a>
+  </div>
+</div>
+
+<script>
+/* Smart Form Handler */
+function handleBakerySubmit(e) {
+  e.preventDefault();
+  const namePhone = document.getElementById('bakeryNamePhone').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const batch = document.getElementById('bakeryTimeBatch').value;
+  const topic = document.getElementById('bakeryTopic').value;
+
+  let msg = `สวัสดีครับ สนใจสั่งจองขนมปัง Komorebi Bakehouse\n- รายการ: ${topic}`;
+  if (namePhone) msg += `\n- ผู้ติดต่อ: ${namePhone}`;
+  if (date) msg += `\n- วันที่รับ: ${date}`;
+  if (batch) msg += `\n- ช่วงเวลา: ${batch}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

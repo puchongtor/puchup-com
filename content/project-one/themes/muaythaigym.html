@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronStrike Muay Thai & Fitness — ค่ายมวยไทย & ฟิตเนสเทรนเนอร์ส่วนตัว รัชดา-พระราม 9</title>
+<meta name="description" content="IronStrike ยิมมวยไทยและฟิตเนสฟังก์ชันนัล รัชดา-พระราม 9 เรียนมวยไทยลดน้ำหนัก กระชับสัดส่วน เทรนเนอร์ส่วนตัว 1-on-1 โดยอดีตแชมป์เวทีมาตรฐาน อุปกรณ์สะอาด ห้องน้ำติดแอร์">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #0C0F17;
+    --bg-surface: #151A26;
+    --bg-card: #1E2536;
+    --ink: #F8FAFC;
+    --ink-soft: #94A3B8;
+    --ink-faint: #64748B;
+    --red: #EF4444;
+    --red-dark: #DC2626;
+    --amber: #F59E0B;
+    --line: #273145;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--red); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(12, 15, 23, 0.94);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--red); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-surface);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.05); }
+
+  .btn-red {
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-red:hover {
+    background: linear-gradient(135deg, #F87171 0%, #EF4444 100%);
+    box-shadow: 0 10px 24px -8px rgba(239, 68, 68, 0.5);
+  }
+
+  .class-card { transition: all 0.25s ease; cursor: pointer; }
+  .class-card:hover, .class-card.active {
+    border-color: var(--red);
+    background-color: var(--bg-card);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-black/90 border-b border-white/10 text-red-400 text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ IRONSTRIKE MUAY THAI & GYM — รัชดา-พระราม 9 · ทดลองเรียนมวยไทย & ฟิตเนสคลาสแรกเพียง ฿390 ·</span>
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-xl">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--red)] flex items-center justify-center text-white text-2xl font-bold shadow-md group-hover:scale-105 transition-transform">
+        🥊
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">IronStrike</span>
+        <span class="text-xs text-[var(--red)] tracking-widest font-mono uppercase block mt-1 font-semibold">Muay Thai & Fitness · Ratchada</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#programs" class="navlink font-semibold">คอร์สเรียน & ราคา</a>
+      <a href="#schedule" class="navlink">ตารางคลาส</a>
+      <a href="#hygiene" class="navlink">มาตรฐานความสะอาด</a>
+      <a href="#gallery" class="navlink">แกลเลอรียิม</a>
+      <a href="#team" class="navlink">ทีมครูมวย & โค้ช</a>
+      <a href="#location" class="navlink">ที่ตั้ง & จองคลาส</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:0809969495" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 080-996-9495
+      </a>
+      <a href="https://line.me/ti/p/~masterpuch" target="_blank" rel="noopener" class="btn-red px-6 py-3 rounded-full text-sm shadow-sm">
+        จองคลาสทดลองเรียน
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-[#151A26] to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-red-950/80 border border-red-500/40 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-red-400 font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--red)] animate-pulse"></span> เบิร์นไขมันสูงสุด 800-1,000 แคลอรี/ชม. · ครูมวยดูแลใกล้ชิด
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        เปลี่ยนเหงื่อเป็นพลัง<br>
+        <span class="text-[var(--red)]">มวยไทยฟิตเนส & เทรนเนอร์ส่วนตัว</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        ยิมมวยไทยยุคใหม่ สะอาด ปลอดโปร่ง แอร์เย็น ไม่แออัด เหมาะสำหรับทั้งมือใหม่ที่ไม่เคยออกกำลังกายมาก่อน ไปจนถึงผู้ที่ต้องการฝึกทักษะป้องกันตัวและเสริมสร้างกล้ามเนื้อแบบถูกหลักวิทยาศาสตร์การกีฬา
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#booking" class="btn-red px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          ทดลองเรียนคลาสแรก ฿390 →
+        </a>
+        <a href="#programs" class="border border-slate-700 bg-slate-800/80 text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-slate-700 transition">
+          ดูแพ็กเกจทั้งหมด
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-white">800 kcal</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เผาผลาญต่อคลาส</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-white">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ฆ่าเชื้ออุปกรณ์ UV</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-white">1-on-1</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ล่อเป้าตัวต่อตัวทุกคลาส</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-700 bg-[var(--bg-surface)]">
+        <img src="./images/gym-hero.webp" alt="บรรยากาศการซ้อมมวยไทยยิม IronStrike รัชดา" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-[var(--bg-surface)] p-5 rounded-2xl border hairline shadow-2xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-red-500/20 text-[var(--red)] flex items-center justify-center font-bold text-2xl shrink-0">🥊</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-white font-bold mb-0.5 text-base">ไม่ต้องมีพื้นฐานมาก่อน</strong>
+          <span class="text-[var(--ink-faint)]">สอนสเต็ปการยืน ชก เตะ เข่า ศอก แบบเข้าใจง่าย ปลอดภัย</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — TRAINING PROGRAMS SELECTOR ============ -->
+<section id="programs" class="py-24 md:py-32 px-6 md:px-10 bg-[var(--bg-surface)] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Training Programs</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight text-white">เลือกคอร์สที่ตรงกับเป้าหมายคุณ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        โปรแกรมฝึกซ้อมที่ออกแบบมาเพื่อผลลัพธ์ที่ชัดเจน ทั้งลดน้ำหนัก กระชับกล้ามเนื้อ และเสริมความแข็งแรง
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="programSelector">
+      <button data-type="group" class="class-card active p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🔥</span>
+        <strong class="text-base font-bold block text-white">มวยไทยฟิตเนส (Group Class)</strong>
+        <span class="text-xs text-[var(--red)]">คลาสกลุ่มเล็ก ล่อเป้าเดี่ยวทุกคน</span>
+      </button>
+
+      <button data-type="private" class="class-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🎯</span>
+        <strong class="text-base font-bold block text-white">Personal Training (1-on-1)</strong>
+        <span class="text-xs text-[var(--red)]">ออกแบบตารางซ้อมเฉพาะบุคคล</span>
+      </button>
+
+      <button data-type="functional" class="class-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏋️</span>
+        <strong class="text-base font-bold block text-white">Functional & Strength</strong>
+        <span class="text-xs text-[var(--red)]">เพิ่มกล้ามเนื้อ คาร์ดิโอเข้มข้น</span>
+      </button>
+
+      <button data-type="kids" class="class-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">👦</span>
+        <strong class="text-base font-bold block text-white">Muay Thai for Kids</strong>
+        <span class="text-xs text-[var(--red)]">ฝึกสมาธิ วินัย และความคล่องตัว</span>
+      </button>
+    </div>
+
+    <div id="programResultBox" class="bg-[var(--bg-card)] rounded-3xl p-8 md:p-12 border hairline shadow-2xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — CLASS SCHEDULE ============ -->
+<section id="schedule" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Weekly Class Schedule</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight text-white">ตารางคลาสฝึกซ้อมประจำสัปดาห์</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เปิดสอนทุกวัน ทั้งรอบเช้า กลางวัน และรอบเย็นหลังเลิกงาน (จำกัด 8-10 คน/รอบ เพื่อการดูแลทั่วถึง)
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-[var(--bg-surface)] p-7 rounded-3xl border hairline space-y-4">
+        <div class="flex justify-between items-center border-b hairline pb-3">
+          <span class="font-mono text-xs text-[var(--red)] font-bold uppercase">MORNING ROUND</span>
+          <span class="text-xs bg-red-950 text-red-300 px-2.5 py-1 rounded-full font-mono">รอบเช้า</span>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="p-3 bg-[var(--bg-card)] rounded-xl flex justify-between items-center">
+            <span class="font-semibold text-white">09:00 – 10:30 น.</span>
+            <span class="text-xs text-[var(--ink-soft)]">Muay Thai HIIT Cardio</span>
+          </div>
+          <div class="p-3 bg-[var(--bg-card)] rounded-xl flex justify-between items-center">
+            <span class="font-semibold text-white">10:30 – 12:00 น.</span>
+            <span class="text-xs text-[var(--ink-soft)]">Technical Pad Work</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] p-7 rounded-3xl border hairline space-y-4">
+        <div class="flex justify-between items-center border-b hairline pb-3">
+          <span class="font-mono text-xs text-[var(--amber)] font-bold uppercase">AFTERNOON ROUND</span>
+          <span class="text-xs bg-amber-950 text-amber-300 px-2.5 py-1 rounded-full font-mono">รอบบ่าย</span>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="p-3 bg-[var(--bg-card)] rounded-xl flex justify-between items-center">
+            <span class="font-semibold text-white">14:00 – 15:30 น.</span>
+            <span class="text-xs text-[var(--ink-soft)]">Private 1-on-1 Sessions</span>
+          </div>
+          <div class="p-3 bg-[var(--bg-card)] rounded-xl flex justify-between items-center">
+            <span class="font-semibold text-white">16:00 – 17:30 น.</span>
+            <span class="text-xs text-[var(--ink-soft)]">Kids & Teens Muay Thai</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] p-7 rounded-3xl border hairline space-y-4">
+        <div class="flex justify-between items-center border-b hairline pb-3">
+          <span class="font-mono text-xs text-emerald-400 font-bold uppercase">EVENING ROUND</span>
+          <span class="text-xs bg-emerald-950 text-emerald-300 px-2.5 py-1 rounded-full font-mono">รอบเย็น</span>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="p-3 bg-[var(--bg-card)] rounded-xl flex justify-between items-center">
+            <span class="font-semibold text-white">18:00 – 19:30 น.</span>
+            <span class="text-xs text-[var(--ink-soft)]">Prime Muay Thai Burn</span>
+          </div>
+          <div class="p-3 bg-[var(--bg-card)] rounded-xl flex justify-between items-center">
+            <span class="font-semibold text-white">19:30 – 21:00 น.</span>
+            <span class="text-xs text-[var(--ink-soft)]">Strength & Clinch Conditioning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — HYGIENE & FACILITIES ============ -->
+<section id="hygiene" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-red-950/80 text-red-400 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          PREMIUM HYGIENE & MODERN FACILITIES
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight text-white">
+          ลืมภาพค่ายมวยเก่าที่อับชื้น<br>
+          <span class="text-[var(--red)]">เราสร้างมาตรฐานยิมมวยระดับสากล</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          ยิมติดเครื่องฟอกอากาศและระบบระบายอากาศตลอด 24 ชั่วโมง นวม สนับแข้ง และเป้าเตะได้รับการอบฆ่าเชื้อด้วยรังสี UV และน้ำยาออร์แกนิกทุกครั้งหลังใช้งาน พร้อมห้องอาบน้ำติดแอร์ ล็อกเกอร์ และไดร์เป่าผม
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">🧼 อบ UV ฆ่านวมและอุปกรณ์ทุกรอบ</div>
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">🚿 ห้องอาบน้ำอุ่น ครีมอาบน้ำ สบู่ฟรี</div>
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">🔒 ล็อกเกอร์ส่วนตัวพร้อมกุญแจเซฟ</div>
+          <div class="bg-[var(--bg-card)] p-4 rounded-xl border hairline">🥤 โปรตีนบาร์ & เครื่องดื่มเกลือแร่</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/gym-glove-sanitized.webp" alt="อุปกรณ์นวมมวยที่ผ่านการทำความสะอาด">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/gym-locker-shower.webp" alt="ห้องอาบน้ำและล็อกเกอร์มาตรฐาน">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — VISUAL GALLERY ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Gym Action Gallery</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight text-white">แกลเลอรีภาพบรรยากาศจริง</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        บรรยากาศการฝึกซ้อมจริงที่เต็มไปด้วยพลัง ความสนุก และความปลอดภัย
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-pad-work.webp" alt="การล่อเป้าเตะมวยไทยกับครูมวย">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ล่อเป้า 1-on-1 ทุกคน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปรับเทคนิคเตะ ต่อย ตรงจุด</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-heavy-bag.webp" alt="การซ้อมต่อยกระสอบทราย">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">โซนกระสอบทรายหนังแท้</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ฝึกความหนักหน่วงและจังหวะ</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-pt-kettlebell.webp" alt="การฝึก Functional Fitness">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">Functional Training</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เคตเทิลเบล เชือกแบทเทิลโรป</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-ring-sparring.webp" alt="เวทีมวยมาตรฐาน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">เวทีมวยยกพื้นมาตรฐาน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ซ้อมเชิงมวยอย่างปลอดภัย</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-turf-area.webp" alt="ลู่วิ่งหญ้าเทียมในยิม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ลู่วิ่งหญ้าเทียม Turf Track</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ดันสเลด สปีดดริล เสริมความเร็ว</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-protein-bar.webp" alt="มุมโปรตีนบาร์และเครื่องดื่ม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">มุม Protein Shake Bar</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เติมโปรตีนฟื้นฟูกล้ามเนื้อ</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-kids-class.webp" alt="คลาสมวยไทยเด็ก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">คลาสมวยไทยเด็ก</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เสริมพัฒนาการ สมาธิ และวินัย</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/gym-locker-shower.webp" alt="ห้องล็อกเกอร์และห้องอาบน้ำ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base text-white">ห้องอาบน้ำแยกชาย-หญิง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">น้ำอุ่น ผ้าเช็ดตัว สบู่ครบ</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — CERTIFIED TRAINERS ============ -->
+<section id="team" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Certified Trainers & Champions</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight text-white">ทีมครูมวยและโค้ชฟิตเนส</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ครูมวยอดีตแชมป์เวทีลุมพินี/ราชดำเนิน ผสานทีมเทรนเนอร์จบวิทยาศาสตร์การกีฬา มีใบเซอร์รับรอง สอนสนุก อดทน และเซฟร่างกายลูกค้า 100%
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-[var(--bg-card)] rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--red)] shadow-md">
+          <img src="./images/team-kru-yod.webp" alt="ครูยอด หัวหน้าครูมวยไทย" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--red)] font-bold uppercase">Head Muay Thai Coach</span>
+          <h4 class="font-display font-bold text-xl text-white mt-1 mb-1">ครูยอด (ยอดวิชา ศิษย์ยอดธง)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">อดีตแชมป์เวทีมวยลุมพินี (ประสบการณ์ชก 150+ ไฟต์)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการสอนเทคนิคมวยไทยตั้งแต่ระดับเริ่มต้นจนถึงขั้นสูง สอนจังหวะออกอาวุธ หมัด เท้า เข่า ศอก อย่างแม่นยำ ล่อเป้าสนุก ไม่กดดัน
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--red)] shadow-md">
+          <img src="./images/team-coach-art.webp" alt="โค้ชอาร์ต เทรนเนอร์วิทยาศาสตร์การกีฬา" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--red)] font-bold uppercase">Strength & Conditioning Specialist</span>
+          <h4 class="font-display font-bold text-xl text-white mt-1 mb-1">โค้ชอาร์ต (อัครเดช มิ่งขวัญ)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">วท.บ. วิทยาศาสตร์การกีฬา (CSCS Certified)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการออกแบบโปรแกรมลดไขมัน เวทเทรนนิ่ง และการปรับสรีระร่างกาย (Posture Correction) ควบคู่กับโภชนาการสำหรับคนทำงาน
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-[var(--bg-surface)] p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--red)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 08:30 – 21:30 น. (ที่จอดรถในร่ม 15 คัน)
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3 text-white">IronStrike Gym (รัชดา-พระราม 9)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            168 ถนนรัชดาภิเษก (ซอยรัชดาภิเษก 7 ใกล้ MRT ศูนย์วัฒนธรรมฯ และ Big C รัชดา) แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">🚇 รถไฟฟ้า MRT:</strong>
+              <span>MRT สถานีศูนย์วัฒนธรรมฯ (ทางออก 4) เดินเพียง 350 เมตร</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">🥊 นวม & ผ้าพันมือ:</strong>
+              <span>มีนวมซ้อมและผ้าพันมือให้ยืมฟรีสำหรับคลาสทดลองเรียน</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-white">💳 การชำระเงิน:</strong>
+              <span>สแกน QR Code บัตรเครดิต (0% สูงสุด 6 เดือนสำหรับคอร์สรายปี)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Ratchadapisek+7+Bangkok" target="_blank" rel="noopener" class="btn-red flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 แผนที่ยิม
+          </a>
+          <a href="tel:0809969495" class="border hairline bg-white/5 flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white/10 transition text-white">
+            📞 โทร 080-996-9495
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-[var(--bg-surface)] p-8 md:p-10 rounded-3xl border hairline shadow-xl" id="booking">
+        <span class="eyebrow text-xs block mb-2">Book Your First Class</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2 text-white">จองคลาสทดลองเรียน (Trial ฿390)</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">กรอกข้อมูลเพื่อนัดหมายรอบเวลา เจ้าหน้าที่จะล็อกคิวครูมวยให้ทันที</p>
+        
+        <form onsubmit="event.preventDefault(); window.open('https://line.me/ti/p/~masterpuch', '_blank');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้เรียน / เบอร์โทรศัพท์</label>
+            <input type="text" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--red)] text-white" placeholder="เช่น คุณธนภัทร 081-xxx-xxxx" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวก</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--red)] text-white" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">รอบเวลาที่ต้องการ</label>
+              <select class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--red)] text-white">
+                <option>รอบเช้า 09:00 – 10:30 น.</option>
+                <option>รอบบ่าย 14:00 – 15:30 น.</option>
+                <option>รอบเย็น 18:00 – 19:30 น.</option>
+                <option>รอบค่ำ 19:30 – 21:00 น.</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ประเภทโปรแกรม</label>
+            <select class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--red)] text-white">
+              <option>คลาสทดลองเรียนมวยไทย (Trial Class ฿390)</option>
+              <option>มวยไทยฟิตเนสกลุ่ม (Group Class Package)</option>
+              <option>เทรนเนอร์ส่วนตัว 1-on-1 (Personal Training)</option>
+              <option>คลาสมวยไทยเด็ก (Kids Muay Thai)</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-red py-4 rounded-full text-base font-bold mt-4 shadow-md">
+            ยืนยันการจองคลาสผ่าน LINE OA →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-black border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">IronStrike Muay Thai & Fitness Studio (Ratchada - Rama 9)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      168 ถนนรัชดาภิเษก แขวงดินแดง เขตดินแดง กรุงเทพฯ 10400 | โทร 080-996-9495 | LINE: masterpuch
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 IronStrike Gym. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)]/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--red)] font-mono block">ทดลองเรียนเพียง ฿390</span>
+    <span class="font-display text-base font-bold text-white">IronStrike รัชดา</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:0809969495" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center text-white">📞</a>
+    <a href="https://line.me/ti/p/~masterpuch" target="_blank" rel="noopener" class="btn-red px-5 py-2.5 rounded-full text-sm font-bold">จองคลาส</a>
+  </div>
+</div>
+
+<script>
+const programData = {
+  group: {
+    title: 'มวยไทยฟิตเนสคลาสกลุ่ม (Group Muay Thai HIIT)',
+    desc: 'คลาสกลุ่มขนาดเล็ก (จำกัด 8-10 คน) ผสมผสานการฝึกสเต็ปมวยไทยพื้นฐาน คาร์ดิโอ HIIT และการล่อเป้าตัวต่อตัวกับครูมวยรอบละ 3 ยกเต็ม ช่วยเบิร์นไขมันและกระชับกล้ามเนื้อทุกส่วนอย่างรวดเร็ว',
+    time: 'ระยะเวลา 90 นาที / คลาส (รวมวอร์มอัพและคูลดาวน์)',
+    price: 'ทดลองเรียน ฿390 | รายครั้ง ฿550 | บุฟเฟต์ 1 เดือน ฿3,900 (เข้าได้ทุกวัน)',
+    img: './images/gym-hero.webp'
+  },
+  private: {
+    title: 'เทรนเนอร์ส่วนตัวมวยไทย 1-on-1 (Private Muay Thai PT)',
+    desc: 'โปรแกรมฝึกซ้อมแบบเอ็กซ์คลูซีฟกับครูมวยระดับแชมป์ ปรับเทคนิคหมัด เท้า เข่า ศอก แบบละเอียด เหมาะสำหรับผู้ที่ต้องการลดน้ำหนักแบบเร่งด่วน หรือต้องการเรียนรู้วิชาการต่อสู้อย่างจริงจังตามเป้าหมายเฉพาะตัว',
+    time: 'ระยะเวลา 60–90 นาที / ครั้ง',
+    price: 'ครั้งละ ฿1,200 | แพ็กเกจ 10 ครั้ง ฿10,500 | แพ็กเกจ 20 ครั้ง ฿19,000',
+    img: './images/gym-pad-work.webp'
+  },
+  functional: {
+    title: 'Functional Training & Strength Conditioning',
+    desc: 'เสริมสร้างกล้ามเนื้อแกนกลางลำตัว (Core) ความแข็งแรง และความทนทานของปอดด้วยอุปกรณ์ Kettlebell, Battle Rope, Plyo Box, และ Sled Push บนลู่วิ่งหญ้าเทียม ดูแลโดยโค้ชวิทยาศาสตร์การกีฬา',
+    time: 'ระยะเวลา 60 นาที / คลาส',
+    price: 'รายครั้ง ฿450 | คอร์ส 10 ครั้ง ฿3,900',
+    img: './images/gym-pt-kettlebell.webp'
+  },
+  kids: {
+    title: 'คลาสมวยไทยสำหรับเด็ก (Kids Muay Thai & Agility)',
+    desc: 'สำหรับเด็กอายุ 5–12 ปี ฝึกทักษะการเคลื่อนไหว การทรงตัว การป้องกันตัวขั้นพื้นฐาน และเสริมสร้างความมั่นใจในตนเอง บรรยากาศสนุกสนาน ปลอดภัย ไร้การปะทะรุนแรง',
+    time: 'ระยะเวลา 60 นาที (ทุกวันเสาร์-อาทิตย์)',
+    price: 'ครั้งละ ฿500 | แพ็กเกจ 8 ครั้ง ฿3,500',
+    img: './images/gym-kids-class.webp'
+  }
+};
+
+function renderProgram(key) {
+  const data = programData[key];
+  const box = document.getElementById('programResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Class Details & Pricing</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--red)] font-semibold">ระยะเวลา:</span> ${data.time}</div>
+          <div class="text-amber-400 font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">อัตราค่าบริการ:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-red px-7 py-3 rounded-full text-sm font-bold shadow-md">จองคลาสนี้ทันที →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderProgram('group');
+document.querySelectorAll('#programSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#programSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProgram(btn.dataset.type);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

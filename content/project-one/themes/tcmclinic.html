@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huachun TCM Clinic — คลินิกแพทย์แผนจีน ฝังเข็ม ครอบแก้ว & ยาสมุนไพร พระราม 9</title>
+<meta name="description" content="Huachun TCM Clinic คลินิกแพทย์แผนจีน พระราม 9 บริการฝังเข็มรักษาออฟฟิศซินโดรม ไมเกรน ปวดหลัง ปรับสมดุลฮอร์โมน ยาสมุนไพรจีนสูตรเฉพาะบุคคล โดยแพทย์จีนปริญญาบัตร">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #FBF9F5;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F4EFE6;
+    --ink: #1F2421;
+    --ink-soft: #4D5652;
+    --ink-faint: #85928B;
+    --jade: #2D6A4F;
+    --jade-dark: #1B4332;
+    --jade-light: #D8F3DC;
+    --crimson: #9B2226;
+    --crimson-light: #F8D7DA;
+    --line: #E8E0D5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Fraunces', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--jade-light); color: var(--jade-dark); }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--jade);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(251, 249, 245, 0.96);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--jade); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-jade {
+    background: linear-gradient(135deg, #2D6A4F 0%, #1B4332 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-jade:hover {
+    background: linear-gradient(135deg, #40916C 0%, #2D6A4F 100%);
+    box-shadow: 0 10px 24px -8px rgba(45, 106, 79, 0.45);
+  }
+
+  .treatment-card { transition: all 0.25s ease; cursor: pointer; }
+  .treatment-card:hover, .treatment-card.active {
+    border-color: var(--jade);
+    background-color: var(--jade-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#FBF9F5] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ HUACHUN TCM CLINIC — คลินิกการแพทย์แผนจีน พระราม 9 · แมะตรวจชีพจร วินิจฉัยตรงจุดโดยแพทย์จีนปริญญาบัตร ·</span>
+  <a href="demo.html" class="underline hover:text-emerald-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--jade)] flex items-center justify-center text-white text-2xl font-serif shadow-sm group-hover:scale-105 transition-transform">
+        🌿
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Huachun TCM</span>
+        <span class="text-xs text-[var(--jade)] tracking-widest font-mono uppercase block mt-1 font-semibold">Acupuncture & Herbal Clinic</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#treatments" class="navlink font-semibold">การรักษา & ราคา</a>
+      <a href="#pulse-diagnosis" class="navlink">การตรวจแมะชีพจร</a>
+      <a href="#herbs" class="navlink">ยาสมุนไพรจีนต้ม</a>
+      <a href="#gallery" class="navlink">บรรยากาศคลินิก</a>
+      <a href="#team" class="navlink">ทีมแพทย์แผนจีน</a>
+      <a href="#location" class="navlink">ที่ตั้ง & นัดหมาย</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:022458899" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-245-8899
+      </a>
+      <a href="#booking" class="btn-jade px-6 py-3 rounded-full text-sm shadow-sm">
+        จองคิวตรวจแมะชีพจร
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--jade-light)] border border-[var(--jade)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--jade-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--jade)] animate-pulse"></span> รักษาที่ต้นเหตุ · ปรับสมดุลหยินหยาง · เข็มใช้ครั้งเดียวทิ้ง 100%
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        ฟื้นฟูสุขภาพองค์รวม<br>
+        <span class="text-[var(--jade)]">ด้วยศาสตร์การแพทย์แผนจีนแท้</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        คลินิกแพทย์แผนจีนมาตรฐานระดับพรีเมียม ฝังเข็มแก้ออฟฟิศซินโดรม ปวดไมเกรน นอนไม่หลับ ภูมิแพ้ ฟื้นฟูระบบฮอร์โมนสตรี ครอบแก้วไล่พิษ และจ่ายยาสมุนไพรจีนเกรดโรงพยาบาล
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#booking" class="btn-jade px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          นัดหมายตรวจสุขภาพเบื้องต้น →
+        </a>
+        <a href="#treatments" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          ดูโปรแกรมการรักษา
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">แพทย์จีนปริญญาบัตร</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">Sterile</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เข็มปลอดเชื้อแกะใหม่</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">Custom</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เทียบยาสูตรเฉพาะบุคคล</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/tcm-hero.webp" alt="แพทย์แผนจีนกำลังตรวจวินิจฉัยแมะชีพจรผู้ป่วย" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-[var(--jade)] flex items-center justify-center font-bold text-2xl shrink-0">🌿</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ตรวจแมะชีพจร 3 ตำแหน่ง</strong>
+          <span class="text-[var(--ink-faint)]">วินิจฉัยอวัยวะภายในอย่างแม่นยำก่อนรักษา</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — TREATMENTS INTERACTIVE SELECTOR ============ -->
+<section id="treatments" class="py-24 md:py-32 px-6 md:px-10 bg-[#F4EFE6] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Clinical Treatments</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">โปรแกรมการรักษาทางแพทย์แผนจีน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกกลุ่มอาการที่คุณต้องการรักษา เพื่อดูแนวทางการบำบัด ระยะเวลา และอัตราค่าบริการ
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="treatmentSelector">
+      <button data-type="acupuncture" class="treatment-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">📍</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ฝังเข็ม & กระตุ้นไฟฟ้า</strong>
+        <span class="text-xs text-[var(--jade)]">ออฟฟิศซินโดรม / ไมเกรน / ข้อต่อ</span>
+      </button>
+
+      <button data-type="cupping" class="treatment-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🔥</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ครอบแก้วแก้อาการ (Cupping)</strong>
+        <span class="text-xs text-[var(--jade)]">ขับลมชื้น คลายกล้ามเนื้อตึง</span>
+      </button>
+
+      <button data-type="herbs" class="treatment-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🍵</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ยาสมุนไพรจีนต้มเฉพาะบุคคล</strong>
+        <span class="text-xs text-[var(--jade)]">ปรับสมดุลเลือดลม & ฮอร์โมน</span>
+      </button>
+
+      <button data-type="guasha" class="treatment-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🪨</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">กัวซาขับพิษ & บำรุงผิวหน้า</strong>
+        <span class="text-xs text-[var(--jade)]">กระตุ้นคอลลาเจน ลดฝ้า กระ</span>
+      </button>
+    </div>
+
+    <div id="treatmentResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — PULSE DIAGNOSIS PROTOCOL ============ -->
+<section id="pulse-diagnosis" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-[var(--jade-light)] text-[var(--jade-dark)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          FOUR PILLARS OF TCM DIAGNOSIS
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          วินิจฉัยลึกถึงต้นตอ<br>
+          <span class="text-[var(--jade)]">ด้วยศาสตร์ 4 ประการ (ว่าง-เหวิน-เวิ่น-เชี่ย)</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          ตรวจดูลักษณะลิ้น (望) ฟังเสียงและดมกลิ่น (闻) ซักประวัติอาการและไลฟ์สไตล์ (问) และจับชีพจรข้อมือ 3 ตำแหน่ง ซุ่น-กวน-ฉือ (切) เพื่อประเมินพลังชี่ เลือด และสภาวะความสมดุลของตับ ไต ม้าม ปอด หัวใจ
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🔍 ตรวจดูลักษณะฝ้าบนลิ้นและสีลิ้น</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🩺 แมะชีพจรประเมินพลังอวัยวะภายใน</div>
+          <div class="bg-white p-4 rounded-xl border hairline">📋 วางแผนการรักษาเฉพาะบุคคล</div>
+          <div class="bg-white p-4 rounded-xl border hairline">💡 แนะนำอาหารปรับธาตุตามร่างกาย</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/tcm-pulse-check.webp" alt="การตรวจแมะชีพจรข้อมือ">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/tcm-tongue-check.webp" alt="การตรวจดูลักษณะลิ้นทางแพทย์แผนจีน">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — HERBAL DISPENSARY & SAFETY ============ -->
+<section id="herbs" class="py-24 md:py-32 bg-[#F4EFE6] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-2 gap-5 order-2 lg:order-1">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/tcm-herbs-cabinet.webp" alt="ตู้ยาจีนสมุนไพรไม้โบราณ">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/tcm-herbal-boiling.webp" alt="เครื่องต้มยาจีนระบบปิดสุญญากาศ">
+        </div>
+      </div>
+
+      <div class="space-y-6 order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-900 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          GRADE-A HERBAL PHARMACY
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          ยาสมุนไพรจีนคัดเกรดพรีเมียม<br>
+          <span class="text-[var(--jade)]">ต้มระบบสุญญากาศ สะอาด ทานง่าย ไร้สารตกค้าง</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          สมุนไพรจีนแท้นำเข้า มีใบรับรองตรวจสารปรอท สารหนู และยาฆ่าแมลง ผ่านการต้มสกัดด้วยหม้อต้มความดันมาตรฐานโรงพยาบาล บรรจุซองสุญญากาศพร้อมดื่ม สามารถเก็บในตู้เย็นได้นาน 1 เดือน เพียงอุ่นในน้ำร้อนก่อนดื่ม
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🌱 สมุนไพรธรรมชาติ 100% ไร้สเตียรอยด์</div>
+          <div class="bg-white p-4 rounded-xl border hairline">📦 บรรจุซองฟอยล์พร้อมดื่ม พกพาสะดวก</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🍵 เทียบยาสูตรเฉพาะตามการตรวจแมะ</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🚚 มีบริการจัดส่งยาแช่เย็นถึงบ้าน</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — VISUAL GALLERY (12 รูปภาพ) ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Clinic Environment</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">บรรยากาศคลินิกและการรักษา</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ห้องรักษาแยกส่วนบุคคล สงบ สะอาด กลิ่นอายสมุนไพรอ่อนๆ ช่วยให้ผ่อนคลายตลอดการบำบัด
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-acupuncture-neck.webp" alt="การฝังเข็มคลายกล้ามเนื้อคอบ่าไหล่">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ฝังเข็มออฟฟิศซินโดรม</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">คลายปมกล้ามเนื้อสะบัก</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-cupping-back.webp" alt="การครอบแก้วรักษาอาการปวดหลัง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ครอบแก้วไฟโบราณ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">กระตุ้นการไหลเวียนเลือดลม</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-moxibustion-warm.webp" alt="การรมยากระตุ้นลมปราณ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">การรมยาโกฐจุฬาลัมพา (Moxa)</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ขับความเย็น บำรุงมดลูก</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-guasha-facial.webp" alt="กัวซาหินหยกบำรุงผิวหน้า">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">กัวซายกกระชับใบหน้า</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ขับน้ำเหลือง ผิวหน้ากระจ่างใส</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-herbs-weighing.webp" alt="แพทย์จีนชั่งสมุนไพรโบราณ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">การจัดยาจีนด้วยตราชั่ง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">คำนวณน้ำหนักตัวยาแม่นยำ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-needle-pack.webp" alt="เข็มฝังเข็มปลอดเชื้อมาตรฐานสากล">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">เข็มสแตนเลสปลอดเชื้อ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">แกะซองใหม่ ใช้ครั้งเดียวทิ้ง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-treatment-room.webp" alt="ห้องรักษาเตียงเดี่ยวส่วนตัว">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ห้องรักษา VIP ส่วนตัว</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">บรรยากาศเงียบสงบ แอร์เย็นฉ่ำ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tcm-reception-lounge.webp" alt="เคาน์เตอร์รับรองและมุมจิบชาสมุนไพร">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">มุมจิบชาสมุนไพรต้อนรับ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ชาเก๊กฮวยหล่อฮังก๊วยบริการฟรี</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — CERTIFIED TCM DOCTORS ============ -->
+<section id="team" class="py-24 md:py-32 bg-[#F4EFE6] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Licensed Practitioners</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมแพทย์แผนจีนประจำคลินิก</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สำเร็จการศึกษาระดับปริญญาบัตรการแพทย์แผนจีนจากมหาวิทยาลัยชั้นนำในประเทศจีนและไทย มีใบประกอบโรคศิลปะถูกต้อง
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--jade)] shadow-md">
+          <img src="./images/team-doc-chen.webp" alt="พจ. เฉิน เว่ยหมิง หัวหน้าแพทย์จีน" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--jade)] font-bold uppercase">หัวหน้าแพทย์จีน & ผู้เชี่ยวชาญการฝังเข็ม</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">พจ. เฉิน เว่ยหมิง (หมอเฉิน)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ใบประกอบโรคศิลปะสาขาการแพทย์แผนจีน (พจ. 1284)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ปริญญาโทการแพทย์แผนจีนจาก Shanghai University of TCM เชี่ยวชาญการฝังเข็มแก้อาการปวดเรื้อรัง หมอนรองกระดูกทับเส้น และอัมพฤกษ์ใบหน้า
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--jade)] shadow-md">
+          <img src="./images/team-doc-lin.webp" alt="พจ. ลินดา จารุวรรณ แพทย์จีนสมุนไพร" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--jade)] font-bold uppercase">แพทย์จีนผู้เชี่ยวชาญด้านสูตินรีเวช & ผิวพรรณ</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">พจ. ลินดา จารุวรรณ (หมอลิน)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ใบประกอบโรคศิลปะสาขาการแพทย์แผนจีน (พจ. 2150)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ปริญญาตรีการแพทย์แผนจีน (เกียรตินิยม) มหาวิทยาลัยหัวเฉียวฯ เชี่ยวชาญการปรับสมดุลฮอร์โมนสตรี เตรียมความพร้อมก่อนมีบุตร และกัวซาบำบัด
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--jade)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการ อังคาร – อาทิตย์ 10:00 – 19:30 น. (หยุดทุกวันจันทร์)
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">Huachun TCM Clinic (พระราม 9)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            188/14 ถนนพระราม 9 (ซอยพระราม 9 ซอย 13 ใกล้ศูนย์วัฒนธรรมฯ) แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚇 การเดินทาง MRT:</strong>
+              <span>MRT สถานีพระราม 9 หรือ ศูนย์วัฒนธรรมแห่งประเทศไทย ต่อวิน 3 นาที</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚗 ที่จอดรถ:</strong>
+              <span>มีที่จอดรถหน้าร้าน 5 คัน สะดวก ปลอดภัย</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🍵 เครื่องดื่มบริการ:</strong>
+              <span>มีชาสมุนไพรจีนปรับธาตุร้อน-เย็น บริการฟรีสำหรับผู้รับบริการ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Rama+9+Soi+13+Bangkok" target="_blank" rel="noopener" class="btn-jade flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 แผนที่คลินิก
+          </a>
+          <a href="tel:022458899" class="border hairline bg-white flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-[var(--bg-alt)] transition">
+            📞 โทร 02-245-8899
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm" id="booking">
+        <span class="eyebrow text-xs block mb-2">Book An Appointment</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">จองคิวตรวจแมะ & ปรึกษาแพทย์จีน</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">กรอกข้อมูลเพื่อนัดหมายเวลาล่วงหน้า ลดเวลารอตรวจ</p>
+        
+        <form onsubmit="event.preventDefault(); alert('คลินิกได้รับข้อมูลแล้ว เจ้าหน้าที่จะติดต่อยืนยันเวลานัดตรวจทาง LINE ครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อ-นามสกุล / เบอร์โทรศัพท์</label>
+            <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--jade)]" placeholder="เช่น คุณธนกร 081-xxx-xxxx" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการเข้าตรวจ</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--jade)]" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ช่วงเวลาที่สะดวก</label>
+              <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--jade)]">
+                <option>รอบเช้า (10:00 – 13:00 น.)</option>
+                <option>รอบบ่าย (13:30 – 16:30 น.)</option>
+                <option>รอบเย็น (17:00 – 19:00 น.)</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">อาการหลักที่ต้องการปรึกษา</label>
+            <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--jade)]">
+              <option>ปวดคอบ่าไหล่ / ออฟฟิศซินโดรม / ไมเกรน</option>
+              <option>นอนไม่หลับ / เครียดสะสม / กรดไหลย้อน</option>
+              <option>ปรับสมดุลฮอร์โมนสตรี / เตรียมความพร้อมก่อนมีบุตร</option>
+              <option>ครอบแก้วคลายกล้ามเนื้อ & ขับลมชื้น</option>
+              <option>กัวซาขับพิษ & บำรุงผิวหน้า</option>
+              <option>ตรวจแมะชีพจร & เทียบยาสมุนไพรจีน</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-jade py-4 rounded-full text-base font-bold mt-4 shadow-md">
+            ยืนยันการนัดหมายตรวจ →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#FBF9F5] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">Huachun TCM Clinic (Rama 9)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      188/14 ถนนพระราม 9 ซอย 13 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310 | ได้รับใบอนุญาตประกอบกิจการสถานพยาบาลถูกต้องตามกฎหมาย
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Huachun TCM Clinic. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--jade)] font-mono block">ฝังเข็ม & ยาจีน</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Huachun พระราม 9</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:022458899" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-jade px-5 py-2.5 rounded-full text-sm font-bold">จองคิวตรวจ</a>
+  </div>
+</div>
+
+<script>
+const treatmentData = {
+  acupuncture: {
+    title: 'ฝังเข็มกระตุ้นไฟฟ้า & โคมไฟอบความร้อนอินฟราเรด (Electro-Acupuncture)',
+    desc: 'รักษาอาการปวดคอบ่าไหล่ ออฟฟิศซินโดรม ไมเกรน ข้อเข่าเสื่อม หมอนรองกระดูกทับเส้นประสาท โดยแพทย์จีนจะตรวจคลำหากล้ามเนื้อที่เป็นปม (Trigger Point) ร่วมกับการใช้กระแสไฟฟ้าความถี่ต่ำกระตุ้นคลายกล้ามเนื้อลึกและเพิ่มการไหลเวียนของเลือด',
+    time: 'ระยะเวลาการรักษา 45–60 นาทีต่อครั้ง',
+    price: 'ครั้งละ ฿850 – ฿1,200 | คอร์ส 5 ครั้ง ฿3,900 (ฟรี อบโคมไฟอินฟราเรด)',
+    img: './images/tcm-acupuncture-neck.webp'
+  },
+  cupping: {
+    title: 'ครอบแก้วไฟสุญญากาศแบบดั้งเดิม (Traditional Fire Cupping)',
+    desc: 'ใช้ความร้อนสร้างแรงดูดสุญญากาศบนแผ่นหลัง ช่วยเปิดรูขุมขน ขับไอเย็นและความชื้นที่สะสมในกล้ามเนื้อ คลายพังผืดที่ตึงเกร็งสะสม รอยครอบแก้วจะค่อยๆ จางหายไปเองภายใน 3–7 วัน',
+    time: 'ระยะเวลา 20–30 นาที',
+    price: 'ครั้งละ ฿500 – ฿700 (หรือทำร่วมกับคอร์สฝังเข็ม ฿400)',
+    img: './images/tcm-cupping-back.webp'
+  },
+  herbs: {
+    title: 'ยาสมุนไพรจีนต้มเฉพาะบุคคลระบบสุญญากาศ (Custom Herbal Decoction)',
+    desc: 'จัดเทียบสมุนไพรจีนเกรดโรงพยาบาลตามผลการแมะชีพจรและลักษณะลิ้น เพื่อปรับสมดุลเลือดลม รักษาอาการนอนไม่หลับ กรดไหลย้อน ปรับประจำเดือน และบำรุงฟื้นฟูหลังคลอด บรรจุซองฟอยล์พร้อมดื่ม สะอาด ไร้สารสเตียรอยด์',
+    time: 'จัดเทียบยาชุดละ 7–14 วัน',
+    price: 'เริ่มต้น ฿1,400 – ฿2,800 / สัปดาห์ (ตามตัวยาสมุนไพรที่ใช้)',
+    img: './images/tcm-herbs-cabinet.webp'
+  },
+  guasha: {
+    title: 'กัวซาหินหยกธรรมชาติ & บำรุงผิวหน้ายกกระชับ (Jade Facial & Body Gua Sha)',
+    desc: 'ใช้แผ่นหินหยกธรรมชาติขูดระบายของเสียตามแนวเส้นลมปราณ ช่วยกระตุ้นระบบน้ำเหลือง ลดอาการบวมน้ำ ขับความร้อนส่วนเกิน และฟื้นฟูผิวหน้าให้เรียบเนียน กระจ่างใสอย่างเป็นธรรมชาติ',
+    time: 'ระยะเวลา 45 นาที',
+    price: 'กัวซาตัว ฿600 | กัวซาหน้าหินหยกพรีเมียม ฿950',
+    img: './images/tcm-guasha-facial.webp'
+  }
+};
+
+function renderTreatment(key) {
+  const data = treatmentData[key];
+  const box = document.getElementById('treatmentResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-emerald-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Treatment Protocol & Pricing</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--ink-faint)]">ระยะเวลา:</span> ${data.time}</div>
+          <div class="text-[var(--jade)] font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">อัตราค่าบริการ:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-jade px-7 py-3 rounded-full text-sm font-bold shadow-md">จองคิวรักษาโปรแกรมนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderTreatment('acupuncture');
+document.querySelectorAll('#treatmentSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#treatmentSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTreatment(btn.dataset.type);
+  });
+});
+
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+document.getElementById('bookDate').value = tomorrow.toISOString().split('T')[0];
+document.getElementById('bookDate').min = new Date().toISOString().split('T')[0];
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProShine Car Wash & Detailing — ล้างรถ ดูดฝุ่น เคลือบแก้ว พระราม 3</title>
+<meta name="description" content="ProShine พระราม 3 ศูนย์บริการล้างรถ สปารถยนต์ ดูดฝุ่น ฟอกเบาะ ขัดเคลือบสี และเคลือบแก้วเซรามิก ราคาจับต้องได้ งานละเอียด ห้องรับรองติดแอร์">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoWash",
+  "name": "ProShine Car Wash & Detailing",
+  "alternateName": "โปรไชน์ คาร์วอช พระราม 3",
+  "description": "ศูนย์บริการล้างรถ สปารถยนต์ เคลือบสี และเคลือบแก้วเซรามิก พระราม 3",
+  "telephone": "02-123-9988",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "214 ถนนพระราม 3 (ปากซอยสาธุประดิษฐ์ 50)",
+    "addressLocality": "แขวงบางโพงพาง เขตยานนาวา",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10120",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #0F172A;
+    --bg-surface: #1E293B;
+    --bg-card: #334155;
+    --ink: #F8FAFC;
+    --ink-soft: #CBD5E1;
+    --ink-faint: #94A3B8;
+    --blue: #38BDF8;
+    --blue-dark: #0284C7;
+    --yellow: #FACC15;
+    --amber: #D97706;
+    --line: #334155;
+    --line-light: #475569;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--blue); color: #0F172A; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(15, 23, 42, 0.94);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--blue); }
+  .navtab.active { color: var(--blue); border-color: var(--blue); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-surface);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.05); }
+
+  .btn-blue {
+    background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+    color: #0F172A;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-blue:hover {
+    background: linear-gradient(135deg, #7DD3FC 0%, #38BDF8 100%);
+    box-shadow: 0 10px 24px -8px rgba(56, 189, 248, 0.5);
+  }
+
+  .pkg-card { transition: all 0.25s ease; cursor: pointer; }
+  .pkg-card:hover, .pkg-card.active {
+    border-color: var(--blue);
+    background-color: var(--bg-card);
+    transform: translateY(-2px);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--line-light);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-black/90 border-b border-white/10 text-sky-200 text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ PROSHINE AUTO WASH — ล้างสีดูดฝุ่น สปา เคลือบสีด่วน พระราม 3 ซอย 50 · ห้องรับรองติดแอร์ฟรี Wi-Fi ·</span>
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-xl">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--blue)] flex items-center justify-center text-slate-900 text-2xl font-bold shadow-md group-hover:bg-white transition-colors">
+        🚗
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">ProShine</span>
+        <span class="text-xs text-[var(--blue)] tracking-widest font-mono uppercase block mt-1 font-semibold">Car Wash & Detailing · Rama 3</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#packages" class="navtab active">แพ็กเกจตามไซส์รถ</a>
+      <a href="#services" class="navtab">ดีเทลลิ่งครบวงจร</a>
+      <a href="#standards" class="navtab">มาตรฐาน 5 สี</a>
+      <a href="#reviews" class="navtab">รีวิวลูกค้า</a>
+      <a href="#gallery" class="navtab">แกลเลอรีผลงาน</a>
+      <a href="#location" class="navtab">ที่ตั้ง & แผนที่</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:021239988" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-123-9988
+      </a>
+      <a href="#booking" class="btn-blue px-6 py-3 rounded-full text-sm shadow-sm">
+        จองคิวล้างด่วน
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — FULL-BLEED HERO ============ -->
+<header id="hero" class="relative">
+  <div class="img-slot h-[70vh] md:h-[84vh]">
+    <img src="./images/carwash-hero.webp" alt="ทีมงานล้างรถ ProShine พระราม 3" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(15,23,42,0.96) 0%, rgba(15,23,42,0.65) 45%, rgba(15,23,42,0.3) 100%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+    <div class="max-w-6xl mx-auto text-[#F8FAFC]">
+      <p class="eyebrow mb-3">EXPRESS CAR WASH & AUTO DETAILING · พระราม 3 (สาธุประดิษฐ์ 50)</p>
+      <h1 class="font-display font-bold text-[clamp(2.4rem,6.2vw,4.5rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        ล้างสะอาดหมดจด ทุกซอกมุม<br>
+        <span class="text-[var(--blue)] italic font-normal">รถเงาฉ่ำเหมือนใหม่ออกจากโชว์รูม</span>
+      </h1>
+      <p class="text-base md:text-xl text-slate-200 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        ศูนย์ดูแลรักษารถยนต์ครบวงจร โฟมหิมะ pH Balance สปาฟอกเบาะซักพรม ขัดเคลือบสีลบรอยขนแมว และเคลือบแก้วเซรามิก 9H โดยทีมงานมืออาชีพ รวดเร็ว ไม่ต้องรอนาน
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> เปิดบริการทุกวัน 08:00–19:00 น.
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          ☕ ห้องรับรองติดแอร์ Free Wi-Fi นั่งรอสบาย
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#packages" class="btn-blue rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+          เช็กราคาตามไซส์รถ (เริ่มต้น ฿200)
+        </a>
+        <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+          แผนที่ศูนย์บริการ & ช่องจราจร
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="border-b hairline bg-[var(--bg-surface)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+    <span class="trust-item flex items-center gap-1.5"><span class="text-amber-400 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(420+ รีวิว)</span></span>
+    <span class="trust-item">🧼 โฟม pH Balance ไม่กัดสีและฟิล์ม</span>
+    <span class="trust-item">🧤 แยกผ้าไมโครไฟเบอร์ 5 สี 5 ส่วน</span>
+    <span class="trust-item">⏱️ ล้างสีดูดฝุ่นเร็วใน 30–45 นาที</span>
+    <span>🚗 รองรับรถเข้าล้างพร้อมกัน 6 ช่อง</span>
+  </div>
+</div>
+
+<!-- ============ 02 — PACKAGE & VEHICLE SIZE SELECTOR ============ -->
+<section id="packages" class="py-24 md:py-32 px-6 md:px-10 bg-[var(--bg-surface)] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Transparent Pricing Matrix</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เลือกรุ่นรถของคุณเพื่อดูราคา</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ราคามาตรฐานชัดเจน ไม่มีบวกเพิ่มหน้างาน พร้อมระบุรายการบริการที่ได้รับอย่างละเอียด
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="sizeSelector">
+      <button data-size="s" class="pkg-card active p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🚗</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Size S (รถเล็ก)</strong>
+        <span class="text-xs text-[var(--blue)]">Yaris / City / Jazz / Swift</span>
+      </button>
+
+      <button data-size="m" class="pkg-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🚘</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Size M (รถขนาดกลาง)</strong>
+        <span class="text-xs text-[var(--blue)]">Civic / Altis / Mazda 3 / HRV</span>
+      </button>
+
+      <button data-size="l" class="pkg-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🚙</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Size L (SUV / D-Segment)</strong>
+        <span class="text-xs text-[var(--blue)]">Camry / Accord / CRV / Fortuner</span>
+      </button>
+
+      <button data-size="xl" class="pkg-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🚐</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">Size XL (รถตู้ / กะบะยกสูง)</strong>
+        <span class="text-xs text-[var(--blue)]">Alphard / Commuter / Raptor</span>
+      </button>
+    </div>
+
+    <div id="packageResultBox" class="bg-[var(--bg-card)] rounded-3xl p-8 md:p-12 border hairline shadow-2xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — FULL DETAILING SERVICES ============ -->
+<section id="services" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Full Detailing Services</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">บริการดูแลรักษารถยนต์ครบวงจร</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        ไม่ว่าจะเป็นคราบยางมะตอย รอยขนแมว กลิ่นอับในห้องโดยสาร หรือคราบฝังแน่นในห้องเครื่อง
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-[var(--bg-surface)] p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[16/10] mb-5">
+            <img src="./images/carwash-polish.webp" alt="ขัดเคลือบสีลบรอยชักเงา">
+          </div>
+          <span class="text-xs font-mono text-[var(--blue)] font-bold uppercase">PAINT RESTORATION</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-2">ขัดเคลือบสีลบรอย & ชักเงา</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ลบรอยขนแมว รอยขีดข่วนบางๆ คราบน้ำฝังแน่น ปรับผิวแล็กเกอร์ให้เรียบเนียน เงาฉ่ำสะท้อนแสงไฟ
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex justify-between items-center text-sm font-semibold text-[var(--blue)]">
+          <span>เริ่มต้น ฿1,500</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] p-8 rounded-3xl border-2 border-sky-500/50 shadow-md flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[16/10] mb-5">
+            <img src="./images/carwash-leather.webp" alt="ฟอกเบาะ ซักพรม อบโอโซน">
+          </div>
+          <span class="text-xs font-mono text-[var(--blue)] font-bold uppercase">INTERIOR SPA</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-2">สปาฟอกเบาะ ซักพรม & อบโอโซน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ฟอกทำความสะอาดเบาะหนัง/เบาะผ้า ลบคราบเหงื่อไคล ฆ่าเชื้อแบคทีเรีย และอบโอโซนดับกลิ่นอับกลิ่นบุหรี่
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex justify-between items-center text-sm font-semibold text-[var(--blue)]">
+          <span>เริ่มต้น ฿1,200</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[16/10] mb-5">
+            <img src="./images/carwash-engine.webp" alt="ล้างห้องเครื่องระบบไอน้ำ">
+          </div>
+          <span class="text-xs font-mono text-[var(--blue)] font-bold uppercase">ENGINE CARE</span>
+          <h4 class="font-display font-bold text-2xl mt-1 mb-2">ล้างห้องเครื่อง & เคลือบกันหนู</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            ล้างคราบน้ำมันและฝุ่นด้วยไอน้ำความร้อนสูง ปลอดภัยต่อระบบไฟ พร้อมลงน้ำยาเคลือบเงาและป้องกันหนูกัดสายไฟ
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex justify-between items-center text-sm font-semibold text-[var(--blue)]">
+          <span>เริ่มต้น ฿600</span>
+          <span>→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — REVIEWS SECTION ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Customer Testimonials</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ความประทับใจจากลูกค้าพระราม 3</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-400 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (420+ รีวิวบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-[var(--bg-surface)] p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-400 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ล้างสีดูดฝุ่นเร็วและสะอาดมาก เช็ดกระจกใสไม่มีคราบมัน ชายล่างและซุ้มล้อสะอาดกริบ ห้องรับรองแอร์เย็น มีที่นั่งทำงานรอนั่งสบายมากครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณณัฐพงษ์ (สาธุประดิษฐ์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ล้างสีดูดฝุ่น + ลงแว็กซ์ Honda Civic</span>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-400 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ลูกทำชานมไข่มุกหกใส่เบาะผ้า ส่งมาทำสปาฟอกเบาะที่นี่ คราบหายเกลี้ยง กลิ่นบูดหายสนิท อบโอโซนให้หอมสดชื่น ราคาคุ้มค่ามากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณวรัญญา (พระราม 3)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">สปาฟอกเบาะ & อบโอโซน Toyota Fortuner</span>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-400 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "เคลือบแก้วเซรามิก 9H ที่นี่งานละเอียดมาก ช่างขัดลบรอยขนแมวเนียนกริบก่อนลงน้ำยา รถเงาฉ่ำเหมือนป้ายแดง น้ำไม่เกาะเลยครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณกิตติศักดิ์ (ยานนาวา)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">เคลือบแก้วเซรามิก 9H BMW 3 Series</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — VISUAL GALLERY SHOWCASE ============ -->
+<section id="gallery" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Real Detailing Showcase</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีผลงานการดูแลรถ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพการทำงานจริงในศูนย์บริการ ProShine พระราม 3 สะอาด ปลอดภัย ใส่ใจทุกรายละเอียด
+      </p>
+    </div>
+
+    <!-- Multi-Item Gallery Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-foam.webp" alt="ขั้นตอนฉีดโฟมหิมะ">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">สโนว์โฟมสลายคราบ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">สูตรอ่อนโยน ไม่กัดผิวสี</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-vacuum.webp" alt="ดูดฝุ่นภายในอย่างละเอียด">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ดูดฝุ่น & เช็ดคอนโซล</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เข้าถึงทุกซอกเบาะและช่องแอร์</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-polish.webp" alt="ขัดสีลบรอยขนแมว">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ขัดชักเงา Dual Action</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">สีรถเงาฉ่ำไร้รอยวง</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-glasscoat.webp" alt="งานเคลือบแก้วเซรามิก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">เคลือบเซรามิก 9H</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ป้องกันคราบน้ำและมูลนก</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-engine.webp" alt="ทำความสะอาดห้องเครื่อง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">สปาห้องเครื่องระบบแห้ง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปลอดภัยต่อปลั๊กเซนเซอร์</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-leather.webp" alt="สปาบำรุงเบาะหนัง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">บำรุงหนังแท้สูตรพิเศษ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">คืนความนุ่ม ไม่เหนียวเหนอะ</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-hero.webp" alt="บริการล้างอัดฉีดมาตรฐาน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ล้างช่วงล่าง & ซุ้มล้อ</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ฉีดล้างดินโคลนสะสมหมดจด</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/carwash-lounge.webp" alt="ห้องรับรองลูกค้า">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ห้องรับรองติดแอร์</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">นั่งพักรอรับรถอย่างสบายใจ</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — PREMIUM STANDARDS & CHEMICALS ============ -->
+<section id="standards" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-[var(--bg-surface)] rounded-3xl p-8 md:p-12 border hairline grid lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-8 space-y-4">
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-[var(--blue)] font-bold uppercase">
+          <span>🛡️</span> มาตรฐานน้ำยาและอุปกรณ์ระดับสากล
+        </div>
+        <h3 class="font-display text-2xl md:text-3xl font-bold">ทำไมลูกค้ากว่า 10,000 คัน ถึงเลือก ProShine?</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed">
+          เราใช้เฉพาะน้ำยาแบรนด์นำเข้าชั้นนำจากเยอรมนีและอเมริกา (Meguiar's, Koch-Chemie, Chemical Guys) น้ำที่ใช้ล้างผ่านระบบกรองลดคราบหินปูน และใช้ผ้าไมโครไฟเบอร์แยกสี 5 ผืนต่อ 1 คัน ไม่ปะปนระหว่างล้อและตัวถัง
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2 text-xs md:text-sm font-mono text-[var(--ink-faint)]">
+          <span>• แยกฟองน้ำท่อนบน-ล่าง</span>
+          <span>• ระบบกรองน้ำ Soft Water</span>
+          <span>• เคลือบยางดำสูตรกันน้ำ</span>
+        </div>
+      </div>
+      <div class="lg:col-span-4 bg-[var(--bg-card)] p-6 rounded-2xl border hairline text-center space-y-2 shadow-sm">
+        <span class="text-4xl">✨</span>
+        <div class="font-display font-bold text-lg text-[var(--ink)]">รับประกันความพึงพอใจ</div>
+        <div class="font-mono text-sm text-[var(--blue)] font-bold">ตรวจงานก่อนส่งมอบ</div>
+        <p class="text-xs text-[var(--ink-faint)]">หากจุดไหนไม่สะอาด ยินดีเก็บงานให้ทันทีโดยไม่มีค่าใช้จ่าย</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Location & Service Bays</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่ศูนย์บริการ & เวลาทำการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ตั้งอยู่ริมถนนพระราม 3 ติดปั๊มน้ำมัน เข้าออกสะดวก รองรับรถได้พร้อมกัน 6 คัน
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-[var(--bg-card)] p-8 md:p-12 rounded-3xl border hairline shadow-2xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">เปิดบริการทุกวัน:</span>
+              <span class="font-mono">08:00 – 19:00 น.</span>
+            </div>
+            <div class="flex justify-between text-sky-400 font-medium pt-1">
+              <span>ช่องบริการด่วน:</span>
+              <span>พร้อมให้บริการโดยไม่ต้องรอนาน</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งศูนย์บริการ</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            214 ถนนพระราม 3 (ปากซอยสาธุประดิษฐ์ 50 ติดปั๊มน้ำมัน) แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚗 รองรับรถเข้าล้างพร้อมกันได้ 6 คัน ไม่ต้องวนหาที่จอด</div>
+            <div>☕ ห้องรับรองแอร์เย็นฉ่ำ ทีวี เครื่องดื่ม ขนม และฟรี Wi-Fi</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Rama+3+Bangkok" target="_blank" rel="noopener" class="btn-blue flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:021239988" class="border hairline bg-slate-800/80 text-white flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-slate-700 transition">
+            📞 โทร 02-123-9988
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-surface)] relative min-h-[320px] shadow-inner">
+        <iframe title="ProShine Car Wash Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.1234567890!2d100.535!3d13.695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f876543210%3A0xabcdef1234567890!2sRama%203%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — SMART FAST QUEUE BOOKING / GENERAL INQUIRY ============ -->
+<section id="booking" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-[var(--bg-surface)] p-8 md:p-12 rounded-3xl border hairline shadow-2xl text-center">
+    <span class="eyebrow text-xs block mb-2">Fast Queue & Inquiry</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">จองคิวล้างรถ / สอบถามบริการ</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      สามารถกรอกข้อมูลเพื่อนัดหมายล่วงหน้า หรือกดทักแชตคุยกับแอดมินทาง LINE ได้ทันทีโดยไม่ต้องกรอกฟอร์ม
+    </p>
+    
+    <form id="carwashContactForm" onsubmit="handleCarwashSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้จอง / เบอร์โทรศัพท์ <span class="text-slate-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="washNamePhone" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white" placeholder="เช่น คุณสมชาย 081-xxx-xxxx">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ทะเบียนรถ / รุ่นรถ <span class="text-slate-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+          <input type="text" id="washCarModel" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white" placeholder="เช่น 1กข 1234 (Civic)">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวก <span class="text-slate-400 font-normal text-xs">(กรณีจองคิว)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">บริการที่ต้องการ</label>
+        <select id="washServiceTopic" class="w-full bg-[var(--bg-card)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)] text-white">
+          <option value="ล้างสี + ดูดฝุ่น + เช็ดแห้ง + เคลือบยางดำ">🚗 ล้างสี + ดูดฝุ่น + เช็ดแห้ง + เคลือบยางดำ (เริ่มต้น ฿200)</option>
+          <option value="ล้างสี + ดูดฝุ่น + ลงแว็กซ์พรีเมียมชักเงา">✨ ล้างสี + ดูดฝุ่น + ลงแว็กซ์พรีเมียมชักเงา</option>
+          <option value="สปาฟอกเบาะ ซักพรม อบโอโซนดับกลิ่น">🧼 สปาฟอกเบาะ ซักพรม อบโอโซนดับกลิ่น</option>
+          <option value="ขัดเคลือบสีลบรอยขนแมวเต็มระบบ">🪞 ขัดเคลือบสีลบรอยขนแมวเต็มระบบ (Paint Restoration)</option>
+          <option value="ล้างห้องเครื่องระบบไอน้ำ + เคลือบกันหนู">⚙️ ล้างห้องเครื่องระบบไอน้ำ + เคลือบกันหนู</option>
+          <option value="เคลือบแก้วเซรามิก 9H รับประกันความเงา">🛡️ เคลือบแก้วเซรามิก 9H รับประกันความเงา</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-blue py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / จองคิวทาง LINE →
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-sky-400 hover:text-sky-300 underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-sky-950/60 border border-sky-800/60 transition hover:bg-sky-900/60 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อสอบถามคิวว่างได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-black border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">ProShine Auto Wash & Detailing Studio (Rama 3)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      214 ถนนพระราม 3 แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120 | โทร 02-123-9988 | LINE: @proshine
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 ProShine Car Care. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)]/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--blue)] font-mono block">ล้างสีดูดฝุ่น เริ่มต้น ฿200</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">ProShine พระราม 3</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:021239988" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-blue px-5 py-2.5 rounded-full text-sm font-bold">จองคิวล้าง</a>
+  </div>
+</div>
+
+<script>
+/* Smart Form Handler */
+function handleCarwashSubmit(e) {
+  e.preventDefault();
+  const namePhone = document.getElementById('washNamePhone').value.trim();
+  const car = document.getElementById('washCarModel').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const topic = document.getElementById('washServiceTopic').value;
+
+  let msg = `สวัสดีครับ สนใจติดต่อ ProShine Car Wash\n- บริการที่สนใจ: ${topic}`;
+  if (namePhone) msg += `\n- ผู้ติดต่อ: ${namePhone}`;
+  if (car) msg += `\n- ทะเบียน/รุ่นรถ: ${car}`;
+  if (date) msg += `\n- วันที่สะดวก: ${date}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const pkgData = {
+  s: {
+    title: 'แพ็กเกจ Size S (รถยนต์ขนาดเล็ก Eco Car)',
+    models: 'Toyota Yaris, Honda City, Honda Jazz, Suzuki Swift, Mazda 2',
+    washPrice: '฿200',
+    waxPrice: '฿450',
+    spaPrice: '฿1,200',
+    desc: 'ล้างสีด้วยสโนว์โฟม pH เป็นกลาง ดูดฝุ่นพรมและเบาะ เช็ดกระจกใส ไร้คราบมัน และทายางดำเงาสูตรกันน้ำสะท้อนฝุ่น',
+    img: './images/carwash-foam.webp'
+  },
+  m: {
+    title: 'แพ็กเกจ Size M (รถยนต์ขนาดกลาง Compact / Crossover)',
+    models: 'Honda Civic, Toyota Altis, Mazda 3, Honda HR-V, Toyota Cross',
+    washPrice: '฿250',
+    waxPrice: '฿550',
+    spaPrice: '฿1,500',
+    desc: 'ล้างอัดฉีดซุ้มล้อ สลายคราบฝุ่นเบรก ดูดฝุ่นละเอียดยันใต้รางเบาะ เช็ดคอนโซลด้วยน้ำยากันรังสี UV และลงแว็กซ์เพิ่มความเงา',
+    img: './images/carwash-vacuum.webp'
+  },
+  l: {
+    title: 'แพ็กเกจ Size L (รถขนาดใหญ่ D-Segment / PPV / SUV)',
+    models: 'Toyota Camry, Honda Accord, CR-V, Fortuner, Pajero Sport, Everest',
+    washPrice: '฿300',
+    waxPrice: '฿650',
+    spaPrice: '฿1,800',
+    desc: 'ล้างทำความสะอาดตัวถังขนาดใหญ่ด้วยฟองน้ำแยก 2 ส่วน ล้างซุ้มล้อและบันไดข้าง ดูดฝุ่น 7 ที่นั่งอย่างละเอียด ไร้ฝุ่นสะสม',
+    img: './images/carwash-polish.webp'
+  },
+  xl: {
+    title: 'แพ็กเกจ Size XL (รถตู้ VIP / รถกะบะยกสูงขนาดใหญ่)',
+    models: 'Toyota Alphard, Vellfire, Hyundai Staria, Commuter, Ford Ranger Raptor',
+    washPrice: '฿400',
+    waxPrice: '฿850',
+    spaPrice: '฿2,200',
+    desc: 'ทำความสะอาดเต็มระบบสำหรับรถตู้ขนาดใหญ่ ล้างหลังคาสูง ดูดฝุ่นเบาะทุกแถว ซักพรมยาง และอบโอโซนฆ่าเชื้อปรับอากาศสดชื่น',
+    img: './images/carwash-hero.webp'
+  }
+};
+
+function renderPackage(key) {
+  const data = pkgData[key];
+  const box = document.getElementById('packageResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Vehicle Size Specification</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-xs font-mono text-[var(--blue)] mb-3 font-semibold">ตัวอย่างรุ่นรถ: ${data.models}</p>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="grid grid-cols-3 gap-3 border-t hairline pt-4 text-center font-mono">
+          <div class="bg-[var(--bg-surface)] p-3 rounded-xl border hairline">
+            <span class="text-xs text-[var(--ink-faint)] block">ล้างสี + ดูดฝุ่น</span>
+            <strong class="text-[var(--blue)] font-bold text-lg">${data.washPrice}</strong>
+          </div>
+          <div class="bg-[var(--bg-surface)] p-3 rounded-xl border hairline">
+            <span class="text-xs text-[var(--ink-faint)] block">ล้าง + เคลือบแว็กซ์</span>
+            <strong class="text-[var(--yellow)] font-bold text-lg">${data.waxPrice}</strong>
+          </div>
+          <div class="bg-[var(--bg-surface)] p-3 rounded-xl border hairline">
+            <span class="text-xs text-[var(--ink-faint)] block">สปาฟอกเบาะ</span>
+            <strong class="text-white font-bold text-lg">${data.spaPrice}</strong>
+          </div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#booking" class="btn-blue px-7 py-3 rounded-full text-sm font-bold shadow-md">จองคิวแพ็กเกจนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderPackage('s');
+document.querySelectorAll('#sizeSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#sizeSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPackage(btn.dataset.size);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

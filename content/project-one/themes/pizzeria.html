@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เตาถ่าน พิซซ่าเฮ้าส์ — พิซซ่าเตาฟืนโฮมเมด แป้งหมักสด ย่านประดิพัทธ์-สะพานควาย</title>
+<meta name="description" content="เตาถ่าน พิซซ่าเฮ้าส์ ร้านพิซซ่าเตาฟืนโฮมเมดสไตล์ชุมชน ย่านประดิพัทธ์ สะพานควาย แป้งหมัก 48 ชม. อบเตาฟืนร้อนๆ หน้าแน่น ชีสเยิ้ม สปาเกตตีเส้นสด บรรยากาศเป็นกันเอง">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "เตาถ่าน พิซซ่าเฮ้าส์",
+  "alternateName": "Tao Than Wood-Fired Pizza House",
+  "description": "ร้านพิซซ่าเตาฟืนโฮมเมดบรรยากาศเป็นกันเอง แป้งหมักสด 48 ชั่วโมง ซอยประดิพัทธ์ สะพานควาย",
+  "telephone": "02-123-7788",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "45/3 ซอยประดิพัทธ์ 14 แขวงพญาไท",
+    "addressLocality": "เขตพญาไท",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10400",
+    "addressCountry": "TH"
+  },
+  "servesCuisine": "Pizza, Italian-Thai, Homemade",
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FBF8F3;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F3EBDD;
+    --ink: #221A15;
+    --ink-soft: #544439;
+    --ink-faint: #8A7566;
+    --brick: #C24D2C;
+    --brick-dark: #963519;
+    --gold: #D68929;
+    --line: #E5D8C5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0;
+    padding: 0;
+  }
+  .font-display { font-family: 'Noto Sans Thai', sans-serif; font-weight: 700; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--brick); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brick);
+    font-weight: 700;
+  }
+  .note-demo { font-size: 0.75rem; color: var(--ink-faint); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(12px);
+    background: rgba(251, 248, 243, 0.96);
+  }
+  .navtab {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--brick); }
+  .navtab.active { color: var(--brick); border-color: var(--brick); font-weight: 700; }
+
+  /* Mobile Nav Panel */
+  .mobile-nav-toggle { display: flex; }
+  .mobile-nav-toggle span { display: block; width: 20px; height: 2px; background: var(--ink); margin: 3px 0; transition: all 0.25s ease; }
+  .mobile-nav-toggle.nav-open span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  .mobile-nav-toggle.nav-open span:nth-child(2) { opacity: 0; }
+  .mobile-nav-toggle.nav-open span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+  #mobileNavPanel {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.25s ease;
+    background: #fff; border-bottom: 1px solid var(--line);
+  }
+  #mobileNavPanel.open { max-height: 400px; opacity: 1; }
+  #mobileNavPanel a { display: block; padding: 0.85rem 1.25rem; font-size: 0.95rem; color: var(--ink-soft); border-bottom: 1px solid var(--line); }
+  #mobileNavPanel a.active { color: var(--brick); font-weight: 700; }
+  @media (min-width: 768px) {
+    .mobile-nav-toggle { display: none; }
+    #mobileNavPanel { display: none; }
+  }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.05); }
+
+  .btn-brick {
+    background: linear-gradient(135deg, #C24D2C 0%, #963519 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+  .btn-brick:hover {
+    background: linear-gradient(135deg, #D96240 0%, #C24D2C 100%);
+    box-shadow: 0 10px 24px -8px rgba(194, 77, 44, 0.45);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.1rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 18px;
+    background: var(--line);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 130px; gap: 0.75rem; }
+  .bento .b1 { grid-column: span 2; grid-row: span 3; }
+  .bento .b2 { grid-column: span 2; grid-row: span 2; }
+  .bento .b3 { grid-column: span 2; grid-row: span 2; }
+  .bento .b4 { grid-column: span 2; grid-row: span 1; }
+  @media (max-width: 767px) {
+    .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 115px; }
+    .bento .b1 { grid-column: span 2; grid-row: span 3; }
+    .bento .b2, .bento .b3 { grid-column: span 1; grid-row: span 2; }
+    .bento .b4 { grid-column: span 2; grid-row: span 1; }
+  }
+  .bento-caption {
+    position: absolute; bottom: 0.75rem; left: 0.75rem; color: #fff; font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.05em; z-index: 2; font-weight: 600;
+  }
+  .bento-scrim { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,0.7), transparent 55%); z-index: 1; }
+
+  /* Compact Mobile Bottom Bar */
+  .mobile-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+  }
+  @media (min-width: 768px) {
+    .mobile-bottom-bar { display: none; }
+  }
+
+  /* Desktop FAB */
+  .desktop-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+  }
+  .fab-toggle {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: var(--brick);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px -6px rgba(194, 77, 44, 0.5);
+    transition: all 0.25s ease;
+  }
+  .fab-toggle:hover {
+    background: var(--brick-dark);
+    transform: scale(1.05);
+  }
+  .fab-menu {
+    position: absolute;
+    bottom: 68px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+  }
+  .desktop-fab.open .fab-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .fab-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 16px 6px 6px;
+    box-shadow: 0 8px 20px -8px rgba(34, 26, 21, 0.3);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.15s ease;
+  }
+  .fab-item:hover { transform: translateX(-4px); }
+  .fab-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 14px;
+  }
+
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="pb-16 md:pb-0">
+
+  <!-- TOP BAR: DEMO NOTICE -->
+  <div class="bg-[var(--ink)] text-[#FBF8F3] text-center text-xs font-mono py-2 px-4 flex flex-wrap justify-center items-center gap-x-4 gap-y-1">
+    <span>🔥 เตาถ่าน พิซซ่าเฮ้าส์ — อบสดด้วยฟืนไม้แท้ทุกถาด ประดิพัทธ์ 14 (สะพานควาย) · เปิดทุกวัน 11:30–22:00 น. ·</span>
+    <a href="demo.html" class="underline hover:text-amber-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="mainnav" class="sticky top-0 z-40 border-b hairline sticky-nav">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 md:w-11 md:h-11 rounded-2xl bg-[var(--brick)] flex items-center justify-center text-white text-2xl shadow-sm group-hover:scale-105 transition-transform">
+          🍕
+        </div>
+        <div>
+          <span class="font-display text-lg md:text-xl tracking-tight leading-none block text-[var(--ink)]">เตาถ่าน พิซซ่า</span>
+          <span class="text-[10px] md:text-xs text-[var(--brick)] font-semibold tracking-wider font-mono uppercase block mt-1">Wood-Fired Pizza · Pradipat</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-6 overflow-x-auto">
+        <a href="#menu" class="navtab active" data-tab="menu">เมนูพิซซ่า</a>
+        <a href="#story" class="navtab" data-tab="story">เรื่องราวเตาฟืน</a>
+        <a href="#reviews" class="navtab" data-tab="reviews">รีวิวลูกค้า</a>
+        <a href="#gallery" class="navtab" data-tab="gallery">ภาพในร้าน (12 ภาพ)</a>
+        <a href="#team" class="navtab" data-tab="team">ทีมเชฟคนไทย</a>
+        <a href="#location" class="navtab" data-tab="location">ที่ตั้ง & จองโต๊ะ</a>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="#booking" class="btn-brick text-xs md:text-sm font-semibold rounded-full px-4 md:px-6 py-2.5 md:py-3 shadow-sm">จองโต๊ะ / สั่งกลับบ้าน</a>
+        <button id="mobileNavToggle" class="mobile-nav-toggle flex-col justify-center items-center w-9 h-9 rounded-lg border hairline bg-white" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="mobileNavPanel">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileNavPanel">
+      <a href="#menu" class="navtab-mobile active" data-tab="menu">เมนูพิซซ่า</a>
+      <a href="#story" class="navtab-mobile" data-tab="story">เรื่องราวเตาฟืน</a>
+      <a href="#reviews" class="navtab-mobile" data-tab="reviews">รีวิวลูกค้า</a>
+      <a href="#gallery" class="navtab-mobile" data-tab="gallery">ภาพในร้าน (12 ภาพ)</a>
+      <a href="#team" class="navtab-mobile" data-tab="team">ทีมเชฟคนไทย</a>
+      <a href="#location" class="navtab-mobile" data-tab="location">ที่ตั้ง & จองโต๊ะ</a>
+    </div>
+  </nav>
+
+  <!-- 01 — FULL-BLEED HERO -->
+  <header id="hero" class="relative">
+    <div class="img-slot h-[70vh] md:h-[84vh]">
+      <img src="./images/pizza-hero.webp" alt="พิซซ่าเตาถ่านแป้งสด อบฟืนไม้หอมกรุ่น เตาถ่านพิซซ่า ประดิพัทธ์" class="w-full h-full object-cover">
+      <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(25,18,14,0.96) 0%, rgba(25,18,14,0.62) 45%, rgba(25,18,14,0.25) 100%);"></div>
+    </div>
+
+    <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+      <div class="max-w-6xl mx-auto text-[#FBF8F3]">
+        <p class="eyebrow mb-3" style="color:#F4A261;">HOMEMADE WOOD-FIRED PIZZA & CRAFT BEER · ซอยประดิพัทธ์ 14</p>
+        <h1 class="font-display font-bold text-[clamp(2.3rem,6vw,4.4rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+          พิซซ่าเตาฟืนโฮมเมด<br>
+          <span class="text-[#F4A261] italic font-normal">แป้งหมัก 48 ชม. อบสดถาดต่อถาด ชีสเยิ้มสะใจ</span>
+        </h1>
+        <p class="text-base md:text-xl text-stone-100 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          ร้านพิซซ่าบรรยากาศอบอุ่นสไตล์เพื่อนบ้าน นวดแป้งสดด้วยมือ อบในเตาอิฐฟืนไม้ธรรมชาติ ขอบพองกรอบนอกนุ่มเหนียว หน้าแน่นเต็มคำ ในราคาที่ทานได้ทุกสัปดาห์
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 mb-8">
+          <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> อบเสร็จร้อนๆ ภายใน 2 นาที
+          </span>
+          <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+            🚗 มีที่จอดรถหน้าร้าน 4-5 คัน
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#menu" class="btn-brick rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+            ดูเมนูพิซซ่าหน้าโปรด
+          </a>
+          <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+            แผนที่ร้าน & เวลาเปิด
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 02 — TRUST BAR -->
+  <div class="border-b hairline bg-[var(--bg)]">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+      <span class="trust-item flex items-center gap-1.5"><span class="text-amber-500 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(380+ รีวิว)</span></span>
+      <span class="trust-item">🪵 อบด้วยฟืนไม้ธรรมชาติ 100%</span>
+      <span class="trust-item">🧀 มอสซาเรลล่าชีสแท้ ยืดจุใจ</span>
+      <span class="trust-item">🍝 สปาเกตตีผัดพริกแห้งเบคอนรสจัด</span>
+      <span>🍺 มีคราฟต์เบียร์ & ไวน์แก้ว</span>
+    </div>
+  </div>
+
+  <!-- 03 — SIGNATURE PIZZA MENU (6 หน้าฮิตราคาจับต้องได้) -->
+  <section id="menu" class="py-20 md:py-28 px-6 md:px-10 bg-[var(--bg-surface)] reveal">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-6 border-b hairline">
+        <div>
+          <p class="eyebrow mb-2">Signature Wood-Fired Pizza</p>
+          <h2 class="font-display text-[clamp(1.8rem,3.8vw,2.8rem)] text-[var(--ink)]">เมนูพิซซ่าเตาฟืนยอดนิยม</h2>
+        </div>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] max-w-md mt-3 md:mt-0">
+          ถาดขนาด 12 นิ้ว (ตัด 8 ชิ้น) อบด้วยความร้อน 450°C ขอบพองเกรียมกรอบ หอมกลิ่นควันไม้อ่อนๆ
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Item 1 -->
+        <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="img-slot aspect-[4/3] relative">
+              <img src="./images/pizza-margherita.webp" alt="พิซซ่ามาเกริต้า ซอสมะเขือเทศสด">
+              <span class="absolute top-2.5 left-2.5 bg-red-600 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase shadow">BEST SELLER</span>
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-baseline mb-1">
+                <h4 class="font-display font-bold text-lg text-[var(--ink)]">Margherita Classic</h4>
+                <span class="font-bold text-lg text-[var(--brick)]">฿260</span>
+              </div>
+              <p class="text-xs text-[var(--ink-soft)] leading-relaxed">ซอสมะเขือเทศสดเคี่ยวเอง มอสซาเรลล่าชีส ใบโหระพาอิตาเลียนสด และน้ำมันมะกอกแท้</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 border-t hairline mt-2 flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+            <span>🍕 ขนาด 12 นิ้ว (8 ชิ้น)</span>
+            <span class="text-emerald-700 font-semibold">รสคลาสสิก</span>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border-2 border-[var(--brick)] shadow-md flex flex-col justify-between group relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--brick)] text-white text-[10px] font-mono uppercase px-3 py-0.5 rounded-full font-bold">
+            แนะนำประจำร้าน
+          </div>
+          <div>
+            <div class="img-slot aspect-[4/3] relative">
+              <img src="./images/pizza-truffle-parma.webp" alt="พิซซ่าทรัฟเฟิลแฮม">
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-baseline mb-1">
+                <h4 class="font-display font-bold text-lg text-[var(--ink)]">Truffle Ham & Mushroom</h4>
+                <span class="font-bold text-lg text-[var(--brick)]">฿380</span>
+              </div>
+              <p class="text-xs text-[var(--ink-soft)] leading-relaxed">ซอสเห็ดทรัฟเฟิลดำแท้หอมฟุ้ง แฮมรมควัน เห็ดแชมปิญองสด มอสซาเรลล่า และใบรอคเก็ตสด</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 border-t hairline mt-2 flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+            <span>🍕 ขนาด 12 นิ้ว (8 ชิ้น)</span>
+            <span class="text-[var(--brick)] font-semibold">กลิ่นทรัฟเฟิลแน่น</span>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="img-slot aspect-[4/3] relative">
+              <img src="./images/pizza-cheese-pull.webp" alt="พิซซ่า 4 ชีสเยิ้มราดน้ำผึ้ง">
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-baseline mb-1">
+                <h4 class="font-display font-bold text-lg text-[var(--ink)]">Quattro 4 Cheese & Honey</h4>
+                <span class="font-bold text-lg text-[var(--brick)]">฿340</span>
+              </div>
+              <p class="text-xs text-[var(--ink-soft)] leading-relaxed">รวม 4 ชีสพรีเมียม (Mozzarella, Gorgonzola, Gouda, Parmesan) ชีสเยิ้ม เสิร์ฟพร้อมน้ำผึ้งป่า</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 border-t hairline mt-2 flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+            <span>🍕 ขนาด 12 นิ้ว (8 ชิ้น)</span>
+            <span class="text-amber-700 font-semibold">ชีสยืดสะใจ</span>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="img-slot aspect-[4/3] relative">
+              <img src="./images/pizza-spicy-pepperoni.webp" alt="พิซซ่าเปปเปอโรนีเผ็ดจัด">
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-baseline mb-1">
+                <h4 class="font-display font-bold text-lg text-[var(--ink)]">Spicy Pepperoni Blast</h4>
+                <span class="font-bold text-lg text-[var(--brick)]">฿320</span>
+              </div>
+              <p class="text-xs text-[var(--ink-soft)] leading-relaxed">เปปเปอโรนีเนื้อแน่นเรียงเต็มถาด พริกฮาลาปิโน และซอสมะเขือเทศรสเผ็ดนิดๆ ตัดเลี่ยน</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 border-t hairline mt-2 flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+            <span>🍕 ขนาด 12 นิ้ว (8 ชิ้น)</span>
+            <span class="text-red-600 font-semibold">รสเผ็ดตัดเลี่ยน</span>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="img-slot aspect-[4/3] relative">
+              <img src="./images/pizza-pasta-carbonara.webp" alt="สปาเกตตีคาโบนาร่าไข่สด">
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-baseline mb-1">
+                <h4 class="font-display font-bold text-lg text-[var(--ink)]">Spaghetti Carbonara</h4>
+                <span class="font-bold text-lg text-[var(--brick)]">฿220</span>
+              </div>
+              <p class="text-xs text-[var(--ink-soft)] leading-relaxed">สปาเกตตีคาโบนาร่าสูตรดั้งเดิม ไข่แดงสด ชีสพาร์มีเจียโน เบคอนกรอบ ไร้ครีมเทียม</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 border-t hairline mt-2 flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+            <span>🍝 เมนูพาสต้าสด</span>
+            <span class="text-amber-800 font-semibold">สูตรดั้งเดิม</span>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="bg-[var(--bg)] rounded-2xl overflow-hidden border hairline shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="img-slot aspect-[4/3] relative">
+              <img src="./images/pizza-calzone-baked.webp" alt="พิซซ่าพับกัลโซเน่">
+            </div>
+            <div class="p-5">
+              <div class="flex justify-between items-baseline mb-1">
+                <h4 class="font-display font-bold text-lg text-[var(--ink)]">Baked Calzone</h4>
+                <span class="font-bold text-lg text-[var(--brick)]">฿290</span>
+              </div>
+              <p class="text-xs text-[var(--ink-soft)] leading-relaxed">พิซซ่าพับอบเตาฟืน อัดแน่นด้วยไส้ชีสริคอตต้า แฮม มะเขือเทศ และผักโขมอบชีส</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0 border-t hairline mt-2 flex justify-between items-center text-xs font-mono text-[var(--ink-faint)]">
+            <span>🥟 พิซซ่าพับสไตล์อิตาเลียน</span>
+            <span class="text-emerald-700 font-semibold">ไส้แน่น</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 — STORY: FROM FLOUR TO FIRE (BENTO GRID) -->
+  <section id="story" class="py-20 md:py-28 bg-[var(--ink)] text-[#FBF8F3] reveal">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="grid md:grid-cols-2 gap-8 items-end mb-10">
+        <div>
+          <p class="eyebrow mb-3" style="color:#F4A261;">FROM FLOUR TO WOOD-FIRE</p>
+          <h2 class="font-display text-[clamp(1.8rem,4vw,2.6rem)] leading-tight text-white">จากแป้งหมักธรรมชาติสู่เตาฟืนร้อน 450°C</h2>
+        </div>
+        <p class="text-stone-300 text-sm md:text-base font-light leading-relaxed">
+          เราเริ่มจากความหลงใหลในกลิ่นหอมของไม้ฟืนและการหมักแป้งช้าๆ ลองผิดลองถูกจนได้สูตรแป้งที่ย่อยง่าย ไม่อืดท้อง กรอบนอกนุ่มใน อบสดทีละถาดโดยทีมช่างพิซซ่าคนไทยที่รักในการทำอาหาร
+        </p>
+      </div>
+
+      <div class="bento">
+        <div class="img-slot b1 relative rounded-2xl shadow-lg">
+          <img src="./images/pizza-oven-fire.webp" alt="เตาอบอิฐไฟฟืนสด">
+          <div class="bento-scrim"></div>
+          <p class="bento-caption">🔥 เตาอิฐฟืนไม้โกงกางความร้อน 450°C</p>
+        </div>
+        <div class="img-slot b2 relative rounded-2xl shadow-lg">
+          <img src="./images/pizza-dough-prep.webp" alt="เชฟนวดแป้งพิซซ่าสด">
+          <div class="bento-scrim"></div>
+          <p class="bento-caption">👨‍🍳 นวดแป้งสดด้วยมือถาดต่อถาด</p>
+        </div>
+        <div class="img-slot b3 relative rounded-2xl shadow-lg">
+          <img src="./images/pizza-chef-peel.webp" alt="เชฟกำลังนำพิซซ่าเข้าเตาอบ">
+          <div class="bento-scrim"></div>
+          <p class="bento-caption">🍕 อบสุกกรอบพองภายใน 90 วินาที</p>
+        </div>
+        <div class="img-slot b4 relative rounded-2xl shadow-lg">
+          <img src="./images/pizza-restaurant-ambience.webp" alt="บรรยากาศร้านอาหารอบอุ่น">
+          <div class="bento-scrim"></div>
+          <p class="bento-caption">🏡 บรรยากาศร้านไม้สไตล์เป็นกันเอง</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — REVIEWS SECTION -->
+  <section id="reviews" class="py-20 md:py-28 bg-[var(--bg-alt)] reveal">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <p class="eyebrow mb-2">เสียงจากเพื่อนบ้าน</p>
+        <h2 class="font-display text-[clamp(1.7rem,3.8vw,2.4rem)] text-[var(--ink)]">คนย่านประดิพัทธ์พูดถึงเรา</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+          <div>
+            <p class="text-amber-500 text-sm mb-2">★★★★★</p>
+            <p class="text-xs md:text-sm text-[var(--ink-soft)] leading-relaxed mb-4">
+              "แป้งพิซซ่าที่นี่อร่อยจริง ขอบพองกรอบนอกนุ่มใน หอมกลิ่นฟืนชัดเจนมาก หน้้าทรัฟเฟิลแฮมคือเด็ด ราคาไม่แพงเกินไป พาครอบครัวมาทานบ่อยมากครับ"
+            </p>
+          </div>
+          <div class="border-t hairline pt-3">
+            <p class="text-sm font-bold text-[var(--ink)]">คุณธีรเดช (ประดิพัทธ์ 15)</p>
+            <p class="text-[11px] text-[var(--ink-faint)]">Truffle Ham Pizza</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+          <div>
+            <p class="text-amber-500 text-sm mb-2">★★★★★</p>
+            <p class="text-xs md:text-sm text-[var(--ink-soft)] leading-relaxed mb-4">
+              "ชอบบรรยากาศร้านสบายๆ ไม่เกร็ง เชฟคนไทยเป็นกันเองมาก สั่งพิซซ่า 4 ชีสราดน้ำผึ้งทานคู่กับเบียร์สดช่วงเย็นคือฟิน แนะนำให้โทรจองโต๊ะก่อนนะคะ"
+            </p>
+          </div>
+          <div class="border-t hairline pt-3">
+            <p class="text-sm font-bold text-[var(--ink)]">คุณมนัสวี (สะพานควาย)</p>
+            <p class="text-[11px] text-[var(--ink-faint)]">4 Cheese Pizza & Craft Beer</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+          <div>
+            <p class="text-amber-500 text-sm mb-2">★★★★★</p>
+            <p class="text-xs md:text-sm text-[var(--ink-soft)] leading-relaxed mb-4">
+              "สั่งเดลิเวอรีมากินที่คอนโด อารีย์ มาถึงยังร้อนกรอบอยู่เลย แป้งไม่อืดท้อง สปาเกตตีพริกแห้งก็ผัดมาแห้งไม่อมน้ำมัน ประทับใจมากครับ"
+            </p>
+          </div>
+          <div class="border-t hairline pt-3">
+            <p class="text-sm font-bold text-[var(--ink)]">คุณณัฐนนท์ (อารีย์สัมพันธ์)</p>
+            <p class="text-[11px] text-[var(--ink-faint)]">Delivery & Takeaway</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 — VISUAL GALLERY (12 รูปภาพจริงเต็มชุด บรรยากาศคนไทย & อาหารสด) -->
+  <section id="gallery" class="py-20 md:py-28 reveal">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="eyebrow mb-2">Local Pizzeria Atmosphere</p>
+        <h2 class="font-display text-[clamp(1.8rem,3.8vw,2.8rem)] text-[var(--ink)]">แกลเลอรีภาพอาหารและบรรยากาศร้าน (12 ภาพ)</h2>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] mt-2">
+          บรรยากาศอบอุ่น เป็นกันเอง แสงไฟเตาฟืน พร้อมอาหารปรุงสดใหม่ทุกจาน
+        </p>
+      </div>
+
+      <!-- 12-Image Grid (4x3 Desktop, 2x6 Mobile) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-margherita.webp" alt="พิซซ่ามาเกริต้าต้นตำรับ">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Margherita Pizza</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">มะเขือเทศสด โหระพา ชีส</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-truffle-parma.webp" alt="พิซซ่าทรัฟเฟิลแฮม">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Truffle Ham</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">เห็ดทรัฟเฟิลดำ แฮมรมควัน</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-cheese-pull.webp" alt="ชีสพิซซ่ายืด">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Fresh Cheese Pull</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">ชีสสดเยิ้มๆ จากเตา</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-spicy-pepperoni.webp" alt="พิซซ่าเปปเปอโรนี">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Spicy Pepperoni</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">เปปเปอโรนีแน่นถาด</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-pasta-carbonara.webp" alt="สปาเกตตีคาโบนาร่า">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Classic Carbonara</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">สปาเกตตีคาโบนาร่าไข่สด</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-calzone-baked.webp" alt="พิซซ่าพับกัลโซเน่">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Baked Calzone</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">พิซซ่าพับไส้ผักโขมชีส</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-oven-fire.webp" alt="เตาอบฟืนไม้แท้">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Wood-Fired Oven</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">เตาอิฐฟืนไม้ 450°C</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-dough-prep.webp" alt="เชฟนวดแป้งพิซซ่าสด">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Handmade Dough</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">แป้งหมักธรรมชาติ 48 ชม.</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-restaurant-ambience.webp" alt="บรรยากาศร้านสไตล์โฮมมี่">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Cozy Atmosphere</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">โต๊ะไม้ บรรยากาศอบอุ่น</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-wine-pairing.webp" alt="เครื่องดื่มและไวน์">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Drinks & Beer</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">คราฟต์เบียร์ & ไวน์แก้ว</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-tiramisu.webp" alt="ทีรามิสุโฮมเมด">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Homemade Tiramisu</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">ขนมหวานสูตรดั้งเดิม</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+          <div class="img-slot aspect-square">
+            <img src="./images/pizza-outdoor-terrace.webp" alt="มุมที่นั่งหน้าร้าน">
+          </div>
+          <div class="p-3 text-center">
+            <h4 class="font-bold text-sm text-[var(--ink)]">Outdoor Garden</h4>
+            <p class="text-[11px] text-[var(--ink-faint)] mt-0.5">ที่นั่งรับลมชิลๆ ยามเย็น</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — TEAM: 100% THAI PIZZA CHEFS -->
+  <section id="team" class="py-20 md:py-28 bg-[var(--bg-alt)] reveal">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="max-w-2xl mb-14">
+        <p class="eyebrow mb-2">Our Pizza Artisans</p>
+        <h2 class="font-display text-[clamp(1.8rem,3.8vw,2.6rem)] text-[var(--ink)]">ทีมเชฟเตาถ่านคนไทย</h2>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] mt-2">
+          ผู้หลงใหลในศาสตร์การหมักแป้งและควบคุมไฟเตาฟืน พร้อมดูแลและต้อนรับทุกคนอย่างเป็นกันเอง
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-3xl border hairline p-7 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+          <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border-2 border-[var(--brick)] shadow-md">
+            <img src="./images/team-chef-ton.webp" alt="เชฟต้น หัวหน้าเชฟพิซซ่าเตาถ่าน" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <span class="text-xs font-mono text-[var(--brick)] font-bold uppercase">Head Pizzaiolo & Co-Founder</span>
+            <h4 class="font-display font-bold text-lg mt-1 mb-1">เชฟต้น (วรพจน์ มั่นคง)</h4>
+            <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ประสบการณ์ทำพิซซ่าเตาฟืนกว่า 10 ปี</p>
+            <p class="text-xs md:text-sm text-[var(--ink-soft)] leading-relaxed">
+              เชี่ยวชาญการคุมไฟเตาอิฐและการนวดแป้งหมักช้า คัดสรรไม้ยูคาและไม้ฟืนธรรมชาติเพื่อให้ได้กลิ่นหอมเฉพาะตัว
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl border hairline p-7 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+          <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border-2 border-[var(--brick)] shadow-md">
+            <img src="./images/team-chef-som.webp" alt="เชฟส้ม เชฟพาสต้าและขนมหวาน" class="w-full h-full object-cover">
+          </div>
+          <div>
+            <span class="text-xs font-mono text-[var(--brick)] font-bold uppercase">Pasta & Dessert Chef</span>
+            <h4 class="font-display font-bold text-lg mt-1 mb-1">เชฟส้ม (ปิยนุช วงศ์สวัสดิ์)</h4>
+            <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">ผู้เชี่ยวชาญพาสต้าเส้นสด & ขนมหวาน</p>
+            <p class="text-xs md:text-sm text-[var(--ink-soft)] leading-relaxed">
+              ดูแลเมนูสปาเกตตีผัดพริกแห้ง คาโบนาร่าสูตรไข่สด และทีรามิสุโฮมเมดที่ทำสดใหม่วันต่อวัน
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 — LOCATION & MAP SPLIT CARD -->
+  <section id="location" class="py-20 md:py-28 reveal">
+    <div class="max-w-6xl mx-auto px-5 md:px-8">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <p class="eyebrow mb-2">Location & Open Hours</p>
+        <h2 class="font-display text-[clamp(1.8rem,3.8vw,2.6rem)] text-[var(--ink)]">แผนที่ร้าน & เวลาเปิดบริการ</h2>
+        <p class="text-xs md:text-sm text-[var(--ink-soft)] mt-2">
+          ตั้งอยู่ในซอยประดิพัทธ์ 14 (ใกล้แยกสะพานควาย / BTS สะพานควาย)
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-stretch bg-white p-6 md:p-10 rounded-3xl border hairline shadow-sm">
+        <!-- Left: Details -->
+        <div class="flex flex-col justify-between space-y-6">
+          <div>
+            <h4 class="font-display font-bold text-xl text-[var(--ink)] mb-4">เวลาเปิดให้บริการ</h4>
+            <ul class="space-y-2.5 text-xs md:text-sm mb-6">
+              <li class="flex justify-between border-b hairline pb-2"><span class="text-[var(--ink-soft)]">จันทร์ – ศุกร์:</span><span class="font-semibold">11:30 – 14:30 น. / 17:00 – 22:00 น.</span></li>
+              <li class="flex justify-between border-b hairline pb-2"><span class="text-[var(--ink-soft)]">เสาร์ – อาทิตย์ & นักขัตฤกษ์:</span><span class="font-semibold">11:30 – 22:00 น. (เปิดทั้งวัน)</span></li>
+              <li class="flex justify-between text-emerald-700 font-medium pt-1"><span>เตาอบปิดรับออเดอร์:</span><span>21:30 น.</span></li>
+            </ul>
+
+            <h4 class="font-display font-bold text-lg text-[var(--ink)] mb-1">ที่ตั้งร้าน</h4>
+            <p class="text-xs md:text-sm text-[var(--ink-soft)] leading-relaxed">
+              45/3 ซอยประดิพัทธ์ 14 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400
+            </p>
+            <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+              <div>🚆 BTS สถานีสะพานควาย (ทางออก 1) เดินเข้าซอยประดิพัทธ์ 14 เพียง 400 เมตร</div>
+              <div>🚗 มีที่จอดรถหน้าร้าน 4-5 คัน สะดวก ปลอดภัย</div>
+              <div>🛵 เดลิเวอรีผ่าน GrabFood / LINEMAN ค้นหา "เตาถ่าน พิซซ่าเฮ้าส์"</div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t hairline flex flex-wrap gap-3">
+            <a href="https://maps.google.com/?q=Pradipat+14+Bangkok" target="_blank" rel="noopener" class="btn-brick flex-1 text-center py-3 rounded-full text-xs md:text-sm font-bold shadow-md">
+              📍 เปิด Google Maps นำทาง
+            </a>
+            <a href="tel:021237788" class="border hairline bg-[var(--bg)] flex-1 text-center py-3 rounded-full text-xs md:text-sm font-semibold hover:bg-white transition">
+              📞 โทร 02-123-7788
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Map Embed -->
+        <div class="rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[300px]">
+          <iframe title="เตาถ่าน พิซซ่า แผนที่" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.987654321!2d100.538!3d13.788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ec123456789%3A0xabcdef9876543210!2sPradiphat%2014%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                  class="w-full h-full min-h-[320px] border-0" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 — SMART BOOKING / TAKEAWAY ORDER FORM -->
+  <section id="booking" class="py-20 md:py-28 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+    <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+      <span class="eyebrow text-xs block mb-2">Reservation & Takeaway</span>
+      <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">จองโต๊ะ / สั่งอาหารล่วงหน้า</h3>
+      <p class="text-xs md:text-sm text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+        สามารถกรอกข้อมูลเพื่อนัดหมายล่วงหน้า หรือกดทักแชตคุยกับทางร้านทาง LINE ได้ทันทีโดยไม่ต้องกรอกฟอร์ม
+      </p>
+      
+      <form id="pizzaContactForm" onsubmit="handlePizzaSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+        <div>
+          <label class="block text-xs md:text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์ <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+          <input type="text" id="pizzaNamePhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-sm md:text-base outline-none focus:border-[var(--brick)]" placeholder="เช่น คุณธนกร 081-xxx-xxxx">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs md:text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการจอง / สั่งรับ <span class="text-stone-400 font-normal text-xs">(กรณีจองล่วงหน้า)</span></label>
+            <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-sm md:text-base outline-none focus:border-[var(--brick)]">
+          </div>
+          <div>
+            <label class="block text-xs md:text-sm font-mono text-[var(--ink-soft)] mb-1">รอบเวลา / จำนวนท่าน</label>
+            <select id="pizzaTimeSlot" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-sm md:text-base outline-none focus:border-[var(--brick)]">
+              <option value="มื้อกลางวัน (11:30 - 14:00 น.) 2 ท่าน">มื้อกลางวัน (11:30 – 14:00 น.) · 2 ท่าน</option>
+              <option value="มื้อกลางวัน (11:30 - 14:00 น.) 3-4 ท่าน">มื้อกลางวัน (11:30 – 14:00 น.) · 3–4 ท่าน</option>
+              <option value="มื้อค่ำ (17:30 - 19:30 น.) 2 ท่าน">มื้อค่ำ รอบ 1 (17:30 – 19:30 น.) · 2 ท่าน</option>
+              <option value="มื้อค่ำ (17:30 - 19:30 น.) 3-6 ท่าน">มื้อค่ำ รอบ 1 (17:30 – 19:30 น.) · 3–6 ท่าน</option>
+              <option value="มื้อค่ำ (19:30 - 21:30 น.) 2 ท่าน">มื้อค่ำ รอบ 2 (19:30 – 21:30 น.) · 2 ท่าน</option>
+              <option value="มื้อค่ำ (19:30 - 21:30 น.) กลุ่มใหญ่ 6+ ท่าน">มื้อค่ำ รอบ 2 (19:30 – 21:30 น.) · กลุ่มใหญ่ 6+ ท่าน</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs md:text-sm font-mono text-[var(--ink-soft)] mb-1">บริการที่ต้องการ / เรื่องที่ติดต่อ</label>
+          <select id="pizzaTopic" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-sm md:text-base outline-none focus:border-[var(--brick)]">
+            <option value="จองโต๊ะทานที่ร้าน (Dine-in)">🍕 จองโต๊ะรับประทานที่ร้าน (Dine-in)</option>
+            <option value="สั่งพิซซ่าเตาฟืนกลับบ้าน (Takeaway)">📦 สั่งพิซซ่าเตาฟืนล่วงหน้า แวะรับกลับบ้าน</option>
+            <option value="สั่งจัดเลี้ยงวันเกิด / ปาร์ตี้กลุ่มเพื่อน">🎉 สั่งจัดเลี้ยงวันเกิด / ปาร์ตี้กลุ่มเพื่อน</option>
+            <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+          </select>
+        </div>
+
+        <div class="pt-2 space-y-3">
+          <button type="submit" class="w-full btn-brick py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+            <span>💬</span> ส่งข้อมูล / จองโต๊ะทาง LINE →
+          </button>
+
+          <div class="text-center pt-2">
+            <a href="https://line.me" target="_blank" rel="noopener" class="text-xs md:text-sm font-semibold text-[var(--brick-dark)] hover:text-[var(--brick)] underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-orange-50/80 border border-orange-200/60 transition hover:bg-orange-100/80 w-full">
+              <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อคุยกับร้านได้ทันที →</span>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 10 — FOOTER -->
+  <footer class="py-14 bg-[var(--ink)] text-[#FBF8F3] border-t hairline px-6 text-center text-sm font-light">
+    <div class="max-w-6xl mx-auto space-y-4">
+      <div class="font-display font-bold text-lg text-white">เตาถ่าน พิซซ่าเฮ้าส์ (Tao Than Wood-Fired Pizza)</div>
+      <p class="max-w-md mx-auto text-xs md:text-sm text-[var(--ink-faint)]">
+        45/3 ซอยประดิพัทธ์ 14 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 | โทร 02-123-7788 | LINE: @taothanpizza
+      </p>
+      <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+        © 2026 เตาถ่าน พิซซ่าเฮ้าส์. All rights reserved. Created with Project ONE.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Compact Mobile Bottom Action Bar (3 Buttons) -->
+  <div class="mobile-bottom-bar">
+    <a href="tel:021237788" class="py-2.5 flex flex-col items-center gap-0.5 text-[var(--ink-soft)] active:bg-slate-100 transition">
+      <span class="text-sm">📞</span>
+      <span class="text-[11px] font-medium">โทรจองโต๊ะ</span>
+    </a>
+    <a href="https://line.me" target="_blank" rel="noopener" class="py-2.5 flex flex-col items-center gap-0.5 border-x hairline text-[#06C755] font-semibold active:bg-slate-100 transition">
+      <span class="text-sm">💬</span>
+      <span class="text-[11px]">แอด LINE</span>
+    </a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Pradipat+14+Bangkok" target="_blank" rel="noopener" class="py-2.5 flex flex-col items-center gap-0.5 text-white font-medium active:opacity-90 transition" style="background:var(--brick);">
+      <span class="text-sm">📍</span>
+      <span class="text-[11px]">แผนที่ร้าน</span>
+    </a>
+  </div>
+
+  <!-- Desktop Floating Action Button (FAB) -->
+  <div id="desktopFab" class="hidden md:block desktop-fab">
+    <div id="fabMenu" class="fab-menu">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Pradipat+14+Bangkok" target="_blank" rel="noopener" class="fab-item">
+        <span class="fab-item-icon" style="background:var(--brick);">📍</span>
+        <span class="text-xs font-bold text-[var(--ink)]">แผนที่ร้าน</span>
+      </a>
+      <a href="https://line.me" target="_blank" rel="noopener" class="fab-item">
+        <span class="fab-item-icon" style="background:#06C755;">💬</span>
+        <span class="text-xs font-bold text-[var(--ink)]">แชตผ่าน LINE</span>
+      </a>
+      <a href="tel:021237788" class="fab-item">
+        <span class="fab-item-icon" style="background:var(--ink);">📞</span>
+        <span class="text-xs font-bold text-[var(--ink)]">โทรจองโต๊ะ</span>
+      </a>
+    </div>
+    <button id="fabToggle" class="fab-toggle" aria-label="ช่องทางติดต่อ" aria-expanded="false">
+      <span class="text-2xl">💬</span>
+    </button>
+  </div>
+
+<script>
+/* Smart Form Handler */
+function handlePizzaSubmit(e) {
+  e.preventDefault();
+  const namePhone = document.getElementById('pizzaNamePhone').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const slot = document.getElementById('pizzaTimeSlot').value;
+  const topic = document.getElementById('pizzaTopic').value;
+
+  let msg = `สวัสดีครับ สนใจติดต่อ เตาถ่าน พิซซ่าเฮ้าส์\n- เรื่องที่ติดต่อ: ${topic}`;
+  if (namePhone) msg += `\n- ผู้ติดต่อ: ${namePhone}`;
+  if (date) msg += `\n- วันที่: ${date}`;
+  if (slot) msg += `\n- รอบเวลา/จำนวนท่าน: ${slot}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+/* Desktop FAB Toggle */
+const desktopFab = document.getElementById('desktopFab');
+const fabToggle = document.getElementById('fabToggle');
+if (desktopFab && fabToggle) {
+  fabToggle.addEventListener('click', () => {
+    desktopFab.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!desktopFab.contains(e.target)) {
+      desktopFab.classList.remove('open');
+    }
+  });
+}
+
+/* Mobile Nav Panel Toggle */
+const mobileNavToggle = document.getElementById('mobileNavToggle');
+const mobileNavPanel = document.getElementById('mobileNavPanel');
+if (mobileNavToggle && mobileNavPanel) {
+  mobileNavToggle.addEventListener('click', () => {
+    const isOpen = mobileNavPanel.classList.toggle('open');
+    mobileNavToggle.classList.toggle('nav-open', isOpen);
+  });
+  mobileNavPanel.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNavPanel.classList.remove('open');
+      mobileNavToggle.classList.remove('nav-open');
+    });
+  });
+}
+
+/* Scroll Reveal & Spy */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{ threshold:.1 });
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const sections = ['menu','story','reviews','gallery','team','location'].map(id=>document.getElementById(id));
+const navtabs = document.querySelectorAll('.navtab, .navtab-mobile');
+const spy = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navtabs.forEach(t=>t.classList.remove('active'));
+      const active = document.querySelectorAll(`[data-tab="${e.target.id}"]`);
+      active.forEach(a => a.classList.add('active'));
+    }
+  });
+},{ rootMargin:'-40% 0px -50% 0px' });
+sections.forEach(s=> s && spy.observe(s));
+</script>
+</body>
+</html>

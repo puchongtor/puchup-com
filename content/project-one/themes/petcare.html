@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Paws Pet Hotel & Spa | โรงแรมสัตว์เลี้ยง สปากรูมมิ่ง พระราม 3</title>
+<meta name="description" content="Happy Paws Pet Hotel & Spa — โรงแรมสัตว์เลี้ยงติดแอร์ 24 ชม. สปากรูมมิ่งระบบโอโซน ดูแลโดยทีมงานมืออาชีพและสัตวแพทย์ พระราม 3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #FDFBF7;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F4EFE6;
+    --ink: #26211C;
+    --ink-soft: #5C5247;
+    --ink-faint: #8F8274;
+    --orange: #E07A5F;
+    --orange-dark: #C65E43;
+    --teal: #3D8B7A;
+    --teal-light: #EBF5F2;
+    --line: #EADBCC;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--orange); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(253, 251, 247, 0.96);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--orange); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-orange {
+    background-color: var(--orange);
+    color: #FFFFFF;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+  .btn-orange:hover {
+    background-color: var(--orange-dark);
+    box-shadow: 0 10px 24px -8px rgba(224, 122, 95, 0.45);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<div class="bg-[var(--ink)] text-[#F4EFE6] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider">
+  PUCHUP ONE — PREMIUM PET RESORT & SPA · โรงแรมสัตว์เลี้ยงและสปากรูมมิ่ง พระราม 3 ·
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างธุรกิจอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--orange)] flex items-center justify-center text-white text-2xl shadow-sm">
+        🐾
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Happy Paws</span>
+        <span class="text-xs text-[var(--ink-faint)] tracking-widest font-mono uppercase block mt-1 font-semibold">Pet Hotel & Spa · Rama 3</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#hotel" class="navlink">โรงแรมสัตว์เลี้ยง</a>
+      <a href="#spa" class="navlink">สปากรูมมิ่ง</a>
+      <a href="#safety" class="navlink">มาตรฐานความสะอาด</a>
+      <a href="#products" class="navlink">ดูสินค้าที่เราคัดสรร</a>
+      <a href="#reviews" class="navlink">รีวิวจากผู้ปกครอง</a>
+      <a href="#location" class="navlink">ที่ตั้ง & แผนที่</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:027891234" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-789-1234
+      </a>
+      <a href="#booking" class="btn-orange px-6 py-3 rounded-full text-sm shadow-sm">
+        จองห้องพัก / นัดสปา
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--teal-light)] border border-[var(--teal)]/20 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--teal)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--teal)] animate-pulse"></span> ติดแอร์ 24 ชม. · กล้องวงจรปิดส่วนตัว · มีสัตวแพทย์ดูแล
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        พักผ่อนสบาย ปลอดภัย<br>
+        <span class="text-[var(--orange)]">อบอุ่นเหมือนอยู่บ้านคุณเอง</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        โรงแรมสุนัขและแมวระดับพรีเมียม ห้องพักส่วนตัวไม่ขังกรง แยกโซนสุนัขและแมว 100% พร้อมบริการสปากรูมมิ่งฟื้นฟูผิวหนังด้วยไมโครบับเบิ้ลโอโซน
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#booking" class="btn-orange px-8 py-4 rounded-full text-center text-base md:text-lg shadow-md">
+          เช็กห้องว่าง & จองคิว →
+        </a>
+        <a href="#hotel" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          ดูรูปแบบห้องพัก
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">24/7</strong>
+          <span class="text-sm text-[var(--ink-faint)]">CCTV ดูผ่านมือถือ</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ห้องปรับอากาศแยกเดี่ยว</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">5,000+</strong>
+          <span class="text-sm text-[var(--ink-faint)]">เคสดูแลสัตว์เลี้ยงสุขใจ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/pet2-hero.webp" alt="Happy Paws Pet Hotel and Grooming" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-2xl shrink-0">🛡️</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">ระบบฟอกอากาศฆ่าเชื้อ</strong>
+          <span class="text-[var(--ink-faint)]">ปราศจากกลิ่นอับ เชื้อรา และละอองขนสะสม</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — PET HOTEL ROOM TIERS ============ -->
+<section id="hotel" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Private Boarding Rooms</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ห้องพักสัตว์เลี้ยง (ไม่ขังกรง)</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        ห้องพักติดแอร์ส่วนตัว แยกชั้นสุนัขและแมวชัดเจน พร้อมพี่เลี้ยงพาเดินเล่นสนามหญ้าวันละ 3 รอบ
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline overflow-hidden flex flex-col justify-between shadow-sm group">
+        <div>
+          <div class="img-slot aspect-[16/10]">
+            <img src="./images/hotel-deluxe.webp" alt="Cat Luxury Condo Suite">
+            <span class="absolute top-4 left-4 bg-[var(--teal)] text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider font-semibold">ห้องพักแมว</span>
+          </div>
+          <div class="p-8">
+            <h3 class="font-display font-bold text-2xl mb-2">Cozy Cat Condo (ห้องเดี่ยวคอนโดแมว)</h3>
+            <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+              คอนโดกระจกโปร่ง คอนโดไม้แท้ไร้เสี้ยน มีชั้นปีนป่าย หลุมอวกาศ และที่ลับเล็บส่วนตัวในห้อง ไม่ปะปนกับแมวบ้านอื่น
+            </p>
+            <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+              <li class="flex items-center gap-2">✓ กล้องวงจรปิด HD ดูน้องแมวได้ 24 ชม. ผ่านแอป</li>
+              <li class="flex items-center gap-2">✓ น้ำดื่มระบบน้ำตกกรอง 4 ชั้น และทรายเต้าหู้พรีเมียม</li>
+              <li class="flex items-center gap-2">✓ พี่เลี้ยงเล่นด้วยและส่งวิดีโออัปเดตวันละ 2 รอบ</li>
+            </ul>
+          </div>
+        </div>
+        <div class="p-8 pt-0 border-t hairline flex items-baseline justify-between mt-6">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block font-mono">เริ่มต้นเพียง</span>
+            <span class="font-display text-3xl font-bold text-[var(--orange)]">฿450</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/คืน</span>
+          </div>
+          <a href="#booking" class="btn-orange px-6 py-3 rounded-full text-sm">จองห้องนี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border-2 border-[var(--orange)] overflow-hidden flex flex-col justify-between shadow-xl relative group">
+        <div class="absolute top-0 right-0 bg-[var(--orange)] text-white text-xs font-mono uppercase px-4 py-1.5 rounded-bl-2xl tracking-wider font-bold z-10">
+          RECOMMENDED
+        </div>
+        <div>
+          <div class="img-slot aspect-[16/10]">
+            <img src="./images/hotel-vip.webp" alt="Dog VIP Suite Room">
+            <span class="absolute top-4 left-4 bg-[var(--ink)] text-white text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider font-semibold">ห้องพักสุนัข</span>
+          </div>
+          <div class="p-8">
+            <h3 class="font-display font-bold text-2xl mb-2">Dog VIP Suite (ห้องสวีทสุนัข)</h3>
+            <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+              ห้องพักขนาดใหญ่พร้อมเบาะนอน Orthopedic ถนอมข้อต่อ เหมาะสำหรับสุนัขพันธุ์เล็กถึงพันธุ์ใหญ่ พื้นกันลื่นปลอดภัย
+            </p>
+            <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+              <li class="flex items-center gap-2">✓ กล้อง CCTV 2 ทาง สื่อสารส่งเสียงทักทายน้องได้</li>
+              <li class="flex items-center gap-2">✓ พาวิ่งเล่นสนามหญ้าเทียมในร่มวันละ 3 รอบ (แยกเดี่ยว)</li>
+              <li class="flex items-center gap-2">✓ ฟรี อาบน้ำทำความสะอาดเมื่อพักครบ 5 คืนขึ้นไป</li>
+            </ul>
+          </div>
+        </div>
+        <div class="p-8 pt-0 border-t hairline flex items-baseline justify-between mt-6">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block font-mono">เริ่มต้นเพียง</span>
+            <span class="font-display text-3xl font-bold text-[var(--orange)]">฿650</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/คืน</span>
+          </div>
+          <a href="#booking" class="btn-orange px-6 py-3 rounded-full text-sm">จองห้องนี้</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — GROOMING & SPA ============ -->
+<section id="spa" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Microbubble & Ozone Spa</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">บริการสปากรูมมิ่งถนอมผิว</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ใช้น้ำอุ่นอุณหภูมิพอเหมาะ แชมพูออร์แกนิกนำเข้าจากญี่ปุ่น อ่อนโยนต่อผิวหนังแพ้ง่าย
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-5">
+            <img src="./images/spa-grooming.webp" alt="สปาอาบน้ำทำความสะอาด">
+          </div>
+          <h4 class="font-display font-bold text-xl mb-2">อาบน้ำตัดแต่งทรงมาตรฐาน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ตัดเล็บ เช็ดหู ไถขนเท้า ใต้อุ้งเท้า ท้อง ก้น บีบต่อมก้น และอาบน้ำเป่าขนแห้งสนิท ไร้ความชื้นสะสม
+          </p>
+        </div>
+        <div class="pt-5 border-t hairline flex justify-between items-baseline">
+          <span class="text-xs text-[var(--ink-faint)]">เริ่มต้น</span>
+          <span class="font-display text-2xl font-bold text-[var(--teal)]">฿350 – ฿600</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border-2 border-[var(--teal)] shadow-md flex flex-col justify-between">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-5">
+            <img src="./images/spa-haircut.webp" alt="สปาตัดแต่งทรงตามสายพันธุ์">
+          </div>
+          <h4 class="font-display font-bold text-xl mb-2">ตัดขนดีไซน์ตามสายพันธุ์</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ช่างกรูมมิ่งมืออาชีพมีใบประกาศนียบัตร ตัดแต่งทรงหน้ากลม เทดดี้แบร์ หรือทรงมาตรฐานประกวดอย่างใจเย็น
+          </p>
+        </div>
+        <div class="pt-5 border-t hairline flex justify-between items-baseline">
+          <span class="text-xs text-[var(--ink-faint)]">เริ่มต้น</span>
+          <span class="font-display text-2xl font-bold text-[var(--teal)]">฿550 – ฿950</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-5">
+            <img src="./images/pet-playyard.webp" alt="สปาโอโซนไมโครบับเบิ้ล">
+          </div>
+          <h4 class="font-display font-bold text-xl mb-2">สปาโคลน & ไมโครบับเบิ้ลโอโซน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ฟองอากาศขนาดจิ๋วช่วยผลัดเซลล์ผิว สลายสิ่งสกปรกในรูขุมขน ลดอาการคัน ผิวหนังอักเสบ และกลิ่นตัวเรื้อรัง
+          </p>
+        </div>
+        <div class="pt-5 border-t hairline flex justify-between items-baseline">
+          <span class="text-xs text-[var(--ink-faint)]">เริ่มต้น</span>
+          <span class="font-display text-2xl font-bold text-[var(--teal)]">฿700 – ฿1,200</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — CURATED PRODUCTS (ดูสินค้าที่เราคัดสรร) ============ -->
+<section id="products" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Curated Nutrition & Care</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ดูสินค้าที่เราคัดสรร</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        เราคัดสรรเฉพาะโภชนาการเกรด Holistic, ขนม Freeze-Dried ไร้สารเคมี และผลิตภัณฑ์ดูแลสุขภาพที่ผ่านการรับรอง
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-4">
+            <img src="./images/product-food.webp" alt="อาหารเกรดโฮลิสติก">
+          </div>
+          <span class="text-xs font-mono text-[var(--orange)] font-bold uppercase">NUTRITION</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-2">อาหารเม็ดเกรนฟรี Holistic Blend</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            โปรตีนจากเนื้อปลาแซลมอนแท้ ช่วยบำรุงขนเงางาม ลดคราบน้ำตา และปราศจากข้าวโพด/ถั่วเหลือง
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <span class="font-display font-bold text-xl text-[var(--ink)]">฿690 – ฿1,450</span>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm font-semibold text-[var(--orange)] hover:underline">สั่งซื้อทาง LINE →</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-4">
+            <img src="./images/product-treat.webp" alt="ขนมฟรีซดรายธรรมชาติ">
+          </div>
+          <span class="text-xs font-mono text-[var(--orange)] font-bold uppercase">100% NATURAL</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-2">อกไก่ & แซลมอน Freeze-Dried</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            เนื้อสัตว์แท้ 100% ล็อคคุณค่าทางอาหารด้วยความเย็น ไม่ปรุงแต่งรสและสารกันบูด เหมาะเป็นรางวัล
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <span class="font-display font-bold text-xl text-[var(--ink)]">฿180 – ฿350</span>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm font-semibold text-[var(--orange)] hover:underline">สั่งซื้อทาง LINE →</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <div class="img-slot rounded-2xl aspect-[4/3] mb-4">
+            <img src="./images/pet-vet.webp" alt="อาหารเสริมบำรุงข้อต่อ">
+          </div>
+          <span class="text-xs font-mono text-[var(--teal)] font-bold uppercase">VET RECOMMENDED</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-2">อาหารเสริมบำรุงข้อต่อ & โอเมก้า 3</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-4">
+            น้ำมันปลาแซลมอนบริสุทธิ์และสารสกัดหอยแมลงภู่นิวซีแลนด์ เสริมสร้างความแข็งแรงของข้อต่อสัตว์เลี้ยง
+          </p>
+        </div>
+        <div class="pt-4 border-t hairline flex items-center justify-between">
+          <span class="font-display font-bold text-xl text-[var(--ink)]">฿450 – ฿890</span>
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm font-semibold text-[var(--orange)] hover:underline">สั่งซื้อทาง LINE →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS ============ -->
+<section id="reviews" class="py-24 md:py-32 bg-[var(--bg-alt)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Happy Pet Parents</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ความประทับใจจากผู้ปกครอง</h2>
+      </div>
+      <div class="flex items-center gap-3 mt-4 md:mt-0 font-mono text-sm">
+        <span class="text-[var(--orange)] font-bold text-lg">★ 4.9 / 5.0</span>
+        <span class="text-[var(--ink-faint)]">จาก 450+ รีวิวบน Google Maps</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--orange)] mb-4 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6 italic">
+            "พาน้องแมว 2 ตัวมาพักตอนไปต่างประเทศ 5 วัน พี่เลี้ยงส่งคลิปให้ดูตลอดเวลา ห้องสะอาด ไม่มีกลิ่นอับเลย น้องไม่เครียด กลับมาอารมณ์ดีมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-base">คุณพิมพ์ชนก พ.</p>
+          <p class="text-xs text-[var(--ink-faint)] font-mono">ผู้ปกครองน้องมังคุด (British Shorthair)</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--orange)] mb-4 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6 italic">
+            "ช่างตัดขนพุดเดิ้ลได้ทรงหน้าหมีน่ารักมาก มือเบา ใจเย็นกับสุนัขแก่มาก ปกติน้องจะกลัวเสียงไดร์ แต่ที่นี่น้องนิ่งยอมให้อาบน้ำสปาอย่างสบายใจ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-base">คุณกฤษฎา ต.</p>
+          <p class="text-xs text-[var(--ink-faint)] font-mono">ผู้ปกครองน้องบราวนี่ (Toy Poodle)</p>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="text-[var(--orange)] mb-4 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6 italic">
+            "ชอบสนามวิ่งเล่นในร่มมาก สะอาด ปลอดภัย มีสัตวแพทย์คอยตรวจเช็กสุขภาพเบื้องต้นก่อนรับเข้าพัก สบายใจหายห่วง แนะนำบ้านแถวพระราม 3 เลยครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-4">
+          <p class="font-display font-bold text-base">คุณศิรดา ม.</p>
+          <p class="text-xs text-[var(--ink-faint)] font-mono">ผู้ปกครองน้องก้อนเมฆ (Golden Retriever)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — LOCATION & BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--orange)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 08:30 – 19:30 น.
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">Happy Paws Pet Hotel & Spa</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            188/9 ถนนพระราม 3 (ติดซอยสาธุประดิษฐ์ 52) แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚗 ที่จอดรถ:</strong>
+              <span>มีที่จอดรถส่วนตัวหน้าร้าน 6 คัน สะดวกส่งน้อง</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚐 Pet Taxi:</strong>
+              <span>มีบริการรับ-ส่งสัตว์เลี้ยงถึงบ้านในเขตกรุงเทพฯ</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🩺 ข้อกำหนดการเข้าพัก:</strong>
+              <span>รับวัคซีนครบ และมีผลตรวจหยอดยากันเห็บหมัด</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Rama+3+Bangkok" target="_blank" rel="noopener" class="btn-orange flex-1 text-center py-3.5 rounded-full text-sm font-semibold shadow-md">
+            📍 นำทางด้วย Google Maps
+          </a>
+          <a href="tel:027891234" class="border hairline bg-white flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-[var(--bg-alt)] transition">
+            📞 โทร 02-789-1234
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm" id="booking">
+        <span class="eyebrow text-xs block mb-2">Fast Reservation</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">จองห้องพัก & สปากรูมมิ่ง</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">กรอกข้อมูลเพื่อเช็กคิว เจ้าหน้าที่จะติดต่อยืนยันภายใน 15 นาที</p>
+        
+        <form onsubmit="event.preventDefault(); alert('คลินิกได้รับข้อมูลการจองแล้ว เจ้าหน้าที่จะติดต่อกลับเพื่อยืนยันคิวครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อเจ้าของ / ผู้ปกครอง</label>
+            <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--orange)]" placeholder="เช่น คุณวรัญญา รักสัตว์" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เบอร์โทรศัพท์</label>
+              <input type="tel" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--orange)]" placeholder="081-xxx-xxxx" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ประเภทสัตว์เลี้ยง</label>
+              <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--orange)]">
+                <option>สุนัขพันธุ์เล็ก (1-7 กก.)</option>
+                <option>สุนัขพันธุ์กลาง (8-18 กก.)</option>
+                <option>สุนัขพันธุ์ใหญ่ (19+ กก.)</option>
+                <option>น้องแมว (ทุกสายพันธุ์)</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">บริการที่ต้องการ</label>
+            <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--orange)]">
+              <option>จองโรงแรมสัตว์เลี้ยง (ฝากค้างคืน)</option>
+              <option>สปากรูมมิ่ง & อาบน้ำตัดขน</option>
+              <option>ฝากเลี้ยงระหว่างวัน (Daycare)</option>
+              <option>บริการรับ-ส่ง Pet Taxi</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-orange py-4 rounded-full text-base font-semibold mt-4 shadow-md">
+            ส่งข้อมูลเพื่อจองคิว →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-white border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">Happy Paws Pet Hotel & Spa (Rama 3)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      188/9 ถนนพระราม 3 แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ 10120 | ใบอนุญาตสถานพยาบาลและดูแลสัตว์เลี้ยงถูกต้อง
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Happy Paws Pet Care. All rights reserved. Created with PuchUp Project ONE[cite: 1].
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--ink-faint)] font-mono block">Happy Paws พระราม 3</span>
+    <span class="font-display text-base font-bold text-[var(--orange)]">โรงแรม & สปาสัตว์เลี้ยง</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:027891234" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#booking" class="btn-orange px-6 py-2.5 rounded-full text-sm font-semibold">จองคิว</a>
+  </div>
+</div>
+
+<script>
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -21,7 +21,7 @@ export function ProjectOneCmsView({ demo }: Props) {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <p className="text-lg font-semibold tracking-tight">{demo.title}</p>
           <Link
-            href="/demo/"
+            href="/ProjectONE/demo/"
             className="text-xs font-semibold tracking-wider text-[#6B4EFF] uppercase"
           >
             Showroom →

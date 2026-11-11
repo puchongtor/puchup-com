@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Accounting — สำนักงานบัญชีเพื่อนคู่คิด SME & รับจดทะเบียนบริษัท สาทร-ถนนจันทน์</title>
+<meta name="description" content="Apex Accounting สำนักงานบัญชีใกล้บ้าน สาทร-ถนนจันทน์ ดูแลง่าย เป็นกันเอง รับทำบัญชีรายเดือน ยื่นภาษี จดทะเบียนบริษัท วางแผนภาษีพ่อค้าแม่ค้าออนไลน์และ SME โดยผู้สอบบัญชีรับอนุญาต (CPA)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "name": "Apex Accounting",
+  "description": "สำนักงานบัญชีและที่ปรึกษาภาษีสำหรับ SME และธุรกิจออนไลน์ ถนนจันทน์ สาทร",
+  "telephone": "02-234-9988",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "142/5 ถนนจันทน์ (ปากซอยจันทน์ 18/2)",
+    "addressLocality": "แขวงทุ่งวัดดอน เขตสาทร",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10120",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F1F5F9;
+    --ink: #0F172A;
+    --ink-soft: #334155;
+    --ink-faint: #64748B;
+    --blue: #0284C7;
+    --blue-dark: #0369A1;
+    --blue-light: #E0F2FE;
+    --amber: #D97706;
+    --line: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--blue); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--blue); }
+  .navtab.active { color: var(--blue-dark); border-color: var(--blue); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-blue {
+    background-color: var(--blue);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+  .btn-blue:hover {
+    background-color: var(--blue-dark);
+    box-shadow: 0 10px 24px -8px rgba(2, 132, 199, 0.45);
+  }
+
+  .service-card { transition: all 0.25s ease; cursor: pointer; }
+  .service-card:hover, .service-card.active {
+    border-color: var(--blue);
+    background-color: var(--blue-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-white text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ APEX ACCOUNTING — สำนักงานบัญชีเพื่อนคู่คิด SME & ขายของออนไลน์ สาทร-ถนนจันทน์ · ทักปรึกษาเบื้องต้นฟรี ·</span>
+  <a href="demo.html" class="underline hover:text-sky-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--blue)] flex items-center justify-center text-white text-2xl font-bold shadow-md group-hover:scale-105 transition-transform">
+        📝
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Apex Accounting</span>
+        <span class="text-xs text-[var(--blue-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">SME & Local Tax Partner · Sathorn</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#services" class="navtab active">บริการ & ราคา</a>
+      <a href="#registration" class="navtab">แพ็กเกจจดบริษัท</a>
+      <a href="#reviews" class="navtab">รีวิวลูกค้า</a>
+      <a href="#gallery" class="navtab">แกลเลอรีสำนักงาน</a>
+      <a href="#team" class="navtab">ทีมผู้สอบบัญชี</a>
+      <a href="#location" class="navtab">ที่ตั้ง & นัดปรึกษา</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:022349988" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-234-9988
+      </a>
+      <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue px-6 py-3 rounded-full text-sm shadow-sm">
+        ปรึกษาภาษีฟรี (LINE)
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--blue-light)] border border-[var(--blue)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--blue-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--blue)] animate-pulse"></span> คุยง่าย เป็นกันเอง · ดูแลตั้งแต่เริ่มเปิดร้านจนยื่นภาษี
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        ทำบัญชีและภาษีให้เข้าใจง่าย<br>
+        <span class="text-[var(--blue)]">หมดห่วงเรื่องสรรพากร มีเวลาโฟกัสยอดขาย</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        สำนักงานบัญชีใกล้บ้าน บริการทำบัญชีรายเดือน ยื่นภาษีแม่ค้าออนไลน์ จดทะเบียนบริษัท และวางแผนภาษีถูกต้อง เอกสารไม่ยุ่งยาก คอยเตือนทุกกำหนดการยื่น
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue px-8 py-4 rounded-full text-center text-base md:text-lg shadow-md">
+          ขอใบเสนอราคาทำบัญชี (LINE) →
+        </a>
+        <a href="#services" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          ดูอัตราค่าบริการ
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">300+</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ร้านค้า & SME ไว้ใจ</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">0 บาท</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ปรึกษาปัญหาภาษีฟรี</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ยื่นภาษีตรงเวลา</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/accounting-hero.webp" alt="ทีมงานสำนักงานบัญชี Apex Accounting" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-100 text-[var(--blue-dark)] flex items-center justify-center font-bold text-2xl shrink-0">🤝</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">มีหน้าร้านแวะมาคุยได้</strong>
+          <span class="text-[var(--ink-faint)]">ส่งเอกสารสะดวก มีที่จอดรถหน้าร้าน</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — SERVICE MATRIX ============ -->
+<section id="services" class="py-24 md:py-32 px-6 md:px-10 bg-[#F1F5F9] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Our Local Services</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">บริการด้านบัญชีที่เหมาะกับธุรกิจคุณ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกประเภทบริการที่คุณต้องการ เพื่อดูรายละเอียดและราคาที่โปร่งใส ชัดเจน
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="serviceSelector">
+      <button data-type="monthly" class="service-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">📑</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ทำบัญชี & ยื่นภาษีรายเดือน</strong>
+        <span class="text-xs text-[var(--blue-dark)]">ภาษีมูลค่าเพิ่ม / หัก ณ ที่จ่าย</span>
+      </button>
+
+      <button data-type="company" class="service-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🏢</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">จดทะเบียนบริษัท & ร้านค้า</strong>
+        <span class="text-xs text-[var(--blue-dark)]">เริ่มทำธุรกิจอย่างถูกต้อง</span>
+      </button>
+
+      <button data-type="audit" class="service-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🔍</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ปิดงบการเงินประจำปี</strong>
+        <span class="text-xs text-[var(--blue-dark)]">พร้อมผู้สอบบัญชีรับรอง</span>
+      </button>
+
+      <button data-type="taxplan" class="service-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💡</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">วางแผนภาษีพ่อค้าแม่ค้า</strong>
+        <span class="text-xs text-[var(--blue-dark)]">บุคคลธรรมดา & ขายออนไลน์</span>
+      </button>
+    </div>
+
+    <div id="serviceResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — REGISTRATION PACKAGES ============ -->
+<section id="registration" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Registration Packages</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แพ็กเกจจดทะเบียนบริษัทสำหรับ SME</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        ดูแลครบทุกขั้นตอน ตั้งแต่จองชื่อ ร่างเอกสาร จนถึงส่งมอบตรายางพร้อมเปิดบัญชีธนาคาร
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <span class="text-xs font-mono text-[var(--blue-dark)] font-bold uppercase block mb-2">แพ็กเกจเริ่มต้น</span>
+          <h3 class="font-display font-bold text-2xl mb-3">จดทะเบียนบริษัทมาตรฐาน</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            เหมาะสำหรับผู้เริ่มทำธุรกิจที่ต้องการจดทะเบียนนิติบุคคลให้ถูกต้องตามกฎหมาย DBD
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ จองชื่อนิติบุคคล & ร่างเอกสารจัดตั้ง</li>
+            <li class="flex items-center gap-2">✓ ค่าธรรมเนียมกระทรวงพาณิชย์ครบถ้วน</li>
+            <li class="flex items-center gap-2">✓ หนังสือรับรองบริษัท + บัญชีผู้ถือหุ้น (บอจ.5)</li>
+            <li class="flex items-center gap-2">✓ ตรายางบริษัทแบบมาตรฐาน 1 ชิ้น</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาเบ็ดเสร็จ</span>
+            <span class="font-display text-3xl font-bold text-[var(--blue)]">฿7,900</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/ครั้ง</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue px-5 py-2.5 rounded-full text-xs font-bold">เลือกแพ็กนี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border-2 border-[var(--blue)] shadow-xl flex flex-col justify-between relative group">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[var(--blue)] text-white text-xs font-mono uppercase px-4 py-1 rounded-full tracking-wider font-bold">
+          แนะนำสำหรับ SME
+        </div>
+        <div class="pt-2">
+          <span class="text-xs font-mono text-[var(--blue-dark)] font-bold uppercase block mb-2">ครบชุดพร้อมขาย</span>
+          <h3 class="font-display font-bold text-2xl mb-3">จดบริษัท + จด VAT + ประกันสังคม</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ครบพร้อมออกใบกำกับภาษี และขึ้นทะเบียนลูกจ้างทันที
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ รวมเอกสารจัดตั้งบริษัทครบชุด</li>
+            <li class="flex items-center gap-2">✓ บริการขึ้นทะเบียนภาษีมูลค่าเพิ่ม (ภ.พ.20)</li>
+            <li class="flex items-center gap-2">✓ ขึ้นทะเบียนนายจ้างและประกันสังคม</li>
+            <li class="flex items-center gap-2">✓ อำนวยความสะดวกเปิดบัญชีธนาคาร</li>
+            <li class="flex items-center gap-2">✓ ฟรี ให้คำแนะนำภาษีเริ่มต้น 1 ชั่วโมง</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาเบ็ดเสร็จ</span>
+            <span class="font-display text-3xl font-bold text-[var(--blue)]">฿11,500</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/ครั้ง</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue px-5 py-2.5 rounded-full text-xs font-bold">เลือกแพ็กนี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <span class="text-xs font-mono text-[var(--blue-dark)] font-bold uppercase block mb-2">คุ้มค่าระยะยาว</span>
+          <h3 class="font-display font-bold text-2xl mb-3">จดบริษัท + ทำบัญชีฟรี 2 เดือน</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            แพ็กเกจดูแลต่อเนื่อง ให้เราช่วยจัดการเอกสารรายเดือนตั้งแต่เริ่มเปิดร้าน
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ รวมบริการจดบริษัทและจด VAT ครบชุด</li>
+            <li class="flex items-center gap-2">✓ ฟรี ทำบัญชีและยื่นภาษีรายเดือน 2 เดือนแรก</li>
+            <li class="flex items-center gap-2">✓ แนะนำรูปแบบการเปิดบิลและเก็บเอกสาร</li>
+            <li class="flex items-center gap-2">✓ มีที่ปรึกษาตอบคำถามภาษีทาง LINE ตลอดปี</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาเบ็ดเสร็จ</span>
+            <span class="font-display text-3xl font-bold text-[var(--blue)]">฿14,900</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/ครั้ง</span>
+          </div>
+          <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue px-5 py-2.5 rounded-full text-xs font-bold">เลือกแพ็กนี้</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — REVIEWS SECTION (ADDED TO MATCH ARCHITECTURE) ============ -->
+<section id="reviews" class="py-24 md:py-32 bg-[#F1F5F9] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Client Testimonials</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เสียงตอบรับจากเจ้าของธุรกิจ</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (180+ ธุรกิจ SME & ร้านค้าออนไลน์ไว้วางใจ)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ขายของออนไลน์ยอดแตะเกณฑ์จด VAT กังวลมาก ปรึกษาพี่กานต์อธิบายเข้าใจง่าย ช่วยวางแผนและเตรียมบิลรายจ่ายอย่างถูกต้อง ตอนนี้หมดกังวลเรื่องภาษีย้อนหลังเลยครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณธีรเดช (สาทร)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ธุรกิจ E-commerce & แฟชั่น</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "จดทะเบียนบริษัทกับที่นี่เร็วมาก 2 วันได้เอกสารครบชุดพร้อมตรายาง ทีมงานช่วยแนะนำเรื่องเปิดบัญชีธนาคารและยื่นประกันสังคมให้ครบ ไม่ต้องวิ่งเต้นเองเลยค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณมนัสวี (ถนนจันทน์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">ร้านอาหาร & คาเฟ่</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "ทำบัญชีรายเดือนมา 3 ปีแล้ว ทีมงานคอยเตือนเรื่องส่งเอกสารและยื่นภาษีตรงเวลาทุกเดือน ปิดงบการเงินปลายปีราบรื่น มีผู้สอบบัญชีเซ็นรับรองถูกต้อง 100%"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณวิทวัส (พระราม 3)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">บริษัทนำเข้าและจัดจำหน่าย</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — GALLERY ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Our Workspace</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีสำนักงานและการทำงาน</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สำนักงานโฮมออฟฟิศที่สะอาด เป็นระเบียบ พร้อมต้อนรับลูกค้าที่ต้องการเข้ามาพูดคุยปรึกษา
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-bookkeeping.webp" alt="การจัดเอกสารบัญชี">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">จัดเอกสารรายเดือน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">คัดแยกบิลถูกต้องตามระเบียบ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-company-reg.webp" alt="เอกสารจดทะเบียนบริษัท">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">เอกสารจดบริษัท DBD</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ครบชุดพร้อมตรายาง</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/service-tax-audit.webp" alt="การตรวจสอบภาษี">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ตรวจเช็กแบบภาษี</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ป้องกันความผิดพลาดก่อนยื่น</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/audit-meeting.webp" alt="การพูดคุยกับลูกค้า">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">พูดคุยวางแผนภาษี</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เป็นกันเอง อธิบายเข้าใจง่าย</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/tax-consult-room.webp" alt="มุมรับรองลูกค้า">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">มุมรับรองลูกค้า</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">บรรยากาศสบายๆ เป็นส่วนตัว</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cert-stamp.webp" alt="การประทับตราเอกสาร">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ตรวจสอบถูกต้อง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ลงนามรับรองงบการเงิน</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/digital-tax-screen.webp" alt="ระบบยื่นภาษีออนไลน์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ยื่นแบบ e-Filing</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">รวดเร็ว มีหลักฐานยื่นครบ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/office-reception.webp" alt="หน้าร้านสำนักงาน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">หน้าร้านสำนักงาน</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ติดถนนใหญ่ แวะมาส่งเอกสารง่าย</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — TEAM ============ -->
+<section id="team" class="py-24 md:py-32 bg-[#F1F5F9] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Our Team</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมงานที่พร้อมดูแลบัญชีให้คุณ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        มีผู้สอบบัญชีรับอนุญาต (CPA) และทีมงานที่มีประสบการณ์ คอยดูแลและให้คำปรึกษาตลอดการทำธุรกิจ
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--blue)] shadow-md">
+          <img src="./images/team-cpa-karn.webp" alt="คุณกานต์ ผู้สอบบัญชี" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--blue-dark)] font-bold uppercase">ผู้สอบบัญชีรับอนุญาต</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">คุณกานต์ วรโชติ (พี่กานต์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">CPA ทะเบียนเลขที่ 11245</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ประสบการณ์ดูแลบัญชีและภาษี SME กว่า 12 ปี อธิบายเรื่องภาษีให้เข้าใจง่าย ไม่ซับซ้อน
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--blue)] shadow-md">
+          <img src="./images/team-ta-oraphan.webp" alt="คุณอรพรรณ ผู้เชี่ยวชาญภาษี" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--blue-dark)] font-bold uppercase">ที่ปรึกษาภาษีธุรกิจ</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">คุณอรพรรณ ศรีสว่าง (คุณออย)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Tax Auditor (TA)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญภาษีร้านค้าออนไลน์ การจัดทำเอกสารรายจ่าย และการเตรียมตัวก่อนจดนิติบุคคล
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Location & Schedule</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่สำนักงาน & เวลาทำการ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สำนักงานตั้งอยู่ติดถนนจันทน์ แวะมาปรึกษาหรือส่งเอกสารได้สะดวกรวดเร็ว
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Address -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลาเปิดทำการ</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">จันทร์ – ศุกร์:</span>
+              <span class="font-mono">08:30 – 17:30 น.</span>
+            </div>
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">เสาร์:</span>
+              <span class="font-mono">09:00 – 16:00 น.</span>
+            </div>
+            <div class="flex justify-between text-slate-500 font-medium pt-1">
+              <span>อาทิตย์ & วันหยุดนักขัตฤกษ์:</span>
+              <span>หยุดทำการ (ติดต่อฉุกเฉินทาง LINE ได้)</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งสำนักงาน</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            142/5 ถนนจันทน์ (ปากซอยจันทน์ 18/2) แขวงทุ่งวัดดอน เขตสาทร กรุงเทพฯ 10120
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚗 มีที่จอดรถหน้าร้าน 3 คัน แวะส่งเอกสารสะดวก</div>
+            <div>🛵 รองรับการส่งเอกสารด่วนผ่าน Grab / Lalamove ทุกวัน</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Chan+Road+Bangkok" target="_blank" rel="noopener" class="btn-blue flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:022349988" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 02-234-9988
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="Apex Accounting Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.0123456789!2d100.525!3d13.712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1234567890%3A0x1234567890abcdef!2sChan%20Rd%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — CONTACT FORM ============ -->
+<section id="consult" class="py-24 md:py-32 bg-[#F1F5F9] px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Free Consultation</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">นัดปรึกษา / ขอใบเสนอราคาทำบัญชี</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      กรอกข้อมูลเบื้องต้นเพื่อให้ทีมผู้สอบบัญชีประเมินค่าบริการและติดต่อกลับ หรือทัก LINE เพื่อคุยตรงทันที
+    </p>
+    
+    <form id="accContactForm" onsubmit="handleAccSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / ชื่อร้านหรือบริษัท <span class="text-slate-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="accName" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)]" placeholder="เช่น คุณเมธา หรือ ร้านเสื้อผ้า ABC">
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">เบอร์โทรศัพท์ / LINE ID <span class="text-slate-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+          <input type="text" id="accPhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)]" placeholder="081-xxx-xxxx">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ประเภทธุรกิจ <span class="text-slate-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+          <input type="text" id="accBiz" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)]" placeholder="เช่น ขายออนไลน์, ร้านอาหาร">
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">บริการที่สนใจ / เรื่องที่ต้องการติดต่อ</label>
+        <select id="accService" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--blue)]">
+          <option value="ทำบัญชี & ยื่นภาษีรายเดือน">📑 ทำบัญชี & ยื่นภาษีรายเดือน (SME / นิติบุคคล)</option>
+          <option value="จดทะเบียนจัดตั้งบริษัท / ห้างหุ้นส่วน">🏢 จดทะเบียนจัดตั้งบริษัท / ห้างหุ้นส่วน / จด VAT</option>
+          <option value="ปิดงบการเงินประจำปีพร้อมผู้สอบบัญชี">🔍 ปิดงบการเงินประจำปีพร้อมผู้สอบบัญชี (CPA)</option>
+          <option value="ปรึกษาภาษีพ่อค้าแม่ค้าออนไลน์ / บุคคลธรรมดา">💡 ปรึกษาภาษีพ่อค้าแม่ค้าออนไลน์ / บุคคลธรรมดา</option>
+          <option value="ขอใบเสนอราคาแพ็กเกจจดบริษัท">📋 ขอใบเสนอราคาแพ็กเกจจดบริษัทเริ่มต้น</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-blue py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / ปรึกษาทาง LINE →
+        </button>
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--blue-dark)] hover:text-[var(--blue)] underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-sky-50/80 border border-sky-200/60 transition hover:bg-sky-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อคุยกับทีมบัญชีได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-white border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">Apex Accounting Service (Sathorn - Chan Road)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      142/5 ถนนจันทน์ แขวงทุ่งวัดดอน เขตสาทร กรุงเทพฯ 10120 | โทร 02-234-9988 | LINE: @apexaccounting
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Apex Accounting. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--blue)] font-mono block">ปรึกษาภาษีฟรี</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Apex Accounting</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:022349988" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue px-5 py-2.5 rounded-full text-sm font-bold">ขอใบเสนอราคา</a>
+  </div>
+</div>
+
+<script>
+
+function handleAccSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('accName').value.trim();
+  const phone = document.getElementById('accPhone').value.trim();
+  const biz = document.getElementById('accBiz').value.trim();
+  const service = document.getElementById('accService').value;
+
+  let msg = `สวัสดีครับ สนใจติดต่อ Apex Accounting
+- เรื่องที่ติดต่อ: ${service}`;
+  if (name) msg += `
+- ผู้ติดต่อ: ${name}`;
+  if (phone) msg += `
+- เบอร์โทร/LINE: ${phone}`;
+  if (biz) msg += `
+- ประเภทธุรกิจ: ${biz}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const serviceData = {
+  monthly: {
+    title: 'บริการทำบัญชี & ยื่นภาษีรายเดือนครบวงจร',
+    scope: 'จัดทำสมุดบัญชี ยื่น ภ.ง.ด.1, 3, 53, ภ.พ.30 และประกันสังคม คอยเตือนวันยื่นเอกสาร สรุปรายรับรายจ่ายเข้าใจง่าย',
+    time: 'ยื่นภาษีตรงเวลาทุกเดือน ไม่เสียค่าปรับ',
+    price: 'เริ่มต้น ฿2,000 – ฿4,500 / เดือน (ตามปริมาณบิล)',
+    img: './images/service-bookkeeping.webp'
+  },
+  company: {
+    title: 'บริการจดทะเบียนจัดตั้งบริษัทจำกัด & ร้านค้า',
+    scope: 'จองชื่อบริษัท เตรียมเอกสารทั้งหมด ประสานงานพาณิชย์ ทำตรายาง จดภาษีมูลค่าเพิ่ม (VAT) และขึ้นทะเบียนประกันสังคมให้ครบ',
+    time: 'ดำเนินการเสร็จสิ้นภายใน 1-3 วันทำการ',
+    price: 'เริ่มต้น ฿7,900 รวมค่าธรรมเนียมและตรายาง',
+    img: './images/service-company-reg.webp'
+  },
+  audit: {
+    title: 'บริการปิดงบการเงินประจำปี & ผู้สอบบัญชีรับรอง',
+    scope: 'จัดทำงบการเงิน ปิดบัญชีสิ้นปี ตรวจสอบและลงลายมือชื่อโดยผู้สอบบัญชีรับอนุญาต (CPA) ยื่นงบ DBD และสรรพากรครบถ้วน',
+    time: 'ส่งมอบงบตามกำหนดเวลา',
+    price: 'เริ่มต้น ฿7,000 – ฿18,000 / ปี',
+    img: './images/service-tax-audit.webp'
+  },
+  taxplan: {
+    title: 'วางแผนภาษีบุคคลธรรมดา & ขายของออนไลน์',
+    scope: 'แนะนำการจัดเก็บหลักฐานค่าใช้จ่าย การแยกบัญชีร้าน การคำนวณภาษีบุคคลธรรมดา และให้คำปรึกษาเมื่อยอดขายแตะเกณฑ์จด VAT',
+    time: 'ปรึกษาได้ทั้งแบบรายเคสหรือรายเดือน',
+    price: 'เริ่มต้น ฿1,500 / ครั้ง (หรือรวมในแพ็กเกจบัญชี)',
+    img: './images/audit-meeting.webp'
+  }
+};
+
+function renderService(key) {
+  const data = serviceData[key];
+  const box = document.getElementById('serviceResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Service Scope & Price</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.scope}</p>
+        
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">กำหนดเวลา</span><strong class="text-[var(--ink)] font-bold text-sm">${data.time}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">ราคาประเมิน</span><strong class="text-[var(--blue)] font-bold text-base">${data.price}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="https://line.me" target="_blank" rel="noopener" class="btn-blue px-7 py-3 rounded-full text-sm font-bold shadow-md">ขอใบเสนอราคาบริการนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderService('monthly');
+document.querySelectorAll('#serviceSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#serviceSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderService(btn.dataset.type);
+  });
+});
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

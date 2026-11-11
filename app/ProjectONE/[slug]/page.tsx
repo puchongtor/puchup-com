@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ProjectOneCmsView } from "@/components/demos/ProjectOneCmsView";
 import { ThemeDocument } from "@/components/demos/ThemeDocument";
+import { ProjectOneCmsView } from "@/components/demos/ProjectOneCmsView";
 import {
   allShowroomItems,
-  canonicalDemoSlug,
   findShowroomItem,
   SLUG_ALIASES,
 } from "@/lib/demos/showroom-catalog";
-import { hasLiveTheme, loadThemeHtml } from "@/lib/demos/theme-html";
+import {
+  allDemoSlugs,
+  canonicalDemoSlug,
+  hasDemoTheme,
+  loadDemoTheme,
+} from "@/lib/project-one/html";
 import { sanityFetch } from "@/lib/sanity/client";
 import {
   projectOneDemoBySlugQuery,
@@ -30,6 +34,7 @@ export async function generateStaticParams() {
     tags: ["projectOneDemo"],
   });
   const slugs = new Set<string>([
+    ...allDemoSlugs(),
     ...allShowroomItems().map((item) => item.slug),
     ...Object.keys(SLUG_ALIASES),
     ...(cmsSlugs ?? []),
@@ -62,7 +67,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${item.name} | Project ONE Demo`,
     description: `${item.kind} — ${item.focus}`,
-    robots: item.live ? undefined : { index: false, follow: false },
   };
 }
 
@@ -81,9 +85,11 @@ export default async function ProjectOneBusinessPage({ params }: Props) {
     return <ProjectOneCmsView demo={cms} />;
   }
 
-  const html = hasLiveTheme(canonical) ? loadThemeHtml(canonical) : null;
-  if (html) {
-    return <ThemeDocument title={item?.name || canonical} srcDoc={html} />;
+  if (hasDemoTheme(canonical)) {
+    const html = loadDemoTheme(canonical);
+    if (html) {
+      return <ThemeDocument title={item?.name || canonical} srcDoc={html} />;
+    }
   }
 
   return (
@@ -95,12 +101,10 @@ export default async function ProjectOneBusinessPage({ params }: Props) {
         {item?.name || canonical}
       </h1>
       <p className="mb-8 max-w-md text-sm leading-relaxed text-slate-500">
-        {item
-          ? "เดโมธีมนี้กำลังออกแบบ — ดูธุรกิจที่เปิดชมได้แล้วใน Showroom"
-          : "ไม่พบ slug นี้ในคลัง 50 ธุรกิจ"}
+        ไม่พบเดโมธีมนี้ — กลับไปดู Showroom
       </p>
       <Link
-        href="/demo/"
+        href="/ProjectONE/demo/"
         className="rounded-full bg-[#0D182C] px-6 py-3 text-sm font-semibold text-white"
       >
         กลับไป Showroom

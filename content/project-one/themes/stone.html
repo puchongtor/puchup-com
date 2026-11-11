@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AuraStone Gallery — หินแท้และสร้อยข้อมือหินมงคลดีไซน์ จตุจักร โครงการ 24</title>
+<meta name="description" content="AuraStone Gallery สตูดิโอหินแท้ธรรมชาติ 100% และสร้อยข้อมือหินมงคลดีไซน์ร่วมสมัย คัดเกรดพรีเมียมเม็ดต่อเม็ด หน้าร้านตลาดนัดจตุจักร โครงการ 24 พร้อมส่งทั่วไทย">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Serif+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #141210;
+    --bg-surface: #1E1A16;
+    --bg-card: #27221D;
+    --ink: #FAF7F2;
+    --ink-soft: #C8BFB5;
+    --ink-faint: #8E8275;
+    --amber: #D8A13B;
+    --amber-light: #F7E4B8;
+    --line: #38312A;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Serif Thai', serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Cinzel', 'Noto Serif Thai', serif; letter-spacing: 0.04em; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--amber); color: #141210; }
+  
+  .eyebrow {
+    font-family: 'Cinzel', 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(16px);
+    background: rgba(20, 18, 16, 0.94);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--amber); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-surface);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.05); }
+
+  .btn-amber {
+    background: linear-gradient(135deg, #D8A13B 0%, #B88225 100%);
+    color: #141210;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-amber:hover {
+    background: linear-gradient(135deg, #F0BC5E 0%, #D8A13B 100%);
+    box-shadow: 0 10px 24px -8px rgba(216, 161, 59, 0.5);
+  }
+
+  .stone-card { transition: all 0.25s ease; cursor: pointer; }
+  .stone-card:hover, .stone-card.active {
+    border-color: var(--amber);
+    background-color: var(--bg-card);
+    transform: translateY(-2px);
+  }
+
+  .shopee-btn { background: #EE4D2D; color: #FFF; }
+  .shopee-btn:hover { background: #D03E20; }
+  .lazada-btn { background: #0F146D; color: #FFF; }
+  .lazada-btn:hover { background: #0A0E52; }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<div class="bg-black/80 border-b border-white/10 text-[var(--amber-light)] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex flex-wrap items-center justify-center gap-3">
+  <span>✦ AURASTONE — แกลเลอรีหินแท้ธรรมชาติ 100% ตลาดนัดจตุจักร โครงการ 24 ซอย 33/4 ·</span>
+  <a href="demo.html" class="underline hover:text-white transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-2xl">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3.5 shrink-0 group">
+      <div class="w-11 h-11 rounded-full border-2 border-[var(--amber)] flex items-center justify-center text-[var(--amber)] text-xl font-mono shadow-sm group-hover:bg-[var(--amber)] group-hover:text-black transition-colors">
+        🔮
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-wider leading-none block text-[var(--ink)]">AuraStone</span>
+        <span class="text-xs text-[var(--amber)] tracking-[0.24em] font-mono uppercase block mt-1 font-semibold">Gemstone Gallery · JJ Market</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#matrix" class="navlink font-semibold">เลือกตามพลังงานหิน</a>
+      <a href="#bracelets" class="navlink">สร้อยข้อมือ 8 ดีไซน์</a>
+      <a href="#raw-crystals" class="navlink">โพรงอเมทิสต์ & หินดิบ</a>
+      <a href="#storefront" class="navlink">หน้าร้านจตุจักร</a>
+      <a href="#marketplaces" class="navlink text-[var(--amber)]">สั่งซื้อออนไลน์</a>
+    </div>
+
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="https://shopee.co.th" target="_blank" rel="noopener" class="shopee-btn px-4 py-2 rounded-full text-xs font-mono font-bold hidden sm:inline-flex items-center gap-1.5 shadow-sm">
+        Shopee ↗
+      </a>
+      <a href="https://line.me" target="_blank" rel="noopener" class="btn-amber px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold shadow-sm">
+        สั่งร้อยเฉพาะบุคคล (LINE)
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-[#1E1A16] to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-amber-950/60 border border-[var(--amber)]/40 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--amber-light)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--amber)] animate-pulse"></span> คัดเม็ดต่อเม็ด · หินแท้ธรรมชาติ 100% มีใบตรวจแล็บ
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        พลังธรรมชาติบนข้อมือคุณ<br>
+        <span class="text-[var(--amber)]">ดีไซน์มินิมอล สวมใส่ง่ายทุกวัน</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        แกลเลอรีหินธรรมชาติ อัญมณีแท้ และโพรงผลึกอเมทิสต์จากทั่วโลก ออกแบบผสานงานเงินแท้ 925 เข้ากับทุกลุค พร้อมบริการร้อยปรับขนาดตามดวงชะตา
+      </p>
+      
+      <div class="pt-2 flex flex-wrap gap-3 items-center">
+        <a href="#bracelets" class="btn-amber px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          ชมสร้อยข้อมือ & หินดิบ →
+        </a>
+        <a href="https://shopee.co.th" target="_blank" rel="noopener" class="shopee-btn px-6 py-4 rounded-full text-sm font-mono font-bold shadow-md">
+          🛍️ ร้านบน Shopee
+        </a>
+        <a href="https://lazada.co.th" target="_blank" rel="noopener" class="lazada-btn px-6 py-4 rounded-full text-sm font-mono font-bold shadow-md">
+          🛒 ร้านบน Lazada
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">Natural Gemstone</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">10,000+</strong>
+          <span class="text-sm text-[var(--ink-faint)]">รีวิว 5 ดาวบน Shopee</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">Custom</strong>
+          <span class="text-sm text-[var(--ink-faint)]">ปรับไซส์ข้อมือฟรีทุกเส้น</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-[#2E2822] bg-[var(--bg-surface)]">
+        <img src="./images/stone-hero.webp" alt="AuraStone Gallery จตุจักร" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-[var(--bg-card)] p-5 rounded-2xl border hairline shadow-2xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-[var(--amber)] flex items-center justify-center font-bold text-2xl shrink-0">📍</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">จตุจักร โครงการ 24 ซอย 33/4</strong>
+          <span class="text-[var(--ink-faint)]">เปิดเสาร์-อาทิตย์ แวะมาเลือกหินจริงได้</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — GEMSTONE ENERGY MATRIX ============ -->
+<section id="matrix" class="py-24 md:py-32 px-6 md:px-10 bg-[var(--bg-surface)] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Intentional Energy Matrix</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">คุณต้องการเสริมพลังงานด้านใด?</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกความต้องการของคุณ เพื่อดูชนิดหินนำโชค ความหมาย และดีไซน์ที่ส่งเสริมพลังบวกในชีวิต
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="stoneSelector">
+      <button data-energy="wealth" class="stone-card active p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💰</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">การเงิน & โชคลาภ</strong>
+        <span class="text-xs text-[var(--amber)]">ไหมทอง / ไพไรต์ / ซิทริน</span>
+      </button>
+
+      <button data-energy="love" class="stone-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">💖</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ความรัก & เสน่ห์เมตตา</strong>
+        <span class="text-xs text-[var(--amber)]">โรสควอตซ์ / มูนสโตน</span>
+      </button>
+
+      <button data-energy="calm" class="stone-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🧘</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">บำบัด & สมาธิสงบใจ</strong>
+        <span class="text-xs text-[var(--amber)]">อเมทิสต์ / อความารีน</span>
+      </button>
+
+      <button data-energy="career" class="stone-card p-6 rounded-2xl border hairline bg-[var(--bg-card)] text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🛡️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">การงาน & ปกป้องคุ้มครอง</strong>
+        <span class="text-xs text-[var(--amber)]">ลาบราดอไรต์ / นิลดำ</span>
+      </button>
+    </div>
+
+    <div id="stoneResultBox" class="bg-[var(--bg-card)] rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — BRACELETS GALLERY (8 รายการ) ============ -->
+<section id="bracelets" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Signature Bracelets</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">สร้อยข้อมือหินมงคล (8 ดีไซน์ยอดนิยม)</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        คัดเม็ดหินแท้เกรดพรีเมียม ลวดลายชัดเจน ร้อยด้วยเอ็นยืดนำเข้าจากญี่ปุ่น ทนทาน ยืดหยุ่นสูง
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-01.webp" alt="ไหมทองจักรพรรดิ">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Golden Rutilated Quartz</span>
+          <h4 class="font-display font-bold text-base mt-1">ไหมทองจักรพรรดิ 10mm</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,890</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-02.webp" alt="โรสควอตซ์มาดากัสการ์">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Madagascar Rose Quartz</span>
+          <h4 class="font-display font-bold text-base mt-1">โรสควอตซ์เนื้อแก้ว 8mm</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,250</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-03.webp" alt="อเมทิสต์บำบัด & อความารีน">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Amethyst & Aquamarine</span>
+          <h4 class="font-display font-bold text-base mt-1">อเมทิสต์น้ำงาม 9mm</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,450</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-04.webp" alt="ลาบราดอไรต์ & นิลดำด้าน">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Labradorite & Matte Onyx</span>
+          <h4 class="font-display font-bold text-base mt-1">ลาบราดอไรต์เหลือบฟ้า</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,650</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-05.webp" alt="กรีนแฟนท่อม & มาลาไคต์">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Green Phantom & Malachite</span>
+          <h4 class="font-display font-bold text-base mt-1">กรีนแฟนท่อมความมั่งคั่ง</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿2,150</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-06.webp" alt="มูนสโตนเหลือบฟ้า & ซันสโตน">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Blue Moonstone & Sunstone</span>
+          <h4 class="font-display font-bold text-base mt-1">มูนสโตนแสงจันทร์</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,750</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-07.webp" alt="ลาพิสลาซูลี & เทอร์ควอยซ์">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Lapis Lazuli & Turquoise</span>
+          <h4 class="font-display font-bold text-base mt-1">ลาพิสลาซูลีประกายทอง</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,550</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-wrist-08.webp" alt="ซุปเปอร์เซเว่นคัดเกรด">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Super Seven High Grade</span>
+          <h4 class="font-display font-bold text-base mt-1">ซุปเปอร์เซเว่นพรีเมียม</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿3,200</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — RAW CRYSTALS & AMETHYST GEODES (8 รายการ) ============ -->
+<section id="raw-crystals" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Natural Crystal Clusters</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">โพรงอเมทิสต์ & ผลึกหินดิบธรรมชาติ (8 รายการ)</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        หินธรรมชาติแท้ ไม่ผ่านการแต่งสี เหมาะสำหรับตั้งโต๊ะทำงาน เสริมฮวงจุ้ย และชาร์จพลังสร้อยข้อมือ
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-01.webp" alt="โพรงอเมทิสต์อุรุกวัย">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Uruguay Amethyst Geode</span>
+          <h4 class="font-display font-bold text-base mt-1">โพรงอเมทิสต์ม่วงเข้ม</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿2,400 – ฿6,800</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-02.webp" alt="ผลึกซิทรินธรรมชาติแท้">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Natural Citrine Cathedral</span>
+          <h4 class="font-display font-bold text-base mt-1">ผลึกซิทรินน้ำทอง</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,850 – ฿4,500</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-03.webp" alt="แท่งผลึกเคลียร์ควอตซ์">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Clear Quartz Cluster</span>
+          <h4 class="font-display font-bold text-base mt-1">ผลึกเคลียร์ควอตซ์แท่งใส</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿890 – ฿2,200</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-04.webp" alt="ก้อนแร่ไพไรต์ธรรมชาติ">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Raw Pyrite Mineral</span>
+          <h4 class="font-display font-bold text-base mt-1">แร่ไพไรต์ (เพชรหน้าทั่ง)</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿650 – ฿1,600</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-05.webp" alt="โพรงเซเลสไทต์สีฟ้า">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Sky-Blue Celestite</span>
+          <h4 class="font-display font-bold text-base mt-1">โพรงเซเลสไทต์สีฟ้าใส</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,450 – ฿3,200</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-06.webp" alt="ทาวเวอร์ฟลูออไรต์สีรุ้ง">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Rainbow Fluorite Tower</span>
+          <h4 class="font-display font-bold text-base mt-1">ฟลูออไรต์แท่งขัดเงา</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿750 – ฿1,800</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-07.webp" alt="ผลึกอโพฟิลไลต์สีเขียว">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Green Apophyllite Cluster</span>
+          <h4 class="font-display font-bold text-base mt-1">ผลึกอโพฟิลไลต์เขียว</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿1,200 – ฿2,900</p>
+        </div>
+      </div>
+
+      <div class="bg-[var(--bg-card)] rounded-2xl overflow-hidden border hairline shadow-md group">
+        <div class="img-slot aspect-square">
+          <img src="./images/stone-raw-08.webp" alt="หินดิบโรสควอตซ์ธรรมชาติ">
+        </div>
+        <div class="p-4 text-center">
+          <span class="text-xs font-mono text-[var(--amber)] block">Raw Rose Quartz Chunk</span>
+          <h4 class="font-display font-bold text-base mt-1">หินดิบโรสควอตซ์แท้</h4>
+          <p class="text-xs font-mono text-[var(--ink-soft)] mt-1">฿450 – ฿1,200</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — SHOP ONLINE & MARKETPLACES ============ -->
+<section id="marketplaces" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto text-center">
+    <p class="eyebrow mb-3">Shop Everywhere You Love</p>
+    <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-tight mb-4">
+      เลือกช้อปสะดวกในช่องทางโปรดของคุณ
+    </h2>
+    <p class="text-base text-[var(--ink-soft)] max-w-xl mx-auto leading-relaxed mb-12 font-light">
+      พร้อมโค้ดส่วนลดและโปรโมชั่นส่งฟรีบน Marketplace ชั้นนำ หรือทักแชตเพื่อสั่งคัดเม็ดหินแบบเรียลไทม์
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+      <a href="https://shopee.co.th" target="_blank" rel="noopener" class="bg-[var(--bg-card)] p-7 rounded-3xl border hairline hover:border-[#EE4D2D] transition group">
+        <div class="w-12 h-12 rounded-2xl bg-[#EE4D2D]/20 text-[#EE4D2D] flex items-center justify-center text-2xl font-bold mb-4">
+          🛍️
+        </div>
+        <h4 class="font-display font-bold text-xl mb-1">Shopee Official</h4>
+        <p class="text-xs text-[var(--ink-soft)] mb-4">โค้ดส่งฟรี / ผ่อนชำระ SPayLater / รีวิวแน่น</p>
+        <span class="text-xs font-mono text-[#EE4D2D] font-bold">ไปยังหน้าร้าน Shopee →</span>
+      </a>
+
+      <a href="https://lazada.co.th" target="_blank" rel="noopener" class="bg-[var(--bg-card)] p-7 rounded-3xl border hairline hover:border-[#0F146D] transition group">
+        <div class="w-12 h-12 rounded-2xl bg-[#0F146D]/40 text-sky-400 flex items-center justify-center text-2xl font-bold mb-4">
+          🛒
+        </div>
+        <h4 class="font-display font-bold text-xl mb-1">Lazada Store</h4>
+        <p class="text-xs text-[var(--ink-soft)] mb-4">คูปอง LazMall / โบนัสสะสม / ส่งด่วน</p>
+        <span class="text-xs font-mono text-sky-400 font-bold">ไปยังหน้าร้าน Lazada →</span>
+      </a>
+
+      <a href="https://tiktok.com" target="_blank" rel="noopener" class="bg-[var(--bg-card)] p-7 rounded-3xl border hairline hover:border-white transition group">
+        <div class="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center text-2xl font-bold mb-4">
+          🎬
+        </div>
+        <h4 class="font-display font-bold text-xl mb-1">TikTok Live Shop</h4>
+        <p class="text-xs text-[var(--ink-soft)] mb-4">ไลฟ์ส่องเม็ดหินจริงทุกคืนวันศุกร์-เสาร์-อาทิตย์</p>
+        <span class="text-xs font-mono text-white font-bold">ติดตามช่อง TikTok →</span>
+      </a>
+
+      <a href="https://line.me" target="_blank" rel="noopener" class="bg-[var(--bg-card)] p-7 rounded-3xl border hairline hover:border-[#06C755] transition group">
+        <div class="w-12 h-12 rounded-2xl bg-[#06C755]/20 text-[#06C755] flex items-center justify-center text-2xl font-bold mb-4">
+          💬
+        </div>
+        <h4 class="font-display font-bold text-xl mb-1">LINE Custom Studio</h4>
+        <p class="text-xs text-[var(--ink-soft)] mb-4">ปรึกษาดวงชะตาวันเกิด / ส่งคลิปหินให้เลือกก่อนร้อย</p>
+        <span class="text-xs font-mono text-[#06C755] font-bold">ทักแชต @aurastone →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — CHATUCHAK STOREFRONT & LOCATION ============ -->
+<section id="storefront" class="py-24 md:py-32 bg-[var(--bg-surface)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-[var(--bg-card)] p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--amber)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการ เสาร์ – อาทิตย์ 10:00 – 19:30 น. (จันทร์-ศุกร์ รับงานออนไลน์)
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">AuraStone Gallery (จตุจักร)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ตลาดนัดจตุจักร โครงการ 24 ซอย 33/4 (ใกล้ทางเข้าประตู 1 MRT กำแพงเพชร) แขวงจตุจักร เขตจตุจักร กรุงเทพฯ
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚇 MRT:</strong>
+              <span>ลงสถานี <span class="text-[var(--amber)] font-bold">กำแพงเพชร ทางออก 1</span> เดินต่อ 80 เมตร</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚊 BTS:</strong>
+              <span>ลงสถานีหมอชิต เดินตัดสวนจตุจักรเข้าโครงการ 24</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">✨ บริการหน้าร้าน:</strong>
+              <span>วัดขนาดข้อมือ ร้อยใหม่ ปรับความยาว รอรับได้ทันที</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Chatuchak+Market+Section+24+Bangkok" target="_blank" rel="noopener" class="btn-amber flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 นำทางด้วย Google Maps
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="border hairline bg-white/5 flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white/10 transition">
+            📷 Instagram: @aurastone.jj
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 rounded-3xl overflow-hidden border hairline min-h-[380px] shadow-xl">
+        <iframe 
+          title="AuraStone JJ Market Map"
+          class="w-full h-full"
+          style="border:0; min-height: 380px; filter: invert(90%) hue-rotate(180deg);" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade" 
+          src="https://www.google.com/maps?q=Chatuchak+Weekend+Market,Bangkok,Thailand&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-black border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">AuraStone Gemstone Gallery (Chatuchak Section 24)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      ตลาดนัดจตุจักร โครงการ 24 ซอย 33/4 กรุงเทพฯ 10900 | ส่งสินค้าทุกวันจันทร์–เสาร์ทั่วไทย
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 AuraStone Gallery. All rights reserved. Created with PuchUp Project ONE[cite: 1].
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[var(--bg-surface)]/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--amber)] font-mono block">หินแท้ธรรมชาติ 100%</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">AuraStone จตุจักร</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="https://shopee.co.th" target="_blank" rel="noopener" class="shopee-btn px-4 py-2 rounded-full text-xs font-bold font-mono flex items-center justify-center">Shopee</a>
+    <a href="https://line.me" target="_blank" rel="noopener" class="btn-amber px-4 py-2 rounded-full text-xs font-bold">สั่งร้อยหิน</a>
+  </div>
+</div>
+
+<script>
+const stoneData = {
+  wealth: {
+    title: 'หินเสริมพลังการเงิน โชคลาภ & ธุรกิจการค้า',
+    minerals: 'Golden Rutilated Quartz (ไหมทอง), Pyrite (เพชรหน้าทั่ง), Citrine (ซิทรินธรรมชาติ)',
+    desc: 'ไหมทองคัดเกรดพรีเมียม เส้นไหมแน่นประกายระยิบระยับ ช่วยดึงดูดทรัพย์สิน โอกาสทางธุรกิจ และความมั่งคั่ง เสริมความมั่นใจในการเจรจาต่อรอง',
+    size: 'ขนาดเม็ด 8mm – 12mm (เลือกความยาวตามข้อมือ)',
+    price: '฿1,490 – ฿3,800',
+    img: './images/stone-wrist-01.webp'
+  },
+  love: {
+    title: 'หินเสริมเสน่ห์เมตตา ความรัก & ความสัมพันธ์อบอุ่น',
+    minerals: 'Madagascar Rose Quartz (โรสควอตซ์มาดากัสการ์), Moonstone (มุกดาหารเหลือบฟ้า), Morganite',
+    desc: 'พลังงานความรักอันบริสุทธิ์ ช่วยปรับอารมณ์ให้อ่อนโยน เสริมเสน่ห์ให้ผู้ใหญ่เอ็นดู และกระชับความสัมพันธ์กับคนรักให้หวานชื่น',
+    size: 'ขนาดเม็ด 6mm – 10mm ร้อยคั่นเงินแท้ 925',
+    price: '฿1,150 – ฿2,400',
+    img: './images/stone-wrist-02.webp'
+  },
+  calm: {
+    title: 'หินบำบัดอารมณ์ สมาธิ & สุขภาพจิตสงบผ่อนคลาย',
+    minerals: 'Deep Purple Amethyst (อเมทิสต์เนื้อแก้ว), Aquamarine (อความารีน), Blue Lace Agate',
+    desc: 'ช่วยลดความเครียดจากการทำงาน ลดอาการนอนไม่หลับ เสริมคลื่นพลังงานความสงบให้สมองปลอดโปร่ง เกิดสมาธิและไอเดียสร้างสรรค์',
+    size: 'ขนาดเม็ด 8mm – 10mm ผิวเงากระจก',
+    price: '฿1,350 – ฿2,600',
+    img: './images/stone-wrist-03.webp'
+  },
+  career: {
+    title: 'หินเสริมความมั่นคง ปกป้องพลังลบ & ชัยชนะในการงาน',
+    minerals: 'Labradorite (ลาบราดอไรต์เหลือบฟ้า), Matte Black Onyx (นิลดำด้าน), Tiger Eye (คดหอย)',
+    desc: 'หินพ่อมดที่มีประกายเหลือบแสงเฉพาะตัว ช่วยสะท้อนพลังลบ ป้องกันการถูกเอารัดเอาเปรียบ และเพิ่มความหนักแน่นเด็ดขาดในการตัดสินใจของผู้นำ',
+    size: 'ขนาดเม็ด 8mm – 12mm สไตล์ Unisex',
+    price: '฿1,290 – ฿2,800',
+    img: './images/stone-wrist-04.webp'
+  }
+};
+
+function renderStone(key) {
+  const data = stoneData[key];
+  const box = document.getElementById('stoneResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-stone-900 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Curated Mineral Harmony</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-xs font-mono text-[var(--amber)] mb-3 font-semibold">แร่ธาตุในเส้น: ${data.minerals}</p>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        <div class="flex items-center gap-6 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">สเปกขนาด</span><strong class="text-[var(--ink)] font-bold text-sm">${data.size}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">ราคาโดยประมาณ</span><strong class="text-[var(--amber)] font-bold text-lg">${data.price}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex flex-wrap gap-3">
+        <a href="https://line.me" target="_blank" rel="noopener" class="btn-amber px-7 py-3 rounded-full text-sm font-bold shadow-md">
+          สั่งร้อยชุดนี้ตามขนาดข้อมือ (LINE) →
+        </a>
+        <a href="https://shopee.co.th" target="_blank" rel="noopener" class="shopee-btn px-6 py-3 rounded-full text-sm font-mono font-bold">
+          ดูบน Shopee
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+renderStone('wealth');
+document.querySelectorAll('#stoneSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#stoneSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderStone(btn.dataset.energy);
+  });
+});
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

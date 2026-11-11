@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FabricCare Studio — ร้านซักอบรีด & สปาซักแห้งพรีเมียม สุขุมวิท-เอกมัย</title>
+<meta name="description" content="FabricCare Studio บริการซักอบรีดด่วน ซักแห้งชุดสูท-ชุดราตรี สปาผ้านวมและรองเท้า แยกซัก 1 ถังต่อ 1 ออเดอร์ 100% พร้อมบริการรับ-ส่งถึงคอนโด สุขุมวิท เอกมัย ทองหล่อ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #EEF2F6;
+    --ink: #0F172A;
+    --ink-soft: #334155;
+    --ink-faint: #64748B;
+    --teal: #0D9488;
+    --teal-dark: #0F766E;
+    --teal-light: #CCFBF1;
+    --blue: #2563EB;
+    --line: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--teal); color: #FFF; }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.96);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--teal); }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-teal {
+    background: linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-teal:hover {
+    background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+    box-shadow: 0 10px 24px -8px rgba(13, 148, 136, 0.45);
+  }
+
+  .service-pill { transition: all 0.25s ease; cursor: pointer; }
+  .service-pill:hover, .service-pill.active {
+    border-color: var(--teal);
+    background-color: var(--teal-light);
+    transform: translateY(-2px);
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-white text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ FABRICCARE STUDIO — บริการซักอบรีด & สปาซักแห้ง สุขุมวิท 63 (เอกมัย) · รับ-ส่งฟรีเมื่อใช้บริการครบ 500.- ·</span>
+  <a href="demo.html" class="underline hover:text-teal-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--teal)] flex items-center justify-center text-white text-2xl font-bold shadow-md group-hover:scale-105 transition-transform">
+        🧺
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">FabricCare</span>
+        <span class="text-xs text-[var(--teal-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Premium Laundry · Sukhumvit</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#services" class="navlink font-semibold">บริการ & ราคาประเมิน</a>
+      <a href="#packages" class="navlink">แพ็กเกจรายเดือน</a>
+      <a href="#standards" class="navlink">มาตรฐาน 6 ขั้นตอน</a>
+      <a href="#gallery" class="navlink">แกลเลอรีผลงาน</a>
+      <a href="#location" class="navlink">พื้นที่รับ-ส่ง & แผนที่</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:023918899" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 02-391-8899
+      </a>
+      <a href="#pickup" class="btn-teal px-6 py-3 rounded-full text-sm shadow-sm">
+        เรียกรถเข้ารับผ้า
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--teal-light)] border border-[var(--teal)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--teal-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--teal)] animate-pulse"></span> แยกซัก 1 ถังต่อ 1 บ้าน 100% · น้ำยาออร์แกนิกถนอมเส้นใย
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        ผ้าสะอาด หอมสดชื่น<br>
+        <span class="text-[var(--teal)]">ดูแลประณีตเหมือนซักเองที่บ้าน</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        ศูนย์บริการซักอบรีดและซักแห้งเฉพาะทางมาตรฐานโรงแรม รีดไอน้ำขึ้นคมกริบ ซักแห้งชุดสูท-ชุดราตรี สปาผ้านวมฆ่าไรฝุ่น พร้อมบริการ Delivery รับ-ส่งถึงหน้าประตู
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#pickup" class="btn-teal px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          จองคิวรับผ้าถึงบ้าน →
+        </a>
+        <a href="#services" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-alt)] transition">
+          ดูอัตราค่าบริการ
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 pt-6 border-t hairline text-left">
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">100%</strong>
+          <span class="text-sm text-[var(--ink-faint)]">แยกถังเดี่ยว ไม่ปน</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">24 ชม.</strong>
+          <span class="text-sm text-[var(--ink-faint)]">บริการงานด่วนเสร็จ</span>
+        </div>
+        <div>
+          <strong class="block font-display text-2xl md:text-3xl font-bold text-[var(--ink)]">Free</strong>
+          <span class="text-sm text-[var(--ink-faint)]">รับ-ส่งฟรี เอกมัย/ทองหล่อ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-100">
+        <img src="./images/laundry-hero.webp" alt="บริการซักอบรีดพรีเมียม FabricCare" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl border hairline shadow-xl max-w-sm flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-teal-100 text-[var(--teal-dark)] flex items-center justify-center font-bold text-2xl shrink-0">🌿</div>
+        <div class="text-sm leading-snug">
+          <strong class="block text-[var(--ink)] font-bold mb-0.5 text-base">กลิ่นหอมละมุนสูตรพิเศษ</strong>
+          <span class="text-[var(--ink-faint)]">น้ำยาปรับผ้านุ่มนำเข้า กลิ่นติดทนนาน อ่อนโยน</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — SERVICE & PRICE ESTIMATOR ============ -->
+<section id="services" class="py-24 md:py-32 px-6 md:px-10 bg-[#EEF2F6] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Transparent Pricing</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">คุณต้องการส่งซักประเภทไหน?</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกประเภทเสื้อผ้าหรือของใช้ เพื่อดูรายละเอียดขั้นตอนการดูแลและอัตราค่าบริการ
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="serviceSelector">
+      <button data-type="daily" class="service-pill active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">👔</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ซักอบพับ & ซักรีดรายชิ้น</strong>
+        <span class="text-xs text-[var(--teal-dark)]">เสื้อเชิ้ต / กางเกง / เดรส</span>
+      </button>
+
+      <button data-type="dryclean" class="service-pill p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🧥</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ซักแห้งพรีเมียม (Dry Clean)</strong>
+        <span class="text-xs text-[var(--teal-dark)]">สูท / ชุดราตรี / เสื้อขนเป็ด</span>
+      </button>
+
+      <button data-type="bedding" class="service-pill p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🛏️</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">ซักผ้านวม & ท็อปเปอร์</strong>
+        <span class="text-xs text-[var(--teal-dark)]">ฆ่าไรฝุ่น อบแห้ง 100%</span>
+      </button>
+
+      <button data-type="shoes" class="service-pill p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">👟</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">สปารองเท้า & กระเป๋า</strong>
+        <span class="text-xs text-[var(--teal-dark)]">Sneakers / Leather Care</span>
+      </button>
+    </div>
+
+    <div id="serviceResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — 6-STEP QUALITY STANDARD ============ -->
+<section id="standards" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Our Standard Protocol</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">6 ขั้นตอนการดูแลผ้ามาตรฐานสากล</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ใส่ใจทุกรายละเอียดตั้งแต่การตรวจเช็กเนื้อผ้า รอยเปื้อนเฉพาะจุด จนถึงการแพ็กคลุมถุงกันฝุ่น
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-3">STEP 01</span>
+          <h4 class="font-display font-bold text-xl mb-2">ตรวจเช็กคราบ & ป้ายแท็กเฉพาะ</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ติดแท็กกันน้ำทุกชิ้น ตรวจสอบกระดุม รอยด้ายรุ่ย และระบุชนิดคราบฝังลึกเพื่อเลือกน้ำยาขจัดคราบที่ถูกต้อง
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ Tag & Inspect</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-3">STEP 02</span>
+          <h4 class="font-display font-bold text-xl mb-2">ป้ายขจัดคราบเฉพาะจุด (Pre-Spotting)</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ใช้ปืนไอน้ำอัลตราโซนิกและน้ำยาขจัดคราบโปรตีน คราบไขมัน ชากาแฟ และคราบคอเสื้อก่อนนำลงถังซัก
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ Spotting Gun</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-3">STEP 03</span>
+          <h4 class="font-display font-bold text-xl mb-2">แยกซัก 1 ถังเดี่ยว 100%</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ไม่ปะปนกับผ้าของลูกค้าท่านอื่น ซักด้วยน้ำยาซักผ้าออร์แกนิกและน้ำยาปรับผ้านุ่มเกรดถนอมเส้นใย
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ 1 Customer 1 Tub</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-3">STEP 04</span>
+          <h4 class="font-display font-bold text-xl mb-2">อบแห้งและปรับสภาพความนุ่ม</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            ควบคุมอุณหภูมิตามสัญลักษณ์ Care Label เพื่อไม่ให้ผ้าหดตัว พร้อมระบายความร้อนฆ่าไรฝุ่นสะสม
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ Temp-Controlled Dry</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-3">STEP 05</span>
+          <h4 class="font-display font-bold text-xl mb-2">รีดไอน้ำแรงดันสูง (Steam Press)</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            โต๊ะดูดไอน้ำสุญญากาศ รีดขึ้นทรงคมกริบ ไม่ทำให้เนื้อผ้าขึ้นเงาหรือเกิดคราบไหม้
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ Professional Ironing</div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--teal)] uppercase block mb-3">STEP 06</span>
+          <h4 class="font-display font-bold text-xl mb-2">แพ็กคลุมถุงกันฝุ่นพร้อมส่ง</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            บรรจุใส่ถุงคลุมสูท ถุงซิปล็อกกันฝุ่นละออง พร้อมส่งมอบคืนให้ลูกค้าตามเวลาที่นัดหมาย
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--teal)] font-semibold mt-4">✓ Ready To Wear</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — MONTHLY PACKAGES ============ -->
+<section id="packages" class="py-24 md:py-32 bg-[#EEF2F6] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b hairline">
+      <div>
+        <p class="eyebrow mb-2">Subscription Plans</p>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แพ็กเกจซักรีดรายเดือนสุดคุ้ม</h2>
+      </div>
+      <p class="text-base text-[var(--ink-soft)] max-w-md mt-4 md:mt-0 font-light">
+        เหมาะสำหรับชาวคอนโดและคนทำงาน ประหยัดกว่ารายชิ้น พร้อมบริการรับ-ส่งผ้าประจำสัปดาห์
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <span class="text-xs font-mono text-[var(--teal-dark)] font-bold uppercase block mb-2">PLAN 01 · SINGLE PACK</span>
+          <h3 class="font-display font-bold text-2xl mb-3">Package 40 ชิ้น / เดือน</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            เหมาะสำหรับพักอาศัย 1 ท่าน ซัก-รีดเสื้อผ้าทำงานและชุดลำลองเรียบร้อยพร้อมใส่
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ ซักรีดแขวนไม้แขวน 40 ชิ้น</li>
+            <li class="flex items-center gap-2">✓ แบ่งส่งซักได้สัปดาห์ละ 1 ครั้ง</li>
+            <li class="flex items-center gap-2">✓ บริการรับ-ส่งฟรีถึงคอนโด</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาแพ็กเกจ</span>
+            <span class="font-display text-3xl font-bold text-[var(--teal)]">฿1,400</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/เดือน (เฉลี่ย ฿35/ชิ้น)</span>
+          </div>
+          <a href="#pickup" class="btn-teal px-5 py-2.5 rounded-full text-xs font-bold">เลือกแพลนนี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border-2 border-[var(--teal)] shadow-xl flex flex-col justify-between relative group">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[var(--teal)] text-white text-xs font-mono uppercase px-4 py-1 rounded-full tracking-wider font-bold">
+          MOST POPULAR
+        </div>
+        <div class="pt-2">
+          <span class="text-xs font-mono text-[var(--teal-dark)] font-bold uppercase block mb-2">PLAN 02 · COUPLE PACK</span>
+          <h3 class="font-display font-bold text-2xl mb-3">Package 70 ชิ้น / เดือน</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            แพ็กเกจยอดนิยมสำหรับ 1-2 ท่าน รวมเสื้อเชิ้ต กางเกงสแล็ค เดรส และเสื้อยืด
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ ซักรีดแขวนไม้แขวน 70 ชิ้น</li>
+            <li class="flex items-center gap-2">✓ แบ่งส่งซักได้สัปดาห์ละ 2 ครั้ง</li>
+            <li class="flex items-center gap-2">✓ ฟรี สปาซักผ้านวม 1 ผืนต่อเดือน</li>
+            <li class="flex items-center gap-2">✓ บริการรับ-ส่งฟรีตามนัดหมาย</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาแพ็กเกจ</span>
+            <span class="font-display text-3xl font-bold text-[var(--teal)]">฿2,250</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/เดือน (เฉลี่ย ฿32/ชิ้น)</span>
+          </div>
+          <a href="#pickup" class="btn-teal px-5 py-2.5 rounded-full text-xs font-bold">เลือกแพลนนี้</a>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl border hairline shadow-sm flex flex-col justify-between group">
+        <div>
+          <span class="text-xs font-mono text-[var(--teal-dark)] font-bold uppercase block mb-2">PLAN 03 · FAMILY PACK</span>
+          <h3 class="font-display font-bold text-2xl mb-3">Package 100 ชิ้น / เดือน</h3>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            ครอบครัวขนาดกลาง เสื้อผ้าทำงาน ชุดนักเรียน และชุดอยู่บ้าน สะอาดหอมครบครัน
+          </p>
+          <ul class="text-sm text-[var(--ink-soft)] space-y-3 border-t hairline pt-5 font-light">
+            <li class="flex items-center gap-2">✓ ซักรีดแขวน/พับ 100 ชิ้น</li>
+            <li class="flex items-center gap-2">✓ บริการรับ-ส่งไม่จำกัดจำนวนครั้ง</li>
+            <li class="flex items-center gap-2">✓ ฟรี ซักชุดสูท 2 ชุดต่อเดือน</li>
+          </ul>
+        </div>
+        <div class="pt-6 border-t hairline mt-6 flex items-baseline justify-between">
+          <div>
+            <span class="text-xs text-[var(--ink-faint)] block">ราคาแพ็กเกจ</span>
+            <span class="font-display text-3xl font-bold text-[var(--teal)]">฿2,950</span>
+            <span class="text-xs text-[var(--ink-faint)] font-mono">/เดือน (เฉลี่ย ฿29/ชิ้น)</span>
+          </div>
+          <a href="#pickup" class="btn-teal px-5 py-2.5 rounded-full text-xs font-bold">เลือกแพลนนี้</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — VISUAL GALLERY (12 รูปภาพจุใจ) ============ -->
+<section id="gallery" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Process & Craftsmanship</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีผลงานและความประณีต</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพการทำงานจริง ตรวจสอบกระดุม รอยเปื้อนเฉพาะจุด และบรรจุถุงคลุมผ้ากันฝุ่นก่อนส่งมอบ
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-press.webp" alt="การรีดไอน้ำแรงดันสูง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">รีดไอน้ำแรงดันสูง</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ผ้าเรียบกริบ ไม่ขึ้นเงา</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-fold.webp" alt="พับผ้าและแพ็กถุงอย่างประณีต">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">พับและแพ็กแยกหมวดหมู่</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">จัดเก็บลงตู้เสื้อผ้าได้ทันที</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-bedding.webp" alt="ซักผ้านวมและท็อปเปอร์">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ซักผ้านวมฟูสะอาด</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">อบแห้งความร้อนสูงฆ่าไรฝุ่น</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-shoes.webp" alt="สปารองเท้าผ้าใบและหนัง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">สปารองเท้า & กระเป๋า</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ขจัดคราบฝังลึก คืนสภาพเดิม</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-stain.webp" alt="ขจัดคราบฝังลึกเฉพาะจุด">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ขจัดคราบเฉพาะจุด</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปืนไอน้ำอัลตราโซนิก</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-machines.webp" alt="เครื่องซักสแตนเลสมาตรฐาน">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">เครื่องซัก Commercial</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">สแตนเลสสะอาด ปลอดเชื้อ</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-curtain.webp" alt="ซักผ้าม่านและเบาะโซฟา">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">ซักผ้าม่าน & โซฟา</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ขจัดฝุ่นละออง กลิ่นสะอาด</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/laundry-detergent.webp" alt="น้ำยาซักผ้าออร์แกนิก">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">น้ำยาซักผ้าออร์แกนิก</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">อ่อนโยน ไม่ระคายเคืองผิว</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — LOCATION & PICKUP BOOKING ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#EEF2F6] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline flex flex-col justify-between shadow-sm">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-[var(--teal)] font-bold uppercase tracking-wider mb-2">
+            <span>●</span> เปิดบริการทุกวัน 08:00 – 20:00 น. (รอบส่งผ้าถึง 21:30 น.)
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-3">FabricCare Studio (เอกมัย)</h3>
+          <p class="text-sm md:text-base text-[var(--ink-soft)] font-light leading-relaxed mb-6">
+            92 ซอยสุขุมวิท 63 (เอกมัย ซอย 10) แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110
+          </p>
+
+          <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🚚 พื้นที่รับ-ส่งฟรี:</strong>
+              <span>สุขุมวิท, เอกมัย, ทองหล่อ, พร้อมพงษ์, พระโขนง</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">🏢 บริการคอนโด:</strong>
+              <span>ฝากรับ-ส่งที่เคาน์เตอร์นิติบุคคลได้ ไม่ต้องรออยู่ห้อง</span>
+            </div>
+            <div class="flex justify-between">
+              <strong class="font-semibold text-[var(--ink)]">💳 การชำระเงิน:</strong>
+              <span>สแกน QR Code โอนเงิน หรือชำระตัดบัตรเครดิต</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t hairline mt-6 flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Ekkamai+10+Bangkok" target="_blank" rel="noopener" class="btn-teal flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 นำทางด้วย Google Maps
+          </a>
+          <a href="tel:023918899" class="border hairline bg-white flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-[var(--bg-alt)] transition">
+            📞 โทร 02-391-8899
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm" id="pickup">
+        <span class="eyebrow text-xs block mb-2">Doorstep Pickup Service</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold mb-2">เรียกรถเข้ารับผ้าถึงคอนโด/บ้าน</h3>
+        <p class="text-sm text-[var(--ink-soft)] font-light mb-6">กรอกข้อมูลเพื่อนัดหมาย เจ้าหน้าที่จะยืนยันรอบรถเข้ารับภายใน 15 นาที</p>
+        
+        <form onsubmit="event.preventDefault(); alert('ระบบบันทึกการนัดหมายรับผ้าแล้ว คนขับรถจะติดต่อยืนยันเวลาก่อนเข้ารับครับ');" class="space-y-4 text-left">
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้ติดต่อ / เบอร์โทรศัพท์</label>
+            <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]" placeholder="เช่น คุณวริษา 089-xxx-xxxx" required>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อคอนโด / ซอย</label>
+              <input type="text" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]" placeholder="เช่น คอนโด The Room สุขุมวิท" required>
+            </div>
+            <div>
+              <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่สะดวกให้เข้ารับ</label>
+              <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]" required>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">บริการที่ต้องการ</label>
+            <select class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--teal)]">
+              <option>ซักอบรีดรายชิ้น (แขวนไม้แขวน)</option>
+              <option>ซักอบพับทั่วไป (คิดตามน้ำหนัก กก.)</option>
+              <option>ซักแห้งชุดสูท / ชุดราตรี / เสื้อโค้ต</option>
+              <option>ซักผ้านวม / ท็อปเปอร์ / ผ้าม่าน</option>
+              <option>สมัครแพ็กเกจรายเดือน (40 / 70 / 100 ชิ้น)</option>
+            </select>
+          </div>
+          <button type="submit" class="w-full btn-teal py-4 rounded-full text-base font-bold mt-4 shadow-md">
+            ยืนยันการเรียกรถรับผ้า →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-white border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-[var(--ink)]">FabricCare Laundry & Dry Clean Studio (Sukhumvit-Ekkamai)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      92 ซอยสุขุมวิท 63 แขวงคลองตันเหนือ เขตวัฒนา กรุงเทพฯ 10110 | เปิดบริการทุกวัน 08:00 – 20:00 น.
+    </p>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 FabricCare Studio. All rights reserved. Created with PuchUp Project ONE[cite: 1].
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--teal)] font-mono block">รับ-ส่งผ้าถึงคอนโด</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">FabricCare เอกมัย</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:023918899" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#pickup" class="btn-teal px-5 py-2.5 rounded-full text-sm font-bold">เรียกรถรับผ้า</a>
+  </div>
+</div>
+
+<script>
+const serviceData = {
+  daily: {
+    title: 'บริการซักอบพับ & ซักรีดรายชิ้นพรีเมียม',
+    process: 'แยกซักถังเดี่ยว น้ำยาซักและปรับผ้านุ่มนำเข้า รีดไอน้ำขึ้นทรงสวย บรรจุถุงคลุมใส',
+    time: 'ระยะเวลา 24–48 ชั่วโมง (งานด่วนในวันเดียว)',
+    price: 'ซักอบพับ ฿45/กก. | ซักรีดแขวน เริ่มต้น ฿35/ชิ้น',
+    img: './images/laundry-press.webp'
+  },
+  dryclean: {
+    title: 'บริการสปาซักแห้งเฉพาะทาง (Dry Cleaning)',
+    process: 'ซักแห้งด้วยน้ำมันบริสุทธิ์ไม่ทำลายเส้นใยผ้า สำหรับชุดสูท ทักซิโด้ ชุดราตรี ผ้าไหม และเสื้อขนเป็ด',
+    time: 'ระยะเวลา 2–3 วันทำการ',
+    price: 'ชุดสูท (เสื้อ+กางเกง) ฿350 | ชุดราตรี เริ่มต้น ฿400',
+    img: './images/laundry-dryclean.webp'
+  },
+  bedding: {
+    title: 'บริการซักผ้านวม ท็อปเปอร์ & เครื่องนอนฆ่าไรฝุ่น',
+    process: 'ซักด้วยเครื่องซักอุตสาหกรรมขนาดใหญ่ อบแห้งอุณหภูมิ 70°C ฆ่าเชื้อแบคทีเรียและไรฝุ่น 99.9%',
+    time: 'ระยะเวลา 1–2 วันทำการ',
+    price: 'ผ้านวม 5-6 ฟุต ฿250 – ฿350 / ผืน',
+    img: './images/laundry-bedding.webp'
+  },
+  shoes: {
+    title: 'สปาทำความสะอาดรองเท้า & กระเป๋าแบรนด์เนม',
+    process: 'ขจัดคราบบนผ้าใบ ขัดขอบยาง เคลือบกันน้ำ และบำรุงหนังแท้ด้วยครีมสูตรเฉพาะ',
+    time: 'ระยะเวลา 3–4 วันทำการ',
+    price: 'รองเท้า Sneakers ฿350 – ฿550 / คู่',
+    img: './images/laundry-shoes.webp'
+  }
+};
+
+function renderService(key) {
+  const data = serviceData[key];
+  const box = document.getElementById('serviceResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-slate-100 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Service Specification</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.process}</p>
+        
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-4 text-sm font-mono">
+          <div><span class="text-xs text-[var(--ink-faint)] block">ระยะเวลาดำเนินการ</span><strong class="text-[var(--ink)] font-bold text-sm">${data.time}</strong></div>
+          <div><span class="text-xs text-[var(--ink-faint)] block">อัตราค่าบริการ</span><strong class="text-[var(--teal)] font-bold text-base">${data.price}</strong></div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#pickup" class="btn-teal px-7 py-3 rounded-full text-sm font-bold shadow-md">เรียกรถรับบริการนี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderService('daily');
+document.querySelectorAll('#serviceSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#serviceSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderService(btn.dataset.type);
+  });
+});
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookDate').value = today;
+document.getElementById('bookDate').min = today;
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

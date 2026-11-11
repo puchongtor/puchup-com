@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Petit Bakehouse — เค้กวันเกิดสั่งทำ & Custom Cake Studio อารีย์</title>
+<meta name="description" content="Le Petit Bakehouse สตูดิโอเค้กวันเกิดสั่งทำ อารีย์-สะพานควาย เค้กมินิมอลสไตล์เกาหลี เค้ก 3D ฟองดองท์ เค้กดอกไม้สดพรีเมียม เนยแท้ฝรั่งเศส หวานน้อย สั่งล่วงหน้า 3-5 วัน">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Le Petit Bakehouse",
+  "alternateName": "เลอ เปอตีต์ เบคเฮ้าส์ เค้กสั่งทำ อารีย์",
+  "description": "สตูดิโอเค้กวันเกิดสั่งทำและดีไซน์เค้กพรีเมียม อารีย์ สะพานควาย",
+  "telephone": "089-123-4567",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "42 ซอยอารีย์สัมพันธ์ 5",
+    "addressLocality": "แขวงพญาไท เขตพญาไท",
+    "addressRegion": "กรุงเทพมหานคร",
+    "postalCode": "10400",
+    "addressCountry": "TH"
+  },
+  "priceRange": "฿฿"
+}
+</script>
+<style>
+  :root {
+    --bg: #FDFBF7;
+    --bg-surface: #FFFFFF;
+    --bg-alt: #F9F3EA;
+    --ink: #2C221E;
+    --ink-soft: #5C4D46;
+    --ink-faint: #91827A;
+    --rose: #D9777F;
+    --rose-dark: #B85962;
+    --rose-light: #FCECEE;
+    --cream: #E8B87C;
+    --amber: #D97706;
+    --line: #EFE6DA;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Playfair Display', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--rose-light); color: var(--rose-dark); }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rose-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(253, 251, 247, 0.96);
+  }
+  .navtab {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 4px;
+  }
+  .navtab:hover { color: var(--rose-dark); }
+  .navtab.active { color: var(--rose-dark); border-color: var(--rose); font-weight: 700; }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-alt);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .btn-rose {
+    background: linear-gradient(135deg, #D9777F 0%, #B85962 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.3s ease;
+  }
+  .btn-rose:hover {
+    background: linear-gradient(135deg, #E68B93 0%, #D9777F 100%);
+    box-shadow: 0 10px 24px -8px rgba(217, 119, 127, 0.45);
+  }
+
+  .cake-card { transition: all 0.25s ease; cursor: pointer; }
+  .cake-card:hover, .cake-card.active {
+    border-color: var(--rose);
+    background-color: var(--rose-light);
+    transform: translateY(-2px);
+  }
+
+  .trust-item {
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  .trust-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--line);
+  }
+  @media (max-width: 767px) {
+    .trust-item:not(:last-child)::after { display: none; }
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#FDFBF7] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ LE PETIT BAKEHOUSE — สตูดิโอเค้กสั่งทำ อารีย์-สะพานควาย · อบสดใหม่ชิ้นต่อชิ้น สั่งล่วงหน้า 3–5 วัน ·</span>
+  <a href="demo.html" class="underline hover:text-rose-200 transition font-medium">ดูตัวอย่างอื่น →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="#hero" class="flex items-center gap-3 shrink-0 group">
+      <div class="w-11 h-11 rounded-2xl bg-[var(--rose)] flex items-center justify-center text-white text-2xl shadow-sm group-hover:scale-105 transition-transform">
+        🎂
+      </div>
+      <div>
+        <span class="font-display text-2xl font-bold tracking-tight leading-none block text-[var(--ink)]">Le Petit</span>
+        <span class="text-xs text-[var(--rose-dark)] tracking-widest font-mono uppercase block mt-1 font-semibold">Custom Cake Studio · Ari</span>
+      </div>
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#styles" class="navtab active">สไตล์เค้ก & รสชาติ</a>
+      <a href="#flavors" class="navtab">เนื้อเค้ก & วัตถุดิบ</a>
+      <a href="#order-process" class="navtab">ขั้นตอนการสั่งทำ</a>
+      <a href="#reviews" class="navtab">รีวิวลูกค้า</a>
+      <a href="#gallery" class="navtab">แกลเลอรีผลงาน</a>
+      <a href="#team" class="navtab">เชฟผู้ทำเค้ก</a>
+      <a href="#location" class="navtab">การจัดส่ง & สั่งจอง</a>
+    </div>
+
+    <div class="flex items-center gap-4 shrink-0">
+      <a href="tel:0891234567" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] font-medium">
+        <span>📞</span> 089-123-4567
+      </a>
+      <a href="#order" class="btn-rose px-6 py-3 rounded-full text-sm shadow-sm">
+        สั่งทำเค้กล่วงหน้า
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — FULL-BLEED HERO ============ -->
+<header id="hero" class="relative">
+  <div class="img-slot h-[70vh] md:h-[84vh]">
+    <img src="./images/cake-hero.webp" alt="เค้กวันเกิดสั่งทำสตูดิโอ Le Petit Bakehouse อารีย์" class="w-full h-full object-cover">
+    <div class="absolute inset-0" style="background:linear-gradient(0deg, rgba(25,18,15,0.96) 0%, rgba(25,18,15,0.68) 45%, rgba(25,18,15,0.3) 100%);"></div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16 px-6 md:px-10 z-10">
+    <div class="max-w-6xl mx-auto text-[#FDFBF7]">
+      <p class="eyebrow mb-3" style="color:#F4A261;">CUSTOM BIRTHDAY CAKE & DESSERT STUDIO · อารีย์-สะพานควาย</p>
+      <h1 class="font-display font-bold text-[clamp(2.4rem,6.2vw,4.5rem)] leading-[1.06] mb-4 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        เปลี่ยนทุกวันสำคัญ<br>
+        <span class="text-[#F4A261] italic font-normal">ให้เป็นความทรงจำที่แสนหวาน</span>
+      </h1>
+      <p class="text-base md:text-xl text-stone-100 font-normal max-w-xl leading-relaxed mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        สตูดิโอคราฟต์เค้กวันเกิดสั่งทำตามแบบที่คุณต้องการ ทั้งมินิมอลเกาหลี เค้ก 3D ฟองดองท์ เค้กดอกไม้สด และภาพวาดสีน้ำมันกินได้ ปราศจากไขมันทรานส์ อบสดใหม่ตามออเดอร์
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 mb-8">
+        <span class="inline-flex items-center gap-2 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> สั่งล่วงหน้า 3–5 วัน (งาน 3D สั่งล่วงหน้า 7 วัน)
+        </span>
+        <span class="inline-flex items-center gap-1.5 text-xs md:text-sm bg-white/10 border border-white/20 rounded-full px-4 py-1.5 backdrop-blur-md">
+          🚗 จัดส่งรถยนต์ติดแอร์ คุมอุณหภูมิถึงหน้าบ้าน
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#styles" class="btn-rose rounded-full px-8 py-3.5 text-sm md:text-base font-bold shadow-xl">
+          เลือกชมสไตล์เค้กยอดนิยม
+        </a>
+        <a href="#location" class="rounded-full px-8 py-3.5 text-sm md:text-base font-semibold border border-white/40 text-white hover:bg-white/10 transition backdrop-blur-sm">
+          แผนที่สตูดิโอ & การจัดส่ง
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="border-b hairline bg-[var(--bg)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex flex-wrap justify-center md:justify-between items-center gap-y-3 text-sm text-[var(--ink-soft)] font-medium">
+    <span class="trust-item flex items-center gap-1.5"><span class="text-amber-500 font-bold">★★★★★</span> 4.9 <span class="text-[var(--ink-faint)]">(280+ รีวิว)</span></span>
+    <span class="trust-item">🧈 เนยสดแท้ AOP นำเข้าจากฝรั่งเศส</span>
+    <span class="trust-item">🍓 สูตรหวานน้อย ทานได้หมดชิ้นไม่เลี่ยน</span>
+    <span class="trust-item">🎀 ฟรี เทียนเกลียวดีไซน์ & มีดตัดเค้ก</span>
+    <span>🚗 มีที่จอดรถสำหรับนัดรับหน้าร้าน</span>
+  </div>
+</div>
+
+<!-- ============ 02 — CAKE STYLES SELECTOR ============ -->
+<section id="styles" class="py-24 md:py-32 px-6 md:px-10 bg-[#F9F3EA] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Custom Cake Collections</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">เลือกสไตล์เค้กที่คุณชื่นชอบ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        เลือกสไตล์เพื่อดูตัวอย่างงาน ขนาดปอนด์ และอัตราค่าบริการประเมินเบื้องต้น
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10" id="cakeSelector">
+      <button data-style="korean" class="cake-card active p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🎀</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">เค้กมินิมอลเกาหลี</strong>
+        <span class="text-xs text-[var(--rose-dark)]">ปาดครีมเรียบหรู เขียนข้อความ</span>
+      </button>
+
+      <button data-style="fondant" class="cake-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🧸</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">เค้ก 3D ฟองดองท์ปั้น</strong>
+        <span class="text-xs text-[var(--rose-dark)]">ปั้นคาแรกเตอร์ สัตว์เลี้ยง รถ</span>
+      </button>
+
+      <button data-style="floral" class="cake-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🌸</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">เค้กดอกไม้สดพรีเมียม</strong>
+        <span class="text-xs text-[var(--rose-dark)]">แต่งดอกไม้จริง ปลอดสารพิษ</span>
+      </button>
+
+      <button data-style="palette" class="cake-card p-6 rounded-2xl border hairline bg-white text-center flex flex-col items-center justify-between">
+        <span class="text-3xl mb-2">🎨</span>
+        <strong class="text-base font-bold block text-[var(--ink)]">เค้กเพ้นท์สีน้ำมัน</strong>
+        <span class="text-xs text-[var(--rose-dark)]">งานศิลปะ Palette Knife กินได้</span>
+      </button>
+    </div>
+
+    <div id="cakeResultBox" class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-xl grid lg:grid-cols-12 gap-8 items-center">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — FLAVORS & INGREDIENTS ============ -->
+<section id="flavors" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-[var(--rose-light)] text-[var(--rose-dark)] px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase">
+          PREMIUM RECIPES & LESS SWEET
+        </div>
+        <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">
+          เนื้อเค้กนุ่มละมุน<br>
+          <span class="text-[var(--rose-dark)]">อร่อยจากวัตถุดิบแท้ ไม่ใช่แค่สวยภายนอก</span>
+        </h2>
+        <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+          เราใช้เนยสดแท้ AOP นำเข้าจากฝรั่งเศส ช็อกโกแลตแท้เบลเยียม 70% ฝักวานิลลาแท้จากมาดากัสการ์ และวิปปิ้งครีมแดรี่แท้ 100% ปราศจากไขมันทรานส์และวัตถุกันเสีย ควบคุมระดับความหวานให้พอดี ทานได้หมดชิ้นโดยไม่เลี่ยน
+        </p>
+        <div class="grid grid-cols-2 gap-4 border-t hairline pt-6 text-sm font-medium">
+          <div class="bg-white p-4 rounded-xl border hairline">🍫 Valrhona Dark Chocolate Fudge</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🍓 Madagascar Vanilla Fresh Cream</div>
+          <div class="bg-white p-4 rounded-xl border hairline">☕ Earl Grey Strawberry Compote</div>
+          <div class="bg-white p-4 rounded-xl border hairline">🍋 Lemon Curd & Cream Cheese</div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-5">
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm">
+          <img src="./images/cake-flavor-cross.webp" alt="เลเยอร์เนื้อเค้กและไส้ผลไม้สด">
+        </div>
+        <div class="img-slot rounded-2xl aspect-[4/5] shadow-sm translate-y-6">
+          <img src="./images/cake-decorating-action.webp" alt="เชฟกำลังบีบครีมตกแต่งเค้ก">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — ORDER PROCESS ============ -->
+<section id="order-process" class="py-24 md:py-32 bg-[#F9F3EA] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">How To Order</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">4 ขั้นตอนการสั่งทำเค้กง่ายๆ</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สั่งล่วงหน้า 3–5 วัน (งาน 3D ฟองดองท์สั่งล่วงหน้า 7 วัน) เพื่อการเตรียมวัตถุดิบและขึ้นรูปที่สมบูรณ์ที่สุด
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--rose)] uppercase block mb-3">STEP 01</span>
+          <h4 class="font-display font-bold text-lg mb-2">ส่งแบบ & คอนเซปต์</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            ส่งรูปตัวอย่างเค้กที่ชอบ โทนสี ธีมงาน หรือเล่าเรื่องราวของผู้รับให้เชฟช่วยดีไซน์
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--rose-dark)] font-semibold mt-4">✓ Send Reference</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--rose)] uppercase block mb-3">STEP 02</span>
+          <h4 class="font-display font-bold text-lg mb-2">เลือกรสชาติ & ขนาด</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            เลือกเนื้อเค้ก ไส้ครีม และขนาดปอนด์ (0.5 ปอนด์สำหรับ 1-2 คน จนถึง 3 ชั้นสำหรับปาร์ตี้)
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--rose-dark)] font-semibold mt-4">✓ Choose Flavor & Size</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--rose)] uppercase block mb-3">STEP 03</span>
+          <h4 class="font-display font-bold text-lg mb-2">สรุปราคา & คอนเฟิร์มคิว</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            สรุปรายละเอียด ข้อความหน้าเค้ก เทียนวันเกิด และชำระมัดจำเพื่อล็อกคิวอบสดใหม่
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--rose-dark)] font-semibold mt-4">✓ Confirm & Lock Date</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border hairline shadow-sm flex flex-col justify-between">
+        <div>
+          <span class="font-mono text-xs font-bold text-[var(--rose)] uppercase block mb-3">STEP 04</span>
+          <h4 class="font-display font-bold text-lg mb-2">จัดส่งรถติดแอร์ / นัดรับ</h4>
+          <p class="text-xs text-[var(--ink-soft)] font-light leading-relaxed">
+            จัดส่งถึงมือด้วยรถยนต์ปรับอากาศเพื่อรักษารูปทรงเค้ก 100% หรือนัดรับที่สตูดิโออารีย์
+          </p>
+        </div>
+        <div class="text-xs font-mono text-[var(--rose-dark)] font-semibold mt-4">✓ Safe Delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — REVIEWS SECTION ============ -->
+<section id="reviews" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Customer Reflections</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ความประทับใจในวันสำคัญ</h2>
+      <div class="flex items-center justify-center gap-1 text-amber-500 text-sm mt-3 font-mono font-bold">
+        <span>★★★★★</span> 4.9 / 5.0 (280+ รีวิวบน Google Maps)
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "สั่งเค้กมินิมอลเกาหลีวันเกิดเพื่อน ดีไซน์ตรงตามเรฟเป๊ะ ปาดครีมเนียนมาก รส Dark Chocolate Fudge อร่อยมาก เข้มข้นหวานกำลังดี เพื่อนๆ ชมกันทั้งงานเลยค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณพิมพ์ชนก (อารีย์)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Korean Minimal Cake 1 ปอนด์</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "สั่งเค้ก 3D ปั้นรูปน้องหมาปอมฯ มาเซอร์ไพรส์แฟน งานปั้นเก็บดีเทลขนและหน้าตาน้องเหมือนตัวจริงมาก แฟนกรี๊ดเลย แพ็กเกจกล่องใสผูกโบว์สวยหรูหรามากครับ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณณัฐพงษ์ (สะพานควาย)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">3D Fondant Pet Cake 2 ปอนด์</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-7 rounded-3xl border hairline shadow-sm space-y-4 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="text-amber-500 text-sm">★★★★★</div>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            "เค้กดอกไม้สดแต่งงานวันเกิดคุณแม่ สวยหรูหรามาก ดอกไม้สด สะอาด ปลอดภัย จัดส่งด้วยรถเก๋งติดแอร์มาส่งตรงเวลา เค้กไม่ละลาย ไม่เอียงเลย ประทับใจมากค่ะ"
+          </p>
+        </div>
+        <div class="border-t hairline pt-3">
+          <strong class="block text-sm font-bold text-[var(--ink)]">คุณลลิตา (พญาไท)</strong>
+          <span class="text-xs text-[var(--ink-faint)]">Fresh Flower & Gold Leaf Cake</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — VISUAL GALLERY ============ -->
+<section id="gallery" class="py-24 md:py-32 bg-[#F9F3EA] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Cake Archive</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แกลเลอรีผลงานเค้กจริง</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ภาพผลงานเค้กสั่งทำจริงทุกชิ้นที่ส่งมอบรอยยิ้มให้กับลูกค้าในวันพิเศษ
+      </p>
+    </div>
+
+    <!-- 8-Image Grid Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-korean-minimal.webp" alt="เค้กมินิมอลเกาหลีสีพาสเทล">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Korean Pastel Minimal</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">มินิมอลโทนพาสเทลละมุน</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-fondant-3d.webp" alt="เค้ก 3D ฟองดองท์รูปสัตว์เลี้ยง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">3D Fondant Pet</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ปั้นฟองดองท์น้องหมาน้องแมว</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-flower-fresh.webp" alt="เค้กดอกไม้สดพรีเมียม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Fresh Floral Cake</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ตกแต่งดอกไม้สดสำหรับงานแต่ง/วันเกิด</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-painted-art.webp" alt="เค้กเพ้นท์ภาพสีน้ำมันกินได้">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Palette Knife Art</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เพ้นท์ครีมภาพวิวและดอกไม้</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-tier-wedding.webp" alt="เค้ก 2 ชั้นสำหรับงานฉลอง">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Two-Tier Celebration</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">เค้ก 2 ชั้นทรงสูง เรียบหรู</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-packaging-box.webp" alt="กล่องเค้กใสพร้อมโบว์พรีเมียม">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Clear Acrylic Box</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">กล่องใสผูกริบบิ้นซาตินหรูหรา</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-studio-kitchen.webp" alt="ครัวสตูดิโอทำขนมสะอาด">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Studio Bakehouse</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ครัวอบสะอาด มาตรฐานสากล</p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl overflow-hidden border hairline shadow-sm group">
+        <div class="img-slot aspect-square">
+          <img src="./images/cake-candles-props.webp" alt="เทียนวันเกิดดีไซน์เกาหลี">
+        </div>
+        <div class="p-4 text-center">
+          <h4 class="font-display font-bold text-base">Candles & Props</h4>
+          <p class="text-xs text-[var(--ink-faint)] mt-1">ฟรี เทียนเกลียวและมีดตัดเค้ก</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — PASTRY CHEF TEAM ============ -->
+<section id="team" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="eyebrow mb-2">Artisan Pastry Chefs</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">ทีมเชฟผู้ออกแบบและอบเค้ก</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        จบหลักสูตรพาสทรีจากสถาบันชั้นนำ ใส่ใจในทุกรายละเอียด ตั้งแต่การตีเนื้อสปันจ์จนถึงการปาดครีมลายเส้น
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--rose)] shadow-md">
+          <img src="./images/team-chef-may.webp" alt="เชฟเมย์ ผู้ก่อตั้งและ Head Pastry Chef" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--rose-dark)] font-bold uppercase">Head Pastry Chef & Founder</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">เชฟเมย์ (เมธาวี วงศ์วานิช)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Diplôme de Pâtisserie (Le Cordon Bleu Dusit)</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการผสมผสานรสชาติเค้กฝรั่งเศสร่วมสมัย เข้ากับงานดีไซน์มินิมอลเกาหลีและเค้กเพ้นท์สีน้ำมัน ประสบการณ์กว่า 7 ปี
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl border hairline p-8 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
+        <div class="w-28 h-28 rounded-full overflow-hidden shrink-0 border-2 border-[var(--rose)] shadow-md">
+          <img src="./images/team-artist-nuch.webp" alt="คุณนุช ศิลปินปั้นฟองดองท์ 3D" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <span class="text-xs font-mono text-[var(--rose-dark)] font-bold uppercase">3D Sugar Craft & Floral Artist</span>
+          <h4 class="font-display font-bold text-xl mt-1 mb-1">คุณนุช (นลินี เลิศศิลป์)</h4>
+          <p class="text-xs text-[var(--ink-faint)] font-mono mb-2">Certified Sugar Artist & Floral Designer</p>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            เชี่ยวชาญการปั้นฟองดองท์รูปคาแรกเตอร์ 3D ความละเอียดสูง และการจัดดอกไม้สดลงบนตัวเค้กอย่างปลอดภัย ถูกสุขอนามัย
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — LOCATION & MAP SPLIT CARD ============ -->
+<section id="location" class="py-24 md:py-32 bg-[#F9F3EA] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <p class="eyebrow mb-2">Studio Location & Pickup</p>
+      <h2 class="font-display text-[clamp(2rem,3.8vw,3rem)] font-bold leading-tight">แผนที่สตูดิโอ & การจัดส่ง</h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        สตูดิโอตั้งอยู่ในซอยอารีย์สัมพันธ์ 5 สะดวกทั้งแวะมารับเองหรือเรียก GrabCar ติดแอร์
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl">
+      <!-- Left: Hours & Delivery Details -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+        <div>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mb-4">เวลานัดรับเค้ก</h4>
+          <div class="space-y-3 text-sm font-light">
+            <div class="flex justify-between border-b hairline pb-2.5">
+              <span class="font-semibold text-[var(--ink)]">เปิดรับเค้กทุกวัน:</span>
+              <span class="font-mono">10:00 – 19:00 น. (สั่งล่วงหน้าเท่านั้น)</span>
+            </div>
+            <div class="flex justify-between text-emerald-700 font-medium pt-1">
+              <span>บริการจัดส่งด่วน:</span>
+              <span>ส่งด้วยรถยนต์ปรับอากาศ GrabCar ทั่ว กทม.</span>
+            </div>
+          </div>
+
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)] mt-8 mb-3">ที่ตั้งสตูดิโอ</h4>
+          <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+            42 ซอยอารีย์สัมพันธ์ 5 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 (จุดนัดรับเค้ก)
+          </p>
+          <div class="mt-4 space-y-1.5 text-xs text-[var(--ink-faint)]">
+            <div>🚗 มีที่จอดรถหน้าร้านสำหรับแวะรับเค้กสะดวก</div>
+            <div>🎁 แถมฟรี เทียนวันเกิดดีไซน์พิเศษ มีดตัดเค้ก และป้าย HBD</div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t hairline flex flex-wrap gap-4">
+          <a href="https://maps.google.com/?q=Ari+Samphan+5+Bangkok" target="_blank" rel="noopener" class="btn-rose flex-1 text-center py-3.5 rounded-full text-sm font-bold shadow-md">
+            📍 เปิด Google Maps นำทาง
+          </a>
+          <a href="tel:0891234567" class="border hairline bg-[var(--bg)] flex-1 text-center py-3.5 rounded-full text-sm font-semibold hover:bg-white transition">
+            📞 โทร 089-123-4567
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Embedded Google Maps -->
+      <div class="lg:col-span-6 rounded-2xl overflow-hidden border hairline bg-[var(--bg-alt)] relative min-h-[320px] shadow-inner">
+        <iframe title="Le Petit Bakehouse Map" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.0987654321!2d100.536!3d13.776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ec123456789%3A0xabcdef0123456789!2sAri%20Samphan%205%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1680000000000!5m2!1sth!2sth" 
+                class="w-full h-full min-h-[340px] border-0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — SMART CUSTOM CAKE ORDER FORM / GENERAL INQUIRY ============ -->
+<section id="order" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-4xl mx-auto bg-white p-8 md:p-12 rounded-3xl border hairline shadow-xl text-center">
+    <span class="eyebrow text-xs block mb-2">Order Your Custom Cake</span>
+    <h3 class="font-display text-2xl md:text-4xl font-bold mb-3">สั่งทำเค้กวันเกิดล่วงหน้า</h3>
+    <p class="text-sm md:text-base text-[var(--ink-soft)] font-light mb-8 max-w-xl mx-auto">
+      สามารถกรอกข้อมูลเพื่อประเมินราคาล่วงหน้า หรือกดทักแชตคุยกับเชฟทาง LINE ได้ทันทีโดยไม่ต้องกรอกฟอร์ม
+    </p>
+    
+    <form id="cakeContactForm" onsubmit="handleCakeSubmit(event)" class="space-y-4 text-left max-w-2xl mx-auto">
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ชื่อผู้สั่ง / เบอร์โทรศัพท์ <span class="text-stone-400 font-normal text-xs">(ไม่บังคับ)</span></label>
+        <input type="text" id="cakeNamePhone" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--rose)]" placeholder="เช่น คุณณิชา 081-xxx-xxxx">
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">วันที่ต้องการใช้เค้ก <span class="text-stone-400 font-normal text-xs">(กรณีสั่งเค้ก)</span></label>
+          <input type="date" id="bookDate" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--rose)]">
+        </div>
+        <div>
+          <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">ขนาดเค้กโดยประมาณ</label>
+          <select id="cakeSize" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--rose)]">
+            <option value="0.5 ปอนด์ (มินิ 1-2 คน)">0.5 ปอนด์ (มินิ 1–2 คน)</option>
+            <option value="1 ปอนด์ (3-4 คน)">1 ปอนด์ (3–4 คน)</option>
+            <option value="2 ปอนด์ (6-8 คน)">2 ปอนด์ (6–8 คน)</option>
+            <option value="3 ปอนด์ขึ้นไป / เค้ก 2 ชั้น">3 ปอนด์ขึ้นไป / เค้ก 2 ชั้นงานฉลอง</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-mono text-[var(--ink-soft)] mb-1">สไตล์เค้กที่สนใจ / เรื่องที่ต้องการติดต่อ</label>
+        <select id="cakeTopic" class="w-full bg-[var(--bg)] border hairline rounded-xl px-4 py-3.5 text-base outline-none focus:border-[var(--rose)]">
+          <option value="เค้กมินิมอลเกาหลี (Korean Pastel Style)">🎀 เค้กมินิมอลเกาหลี (Korean Pastel Style)</option>
+          <option value="เค้ก 3D ฟองดองท์รูปสัตว์เลี้ยง / คาแรกเตอร์">🧸 เค้ก 3D ฟองดองท์รูปสัตว์เลี้ยง / โมเดลคน</option>
+          <option value="เค้กดอกไม้สดพรีเมียม (Fresh Floral Cake)">🌸 เค้กดอกไม้สดพรีเมียม & แผ่นทอง 24K</option>
+          <option value="เค้กเพ้นท์สีน้ำมันกินได้ (Palette Knife Art)">🎨 เค้กเพ้นท์ภาพสีน้ำมันกินได้ (Palette Knife Art)</option>
+          <option value="มีแบบเค้กของตัวเองต้องการส่งรูปให้ประเมิน">📸 มีแบบเค้กของตัวเอง (ส่งรูปให้เชฟประเมินทางไลน์)</option>
+          <option value="ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป">💬 ติดต่อสอบถามเรื่องอื่นๆ ทั่วไป</option>
+        </select>
+      </div>
+
+      <div class="pt-2 space-y-3">
+        <button type="submit" class="w-full btn-rose py-4 rounded-full text-base font-bold shadow-md flex items-center justify-center gap-2">
+          <span>💬</span> ส่งข้อมูล / เช็กคิวสั่งเค้กทาง LINE →
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="https://line.me" target="_blank" rel="noopener" class="text-sm md:text-base font-semibold text-[var(--rose-dark)] hover:text-[var(--rose)] underline inline-flex items-center justify-center gap-2 p-2.5 rounded-xl bg-rose-50/80 border border-rose-200/60 transition hover:bg-rose-100/80 w-full">
+            <span class="text-lg">⚡</span> <span>หรือกดทักแชต LINE โดยตรงเพื่อส่งรูปคุยกับเชฟได้ทันที →</span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-[var(--ink)] text-[#FDFBF7] border-t hairline px-6 text-center text-sm font-light">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="font-display font-bold text-lg text-white">Le Petit Bakehouse — Custom Cake Studio (Ari)</div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      42 ซอยอารีย์สัมพันธ์ 5 แขวงพญาไท เขตพญาไท กรุงเทพฯ 10400 | โทร 089-123-4567 | LINE: @lepetitbakehouse
+    </p>
+    <div class="pt-6 border-t border-white/10 text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Le Petit Bakehouse. All rights reserved. Created with Project ONE.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--rose-dark)] font-mono block">เค้กสั่งทำอารีย์</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Le Petit Bakehouse</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="tel:0891234567" class="px-4 py-2.5 rounded-full border hairline text-sm flex items-center justify-center">📞</a>
+    <a href="#order" class="btn-rose px-5 py-2.5 rounded-full text-sm font-bold">สั่งเค้ก</a>
+  </div>
+</div>
+
+<script>
+/* Smart Form Handler */
+function handleCakeSubmit(e) {
+  e.preventDefault();
+  const namePhone = document.getElementById('cakeNamePhone').value.trim();
+  const date = document.getElementById('bookDate').value;
+  const size = document.getElementById('cakeSize').value;
+  const topic = document.getElementById('cakeTopic').value;
+
+  let msg = `สวัสดีครับ สนใจสั่งทำเค้ก Le Petit Bakehouse\n- สไตล์/รายการ: ${topic}`;
+  if (namePhone) msg += `\n- ผู้ติดต่อ: ${namePhone}`;
+  if (date) msg += `\n- วันที่ต้องการใช้: ${date}`;
+  if (size) msg += `\n- ขนาดเค้ก: ${size}`;
+
+  window.open(`https://line.me`, '_blank');
+}
+
+const cakeData = {
+  korean: {
+    title: 'เค้กมินิมอลเกาหลี (Korean Pastel Minimalist Cake)',
+    desc: 'เค้กสไตล์เกาหลียอดนิยม ปาดบัตเตอร์ครีมเนยสดแท้เนื้อเนียนกริบ คุมโทนสีพาสเทลละมุน ตกแต่งด้วยข้อความเขียนมือลายเส้นมินิมอล หรือลวดลายโบว์/วิปครีมสไตล์วินเทจ',
+    flavors: 'ช็อกโกแลตฟัดจ์ / วานิลลามาดากัสการ์ / ชาเอิร์ลเกรย์สตรอว์เบอร์รี',
+    price: '0.5 ปอนด์ ฿690 | 1 ปอนด์ ฿990 | 2 ปอนด์ ฿1,490',
+    img: './images/cake-korean-minimal.webp'
+  },
+  fondant: {
+    title: 'เค้ก 3D ฟองดองท์ปั้นรูปเสมือนจริง (3D Sugar Craft Cake)',
+    desc: 'งานปั้นน้ำตาลฟองดองท์ 3 มิติความละเอียดสูง ปั้นรูปสัตว์เลี้ยงสุดโปรด โมเดลเจ้าของวันเกิด รถยนต์ หรือของสะสมชิ้นพิเศษ สามารถเก็บโมเดลน้ำตาลไว้เป็นที่ระลึกได้',
+    flavors: 'ดาร์กช็อกโกแลตเข้มข้น / เรดเวลเวตครีมชีส',
+    price: '1 ปอนด์ เริ่มต้น ฿1,590 | 2 ปอนด์ เริ่มต้น ฿2,200 (ตามความยากของแบบ)',
+    img: './images/cake-fondant-3d.webp'
+  },
+  floral: {
+    title: 'เค้กดอกไม้สดเกรดพรีเมียม (Fresh Flower & Gold Leaf Cake)',
+    desc: 'ตกแต่งด้วยดอกไม้สดจริงเกรดปลอดสารพิษที่ผ่านการทำความสะอาดและหุ้มก้านอย่างปลอดภัย จัดวางร่วมกับแผ่นทองคำเปลวบริสุทธิ์ 24K เหมาะสำหรับงานวันเกิดผู้ใหญ่ วันครบรอบ หรือเค้กแต่งงาน',
+    flavors: 'วานิลลาครีมสดสตรอว์เบอร์รี / เลมอนเคิร์ดครีมชีส',
+    price: '1 ปอนด์ เริ่มต้น ฿1,290 | 2 ปอนด์ เริ่มต้น ฿1,890 | 2 ชั้น เริ่มต้น ฿3,200',
+    img: './images/cake-flower-fresh.webp'
+  },
+  palette: {
+    title: 'เค้กเพ้นท์สีน้ำมันกินได้ (Palette Knife Oil Painting Cake)',
+    desc: 'ผลงานศิลปะบนก้อนเค้กที่ใช้เกรียงปาดครีมทีละฝีแปรง สร้างลวดลายทุ่งดอกไม้ ท้องฟ้ายามเย็น หรือภาพวาดสีน้ำมันที่มีมิติสัมผัสสวยงาม หรูหรา ไม่ซ้ำใคร',
+    flavors: 'ชาไทยพรีเมียม / วานิลลาคาราเมล / ช็อกโกแลต',
+    price: '1 ปอนด์ เริ่มต้น ฿1,190 | 2 ปอนด์ เริ่มต้น ฿1,690',
+    img: './images/cake-painted-art.webp'
+  }
+};
+
+function renderCake(key) {
+  const data = cakeData[key];
+  const box = document.getElementById('cakeResultBox');
+  box.innerHTML = `
+    <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[4/3] bg-rose-50 shadow-md">
+      <img src="${data.img}" alt="${data.title}" class="w-full h-full object-cover">
+    </div>
+    <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
+      <div>
+        <span class="eyebrow text-xs block mb-1">Cake Details & Pricing</span>
+        <h3 class="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">${data.title}</h3>
+        <p class="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed mb-4">${data.desc}</p>
+        
+        <div class="space-y-2 border-t hairline pt-4 text-sm font-mono">
+          <div class="text-[var(--ink-soft)]"><span class="text-[var(--ink-faint)]">รสชาติแนะนำ:</span> ${data.flavors}</div>
+          <div class="text-[var(--rose-dark)] font-bold text-base"><span class="text-[var(--ink-faint)] font-normal text-xs font-mono">ราคาเริ่มต้น:</span> ${data.price}</div>
+        </div>
+      </div>
+      <div class="pt-3 border-t hairline flex gap-3">
+        <a href="#order" class="btn-rose px-7 py-3 rounded-full text-sm font-bold shadow-md">สั่งทำสไตล์นี้ →</a>
+      </div>
+    </div>
+  `;
+}
+
+renderCake('korean');
+document.querySelectorAll('#cakeSelector button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#cakeSelector button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCake(btn.dataset.style);
+  });
+});
+
+const threeDaysLater = new Date();
+threeDaysLater.setDate(threeDaysLater.getDate() + 3);
+document.getElementById('bookDate').value = threeDaysLater.toISOString().split('T')[0];
+document.getElementById('bookDate').min = threeDaysLater.toISOString().split('T')[0];
+
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

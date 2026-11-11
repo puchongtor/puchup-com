@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Business Profile — หน้าร้านของคุณบน Google ที่ลูกค้าเห็นก่อนเข้าเว็บไซต์ | Project One</title>
+<meta name="description" content="ลูกค้าค้นชื่อธุรกิจคุณบน Google แล้วเจออะไร? ตรวจสอบหน้าร้านดิจิทัลของคุณ พร้อมเชื่อมต่อเว็บไซต์และ Google Business Profile ให้ทำงานร่วมกันอย่างสมบูรณ์แบบ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #FAFAF9;
+    --bg-surface: #FFFFFF;
+    --bg-card: #F5F3EF;
+    --ink: #1C1917;
+    --ink-soft: #44403C;
+    --ink-faint: #78716C;
+    --blue: #0284C7;
+    --blue-dark: #0369A1;
+    --blue-light: #E0F2FE;
+    --amber: #F59E0B;
+    --line: #E7E5E4;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Thai', 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .font-display { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.05em; }
+  .hairline { border-color: var(--line); }
+  ::selection { background-color: var(--blue-light); color: var(--blue-dark); }
+  
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue-dark);
+    font-weight: 700;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .sticky-nav {
+    backdrop-filter: blur(14px);
+    background: rgba(250, 250, 249, 0.96);
+  }
+  .navlink {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    transition: color 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .navlink:hover { color: var(--blue); }
+
+  .btn-blue {
+    background-color: var(--blue);
+    color: #FFFFFF;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+  .btn-blue:hover {
+    background-color: var(--blue-dark);
+    box-shadow: 0 10px 24px -8px rgba(2, 132, 199, 0.45);
+  }
+
+  .img-slot {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-card);
+  }
+  .img-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .img-slot img { transform: scale(1.04); }
+
+  .gbp-mockup-frame {
+    background-color: #FFFFFF;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+    border: 1px solid #E7E5E4;
+  }
+
+  .check-item {
+    transition: all 0.2s ease;
+  }
+  .check-item:hover {
+    background-color: #F5F3EF;
+  }
+
+  #mobileBar { backdrop-filter: blur(14px); }
+  @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
+</style>
+</head>
+<body class="antialiased pb-28 md:pb-0">
+
+<!-- ============ TOP NOTICE ============ -->
+<div class="bg-[var(--ink)] text-[#F7F1E8] text-center text-xs md:text-sm font-mono py-2.5 px-4 tracking-wider flex items-center justify-center gap-3">
+  <span>✦ PROJECT ONE — Digital Presence Architecture สำหรับธุรกิจท้องถิ่น ·</span>
+  <a href="demo.html" class="underline hover:text-sky-200 transition font-medium">ดูตัวอย่าง Demo 30 ธุรกิจทั้งหมด →</a>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+    <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+      <img src="./images/logo.webp" alt="PuchUp Project One" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+    </a>
+
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#what-they-see" class="navlink font-semibold">ลูกค้าเห็นอะไรบน Google</a>
+      <a href="#search-test" class="navlink text-[var(--blue-dark)]">ลองค้นธุรกิจตัวเอง</a>
+      <a href="#assessment" class="navlink">ประเมินความพร้อม</a>
+      <a href="#elements" class="navlink">5 องค์ประกอบ</a>
+      <a href="#google-website" class="navlink">Google + เว็บไซต์</a>
+      <a href="demo.html" class="navlink font-semibold text-amber-700">Project One Demo→</a>
+    </div>
+
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="text-xs font-mono font-bold tracking-wider uppercase bg-[var(--ink)] text-white px-5 py-3 rounded-full hover:opacity-90 transition inline-flex items-center gap-1.5 shadow-sm">
+        <span>💬</span> ติดต่อทาง LINE →
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 — HERO ============ -->
+<header id="hero" class="relative pt-16 pb-20 md:pt-24 md:pb-32 px-6 overflow-hidden bg-gradient-to-b from-white to-[var(--bg)]">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-6 space-y-6">
+      <div class="inline-flex items-center gap-2 bg-[var(--blue-light)] border border-[var(--blue)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--blue-dark)] font-semibold">
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--blue)] animate-pulse"></span> หน้าร้านดิจิทัล · ด่านแรกก่อนลูกค้าตัดสินใจ
+      </div>
+      <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
+        หน้าร้านของคุณบน Google<br>
+        <span class="text-[var(--blue)]">ที่ลูกค้าเห็นก่อนเข้าเว็บไซต์</span>
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
+        คุณอาจมีเว็บไซต์ที่ดีมาก แต่ถ้าลูกค้าค้นชื่อธุรกิจคุณบน Google แล้วเจอข้อมูลเก่า รูปน้อย รีวิวเงียบ หรือข้อมูลไม่ครบ ลูกค้าอาจตัดสินใจตั้งแต่ตรงนั้น
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <a href="#search-test" class="btn-blue px-8 py-4 rounded-full text-center text-base md:text-lg shadow-xl">
+          ลองตรวจสอบธุรกิจของคุณ →
+        </a>
+        <a href="#what-they-see" class="border border-[var(--line)] bg-white text-[var(--ink)] font-semibold px-8 py-4 rounded-full text-center text-base hover:bg-[var(--bg-card)] transition">
+          ดูตัวอย่างสิ่งที่ลูกค้าเห็น
+        </a>
+      </div>
+    </div>
+
+    <!-- Realistic Visual Phone Search Mockup -->
+    <div class="lg:col-span-6 relative">
+      <div class="gbp-mockup-frame p-6 md:p-8 space-y-5 bg-white border border-stone-200 shadow-2xl">
+        <!-- Search bar simulate -->
+        <div class="bg-stone-100 rounded-full px-4 py-2.5 flex items-center gap-3 text-xs font-mono text-stone-500 border border-stone-200">
+          <span>🔍</span>
+          <span class="text-stone-800 font-medium">ร้านทันตกรรม พระราม 3 / บ้านฟันดี คลินิก</span>
+        </div>
+
+        <!-- Google Profile Mockup Details -->
+        <div class="border hairline rounded-2xl p-5 bg-[#FCFBF9] space-y-4">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs font-mono text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full font-semibold">Demo Business Profile</span>
+              <h3 class="font-display font-bold text-xl md:text-2xl text-[var(--ink)] mt-1">บ้านฟันดี คลินิกทันตกรรม พระราม 3</h3>
+              <p class="text-xs text-stone-500 mt-0.5">คลินิกทันตกรรม · ถนนพระราม 3</p>
+            </div>
+            <div class="text-right">
+              <div class="flex items-center gap-1 text-amber-500 font-bold text-sm">
+                <span>★</span> 4.9 <span class="text-xs text-stone-400 font-normal font-mono">(260 รีวิว)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="grid grid-cols-4 gap-2 pt-1 pb-1 text-center font-mono text-xs">
+            <a href="dental.html" class="p-2.5 rounded-xl bg-sky-50 text-[var(--blue-dark)] font-bold border border-sky-100 flex flex-col items-center gap-1 hover:bg-sky-100 transition">
+              <span>🌐</span> เว็บไซต์
+            </a>
+            <div class="p-2.5 rounded-xl bg-stone-100 text-stone-700 font-semibold border hairline flex flex-col items-center gap-1">
+              <span>🗺️</span> เส้นทาง
+            </div>
+            <div class="p-2.5 rounded-xl bg-stone-100 text-stone-700 font-semibold border hairline flex flex-col items-center gap-1">
+              <span>📞</span> โทรออก
+            </div>
+            <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="p-2.5 rounded-xl bg-stone-100 text-stone-700 font-semibold border hairline flex flex-col items-center gap-1 hover:bg-stone-200 transition">
+              <span>💬</span> แชต LINE
+            </a>
+          </div>
+
+          <!-- Photo Strip Simulation -->
+          <div class="grid grid-cols-3 gap-2">
+            <div class="aspect-[4/3] rounded-lg bg-stone-200 border hairline overflow-hidden">
+              <img src="./images/dental-waiting.webp" alt="หน้าร้านและคลินิก" class="w-full h-full object-cover">
+            </div>
+            <div class="aspect-[4/3] rounded-lg bg-stone-200 border hairline overflow-hidden">
+              <img src="./images/dental-chair.webp" alt="บรรยากาศภายในคลินิก" class="w-full h-full object-cover">
+            </div>
+            <div class="aspect-[4/3] rounded-lg bg-stone-200 border hairline overflow-hidden">
+              <img src="./images/dental-tools.webp" alt="ทีมงานผู้เชี่ยวชาญ" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- Info meta -->
+          <div class="text-xs text-stone-600 space-y-1.5 pt-2 border-t hairline font-light">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-600 font-semibold font-mono">● เปิดอยู่</span>
+              <span>· ปิด 20:00 น.</span>
+            </div>
+            <div>📍 ริมถนนพระราม 3 แขวงบางโพงพาง เขตยานนาวา กรุงเทพฯ</div>
+            <div>🩺 บริการ: ขูดหินปูน ประกันสังคม, อุดฟัน, ฟันเด็ก, จัดฟัน, รักษารากฟัน</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 02 — REAL SITUATION: WHAT CUSTOMERS SEE ============ -->
+<section id="what-they-see" class="py-24 md:py-32 px-6 md:px-10 bg-[#F5F3EF] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">First Impression on Google</p>
+      <h2 class="font-display text-[clamp(2.1rem,4.2vw,3.2rem)] font-bold leading-tight">
+        ลูกค้าเห็นสิ่งเหล่านี้<br>
+        <span class="text-[var(--ink-soft)]">ก่อนที่เขาจะกดเข้าเว็บไซต์คุณเสียอีก</span>
+      </h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ไม่ใช่แค่การมองหาเบอร์โทร แต่คือการประเมินความน่าเชื่อถือทั้งหมดในเวลาไม่กี่วินาที
+      </p>
+    </div>
+
+    <!-- Annotated Google Profile Real View -->
+    <div class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-sm max-w-4xl mx-auto space-y-8">
+      <div class="grid md:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Realistic Mockup -->
+        <div class="md:col-span-6 border-2 border-stone-200 rounded-2xl p-5 bg-[#FCFBF9] space-y-4">
+          <div class="border-b hairline pb-3">
+            <span class="text-[11px] font-mono text-stone-400 block uppercase">GOOGLE SEARCH RESULT</span>
+            <strong class="font-display font-bold text-lg text-[var(--ink)] block mt-0.5">คลินิกทันตกรรม / ร้านของคุณ</strong>
+            <div class="flex items-center gap-1 text-amber-500 text-xs font-bold mt-1">
+              <span>★★★★★</span> 4.9 <span class="text-stone-400 font-normal font-mono">(260 รีวิว)</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-xs text-stone-600 font-light">
+            <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border hairline">
+              <span class="font-medium">เวลาเปิด-ปิด:</span>
+              <span class="text-emerald-700 font-mono font-semibold">เปิด ⋅ ปิด 20:00 น.</span>
+            </div>
+            <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border hairline">
+              <span class="font-medium">พิกัดร้าน:</span>
+              <span>กรุงเทพฯ (มีที่จอดรถหน้าร้าน)</span>
+            </div>
+            <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border hairline">
+              <span class="font-medium">ปุ่มติดต่อด่วน:</span>
+              <span class="text-sky-700 font-semibold">[ เว็บไซต์ ] [ เส้นทาง ] [ โทร ]</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border hairline">
+              <span class="font-medium block mb-1">บริการเด่น:</span>
+              <span class="text-stone-500">ขูดหินปูน ประกันสังคม · อุดฟัน · จัดฟัน · ทำฟันเด็ก</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Annotations explaining Why it matters -->
+        <div class="md:col-span-6 space-y-4 text-sm font-light text-[var(--ink-soft)]">
+          <div class="p-4 rounded-2xl bg-[#F8FAFC] border border-sky-100">
+            <strong class="block text-[var(--ink)] font-bold mb-1 text-base">1. คะแนนและจำนวนรีวิว (Social Proof)</strong>
+            <p>ลูกค้าอ่านรีวิวล่าสุดเพื่อดูว่าร้านยังบริการดีอยู่ไหม มีการตอบรีวิวอย่างใส่ใจหรือไม่</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#F8FAFC] border border-sky-100">
+            <strong class="block text-[var(--ink)] font-bold mb-1 text-base">2. รูปถ่ายสถานที่และผลงานจริง</strong>
+            <p>รูปร้านปัจจุบัน บรรยากาศ และทีมงาน ช่วยให้ลูกค้ารู้สึกอุ่นใจก่อนเดินทางมาจริง</p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#F8FAFC] border border-sky-100">
+            <strong class="block text-[var(--ink)] font-bold mb-1 text-base">3. ปุ่มเชื่อมต่อไปยัง "เว็บไซต์ของคุณ"</strong>
+            <p>เมื่อลูกค้าสนใจ ข้อมูลจาก Google จะส่งต่อให้ลูกค้ากดเข้าเว็บไซต์เพื่อดูรายละเอียดเชิงลึกและทำการนัดหมาย</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — PROBLEM: HAVE IT BUT NOT MAINTAINED ============ -->
+<section class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-xl mx-auto mb-16">
+      <p class="eyebrow mb-2">The Real Challenge</p>
+      <h2 class="font-display text-[clamp(2.1rem,4.2vw,3.2rem)] font-bold leading-tight">
+        ปัญหาไม่ใช่ไม่มี<br>
+        <span class="text-[var(--ink-soft)]">แต่คือ...มีแล้วไม่ได้ดูแล</span>
+      </h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ธุรกิจจำนวนมากมี Google Business Profile อยู่แล้ว แต่ไม่ได้ดูแลอย่างจริงจัง ทำให้ข้อมูลไม่ตรงกับความเป็นจริง
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10">
+      <!-- Left: Abandoned Profile with Image -->
+      <div class="bg-white p-8 rounded-3xl border border-red-200 space-y-6 shadow-sm group">
+        <div class="img-slot rounded-2xl aspect-[16/10] border border-red-100">
+          <img src="./images/gbp-abandoned-store.webp" alt="ร้านค้าที่ปล่อยปละละเลยข้อมูลบน Google">
+        </div>
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-red-700 bg-red-50 border border-red-200 px-3 py-1 rounded-full uppercase font-bold">
+          🛑 โปรไฟล์ที่ถูกปล่อยทิ้งไว้
+        </div>
+        <h4 class="font-display font-bold text-xl text-[var(--ink)]">ความรู้สึกที่ลูกค้าได้รับ: "ร้านนี้ยังเปิดอยู่ไหม?"</h4>
+        <ul class="text-sm text-red-700 space-y-2 font-light">
+          <li class="flex items-center gap-2.5">✕ รูปถ่ายเก่าเมื่อ 4-5 ปีที่แล้ว บรรยากาศไม่ตรงกับปัจจุบัน</li>
+          <li class="flex items-center gap-2.5">✕ เวลาเปิด-ปิดไม่ตรง วันหยุดพิเศษไม่เคยแจ้ง ลูกค้ามาเก้อ</li>
+          <li class="flex items-center gap-2.5">✕ ไม่มีรายการบริการเด่น ระบุแค่หมวดหมู่กว้างๆ</li>
+          <li class="flex items-center gap-2.5">✕ รีวิวใหม่ไม่มีการตอบรับ ลูกค้ารู้สึกขาดความเอาใจใส่</li>
+        </ul>
+      </div>
+
+      <!-- Right: Maintained Profile with Image -->
+      <div class="bg-white p-8 rounded-3xl border border-emerald-200 space-y-6 shadow-sm group">
+        <div class="img-slot rounded-2xl aspect-[16/10] border border-emerald-100">
+          <img src="./images/gbp-maintained-store.webp" alt="ร้านค้าที่ได้รับการดูแลข้อมูลบน Google เป็นอย่างดี">
+        </div>
+        <div class="inline-flex items-center gap-2 font-mono text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full uppercase font-bold">
+          ✅ โปรไฟล์ที่ได้รับการดูแลสม่ำเสมอ
+        </div>
+        <h4 class="font-display font-bold text-xl text-[var(--ink)]">ความรู้สึกที่ลูกค้าได้รับ: "ร้านนี้มืออาชีพ น่าเชื่อถือ"</h4>
+        <ul class="text-sm text-emerald-700 space-y-2 font-light">
+          <li class="flex items-center gap-2.5">✓ รูปภาพสวยงาม คมชัด อัปเดตบรรยากาศและผลงานล่าสุด</li>
+          <li class="flex items-center gap-2.5">✓ เวลาเปิด-ปิดถูกต้อง วันหยุดเทศกาลมีแจ้งล่วงหน้า</li>
+          <li class="flex items-center gap-2.5">✓ มีรายการสินค้า/บริการชัดเจน ลูกค้ารู้ทันทีว่ามีอะไรบ้าง</li>
+          <li class="flex items-center gap-2.5">✓ ติดตามและตอบรีวิวลูกค้าอย่างสุภาพ สม่ำเสมอ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — SEARCH TEST ============ -->
+<section id="search-test" class="py-24 md:py-32 px-6 md:px-10 bg-[#EFF6FF] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-white rounded-3xl p-8 md:p-14 border hairline shadow-xl space-y-10">
+      <div class="grid lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <p class="eyebrow">Interactive Search Test</p>
+          <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold leading-tight text-[var(--ink)]">
+            ลองเปิดมือถือ แล้วค้นธุรกิจของคุณเองตอนนี้
+          </h2>
+          <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed">
+            เปิดแอป Google หรือ Google Maps ในมือถือ แล้วลองค้นหาเพื่อดูว่าลูกค้ากำลังเห็นหน้าร้านของคุณแบบไหนในปัจจุบัน
+          </p>
+        </div>
+        <div class="lg:col-span-5 img-slot rounded-2xl aspect-[4/3] border hairline">
+          <img src="./images/gbp-search-mobile.webp" alt="ลูกค้าค้นหาข้อมูลร้านค้าผ่านมือถือ">
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6 text-center font-mono text-sm">
+        <div class="p-6 rounded-2xl bg-[#F8FAFC] border hairline space-y-2">
+          <span class="text-xs text-[var(--blue-dark)] font-bold block uppercase">รูปแบบที่ 1</span>
+          <strong class="block text-base text-[var(--ink)]">"ชื่อธุรกิจของคุณ"</strong>
+          <span class="text-xs text-stone-500 font-sans">เช่น บ้านฟันดี คลินิกทันตกรรม</span>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#F8FAFC] border hairline space-y-2">
+          <span class="text-xs text-[var(--blue-dark)] font-bold block uppercase">รูปแบบที่ 2</span>
+          <strong class="block text-base text-[var(--ink)]">"ประเภทธุรกิจ + พื้นที่"</strong>
+          <span class="text-xs text-stone-500 font-sans">เช่น คลินิกทำฟัน พระราม 3</span>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#F8FAFC] border hairline space-y-2">
+          <span class="text-xs text-[var(--blue-dark)] font-bold block uppercase">รูปแบบที่ 3</span>
+          <strong class="block text-base text-[var(--ink)]">"บริการหลัก + พื้นที่"</strong>
+          <span class="text-xs text-stone-500 font-sans">เช่น ขูดหินปูน ประกันสังคม พระราม 3</span>
+        </div>
+      </div>
+
+      <!-- Reflection Questions Box -->
+      <div class="bg-[#F5F3EF] p-8 rounded-2xl border hairline space-y-4">
+        <h4 class="font-display font-bold text-lg text-[var(--ink)] text-center">เมื่อเห็นผลลัพธ์แล้ว... ลองถามตัวเอง 6 คำถามนี้:</h4>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm font-light text-stone-700">
+          <div class="p-3 bg-white rounded-xl border hairline">❓ ข้อมูลที่อยู่และเบอร์โทร ถูกต้องไหม?</div>
+          <div class="p-3 bg-white rounded-xl border hairline">❓ รูปภาพหน้าร้านและผลงาน ดูดีหรือยัง?</div>
+          <div class="p-3 bg-white rounded-xl border hairline">❓ รีวิวล่าสุดเมื่อไหร่ มีการตอบไหม?</div>
+          <div class="p-3 bg-white rounded-xl border hairline">❓ เวลาเปิด-ปิดตรงกับความเป็นจริงไหม?</div>
+          <div class="p-3 bg-white rounded-xl border hairline">❓ มีลิงก์เชื่อมต่อไปยังเว็บไซต์ไหม?</div>
+          <div class="p-3 bg-white rounded-xl border hairline">❓ ลูกค้ารู้ไหมว่าเราแตกต่างจากคู่แข่งอย่างไร?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — SELF ASSESSMENT CHECKLIST ============ -->
+<section id="assessment" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">Self-Assessment Tool</p>
+      <h2 class="font-display text-[clamp(2.1rem,4.2vw,3.2rem)] font-bold leading-tight">
+        ลองประเมินความพร้อมของหน้าร้านคุณ
+      </h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ติ๊กเลือกข้อที่ธุรกิจของคุณมีอยู่ในปัจจุบัน เพื่อตรวจสอบความพร้อมของ Digital Presence (ไม่ใช่การประเมินอันดับคะแนน Google Ranking)
+      </p>
+    </div>
+
+    <div class="bg-white rounded-3xl p-8 md:p-12 border hairline shadow-sm max-w-4xl mx-auto space-y-8">
+      <div class="grid sm:grid-cols-2 gap-4" id="assessmentList">
+        
+        <label class="check-item flex items-start gap-3 p-4 rounded-2xl border hairline cursor-pointer">
+          <input type="checkbox" class="assessment-cb w-5 h-5 rounded mt-1 text-sky-600 focus:ring-sky-500" checked>
+          <div>
+            <strong class="block text-sm font-bold text-[var(--ink)]">1. ข้อมูลพื้นฐานครบถ้วน</strong>
+            <span class="text-xs text-stone-500 font-light">ชื่อธุรกิจ หมวดหมู่ตรง ที่อยู่ชัดเจน เบอร์โทรติดต่อได้จริง</span>
+          </div>
+        </label>
+
+        <label class="check-item flex items-start gap-3 p-4 rounded-2xl border hairline cursor-pointer">
+          <input type="checkbox" class="assessment-cb w-5 h-5 rounded mt-1 text-sky-600 focus:ring-sky-500" checked>
+          <div>
+            <strong class="block text-sm font-bold text-[var(--ink)]">2. เวลาเปิด-ปิดเป็นปัจจุบัน</strong>
+            <span class="text-xs text-stone-500 font-light">ระบุเวลาเปิดทำการชัดเจน รวมถึงวันหยุดพิเศษ/นักขัตฤกษ์</span>
+          </div>
+        </label>
+
+        <label class="check-item flex items-start gap-3 p-4 rounded-2xl border hairline cursor-pointer">
+          <input type="checkbox" class="assessment-cb w-5 h-5 rounded mt-1 text-sky-600 focus:ring-sky-500">
+          <div>
+            <strong class="block text-sm font-bold text-[var(--ink)]">3. รูปถ่ายสถานที่และบรรยากาศ</strong>
+            <span class="text-xs text-stone-500 font-light">มีภาพหน้าร้าน ห้องบริการ ทีมงาน คมชัดสวยงามภายใน 6 เดือน</span>
+          </div>
+        </label>
+
+        <label class="check-item flex items-start gap-3 p-4 rounded-2xl border hairline cursor-pointer">
+          <input type="checkbox" class="assessment-cb w-5 h-5 rounded mt-1 text-sky-600 focus:ring-sky-500">
+          <div>
+            <strong class="block text-sm font-bold text-[var(--ink)]">4. มีรีวิวและการตอบรีวิวสม่ำเสมอ</strong>
+            <span class="text-xs text-stone-500 font-light">มีรีวิวจากลูกค้าจริงต่อเนื่อง และเจ้าของร้านตอบรับรีวิวอย่างใส่ใจ</span>
+          </div>
+        </label>
+
+        <label class="check-item flex items-start gap-3 p-4 rounded-2xl border hairline cursor-pointer">
+          <input type="checkbox" class="assessment-cb w-5 h-5 rounded mt-1 text-sky-600 focus:ring-sky-500">
+          <div>
+            <strong class="block text-sm font-bold text-[var(--ink)]">5. ใส่รายการสินค้า/บริการครบ</strong>
+            <span class="text-xs text-stone-500 font-light">ระบุบริการหลัก ราคาคร่าวๆ หรือจุดเด่นให้ลูกค้ารู้ว่ามีอะไรบ้าง</span>
+          </div>
+        </label>
+
+        <label class="check-item flex items-start gap-3 p-4 rounded-2xl border hairline cursor-pointer">
+          <input type="checkbox" class="assessment-cb w-5 h-5 rounded mt-1 text-sky-600 focus:ring-sky-500" checked>
+          <div>
+            <strong class="block text-sm font-bold text-[var(--ink)]">6. มีลิงก์เชื่อมต่อไปยังเว็บไซต์</strong>
+            <span class="text-xs text-stone-500 font-light">มีปุ่มให้ลูกค้ากดเข้าไปดูข้อมูลเชิงลึกในเว็บไซต์ทางการ</span>
+          </div>
+        </label>
+      </div>
+
+      <!-- Live Score Indicator -->
+      <div class="bg-[#F8FAFC] p-6 rounded-2xl border border-sky-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div>
+          <span class="text-xs font-mono text-[var(--blue-dark)] uppercase font-bold block">Digital Presence Readiness Score</span>
+          <h4 class="font-display font-bold text-2xl text-[var(--ink)]">
+            ความพร้อมหน้าร้านดิจิทัลของคุณ: <span id="scoreText" class="text-[var(--blue)]">3 / 6</span>
+          </h4>
+        </div>
+        <div id="scoreFeedback" class="text-xs font-mono px-4 py-2 rounded-full bg-amber-100 text-amber-800 font-semibold">
+          ⚠️ ยังมีจุดสำคัญที่ควรเติมเต็ม
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — THE 5 ESSENTIAL ELEMENTS ============ -->
+<section id="elements" class="py-24 md:py-32 px-6 md:px-10 bg-[#F5F3EF] reveal">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="eyebrow mb-2">5 Key Elements</p>
+      <h2 class="font-display text-[clamp(2.1rem,4.2vw,3.2rem)] font-bold leading-tight">
+        5 สิ่งที่ต้องดูแล<br>
+        <span class="text-[var(--ink-soft)]">เพื่อไม่ให้เสียโอกาสทางธุรกิจ</span>
+      </h2>
+      <p class="text-base text-[var(--ink-soft)] font-light mt-3">
+        ทำไมลูกค้าถึงสนใจสิ่งเหล่านี้ และแต่ละส่วนส่งผลต่อการตัดสินใจอย่างไร
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- 01 Info -->
+      <div class="bg-white p-6 rounded-3xl border hairline shadow-sm space-y-4 group">
+        <div class="img-slot rounded-2xl aspect-[16/10] border hairline">
+          <img src="./images/gbp-elem-info.webp" alt="ข้อมูลหน้าร้านและเวลาเปิดปิด">
+        </div>
+        <h4 class="font-display font-bold text-xl text-[var(--ink)]">1. ข้อมูลธุรกิจที่แม่นยำ</h4>
+        <p class="text-xs font-mono text-[var(--blue-dark)] font-semibold">ชื่อ / หมวดหมู่ / ที่อยู่ / เวลาเปิด-ปิด</p>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          <strong>ทำไมลูกค้าถึงสนใจ:</strong> ลูกค้าต้องการความมั่นใจว่าเดินทางไปแล้วร้านจะเปิดอยู่จริง และตั้งอยู่ในพิกัดที่ถูกต้อง
+        </p>
+      </div>
+
+      <!-- 02 Photos -->
+      <div class="bg-white p-6 rounded-3xl border hairline shadow-sm space-y-4 group">
+        <div class="img-slot rounded-2xl aspect-[16/10] border hairline">
+          <img src="./images/gbp-elem-photos.webp" alt="รูปถ่ายบรรยากาศร้านค้าสวยงาม">
+        </div>
+        <h4 class="font-display font-bold text-xl text-[var(--ink)]">2. รูปภาพที่สื่อถึงตัวตนจริง</h4>
+        <p class="text-xs font-mono text-[var(--blue-dark)] font-semibold">หน้าร้าน / ทีมงาน / ผลงาน / บรรยากาศ</p>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          <strong>ทำไมลูกค้าถึงสนใจ:</strong> รูปภาพช่วยตอบคำถามว่า "ร้านหน้าตาเป็นอย่างไร ฉันจะได้รับประสบการณ์แบบไหน"
+        </p>
+      </div>
+
+      <!-- 03 Reviews -->
+      <div class="bg-white p-6 rounded-3xl border hairline shadow-sm space-y-4 group">
+        <div class="img-slot rounded-2xl aspect-[16/10] border hairline">
+          <img src="./images/gbp-elem-reviews.webp" alt="การตอบรับรีวิวลูกค้าอย่างใส่ใจ">
+        </div>
+        <h4 class="font-display font-bold text-xl text-[var(--ink)]">3. รีวิวและการตอบอย่างใส่ใจ</h4>
+        <p class="text-xs font-mono text-[var(--blue-dark)] font-semibold">Social Proof จากผู้ใช้บริการจริง</p>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          <strong>ทำไมลูกค้าถึงสนใจ:</strong> ลูกค้าดูทั้งคะแนนและการตอบของเจ้าของร้าน เพื่อประเมินความรับผิดชอบและความน่าเชื่อถือ
+        </p>
+      </div>
+
+      <!-- 04 Services -->
+      <div class="bg-white p-6 rounded-3xl border hairline shadow-sm space-y-4 group">
+        <div class="img-slot rounded-2xl aspect-[16/10] border hairline">
+          <img src="./images/gbp-elem-services.webp" alt="รายการบริการและสินค้าที่ชัดเจน">
+        </div>
+        <h4 class="font-display font-bold text-xl text-[var(--ink)]">4. รายการสินค้าและบริการ</h4>
+        <p class="text-xs font-mono text-[var(--blue-dark)] font-semibold">บอกให้รู้ทันทีว่าคุณรับทำอะไรบ้าง</p>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          <strong>ทำไมลูกค้าถึงสนใจ:</strong> ลูกค้าไม่ต้องเสียเวลาเดา ช่วยให้เขาตัดสินใจเลือกคุณได้ทันทีที่ค้นพบ
+        </p>
+      </div>
+
+      <!-- 05 Contact -->
+      <div class="bg-white p-6 rounded-3xl border hairline shadow-sm space-y-4 group">
+        <div class="img-slot rounded-2xl aspect-[16/10] border hairline">
+          <img src="./images/gbp-elem-contact.webp" alt="ช่องทางการติดต่อสะดวกรวดเร็ว">
+        </div>
+        <h4 class="font-display font-bold text-xl text-[var(--ink)]">5. ช่องทางการติดต่อสะดวกรวดเร็ว</h4>
+        <p class="text-xs font-mono text-[var(--blue-dark)] font-semibold">โทร / แผนที่นำทาง / ลิงก์เว็บไซต์</p>
+        <p class="text-sm text-[var(--ink-soft)] font-light leading-relaxed">
+          <strong>ทำไมลูกค้าถึงสนใจ:</strong> เมื่อลูกค้าพร้อมซื้อ เขาต้องสามารถกดโทรหรือกดเข้าเว็บเพื่อนัดหมายได้ทันทีโดยไม่ติดขัด
+        </p>
+      </div>
+
+      <!-- 06 Synergy -->
+      <div class="bg-sky-50 p-6 rounded-3xl border border-sky-200 shadow-sm space-y-4 flex flex-col justify-between">
+        <div>
+          <span class="text-4xl block mb-2">🔄</span>
+          <h4 class="font-display font-bold text-xl text-[var(--blue-dark)]">การทำงานร่วมกัน</h4>
+          <p class="text-xs font-mono text-[var(--blue-dark)] font-semibold mb-2">ความสอดคล้องของข้อมูล 100%</p>
+          <p class="text-sm text-stone-700 font-light leading-relaxed">
+            ทั้ง 5 ส่วนนี้เมื่อทำงานร่วมกับเว็บไซต์ จะเปลี่ยนผู้ค้นหาบน Google ให้กลายเป็นลูกค้าจริงของธุรกิจคุณ
+          </p>
+        </div>
+        <div class="pt-4 border-t border-sky-200 text-xs font-mono text-[var(--blue-dark)] font-bold">
+          ● ข้อมูลตรงกันทุกจุด ปิดการขายง่ายขึ้น
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — GOOGLE + WEBSITE ============ -->
+<section id="google-website" class="py-24 md:py-32 px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-6 space-y-6">
+      <p class="eyebrow">The Digital Presence Connection</p>
+      <h2 class="font-display text-[clamp(2.1rem,4.2vw,3.2rem)] font-bold leading-tight">
+        Google Business Profile<br>
+        และเว็บไซต์<br>
+        <span class="text-[var(--blue)]">ควรพูดภาษาเดียวกัน</span>
+      </h2>
+      <p class="text-base text-[var(--ink-soft)] font-light leading-relaxed">
+        ลองจินตนาการว่าบน Google บอกว่าร้านคุณเปิด 10:00–18:00 แต่บนเว็บไซต์บอกว่าเปิด 10:00–20:00 หรือใช้เบอร์โทรคนละเบอร์ ลูกค้าจะเกิดความสับสนทันที
+      </p>
+      <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-sm text-amber-900 font-light">
+        💡 <strong>Digital Presence ที่ดี</strong> คือการทำให้ข้อมูลทั้งสองแห่งสอดคล้องกัน ให้ข้อมูลบน Google นำทาง และให้เว็บไซต์เป็นพื้นที่ปิดการขาย
+      </div>
+    </div>
+
+    <!-- Visual Connection Diagram -->
+    <div class="lg:col-span-6 bg-white p-8 md:p-10 rounded-3xl border hairline shadow-sm space-y-6">
+      <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#F8FAFC] border hairline">
+        <div class="w-12 h-12 rounded-xl bg-sky-100 text-[var(--blue)] flex items-center justify-center font-bold text-xl">1</div>
+        <div>
+          <strong class="block text-sm text-[var(--ink)]">Google Business Profile (หน้าร้านบน Google)</strong>
+          <span class="text-xs text-stone-500 font-light">สร้างความประทับใจแรก แสดงรีวิว รูปภาพ และดึงคนเข้าสู่เว็บไซต์</span>
+        </div>
+      </div>
+
+      <div class="text-center text-stone-400 font-mono text-xs">▼ ส่งต่อลูกค้าอย่างราบรื่น</div>
+
+      <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#F8FAFC] border hairline">
+        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xl">2</div>
+        <div>
+          <strong class="block text-sm text-[var(--ink)]">Website (บ้านของธุรกิจบนอินเทอร์เน็ต)</strong>
+          <span class="text-xs text-stone-500 font-light">ให้ข้อมูลบริการเชิงลึก แคตตาล็อก ราคา ระบบจอง และการสร้างความเชื่อถือ</span>
+        </div>
+      </div>
+
+      <div class="text-center text-stone-400 font-mono text-xs">▼ เกิดผลลัพธ์ทางธุรกิจ</div>
+
+      <div class="flex items-center gap-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-200">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xl">3</div>
+        <div>
+          <strong class="block text-sm text-emerald-900">ลูกค้าตัดสินใจติดต่อ / นัดหมาย / เดินทาง</strong>
+          <span class="text-xs text-emerald-700 font-light">เปลี่ยนผู้ค้นหาเป็นยอดขายจริงของธุรกิจคุณ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — INTRODUCING PROJECT ONE ============ -->
+<section class="py-24 md:py-32 bg-[var(--bg-card)] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto text-center space-y-8">
+    <p class="eyebrow">Project One Digital Presence System</p>
+    <div class="max-w-3xl mx-auto space-y-4">
+      <h2 class="font-display text-[clamp(2.1rem,4.2vw,3.2rem)] font-bold leading-tight">
+        เราไม่ได้สร้างแค่เว็บไซต์<br>
+        <span class="text-[var(--ink-soft)]">แต่เราช่วยวางระบบ Digital Presence ให้ธุรกิจคุณ</span>
+      </h2>
+      <p class="text-base md:text-lg text-[var(--ink-soft)] font-light leading-relaxed">
+        เว็บไซต์คือบ้านของธุรกิจ Google Business Profile คือหน้าร้านบน Google และทั้งสองต้องทำงานร่วมกันอย่างสมบูรณ์ เพื่อให้ธุรกิจท้องถิ่นของคุณดูน่าเชื่อถือและพร้อมรับลูกค้าทุกวัน
+      </p>
+    </div>
+
+    <!-- Integrated Flow Diagram -->
+    <div class="p-8 bg-white rounded-3xl border hairline shadow-sm max-w-4xl mx-auto font-mono text-xs md:text-sm text-stone-700 space-y-3">
+      <div class="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+        <span class="bg-stone-100 px-3.5 py-2 rounded-xl border hairline">Google Search</span>
+        <span>→</span>
+        <span class="bg-sky-50 text-sky-800 font-bold px-3.5 py-2 rounded-xl border border-sky-200">Google Business Profile</span>
+        <span>→</span>
+        <span class="bg-amber-50 text-amber-900 font-bold px-3.5 py-2 rounded-xl border border-amber-200">Website</span>
+        <span>→</span>
+        <span class="bg-emerald-50 text-emerald-900 font-bold px-3.5 py-2 rounded-xl border border-emerald-200">ติดต่อ / ซื้อ / นัดหมาย</span>
+      </div>
+    </div>
+
+    <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+      <a href="demo.html" class="btn-blue px-8 py-4 rounded-full text-base font-bold shadow-md inline-flex items-center gap-2">
+        <span>✨</span> ชมตัวอย่างเทมเพลต 30 ธุรกิจใน Project One →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — FINAL IMPACT ============ -->
+<section class="py-24 md:py-32 bg-[var(--ink)] text-[#F7F1E8] px-6 md:px-10 reveal">
+  <div class="max-w-6xl mx-auto text-center space-y-12">
+    <div class="max-w-2xl mx-auto space-y-4">
+      <h2 class="font-display text-[clamp(2.1rem,4.2vw,3.2rem)] font-bold leading-tight">
+        ลองมองธุรกิจของคุณ<br>
+        <span class="text-sky-300">ด้วยสายตาของลูกค้าใหม่</span>
+      </h2>
+      <p class="text-base md:text-lg text-stone-300 font-light leading-relaxed">
+        ลูกค้าที่ไม่เคยรู้จักคุณมาก่อน กำลังค้นหาธุรกิจของคุณบน Google ในตอนนี้... เขาเห็นอะไร? ข้อมูลครบไหม? รูปร้านน่าเข้าไหม? รีวิวล่าสุดเป็นอย่างไร?
+      </p>
+    </div>
+
+    <div class="max-w-xl mx-auto p-6 rounded-2xl bg-white/5 border border-white/10 text-stone-300 text-sm font-light leading-relaxed">
+      ถ้าคุณตอบคำถามเหล่านี้ไม่ได้อย่างมั่นใจ หน้าร้านของคุณบน Google อาจกำลังเสียโอกาสทุกวันโดยที่คุณไม่รู้ตัว
+    </div>
+
+    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="text-xs font-mono font-bold tracking-wider uppercase bg-white text-[var(--ink)] px-8 py-4 rounded-full hover:bg-stone-100 transition inline-flex items-center gap-2 shadow-xl">
+        <span>💬</span> ติดต่อทาง LINE →
+      </a>
+      <a href="demo.html" class="border border-stone-600 bg-white/5 text-white px-8 py-4 rounded-full text-base hover:bg-white/10 transition font-medium">
+        ดูตัวอย่าง Project One Demo (30 ธุรกิจ)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-14 bg-white border-t hairline px-6 text-center text-sm font-light text-[var(--ink-soft)]">
+  <div class="max-w-6xl mx-auto space-y-4">
+    <div class="flex items-center justify-center gap-2 mb-2">
+      <img src="./images/logo.webp" alt="PuchUp Project One" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-8 w-auto object-contain">
+    </div>
+    <p class="max-w-md mx-auto text-sm text-[var(--ink-faint)]">
+      Digital Presence System สำหรับธุรกิจท้องถิ่นในประเทศไทย เพื่อให้เว็บไซต์และหน้าร้านบน Google ทำงานร่วมกันอย่างสมบูรณ์
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-[var(--ink-soft)] pt-2">
+      <a href="tel:0809969495" class="hover:text-[var(--blue)] transition">📞 080-996-9495</a>
+      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="hover:text-[var(--blue)] transition">💬 ติดต่อทาง LINE →</a>
+    </div>
+    <div class="pt-6 border-t hairline text-xs font-mono text-[var(--ink-faint)]">
+      © 2026 Project One. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- Bottom Mobile Sticky Bar -->
+<div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
+  <div>
+    <span class="text-xs text-[var(--blue-dark)] font-mono block">หน้าร้านบน Google</span>
+    <span class="font-display text-base font-bold text-[var(--ink)]">Project One</span>
+  </div>
+  <div class="flex gap-2">
+    <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="text-xs font-mono font-bold bg-[var(--ink)] text-white px-5 py-2.5 rounded-full">ติดต่อ LINE →</a>
+  </div>
+</div>
+
+<script>
+// Interactive Self-Assessment Calculator
+const checkboxes = document.querySelectorAll('.assessment-cb');
+const scoreText = document.getElementById('scoreText');
+const scoreFeedback = document.getElementById('scoreFeedback');
+
+function updateScore() {
+  const total = checkboxes.length;
+  let checkedCount = 0;
+  checkboxes.forEach(cb => {
+    if (cb.checked) checkedCount++;
+  });
+
+  scoreText.textContent = `${checkedCount} / ${total}`;
+
+  if (checkedCount === 6) {
+    scoreFeedback.className = 'text-xs font-mono px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 font-semibold';
+    scoreFeedback.textContent = '🌟 หน้าร้านดิจิทัลของคุณพร้อมมาก!';
+  } else if (checkedCount >= 4) {
+    scoreFeedback.className = 'text-xs font-mono px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-semibold';
+    scoreFeedback.textContent = '👍 อยู่ในเกณฑ์ดี แต่ยังมีจุดเพิ่มโอกาสได้';
+  } else {
+    scoreFeedback.className = 'text-xs font-mono px-4 py-2 rounded-full bg-amber-100 text-amber-800 font-semibold';
+    scoreFeedback.textContent = '⚠️ ยังมีจุดสำคัญที่ควรเติมเต็ม';
+  }
+}
+
+checkboxes.forEach(cb => {
+  cb.addEventListener('change', updateScore);
+});
+updateScore();
+
+// Intersection Observer Reveal
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

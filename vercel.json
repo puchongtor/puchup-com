@@ -23,6 +23,26 @@
       "source": "/projectone/:path*",
       "destination": "/ProjectONE/:path*",
       "permanent": true
+    },
+    {
+      "source": "/ProjectONE/Demo",
+      "destination": "/ProjectONE/demo/",
+      "permanent": true
+    },
+    {
+      "source": "/ProjectONE/Demo/:path*",
+      "destination": "/ProjectONE/demo/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/demo",
+      "destination": "/ProjectONE/demo/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/:path*",
+      "destination": "/ProjectONE/demo/",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -37,7 +57,9 @@
       "missing": [
         { "type": "host", "value": "www.puchup.com" },
         { "type": "host", "value": "puchup.com" },
-        { "type": "host", "value": "puchong.puchup.com" }
+        { "type": "host", "value": "puchong.puchup.com" },
+        { "type": "host", "value": "sale.puchup.com" },
+        { "type": "host", "value": "aeropulse.puchup.com" }
       ],
       "destination": "/sites/:site/"
     },
@@ -52,7 +74,9 @@
       "missing": [
         { "type": "host", "value": "www.puchup.com" },
         { "type": "host", "value": "puchup.com" },
-        { "type": "host", "value": "puchong.puchup.com" }
+        { "type": "host", "value": "puchong.puchup.com" },
+        { "type": "host", "value": "sale.puchup.com" },
+        { "type": "host", "value": "aeropulse.puchup.com" }
       ],
       "destination": "/sites/:site/:path*"
     }

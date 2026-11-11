@@ -1,0 +1,73 @@
+import { catalogProducts, labProducts, site } from "@/lib/site";
+import { realWorks } from "@/lib/works";
+
+export const LINE_OA_URL = "https://line.me/R/ti/p/@masterpuch";
+export const LINE_OA_ID = "@masterpuch";
+
+/** Suggestion chips on /contact */
+export const contactSuggestionChips = [
+  "สนใจ Project ONE",
+  "เว็บบริษัทราคาเท่าไหร่",
+  "อยากดู SaleDesk",
+  "อยากคุยกับทีมทาง LINE",
+] as const;
+
+export function buildPuchupKnowledgeText(): string {
+  const products = catalogProducts
+    .map((p) => {
+      const price = p.price ? ` · ${p.price}` : "";
+      return `- ${p.name} (${p.nameTh}) [${p.status}]${price}: ${p.blurb}`;
+    })
+    .join("\n");
+
+  const works = realWorks
+    .map((w) => `- ${w.name} (${w.url}): ${w.summary}`)
+    .join("\n");
+
+  const labs = labProducts.map((l) => `- ${l.name}: ${l.body} (${l.status})`).join("\n");
+
+  return [
+    `แบรนด์: ${site.name} · ${site.url} · ${site.tagline}`,
+    `อีเมล: ${site.email}`,
+    `LINE OA: ${LINE_OA_ID} → ${LINE_OA_URL}`,
+    "",
+    "สินค้า/บริการ:",
+    products,
+    "",
+    "ผลงานจริง:",
+    works,
+    "",
+    "กำลังพัฒนา:",
+    labs,
+  ].join("\n");
+}
+
+/** Local fallback when Edge Function / Anthropic is unavailable */
+export function localKnowledgeReply(message: string): string {
+  const m = message.toLowerCase();
+  if (/ราคา|เท่าไหร่|กี่บาท|corporate/.test(m)) {
+    return `Corporate เริ่มต้น 25,000 · ShopGuide เริ่มต้น 35,000 + AI รายเดือนเล็กน้อย · SaleDesk เริ่มต้น 19,000 + รายเดือนตามขนาดทีม · Partner/OpsCraft คุยรายละเอียดกันครับ — LINE OA ${LINE_OA_ID}`;
+  }
+  if (/project\s*one|หน้าเดียว|google business|google/.test(m)) {
+    return "Project ONE คือเว็บหน้าเดียวที่เชื่อม Google Business ให้ลูกค้ารู้จักร้าน ตัดสินใจ และอยากมาที่ร้าน เหมาะกับธุรกิจที่อยากให้คนมาที่สถานที่จริงครับ";
+  }
+  if (/sale|saledesk|ทีมขาย/.test(m)) {
+    return "SaleDesk ติดตั้งเริ่มต้น 19,000 บาท มีรายเดือนแบบช่วงทีม 1–5 คน / 6–10 คน (ไม่คิดรายหัว) — ช่วยรายงานมีหลักฐาน เลขา AI ผู้จัดการเห็นงานค้าง ไม่ใช่ CRM เต็มครับ";
+  }
+  if (/shopguide|แชท.*สินค้า|line oa/.test(m)) {
+    return "ShopGuide เริ่มต้น 35,000 บาท มี AI รายเดือนไม่สูง — เว็บสินค้ามีแชท/Finder นำทางไปสินค้า แล้วส่งต่อไป Line OA ได้ครับ";
+  }
+  if (/partner|พาร์ทเนอร์/.test(m)) {
+    return "PuchUp Partner คือให้เราเป็นฝ่ายการตลาดออนไลน์ สร้างเว็บและระบบให้ธุรกิจโตไปด้วยกัน — เหมาะกับธุรกิจที่อยากโตโดยไม่จ้างทีมเต็มรูปแบบครับ";
+  }
+  if (/opscraft|ระบบตามเคส|ลดขั้นตอน/.test(m)) {
+    return "OpsCraft ออกแบบระบบลดขั้นตอนตามวิธีทำงานของธุรกิจคุณ — ทีมจะประเมินขอบเขตงานและงบหลังทำความเข้าใจปัญหาครับ";
+  }
+  if (/ผลงาน|works|ตัวอย่าง/.test(m)) {
+    return "ผลงานจริงตอนนี้มี Advance Pro, Amethez และ Rabiangprai Valley — ดูรายละเอียดได้ที่หน้า Works หรือบอกได้ว่าสนใจแนวไหน จะเล่าให้ฟังครับ";
+  }
+  if (/ไลน์|line|คุยกับทีม|คุยกับคน|ติดต่อ/.test(m)) {
+    return `คุยกับทีมตรงๆ ได้ที่ LINE OA ${LINE_OA_ID} เลยครับ กดปุ่มสีเขียวด้านบนหรือด้านล่างแชทนี้ได้`;
+  }
+  return `เล่าธุรกิจหรือสิ่งที่อยากให้ช่วยเพิ่มได้นิดนึงนะครับ จะจัดให้ตรงจุด — หรือคุยกับทีมทาง LINE ${LINE_OA_ID} ก็ได้ตลอด`;
+}

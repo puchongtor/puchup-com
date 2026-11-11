@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project One — Business Showroom | เว็บไซต์หน้าเดียวที่ตอบโจทย์ธุรกิจท้องถิ่น</title>
+<meta name="description" content="สำรวจโชว์รูมตัวอย่างเว็บไซต์ธุรกิจท้องถิ่นใน Project One ดีไซน์เฉพาะทาง เชื่อมต่อ Google Maps, รีวิว และระบบปิดการขายอย่างสมบูรณ์แบบ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #FCFAF5;
+    --bg-alt: #F3EEE0;
+    --ink: #0D182C;
+    --ink-soft: #4A5463;
+    --ink-faint: #8C93A0;
+    --purple: #6B4EFF;
+    --orange: #FF8A45;
+    --line: #E4DECB;
+    --dark-section: #0B111E;
+  }
+  
+  body { 
+    background: var(--bg); 
+    color: var(--ink); 
+    font-family: 'Noto Sans Thai', 'Fraunces', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .font-display { font-family: 'Fraunces', 'Noto Sans Thai', serif; }
+  .font-mono { font-family: 'IBM Plex Mono', monospace; letter-spacing: .05em; }
+  
+  .grad-text { 
+    background: linear-gradient(102deg, var(--purple), var(--orange)); 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    color: transparent; 
+  }
+  
+  .sticky-nav { 
+    backdrop-filter: blur(12px); 
+    background: rgba(252, 250, 245, 0.92); 
+  }
+
+  ::-webkit-scrollbar { display: none; }
+  * { scrollbar-width: none; }
+
+  .biz-card {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+    cursor: pointer;
+    text-decoration: none !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .biz-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--purple);
+    box-shadow: 0 20px 40px -12px rgba(13, 24, 44, 0.16);
+  }
+
+  .filter-btn {
+    transition: all 0.2s ease;
+  }
+  .filter-btn.active {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+
+  .reveal { 
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- ============ NAVBAR ============ -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--line)] sticky-nav">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 font-display font-bold text-xl tracking-tight group">
+      <img src="./images/logo.webp" alt="Project One Logo" class="h-9 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='./images/logo.png'; this.onerror=null;">
+      <span class="text-[var(--ink)]">Project One</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--ink-soft)]">
+      <a href="google-business-profile.html" class="text-sky-700 font-semibold hover:text-sky-800 transition">หน้าร้านบน Google</a>
+      <a href="#showroom" class="text-amber-700 font-semibold hover:text-amber-800 transition">Project One Demo →</a>
+      <a href="index.html#pricing" class="hover:text-[var(--ink)] transition">แพ็กเกจราคา</a>
+    </div>
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="tel:0809969495" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-soft)] font-medium hover:text-[var(--purple)] transition">
+        <span>📞</span> 080-996-9495
+      </a>
+      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="text-xs font-mono font-bold uppercase tracking-wider bg-[var(--ink)] text-white px-5 py-3 rounded-full hover:opacity-90 transition inline-flex items-center gap-1.5 shadow-sm">
+        <span>💬</span> ติดต่อทาง LINE →
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HEADER ============ -->
+<header class="relative pt-36 md:pt-44 pb-16 px-6 overflow-hidden">
+  <div class="max-w-5xl mx-auto text-center relative z-10">
+    <p class="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[var(--purple)] mb-4">Project ONE — Business Showroom</p>
+    <h1 class="font-display font-semibold tracking-tight text-[clamp(2.4rem,6vw,5rem)] leading-[0.98] mb-6">
+      ONE PAGE.<br><span class="grad-text">FULL BUSINESS EXPERIENCES.</span>
+    </h1>
+    <p class="text-base md:text-lg text-[var(--ink-soft)] max-w-3xl mx-auto font-normal leading-relaxed mb-8">
+      คลิกที่การ์ดหรือรูปภาพเพื่อเปิดชมตัวอย่างหน้าเว็บจริงของแต่ละธุรกิจ
+      ออกแบบสถาปัตยกรรม ONE Experience โหลดเร็ว ชัดเจน ปิดการขายได้ในหน้าเดียว
+    </p>
+  </div>
+</header>
+
+<!-- ============ SHOWROOM CATALOG WITH FILTERS ============ -->
+<section id="showroom" class="py-12 px-6 border-t border-[var(--line)] bg-[var(--bg)]">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Search Box -->
+    <div class="max-w-2xl mx-auto mb-6">
+      <input id="bizSearch" type="text" placeholder="🔍 ค้นหาประเภทธุรกิจ เช่น อาหาร, ทำฟัน, แอร์, พิซซ่า, รถยนต์, กายภาพ..." class="w-full rounded-full border border-[var(--line)] bg-white px-6 py-4 text-sm outline-none focus:border-[var(--purple)] transition-all shadow-sm">
+    </div>
+    
+    <!-- Category Filters -->
+    <div id="typeFilters" class="flex flex-wrap justify-center gap-2 mb-16 overflow-x-auto pb-2">
+      <button data-type="all" class="filter-btn active rounded-full px-5 py-2.5 text-xs font-medium border border-[var(--line)] bg-white">ทั้งหมด</button>
+      <button data-type="อาหาร" class="filter-btn rounded-full px-5 py-2.5 text-xs font-medium border border-[var(--line)] bg-white">อาหาร & คาเฟ่</button>
+      <button data-type="สุขภาพ" class="filter-btn rounded-full px-5 py-2.5 text-xs font-medium border border-[var(--line)] bg-white">สุขภาพ & ความงาม</button>
+      <button data-type="ที่พัก" class="filter-btn rounded-full px-5 py-2.5 text-xs font-medium border border-[var(--line)] bg-white">ที่พัก & นวดสปา</button>
+      <button data-type="สัตว์เลี้ยง" class="filter-btn rounded-full px-5 py-2.5 text-xs font-medium border border-[var(--line)] bg-white">สัตว์เลี้ยง</button>
+      <button data-type="บริการบ้าน" class="filter-btn rounded-full px-5 py-2.5 text-xs font-medium border border-[var(--line)] bg-white">ช่าง & บริการบ้าน/รถ</button>
+      <button data-type="ไลฟ์สไตล์" class="filter-btn rounded-full px-5 py-2.5 text-xs font-medium border border-[var(--line)] bg-white">ธุรกิจเฉพาะทาง & ไลฟ์สไตล์</button>
+    </div>
+
+    <!-- Catalog Grid by Category -->
+    <div id="catalog" class="space-y-16"></div>
+    <p id="noResults" class="hidden text-center text-[var(--ink-soft)] py-16 font-medium">ไม่พบธุรกิจที่คุณค้นหา? ลองพิมพ์คำค้นหาอื่น</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-[var(--line)] bg-white py-12 text-center text-xs text-[var(--ink-faint)] font-mono">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3 font-display font-bold text-base text-[var(--ink)]">
+      <img src="./images/logo.webp" alt="Project One Logo" class="h-7 w-auto object-contain" onerror="this.src='./images/logo.png'; this.onerror=null;">
+      <span>Project One</span>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-[var(--ink-soft)]">
+      <a href="tel:0809969495" class="hover:text-[var(--purple)] transition">📞 080-996-9495</a>
+      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="hover:text-[var(--purple)] transition">💬 ติดต่อทาง LINE →</a>
+    </div>
+    <p>© 2026 Project One. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Image paths strictly mapped to user's exact filenames
+const businessCategories = [
+  {
+    id: 'food',
+    name: 'อาหาร & คาเฟ่',
+    emoji: '🍜',
+    type: 'อาหาร',
+    line: 'รสชาติ ความอร่อย บรรยากาศ และเมนูที่ดึงดูดให้ลูกค้าเดินทางมาหน้าร้าน',
+    items: [
+      { name: 'บ้านข้าวหอม (ทองหล่อ)', kind: 'ร้านอาหารไทยโฮมเมดดั้งเดิม', file: 'restaurant.html', focus: '12 เมนูซิกเนเจอร์ / รีวิว 3D / จองโต๊ะทาง LINE', img: './images/rice-hero.webp' },
+      { name: 'Komorebi Coffee & Bakes', kind: 'สเปเชียลตี้คอฟฟี่ & เบเกอรี สุขุมวิท 49', file: 'cafe.html', focus: 'Slow Bar V60 / สวน Pet-Friendly / Single Origin', img: './images/cafe-hero.webp' },
+      { name: 'Komorebi Bakehouse', kind: 'คราฟต์เบเกอรีอบสด อารีย์ ซอย 4', file: 'bakery.html', focus: 'โชคุปังนมสด / ครัวซองต์เนย AOP / ตารางรอบเตา', img: './images/bakery-hero.webp' },
+      { name: 'Le Petit Bakehouse', kind: 'เค้กวันเกิดสั่งทำ & Custom Cake อารีย์', file: 'customcake.html', focus: 'เค้กมินิมอล / 3D ฟองดองท์ / สั่งทำล่วงหน้า', img: './images/cake-hero.webp' },
+      { name: 'เตาถ่าน พิซซ่าเฮ้าส์', kind: 'พิซซ่าเตาฟืนโฮมเมด ประดิพัทธ์-สะพานควาย', file: 'pizzeria.html', focus: 'แป้งหมัก 48 ชม. / เตาอิฐ 450°C / สปาเกตตีสด', img: './images/pizza-hero.webp' }
+    ]
+  },
+  {
+    id: 'health',
+    name: 'สุขภาพ & ความงาม',
+    emoji: '🩺',
+    type: 'สุขภาพ',
+    line: 'สร้างความน่าเชื่อถือ แสดงใบอนุญาต และความเชี่ยวชาญของทีมแพทย์',
+    items: [
+      { name: 'บ้านฟันดี คลินิกทันตกรรม', kind: 'คลินิกทันตกรรมครอบครัว พระราม 3', file: 'dental.html', focus: 'คำนวณประกันสังคม 900.- / หมอฟันเด็ก / ทีมทันตแพทย์', img: './images/dental-hero.webp' },
+      { name: 'Aura Elite Aesthetic Clinic', kind: 'คลินิกเวชกรรมความงาม & เลเซอร์ ทองหล่อ', file: 'aesthetic.html', focus: 'Oligio ยกกระชับ / Pico Laser / เครื่องแท้ 100%', img: './images/clinic-hero.webp' },
+      { name: 'ReBalance Physical Therapy', kind: 'คลินิกกายภาพบำบัด & ออฟฟิศซินโดรม', file: 'rebalance-physio.html', focus: 'ประเมินอาการปวด / เครื่อง Shockwave / กายภาพเฉพาะจุด', img: './images/physio-hero.webp' },
+      { name: 'Optima Vision Care', kind: 'ร้านแว่นตาทัศนมาตร & เลนส์โปรเกรสซีฟ', file: 'optometry.html', focus: 'ตรวจวัดสายตา 14 ขั้นตอน / เลนส์เฉพาะบุคคล / กรอบแบรนด์', img: './images/optic-hero.webp' },
+      { name: 'หานชุนถัง คลินิกการแพทย์แผนจีน', kind: 'คลินิกแพทย์แผนจีน ฝังเข็ม & ยาสมุนไพร', file: 'tcmclinic.html', focus: 'แมะตรวจชีพจร / ฝังเข็มปรับสมดุล / ครอบแก้วบำบัด', img: './images/tcm-hero.webp' }
+    ]
+  },
+  {
+    id: 'stay',
+    name: 'ที่พัก & นวดสปา',
+    emoji: '🏨',
+    type: 'ที่พัก',
+    line: 'ส่งต่อบรรยากาศการพักผ่อนที่ประทับใจเพื่อปิดการจองโดยตรง',
+    items: [
+      { name: 'Baan Bangkok Boutique Hotel', kind: 'โรงแรมบูทีคริมแม่น้ำเจ้าพระยา', file: 'hotel.html', focus: 'ห้องพักวิวแม่น้ำ / สระว่ายน้ำ / แพ็กเกจดินเนอร์', img: './images/hotel-hero.webp' },
+      { name: 'ธารา สปา & มาสสาจ', kind: 'ร้านนวดแผนไทย & สปาอโรมาเธอราพี', file: 'massagespa.html', focus: 'นวดไทยราชสำนัก / ออยล์สปา / ห้องส่วนตัวคู่รัก', img: './images/massage-hero.webp' }
+    ]
+  },
+  {
+    id: 'pets',
+    name: 'สัตว์เลี้ยง',
+    emoji: '🐶',
+    type: 'สัตว์เลี้ยง',
+    line: 'สร้างความอุ่นใจและดูแลสัตว์เลี้ยงของลูกค้าอย่างมืออาชีพ',
+    items: [
+      { name: 'Paw & Co. Pet Store', kind: 'ศูนย์รวมสินค้าและอาหารสัตว์เลี้ยงพรีเมียม', file: 'petstore.html', focus: 'อาหารเกรด Holistic / อาบน้ำตัดขน / ของเล่นนำเข้า', img: './images/pet-hero.webp' },
+      { name: 'PetCare Care Center', kind: 'บริการดูแลสัตว์เลี้ยง & กรูมมิ่ง', file: 'petcare.html', focus: 'ตัดขนสปา / สระว่ายน้ำสุนัข / ฝากเลี้ยงรายวัน', img: './images/pet2-hero.webp' }
+    ]
+  },
+  {
+    id: 'home-services',
+    name: 'ช่าง & บริการบ้าน/รถ',
+    emoji: '🔧',
+    type: 'บริการบ้าน',
+    line: 'ประเมินราคาโปร่งใส แจ้งสเต็ปการทำงานชัดเจน สร้างความไว้ใจ',
+    items: [
+      { name: 'CoolMaster Air Service', kind: 'บริการล้างแอร์บ้านด่วน บางนา-ศรีนครินทร์', file: 'airservice.html', focus: 'ล้าง 9 ขั้นตอน / ปูผ้ากันเลอะ 100% / ประกันน้ำไม่หยด 30 วัน', img: './images/air-hero.webp' },
+      { name: 'CurtainCraft Studio', kind: 'ผ้าม่านสั่งตัด มู่ลี่ & วอลเปเปอร์ ราชพฤกษ์', file: 'curtain.html', focus: 'วัดพื้นที่ฟรีถึงบ้าน / รีดไอน้ำขึ้นลอน / ม่านมอเตอร์', img: './images/curtain-hero.webp' },
+      { name: 'MasterTech Auto Service', kind: 'อู่ซ่อมรถยนต์ & ไฮบริด โชคชัย 4', file: 'autogarage.html', focus: 'ตรวจเช็ก 30 จุดฟรี / ซ่อมแบตไฮบริด / คืนอะไหล่เก่า', img: './images/garage-hero.webp' },
+      { name: 'ProShine Car Wash', kind: 'ศูนย์ล้างรถ ดูดฝุ่น & เคลือบแก้ว พระราม 3', file: 'carwash.html', focus: 'โฟม pH Balance / แยกผ้า 5 สี 5 ส่วน / เคลือบเซรามิก 9H', img: './images/carwash-hero.webp' },
+      { name: 'SunShield Film & PPF', kind: 'ศูนย์ติดตั้งฟิล์มกรองแสงรถยนต์ & PPF กันรอย', file: 'windowtint.html', focus: 'ฟิล์มเซรามิกกันร้อน 99% / ห้องปลอดฝุ่น / ตัดด้วยคอมพิวเตอร์', img: './images/tint-hero.webp' }
+    ]
+  },
+  {
+    id: 'lifestyle',
+    name: 'ธุรกิจเฉพาะทาง & ไลฟ์สไตล์',
+    emoji: '🚴',
+    type: 'ไลฟ์สไตล์',
+    line: 'สื่อสารคุณค่า ความเชี่ยวชาญเฉพาะทาง และบริการระดับมืออาชีพ',
+    items: [
+      { name: 'Velo Union Bicycles', kind: 'ร้านจักรยานประกอบ ฟิตติ้ง สุขุมวิท 71', file: 'bicycle.html', focus: 'Custom Bike Build / Dynamic Fitting / ล้างชุดขับ Ultrasonic', img: './images/bike-hero.webp' },
+      { name: 'Apex Accounting Service', kind: 'สำนักงานบัญชี SME & รับจดบริษัท สาทร', file: 'accounting.html', focus: 'ทำบัญชีรายเดือน / วางแผนภาษีออนไลน์ / จดบริษัท DBD', img: './images/accounting-hero.webp' },
+      { name: 'Craft & Clay Art Space', kind: 'สตูดิโอศิลปะเด็ก & เซรามิกผู้ใหญ่ อารีย์', file: 'artstudio.html', focus: 'ปั้นดินแป้นหมุน / เวิร์กช็อปสีน้ำ / คลาสกลุ่มเล็ก', img: './images/craft-hero.webp' },
+      { name: 'Tara Florist Studio', kind: 'สตูดิโอดอกไม้สด & ช่อดอกไม้ดีไซน์พรีเมียม', file: 'florist.html', focus: 'ดอกไม้นำเข้าสดใหม่ / ดีไซน์ช่อตามโอกาส / ส่งด่วนใน 2 ชม.', img: './images/florist-hero.webp' },
+      { name: 'Auspicious Stone Gallery', kind: 'แกลเลอรีหินมงคลแท้ & อัญมณีเสริมดวง', file: 'stone.html', focus: 'หินแท้คัดเกรดพลังงาน / ออกแบบตามวันเกิด / ใบรับรองแล็บ', img: './images/stone-hero.webp' },
+      { name: 'PrintCraft Pro Express', kind: 'โรงพิมพ์ดิจิทัลด่วน นามบัตร & แพ็กเกจจิ้ง', file: 'printing.html', focus: 'พิมพ์ดิจิทัลออฟเซต / ปั๊มฟอยล์ทอง / ส่งงานด่วนใน 24 ชม.', img: './images/print-hero.webp' },
+      { name: 'iFix Pro Express Service', kind: 'ศูนย์ซ่อมมือถือด่วน เปลี่ยนจอ & แบตเตอรี่', file: 'phonerepair.html', focus: 'ซ่อมเสร็จใน 30 นาที / อะไหล่แท้รับประกัน 1 ปี / ตรวจฟรี', img: './images/repair-hero.webp' },
+      { name: 'Clean & Care Express', kind: 'ร้านซักอบรีด & สปาซักแห้งพรีเมียม', file: 'laundry.html', focus: 'ซักแห้งชุดสูท-ราตรี / น้ำยาถนอมเนื้อผ้า / บริการรับส่งถึงบ้าน', img: './images/laundry-hero.webp' },
+      { name: 'CoreFlow Pilates Studio', kind: 'สตูดิโอพิลาทิส Reformer & โยคะกลุ่มเล็ก', file: 'pilates.html', focus: 'เครื่อง Reformer มาตรฐาน / ปรับสรีระแก้อาการ / ครูประกบชิด', img: './images/pilates-hero.webp' },
+      { name: 'Singha Muay Thai Gym', kind: 'ค่ายมวยไทยออกกำลังกาย & ฟิตเนสเทรนเนอร์', file: 'muaythaigym.html', focus: 'เวทีมวยมาตรฐาน / เผาผลาญไขมันเข้มข้น / ครูมวยมืออาชีพ', img: './images/gym-hero.webp' }
+    ]
+  }
+];
+
+const catalogSection = document.getElementById('catalog');
+
+function buildShowroomHTML() {
+  catalogSection.innerHTML = businessCategories.map(cat => `
+    <div class="cat-group reveal" data-type="${cat.type}" id="group-${cat.id}">
+      <div class="border-b border-[var(--line)] pb-4 mb-7 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">${cat.emoji}</span>
+          <h3 class="font-display font-semibold text-2xl text-[var(--ink)]">${cat.name}</h3>
+        </div>
+        <p class="text-xs sm:text-sm text-[var(--ink-soft)] font-normal">${cat.line}</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        ${cat.items.map(item => `
+          <a href="${item.file}" data-name="${item.name.toLowerCase()} ${item.kind.toLowerCase()}" class="biz-card bg-white border border-[var(--line)] rounded-2xl overflow-hidden shadow-sm group block">
+            <div>
+              <div class="aspect-[4/3] bg-[var(--bg-alt)] relative overflow-hidden">
+                <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/60 via-transparent to-transparent opacity-70"></div>
+                <span class="absolute bottom-3 left-3 text-[10px] font-mono bg-white/95 text-[var(--ink)] font-bold px-2.5 py-1 rounded-md backdrop-blur-sm shadow-sm">
+                  ${item.file}
+                </span>
+              </div>
+              <div class="p-5">
+                <span class="text-[10px] font-mono tracking-wider text-[var(--purple)] uppercase font-bold block mb-1">${item.kind}</span>
+                <h4 class="font-display font-semibold text-lg text-[var(--ink)] mb-3 leading-snug group-hover:text-[var(--purple)] transition-colors">${item.name}</h4>
+                <div class="bg-[var(--bg-alt)] p-3 rounded-xl border border-[var(--line)] text-[11px] text-[var(--ink-soft)] leading-relaxed">
+                  <strong class="text-[var(--ink)] block mb-0.5 font-mono text-[10px] uppercase text-[var(--orange)]">Architecture Stack</strong>
+                  ${item.focus}
+                </div>
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <span class="block text-center text-xs font-mono font-bold tracking-wider uppercase bg-[var(--ink)] text-white py-3 rounded-full group-hover:bg-[var(--purple)] transition-all duration-200 shadow-sm">
+                เปิดชม Live Demo →
+              </span>
+            </div>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.04 });
+  
+  document.querySelectorAll('.cat-group').forEach(el => observer.observe(el));
+}
+
+buildShowroomHTML();
+
+/* ============ SEARCH & FILTER LOGIC ============ */
+const bizSearch = document.getElementById('bizSearch');
+const typeFilters = document.getElementById('typeFilters');
+let currentActiveType = 'all';
+
+function executeFilteringPipeline() {
+  const query = bizSearch.value.trim().toLowerCase();
+  let globalMatchCounter = 0;
+
+  document.querySelectorAll('.cat-group').forEach(group => {
+    const isCategoryMatch = currentActiveType === 'all' || group.dataset.type === currentActiveType;
+    let explicitCardsVisible = 0;
+
+    group.querySelectorAll('.biz-card').forEach(card => {
+      const isSearchMatch = !query || card.dataset.name.includes(query);
+      
+      if (isSearchMatch) {
+        card.style.display = 'flex';
+        explicitCardsVisible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (isCategoryMatch && explicitCardsVisible > 0) {
+      group.style.display = '';
+      globalMatchCounter += explicitCardsVisible;
+    } else {
+      group.style.display = 'none';
+    }
+  });
+
+  document.getElementById('noResults').classList.toggle('hidden', globalMatchCounter > 0);
+}
+
+bizSearch.addEventListener('input', executeFilteringPipeline);
+
+typeFilters.querySelectorAll('button').forEach(button => {
+  button.addEventListener('click', () => {
+    typeFilters.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
+    currentActiveType = button.dataset.type;
+    executeFilteringPipeline();
+  });
+});
+</script>
+</body>
+</html>

@@ -73,28 +73,29 @@ export function getLocalDemoSite(subdomain: string): DemoSite | null {
       brandDetails: {
         name: "AeroPulse Bike Studio",
         description:
-          "ระบบช่วยลูกค้าเลือกจักรยาน แทนการไล่ดูสเปกทีละคัน",
+          "เดโมเต็ม: Smart Finder + AI Expert + Compare + Stock + Line — aeropulse.puchup.com",
         theme: {
-          primary: "#0D182C",
-          accent: "#F0553C",
-          background: "#FCFAF5",
-          text: "#172033",
+          primary: "#101214",
+          accent: "#FF7A33",
+          background: "#101214",
+          text: "#F4F2ED",
         },
         menuLinks: [
+          { label: "Full demo", href: "https://aeropulse.puchup.com" },
           { label: "Case Study", href: "/showcase/aeropulse/" },
-          { label: "Project ONE", href: "/ProjectONE/" },
+          { label: "ShopGuide", href: "/shopguide/" },
         ],
       },
       codeEmbed: {
-        title: "AeroPulse Finder",
+        title: "AeroPulse — ShopGuide preview",
         html,
         fullPage: true,
-        minHeight: 900,
+        minHeight: 1100,
       },
       seo: {
         metaTitle: "AeroPulse Bike Studio | PuchUp Demo",
         metaDescription:
-          "เดโมระบบช่วยเลือกจักรยาน — Smart Finder โดย PuchUp",
+          "พรีวิว ShopGuide — เดโมเต็มอยู่ที่ aeropulse.puchup.com",
       },
     };
   }
