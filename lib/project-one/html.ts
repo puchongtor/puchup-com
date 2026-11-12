@@ -7,6 +7,14 @@ import {
   canonicalDemoSlug,
   type ProjectOnePageKey,
 } from "@/lib/project-one/slugs";
+import {
+  buildDemoJsonLd,
+  demoSeoDescription,
+  demoSeoTitle,
+  getDemoSeo,
+} from "@/lib/project-one/seo";
+import { buildProjectOneSiteFooterHtml } from "@/lib/project-one/site-footer-html";
+import { site } from "@/lib/site";
 
 export {
   DEMO_THEME_FILES,
@@ -25,14 +33,79 @@ function readUtf8(full: string): string | null {
   return readFileSync(full, "utf8");
 }
 
+type RewriteOptions = {
+  /** Theme slug — enables sticky demo ribbon + in-document SEO */
+  demoSlug?: string;
+  /** Inject scrollable site-nav footer (same links as homepage, Project ONE palette) */
+  siteFooter?: "marketing" | "demo";
+};
+
+function stripLegacyDemoBars(html: string): string {
+  // Drop old thin top notices so we don't stack two banners
+  return html.replace(
+    /(<body[^>]*>)(\s*)([\s\S]{0,2500})/i,
+    (full, bodyTag: string, ws: string, headChunk: string) => {
+      const cleaned = headChunk.replace(
+        /<div[^>]*>[\s\S]*?(?:PUCHUP[\s\S]{0,200}?(?:DEMO|ตัวอย่าง)|TOP BAR[\s\S]{0,80}?DEMO)[\s\S]*?<\/div>\s*/i,
+        "",
+      );
+      return `${bodyTag}${ws}${cleaned}`;
+    },
+  );
+}
+
+function injectDemoSeoHead(html: string, slug: string): string {
+  const profile = getDemoSeo(slug);
+  if (!profile) return html;
+  const canonical = canonicalDemoSlug(slug);
+  const path = `/ProjectONE/${canonical}/`;
+  const url = new URL(path, site.url).toString();
+  const title = demoSeoTitle(profile);
+  const description = demoSeoDescription(profile);
+  const keywords = profile.keywords.join(", ");
+  const jsonLd = buildDemoJsonLd(slug);
+
+  const tags = `
+<title>${title}</title>
+<meta name="description" content="${description.replace(/"/g, "&quot;")}">
+<meta name="keywords" content="${keywords.replace(/"/g, "&quot;")}">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="${url}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="th_TH">
+<meta property="og:url" content="${url}">
+<meta property="og:title" content="${title.replace(/"/g, "&quot;")}">
+<meta property="og:description" content="${description.replace(/"/g, "&quot;")}">
+<meta property="og:site_name" content="PuchUp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${title.replace(/"/g, "&quot;")}">
+<meta name="twitter:description" content="${description.replace(/"/g, "&quot;")}">
+${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ""}
+`;
+
+  let out = html;
+  out = out.replace(/<title>[\s\S]*?<\/title>/gi, "");
+  out = out.replace(/<meta\s+name=["']description["'][^>]*>/gi, "");
+  out = out.replace(/<meta\s+name=["']keywords["'][^>]*>/gi, "");
+  out = out.replace(/<link\s+rel=["']canonical["'][^>]*>/gi, "");
+  out = out.replace(/<script type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, "");
+  out = out.replace(/<head([^>]*)>/i, `<head$1>${tags}`);
+  return out;
+}
+
 /**
  * Rewrite Gemini static HTML so it works under Next static export:
  * - images → /images/project-one/
  * - *.html links → /ProjectONE/.../
  * - keep tel:/LINE/maps absolute as-is (conversion CTAs)
+ * - theme pages: sticky demo ribbon + local SEO head tags
  */
-export function rewriteProjectOneHtml(html: string): string {
+export function rewriteProjectOneHtml(html: string, options: RewriteOptions = {}): string {
   let out = html;
+
+  if (options.demoSlug) {
+    out = injectDemoSeoHead(out, options.demoSlug);
+  }
 
   // Ensure srcDoc iframe resolves /assets against site origin
   if (!/<base\s/i.test(out)) {
@@ -102,6 +175,22 @@ export function rewriteProjectOneHtml(html: string): string {
     'href=$1$2$1 target="_top"',
   );
 
+  if (options.demoSlug) {
+    // Parent React chrome owns the sticky banner — strip thin legacy bars
+    out = stripLegacyDemoBars(out);
+  }
+
+  if (options.siteFooter) {
+    // Drop prototype footers, then append scrollable site-nav footer
+    out = out.replace(/<footer\b[\s\S]*?<\/footer>/gi, "");
+    const footer = buildProjectOneSiteFooterHtml(options.siteFooter);
+    if (/<\/body>/i.test(out)) {
+      out = out.replace(/<\/body>/i, `${footer}</body>`);
+    } else {
+      out += footer;
+    }
+  }
+
   return out;
 }
 
@@ -109,7 +198,7 @@ export function loadProjectOnePage(page: ProjectOnePageKey): string | null {
   const file = PROJECT_ONE_PAGES[page];
   const full = path.join(ROOT, "pages", file);
   const raw = readUtf8(full);
-  return raw ? rewriteProjectOneHtml(raw) : null;
+  return raw ? rewriteProjectOneHtml(raw, { siteFooter: "marketing" }) : null;
 }
 
 export function loadDemoTheme(slug: string): string | null {
@@ -118,5 +207,7 @@ export function loadDemoTheme(slug: string): string | null {
   if (!file) return null;
   const full = path.join(ROOT, "themes", file);
   const raw = readUtf8(full);
-  return raw ? rewriteProjectOneHtml(raw) : null;
+  return raw
+    ? rewriteProjectOneHtml(raw, { demoSlug: canonical, siteFooter: "demo" })
+    : null;
 }

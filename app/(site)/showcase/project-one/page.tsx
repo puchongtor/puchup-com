@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Project ONE — Showcase",
-  description: "ตัวอย่างเว็บหน้าเดียว × Google Business สำหรับหลายประเภทธุรกิจ",
+  description: "ตัวอย่างเว็บท้องถิ่น × Google Business — หน้าเดียวหรือขยาย SEO ไม่เกิน 10 หน้า",
 };
 
 const IMG = "/images/showcase/project-one";

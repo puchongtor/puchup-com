@@ -4,24 +4,23 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 const LINE_OA = "https://line.me/R/ti/p/@masterpuch";
 
 const KNOWLEDGE = `
-คุณคือผู้ช่วยของ PuchUp (puchup.com) — พูดภาษาคน เป็นมิตร สุภาพ ไม่ใช้ศัพท์เทคนิคฟุ่มเฟือย
-ห้ามแต่งเรื่องราคาหรือฟีเจอร์ที่ไม่มีในข้อมูลด้านล่าง ถ้าไม่แน่ใจให้ชวนคุยทีมทาง LINE
+คุณคือผู้ช่วยประชาสัมพันธ์ของ PuchUp (puchup.com) — โทนอบอุ่น มั่นใจ เป็นมืออาชีพ พูดภาษาคน ไม่ขายแบบกดดัน
+เป้าหมาย: ช่วยลูกค้าเข้าใจว่า PuchUp ช่วยธุรกิจอย่างไร แนะนำสินค้าที่เหมาะ สรุปความต้องการ และชวนคุยทีมทาง LINE OA @masterpuch
+ห้ามแต่งราคา/ฟีเจอร์ที่ไม่มีในข้อมูลด้านล่าง ถ้าไม่แน่ใจให้ชวนทัก LINE @masterpuch
+ตอบสั้นชัด 2–5 ประโยค เมื่อสนใจจริงค่อยถามประเภทธุรกิจ สิ่งที่อยากได้ และช่องทางติดต่อ
 
 สินค้า/บริการ:
-1) Project ONE — เว็บหน้าเดียวเชื่อม Google Business ให้ลูกค้ารู้จักร้านและอยากมาที่ร้าน
-2) Corporate Site — เว็บบริษัท 20–30 หน้า เน้น SEO/AEO ราคาเริ่มต้น 25,000 บาท
-3) ShopGuide — เว็บสินค้ามีแชท AI พาสู่สินค้า แล้วต่อไป Line OA · เริ่มต้น 35,000 บาท + AI รายเดือนไม่สูง (ประมาณ 990–1,490 บาท/เดือน)
-4) PuchUp Partner — พาร์ทเนอร์ฝ่ายการตลาดออนไลน์ สร้างเว็บและระบบ · รายละเอียดตามข้อตกลง (ห้ามใช้คำว่าแบ่งกำไร)
-5) SaleDesk — ระบบช่วยทีมขาย · ติดตั้งเริ่มต้น 19,000 บาท + รายเดือนตามขนาดทีม: 1–5 คน ประมาณ 1,990–2,990 บาท/เดือน · 6–10 คน ประมาณ 3,490–4,990 บาท/เดือน
-6) OpsCraft — ออกแบบระบบลดขั้นตอนตามธุรกิจลูกค้า · ประเมินตามงาน
+1) Project ONE — เว็บท้องถิ่น × Google Business · Starter 9,900 · Local Acquisition 12,900 · Local SEO Site (≤10 หน้า) 17,900 · ดูแลหมุดรายเดือนพิเศษ 2,500 (จาก 3,500) · เคสบ้านทันตแพทย์ · พร้อมขาย
+2) Corporate Site — เว็บบริษัท 20–30 หน้า SEO/AEO · เริ่มต้น 25,000 บาท
+3) ShopGuide — แชท AI พาสู่สินค้า + Line OA · เริ่มต้น 35,000 บาท + AI รายเดือน ≈ 990–1,490 บาท · ตัวอย่าง AeroPulse
+4) PuchUp Partner — พาร์ทเนอร์การตลาดออนไลน์ · รายละเอียดตามข้อตกลง (ห้ามใช้คำว่าแบ่งกำไร)
+5) SaleDesk — ระบบช่วยทีมขาย · ติดตั้ง 19,000 บาท + รายเดือนทีม 1–5 คน ≈ 1,990–2,990 · 6–10 คน ≈ 3,490–4,990
+6) OpsCraft — ออกแบบระบบตามเคส · ประเมินตามงาน
 กำลังพัฒนา: คุณเจริญ
 
-ผลงานจริง:
-- Advance Pro (advancepro-th.com) — เว็บบริษัท B2B อะไหล่เครื่องจักร
-- Amethez (amethez.com) — แพลตฟอร์มความรู้คริสตัล + ร้านค้า
-- Rabiangprai Valley (rabiangprai.com) — ที่พักรีสอร์ทนครนายก
-
-ช่องทางคุยคนจริง: LINE OA @masterpuch → ${LINE_OA}
+ผลงานจริง: Baan Dental (Project ONE), Advance Pro, Amethez, Rabiangprai Valley
+Showcase: AeroPulse (ShopGuide), Project ONE demos
+ช่องทางคนจริง: LINE OA @masterpuch → ${LINE_OA}
 `.trim();
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -46,34 +45,60 @@ function json(data: unknown, status = 200) {
   });
 }
 
-function detectIntent(text: string): { alert: boolean; reason: string; lead?: Partial<{ name: string; channel: string; need: string }> } {
+function detectIntent(text: string) {
   const t = text.toLowerCase();
   const wantHuman =
-    /คุยกับคน|คุยกับทีม|ขอราคา|ใบเสนอราคา|นัด|โทรหา|ติดต่อกลับ|สนใจจ้าง|อยากได้|ขอเบอร์|line|ไลน์/.test(
+    /คุยกับคน|คุยกับทีม|ขอราคา|ใบเสนอราคา|นัด|โทรหา|ติดต่อกลับ|สนใจจ้าง|อยากได้|ขอเบอร์|line|ไลน์|สนใจ|จ้างทำ|ทำเว็บ/.test(
       t,
     );
-  const channelMatch = text.match(/(?:line|ไลน์|โทร|อีเมล|email)\s*[:：]?\s*([^\s,，]+)/i);
+  const channelMatch = text.match(/(?:line|ไลน์)\s*[:：@]?\s*@?([a-zA-Z0-9._-]{2,32})/i);
+  const phoneMatch = text.match(/(0\d{1,2}[-\s]?\d{3}[-\s]?\d{3,4})/);
   return {
-    alert: wantHuman,
-    reason: wantHuman ? "ลูกค้าต้องการคุยต่อ / ขอราคา / นัด" : "",
+    alert: wantHuman || Boolean(channelMatch || phoneMatch),
+    reason: wantHuman ? "ลูกค้าสนใจ / ขอราคา / ต้องการคุยต่อ" : "มีช่องทางติดต่อ",
     lead: {
-      channel: channelMatch?.[1],
+      channel: channelMatch ? `@${channelMatch[1]}` : undefined,
+      phone: phoneMatch?.[1],
       need: wantHuman ? text.slice(0, 500) : undefined,
     },
   };
 }
 
-async function callClaude(history: ChatMessage[], message: string): Promise<string> {
-  const key = Deno.env.get("ANTHROPIC_API_KEY");
-  if (!key) {
-    return fallbackReply(message);
-  }
-
-  const messages = [
-    ...history.slice(-12).map((m) => ({ role: m.role, content: m.content })),
-    { role: "user" as const, content: message },
+async function callGemini(history: ChatMessage[], message: string): Promise<string | null> {
+  const key = Deno.env.get("GEMINI_API_KEY") || Deno.env.get("GOOGLE_AI_API_KEY");
+  if (!key) return null;
+  const model = Deno.env.get("GEMINI_CHAT_MODEL") || "gemini-2.0-flash";
+  const contents = [
+    ...history.slice(-12).map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    })),
+    { role: "user", parts: [{ text: message }] },
   ];
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+    {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: KNOWLEDGE }] },
+        contents,
+        generationConfig: { temperature: 0.55, maxOutputTokens: 700 },
+      }),
+    },
+  );
+  if (!res.ok) {
+    console.error("gemini error", await res.text());
+    return null;
+  }
+  const data = await res.json();
+  const text = data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text || "").join("").trim();
+  return text || null;
+}
 
+async function callClaude(history: ChatMessage[], message: string): Promise<string | null> {
+  const key = Deno.env.get("ANTHROPIC_API_KEY");
+  if (!key) return null;
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -85,57 +110,93 @@ async function callClaude(history: ChatMessage[], message: string): Promise<stri
       model: Deno.env.get("ANTHROPIC_MODEL_CHAT") || "claude-sonnet-4-20250514",
       max_tokens: 800,
       system: KNOWLEDGE,
-      messages,
+      messages: [
+        ...history.slice(-12).map((m) => ({ role: m.role, content: m.content })),
+        { role: "user", content: message },
+      ],
     }),
   });
-
   if (!res.ok) {
-    const err = await res.text();
-    console.error("anthropic error", err);
-    return fallbackReply(message);
+    console.error("anthropic error", await res.text());
+    return null;
   }
-
   const data = await res.json();
-  const text = data?.content?.find((c: { type: string }) => c.type === "text")?.text;
-  return typeof text === "string" && text.trim() ? text.trim() : fallbackReply(message);
+  return data?.content?.find((c: { type: string }) => c.type === "text")?.text?.trim() || null;
 }
 
 function fallbackReply(message: string): string {
   const m = message.toLowerCase();
   if (/ราคา|เท่าไหร่|กี่บาท/.test(m)) {
-    return "Corporate Site เริ่มต้น 25,000 บาท ส่วนโปรเจคอื่นคุยสcope กับทีมดีกว่าครับ อยากให้ช่วยสรุปสิ่งที่ต้องการแล้วส่งต่อทีมทาง LINE OA @masterpuch ได้เลย";
+    return "Corporate เริ่มต้น 25,000 · ShopGuide เริ่มต้น 35,000 + AI รายเดือน · SaleDesk เริ่มต้น 19,000 + รายเดือนตามทีม — ทัก LINE @masterpuch ได้เลยครับ";
   }
   if (/project\s*one|หน้าเดียว|google/.test(m)) {
-    return "Project ONE คือเว็บหน้าเดียวที่เชื่อม Google Business ให้ลูกค้ารู้จักร้าน ตัดสินใจ และอยากมาที่ร้านครับ เหมาะกับร้านค้า บริการที่อยากให้คนมาที่สถานที่จริง";
+    return "Project ONE คือเว็บหน้าเดียวที่เชื่อม Google Business ให้ลูกค้ารู้จักร้านและอยากมาที่ร้านครับ";
   }
-  if (/sale|ขาย|ทีมขาย/.test(m)) {
-    return "SaleDesk ช่วยทีมขายให้รายงานมีหลักฐาน มีเลขา AI และให้ผู้จัดการเห็นงานค้าง — ไม่ใช่ CRM เต็มรูปแบบครับ";
-  }
-  return `เล่าธุรกิจหรือสิ่งที่อยากให้ช่วยเพิ่มได้นิดนึงนะครับ เดี๋ยวจัดให้ตรงจุด — หรือคุยกับทีมตรงๆ ได้ที่ LINE OA @masterpuch`;
+  return `เล่าธุรกิจหรือสิ่งที่อยากให้ช่วยเพิ่มได้นิดนึงนะครับ — หรือทัก LINE OA @masterpuch ได้เลย`;
 }
 
-async function maybeWebhook(payload: unknown) {
-  const url = Deno.env.get("CONTACT_ALERT_WEBHOOK");
-  if (!url) return;
-  try {
-    await fetch(url, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-  } catch (e) {
-    console.error("webhook failed", e);
+async function generateReply(history: ChatMessage[], message: string) {
+  const gemini = await callGemini(history, message);
+  if (gemini) return { reply: gemini, provider: "gemini" as const };
+  const claude = await callClaude(history, message);
+  if (claude) return { reply: claude, provider: "anthropic" as const };
+  return { reply: fallbackReply(message), provider: "fallback" as const };
+}
+
+async function notifyLine(text: string) {
+  const notifyToken = Deno.env.get("LINE_NOTIFY_TOKEN");
+  if (notifyToken) {
+    try {
+      await fetch("https://notify-api.line.me/api/notify", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${notifyToken}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({ message: text.slice(0, 900) }),
+      });
+    } catch (e) {
+      console.error("LINE Notify failed", e);
+    }
+  }
+
+  const access = Deno.env.get("LINE_CHANNEL_ACCESS_TOKEN");
+  const to = Deno.env.get("LINE_ADMIN_USER_ID");
+  if (access && to) {
+    try {
+      await fetch("https://api.line.me/v2/bot/message/push", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${access}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to,
+          messages: [{ type: "text", text: text.slice(0, 4500) }],
+        }),
+      });
+    } catch (e) {
+      console.error("LINE push failed", e);
+    }
+  }
+
+  const webhook = Deno.env.get("CONTACT_ALERT_WEBHOOK");
+  if (webhook) {
+    try {
+      await fetch(webhook, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ type: "contact_alert", text }),
+      });
+    } catch (e) {
+      console.error("webhook failed", e);
+    }
   }
 }
 
 Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: cors });
-  }
-
-  if (req.method !== "POST") {
-    return json({ error: "method_not_allowed" }, 405);
-  }
+  if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
+  if (req.method !== "POST") return json({ error: "method_not_allowed" }, 405);
 
   let body: Body;
   try {
@@ -147,21 +208,29 @@ Deno.serve(async (req) => {
   const message = (body.message || "").trim();
   if (!message) return json({ error: "empty_message" }, 400);
 
+  const { reply, provider } = await generateReply(body.history || [], message);
+  const intent = detectIntent(message);
+
   const supabaseUrl = Deno.env.get("SUPABASE_URL") || Deno.env.get("NEXT_PUBLIC_SUPABASE_URL");
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+
   if (!supabaseUrl || !serviceKey) {
-    const reply = await callClaude(body.history || [], message);
+    if (intent.alert) {
+      await notifyLine(`🔔 PuchUp Contact\n${message}\n—\n${reply}\n${LINE_OA}`);
+    }
     return json({
       sessionId: body.sessionId || crypto.randomUUID(),
       reply,
-      alert: detectIntent(message).alert,
+      alert: intent.alert,
       persisted: false,
+      provider,
+      aiLive: provider !== "fallback",
+      offline: provider === "fallback",
       lineUrl: LINE_OA,
     });
   }
 
   const admin = createClient(supabaseUrl, serviceKey);
-
   let sessionId = body.sessionId;
   if (!sessionId) {
     const { data, error } = await admin
@@ -179,27 +248,16 @@ Deno.serve(async (req) => {
     sessionId = data.id;
   }
 
-  await admin.from("contact_messages").insert({
-    session_id: sessionId,
-    role: "user",
-    content: message,
-  });
+  await admin.from("contact_messages").insert([
+    { session_id: sessionId, role: "user", content: message },
+    { session_id: sessionId, role: "assistant", content: reply },
+  ]);
 
-  const intent = detectIntent(message);
-  const reply = await callClaude(body.history || [], message);
-
-  await admin.from("contact_messages").insert({
-    session_id: sessionId,
-    role: "assistant",
-    content: reply,
-  });
-
-  if (intent.lead?.need || intent.lead?.channel) {
+  if (intent.lead?.need || intent.lead?.channel || intent.lead?.phone) {
     await admin.from("contact_leads").upsert(
       {
         session_id: sessionId,
-        name: intent.lead.name || null,
-        channel: intent.lead.channel || null,
+        channel: intent.lead.channel || intent.lead.phone || null,
         need: intent.lead.need || null,
         raw_json: { lastMessage: message, intent },
         updated_at: new Date().toISOString(),
@@ -214,12 +272,9 @@ Deno.serve(async (req) => {
       reason: intent.reason,
       payload: { message, reply },
     });
-    await maybeWebhook({
-      type: "contact_alert",
-      sessionId,
-      reason: intent.reason,
-      message,
-    });
+    await notifyLine(
+      `🔔 PuchUp Contact · ${intent.reason}\nSession: ${sessionId}\nลูกค้า: ${message}\nผู้ช่วย: ${reply.slice(0, 400)}\n${LINE_OA}`,
+    );
   }
 
   return json({
@@ -227,6 +282,9 @@ Deno.serve(async (req) => {
     reply,
     alert: intent.alert,
     persisted: true,
+    provider,
+    aiLive: provider !== "fallback",
+    offline: false,
     lineUrl: LINE_OA,
   });
 });

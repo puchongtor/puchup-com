@@ -1,7 +1,5 @@
 /**
- * White-label tenant config สำหรับ SaleDesk
- * Phase 1 ใช้กับเดโม Your Company
- * Phase 2 จะผูกกับแอปจริงหลัง extract จากต้นแบบ Advance (คนละแบรนด์)
+ * White-label tenant — mirrors sale-desk Meridian Parts showcase brand
  */
 
 export type SaleDeskTenant = {
@@ -15,20 +13,22 @@ export type SaleDeskTenant = {
   domain?: string;
 };
 
-export const yourCompanyTenant: SaleDeskTenant = {
-  id: "your-company",
-  name: "Your Company",
-  legalName: "บริษัท อินดัสเทค พาร์ทส์ จำกัด",
+export const meridianTenant: SaleDeskTenant = {
+  id: "meridian-parts",
+  name: "Meridian Parts",
+  legalName: "บริษัท เมอริเดียน พาร์ทส์ จำกัด",
   productName: "SaleDesk",
-  markLetter: "YC",
-  accent: "#0d182c",
-  accentSoft: "#e8eef6",
+  markLetter: "M",
+  accent: "#1b1c1e",
+  accentSoft: "#f2f1ef",
   domain: "sale.puchup.com",
 };
 
-/** รายการ tenant ที่รองรับในโปรดักต์ (ขยายตอน Phase 2) */
-export const saleDeskTenants: SaleDeskTenant[] = [yourCompanyTenant];
+/** @deprecated alias — use meridianTenant */
+export const yourCompanyTenant = meridianTenant;
+
+export const saleDeskTenants: SaleDeskTenant[] = [meridianTenant];
 
 export function getSaleDeskTenant(id: string): SaleDeskTenant {
-  return saleDeskTenants.find((t) => t.id === id) || yourCompanyTenant;
+  return saleDeskTenants.find((t) => t.id === id) || meridianTenant;
 }

@@ -40,11 +40,11 @@ export function HomeFallback() {
         <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-6 md:grid-cols-2 md:gap-12 md:px-8 md:py-24 lg:px-8 lg:py-28">
           <div>
             <Image
-              src={brandAssets.horizontal}
+              src={brandAssets.horizontalDark}
               alt="PuchUp — Level up your business & life"
-              width={420}
-              height={140}
-              className="h-14 w-auto object-contain object-left sm:h-16 md:h-[4.5rem]"
+              width={800}
+              height={268}
+              className="h-28 w-auto max-w-[min(100%,28rem)] object-contain object-left sm:h-32 sm:max-w-[32rem] md:h-36 md:max-w-[36rem] lg:h-40"
               priority
             />
             <p className="mt-8 max-w-md text-xl font-semibold leading-snug text-base md:text-2xl">
@@ -222,7 +222,7 @@ export function HomeFallback() {
             </Link>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {realWorks.map((work) => (
               <a
                 key={work.id}

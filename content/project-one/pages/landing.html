@@ -124,13 +124,10 @@
       <a href="#pricing" class="nav-link">แพ็กเกจราคา</a>
     </div>
 
-    <!-- Actions: Phone + Standard Dark Pill LINE Button -->
+    <!-- Actions: Phone -->
     <div class="flex items-center gap-3 md:gap-4">
-      <a href="tel:0809969495" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-soft)] font-medium hover:text-[var(--purple)] transition">
+      <a href="tel:0809969495" class="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-soft)] font-medium hover:text-[var(--purple)] transition">
         <span>📞</span> 080-996-9495
-      </a>
-      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="text-xs font-mono font-bold tracking-wider bg-[var(--ink)] text-white px-5 py-3 rounded-full hover:opacity-90 transition inline-flex items-center gap-1.5 shadow-sm">
-        <span>💬</span> ติดต่อทาง LINE →
       </a>
     </div>
   </div>
@@ -450,6 +447,37 @@
   </div>
 </section>
 
+<!-- ==================== WORKS ==================== -->
+<section id="works" class="section-pad bg-white reveal border-t hairline">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">WORKS</p>
+      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">ผลงาน</h2>
+      <p class="mt-3 text-sm text-[var(--ink-soft)] max-w-2xl mx-auto leading-relaxed">
+        ตัวอย่างแพ็กเกจขยายเนื้อหา SEO ไม่เกิน 10 หน้า — บริการ อัตราค่ารักษา ทีมแพทย์ วิธีมาคลินิก พร้อม Google Business (โดเมน baandental.com)
+      </p>
+    </div>
+    <a href="https://baandental.vercel.app/" target="_blank" rel="noopener" class="group grid md:grid-cols-2 gap-0 overflow-hidden rounded-3xl border hairline bg-[var(--bg-alt)] shadow-sm hover:shadow-md transition">
+      <div class="relative aspect-[16/11] md:aspect-auto md:min-h-[280px] overflow-hidden">
+        <img src="/images/works/baandental.jpg" alt="บ้านทันตแพทย์ — เคาน์เตอร์คลินิก" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]">
+      </div>
+      <div class="p-8 md:p-10 flex flex-col justify-center">
+        <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--purple)]">Local SEO Site · ≤10 หน้า</span>
+        <h3 class="font-display text-2xl font-semibold mt-2 text-[var(--ink)]">Baan Dental · บ้านทันตแพทย์</h3>
+        <p class="text-xs text-[var(--ink-soft)] mt-1">สาธุประดิษฐ์ · พระราม 3 · ยานนาวา</p>
+        <ul class="mt-5 space-y-2 text-xs text-[var(--ink-soft)]">
+          <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> เนื้อหาบริการแยกหน้า เน้นคำค้นหาท้องถิ่น</li>
+          <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> ตารางอัตราค่ารักษา / ทีมแพทย์ / FAQ ก่อนนัด</li>
+          <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> เชื่อม Google Business · LINE · โทร</li>
+        </ul>
+        <span class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--purple)]">
+          เปิดเว็บจริง →
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
 <!-- ==================== PRICING SECTION ==================== -->
 <section id="pricing" class="section-pad bg-[var(--bg-alt)] reveal">
   <div class="max-w-6xl mx-auto px-5 md:px-8">
@@ -460,58 +488,86 @@
     </div>
     
     <!-- Setup Packages -->
-    <div class="grid md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto mb-16">
+    <div class="grid md:grid-cols-3 gap-6 items-stretch mb-16">
       
       <!-- Tier 1: Starter Web (9,900) -->
-      <div class="rounded-3xl bg-white border hairline p-8 md:p-10 flex flex-col justify-between shadow-sm">
+      <div class="rounded-3xl bg-white border hairline p-7 md:p-8 flex flex-col justify-between shadow-sm">
         <div>
           <span class="font-mono text-xs text-[var(--ink-faint)] font-bold uppercase">Single Service Option</span>
-          <h3 class="font-display text-2xl font-semibold mt-2 mb-2 text-[var(--ink)]">Starter Web</h3>
-          <p class="text-xs text-[var(--ink-soft)] mb-6 leading-relaxed">
+          <h3 class="font-display text-xl font-semibold mt-2 mb-2 text-[var(--ink)]">Starter Web</h3>
+          <p class="text-xs text-[var(--ink-soft)] mb-5 leading-relaxed">
             หน้าเว็บ One-Page คุณภาพสูง สำหรับธุรกิจที่ต้องการนำลิงก์ไปยิงแอด แปะ LINE OA หรือมีหมุด Google Maps ดูแลเองอยู่แล้ว
           </p>
-          <div class="flex items-baseline gap-2 mb-6 pb-6 border-b hairline">
-            <span class="font-display text-3xl md:text-4xl font-bold text-[var(--ink)]">฿9,900</span>
+          <div class="flex items-baseline gap-2 mb-5 pb-5 border-b hairline">
+            <span class="font-display text-3xl font-bold text-[var(--ink)]">฿9,900</span>
             <span class="text-sm text-[var(--ink-faint)] line-through font-mono">฿19,900</span>
           </div>
-          <ul class="space-y-3 text-xs text-[var(--ink-soft)]">
-            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>High-Conversion One-Page:</strong> ดีไซน์ปิดการขายเฉพาะธุรกิจ รองรับมือถือ</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>Floating Action Bar:</strong> ปุ่มโทรออก แอด LINE แผนที่ร้าน</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>Schema Code:</strong> ติดตั้ง LocalBusiness JSON-LD</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ฟรีปีแรก:</strong> Domain .com + Fast Cloud Hosting + SSL ครบ 1 ปี</span></li>
-            <li class="flex items-start gap-2 text-[var(--ink-faint)]"><span class="text-rose-400 font-bold">✕</span> <span>ไม่รวมการเซ็ตอัป Google Business Profile และ Standee QR Code</span></li>
+          <ul class="space-y-2.5 text-xs text-[var(--ink-soft)]">
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>High-Conversion One-Page:</strong> ดีไซน์ปิดการขายเฉพาะธุรกิจ</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>Floating Action Bar:</strong> โทร / LINE / แผนที่</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>Schema Code:</strong> LocalBusiness JSON-LD</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ฟรีปีแรก:</strong> Domain .com + Hosting + SSL</span></li>
+            <li class="flex items-start gap-2 text-[var(--ink-faint)]"><span class="text-rose-400 font-bold">✕</span> <span>ไม่รวม Google Business Setup</span></li>
           </ul>
         </div>
-        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-8 border border-[var(--ink)] rounded-full py-3.5 text-xs font-mono font-bold uppercase tracking-wider hover:bg-[var(--ink)] hover:text-white transition">
-          เลือกแพ็กเกจ STARTER WEB (฿9,900) →
+        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 border border-[var(--ink)] rounded-full py-3 text-[11px] font-mono font-bold uppercase tracking-wider hover:bg-[var(--ink)] hover:text-white transition">
+          STARTER WEB (฿9,900) →
         </a>
       </div>
 
       <!-- Tier 2: Local Acquisition System (12,900 - Recommended) -->
-      <div class="rounded-3xl bg-[var(--ink)] text-white p-8 md:p-10 shadow-2xl flex flex-col justify-between relative border border-purple-500/30">
-        <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-1 rounded-full grad-bg text-white shadow-md">
-          ★ แนะนำสำหรับธุรกิจหน้าร้าน / คุ้มค่าสูงสุด
+      <div class="rounded-3xl bg-[var(--ink)] text-white p-7 md:p-8 shadow-2xl flex flex-col justify-between relative border border-purple-500/30">
+        <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-1 rounded-full grad-bg text-white shadow-md whitespace-nowrap">
+          ★ แนะนำ · คุ้มค่าสูงสุด
         </span>
         <div>
           <span class="font-mono text-xs text-[var(--orange)] font-bold uppercase block mt-2">Full Acquisition Suite</span>
-          <h3 class="font-display text-2xl font-semibold mt-2 mb-2 text-white">Local Acquisition System</h3>
-          <p class="text-xs text-gray-300 mb-6 leading-relaxed">
+          <h3 class="font-display text-xl font-semibold mt-2 mb-2 text-white">Local Acquisition</h3>
+          <p class="text-xs text-gray-300 mb-5 leading-relaxed">
             เชื่อมหน้าเว็บเข้ากับหมุด Google Maps ดักจับลูกค้าค้นหาในรัศมีรอบร้าน และส่งตรงเข้าสู่การนัดหมายทันที
           </p>
-          <div class="flex items-baseline gap-2 mb-6 pb-6 border-b border-white/10">
-            <span class="font-display text-4xl font-bold text-white grad-text">฿12,900</span>
+          <div class="flex items-baseline gap-2 mb-5 pb-5 border-b border-white/10">
+            <span class="font-display text-3xl font-bold text-white grad-text">฿12,900</span>
             <span class="text-sm text-gray-400 line-through font-mono">฿24,900</span>
           </div>
-          <ul class="space-y-3 text-xs text-gray-300">
-            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>ครบทุกฟีเจอร์ใน Starter Web:</strong> เว็บ One-Page พร้อมปุ่ม Floating Action Bar</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Google Business Setup (มูลค่า 5,000.-):</strong> ปักหมุด/เคลมหมุด, Category, Local Keywords</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Integration & Tracking:</strong> ผูกหมุดเข้ากับเว็บ พร้อมติดตั้ง UTM Tracking</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Local Review Standee:</strong> ออกแบบป้าย Standee อะคริลิก QR Code สำหรับตั้งหน้าร้าน</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>ฟรีปีแรก:</strong> Domain .com + Fast Cloud Hosting + SSL ครบ 1 ปีเต็ม</span></li>
+          <ul class="space-y-2.5 text-xs text-gray-300">
+            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>ครบ Starter Web:</strong> One-Page + Floating Action</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Google Business Setup:</strong> ปัก/เคลมหมุด, Category, Keywords</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Integration & Tracking:</strong> ผูกหมุด + UTM</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Local Review Standee:</strong> ป้าย QR หน้าร้าน</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>ฟรีปีแรก:</strong> Domain + Hosting + SSL</span></li>
           </ul>
         </div>
-        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-8 grad-bg rounded-full py-4 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/30 hover:opacity-90 transition">
-          ติดตั้งระบบครบวงจร (฿12,900) →
+        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 grad-bg rounded-full py-3.5 text-[11px] font-mono font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/30 hover:opacity-90 transition">
+          ติดตั้งครบวงจร (฿12,900) →
+        </a>
+      </div>
+
+      <!-- Tier 3: Local SEO Site (17,900) -->
+      <div class="rounded-3xl bg-white border border-purple-200 p-7 md:p-8 flex flex-col justify-between shadow-sm relative">
+        <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-1 rounded-full bg-purple-50 text-[var(--purple)] border border-purple-200 whitespace-nowrap">
+          Addon จาก ฿12,900
+        </span>
+        <div>
+          <span class="font-mono text-xs text-[var(--purple)] font-bold uppercase block mt-2">Content Depth · SEO</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-2 text-[var(--ink)]">Local SEO Site</h3>
+          <p class="text-xs text-[var(--ink-soft)] mb-5 leading-relaxed">
+            ขยายจากหน้าเดียวเป็นเว็บไม่เกิน 10 หน้า — เนื้อหาเข้มขึ้น เน้น SEO ท้องถิ่น มี Google Business ครบ เช่นเคสบ้านทันตแพทย์
+          </p>
+          <div class="flex items-baseline gap-2 mb-5 pb-5 border-b hairline">
+            <span class="font-display text-3xl font-bold text-[var(--purple)]">฿17,900</span>
+            <span class="text-sm text-[var(--ink-faint)] line-through font-mono">฿29,900</span>
+          </div>
+          <ul class="space-y-2.5 text-xs text-[var(--ink-soft)]">
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ครบ Local Acquisition:</strong> รวม Google Business Setup</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ไม่เกิน 10 หน้า:</strong> บริการ / ราคา / ทีม / วิธีมา ฯลฯ</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>เนื้อหา SEO เข้ม:</strong> คำค้นหาท้องถิ่น + โครงหน้าชัด</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>Schema & Internal Links:</strong> รองรับการค้นหาเจอระยะยาว</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ฟรีปีแรก:</strong> Domain .com + Hosting + SSL</span></li>
+          </ul>
+        </div>
+        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 border border-[var(--purple)] text-[var(--purple)] rounded-full py-3 text-[11px] font-mono font-bold uppercase tracking-wider hover:bg-[var(--purple)] hover:text-white transition">
+          LOCAL SEO SITE (฿17,900) →
         </a>
       </div>
 
@@ -542,13 +598,15 @@
           <div>
             <div class="flex justify-between items-center mb-2">
               <span class="font-mono text-[10px] text-[var(--purple)] uppercase font-bold">Option เสริมรายเดือน</span>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-[var(--purple)] font-semibold">สัญญา 3–6 เดือน</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-[var(--purple)] font-semibold">พิเศษ</span>
             </div>
             <h4 class="font-display font-semibold text-base text-[var(--ink)] mb-1">บริการดูแลและดันอันดับหมุดรายเดือน</h4>
             <p class="text-xs text-[var(--ink-soft)] mb-4 leading-relaxed">โพสต์คอนเทนต์บน Maps 1-2 ครั้ง/สัปดาห์, อัปโหลดรูป Geo-tagging, ตอบรีวิว, ส่ง Report สิ้นเดือน</p>
           </div>
-          <div class="font-display text-2xl font-bold text-[var(--purple)] border-t hairline pt-4">
-            ฿3,500 <span class="text-xs font-mono font-normal text-[var(--ink-faint)]">/ เดือน</span>
+          <div class="font-display text-2xl font-bold text-[var(--purple)] border-t hairline pt-4 flex items-baseline gap-2 flex-wrap">
+            <span>฿2,500</span>
+            <span class="text-sm font-mono font-normal text-[var(--ink-faint)] line-through">฿3,500</span>
+            <span class="text-xs font-mono font-normal text-[var(--ink-faint)]">/ เดือน</span>
           </div>
         </div>
       </div>
@@ -579,8 +637,8 @@
       ให้ทีมดีไซเนอร์ของ Project One ช่วยวิเคราะห์และออกแบบเว็บไซต์หน้าเดียวที่ทรงพลังและตอบโจทย์ธุรกิจของคุณจริง
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="w-full sm:w-auto grad-bg text-white rounded-full px-8 py-4 font-medium text-sm hover:opacity-95 transition shadow-lg shadow-purple-500/20 inline-flex items-center justify-center gap-2">
-        <span>💬</span> ติดต่อทาง LINE →
+      <a href="tel:0809969495" class="w-full sm:w-auto grad-bg text-white rounded-full px-8 py-4 font-medium text-sm hover:opacity-95 transition shadow-lg shadow-purple-500/20 inline-flex items-center justify-center gap-2">
+        <span>📞</span> โทร 080-996-9495
       </a>
       <a href="demo.html" class="w-full sm:w-auto border border-white/20 bg-white/5 rounded-full px-8 py-4 font-medium text-sm text-white hover:bg-white/10 transition">
         ชมตัวอย่าง Demo 30 ธุรกิจ
@@ -599,7 +657,6 @@
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-[var(--ink-soft)]">
       <a href="tel:0809969495" class="hover:text-[var(--purple)] transition">📞 080-996-9495</a>
-      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="hover:text-[var(--purple)] transition">💬 ติดต่อทาง LINE →</a>
     </div>
     <p>© 2026 Project One. All rights reserved.</p>
   </div>
@@ -619,9 +676,10 @@ document.querySelectorAll('[data-gtab]').forEach(btn=>{
 /* FAQ logic */
 const faqs = [
   { q:'Project ONE ต่างจาก Landing Page ราคาถูกทั่วไปอย่างไร?', a:'Landing Page ส่วนใหญ่ออกแบบมาเพื่อขายสินค้าชิ้นเดียวแบบรีบปิดการขาย แต่ Project ONE ออกแบบมาเพื่อเป็น "ตัวตนดิจิทัลของธุรกิจ" ที่รวบรวมทั้งเรื่องเล่า ความเชี่ยวชาญ สินค้า/บริการ รีวิว แผนที่ และระบบนำทางไว้ครบถ้วนในที่เดียว' },
+  { q:'Local SEO Site ฿17,900 ต่างจาก ฿12,900 อย่างไร?', a:'แพ็กเกจ ฿12,900 เป็น One-Page + Google Business ส่วน ฿17,900 คือ addon ขยายเนื้อหาให้เข้มขึ้น ไม่เกิน 10 หน้า เน้น SEO ท้องถิ่น (เช่นเคสบ้านทันตแพทย์) ยังรวม Google Business Setup ครบ' },
   { q:'มีหน้าร้านจริง ต้องเตรียมข้อมูลอะไรบ้าง?', a:'เตรียมเพียงรูปถ่ายบรรยากาศร้าน เมนู/บริการ ข้อมูลเวลาเปิด-ปิด และลิงก์ Google Maps ทางทีม Project One จะนำมาร้อยเรียงสถาปัตยกรรมข้อมูลให้ทั้งหมด' },
   { q:'สามารถเชื่อมต่อกับ Google Business Profile ได้อย่างไร?', a:'เราจะวางโครงสร้าง Local SEO และเชื่อมพิกัด รวมถึงจัดวางปุ่ม Google Maps และดึงรีวิวจริงมาแสดงบนหน้าเว็บ เพื่อให้ลูกค้าที่ค้นหาบน Google มั่นใจและกดนำทางมาได้ทันที' },
-  { q:'ในอนาคตถ้าต้องการเพิ่มระบบหรือขยายหน้าทำได้ไหม?', a:'ทำได้ทันที โครงสร้างโค้ดของ Project ONE ถูกวางแบบ Semantic Clean Code ที่พร้อมต่อยอดเป็นเว็บไซต์หลายหน้า หรือเชื่อมต่อระบบ CRM/Booking ภายนอกได้ตลอดเวลา' },
+  { q:'บริการดันอันดับหมุดรายเดือนทำอะไรบ้าง?', a:'โพสต์คอนเทนต์บน Maps 1–2 ครั้ง/สัปดาห์ อัปโหลดรูป Geo-tagging ตอบรีวิว และส่ง Report สิ้นเดือน — ราคาพิเศษ ฿2,500/เดือน (จาก ฿3,500)' },
 ];
 document.getElementById('faqList').innerHTML = faqs.map((f,i)=>`
   <div class="border hairline rounded-2xl bg-white overflow-hidden shadow-sm">

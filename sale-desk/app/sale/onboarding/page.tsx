@@ -41,7 +41,7 @@ export default function SaleOnboardingPage() {
               type="checkbox"
               checked={accepted}
               onChange={(e) => setAccepted(e.target.checked)}
-              className="h-4 w-4 accent-[#003478]"
+              className="h-4 w-4 accent-[#1b1c1e]"
             />
             ฉันรับทราบและยอมรับ
           </label>

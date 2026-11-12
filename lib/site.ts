@@ -1,7 +1,7 @@
 export const site = {
   name: "PuchUp",
   domain: "puchup.com",
-  url: "https://puchup.com",
+  url: "https://www.puchup.com",
   tagline: "Level up your business",
   description:
     "PuchUp สร้างเว็บไซต์และระบบดิจิทัลที่ช่วยธุรกิจหาลูกค้า ปิดการขาย และทำงานได้เร็วขึ้น",
@@ -43,10 +43,11 @@ export const catalogProducts: CatalogProduct[] = [
   {
     id: "project-one",
     name: "Project ONE",
-    nameTh: "เว็บหน้าเดียว × Google Business",
+    nameTh: "เว็บท้องถิ่น × Google Business",
     href: "/ProjectONE/",
     blurb:
-      "เว็บไซต์หน้าเดียวที่เชื่อม Google Business ให้ลูกค้ารู้จัก ร้าน ตัดสินใจ และอยากมาที่ร้าน",
+      "เว็บท้องถิ่นเชื่อม Google Business — จากหน้าเดียวถึงขยาย SEO ไม่เกิน 10 หน้า ให้ลูกค้ารู้จัก ตัดสินใจ และมาที่ร้าน",
+    price: "เริ่มต้น 9,900 บาท",
     status: "พร้อมขาย",
     image: "/images/home/product-project-one.jpg",
     accent: "จากร้านจริงสู่หน้าเว็บ",

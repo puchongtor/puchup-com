@@ -13,6 +13,18 @@ export type RealWork = {
 /** Live client sites only — demos stay elsewhere until ready to merge */
 export const realWorks: RealWork[] = [
   {
+    id: "baandental",
+    name: "Baan Dental",
+    nameTh: "บ้านทันตแพทย์ · สาธุประดิษฐ์ / พระราม 3",
+    url: "https://baandental.vercel.app/",
+    category: "Project ONE · Local SEO",
+    summary:
+      "คลินิกทันตกรรมหลายหน้า เน้น SEO ท้องถิ่น — บริการ อัตราค่ารักษา ทีมแพทย์ วิธีมาคลินิก และ Google Business (โดเมน baandental.com)",
+    focus: ["ไม่เกิน 10 หน้าหลัก", "เนื้อหา SEO เข้ม", "Google Business", "LINE / นัดหมาย"],
+    image: "/images/works/baandental.jpg",
+    productLink: { href: "/ProjectONE/", label: "แนว Project ONE" },
+  },
+  {
     id: "advancepro",
     name: "Advance Pro",
     nameTh: "อะไหล่เครื่องจักรอุตสาหกรรม",

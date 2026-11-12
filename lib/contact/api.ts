@@ -12,12 +12,40 @@ export type ContactChatResponse = {
   persisted: boolean;
   lineUrl: string;
   offline?: boolean;
+  provider?: string;
+  aiLive?: boolean;
+  notified?: boolean;
 };
 
-function edgeFunctionUrl(): string | null {
-  const base = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
-  if (!base) return null;
-  return `${base}/functions/v1/contact-chat`;
+/** Prefer SaleDesk live API (จุดขายแชท AI) then Supabase Edge Function. */
+function resolveContactEndpoints(): string[] {
+  const urls: string[] = [];
+  const explicit = process.env.NEXT_PUBLIC_CONTACT_CHAT_URL?.replace(/\/$/, "");
+  if (explicit) urls.push(explicit);
+
+  const sale = process.env.NEXT_PUBLIC_SALE_URL?.replace(/\/$/, "");
+  if (sale) urls.push(`${sale}/api/contact-chat`);
+
+  // Production defaults when env was not baked into static export
+  urls.push("https://sale.puchup.com/api/contact-chat");
+
+  const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
+  if (supabase) urls.push(`${supabase}/functions/v1/contact-chat`);
+
+  return [...new Set(urls)];
+}
+
+function offlineResponse(message: string, sessionId?: string | null): ContactChatResponse {
+  return {
+    sessionId: sessionId || crypto.randomUUID(),
+    reply: localKnowledgeReply(message),
+    alert: /คุยกับ|ขอราคา|ไลน์|line|นัด|ติดต่อ|สนใจ/i.test(message),
+    persisted: false,
+    lineUrl: "https://line.me/R/ti/p/@masterpuch",
+    offline: true,
+    aiLive: false,
+    provider: "offline",
+  };
 }
 
 export async function sendContactChat(input: {
@@ -26,46 +54,45 @@ export async function sendContactChat(input: {
   history: ContactChatMessage[];
   pagePath?: string;
 }): Promise<ContactChatResponse> {
-  const url = edgeFunctionUrl();
+  const endpoints = resolveContactEndpoints();
   const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !anon) {
-    return {
-      sessionId: input.sessionId || crypto.randomUUID(),
-      reply: localKnowledgeReply(input.message),
-      alert: /คุยกับ|ขอราคา|ไลน์|line|นัด|ติดต่อ/i.test(input.message),
-      persisted: false,
-      lineUrl: "https://line.me/R/ti/p/@masterpuch",
-      offline: true,
-    };
-  }
-
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      apikey: anon,
-      Authorization: `Bearer ${anon}`,
-    },
-    body: JSON.stringify({
-      sessionId: input.sessionId || undefined,
-      message: input.message,
-      history: input.history,
-      pagePath: input.pagePath || "/contact/",
-      userAgent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
-    }),
+  const body = JSON.stringify({
+    sessionId: input.sessionId || undefined,
+    message: input.message,
+    history: input.history,
+    pagePath: input.pagePath || "/contact/",
+    userAgent: typeof navigator !== "undefined" ? navigator.userAgent : undefined,
   });
 
-  if (!res.ok) {
-    return {
-      sessionId: input.sessionId || crypto.randomUUID(),
-      reply: localKnowledgeReply(input.message),
-      alert: false,
-      persisted: false,
-      lineUrl: "https://line.me/R/ti/p/@masterpuch",
-      offline: true,
-    };
+  for (const url of endpoints) {
+    try {
+      const headers: Record<string, string> = {
+        "content-type": "application/json",
+      };
+      if (url.includes("/functions/v1/") && anon) {
+        headers.apikey = anon;
+        headers.Authorization = `Bearer ${anon}`;
+      }
+
+      const res = await fetch(url, {
+        method: "POST",
+        headers,
+        body,
+      });
+
+      if (!res.ok) continue;
+
+      const data = (await res.json()) as ContactChatResponse;
+      if (!data?.reply) continue;
+      return {
+        ...data,
+        offline: data.offline === true,
+        aiLive: data.aiLive !== false && data.provider !== "offline",
+      };
+    } catch {
+      // try next endpoint
+    }
   }
 
-  return (await res.json()) as ContactChatResponse;
+  return offlineResponse(input.message, input.sessionId);
 }

@@ -23,7 +23,7 @@ export const corporateProduct = {
     handoff: "/images/products/corporate/handoff.jpg",
   },
   vsProjectOne:
-    "ต่างจาก Project ONE ที่เป็นหน้าเดียว × Google Business — Corporate Site คือโครงหลายหน้าของบริษัท ที่ต้องการความลึก ความน่าเชื่อถือ และการค้นหาเจอในระยะยาว",
+    "ต่างจาก Project ONE ที่โฟกัสธุรกิจท้องถิ่น (หน้าเดียวหรือขยาย SEO ไม่เกิน 10 หน้า × Google Business) — Corporate Site คือโครง 20–30 หน้าของบริษัท ที่ต้องการความลึก ความน่าเชื่อถือ และการค้นหาเจอในระยะยาว",
 } as const;
 
 export const corporateProblems = [

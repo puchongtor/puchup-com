@@ -21,7 +21,7 @@ export const ASSISTANT_PERSONAS: AssistantPersona[] = [
     name: "นารา",
     gender: "female",
     vibe: "อบอุ่น เป็นกันเอง",
-    accent: "#0d182c",
+    accent: "#1b1c1e",
     avatarSrc: "/images/sale/assistants/nara.jpg",
   },
   {

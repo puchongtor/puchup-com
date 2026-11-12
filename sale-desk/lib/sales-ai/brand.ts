@@ -1,19 +1,23 @@
-/** White-label demo tenant for PuchUp SaleDesk (not Advance Pro) */
+/**
+ * White-label tenant for PuchUp SaleDesk showcase
+ * Real app at sale.puchup.com — not Advance Pro branding
+ */
 export const SALE_BRAND = {
-  orgId: "your-company",
+  orgId: "meridian-parts",
   /** Display name on app */
-  name: "Your Company",
-  /** Sample industrial company for demos */
-  legalName: "บริษัท อินดัสเทค พาร์ทส์ จำกัด",
-  legalNameEn: "IndusTech Parts Co., Ltd.",
+  name: "Meridian Parts",
+  legalName: "บริษัท เมอริเดียน พาร์ทส์ จำกัด",
+  legalNameEn: "Meridian Parts Co., Ltd.",
   productName: "SaleDesk",
-  appName: "Your Company SaleDesk",
-  shortAppName: "YC Sale",
+  appName: "Meridian SaleDesk",
+  shortAppName: "Meridian Sale",
   logoSrc: "/brand-mark.svg",
-  logoAlt: "Your Company",
+  logoAlt: "Meridian Parts",
   domain: "sale.puchup.com",
   siteUrl: "https://puchup.com",
   supportEmail: "hello@puchup.com",
-  themeColor: "#0d182c",
+  /** Elegant graphite — soft brass accents in CSS */
+  themeColor: "#1b1c1e",
   sampleIndustry: "อะไหล่เครื่องจักรอุตสาหกรรม / งานซ่อมบำรุงโรงงาน",
+  demoLoginHint: "manager01 / Sale#2026",
 } as const;

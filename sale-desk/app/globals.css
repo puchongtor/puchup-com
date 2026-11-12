@@ -1,23 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --sale-navy: #0d182c;
-  --sale-muted: #596273;
-  --sale-cream: #f5eedc;
-  --sale-base: #fcfaf5;
-  --sale-line: #e2e8f0;
+  --sale-navy: #1b1c1e;
+  --sale-muted: #6b6a67;
+  --sale-cream: #f5f4f2;
+  --sale-base: #faf9f7;
+  --sale-line: #e4e2de;
+  --sale-accent: #9a8b6e;
 }
 
 html,
 body {
   margin: 0;
+  padding: 0;
   min-height: 100%;
-  background: var(--sale-base);
-  color: var(--sale-navy);
-  font-family:
-    "IBM Plex Sans Thai",
-    "IBM Plex Sans",
-    ui-sans-serif,
-    system-ui,
-    sans-serif;
+  background: var(--sale-cream);
+  color: #1b1c1e;
 }

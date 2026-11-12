@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ThemeDocument } from "@/components/demos/ThemeDocument";
+import { ProjectOneDemoChrome } from "@/components/demos/ProjectOneDemoChrome";
 import { ProjectOneCmsView } from "@/components/demos/ProjectOneCmsView";
 import {
   allShowroomItems,
@@ -13,6 +14,11 @@ import {
   hasDemoTheme,
   loadDemoTheme,
 } from "@/lib/project-one/html";
+import {
+  buildDemoJsonLd,
+  buildDemoMetadata,
+  getDemoSeo,
+} from "@/lib/project-one/seo";
 import { sanityFetch } from "@/lib/sanity/client";
 import {
   projectOneDemoBySlugQuery,
@@ -50,30 +56,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     params: { slug: canonical },
     tags: [`projectOneDemo:${canonical}`],
   });
-  const item = findShowroomItem(canonical);
 
-  if (cms) {
+  // Prefer Cursor SEO pack for live HTML themes; CMS can override title/desc if set
+  const base = buildDemoMetadata(canonical);
+  if (cms?.seo?.metaTitle || cms?.seo?.metaDescription) {
     return {
-      title: cms.seo?.metaTitle || `${cms.title} | Project ONE Demo`,
-      description: cms.seo?.metaDescription || cms.hero?.tagline,
-      robots: cms.seo?.noIndex ? { index: false, follow: false } : undefined,
+      ...base,
+      title: cms.seo?.metaTitle || base.title,
+      description: cms.seo?.metaDescription || base.description,
+      robots: cms.seo?.noIndex ? { index: false, follow: false } : base.robots,
     };
   }
-
-  if (!item) {
-    return { title: "Demo not found" };
-  }
-
-  return {
-    title: `${item.name} | Project ONE Demo`,
-    description: `${item.kind} — ${item.focus}`,
-  };
+  return base;
 }
 
 export default async function ProjectOneBusinessPage({ params }: Props) {
   const { slug } = await params;
   const canonical = canonicalDemoSlug(slug);
   const item = findShowroomItem(canonical);
+  const jsonLd = buildDemoJsonLd(canonical);
+  const seo = getDemoSeo(canonical);
+  const businessType = seo?.businessType || item?.kind;
 
   const cms = await sanityFetch<ProjectOneDemo>({
     query: projectOneDemoBySlugQuery,
@@ -81,14 +84,35 @@ export default async function ProjectOneBusinessPage({ params }: Props) {
     tags: [`projectOneDemo:${canonical}`],
   });
 
+  const jsonLdTag = jsonLd ? (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  ) : null;
+
   if (cms?.hero?.heading || (cms?.menuOrServices && cms.menuOrServices.length > 0)) {
-    return <ProjectOneCmsView demo={cms} />;
+    return (
+      <>
+        {jsonLdTag}
+        <ProjectOneDemoChrome businessType={cms.businessType || businessType}>
+          <ProjectOneCmsView demo={cms} />
+        </ProjectOneDemoChrome>
+      </>
+    );
   }
 
   if (hasDemoTheme(canonical)) {
     const html = loadDemoTheme(canonical);
     if (html) {
-      return <ThemeDocument title={item?.name || canonical} srcDoc={html} />;
+      return (
+        <>
+          {jsonLdTag}
+          <ProjectOneDemoChrome businessType={businessType}>
+            <ThemeDocument title={item?.name || canonical} srcDoc={html} />
+          </ProjectOneDemoChrome>
+        </>
+      );
     }
   }
 

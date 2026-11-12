@@ -9,10 +9,7 @@ export const saledeskProduct = {
   tagline: "รายงานเยี่ยมมีหลักฐาน · เลขา AI ช่วยจัด · ผู้จัดการเห็นงานค้าง",
   blurb:
     "ระบบช่วยทีมขายภาคสนาม — ไม่ใช่ CRM เต็มรูปแบบ แต่ทำให้ข้อมูลจากหน้างานเข้าถึงผู้จัดการได้จริง",
-  liveAppUrl: process.env.NEXT_PUBLIC_SALE_URL || "https://sale.puchup.com",
-  liveAppLocalUrl: "http://localhost:3002/sale",
-  demoLogin: "manager01 / Sale#2026",
-  sampleCompany: "Your Company · IndusTech Parts",
+  sampleCompany: "Meridian Parts · บริษัท เมอริเดียน พาร์ทส์ จำกัด",
   images: {
     hero: "/images/products/saledesk/hero.jpg",
     problem: "/images/products/saledesk/problem.jpg",
@@ -67,7 +64,7 @@ export const saledeskPricingTiers = [
 
 export const saledeskSteps = [
   { n: "01", title: "คุยทีมขาย", body: "ดูจำนวนคน รูปแบบเยี่ยม และปัญหาจริง" },
-  { n: "02", title: "ตั้งองค์กรตัวอย่าง", body: "เปิด Your Company / ข้อมูลเริ่มต้น" },
+  { n: "02", title: "ตั้งองค์กรตัวอย่าง", body: "เปิด Meridian Parts / ข้อมูลเริ่มต้น" },
   { n: "03", title: "ออนบอร์ด", body: "สอนเซลล์–ผู้จัดการให้ใช้ในงานจริง" },
   { n: "04", title: "ปรับจากสนาม", body: "เก็บ feedback แล้วจูนให้ทีมใช้ต่อเนื่อง" },
 ] as const;

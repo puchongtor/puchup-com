@@ -177,14 +177,23 @@ export function ProductFinalCta(props: { title: string; body: string; extraHref?
               {site.cta.primary}
             </Link>
             {props.extraHref ? (
-              <a
-                href={props.extraHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex rounded-xl border border-base/30 px-5 py-3 text-[15px] font-semibold text-base transition hover:bg-base/10"
-              >
-                {props.extraLabel}
-              </a>
+              props.extraHref.startsWith("/") ? (
+                <Link
+                  href={props.extraHref}
+                  className="inline-flex rounded-xl border border-base/30 px-5 py-3 text-[15px] font-semibold text-base transition hover:bg-base/10"
+                >
+                  {props.extraLabel}
+                </Link>
+              ) : (
+                <a
+                  href={props.extraHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-xl border border-base/30 px-5 py-3 text-[15px] font-semibold text-base transition hover:bg-base/10"
+                >
+                  {props.extraLabel}
+                </a>
+              )
             ) : (
               <a
                 href={LINE_OA_URL}

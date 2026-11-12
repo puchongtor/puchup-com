@@ -14,8 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "opscraft/",
     "sale/",
     "sale/demo/",
-    "sale/demo/sale/",
-    "sale/demo/manager/",
     "about/",
     "contact/",
     "ProjectONE/",

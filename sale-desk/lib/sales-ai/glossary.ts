@@ -204,7 +204,7 @@ export function formatGlossaryForPrompt(opts?: {
   }
 
   const lines: string[] = [
-    `IndusTech Parts / Your Company product glossary. Use only for preferred spelling when a term matches. If the salesperson mentions a product/need not listed here, still record it as an opportunity for handoff — never refuse or say the company does not sell it.`,
+    `Meridian Parts product glossary. Use only for preferred spelling when a term matches. If the salesperson mentions a product/need not listed here, still record it as an opportunity for handoff — never refuse or say the company does not sell it.`,
   ];
 
   for (const [cat, list] of byCat) {

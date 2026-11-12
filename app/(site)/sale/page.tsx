@@ -33,11 +33,10 @@ export default function SaleDeskLandingPage() {
         name={p.name}
         nameTh={p.nameTh}
         tagline={p.tagline}
-        note={`ตัวอย่างองค์กร: ${p.sampleCompany}`}
+        note={`DEMO · ตัวอย่างองค์กร: ${p.sampleCompany}`}
         heroImage={p.images.hero}
-        secondaryHref={p.liveAppUrl}
-        secondaryLabel="เปิดระบบจริง Your Company"
-        secondaryExternal
+        secondaryHref={saleDesk.demoPath}
+        secondaryLabel="เปิดตัวอย่างเชิงโต้ตอบ"
       />
 
       <SplitImageCopy
@@ -64,21 +63,21 @@ export default function SaleDeskLandingPage() {
               ))}
             </div>
             <p className="mt-6 text-[13.5px] text-muted">
-              ลองระบบจริง: <span className="font-semibold text-ink">{p.demoLogin}</span>
-              <br />
-              local: {p.liveAppLocalUrl}
+              ดูตัวอย่างเชิงโต้ตอบมุมเซลล์และผู้จัดการ — ไม่เปิดบัญชีทดลองสาธารณะ
+              อยากใช้ของจริงให้ทีม คุยกับ PuchUp โดยตรง
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <a
-                href={p.liveAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={saleDesk.demoPath}
                 className="inline-flex rounded-xl bg-navy px-4 py-2.5 text-[14px] font-semibold text-base"
               >
-                เปิดระบบจริง
-              </a>
-              <Link href={saleDesk.demoManagerPath} className="inline-flex rounded-xl border border-navy/15 px-4 py-2.5 text-[14px] font-semibold text-ink">
-                ดูเดโมจำลอง
+                เปิดตัวอย่างเชิงโต้ตอบ
+              </Link>
+              <Link
+                href="/contact/"
+                className="inline-flex rounded-xl border border-navy/15 px-4 py-2.5 text-[14px] font-semibold text-ink"
+              >
+                คุยกับ PuchUp
               </Link>
             </div>
           </div>
@@ -113,9 +112,9 @@ export default function SaleDeskLandingPage() {
 
       <ProductFinalCta
         title="อยากให้ทีมขายมีหลักฐานจากสนาม?"
-        body="เล่าขนาดทีมและปัญหาที่ผู้จัดการเจอมาได้เลย — หรือเปิดระบบตัวอย่าง Your Company ก่อน"
-        extraHref={p.liveAppUrl}
-        extraLabel="เปิดระบบจริง"
+        body="เล่าขนาดทีมและปัญหาที่ผู้จัดการเจอมาได้เลย — หรือเปิดตัวอย่างเชิงโต้ตอบ SaleDesk (Meridian Parts) ก่อนแล้วค่อยคุยรายละเอียด"
+        extraHref={saleDesk.demoPath}
+        extraLabel="เปิดตัวอย่าง SaleDesk"
       />
     </section>
   );

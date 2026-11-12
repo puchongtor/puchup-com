@@ -8,17 +8,17 @@ export function SiteFooter() {
     <footer className="mt-0 bg-navy text-base/90">
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 md:px-8 lg:px-8">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-start">
-          <div className="max-w-sm">
+          <div className="max-w-md">
             <Link href="/" className="mb-4 inline-block">
               <Image
-                src={brandAssets.horizontal}
+                src={brandAssets.horizontalDark}
                 alt="PuchUp — Level up your business & life"
-                width={280}
-                height={90}
-                className="h-14 w-auto object-contain md:h-16"
+                width={640}
+                height={214}
+                className="h-[5.75rem] w-auto max-w-[min(100%,22rem)] object-contain object-left md:h-[6.75rem] md:max-w-[26rem]"
               />
             </Link>
-            <p className="mt-3 text-sm leading-relaxed text-base/60">
+            <p className="mt-4 text-sm leading-relaxed text-base/60">
               {site.tagline}
               <br />
               เว็บไซต์และระบบดิจิทัลที่ช่วยธุรกิจทำงานง่ายขึ้น

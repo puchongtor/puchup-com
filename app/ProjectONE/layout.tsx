@@ -6,10 +6,10 @@ export const revalidate = false;
 export const metadata: Metadata = {
   title: "Project ONE | One Page. Full Business.",
   description:
-    "เว็บไซต์หน้าเดียว ที่ทำให้ลูกค้ารู้จักธุรกิจ ตัดสินใจ และอยากมาที่ร้าน",
+    "เว็บท้องถิ่น × Google Business — จากหน้าเดียวถึงขยาย SEO ไม่เกิน 10 หน้า ให้ลูกค้ารู้จัก ตัดสินใจ และมาที่ร้าน",
 };
 
-/** Isolated shell — no site header/footer, no shared marketing chrome. */
+/** No locked chrome — site nav footer is injected inside each HTML document and scrolls with it. */
 export default function ProjectOneLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

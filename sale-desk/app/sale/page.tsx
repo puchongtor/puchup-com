@@ -71,7 +71,7 @@ export default function SaleLoginPage() {
       className="relative flex min-h-dvh flex-col items-center justify-center px-4 py-10"
       style={{
         background:
-          "radial-gradient(1200px 600px at 50% -10%, rgba(0,52,120,0.18), transparent 60%), linear-gradient(180deg, #f4f7fb 0%, #e8eef6 100%)",
+          "radial-gradient(1200px 600px at 50% -10%, rgba(154,139,110,0.16), transparent 60%), linear-gradient(180deg, #faf9f7 0%, #f2f1ef 100%)",
       }}
     >
       <div className="w-full max-w-sm">

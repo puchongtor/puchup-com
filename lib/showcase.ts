@@ -40,9 +40,9 @@ export const conceptCases: ShowcaseCase[] = [
     id: "project-one",
     kind: "concept",
     name: "Project ONE",
-    nameTh: "เว็บหน้าเดียว × Google Business",
+    nameTh: "เว็บท้องถิ่น × Google Business",
     blurb:
-      "ตัวอย่างหน้าเดียวสำหรับหลายประเภทธุรกิจ — ร้านอาหาร คลินิก คาเฟ่ ที่พัก และอื่นๆ พร้อมเชื่อม Google Business",
+      "ตัวอย่างเว็บท้องถิ่นหลายประเภทธุรกิจ — หน้าเดียวหรือขยาย SEO ไม่เกิน 10 หน้า พร้อมเชื่อม Google Business รวมเคสจริงอย่างบ้านทันตแพทย์",
     href: "/showcase/project-one/",
     product: "Project ONE",
     tags: ["หน้าเดียว", "Google Business", "หลายธุรกิจ"],

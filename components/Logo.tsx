@@ -2,7 +2,10 @@ import Image from "next/image";
 
 const BRAND = {
   favicon: "/brand/favicon.png",
+  /** Dark lockup with baked navy (legacy JPG) */
   horizontal: "/brand/logo-horizontal.jpg",
+  /** Transparent lockup for navy/dark surfaces (footer, hero) */
+  horizontalDark: "/brand/logo-horizontal-dark.png",
   horizontalLight: "/brand/logo-horizontal-light.png",
   squareLight: "/brand/logo-1x1-light.jpg",
   squareDark: "/brand/logo-1x1-dark.jpg",
@@ -28,7 +31,7 @@ export function LogoMark({
   );
 }
 
-/** Horizontal lockup — light = white bg (header), dark = navy bg (footer) */
+/** Horizontal lockup — light = header; dark = transparent for navy footer/hero */
 export function BrandLogoHorizontal({
   className = "h-10 w-auto",
   variant = "dark",
@@ -38,7 +41,7 @@ export function BrandLogoHorizontal({
 }) {
   return (
     <Image
-      src={variant === "light" ? BRAND.horizontalLight : BRAND.horizontal}
+      src={variant === "light" ? BRAND.horizontalLight : BRAND.horizontalDark}
       alt="PuchUp — Level up your business & life"
       width={480}
       height={160}

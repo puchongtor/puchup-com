@@ -1,24 +1,24 @@
-/* PuchUp SaleDesk — Your Company / IndusTech white-label */
+/* PuchUp SaleDesk — Meridian Parts white-label (elegant graphite / soft brass) */
 .sale-desk {
-  --sale-navy: #0d182c;
-  --sale-navy-deep: #002a61;
-  --sale-navy-soft: #e8eef6;
-  --sale-accent: #cc9900;
-  --sale-accent-soft: #f7ecd0;
-  --sale-accent-text: #7a5c00;
-  --sale-bg: #f5f7fa;
+  --sale-navy: #1b1c1e;
+  --sale-navy-deep: #111213;
+  --sale-navy-soft: #f2f1ef;
+  --sale-accent: #9a8b6e;
+  --sale-accent-soft: #f0ebe3;
+  --sale-accent-text: #6f634c;
+  --sale-bg: #f5f4f2;
   --sale-surface: #ffffff;
-  --sale-text: #1e293b;
-  --sale-muted: #64748b;
-  --sale-line: #e2e8f0;
+  --sale-text: #1b1c1e;
+  --sale-muted: #6b6a67;
+  --sale-line: #e4e2de;
   --sale-ok: #ecfdf5;
   --sale-ok-text: #047857;
-  --sale-warn: #fffbeb;
-  --sale-warn-text: #b45309;
+  --sale-warn: #fff7ed;
+  --sale-warn-text: #9a6b2f;
   --sale-danger: #fef2f2;
   --sale-danger-text: #b91c1c;
   --sale-radius: 14px;
-  --sale-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --sale-shadow: 0 1px 2px rgba(27, 28, 30, 0.05);
 
   color: var(--sale-text);
   background: var(--sale-bg);
@@ -62,7 +62,7 @@
 
 .sale-desk .sale-btn-accent {
   background: var(--sale-accent);
-  color: #002a61;
+  color: #1b1c1e;
   border-radius: 12px;
   font-weight: 600;
 }

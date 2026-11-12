@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Project ONE | One Page. Full Business.",
     description:
-      "เว็บไซต์หน้าเดียว ที่ทำให้ลูกค้ารู้จักธุรกิจ ตัดสินใจ และอยากมาที่ร้าน — ติดต่อ LINE หรือเปิด Google Maps ได้ทันที",
+      "เว็บท้องถิ่น × Google Business — จากหน้าเดียวถึงขยาย SEO ไม่เกิน 10 หน้า ให้ลูกค้ารู้จัก ตัดสินใจ และมาที่ร้าน",
   };
 }
 
