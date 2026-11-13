@@ -48,6 +48,9 @@ export async function generateMetadata(): Promise<Metadata> {
       icon: [{ url: favicon }, { url: "/brand/favicon.png", type: "image/png" }],
       apple: [{ url: "/brand/logo-1x1-dark.jpg" }],
     },
+    verification: {
+      google: "yDcHBpE-1kfPXH3LWL5f_otMS4Ky8l7FVivsUVmqZBY",
+    },
   };
 }
 
