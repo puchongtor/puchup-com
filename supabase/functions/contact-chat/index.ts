@@ -18,7 +18,7 @@ const KNOWLEDGE = `
 6) OpsCraft — ออกแบบระบบตามเคส · ประเมินตามงาน
 กำลังพัฒนา: คุณเจริญ
 
-ผลงานจริง: Baan Dental (Project ONE), Advance Pro, Amethez, Rabiangprai Valley
+ผลงานจริง: Baan Dental (Project ONE), Parts.PuchUp (Partner นายหน้าอะไหล่), Advance Pro, Amethez, Rabiangprai Valley
 Showcase: AeroPulse (ShopGuide), Project ONE demos
 ช่องทางคนจริง: LINE OA @masterpuch → ${LINE_OA}
 `.trim();

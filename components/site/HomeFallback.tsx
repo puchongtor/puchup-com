@@ -222,7 +222,7 @@ export function HomeFallback() {
             </Link>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {realWorks.map((work) => (
               <a
                 key={work.id}
@@ -237,7 +237,7 @@ export function HomeFallback() {
                     alt={work.name}
                     fill
                     className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, 25vw"
                   />
                 </div>
                 <div className="p-4">

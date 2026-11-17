@@ -16,13 +16,25 @@ export const realWorks: RealWork[] = [
     id: "baandental",
     name: "Baan Dental",
     nameTh: "บ้านทันตแพทย์ · สาธุประดิษฐ์ / พระราม 3",
-    url: "https://baandental.vercel.app/",
+    url: "https://www.baandental.com/",
     category: "Project ONE · Local SEO",
     summary:
-      "คลินิกทันตกรรมหลายหน้า เน้น SEO ท้องถิ่น — บริการ อัตราค่ารักษา ทีมแพทย์ วิธีมาคลินิก และ Google Business (โดเมน baandental.com)",
+      "คลินิกทันตกรรมหลายหน้า เน้น SEO ท้องถิ่น — บริการ อัตราค่ารักษา ทีมแพทย์ วิธีมาคลินิก และ Google Business",
     focus: ["ไม่เกิน 10 หน้าหลัก", "เนื้อหา SEO เข้ม", "Google Business", "LINE / นัดหมาย"],
     image: "/images/works/baandental.jpg",
     productLink: { href: "/ProjectONE/", label: "แนว Project ONE" },
+  },
+  {
+    id: "parts-puchup",
+    name: "Parts.PuchUp",
+    nameTh: "นายหน้าอะไหล่และชิ้นส่วนอุตสาหกรรม",
+    url: "https://parts.puchup.com/",
+    category: "Partner · Industrial Broker",
+    summary:
+      "แพลตฟอร์มหาอะไหล่โรงงานให้ตรงรุ่น — ค้นชื่อสินค้า เทียบหลายร้าน คุยกับผู้ช่วยพาร์ท แล้วส่งต่อไปร้านพาร์ทเนอร์",
+    focus: ["ค้นหารุ่นตรง", "เทียบหลายร้าน", "แชทผู้ช่วย", "พาร์ทเนอร์ร้าน"],
+    image: "/images/works/parts-puchup.jpg",
+    productLink: { href: "/partner/", label: "แนว Partner" },
   },
   {
     id: "advancepro",

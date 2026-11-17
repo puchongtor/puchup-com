@@ -15,10 +15,11 @@ export const partnerProduct = {
     model: "/images/products/partner/model.jpg",
   },
   proof: {
-    name: "Amethez",
-    summary: "ตัวอย่างแนวแพลตฟอร์มที่เน้นคอนเทนต์ ร้านค้า และพาร์ทเนอร์ในระบบเดียวกัน",
-    href: "https://amethez.com/",
-    label: "เปิด Amethez",
+    name: "Parts.PuchUp",
+    summary:
+      "ตัวอย่างแนว Partner — นายหน้าอะไหล่โรงงาน ค้นรุ่นเทียบหลายร้าน คุยกับผู้ช่วย แล้วส่งต่อไปพาร์ทเนอร์",
+    href: "https://parts.puchup.com/",
+    label: "เปิด Parts.PuchUp",
   },
 } as const;
 
