@@ -27,9 +27,9 @@ export const realWorks: RealWork[] = [
   {
     id: "parts-puchup",
     name: "Parts.PuchUp",
-    nameTh: "นายหน้าอะไหล่และชิ้นส่วนอุตสาหกรรม",
+    nameTh: "แพลตฟอร์มหาอะไหล่และชิ้นส่วนอุตสาหกรรม",
     url: "https://parts.puchup.com/",
-    category: "Partner · Industrial Broker",
+    category: "Partner · Parts Platform",
     summary:
       "แพลตฟอร์มหาอะไหล่โรงงานให้ตรงรุ่น — ค้นชื่อสินค้า เทียบหลายร้าน คุยกับผู้ช่วยพาร์ท แล้วส่งต่อไปร้านพาร์ทเนอร์",
     focus: ["ค้นหารุ่นตรง", "เทียบหลายร้าน", "แชทผู้ช่วย", "พาร์ทเนอร์ร้าน"],

@@ -38,7 +38,7 @@ Showcase / ตัวอย่างระบบ:
 
 ผลงานจริงที่ออนไลน์แล้ว:
 - Baan Dental / บ้านทันตแพทย์ (baandental.com) — Project ONE Local SEO ≤10 หน้า
-- Parts.PuchUp (parts.puchup.com) — Partner · นายหน้าอะไหล่และชิ้นส่วนอุตสาหกรรม ค้นรุ่นเทียบร้าน
+- Parts.PuchUp (parts.puchup.com) — Partner · แพลตฟอร์มหาอะไหล่และชิ้นส่วนอุตสาหกรรม ค้นรุ่นเทียบร้าน
 - Advance Pro (advancepro-th.com) — เว็บบริษัท B2B อะไหล่เครื่องจักร
 - Amethez (amethez.com) — แพลตฟอร์มความรู้คริสตัล + ร้านค้า
 - Rabiangprai Valley (rabiangprai.com) — ที่พักรีสอร์ทนครนายก

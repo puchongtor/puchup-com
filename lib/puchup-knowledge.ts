@@ -76,13 +76,13 @@ export function localKnowledgeReply(message: string): string {
     return "ShopGuide เริ่มต้น 35,000 บาท มี AI รายเดือนไม่สูง — เว็บสินค้ามีแชท/Finder นำทางไปสินค้า แล้วส่งต่อไป Line OA ได้ครับ ดูตัวอย่างได้ที่ AeroPulse";
   }
   if (/partner|พาร์ทเนอร์|parts\.puchup|นายหน้า|อะไหล่/.test(m)) {
-    return "PuchUp Partner คือให้เราเป็นฝ่ายการตลาดออนไลน์ สร้างเว็บและระบบให้ธุรกิจโตไปด้วยกัน — ดูตัวอย่างแนวนี้ได้ที่ Parts.PuchUp นายหน้าอะไหล่โรงงาน ค้นรุ่นเทียบร้านแล้วส่งต่อไปพาร์ทเนอร์ครับ";
+    return "PuchUp Partner คือให้เราเป็นฝ่ายการตลาดออนไลน์ สร้างเว็บและระบบให้ธุรกิจโตไปด้วยกัน — ดูตัวอย่างแนวนี้ได้ที่ Parts.PuchUp แพลตฟอร์มหาอะไหล่โรงงาน ค้นรุ่นเทียบร้านแล้วส่งต่อไปพาร์ทเนอร์ครับ";
   }
   if (/opscraft|ระบบตามเคส|ลดขั้นตอน/.test(m)) {
     return "OpsCraft ออกแบบระบบลดขั้นตอนตามวิธีทำงานของธุรกิจคุณ — ทีมจะประเมินขอบเขตงานและงบหลังทำความเข้าใจปัญหาครับ";
   }
   if (/ผลงาน|works|ตัวอย่าง|showcase/.test(m)) {
-    return "ผลงานจริงมี Baan Dental (Project ONE), Parts.PuchUp (Partner นายหน้าอะไหล่), Advance Pro, Amethez และ Rabiangprai Valley — ตัวอย่างระบบมี AeroPulse (ShopGuide) กับ Project ONE บอกได้ว่าสนใจแนวไหน จะเล่าให้ฟังครับ";
+    return "ผลงานจริงมี Baan Dental (Project ONE + เคส Local SEO ที่เห็นผลเร็ว), Parts.PuchUp (Partner แพลตฟอร์มหาอะไหล่), Advance Pro, Amethez และ Rabiangprai Valley — อ่านเคสผลงานได้ที่ /showcase/results/ ตัวอย่างระบบมี AeroPulse กับ Project ONE ครับ";
   }
   if (/ไลน์|line|คุยกับทีม|คุยกับคน|ติดต่อ/.test(m)) {
     return `คุยกับทีมตรงๆ ได้ที่ LINE OA ${LINE_OA_ID} เลยครับ กดปุ่มสีเขียวด้านบนหรือด้านล่างแชทนี้ได้`;

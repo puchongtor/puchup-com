@@ -17,7 +17,7 @@ export const partnerProduct = {
   proof: {
     name: "Parts.PuchUp",
     summary:
-      "ตัวอย่างแนว Partner — นายหน้าอะไหล่โรงงาน ค้นรุ่นเทียบหลายร้าน คุยกับผู้ช่วย แล้วส่งต่อไปพาร์ทเนอร์",
+      "ตัวอย่างแนว Partner — แพลตฟอร์มหาอะไหล่โรงงาน ค้นรุ่นเทียบหลายร้าน คุยกับผู้ช่วย แล้วส่งต่อไปพาร์ทเนอร์",
     href: "https://parts.puchup.com/",
     label: "เปิด Parts.PuchUp",
   },

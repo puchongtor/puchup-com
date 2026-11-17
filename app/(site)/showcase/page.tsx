@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { caseStories } from "@/lib/case-stories";
 import { conceptCases, liveCases, showcaseHub } from "@/lib/showcase";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Showcase",
   description:
-    "ตัวอย่างงานและระบบของ PuchUp — AeroPulse, Project ONE และเว็บธุรกิจที่เปิดใช้แล้ว",
+    "ตัวอย่างงานและระบบของ PuchUp — ผลงานที่เห็นผล, AeroPulse, Project ONE และเว็บธุรกิจที่เปิดใช้แล้ว",
 };
 
 function CaseCard(props: {
@@ -91,6 +92,40 @@ export default function ShowcasePage() {
 
       <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 md:px-8 md:py-20 lg:px-8">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="eyebrow text-[11px] uppercase tracking-[0.16em] text-aamber">Results</p>
+            <h2 className="mt-2 text-[1.75rem] font-semibold tracking-[-0.02em] text-ink md:text-3xl">
+              {showcaseHub.resultsHeading}
+            </h2>
+          </div>
+          <div className="max-w-md">
+            <p className="text-[13.5px] leading-[1.65] text-muted">{showcaseHub.resultsNote}</p>
+            <Link
+              href={showcaseHub.resultsHref}
+              className="mt-2 inline-flex text-[13.5px] font-semibold text-aorange transition hover:underline"
+            >
+              ดูทั้งหมด →
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {caseStories.slice(0, 2).map((story) => (
+            <CaseCard
+              key={story.slug}
+              name={story.client}
+              nameTh={story.titleTh}
+              blurb={story.excerpt}
+              href={`/showcase/results/${story.slug}/`}
+              product={story.product}
+              tags={story.tags.slice(0, 4)}
+              image={story.cover}
+              statusLabel="เห็นผลแล้ว"
+            />
+          ))}
+        </div>
+
+        <div className="mt-20 flex flex-col gap-3 border-t border-cream pt-14 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="eyebrow text-[11px] uppercase tracking-[0.16em] text-aorange">Systems</p>
             <h2 className="mt-2 text-[1.75rem] font-semibold tracking-[-0.02em] text-ink md:text-3xl">

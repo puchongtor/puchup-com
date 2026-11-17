@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { allCaseSlugs } from "@/lib/case-stories";
 import { allDemoSlugs } from "@/lib/project-one/slugs";
 import { site } from "@/lib/site";
 
@@ -25,12 +26,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "showcase/",
     "showcase/aeropulse/",
     "showcase/project-one/",
+    "showcase/results/",
     "how-we-work/",
   ];
 
   const demos = allDemoSlugs().map((slug) => `ProjectONE/${slug}/`);
+  const cases = allCaseSlugs().map((slug) => `showcase/results/${slug}/`);
 
-  return [...core, ...demos].map((path) => ({
+  return [...core, ...demos, ...cases].map((path) => ({
     url: `${site.url}/${path}`,
     lastModified: new Date(),
   }));
