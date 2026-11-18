@@ -714,44 +714,66 @@ function ClientList({
         <div className="rounded-2xl border border-slate-200/60 bg-white/80 p-8 text-sm text-muted shadow-sm">ยังไม่มีลูกค้าในรายการนี้</div>
       ) : (
         <div className="grid gap-3">
-          {rows.map((client) => {
-            const clientAlerts = buildAlerts(client, settings, today);
-            const careDue = clientAlerts.some((item) => item.kind === "care" && !item.notified);
-            const hot =
-              clientAlerts.find((item) => item.kind !== "care" && (item.bucket === "overdue" || item.bucket === "send")) ||
-              clientAlerts.find((item) => item.kind !== "care");
-            const tone = clientTone(hot, careDue, client.paused);
-            return (
-              <article key={client.id} className={`rounded-2xl border border-l-4 border-slate-200/60 bg-white/80 p-5 shadow-sm ${tone.edge}`}>
-                <button type="button" onClick={() => onEdit(client)} className="w-full text-left">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div>
-                      <h3 className="text-lg font-semibold text-ink">{client.businessName || "ยังไม่ตั้งชื่อ"}</h3>
-                      <p className="mt-1 text-sm text-muted">
-                        {client.contactName || "ไม่ระบุผู้ติดต่อ"} · {channelLabel(client.channel)}
-                        {client.phone ? ` · ${client.phone}` : ""}
-                      </p>
-                    </div>
-                    <span className={`rounded-full px-3 py-1 text-xs font-medium ${tone.chip}`}>
+          <div className="overflow-x-auto rounded-2xl border border-slate-200/60 bg-white/80 shadow-sm">
+            <div className="min-w-[720px]">
+              <div className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1.15fr)_minmax(0,1fr)_8.25rem_12.25rem_auto_auto] items-center gap-x-3 border-b border-slate-200/60 px-4 py-2.5 text-xs font-medium text-muted">
+                <span>ลูกค้า</span>
+                <span>ผู้ติดต่อ</span>
+                <span>บริการ</span>
+                <span>วันที่เริ่มต้น</span>
+                <span>ครบรอบ</span>
+                <span>สถานะ</span>
+                <span />
+              </div>
+              {rows.map((client) => {
+                const clientAlerts = buildAlerts(client, settings, today);
+                const careDue = clientAlerts.some((item) => item.kind === "care" && !item.notified);
+                const hot =
+                  clientAlerts.find((item) => item.kind !== "care" && (item.bucket === "overdue" || item.bucket === "send")) ||
+                  clientAlerts.find((item) => item.kind !== "care");
+                const tone = clientTone(hot, careDue, client.paused);
+                const contact = [client.contactName || "ไม่ระบุผู้ติดต่อ", channelLabel(client.channel), client.phone].filter(Boolean).join(" · ");
+                return (
+                  <div
+                    key={client.id}
+                    className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1.15fr)_minmax(0,1fr)_8.25rem_12.25rem_auto_auto] items-center gap-x-3 border-b border-slate-200/60 px-4 py-2.5 last:border-b-0"
+                  >
+                    <button type="button" onClick={() => onEdit(client)} className={`truncate border-l-4 pl-3 text-left text-sm font-semibold text-ink ${tone.edge}`}>
+                      {client.businessName || "ยังไม่ตั้งชื่อ"}
+                    </button>
+                    <button type="button" onClick={() => onEdit(client)} className="truncate text-left text-sm text-muted">
+                      {contact}
+                    </button>
+                    <button type="button" onClick={() => onEdit(client)} className="truncate text-left text-sm text-ink">
+                      {serviceLabel(client)}
+                    </button>
+                    <button type="button" onClick={() => onEdit(client)} className="whitespace-nowrap text-left text-sm text-ink">
+                      {client.startDate ? formatThaiDate(client.startDate) : "—"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onEdit(client)}
+                      className={`whitespace-nowrap text-left text-sm ${hot?.bucket === "overdue" ? "font-medium text-aorange" : "text-muted"}`}
+                    >
+                      {cyclePhrase(client.cycleMonths)}
+                      {client.nextDue ? ` · ${formatThaiDate(client.nextDue)}` : ""}
+                      {careDue ? " · จันทร์นี้" : ""}
+                    </button>
+                    <span className={`justify-self-start whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium ${tone.chip}`}>
                       {client.paused ? "พักแจ้งเตือน" : workLabel(client.workStatus)}
                     </span>
+                    {client.nextDue && client.workStatus !== "closed" ? (
+                      <GhostButton onClick={() => onPaid(client)} className="px-3 py-1.5 whitespace-nowrap">
+                        ชำระรอบนี้แล้ว
+                      </GhostButton>
+                    ) : (
+                      <span />
+                    )}
                   </div>
-                  <p className="mt-3 text-sm text-ink">{serviceLabel(client)}</p>
-                  <p className="mt-1 text-sm text-muted">
-                    {cyclePhrase(client.cycleMonths)}
-                    {client.nextDue ? ` · ครบบิล ${formatThaiDate(client.nextDue)}` : ""}
-                    {careDue ? " · จันทร์นี้ต้องเข้าไปดูแล" : ""}
-                    {hot ? ` · ${hot.title} ${whenLabel(hot.daysLeft)}` : ""}
-                  </p>
-                </button>
-                {client.nextDue && client.workStatus !== "closed" ? (
-                  <div className="mt-4">
-                    <GhostButton onClick={() => onPaid(client)}>ชำระรอบนี้แล้ว</GhostButton>
-                  </div>
-                ) : null}
-              </article>
-            );
-          })}
+                );
+              })}
+            </div>
+          </div>
           {pages > 1 ? (
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
               <p className="text-sm text-muted">
