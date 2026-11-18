@@ -41,6 +41,17 @@ export function ClientForm({
     onChange({ ...draft, ...partial });
   }
 
+  function goLiveDates(startDate: string, cycleMonths: Client["cycleMonths"]): Partial<Client> {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(startDate)) return { startDate };
+    const renewal = addMonths(startDate, 12);
+    return {
+      startDate,
+      domainDue: renewal,
+      hostingDue: renewal,
+      ...(cycleMonths > 0 ? { nextDue: addMonths(startDate, cycleMonths) } : {}),
+    };
+  }
+
   function toggleService(id: string) {
     const services = draft.services.includes(id) ? draft.services.filter((item) => item !== id) : [...draft.services, id];
     patch({ services });
@@ -148,8 +159,8 @@ export function ClientForm({
 
       <section className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
         <h3 className="md:col-span-2 text-sm font-semibold text-ink">รอบบิลและการชำระ</h3>
-        <Field label="วันที่เว็บขึ้นออนไลน์" hint="รอบบิลนับจากวันนี้ ลูกค้าแก้หลังออนไลน์ไม่เลื่อนวันครบ">
-          <input className={inputClass} type="date" value={draft.startDate} onChange={(e) => patch({ startDate: e.target.value })} />
+        <Field label="วันที่เว็บขึ้นออนไลน์" hint="เลือกเดือนแล้ววันครบรอบขยับเอง โดเมนและโฮสติ้งถูกตั้งอีก 1 ปี">
+          <input className={inputClass} type="date" value={draft.startDate} onChange={(e) => patch(goLiveDates(e.target.value, draft.cycleMonths))} />
         </Field>
         <div className="md:col-span-2">
           <p className="mb-1.5 text-sm font-medium text-ink">เก็บเงินทุกกี่เดือน</p>
@@ -158,7 +169,14 @@ export function ClientForm({
               <button
                 key={item.value}
                 type="button"
-                onClick={() => patch({ cycleMonths: item.value })}
+                onClick={() =>
+                  patch({
+                    cycleMonths: item.value,
+                    ...(item.value > 0 && /^\d{4}-\d{2}-\d{2}$/.test(draft.startDate)
+                      ? { nextDue: addMonths(draft.startDate, item.value) }
+                      : {}),
+                  })
+                }
                 className={`rounded-xl border px-3 py-2 text-sm ${draft.cycleMonths === item.value ? "border-navy bg-navy text-base" : "border-slate-200/60 bg-white text-ink"}`}
               >
                 {item.label}
@@ -211,19 +229,6 @@ export function ClientForm({
         <Field label="วันครบกำหนดรอบนี้">
           <input className={inputClass} type="date" value={draft.nextDue} onChange={(e) => patch({ nextDue: e.target.value })} />
         </Field>
-        {draft.cycleMonths > 0 ? (
-          <div className="flex items-end">
-            <GhostButton
-              className="w-full"
-              onClick={() => {
-                if (!draft.startDate) return;
-                patch({ nextDue: addMonths(draft.startDate, draft.cycleMonths) });
-              }}
-            >
-              ตั้งวันครบจากวันที่ออนไลน์
-            </GhostButton>
-          </div>
-        ) : null}
         <div className="rounded-2xl border border-slate-200/60 bg-cream/70 p-4 text-sm text-ink md:col-span-2">
           <p>
             ยอดที่ต้องแจ้งรอบนี้: <span className="font-semibold">{charge > 0 ? `${formatBaht(charge)} บาท` : "ยังไม่ได้ใส่ราคา"}</span>
@@ -232,7 +237,7 @@ export function ClientForm({
           <p className="mt-1 text-muted">
             {draft.nextDue && remind
               ? `เริ่มแจ้งได้ ${formatThaiDate(remind)} · ครบ ${formatThaiDate(draft.nextDue)}`
-              : "ยังไม่มีวันครบกำหนด — ใส่วันที่เว็บขึ้นออนไลน์แล้วบันทึก ระบบจะตั้งรอบแรกจากวันนั้น"}
+              : "เลือก 1, 3, 6 หรือ 12 เดือน วันครบจะถูกตั้งจากวันที่เว็บขึ้นออนไลน์"}
           </p>
           {draft.lastPaidAt ? (
             <p className="mt-1 text-muted">
