@@ -3,6 +3,10 @@ export type WorkStatus = "building" | "delivered" | "care" | "closed";
 export type CycleMonths = 0 | 1 | 3 | 6 | 12;
 export type AlertKind = "billing" | "domain" | "hosting" | "care";
 export type AlertBucket = "overdue" | "send" | "sent" | "later";
+export type OutreachSource = "outbound" | "inbound";
+export type OutreachStatus = "waiting" | "interested" | "won" | "rejected";
+export type OutreachChannel = "page" | "line" | "fb-personal" | "phone" | "other";
+export type OutreachKind = "clinic" | "shop" | "other";
 
 export type SentNotice = {
   key: string;
@@ -48,6 +52,19 @@ export type StudioSettings = {
   signature: string;
 };
 
+export type OutreachLead = {
+  id: string;
+  name: string;
+  kind: OutreachKind;
+  source: OutreachSource;
+  channel: OutreachChannel;
+  channelNote: string;
+  status: OutreachStatus;
+  note: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type Alert = {
   key: string;
   clientId: string;
@@ -90,6 +107,32 @@ export const WORK_STATUSES: { id: WorkStatus; label: string }[] = [
   { id: "delivered", label: "ส่งมอบแล้ว" },
   { id: "care", label: "ดูแลต่อเนื่อง" },
   { id: "closed", label: "จบงาน" },
+];
+
+export const OUTREACH_SOURCES: { id: OutreachSource; label: string }[] = [
+  { id: "outbound", label: "เราส่งข้อความ" },
+  { id: "inbound", label: "ลูกค้าติดต่อเข้ามา" },
+];
+
+export const OUTREACH_KINDS: { id: OutreachKind; label: string }[] = [
+  { id: "clinic", label: "คลินิก" },
+  { id: "shop", label: "ร้าน" },
+  { id: "other", label: "อื่นๆ" },
+];
+
+export const OUTREACH_CHANNELS: { id: OutreachChannel; label: string }[] = [
+  { id: "page", label: "เพจ" },
+  { id: "line", label: "LINE" },
+  { id: "fb-personal", label: "เฟสส่วนตัว" },
+  { id: "phone", label: "โทร" },
+  { id: "other", label: "อื่นๆ" },
+];
+
+export const OUTREACH_STATUSES: { id: OutreachStatus; label: string }[] = [
+  { id: "waiting", label: "รอตอบ" },
+  { id: "interested", label: "กำลังสนใจ" },
+  { id: "won", label: "ทำเว็บกับเราแล้ว" },
+  { id: "rejected", label: "ไม่สนใจ" },
 ];
 
 export const CYCLES: { value: CycleMonths; label: string }[] = [
@@ -524,6 +567,117 @@ function asWork(value: unknown): WorkStatus {
   return value === "building" || value === "delivered" || value === "care" || value === "closed" ? value : "care";
 }
 
+function asOutreachSource(value: unknown): OutreachSource {
+  return value === "inbound" ? "inbound" : "outbound";
+}
+
+function asOutreachKind(value: unknown): OutreachKind {
+  return value === "shop" || value === "other" || value === "clinic" ? value : "clinic";
+}
+
+function asOutreachChannel(value: unknown): OutreachChannel {
+  return value === "page" || value === "line" || value === "fb-personal" || value === "phone" || value === "other" ? value : "page";
+}
+
+function asOutreachStatus(value: unknown): OutreachStatus {
+  return value === "waiting" || value === "interested" || value === "won" || value === "rejected" ? value : "waiting";
+}
+
+function newId(prefix: string): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  return `${prefix}_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+}
+
+export function outreachSourceLabel(source: OutreachSource): string {
+  return OUTREACH_SOURCES.find((item) => item.id === source)?.label || source;
+}
+
+export function outreachKindLabel(kind: OutreachKind): string {
+  return OUTREACH_KINDS.find((item) => item.id === kind)?.label || kind;
+}
+
+export function outreachChannelLabel(channel: OutreachChannel): string {
+  return OUTREACH_CHANNELS.find((item) => item.id === channel)?.label || channel;
+}
+
+export function outreachStatusLabel(status: OutreachStatus): string {
+  return OUTREACH_STATUSES.find((item) => item.id === status)?.label || status;
+}
+
+export function normalizeOutreachName(name: string): string {
+  return name.trim().replace(/\s+/g, " ").toLocaleLowerCase("th");
+}
+
+export function sortOutreachLeads(leads: OutreachLead[]): OutreachLead[] {
+  return [...leads].sort((a, b) => a.name.localeCompare(b.name, "th", { sensitivity: "base" }));
+}
+
+export function findOutreachByName(leads: OutreachLead[], name: string, exceptId?: string): OutreachLead | undefined {
+  const key = normalizeOutreachName(name);
+  if (!key) return undefined;
+  return leads.find((lead) => lead.id !== exceptId && normalizeOutreachName(lead.name) === key);
+}
+
+export function outreachMatches(lead: OutreachLead, query: string): boolean {
+  const q = query.trim().toLocaleLowerCase("th");
+  if (!q) return true;
+  const hay = [
+    lead.name,
+    outreachKindLabel(lead.kind),
+    outreachSourceLabel(lead.source),
+    outreachChannelLabel(lead.channel),
+    lead.channelNote,
+    lead.note,
+    outreachStatusLabel(lead.status),
+  ]
+    .join(" ")
+    .toLocaleLowerCase("th");
+  return hay.includes(q);
+}
+
+export function newOutreachLead(source: OutreachSource = "outbound"): OutreachLead {
+  const now = new Date().toISOString();
+  return {
+    id: newId("o"),
+    name: "",
+    kind: "clinic",
+    source,
+    channel: "page",
+    channelNote: "",
+    status: source === "inbound" ? "interested" : "waiting",
+    note: "",
+    createdAt: now,
+    updatedAt: now,
+  };
+}
+
+export function normalizeOutreachLead(raw: unknown): OutreachLead | null {
+  if (!raw || typeof raw !== "object") return null;
+  const row = raw as Partial<OutreachLead>;
+  if (typeof row.id !== "string" || !row.id) return null;
+  const name = asText(row.name);
+  if (!name) return null;
+  const source = asOutreachSource(row.source);
+  const createdAt = asText(row.createdAt) || new Date().toISOString();
+  return {
+    id: row.id,
+    name,
+    kind: asOutreachKind(row.kind),
+    source,
+    channel: asOutreachChannel(row.channel),
+    channelNote: asText(row.channelNote),
+    status:
+      row.status === undefined || row.status === null || row.status === ""
+        ? source === "inbound"
+          ? "interested"
+          : "waiting"
+        : asOutreachStatus(row.status),
+    note: asText(row.note),
+    createdAt,
+    updatedAt: asText(row.updatedAt) || createdAt,
+  };
+}
+
 export function normalizeClient(raw: unknown): Client | null {
   if (!raw || typeof raw !== "object") return null;
   const row = raw as Partial<Client>;
@@ -581,12 +735,15 @@ export function normalizeSettings(raw: unknown): StudioSettings {
   };
 }
 
-export type CrmDb = { version: 1; clients: Client[]; settings: StudioSettings };
+export type CrmDb = { version: 1; clients: Client[]; settings: StudioSettings; outreach: OutreachLead[] };
 
 export function normalizeDb(raw: unknown): CrmDb {
-  const row = raw && typeof raw === "object" ? (raw as { clients?: unknown; settings?: unknown }) : {};
+  const row = raw && typeof raw === "object" ? (raw as { clients?: unknown; settings?: unknown; outreach?: unknown }) : {};
   const clients = Array.isArray(row.clients) ? row.clients.map(normalizeClient).filter((c): c is Client => Boolean(c)) : [];
-  return { version: 1, clients, settings: normalizeSettings(row.settings) };
+  const outreach = Array.isArray(row.outreach)
+    ? sortOutreachLeads(row.outreach.map(normalizeOutreachLead).filter((item): item is OutreachLead => Boolean(item)))
+    : [];
+  return { version: 1, clients, settings: normalizeSettings(row.settings), outreach };
 }
 
 export function sampleTemplates(settings: StudioSettings): { title: string; subject: string; body: string }[] {

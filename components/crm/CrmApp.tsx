@@ -28,13 +28,15 @@ import {
   type Alert,
   type AlertBucket,
   type Client,
+  type OutreachLead,
   type StudioSettings,
 } from "@/lib/crm/model";
 import { downloadDb, loadDb, saveDb } from "@/lib/crm/storage";
 import { ClientForm } from "./ClientForm";
+import { OutreachPanel } from "./OutreachPanel";
 import { Field, GhostButton, PrimaryButton, inputClass } from "./ui";
 
-type Tab = "alerts" | "clients" | "settings";
+type Tab = "alerts" | "clients" | "outreach" | "settings";
 type ListFocus = "send" | "overdue" | "later" | "care";
 
 const PAGE_SIZE = 20;
@@ -51,6 +53,7 @@ export function CrmApp() {
   const [ready, setReady] = useState(false);
   const [authed, setAuthed] = useState(false);
   const [clients, setClients] = useState<Client[]>([]);
+  const [outreach, setOutreach] = useState<OutreachLead[]>([]);
   const [settings, setSettings] = useState<StudioSettings>(defaultSettings);
   const [tab, setTab] = useState<Tab>("alerts");
   const [query, setQuery] = useState("");
@@ -63,6 +66,7 @@ export function CrmApp() {
   useEffect(() => {
     const db = loadDb();
     setClients(db.clients);
+    setOutreach(db.outreach);
     setSettings(db.settings);
     setAuthed(localStorage.getItem(AUTH_KEY) === "1");
     setReady(true);
@@ -105,10 +109,15 @@ export function CrmApp() {
     setDraft(null);
   }
 
-  function persist(nextClients: Client[], nextSettings = settings) {
-    const ok = saveDb({ version: 1, clients: nextClients, settings: nextSettings });
+  function persist(nextClients: Client[], nextSettings = settings, nextOutreach = outreach) {
+    const ok = saveDb({ version: 1, clients: nextClients, settings: nextSettings, outreach: nextOutreach });
     if (!ok) setFlash("บันทึกไม่สำเร็จ");
     return ok;
+  }
+
+  function persistOutreach(next: OutreachLead[]) {
+    setOutreach(next);
+    persist(clients, settings, next);
   }
 
   function updateClient(next: Client) {
@@ -219,7 +228,7 @@ export function CrmApp() {
                 </span>
               ) : null}
             </button>
-            <GhostButton onClick={() => downloadDb({ version: 1, clients, settings }, `puchup-crm-${today}.json`)}>
+            <GhostButton onClick={() => downloadDb({ version: 1, clients, settings, outreach }, `puchup-crm-${today}.json`)}>
               สำรองไฟล์
             </GhostButton>
             <GhostButton onClick={() => fileRef.current?.click()}>นำเข้า</GhostButton>
@@ -244,8 +253,14 @@ export function CrmApp() {
                 reader.onload = () => {
                   try {
                     const db = normalizeDb(JSON.parse(String(reader.result)));
-                    if (!window.confirm(`นำเข้า ${db.clients.length} ราย แทนที่ข้อมูลในเครื่องนี้`)) return;
+                    if (
+                      !window.confirm(
+                        `นำเข้าลูกค้า ${db.clients.length} ราย และกำลังติดต่อ ${db.outreach.length} ราย แทนที่ข้อมูลในเครื่องนี้`,
+                      )
+                    )
+                      return;
                     setClients(db.clients);
+                    setOutreach(db.outreach);
                     setSettings(db.settings);
                     saveDb(db);
                     setFlash("นำเข้าแล้ว");
@@ -280,12 +295,23 @@ export function CrmApp() {
           <TabButton active={tab === "settings"} onClick={() => { setTab("settings"); setDraft(null); }}>
             ข้อความและบัญชี
           </TabButton>
-          <input
-            className={`${inputClass} ml-auto w-full sm:w-64`}
-            placeholder="ค้นหาชื่อ เบอร์ โดเมน"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
+          <div className="ml-auto flex w-full flex-wrap items-center gap-2 sm:w-auto">
+            <TabButton
+              active={tab === "outreach"}
+              onClick={() => {
+                setTab("outreach");
+                setDraft(null);
+              }}
+            >
+              กำลังติดต่อ
+            </TabButton>
+            <input
+              className={`${inputClass} w-full sm:w-64`}
+              placeholder={tab === "outreach" ? "ค้นหาชื่อ ประเภท ช่องทาง" : "ค้นหาชื่อ เบอร์ โดเมน"}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </div>
         </div>
 
         <div className="mt-6">
@@ -349,12 +375,16 @@ export function CrmApp() {
             )
           ) : null}
 
+          {tab === "outreach" ? (
+            <OutreachPanel leads={outreach} query={query} onChange={persistOutreach} onFlash={setFlash} />
+          ) : null}
+
           {tab === "settings" ? (
             <SettingsPanel
               settings={settings}
               onChange={(next) => {
                 setSettings(next);
-                persist(clients, next);
+                persist(clients, next, outreach);
               }}
               onCopy={(text) => void copyText(text)}
             />
