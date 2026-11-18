@@ -715,64 +715,86 @@ function ClientList({
       ) : (
         <div className="grid gap-3">
           <div className="overflow-x-auto rounded-2xl border border-slate-200/60 bg-white/80 shadow-sm">
-            <div className="min-w-[720px]">
-              <div className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1.15fr)_minmax(0,1fr)_8.25rem_12.25rem_auto_auto] items-center gap-x-3 border-b border-slate-200/60 px-4 py-2.5 text-xs font-medium text-muted">
-                <span>ลูกค้า</span>
-                <span>ผู้ติดต่อ</span>
-                <span>บริการ</span>
-                <span>วันที่เริ่มต้น</span>
-                <span>ครบรอบ</span>
-                <span>สถานะ</span>
-                <span />
-              </div>
-              {rows.map((client) => {
-                const clientAlerts = buildAlerts(client, settings, today);
-                const careDue = clientAlerts.some((item) => item.kind === "care" && !item.notified);
-                const hot =
-                  clientAlerts.find((item) => item.kind !== "care" && (item.bucket === "overdue" || item.bucket === "send")) ||
-                  clientAlerts.find((item) => item.kind !== "care");
-                const tone = clientTone(hot, careDue, client.paused);
-                const contact = [client.contactName || "ไม่ระบุผู้ติดต่อ", channelLabel(client.channel), client.phone].filter(Boolean).join(" · ");
-                return (
-                  <div
-                    key={client.id}
-                    className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1.15fr)_minmax(0,1fr)_8.25rem_12.25rem_auto_auto] items-center gap-x-3 border-b border-slate-200/60 px-4 py-2.5 last:border-b-0"
-                  >
-                    <button type="button" onClick={() => onEdit(client)} className={`truncate border-l-4 pl-3 text-left text-sm font-semibold text-ink ${tone.edge}`}>
-                      {client.businessName || "ยังไม่ตั้งชื่อ"}
-                    </button>
-                    <button type="button" onClick={() => onEdit(client)} className="truncate text-left text-sm text-muted">
-                      {contact}
-                    </button>
-                    <button type="button" onClick={() => onEdit(client)} className="truncate text-left text-sm text-ink">
-                      {serviceLabel(client)}
-                    </button>
-                    <button type="button" onClick={() => onEdit(client)} className="whitespace-nowrap text-left text-sm text-ink">
-                      {client.startDate ? formatThaiDate(client.startDate) : "—"}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onEdit(client)}
-                      className={`whitespace-nowrap text-left text-sm ${hot?.bucket === "overdue" ? "font-medium text-aorange" : "text-muted"}`}
-                    >
-                      {cyclePhrase(client.cycleMonths)}
-                      {client.nextDue ? ` · ${formatThaiDate(client.nextDue)}` : ""}
-                      {careDue ? " · จันทร์นี้" : ""}
-                    </button>
-                    <span className={`justify-self-start whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium ${tone.chip}`}>
-                      {client.paused ? "พักแจ้งเตือน" : workLabel(client.workStatus)}
-                    </span>
-                    {client.nextDue && client.workStatus !== "closed" ? (
-                      <GhostButton onClick={() => onPaid(client)} className="px-3 py-1.5 whitespace-nowrap">
-                        ชำระรอบนี้แล้ว
-                      </GhostButton>
-                    ) : (
-                      <span />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            <table className="w-full table-fixed border-collapse text-left text-sm">
+              <colgroup>
+                <col className="w-[15%]" />
+                <col className="w-[17%]" />
+                <col className="w-[13%]" />
+                <col className="w-[13%]" />
+                <col className="w-[16%]" />
+                <col className="w-[12%]" />
+                <col className="w-[14%]" />
+              </colgroup>
+              <thead>
+                <tr className="border-b border-slate-200/60 text-xs font-medium text-muted">
+                  <th className="border-l-4 border-l-transparent px-3 py-2.5 font-medium">ลูกค้า</th>
+                  <th className="px-3 py-2.5 font-medium">ผู้ติดต่อ</th>
+                  <th className="px-3 py-2.5 font-medium">บริการ</th>
+                  <th className="px-3 py-2.5 font-medium">วันที่เริ่มต้น</th>
+                  <th className="px-3 py-2.5 font-medium">ครบรอบ</th>
+                  <th className="px-3 py-2.5 font-medium">สถานะ</th>
+                  <th className="px-3 py-2.5 font-medium" />
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((client) => {
+                  const clientAlerts = buildAlerts(client, settings, today);
+                  const careDue = clientAlerts.some((item) => item.kind === "care" && !item.notified);
+                  const hot =
+                    clientAlerts.find((item) => item.kind !== "care" && (item.bucket === "overdue" || item.bucket === "send")) ||
+                    clientAlerts.find((item) => item.kind !== "care");
+                  const tone = clientTone(hot, careDue, client.paused);
+                  const contact = [client.contactName || "ไม่ระบุผู้ติดต่อ", channelLabel(client.channel), client.phone].filter(Boolean).join(" · ");
+                  return (
+                    <tr key={client.id} className="border-b border-slate-200/60 last:border-b-0">
+                      <td className={`overflow-hidden border-l-4 px-3 py-2.5 ${tone.edge}`}>
+                        <button type="button" onClick={() => onEdit(client)} className="block w-full truncate text-left font-semibold text-ink">
+                          {client.businessName || "ยังไม่ตั้งชื่อ"}
+                        </button>
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5">
+                        <button type="button" onClick={() => onEdit(client)} className="block w-full truncate text-left text-muted">
+                          {contact}
+                        </button>
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5">
+                        <button type="button" onClick={() => onEdit(client)} className="block w-full truncate text-left text-ink">
+                          {serviceLabel(client)}
+                        </button>
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5">
+                        <button type="button" onClick={() => onEdit(client)} className="block w-full truncate text-left text-ink">
+                          {client.startDate ? formatThaiDate(client.startDate) : "—"}
+                        </button>
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5">
+                        <button
+                          type="button"
+                          onClick={() => onEdit(client)}
+                          className={`block w-full truncate text-left ${hot?.bucket === "overdue" ? "font-medium text-aorange" : "text-muted"}`}
+                        >
+                          {cyclePhrase(client.cycleMonths)}
+                          {client.nextDue ? ` · ${formatThaiDate(client.nextDue)}` : ""}
+                          {careDue ? " · จันทร์นี้" : ""}
+                        </button>
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5">
+                        <span className={`inline-flex max-w-full truncate rounded-full px-2.5 py-1 text-xs font-medium ${tone.chip}`}>
+                          {client.paused ? "พักแจ้งเตือน" : workLabel(client.workStatus)}
+                        </span>
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5 text-right">
+                        {client.nextDue && client.workStatus !== "closed" ? (
+                          <GhostButton onClick={() => onPaid(client)} className="px-3 py-1.5">
+                            ชำระรอบนี้แล้ว
+                          </GhostButton>
+                        ) : null}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
           {pages > 1 ? (
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
