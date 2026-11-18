@@ -54,7 +54,7 @@ export function CrmApp() {
   const [settings, setSettings] = useState<StudioSettings>(defaultSettings);
   const [tab, setTab] = useState<Tab>("alerts");
   const [query, setQuery] = useState("");
-  const [focus, setFocus] = useState<ListFocus>(null);
+  const [focus, setFocus] = useState<ListFocus | null>(null);
   const [draft, setDraft] = useState<Client | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [flash, setFlash] = useState("");
