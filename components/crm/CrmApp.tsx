@@ -35,12 +35,15 @@ import { ClientForm } from "./ClientForm";
 import { Field, GhostButton, PrimaryButton, inputClass } from "./ui";
 
 type Tab = "alerts" | "clients" | "settings";
+type ListFocus = "send" | "overdue" | "later" | "care";
 
-const BUCKETS: { id: AlertBucket; title: string }[] = [
-  { id: "overdue", title: "เลยกำหนด" },
-  { id: "send", title: "ถึงเวลาแจ้งแล้ว" },
-  { id: "sent", title: "แจ้งแล้ว รอถึงวันครบ" },
-  { id: "later", title: "ยังไม่ถึงวันแจ้ง" },
+const PAGE_SIZE = 20;
+
+const BUCKETS: { id: AlertBucket; title: string; dot: string; edge: string }[] = [
+  { id: "overdue", title: "เลยกำหนด", dot: "bg-aorange", edge: "border-l-aorange" },
+  { id: "send", title: "ถึงเวลาแจ้งแล้ว", dot: "bg-aamber", edge: "border-l-aamber" },
+  { id: "sent", title: "แจ้งแล้ว รอถึงวันครบ", dot: "bg-apurple", edge: "border-l-apurple/50" },
+  { id: "later", title: "ยังไม่ถึงวันแจ้ง", dot: "bg-navy/25", edge: "border-l-navy/20" },
 ];
 
 export function CrmApp() {
@@ -51,6 +54,7 @@ export function CrmApp() {
   const [settings, setSettings] = useState<StudioSettings>(defaultSettings);
   const [tab, setTab] = useState<Tab>("alerts");
   const [query, setQuery] = useState("");
+  const [focus, setFocus] = useState<ListFocus>(null);
   const [draft, setDraft] = useState<Client | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [flash, setFlash] = useState("");
@@ -70,11 +74,36 @@ export function CrmApp() {
     return () => window.clearTimeout(timer);
   }, [flash]);
 
-  const visibleClients = clients.filter((client) => clientMatches(client, query));
-  const alerts = useMemo(
-    () => sortAlerts(clients.filter((client) => clientMatches(client, query)).flatMap((client) => buildAlerts(client, settings, today))),
-    [clients, query, settings, today],
+  const visibleClients = useMemo(() => clients.filter((client) => clientMatches(client, query)), [clients, query]);
+  const allAlerts = useMemo(
+    () => sortAlerts(clients.flatMap((client) => buildAlerts(client, settings, today))),
+    [clients, settings, today],
   );
+  const listedClients = useMemo(() => {
+    if (!focus) return visibleClients;
+    if (focus === "care") return visibleClients.filter((client) => client.workStatus !== "closed");
+    const ids = new Set(allAlerts.filter((alert) => alert.kind !== "care" && alert.bucket === focus).map((alert) => alert.clientId));
+    return visibleClients.filter((client) => ids.has(client.id));
+  }, [allAlerts, focus, visibleClients]);
+  const alerts = useMemo(() => {
+    if (!query.trim()) return allAlerts;
+    const ids = new Set(visibleClients.map((client) => client.id));
+    return allAlerts.filter((alert) => ids.has(alert.clientId));
+  }, [allAlerts, query, visibleClients]);
+  const noticeCount = useMemo(
+    () =>
+      allAlerts.filter((alert) =>
+        alert.kind === "care" ? !alert.notified : alert.bucket === "send" || alert.bucket === "overdue",
+      ).length,
+    [allAlerts],
+  );
+
+  function openFocus(next: ListFocus) {
+    setFocus((current) => (current === next ? null : next));
+    setQuery("");
+    setTab("clients");
+    setDraft(null);
+  }
 
   function persist(nextClients: Client[], nextSettings = settings) {
     const ok = saveDb({ version: 1, clients: nextClients, settings: nextSettings });
@@ -173,7 +202,23 @@ export function CrmApp() {
               <h1 className="text-2xl font-bold text-ink sm:text-3xl">ระบบดูแลลูกค้า</h1>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setTab("alerts");
+                setDraft(null);
+              }}
+              className={`relative inline-flex h-11 w-11 items-center justify-center rounded-xl border shadow-sm ${noticeCount > 0 ? "border-aorange/30 bg-aorange/10 text-aorange" : "border-slate-200/60 bg-white text-ink"}`}
+              aria-label={noticeCount > 0 ? `แจ้งเตือน ${noticeCount} รายการ` : "ไม่มีแจ้งเตือนค้าง"}
+            >
+              <BellIcon />
+              {noticeCount > 0 ? (
+                <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-aorange px-1 text-[11px] font-bold leading-none text-white">
+                  {noticeCount > 99 ? "99+" : noticeCount}
+                </span>
+              ) : null}
+            </button>
             <GhostButton onClick={() => downloadDb({ version: 1, clients, settings }, `puchup-crm-${today}.json`)}>
               สำรองไฟล์
             </GhostButton>
@@ -219,10 +264,10 @@ export function CrmApp() {
         </p>
 
         <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
-          <Stat label="ต้องส่ง" value={String(sendCount)} />
-          <Stat label="เลยกำหนด" value={String(overdueCount)} />
-          <Stat label="อีกไม่เกิน 60 วัน" value={String(laterCount)} />
-          <Stat label="ลูกค้าที่ดูแล" value={String(careCount)} />
+          <Stat label="ต้องส่ง" value={String(sendCount)} tone="send" active={focus === "send"} onClick={() => openFocus("send")} />
+          <Stat label="เลยกำหนด" value={String(overdueCount)} tone="overdue" active={focus === "overdue"} onClick={() => openFocus("overdue")} />
+          <Stat label="อีกไม่เกิน 60 วัน" value={String(laterCount)} tone="later" active={focus === "later"} onClick={() => openFocus("later")} />
+          <Stat label="ลูกค้าที่ดูแล" value={String(careCount)} tone="care" active={focus === "care"} onClick={() => openFocus("care")} />
         </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-2">
@@ -284,8 +329,13 @@ export function CrmApp() {
               />
             ) : (
               <ClientList
-                clients={visibleClients}
+                clients={listedClients}
+                total={clients.length}
+                query={query}
+                focus={focus}
+                onClearFocus={() => setFocus(null)}
                 today={today}
+                settings={settings}
                 onCreate={() => {
                   setDraft(newClient(today));
                   setIsNew(true);
@@ -374,12 +424,48 @@ function Login({ onSuccess }: { onSuccess: () => void }) {
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+const STAT_TONE = {
+  send: { card: "border-aamber/60 bg-aamber/15", value: "text-ink", dot: "bg-aamber" },
+  overdue: { card: "border-aorange/40 bg-aorange/10", value: "text-aorange", dot: "bg-aorange" },
+  later: { card: "border-apurple/30 bg-apurple/10", value: "text-apurple", dot: "bg-apurple" },
+  care: { card: "border-navy/15 bg-white/90", value: "text-navy", dot: "bg-navy" },
+} as const;
+
+function Stat({
+  label,
+  value,
+  tone,
+  active,
+  onClick,
+}: {
+  label: string;
+  value: string;
+  tone: keyof typeof STAT_TONE;
+  active: boolean;
+  onClick: () => void;
+}) {
+  const style = STAT_TONE[tone];
   return (
-    <div className="rounded-2xl border border-slate-200/60 bg-white/80 p-4 shadow-sm backdrop-blur-md">
-      <p className="text-xs text-muted">{label}</p>
-      <p className="mt-1 text-2xl font-bold text-ink">{value}</p>
-    </div>
+    <button
+      type="button"
+      onClick={onClick}
+      className={`rounded-2xl border p-4 text-left shadow-sm backdrop-blur-md ${style.card} ${active ? "ring-2 ring-navy" : ""}`}
+    >
+      <p className="flex items-center gap-2 text-xs text-muted">
+        <span className={`h-2 w-2 rounded-full ${style.dot}`} />
+        {label}
+      </p>
+      <p className={`mt-1 text-2xl font-bold ${style.value}`}>{value}</p>
+    </button>
+  );
+}
+
+function BellIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M15 17H9m9-1V11a6 6 0 1 0-12 0v5l-1.5 1.5h15L18 16Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M10 18a2 2 0 0 0 4 0" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -442,14 +528,19 @@ function AlertBoard({
     <div className="grid gap-8">
       {care.length ? (
         <section className="grid gap-3">
-          <h2 className="text-sm font-semibold text-ink">{careHeading}</h2>
-          {care.map((alert) => {
+          <h2 className="flex items-center gap-2 text-sm font-semibold text-ink">
+            <span className="h-2 w-2 rounded-full bg-apurple" />
+            {careHeading}
+            <span className="text-xs font-medium text-muted">{care.length}</span>
+          </h2>
+          <PagedStack items={care}>
+            {(rows) => rows.map((alert) => {
             const client = clients.find((item) => item.id === alert.clientId);
             if (!client) return null;
             const href = siteHref(client.website);
             const firstMonday = Number(alert.remindFrom.slice(8, 10)) <= 7;
             return (
-              <article key={`${alert.clientId}:${alert.key}`} className="rounded-2xl border border-slate-200/60 bg-white/80 p-5 shadow-sm backdrop-blur-md">
+              <article key={`${alert.clientId}:${alert.key}`} className="rounded-2xl border border-l-4 border-slate-200/60 border-l-apurple bg-white/80 p-5 shadow-sm backdrop-blur-md">
                 <p className="text-xs font-medium text-muted">
                   {alert.notified ? "จัดการแล้วสัปดาห์นี้" : today === alert.remindFrom ? "วันนี้วันจันทร์" : `จันทร์ ${formatThaiDate(alert.remindFrom)} ยังไม่ได้ทำให้ครบ`}
                 </p>
@@ -478,6 +569,7 @@ function AlertBoard({
               </article>
             );
           })}
+          </PagedStack>
         </section>
       ) : null}
       {rest.length ? (
@@ -490,12 +582,17 @@ function AlertBoard({
         if (!rows.length) return null;
         return (
           <section key={bucket.id} className="grid gap-3">
-            <h2 className="text-sm font-semibold text-ink">{bucket.title}</h2>
-            {rows.map((alert) => {
+            <h2 className="flex items-center gap-2 text-sm font-semibold text-ink">
+              <span className={`h-2 w-2 rounded-full ${bucket.dot}`} />
+              {bucket.title}
+              <span className="text-xs font-medium text-muted">{rows.length}</span>
+            </h2>
+            <PagedStack items={rows}>
+              {(page) => page.map((alert) => {
               const client = clients.find((item) => item.id === alert.clientId);
               if (!client) return null;
               return (
-                <article key={`${alert.clientId}:${alert.key}`} className="rounded-2xl border border-slate-200/60 bg-white/80 p-5 shadow-sm backdrop-blur-md">
+                <article key={`${alert.clientId}:${alert.key}`} className={`rounded-2xl border border-l-4 border-slate-200/60 bg-white/80 p-5 shadow-sm backdrop-blur-md ${bucket.edge}`}>
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="text-xs font-medium text-muted">
@@ -530,6 +627,7 @@ function AlertBoard({
                 </article>
               );
             })}
+            </PagedStack>
           </section>
         );
       })}
@@ -537,34 +635,94 @@ function AlertBoard({
   );
 }
 
+function clientTone(hot: Alert | undefined, careDue: boolean, paused: boolean) {
+  if (paused) return { edge: "border-l-slate-300", chip: "bg-slate-100 text-muted" };
+  if (hot?.bucket === "overdue") return { edge: "border-l-aorange", chip: "bg-aorange/10 text-aorange" };
+  if (hot?.bucket === "send" || careDue) return { edge: "border-l-aamber", chip: "bg-aamber/25 text-ink" };
+  if (hot) return { edge: "border-l-apurple/40", chip: "bg-apurple/10 text-apurple" };
+  return { edge: "border-l-navy/15", chip: "bg-cream text-ink" };
+}
+
+function PagedStack({ items, children }: { items: Alert[]; children: (rows: Alert[]) => React.ReactNode }) {
+  const [shown, setShown] = useState(PAGE_SIZE);
+  const rows = items.slice(0, shown);
+  const rest = items.length - rows.length;
+  return (
+    <div className="grid gap-3">
+      {children(rows)}
+      {rest > 0 ? (
+        <button
+          type="button"
+          onClick={() => setShown((count) => count + PAGE_SIZE)}
+          className="rounded-xl border border-apurple/20 bg-apurple/5 px-4 py-2.5 text-sm font-medium text-ink"
+        >
+          ดูเพิ่ม {Math.min(PAGE_SIZE, rest)} รายการ · เหลือ {rest} จาก {items.length}
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
 function ClientList({
   clients,
+  total,
+  query,
+  focus,
+  onClearFocus,
   today,
+  settings,
   onCreate,
   onEdit,
   onPaid,
 }: {
   clients: Client[];
+  total: number;
+  query: string;
+  focus: ListFocus | null;
+  onClearFocus: () => void;
   today: string;
+  settings: StudioSettings;
   onCreate: () => void;
   onEdit: (client: Client) => void;
   onPaid: (client: Client) => void;
 }) {
+  const [page, setPage] = useState(1);
+  useEffect(() => {
+    setPage(1);
+  }, [query, focus]);
+  const pages = Math.max(1, Math.ceil(clients.length / PAGE_SIZE));
+  const current = Math.min(page, pages);
+  const start = (current - 1) * PAGE_SIZE;
+  const rows = clients.slice(start, start + PAGE_SIZE);
+  const focusLabel = focus === "send" ? "ต้องส่ง" : focus === "overdue" ? "เลยกำหนด" : focus === "later" ? "อีกไม่เกิน 60 วัน" : focus === "care" ? "ลูกค้าที่ดูแล" : "";
+  const countLabel = focus ? `${focusLabel} ${clients.length} ราย` : query.trim() ? `พบ ${clients.length} จาก ${total} ราย` : `${total} ราย`;
+
   return (
     <div className="grid gap-4">
-      <div className="flex justify-end">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-sm text-muted">{countLabel}</p>
+          {focus ? (
+            <button type="button" onClick={onClearFocus} className="text-sm font-medium text-apurple">
+              ดูทั้งหมด
+            </button>
+          ) : null}
+        </div>
         <PrimaryButton onClick={onCreate}>เพิ่มลูกค้า</PrimaryButton>
       </div>
       {clients.length === 0 ? (
         <div className="rounded-2xl border border-slate-200/60 bg-white/80 p-8 text-sm text-muted shadow-sm">ยังไม่มีลูกค้าในรายการนี้</div>
       ) : (
         <div className="grid gap-3">
-          {clients.map((client) => {
-            const alerts = buildAlerts(client, defaultSettings, today);
-            const careDue = alerts.find((item) => item.kind === "care" && !item.notified);
-            const hot = alerts.find((item) => item.kind !== "care" && (item.bucket === "overdue" || item.bucket === "send")) || alerts.find((item) => item.kind !== "care");
+          {rows.map((client) => {
+            const clientAlerts = buildAlerts(client, settings, today);
+            const careDue = clientAlerts.some((item) => item.kind === "care" && !item.notified);
+            const hot =
+              clientAlerts.find((item) => item.kind !== "care" && (item.bucket === "overdue" || item.bucket === "send")) ||
+              clientAlerts.find((item) => item.kind !== "care");
+            const tone = clientTone(hot, careDue, client.paused);
             return (
-              <article key={client.id} className="rounded-2xl border border-slate-200/60 bg-white/80 p-5 shadow-sm">
+              <article key={client.id} className={`rounded-2xl border border-l-4 border-slate-200/60 bg-white/80 p-5 shadow-sm ${tone.edge}`}>
                 <button type="button" onClick={() => onEdit(client)} className="w-full text-left">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
@@ -574,7 +732,7 @@ function ClientList({
                         {client.phone ? ` · ${client.phone}` : ""}
                       </p>
                     </div>
-                    <span className="rounded-full bg-cream px-3 py-1 text-xs font-medium text-ink">
+                    <span className={`rounded-full px-3 py-1 text-xs font-medium ${tone.chip}`}>
                       {client.paused ? "พักแจ้งเตือน" : workLabel(client.workStatus)}
                     </span>
                   </div>
@@ -594,6 +752,24 @@ function ClientList({
               </article>
             );
           })}
+          {pages > 1 ? (
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+              <p className="text-sm text-muted">
+                {start + 1}–{start + rows.length} จาก {clients.length} ราย
+              </p>
+              <div className="flex items-center gap-2">
+                <GhostButton onClick={() => setPage(current - 1)} className={current <= 1 ? "pointer-events-none opacity-40" : ""}>
+                  ก่อนหน้า
+                </GhostButton>
+                <span className="min-w-14 text-center text-sm font-semibold text-ink">
+                  {current} / {pages}
+                </span>
+                <GhostButton onClick={() => setPage(current + 1)} className={current >= pages ? "pointer-events-none opacity-40" : ""}>
+                  ถัดไป
+                </GhostButton>
+              </div>
+            </div>
+          ) : null}
         </div>
       )}
     </div>
