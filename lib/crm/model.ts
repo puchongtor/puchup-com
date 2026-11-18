@@ -659,6 +659,7 @@ export function normalizeOutreachLead(raw: unknown): OutreachLead | null {
   if (!name) return null;
   const source = asOutreachSource(row.source);
   const createdAt = asText(row.createdAt) || new Date().toISOString();
+  const rawStatus = (row as { status?: unknown }).status;
   return {
     id: row.id,
     name,
@@ -667,11 +668,11 @@ export function normalizeOutreachLead(raw: unknown): OutreachLead | null {
     channel: asOutreachChannel(row.channel),
     channelNote: asText(row.channelNote),
     status:
-      row.status === undefined || row.status === null || row.status === ""
+      rawStatus === undefined || rawStatus === null || rawStatus === ""
         ? source === "inbound"
           ? "interested"
           : "waiting"
-        : asOutreachStatus(row.status),
+        : asOutreachStatus(rawStatus),
     note: asText(row.note),
     createdAt,
     updatedAt: asText(row.updatedAt) || createdAt,
