@@ -17,6 +17,7 @@ import {
   newClient,
   rollAnnual,
   normalizeDb,
+  OUTREACH_STATUSES,
   sampleTemplates,
   sendHint,
   serviceLabel,
@@ -29,6 +30,7 @@ import {
   type AlertBucket,
   type Client,
   type OutreachLead,
+  type OutreachStatus,
   type StudioSettings,
 } from "@/lib/crm/model";
 import { downloadDb, loadDb, saveDb } from "@/lib/crm/storage";
@@ -58,6 +60,7 @@ export function CrmApp() {
   const [tab, setTab] = useState<Tab>("alerts");
   const [query, setQuery] = useState("");
   const [focus, setFocus] = useState<ListFocus | null>(null);
+  const [outreachStatus, setOutreachStatus] = useState<OutreachStatus | null>(null);
   const [draft, setDraft] = useState<Client | null>(null);
   const [isNew, setIsNew] = useState(false);
   const [flash, setFlash] = useState("");
@@ -101,12 +104,25 @@ export function CrmApp() {
       ).length,
     [allAlerts],
   );
+  const outreachCounts = useMemo(() => {
+    const counts = Object.fromEntries(OUTREACH_STATUSES.map((item) => [item.id, 0])) as Record<OutreachStatus, number>;
+    for (const lead of outreach) counts[lead.status] += 1;
+    return counts;
+  }, [outreach]);
 
   function openFocus(next: ListFocus) {
     setFocus((current) => (current === next ? null : next));
     setQuery("");
     setTab("clients");
     setDraft(null);
+  }
+
+  function openOutreach(status: OutreachStatus | null) {
+    setOutreachStatus((current) => (status !== null && current === status && tab === "outreach" ? null : status));
+    setQuery("");
+    setFocus(null);
+    setDraft(null);
+    setTab("outreach");
   }
 
   function persist(nextClients: Client[], nextSettings = settings, nextOutreach = outreach) {
@@ -285,6 +301,39 @@ export function CrmApp() {
           <Stat label="ลูกค้าที่ดูแล" value={String(careCount)} tone="care" active={focus === "care"} onClick={() => openFocus("care")} />
         </div>
 
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <p className="mr-1 text-xs font-medium text-muted">กำลังติดต่อ</p>
+          <button
+            type="button"
+            onClick={() => openOutreach(null)}
+            className={`rounded-xl border px-3 py-2 text-sm font-medium ${
+              tab === "outreach" && outreachStatus === null ? "border-navy bg-navy text-base" : "border-slate-200/60 bg-white text-ink"
+            }`}
+          >
+            ทั้งหมด {outreach.length}
+          </button>
+          {OUTREACH_STATUSES.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => openOutreach(item.id)}
+              className={`rounded-xl border px-3 py-2 text-sm font-medium ${
+                tab === "outreach" && outreachStatus === item.id
+                  ? item.id === "interested"
+                    ? "border-aamber/40 bg-aamber/20 text-ink"
+                    : item.id === "won"
+                      ? "border-apurple/30 bg-apurple/10 text-apurple"
+                      : item.id === "rejected"
+                        ? "border-slate-200 bg-slate-100 text-muted"
+                        : "border-slate-200/80 bg-cream text-ink"
+                  : "border-slate-200/60 bg-white text-ink"
+              }`}
+            >
+              {item.label} {outreachCounts[item.id]}
+            </button>
+          ))}
+        </div>
+
         <div className="mt-6 flex flex-wrap items-center gap-2">
           <TabButton active={tab === "alerts"} onClick={() => { setTab("alerts"); setDraft(null); }}>
             แจ้งเตือน
@@ -301,6 +350,7 @@ export function CrmApp() {
               onClick={() => {
                 setTab("outreach");
                 setDraft(null);
+                setOutreachStatus(null);
               }}
             >
               กำลังติดต่อ
@@ -376,7 +426,14 @@ export function CrmApp() {
           ) : null}
 
           {tab === "outreach" ? (
-            <OutreachPanel leads={outreach} query={query} onChange={persistOutreach} onFlash={setFlash} />
+            <OutreachPanel
+              leads={outreach}
+              query={query}
+              statusFilter={outreachStatus}
+              onStatusFilterChange={setOutreachStatus}
+              onChange={persistOutreach}
+              onFlash={setFlash}
+            />
           ) : null}
 
           {tab === "settings" ? (

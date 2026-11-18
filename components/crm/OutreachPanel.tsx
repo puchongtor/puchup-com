@@ -36,11 +36,15 @@ function statusTone(status: OutreachStatus) {
 export function OutreachPanel({
   leads,
   query,
+  statusFilter,
+  onStatusFilterChange,
   onChange,
   onFlash,
 }: {
   leads: OutreachLead[];
   query: string;
+  statusFilter: OutreachStatus | null;
+  onStatusFilterChange: (next: OutreachStatus | null) => void;
   onChange: (next: OutreachLead[]) => void;
   onFlash: (message: string) => void;
 }) {
@@ -51,7 +55,6 @@ export function OutreachPanel({
   const [channelNote, setChannelNote] = useState("");
   const [note, setNote] = useState("");
   const [editing, setEditing] = useState<OutreachLead | null>(null);
-  const [statusFilter, setStatusFilter] = useState<OutreachStatus | null>(null);
 
   const searched = useMemo(() => {
     const q = query.trim().toLocaleLowerCase("th");
@@ -72,12 +75,6 @@ export function OutreachPanel({
         });
     return sortOutreachLeads(rows);
   }, [leads, query]);
-
-  const statusCounts = useMemo(() => {
-    const counts = Object.fromEntries(OUTREACH_STATUSES.map((item) => [item.id, 0])) as Record<OutreachStatus, number>;
-    for (const lead of searched) counts[lead.status] += 1;
-    return counts;
-  }, [searched]);
 
   const listed = useMemo(
     () => (statusFilter ? searched.filter((lead) => lead.status === statusFilter) : searched),
@@ -353,30 +350,6 @@ export function OutreachPanel({
       ) : null}
 
       <div className="grid gap-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setStatusFilter(null)}
-            className={`rounded-xl border px-3 py-2 text-sm font-medium ${
-              statusFilter === null ? "border-navy bg-navy text-base" : "border-slate-200/60 bg-white text-ink"
-            }`}
-          >
-            ทั้งหมด {searched.length}
-          </button>
-          {OUTREACH_STATUSES.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setStatusFilter((current) => (current === item.id ? null : item.id))}
-              className={`rounded-xl border px-3 py-2 text-sm font-medium ${
-                statusFilter === item.id ? statusTone(item.id) : "border-slate-200/60 bg-white text-ink"
-              }`}
-            >
-              {item.label} {statusCounts[item.id]}
-            </button>
-          ))}
-        </div>
-
         <p className="text-sm text-muted">
           {statusFilter
             ? `${OUTREACH_STATUSES.find((item) => item.id === statusFilter)?.label || ""} ${listed.length} ราย`
@@ -384,7 +357,7 @@ export function OutreachPanel({
               ? `พบ ${listed.length} จาก ${leads.length} ราย`
               : `${leads.length} ราย · แยกตามสถานะ · เรียงตามชื่อ`}
           {statusFilter ? (
-            <button type="button" onClick={() => setStatusFilter(null)} className="ml-2 font-medium text-apurple">
+            <button type="button" onClick={() => onStatusFilterChange(null)} className="ml-2 font-medium text-apurple">
               ดูทั้งหมด
             </button>
           ) : null}
