@@ -7,6 +7,7 @@ import {
   OUTREACH_SOURCES,
   OUTREACH_STATUSES,
   findOutreachByName,
+  formatThaiDate,
   newOutreachLead,
   outreachChannelLabel,
   outreachKindLabel,
@@ -18,6 +19,11 @@ import {
   type OutreachSource,
   type OutreachStatus,
 } from "@/lib/crm/model";
+
+function enteredDate(iso: string): string {
+  const day = iso.slice(0, 10);
+  return /^\d{4}-\d{2}-\d{2}$/.test(day) ? formatThaiDate(day) : "—";
+}
 import { Field, GhostButton, PrimaryButton, inputClass } from "./ui";
 
 function statusTone(status: OutreachStatus) {
@@ -377,16 +383,18 @@ export function OutreachPanel({
                   </h3>
                   <p className="text-xs text-muted">{group.rows.length} ราย</p>
                 </div>
-                <table className="w-full min-w-[980px] table-fixed border-collapse text-left text-sm">
+                <table className="w-full min-w-[1080px] table-fixed border-collapse text-left text-sm">
                   <colgroup>
-                    <col className="w-[20%]" />
-                    <col className="w-[10%]" />
                     <col className="w-[12%]" />
-                    <col className="w-[16%]" />
-                    <col className="w-[42%]" />
+                    <col className="w-[18%]" />
+                    <col className="w-[9%]" />
+                    <col className="w-[10%]" />
+                    <col className="w-[15%]" />
+                    <col className="w-[36%]" />
                   </colgroup>
                   <thead>
                     <tr className="border-b border-slate-200/60 text-xs font-medium text-muted">
+                      <th className="px-3 py-2.5 font-medium">วันที่ใส่</th>
                       <th className="px-3 py-2.5 font-medium">ชื่อ</th>
                       <th className="px-3 py-2.5 font-medium">ประเภท</th>
                       <th className="px-3 py-2.5 font-medium">แหล่ง</th>
@@ -397,6 +405,9 @@ export function OutreachPanel({
                   <tbody>
                     {group.rows.map((lead) => (
                       <tr key={lead.id} className="border-b border-slate-200/60 last:border-b-0">
+                        <td className="overflow-hidden px-3 py-2.5 whitespace-nowrap text-muted">
+                          {enteredDate(lead.createdAt)}
+                        </td>
                         <td className="overflow-hidden px-3 py-2.5">
                           <button
                             type="button"
