@@ -80,20 +80,27 @@
 <body class="overflow-x-hidden">
 
 <!-- ============ NAVBAR ============ -->
-<nav class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--line)] sticky-nav">
-  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3 font-display font-bold text-xl tracking-tight group">
-      <img src="./images/logo.webp" alt="Project One Logo" class="h-9 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='./images/logo.png'; this.onerror=null;">
-      <span class="text-[var(--ink)]">Project One</span>
-    </a>
-    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--ink-soft)]">
-      <a href="google-business-profile.html" class="text-sky-700 font-semibold hover:text-sky-800 transition">หน้าร้านบน Google</a>
-      <a href="#showroom" class="text-amber-700 font-semibold hover:text-amber-800 transition">Project One Demo →</a>
-      <a href="index.html#pricing" class="hover:text-[var(--ink)] transition">แพ็กเกจราคา</a>
-    </div>
-    <div class="flex items-center gap-3 md:gap-4">
-      <a href="tel:0809969495" class="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-soft)] font-medium hover:text-[var(--purple)] transition">
-        <span>📞</span> 080-996-9495
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-[var(--line)] sticky-nav bg-[var(--bg)]/90 backdrop-blur-md">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="flex items-center justify-between h-16 md:h-[4.25rem] gap-3">
+      <a href="/" class="flex items-center gap-2.5 shrink-0 group" target="_top">
+        <img src="./images/logo.webp" alt="PuchUp" class="h-8 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.src='./images/logo.png'; this.onerror=null;">
+        <span class="leading-tight">
+          <span class="block text-[13px] font-semibold text-[var(--ink)]">PuchUp</span>
+          <span class="block text-[10px] font-mono text-[var(--ink-faint)] tracking-wide">Project ONE · Demo</span>
+        </span>
+      </a>
+      <div class="hidden lg:flex items-center gap-6 text-sm font-medium text-[var(--ink-soft)]">
+        <a href="/" class="hover:text-[var(--purple)] transition" target="_top">หน้าแรก</a>
+        <a href="/showcase/" class="hover:text-[var(--purple)] transition" target="_top">Showcase</a>
+        <a href="/ProjectONE/" class="hover:text-[var(--purple)] transition" target="_top">Project ONE</a>
+        <span class="h-4 w-px bg-[var(--line)]" aria-hidden="true"></span>
+        <a href="google-business-profile.html" class="hover:text-[var(--purple)] transition">หมุด Google Maps</a>
+        <a href="#showroom" class="hover:text-[var(--purple)] transition">ตัวอย่าง Demo</a>
+        <a href="index.html#pricing" class="hover:text-[var(--purple)] transition">แพ็กเกจราคา</a>
+      </div>
+      <a href="/contact/" class="inline-flex items-center rounded-xl bg-[var(--ink)] px-3.5 py-2 text-[12px] font-semibold text-white hover:opacity-90 transition" target="_top">
+        คุยกับ PuchUp
       </a>
     </div>
   </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project One | One Page. Full Business.</title>
+<title>Project ONE | หน้าเดียว ที่ทำงานเป็นระบบหาลูกค้า</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -16,9 +16,12 @@
     --ink-faint:#8C95A6;
     --purple:#6344F5;
     --orange:#FF6B35;
+    --plus:#0F766E;
+    --plus-soft:#CCFBF1;
     --line:#E6DFD1;
     --dark:#090E1A;
   }
+  .plus-grad-bg{ background:linear-gradient(120deg, #0F766E, #0EA5E9); }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -40,7 +43,7 @@
     text-transform:uppercase; color:var(--purple); font-weight:600;
   }
   .hairline{ border-color:var(--line); }
-  .section-pad{ padding-top:clamp(4.5rem,9vw,8rem); padding-bottom:clamp(4.5rem,9vw,8rem); }
+  .section-pad{ padding-top:clamp(4rem,8vw,7rem); padding-bottom:clamp(4rem,8vw,7rem); }
   .reveal{ opacity:0; transform:translateY(24px); transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
   .reveal.in{ opacity:1; transform:translateY(0); }
   ::selection{ background:var(--purple); color:#fff; }
@@ -48,9 +51,9 @@
 
   .hero-glow {
     position: absolute;
-    top: 50%; left: 50%;
+    top: 45%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%; max-width: 950px; height: 600px;
+    width: 100%; max-width: 950px; height: 560px;
     background: radial-gradient(circle at 35% 45%, rgba(99,68,245,.14) 0%, transparent 60%),
                 radial-gradient(circle at 65% 55%, rgba(255,107,53,.13) 0%, transparent 60%);
     filter: blur(50px);
@@ -58,439 +61,268 @@
     pointer-events: none;
   }
 
-  .hero-stage { position: relative; width: 100%; max-width: 820px; margin: 0 auto; }
-  .floating-pill {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--line);
-    padding: .6rem 1.1rem;
-    border-radius: 999px;
-    font-size: .8rem;
-    font-weight: 600;
-    color: var(--ink);
-    box-shadow: 0 16px 36px -12px rgba(11,19,43,0.12);
-    display: flex;
-    align-items: center;
-    gap: .55rem;
-    z-index: 10;
-    transition: all .3s cubic-bezier(.16,1,.3,1);
-    white-space: nowrap;
-    animation: floatSlow 6s ease-in-out infinite alternate;
-  }
-  .floating-pill:hover {
-    transform: scale(1.08) translateY(-4px);
-    border-color: var(--purple);
-    box-shadow: 0 20px 40px -10px rgba(99,68,245,0.22);
-  }
-
-  @keyframes floatSlow {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-12px); }
-  }
-
-  .sticky-nav{ 
-    backdrop-filter: blur(16px); 
+  .sticky-nav{
+    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    background: rgba(250, 248, 245, 0.92); 
+    background: rgba(250, 248, 245, 0.92);
   }
   .nav-link {
     font-size: 0.95rem;
     color: var(--ink-soft);
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: color 0.2s ease;
   }
-  .nav-link:hover {
-    color: var(--purple);
-  }
+  .nav-link:hover { color: var(--purple); }
 </style>
 </head>
 <body class="antialiased">
 
-<!-- ============ NAVBAR ============ -->
-<nav id="mainnav" class="fixed top-0 left-0 right-0 z-50 border-b hairline sticky-nav transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-20">
-    
-    <!-- Logo + Project One text -->
-    <a href="index.html" class="flex items-center gap-3 font-display font-bold text-xl tracking-tight group shrink-0">
-      <img src="./images/logo.webp" alt="Project One Logo" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-9 w-auto object-contain transition-transform group-hover:scale-105">
-      <span class="text-[var(--ink)]">Project One</span>
-    </a>
-
-    <!-- Clean Focused Nav Links (3 items) -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="google-business-profile.html" class="nav-link text-sky-700 font-semibold hover:text-sky-800">หน้าร้านบน Google</a>
-      <a href="demo.html" class="nav-link text-amber-700 font-semibold hover:text-amber-800">Project One Demo →</a>
-      <a href="#pricing" class="nav-link">แพ็กเกจราคา</a>
-    </div>
-
-    <!-- Actions: Phone -->
-    <div class="flex items-center gap-3 md:gap-4">
-      <a href="tel:0809969495" class="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-soft)] font-medium hover:text-[var(--purple)] transition">
-        <span>📞</span> 080-996-9495
+<nav id="mainnav" class="fixed top-0 left-0 right-0 z-50 border-b hairline sticky-nav bg-[var(--bg)]/90 backdrop-blur-md">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="flex items-center justify-between h-16 md:h-[4.25rem] gap-3">
+      <a href="/" class="flex items-center gap-2.5 shrink-0 group" target="_top">
+        <img src="./images/logo.webp" alt="PuchUp" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-8 w-auto object-contain transition-transform group-hover:scale-105">
+        <span class="leading-tight">
+          <span class="block text-[13px] font-semibold text-[var(--ink)]">PuchUp</span>
+          <span class="block text-[10px] font-mono text-[var(--ink-faint)] tracking-wide">Project ONE</span>
+        </span>
       </a>
+      <div class="hidden lg:flex items-center gap-6">
+        <a href="/" class="nav-link" target="_top">หน้าแรก</a>
+        <a href="/showcase/" class="nav-link" target="_top">Showcase</a>
+        <a href="/guides/" class="nav-link" target="_top">คู่มือ</a>
+        <a href="#one" class="nav-link">ทำไมหน้าเดียว</a>
+        <a href="#works" class="nav-link">ผลงาน</a>
+        <a href="#pricing" class="nav-link">แพ็กเกจ</a>
+        <a href="demo.html" class="nav-link">Demo</a>
+      </div>
+      <div class="flex items-center gap-2 md:gap-3">
+        <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="inline-flex items-center rounded-xl bg-[var(--ink)] px-3.5 py-2 text-[12px] font-semibold text-white hover:opacity-90 transition">
+          ทัก LINE
+        </a>
+      </div>
+    </div>
+    <div class="flex lg:hidden items-center gap-4 overflow-x-auto pb-3 text-[12px] font-medium text-[var(--ink-soft)]">
+      <a href="#one" class="whitespace-nowrap hover:text-[var(--purple)]">ทำไมหน้าเดียว</a>
+      <a href="#works" class="whitespace-nowrap hover:text-[var(--purple)]">ผลงาน</a>
+      <a href="#pricing" class="whitespace-nowrap hover:text-[var(--purple)]">แพ็กเกจ</a>
+      <a href="demo.html" class="whitespace-nowrap hover:text-[var(--purple)]">Demo</a>
+      <a href="/guides/" class="whitespace-nowrap hover:text-[var(--purple)]" target="_top">คู่มือ</a>
     </div>
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
-<header id="top" class="relative pt-36 md:pt-48 pb-20 md:pb-32 overflow-hidden">
+<!-- HERO: เชียร์หน้าเดียว -->
+<header id="top" class="relative pt-36 md:pt-44 pb-16 md:pb-24 overflow-hidden">
   <div class="hero-glow"></div>
   <div class="max-w-5xl mx-auto px-5 md:px-8 text-center relative z-10">
-    <p class="eyebrow mb-6">Project ONE</p>
-    <h1 class="font-display font-semibold leading-[0.95] text-[clamp(2.8rem,7.5vw,5.6rem)] tracking-tight">
+    <p class="eyebrow mb-5">Project ONE</p>
+    <h1 class="font-display font-semibold leading-[0.98] text-[clamp(2.6rem,7vw,5.2rem)] tracking-tight">
       One Page.<br><span class="grad-text">Full Business.</span>
     </h1>
-    <p class="mt-8 text-base md:text-xl text-[var(--ink-soft)] max-w-2xl mx-auto leading-relaxed">
-      ไม่ใช่ Landing Page ธรรมดา แต่คือเว็บไซต์หน้าเดียวที่รวมระบบ เรื่องราว ความน่าเชื่อถือ และจุดตัดสินใจของธุรกิจไว้ในประสบการณ์เดียว
+    <p class="mt-7 text-base md:text-xl text-[var(--ink-soft)] max-w-2xl mx-auto leading-relaxed">
+      หน้าเดียวที่ไม่ใช่แค่โชว์ — แต่รวมเรื่องราว บริการ รีวิว แผนที่ และปุ่มทัก LINE / นำทาง ให้คนในย่านตัดสินใจมาที่ร้านได้จริง
     </p>
-    
-    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="demo.html" class="w-full sm:w-auto grad-bg text-white rounded-full px-8 py-4 font-medium text-sm hover:opacity-95 transition shadow-lg shadow-purple-500/20">
-        ✨ ชมตัวอย่าง Demo 30 ธุรกิจจริง →
+    <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="demo.html" class="w-full sm:w-auto grad-bg text-white rounded-full px-8 py-3.5 font-medium text-sm hover:opacity-95 transition shadow-lg shadow-purple-500/15">
+        ชมตัวอย่าง Demo →
       </a>
-      <a href="google-business-profile.html" class="w-full sm:w-auto border hairline bg-white rounded-full px-8 py-4 font-medium text-sm text-[var(--ink)] hover:border-[var(--ink)] transition shadow-sm">
-        ทำความเข้าใจหน้าร้านบน Google
+      <a href="#pricing" class="w-full sm:w-auto border hairline bg-white rounded-full px-8 py-3.5 font-medium text-sm text-[var(--ink)] hover:border-[var(--ink)] transition">
+        ดูแพ็กเกจ
       </a>
     </div>
 
-    <div class="hero-stage mt-16 md:mt-24 aspect-[16/11] md:aspect-[16/9] flex items-center justify-center">
-      
-      <div class="relative w-full max-w-[460px] bg-white rounded-2xl md:rounded-3xl border border-[var(--line)] p-3 md:p-4 shadow-[0_30px_70px_-20px_rgba(11,19,43,0.18)] z-10">
+    <div class="mt-14 md:mt-16 mx-auto max-w-[480px]">
+      <div class="relative bg-white rounded-2xl md:rounded-3xl border hairline p-3 md:p-4 shadow-[0_30px_70px_-20px_rgba(11,19,43,0.18)]">
         <div class="flex items-center justify-between pb-3 mb-3 border-b hairline px-2">
           <div class="flex gap-1.5">
             <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
           </div>
-          <span class="text-[10px] font-mono text-[var(--ink-faint)]">yourbrand.projectone.co</span>
-          <span class="text-[9px] font-mono font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded-full">ACTIVE</span>
+          <span class="text-[10px] font-mono text-[var(--ink-faint)]">yourshop.projectone</span>
         </div>
-
         <div class="bg-[var(--bg-alt)] rounded-xl overflow-hidden text-left border hairline">
-          <div class="relative h-36 md:h-48 bg-cover bg-center flex flex-col justify-end p-4 md:p-5 text-white" style="background-image: linear-gradient(to top, rgba(11,19,43,0.92) 0%, rgba(11,19,43,0.3) 60%, transparent 100%), url('./images/hero-mockup-cover.webp');">
-            <span class="text-[10px] font-mono text-[var(--orange)] font-bold uppercase tracking-wider">Authentic Experience</span>
-            <h3 class="font-display text-lg md:text-xl font-medium text-white">เรื่องราวและตัวตนที่ครบถ้วน</h3>
-            <p class="text-[11px] text-gray-300 font-light">รวบรวมทุกมิติของธุรกิจไว้ในที่เดียว</p>
+          <div class="relative h-40 md:h-52 bg-cover bg-center flex flex-col justify-end p-4 md:p-5 text-white" style="background-image: linear-gradient(to top, rgba(11,19,43,0.9) 0%, rgba(11,19,43,0.25) 55%, transparent 100%), url('./images/hero-mockup-cover.webp');">
+            <span class="text-[10px] font-mono text-[var(--orange)] font-bold uppercase tracking-wider">Local Shop</span>
+            <h3 class="font-display text-lg md:text-xl font-medium">ทุกอย่างที่ลูกค้าต้องรู้ — ในหน้าเดียว</h3>
           </div>
-          
           <div class="p-3 grid grid-cols-3 gap-2 text-center text-[10px] font-medium text-[var(--ink-soft)] bg-white border-t hairline">
-            <div class="p-2 bg-[var(--bg)] rounded-lg border hairline">⭐ 4.9 รีวิว</div>
-            <div class="p-2 bg-[var(--bg)] rounded-lg border hairline">📍 นำทางหน้าร้าน</div>
-            <div class="p-2 bg-[var(--ink)] text-white rounded-lg">จอง / สั่งซื้อ</div>
+            <div class="p-2 bg-[var(--bg)] rounded-lg border hairline">รีวิวจริง</div>
+            <div class="p-2 bg-[var(--bg)] rounded-lg border hairline">นำทาง</div>
+            <div class="p-2 bg-[var(--ink)] text-white rounded-lg">ทัก LINE</div>
           </div>
         </div>
       </div>
-
-      <div class="floating-pill" style="top: 8%; left: 6%; animation-delay: 0s;">
-        <span class="text-base">📖</span>
-        <div><p class="text-[11px] leading-tight">Story & Identity</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">เรื่องเล่าแบรนด์</p></div>
-      </div>
-
-      <div class="floating-pill" style="top: 4%; right: 8%; animation-delay: 0.8s;">
-        <span class="text-base">✨</span>
-        <div><p class="text-[11px] leading-tight">Interactive Menu / Services</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">บริการและสินค้า</p></div>
-      </div>
-
-      <div class="floating-pill hidden sm:flex" style="top: 48%; right: -2%; animation-delay: 1.4s;">
-        <span class="text-base">⭐️</span>
-        <div><p class="text-[11px] leading-tight">Google Trust & Reviews</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">รีวิวจริงจากลูกค้า</p></div>
-      </div>
-
-      <div class="floating-pill" style="bottom: 12%; right: 4%; animation-delay: 2.1s;">
-        <span class="text-base">📍</span>
-        <div><p class="text-[11px] leading-tight">Map & Direct Navigation</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">แผนที่นำทางสู่ร้าน</p></div>
-      </div>
-
-      <div class="floating-pill" style="bottom: 8%; left: 8%; animation-delay: 2.8s;">
-        <span class="text-base">💬</span>
-        <div><p class="text-[11px] leading-tight">Action & Instant Booking</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">ปิดการตัดสินใจ</p></div>
-      </div>
-
-      <div class="floating-pill hidden sm:flex" style="top: 48%; left: -2%; animation-delay: 1.9s;">
-        <span class="text-base">📸</span>
-        <div><p class="text-[11px] leading-tight">Vibe & High-Res Gallery</p><p class="text-[9px] text-[var(--ink-faint)] font-mono">บรรยากาศจริง</p></div>
-      </div>
-
     </div>
-
-    <p class="mt-8 text-sm text-[var(--ink-soft)] font-medium">หลายสิ่งที่ลูกค้าต้องรู้ ไม่จำเป็นต้องคลิกกระโดดไป 7 หน้าต่างกัน</p>
-    <p class="mt-1 font-mono text-xs uppercase tracking-widest text-[var(--purple)]">Designed Specifically for Local Businesses</p>
+    <p class="mt-8 text-sm text-[var(--ink-soft)]">ลูกค้าไม่ต้องกระโดดหลายหน้า — เลื่อนจบ แล้วทักได้เลย</p>
   </div>
 </header>
 
-<!-- ============ THE REALITY ============ -->
-<section class="section-pad reveal bg-white border-y hairline">
+<!-- ทำไมหน้าเดียว -->
+<section id="one" class="section-pad reveal bg-white border-y hairline">
   <div class="max-w-4xl mx-auto px-5 md:px-8 text-center">
-    <p class="eyebrow mb-4">THE REALITY</p>
-    <h2 class="font-display font-semibold text-[clamp(2rem,4.5vw,3rem)] leading-tight tracking-tight">
-      เว็บไซต์ไม่จำเป็นต้องซับซ้อนหลายสิบหน้า<br class="hidden md:block"> เพื่อให้ธุรกิจดูน่าเชื่อถือ
+    <p class="eyebrow mb-4">จุดขายหลัก</p>
+    <h2 class="font-display font-semibold text-[clamp(1.85rem,4vw,2.85rem)] leading-tight tracking-tight">
+      เว็บไม่จำเป็นต้องซับซ้อนหลายสิบหน้า<br class="hidden md:block"> เพื่อให้ร้านดูน่าเชื่อถือ
     </h2>
     <p class="mt-6 text-[var(--ink-soft)] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-      เว็บไซต์ธุรกิจจำนวนมากมีหลายหน้า — Home, About, Services, Gallery, Contact —
-      แต่ลูกค้าจริง ๆ มีเวลาสั้นมาก เขาต้องการรู้เพียงว่า: <strong>คุณคือใคร มีอะไร ดีอย่างไร คนอื่นคิดอย่างไร
-      อยู่ที่ไหน และควรเดินทางไปหาคุณไหม</strong>
+      คนมีเวลาสั้น อยากรู้ว่าคุณทำอะไร ดีอย่างไร คนอื่นว่าอย่างไร อยู่ที่ไหน และติดต่อยังไง
+      Project ONE เรียงคำตอบเหล่านี้ให้จบในหนึ่งประสบการณ์เลื่อนดู — โดยเฉพาะบนมือถือ
     </p>
-    <div class="mt-8 inline-block p-4 px-6 rounded-2xl bg-[var(--bg-alt)] border hairline">
-      <p class="font-display italic text-[var(--ink)] text-base md:text-lg">
-        "Project ONE จึงออกแบบทุกคำตอบเหล่านี้ให้จบอย่างน่าประทับใจ ภายใน 1 การเลื่อนดู"
-      </p>
-    </div>
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS ============ -->
-<section id="how" class="section-pad bg-[var(--bg-alt)] reveal">
+<!-- เส้นทาง -->
+<section id="how" class="section-pad reveal bg-[var(--bg-alt)]">
   <div class="max-w-6xl mx-auto px-5 md:px-8">
-    <div class="text-center mb-16">
-      <p class="eyebrow mb-3">HOW ONE WORKS</p>
-      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">From "Who are you?" <span class="grad-text">to "I'm coming."</span></h2>
-      <p class="text-sm text-[var(--ink-soft)] mt-3">วางลำดับจิตวิทยาให้ลูกค้าตัดสินใจง่ายที่สุด</p>
+    <div class="text-center mb-12 md:mb-14">
+      <p class="eyebrow mb-3">เส้นทางลูกค้า</p>
+      <h2 class="font-display font-semibold text-[clamp(1.85rem,3.8vw,2.6rem)]">จาก “ร้านอะไรนะ” ถึง “ทักเลย”</h2>
+      <p class="text-sm text-[var(--ink-soft)] mt-3">เรียงลำดับให้คนตัดสินใจง่าย ไม่ใช่ยัดข้อมูลมั่ว</p>
     </div>
-    
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
-        <div>
-          <span class="font-mono text-xs font-bold text-[var(--ink-faint)]">01 / DISCOVER</span>
-          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">สะดุดตา</h3>
-        </div>
-        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">พบคุณผ่าน Google, Search หรือโซเชียล ด้วยภาพและ First Impression ที่โดดเด่น</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white p-6 rounded-2xl border hairline">
+        <span class="font-mono text-xs font-bold text-[var(--ink-faint)]">01</span>
+        <h3 class="font-display font-semibold text-lg mt-3">เจอ</h3>
+        <p class="text-[13.5px] text-[var(--ink-soft)] mt-2 leading-relaxed">ค้นหาบน Google หรือแผนที่ แล้วเจอหมุด + ลิงก์เว็บที่ชี้ข้อมูลชุดเดียวกัน</p>
       </div>
-
-      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
-        <div>
-          <span class="font-mono text-xs font-bold text-[var(--purple)]">02 / EXPLORE</span>
-          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">เข้าใจ</h3>
-        </div>
-        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">ดูเมนู บริการ คอร์ส หรือตัวเลือกสินค้าได้อย่างลื่นไหล ไม่ต้องโหลดหน้าใหม่</p>
+      <div class="bg-white p-6 rounded-2xl border hairline">
+        <span class="font-mono text-xs font-bold text-[var(--purple)]">02</span>
+        <h3 class="font-display font-semibold text-lg mt-3">เข้าใจ</h3>
+        <p class="text-[13.5px] text-[var(--ink-soft)] mt-2 leading-relaxed">เลื่อนดูบริการ บรรยากาศ และจุดเด่น โดยไม่ต้องโหลดหน้าใหม่หลายรอบ</p>
       </div>
-
-      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
-        <div>
-          <span class="font-mono text-xs font-bold text-[var(--ink-faint)]">03 / TRUST</span>
-          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">เชื่อมั่น</h3>
-        </div>
-        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">ซึมซับรีวิวจริง ใบรับรอง และภาพบรรยากาศร้านที่พิสูจน์คุณภาพจริง</p>
+      <div class="bg-white p-6 rounded-2xl border hairline">
+        <span class="font-mono text-xs font-bold text-[var(--orange)]">03</span>
+        <h3 class="font-display font-semibold text-lg mt-3">มั่นใจ</h3>
+        <p class="text-[13.5px] text-[var(--ink-soft)] mt-2 leading-relaxed">รีวิว เวลาเปิด ที่อยู่ และคำถามที่พบบ่อย เคลียร์ก่อนตัดสินใจ</p>
       </div>
-
-      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
-        <div>
-          <span class="font-mono text-xs font-bold text-[var(--orange)]">04 / DECIDE</span>
-          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">ตัดสินใจ</h3>
-        </div>
-        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">เช็กเวลาเปิด-ปิด ราคา พิกัดที่จอดรถ เคลียร์ทุกข้อสงสัยในใจ</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm col-span-1 sm:col-span-2 md:col-span-1 bg-gradient-to-b from-white to-[var(--line)]/30">
-        <div>
-          <span class="font-mono text-xs font-bold text-green-600">05 / ACTION</span>
-          <h3 class="font-display font-semibold text-lg mt-3 text-[var(--ink)]">มาที่ร้าน</h3>
-        </div>
-        <p class="text-xs text-[var(--ink-soft)] mt-4 leading-relaxed">กดนำทาง Google Maps, ทัก LINE หรือกดจองนัดทันที</p>
+      <div class="bg-white p-6 rounded-2xl border hairline">
+        <span class="font-mono text-xs font-bold text-emerald-600">04</span>
+        <h3 class="font-display font-semibold text-lg mt-3">ทัก / มาที่ร้าน</h3>
+        <p class="text-[13.5px] text-[var(--ink-soft)] mt-2 leading-relaxed">ปุ่ม LINE โทร หรือนำทางอยู่จุดที่มือถึง — ส่งต่อเข้า OA ของร้านคุณ</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ NOT WHAT YOU THINK ============ -->
-<section id="one" class="section-pad reveal">
-  <div class="max-w-6xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-center">
+<!-- หน้าเดียว ≠ มีแค่หน้าเดียว -->
+<section class="section-pad reveal">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-12 md:gap-14 items-center">
     <div>
-      <p class="eyebrow mb-4">NOT WHAT YOU THINK</p>
-      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)] leading-tight">หน้าเดียว<br>ไม่ได้แปลว่ามีแค่หน้าเดียว</h2>
-      <p class="mt-6 text-[var(--ink-soft)] leading-relaxed text-sm md:text-base">
-        Project ONE ใช้หน้าเดียวเป็นแกนหลักเพื่อความเร็วและความราบรื่น แต่ภายในแบ่งออกเป็น Section Experiences ที่มีโครงสร้างสมบูรณ์แบบเสมือนเว็บไซต์ขนาดใหญ่ ลูกค้าจึงได้ข้อมูลที่ครบถ้วนโดยไม่ต้องกดย้อนกลับไปมา
+      <p class="eyebrow mb-4">ยืดหยุ่นตามธุรกิจ</p>
+      <h2 class="font-display font-semibold text-[clamp(1.85rem,3.8vw,2.6rem)] leading-tight">
+        เริ่มจากหน้าเดียว<br>ขยายได้เมื่อพร้อม
+      </h2>
+      <p class="mt-5 text-[var(--ink-soft)] leading-relaxed text-[15px]">
+        จุดขายคือประสบการณ์เดียวที่ลื่นและเร็ว แต่ถ้าร้านมีหลายบริการหรืออยากเจาะคำค้นย่านลึกขึ้น
+        ขยายเป็นหลายหน้าได้ภายใต้แพ็ก Local SEO / Plus โดยยังคุมคุณภาพ ไม่ทำเยอะจนรก
       </p>
-      <div class="mt-8 pt-6 border-t hairline">
-        <p class="font-display text-xl leading-snug">One URL. One Experience.<br><span class="grad-text">Everything your customer needs.</span></p>
-      </div>
+      <p class="mt-6 font-display text-xl leading-snug">
+        One URL. One clear path.<br>
+        <span class="grad-text">Everything your customer needs.</span>
+      </p>
     </div>
-
-    <div class="rounded-3xl border hairline bg-white overflow-hidden shadow-xl">
+    <div class="rounded-3xl border hairline bg-white overflow-hidden shadow-sm">
       <div class="flex items-center justify-between px-5 py-3.5 border-b hairline bg-[var(--bg-alt)]">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
-          <span class="ml-2 text-xs font-mono text-[var(--ink-faint)]">System Architecture</span>
-        </div>
-        <span class="text-[10px] font-mono font-bold text-[var(--purple)]">8 IN 1 STACK</span>
+        <span class="text-xs font-mono text-[var(--ink-faint)]">สิ่งที่อยู่ในหน้าเดียว</span>
+        <span class="text-[10px] font-mono font-bold text-[var(--purple)]">CORE STACK</span>
       </div>
-      <div class="p-6 md:p-8 grid grid-cols-2 gap-4 text-xs font-mono">
-        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
-          <span class="text-[var(--purple)] font-bold block mb-1">01. STORY</span>
-          ตัวตนและจุดเด่นร้าน
-        </div>
-        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
-          <span class="text-[var(--orange)] font-bold block mb-1">02. SERVICES</span>
-          เมนู / บริการ / ราคา
-        </div>
-        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
-          <span class="text-[var(--purple)] font-bold block mb-1">03. GALLERY</span>
-          ภาพบรรยากาศจริง
-        </div>
-        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
-          <span class="text-[var(--orange)] font-bold block mb-1">04. REVIEWS</span>
-          คะแนน Google & Social
-        </div>
-        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
-          <span class="text-[var(--purple)] font-bold block mb-1">05. LOCATION</span>
-          แผนที่และจุดสังเกต
-        </div>
-        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
-          <span class="text-[var(--orange)] font-bold block mb-1">06. HOURS</span>
-          เวลาเปิดปิดและสถานะ
-        </div>
-        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline">
-          <span class="text-[var(--purple)] font-bold block mb-1">07. ARTICLES</span>
-          เรื่องราวและ SEO
-        </div>
-        <div class="p-3.5 rounded-xl bg-[var(--ink)] text-white">
-          <span class="text-green-400 font-bold block mb-1">08. ACTION</span>
-          โทร / จอง / นำทาง
-        </div>
+      <div class="p-5 md:p-6 grid grid-cols-2 gap-3 text-[12px]">
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline"><span class="text-[var(--purple)] font-bold block mb-1 font-mono text-[10px]">STORY</span>ตัวตนร้าน</div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline"><span class="text-[var(--orange)] font-bold block mb-1 font-mono text-[10px]">SERVICES</span>บริการ / เมนู</div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline"><span class="text-[var(--purple)] font-bold block mb-1 font-mono text-[10px]">GALLERY</span>บรรยากาศจริง</div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline"><span class="text-[var(--orange)] font-bold block mb-1 font-mono text-[10px]">REVIEWS</span>รีวิว</div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline"><span class="text-[var(--purple)] font-bold block mb-1 font-mono text-[10px]">MAP</span>แผนที่ / ที่อยู่</div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline"><span class="text-[var(--orange)] font-bold block mb-1 font-mono text-[10px]">HOURS</span>เวลาเปิด</div>
+        <div class="p-3.5 rounded-xl bg-[var(--bg)] border hairline"><span class="text-[var(--purple)] font-bold block mb-1 font-mono text-[10px]">FAQ</span>คำถามบ่อย</div>
+        <div class="p-3.5 rounded-xl bg-[var(--ink)] text-white"><span class="text-green-400 font-bold block mb-1 font-mono text-[10px]">ACTION</span>LINE / โทร / นำทาง</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ GOOGLE BUSINESS SECTION ============ -->
-<section id="google" class="section-pad bg-white reveal">
+<!-- หมุด + เว็บ -->
+<section id="google" class="section-pad reveal bg-white border-y hairline">
   <div class="max-w-6xl mx-auto px-5 md:px-8">
-    <div class="text-center mb-12">
-      <p class="eyebrow mb-3">ECOSYSTEM INTEGRATION</p>
-      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">เว็บไซต์ของคุณ<br>ไม่ควรอยู่อย่างโดดเดี่ยว</h2>
-      <p class="mt-4 text-[var(--ink-soft)] max-w-2xl mx-auto text-sm md:text-base">
-        ลูกค้าเกือบทั้งหมดเริ่มต้นจาก Google Search หรือ Google Maps ดังนั้น Project ONE จึงถูกออกแบบให้ทำงานร่วมกับ Google Business Profile ได้อย่างราบรื่น
-      </p>
-      <div class="mt-6">
-        <a href="google-business-profile.html" class="inline-flex items-center gap-2 text-xs md:text-sm font-mono font-bold text-sky-700 bg-sky-50 border border-sky-200 px-5 py-2.5 rounded-full hover:bg-sky-100 transition">
-          📖 อ่านคู่มือทำความเข้าใจหน้าร้านบน Google ฉบับเต็ม →
-        </a>
-      </div>
-    </div>
-
-    <div class="flex justify-center gap-6 md:gap-10 border-b hairline mb-12 text-sm font-medium">
-      <button data-gtab="website" class="tab-btn active pb-3 font-mono text-xs md:text-sm">01. WEBSITE</button>
-      <button data-gtab="gbusiness" class="tab-btn pb-3 font-mono text-xs md:text-sm">02. GOOGLE PROFILE</button>
-      <button data-gtab="growth" class="tab-btn pb-3 font-mono text-xs md:text-sm">03. LOCAL POWER</button>
-    </div>
-
-    <div id="panel-website" class="gpanel grid md:grid-cols-2 gap-10 items-center">
-      <div class="rounded-2xl overflow-hidden border hairline shadow-md aspect-[4/3]">
-        <img src="./images/bakery-hero.webp" alt="ร้านค้าท้องถิ่น" class="w-full h-full object-cover">
-      </div>
-      <div class="space-y-4">
-        <h3 class="font-display text-2xl font-semibold">One page, everything a customer needs to decide.</h3>
-        <p class="text-[var(--ink-soft)] text-sm md:text-base leading-relaxed">
-          เรื่องราว บรรยากาศ เมนูยอดนิยม รีวิวจริง และช่องทางเดินทาง รวมอยู่ในหน้าเดียวที่โหลดเร็วและลื่นไหล พร้อมเปลี่ยนผู้ค้นหาให้กลายเป็นลูกค้าหน้าร้าน
-        </p>
-      </div>
-    </div>
-
-    <div id="panel-gbusiness" class="gpanel hidden grid md:grid-cols-2 gap-10 items-center">
+    <div class="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
       <div>
-        <h3 class="font-display text-2xl font-semibold mb-3">เมื่อคนค้นหา คุณต้องพร้อมให้เขาเจอ</h3>
-        <p class="text-[var(--ink-soft)] text-sm mb-6 leading-relaxed">เชื่อมพิกัด ข้อมูลเวลาเปิด-ปิด และคะแนนดาวเข้าสู่ระบบอย่างเป็นเนื้อเดียวกัน</p>
-        <div class="rounded-2xl border hairline bg-[var(--bg)] p-5 shadow-sm">
-          <div class="flex gap-4 items-center">
-            <img src="./images/gbp-hero-mockup.webp" class="w-16 h-16 rounded-xl object-cover" alt="Shop logo">
-            <div>
-              <p class="font-bold text-sm">Sunday Yard Coffee (Ari)</p>
-              <p class="text-xs text-[var(--ink-soft)]">⭐ 4.9 (180+ รีวิว) · คาเฟ่ & คราฟต์เบเกอรี · อารีย์ กรุงเทพฯ</p>
-              <p class="text-xs text-green-600 font-semibold mt-0.5">● เปิดให้บริการอยู่</p>
-            </div>
-          </div>
+        <p class="eyebrow mb-3">เว็บ + หมุด Google</p>
+        <h2 class="font-display font-semibold text-[clamp(1.85rem,3.8vw,2.5rem)] leading-tight">
+          เว็บไม่ควรอยู่อย่างโดดเดี่ยว
+        </h2>
+        <p class="mt-4 text-[15px] text-[var(--ink-soft)] leading-relaxed">
+          คนมักเริ่มจากแผนที่หรือค้นหา หมุดช่วยให้เจอและเชื่อรีวิว เว็บช่วยตอบรายละเอียดที่หมุดใส่ไม่หมด
+          แพ็กที่รวม Google Business จะวางทั้งสองให้ชี้ชื่อ ที่อยู่ เบอร์ชุดเดียวกัน
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="google-business-profile.html" class="inline-flex text-[13px] font-semibold text-sky-700 bg-sky-50 border border-sky-200 px-4 py-2 rounded-full hover:bg-sky-100 transition">
+            อ่านเรื่องหมุด Google →
+          </a>
+          <a href="/guides/line-oa-for-local-business/" target="_top" class="inline-flex text-[13px] font-semibold text-[var(--purple)] bg-purple-50 border border-purple-100 px-4 py-2 rounded-full hover:bg-purple-100/80 transition">
+            เว็บส่งคนไป LINE OA ยังไง →
+          </a>
         </div>
       </div>
-      <div class="rounded-2xl overflow-hidden border hairline aspect-[4/3] bg-[var(--bg-alt)] flex items-center justify-center">
-        <img src="./images/gbp-search-mobile.webp" class="w-full h-full object-cover" alt="ลูกค้าค้นหาบนแผนที่">
-      </div>
-    </div>
-
-    <div id="panel-growth" class="gpanel hidden">
-      <div class="max-w-3xl mx-auto text-center py-8">
-        <h3 class="font-display text-2xl font-semibold mb-4">ไม่ใช่แค่ทำเว็บทิ้งไว้ แต่คือการสร้างตัวตนบนโลกจริง</h3>
-        <div class="flex flex-wrap justify-center items-center gap-3 mt-8 text-xs font-mono">
-          <span class="px-4 py-2 rounded-full border hairline bg-[var(--bg)]">Google Profile</span>
-          <span class="text-[var(--ink-faint)]">+</span>
-          <span class="px-4 py-2 rounded-full border hairline bg-[var(--bg)]">Project ONE</span>
-          <span class="text-[var(--ink-faint)]">+</span>
-          <span class="px-4 py-2 rounded-full border hairline bg-[var(--bg)]">Local Reviews</span>
-          <span class="text-[var(--ink-faint)]">=</span>
-          <span class="px-5 py-2.5 rounded-full grad-bg text-white font-bold">Strong Local Dominance</span>
-        </div>
+      <div class="rounded-2xl overflow-hidden border hairline aspect-[4/3] bg-[var(--bg-alt)]">
+        <img src="./images/gbp-search-mobile.webp" alt="ลูกค้าค้นหาร้านบน Google Maps" class="w-full h-full object-cover" onerror="this.style.display='none'">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ UNDER THE HOOD ============ -->
-<section id="engine" class="section-pad bg-[var(--dark)] text-white reveal">
-  <div class="max-w-5xl mx-auto px-5 md:px-8">
-    <div class="text-center mb-16">
-      <p class="eyebrow mb-3" style="color:var(--orange)">UNDER THE HOOD</p>
-      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,3rem)] tracking-tight">สิ่งที่คุณเห็นคือดีไซน์ที่สวยงาม<br><span class="text-gray-400">แต่สิ่งที่ขับเคลื่อนอยู่ข้างในคือระบบ</span></h2>
-    </div>
-    <div class="grid md:grid-cols-2 gap-6">
-      <div class="rounded-3xl border border-white/10 p-8 bg-white/5 backdrop-blur">
-        <p class="font-mono text-xs text-[var(--purple)] font-bold mb-3">01 / FRONT EXPERIENCE</p>
-        <h3 class="font-display text-xl font-medium mb-3">Editorial Aesthetics & Speed</h3>
-        <p class="text-sm text-gray-400 leading-relaxed">ดีไซน์เฉพาะตัว ไม่ใช้ธีมโหล โหลดรูปภาพแบบ Lazy-load รวดเร็วเด็ดขาด สร้างความประทับใจตั้งแต่เสี้ยววินาทีแรก</p>
-      </div>
-      <div class="rounded-3xl border border-white/10 p-8 bg-white/5 backdrop-blur">
-        <p class="font-mono text-xs text-[var(--orange)] font-bold mb-3">02 / CORE ENGINE</p>
-        <h3 class="font-display text-xl font-medium mb-3">Semantic SEO & Action Systems</h3>
-        <p class="text-sm text-gray-400 leading-relaxed">โครงสร้างโค้ดตามมาตรฐานการค้นหา พร้อมรองรับการเชื่อมต่อกับระบบจอง โทรออก หรือส่งข้อความปิดการขายได้ทันที</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== WORKS ==================== -->
-<section id="works" class="section-pad bg-white reveal border-t hairline">
+<!-- ผลงาน / เคส -->
+<section id="works" class="section-pad reveal bg-[var(--bg-alt)]">
   <div class="max-w-6xl mx-auto px-5 md:px-8">
-    <div class="text-center mb-12">
-      <p class="eyebrow mb-3">WORKS</p>
-      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">ผลงาน</h2>
+    <div class="text-center mb-10 md:mb-12">
+      <p class="eyebrow mb-3">ผลงาน</p>
+      <h2 class="font-display font-semibold text-[clamp(1.85rem,3.8vw,2.6rem)]">เคสที่รายงานตามช่วงเวลา</h2>
       <p class="mt-3 text-sm text-[var(--ink-soft)] max-w-2xl mx-auto leading-relaxed">
-        ตัวอย่างแพ็กเกจขยายเนื้อหา SEO ไม่เกิน 10 หน้า — บริการ อัตราค่ารักษา ทีมแพทย์ วิธีมาคลินิก พร้อม Google Business
+        ผลขึ้นกับย่านและคำค้น — ไม่การันตีเหมือนกันทุกเคส แต่ดูจังหวะจริงหลังขึ้นเว็บได้
       </p>
     </div>
-    <a href="https://www.baandental.com/" target="_blank" rel="noopener" class="group grid md:grid-cols-2 gap-0 overflow-hidden rounded-3xl border hairline bg-[var(--bg-alt)] shadow-sm hover:shadow-md transition">
-      <div class="relative aspect-[16/11] md:aspect-auto md:min-h-[280px] overflow-hidden">
-        <img src="/images/works/baandental.jpg" alt="บ้านทันตแพทย์ — หน้าแรกเว็บ" class="absolute inset-0 w-full h-full object-cover object-top transition duration-500 group-hover:scale-[1.03]">
-      </div>
-      <div class="p-8 md:p-10 flex flex-col justify-center">
-        <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--purple)]">Local SEO Site · ≤10 หน้า</span>
-        <h3 class="font-display text-2xl font-semibold mt-2 text-[var(--ink)]">Baan Dental · บ้านทันตแพทย์</h3>
-        <p class="text-xs text-[var(--ink-soft)] mt-1">สาธุประดิษฐ์ · พระราม 3 · ยานนาวา</p>
-        <ul class="mt-5 space-y-2 text-xs text-[var(--ink-soft)]">
-          <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> เนื้อหาบริการแยกหน้า เน้นคำค้นหาท้องถิ่น</li>
-          <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> ตารางอัตราค่ารักษา / ทีมแพทย์ / FAQ ก่อนนัด</li>
-          <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> เชื่อม Google Business · LINE · โทร</li>
-        </ul>
-        <span class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--purple)]">
-          เปิดเว็บจริง →
-        </span>
-      </div>
-    </a>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <a href="/showcase/results/baandental-local-seo-first-week/" target="_top" class="group rounded-3xl border hairline bg-white overflow-hidden hover:shadow-md transition">
+        <div class="relative aspect-[16/10] overflow-hidden">
+          <img src="/images/works/baandental.jpg" alt="บ้านทันตแพทย์" class="absolute inset-0 w-full h-full object-cover object-top transition duration-500 group-hover:scale-[1.03]">
+        </div>
+        <div class="p-6 md:p-7">
+          <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--purple)]">1 สัปดาห์หลังขึ้นเว็บ</span>
+          <h3 class="font-display text-xl font-semibold mt-2">บ้านทันตแพทย์</h3>
+          <p class="mt-2 text-[13.5px] text-[var(--ink-soft)] leading-relaxed">Local SEO · คำค้นท้องถิ่น + คนทัก LINE นัด — ดูรายงานช่วงแรก</p>
+          <span class="mt-4 inline-flex text-sm font-semibold text-[var(--purple)]">เปิดเคส →</span>
+        </div>
+      </a>
+      <a href="/showcase/results/advancepro-launch-product-keywords/" target="_top" class="group rounded-3xl border hairline bg-white overflow-hidden hover:shadow-md transition">
+        <div class="relative aspect-[16/10] overflow-hidden bg-[var(--bg)]">
+          <img src="/images/cases/advancepro/cover.jpg" alt="Advance Pro" class="absolute inset-0 w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]" onerror="this.src='/images/works/baandental.jpg'">
+        </div>
+        <div class="p-6 md:p-7">
+          <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--orange)]">~3 สัปดาห์หลังขึ้นเว็บ</span>
+          <h3 class="font-display text-xl font-semibold mt-2">Advance Pro</h3>
+          <p class="mt-2 text-[13.5px] text-[var(--ink-soft)] leading-relaxed">คำค้นสินค้าขึ้นหน้าค้นหา มีทัก LINE และเริ่มเปิดใบเสนอราคา</p>
+          <span class="mt-4 inline-flex text-sm font-semibold text-[var(--purple)]">เปิดเคส →</span>
+        </div>
+      </a>
+    </div>
+    <p class="mt-8 text-center">
+      <a href="/showcase/results/" target="_top" class="text-sm font-semibold text-[var(--purple)] hover:underline">ดูผลงานทั้งหมด →</a>
+    </p>
   </div>
 </section>
 
-<!-- ==================== PRICING SECTION ==================== -->
-<section id="pricing" class="section-pad bg-[var(--bg-alt)] reveal">
+<!-- ราคา -->
+<section id="pricing" class="section-pad reveal bg-white">
   <div class="max-w-6xl mx-auto px-5 md:px-8">
-    <div class="text-center mb-16">
-      <p class="eyebrow mb-3">INVESTMENT & CONTINUITY</p>
-      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.8rem)]">โครงสร้างราคามาตรฐาน</h2>
-      <p class="mt-3 inline-block text-xs font-mono font-semibold rounded-full px-4 py-1.5 grad-bg text-white shadow-sm">Local Acquisition System</p>
+    <div class="text-center mb-12 md:mb-14">
+      <p class="eyebrow mb-3">แพ็กเกจ</p>
+      <h2 class="font-display font-semibold text-[clamp(1.85rem,3.8vw,2.6rem)]">เริ่มจากหน้าเดียว ขยายเมื่อธุรกิจพร้อม</h2>
+      <p class="mt-3 text-[14.5px] text-[var(--ink-soft)] max-w-xl mx-auto">เลือกระดับตามความพร้อมของร้าน — ราคาแสดงเป็นช่วงโปร เทียบกับราคาปกติที่สมเหตุสมผล</p>
     </div>
-    
-    <!-- Setup Packages -->
-    <div class="grid md:grid-cols-3 gap-6 items-stretch mb-16">
-      
-      <!-- Tier 1: Starter Web (9,900) -->
+
+    <div class="grid md:grid-cols-3 gap-6 items-stretch mb-10">
+      <!-- Starter -->
       <div class="rounded-3xl bg-white border hairline p-7 md:p-8 flex flex-col justify-between shadow-sm">
         <div>
           <span class="font-mono text-xs text-[var(--ink-faint)] font-bold uppercase">Single Service Option</span>
@@ -500,7 +332,7 @@
           </p>
           <div class="flex items-baseline gap-2 mb-5 pb-5 border-b hairline">
             <span class="font-display text-3xl font-bold text-[var(--ink)]">฿9,900</span>
-            <span class="text-sm text-[var(--ink-faint)] line-through font-mono">฿19,900</span>
+            <span class="text-sm text-[var(--ink-faint)] line-through font-mono">฿12,900</span>
           </div>
           <ul class="space-y-2.5 text-xs text-[var(--ink-soft)]">
             <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>High-Conversion One-Page:</strong> ดีไซน์ปิดการขายเฉพาะธุรกิจ</span></li>
@@ -510,43 +342,43 @@
             <li class="flex items-start gap-2 text-[var(--ink-faint)]"><span class="text-rose-400 font-bold">✕</span> <span>ไม่รวม Google Business Setup</span></li>
           </ul>
         </div>
-        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 border border-[var(--ink)] rounded-full py-3 text-[11px] font-mono font-bold uppercase tracking-wider hover:bg-[var(--ink)] hover:text-white transition">
-          STARTER WEB (฿9,900) →
+        <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 border border-[var(--ink)] rounded-full py-3 text-[11px] font-mono font-bold uppercase tracking-wider hover:bg-[var(--ink)] hover:text-white transition">
+          Starter Web (฿9,900) →
         </a>
       </div>
 
-      <!-- Tier 2: Local Acquisition System (12,900 - Recommended) -->
+      <!-- Local Acquisition -->
       <div class="rounded-3xl bg-[var(--ink)] text-white p-7 md:p-8 shadow-2xl flex flex-col justify-between relative border border-purple-500/30">
         <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-1 rounded-full grad-bg text-white shadow-md whitespace-nowrap">
           ★ แนะนำ · คุ้มค่าสูงสุด
         </span>
         <div>
-          <span class="font-mono text-xs text-[var(--orange)] font-bold uppercase block mt-2">Full Acquisition Suite</span>
-          <h3 class="font-display text-xl font-semibold mt-2 mb-2 text-white">Local Acquisition</h3>
+          <span class="font-mono text-xs text-[var(--orange)] font-bold uppercase block mt-2">Web + Google Maps</span>
+          <h3 class="font-display text-xl font-semibold mt-2 mb-2 text-white">Get Local Customers</h3>
           <p class="text-xs text-gray-300 mb-5 leading-relaxed">
             เชื่อมหน้าเว็บเข้ากับหมุด Google Maps ดักจับลูกค้าค้นหาในรัศมีรอบร้าน และส่งตรงเข้าสู่การนัดหมายทันที
           </p>
           <div class="flex items-baseline gap-2 mb-5 pb-5 border-b border-white/10">
             <span class="font-display text-3xl font-bold text-white grad-text">฿12,900</span>
-            <span class="text-sm text-gray-400 line-through font-mono">฿24,900</span>
+            <span class="text-sm text-gray-400 line-through font-mono">฿16,900</span>
           </div>
           <ul class="space-y-2.5 text-xs text-gray-300">
             <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>ครบ Starter Web:</strong> One-Page + Floating Action</span></li>
             <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Google Business Setup:</strong> ปัก/เคลมหมุด, Category, Keywords</span></li>
-            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Integration & Tracking:</strong> ผูกหมุด + UTM</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>เชื่อมหมุดกับเว็บ:</strong> ข้อมูลตรงกัน และรู้ว่าลูกค้ากดมาจากช่องทางไหน</span></li>
             <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>Local Review Standee:</strong> ป้าย QR หน้าร้าน</span></li>
             <li class="flex items-start gap-2"><span class="text-[var(--orange)] font-bold">✓</span> <span><strong>ฟรีปีแรก:</strong> Domain + Hosting + SSL</span></li>
           </ul>
         </div>
-        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 grad-bg rounded-full py-3.5 text-[11px] font-mono font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/30 hover:opacity-90 transition">
+        <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 grad-bg rounded-full py-3.5 text-[11px] font-mono font-bold uppercase tracking-wider text-white shadow-lg shadow-purple-500/30 hover:opacity-90 transition">
           ติดตั้งครบวงจร (฿12,900) →
         </a>
       </div>
 
-      <!-- Tier 3: Local SEO Site (17,900) -->
+      <!-- Local SEO -->
       <div class="rounded-3xl bg-white border border-purple-200 p-7 md:p-8 flex flex-col justify-between shadow-sm relative">
         <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-1 rounded-full bg-purple-50 text-[var(--purple)] border border-purple-200 whitespace-nowrap">
-          Addon จาก ฿12,900
+          ขยายจาก ฿12,900
         </span>
         <div>
           <span class="font-mono text-xs text-[var(--purple)] font-bold uppercase block mt-2">Content Depth · SEO</span>
@@ -556,138 +388,189 @@
           </p>
           <div class="flex items-baseline gap-2 mb-5 pb-5 border-b hairline">
             <span class="font-display text-3xl font-bold text-[var(--purple)]">฿17,900</span>
-            <span class="text-sm text-[var(--ink-faint)] line-through font-mono">฿29,900</span>
+            <span class="text-sm text-[var(--ink-faint)] line-through font-mono">฿22,900</span>
           </div>
           <ul class="space-y-2.5 text-xs text-[var(--ink-soft)]">
-            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ครบ Local Acquisition:</strong> รวม Google Business Setup</span></li>
+            <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ครบ Get Local Customers:</strong> รวม Google Business Setup</span></li>
             <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ไม่เกิน 10 หน้า:</strong> บริการ / ราคา / ทีม / วิธีมา ฯลฯ</span></li>
             <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>เนื้อหา SEO เข้ม:</strong> คำค้นหาท้องถิ่น + โครงหน้าชัด</span></li>
             <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>Schema & Internal Links:</strong> รองรับการค้นหาเจอระยะยาว</span></li>
             <li class="flex items-start gap-2"><span class="text-[var(--purple)] font-bold">✓</span> <span><strong>ฟรีปีแรก:</strong> Domain .com + Hosting + SSL</span></li>
           </ul>
         </div>
-        <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 border border-[var(--purple)] text-[var(--purple)] rounded-full py-3 text-[11px] font-mono font-bold uppercase tracking-wider hover:bg-[var(--purple)] hover:text-white transition">
-          LOCAL SEO SITE (฿17,900) →
+        <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="block text-center mt-7 border border-[var(--purple)] text-[var(--purple)] rounded-full py-3 text-[11px] font-mono font-bold uppercase tracking-wider hover:bg-[var(--purple)] hover:text-white transition">
+          Local SEO Site (฿17,900) →
         </a>
       </div>
-
     </div>
 
-    <!-- Continuity -->
-    <div class="max-w-4xl mx-auto border-t hairline pt-12">
-      <div class="text-center mb-8">
-        <h3 class="font-display text-xl font-semibold text-[var(--ink)]">ค่าดูแลระบบรายปี และ บริการดันอันดับรายเดือน</h3>
-        <p class="text-xs text-[var(--ink-soft)] mt-1">ดูแลระบบต่อเนื่อง และรักษาการมองเห็นบน Google Maps อย่างสม่ำเสมอ</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-2xl border hairline flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-mono text-[10px] text-[var(--ink-faint)] uppercase font-semibold">ปีที่ 2 เป็นต้นไป</span>
+    <!-- Plus -->
+    <div id="plus" class="mb-12 relative rounded-3xl p-[2px] plus-grad-bg shadow-[0_20px_50px_-24px_rgba(15,118,110,0.55)]">
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-1 rounded-full bg-[var(--plus)] text-white border border-teal-300/40 z-10">
+        Plus+ · Deep Local SEO
+      </span>
+      <div class="rounded-[1.4rem] overflow-hidden bg-[var(--plus)]">
+        <div class="grid md:grid-cols-[1.12fr_0.88fr]">
+          <div class="p-7 md:p-9 bg-white text-[var(--ink)]">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[var(--plus-soft)] text-[var(--plus)] border border-teal-200">Plus+</span>
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--plus)]">Up to 40 pages</span>
             </div>
-            <h4 class="font-display font-semibold text-base text-[var(--ink)] mb-1">ค่าดูแลโครงสร้างพื้นฐานรายปี</h4>
-            <p class="text-xs text-[var(--ink-soft)] mb-4 leading-relaxed">ต่ออายุชื่อโดเมน (.com), Fast Cloud Hosting, SSL และการดูแลความปลอดภัยของระบบ</p>
-          </div>
-          <div class="font-display text-2xl font-bold text-[var(--ink)] border-t hairline pt-4">
-            ฿2,500 <span class="text-xs font-mono font-normal text-[var(--ink-faint)]">/ ปี (~฿208 / เดือน)</span>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl border border-purple-200 flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-mono text-[10px] text-[var(--purple)] uppercase font-bold">Option เสริมรายเดือน</span>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-[var(--purple)] font-semibold">พิเศษ</span>
+            <h3 class="font-display text-2xl md:text-[1.85rem] font-semibold mt-3 tracking-tight">Local SEO Plus</h3>
+            <p class="mt-2 text-[15px] text-[var(--ink-soft)] leading-relaxed max-w-xl">
+              ครบ Local SEO Site แล้วขยายต่อ — หน้าสรุปร้าน + หน้าเจาะคำค้น ในกรอบไม่เกิน 40 หน้า
+            </p>
+            <div class="mt-4 flex items-baseline gap-2 flex-wrap">
+              <span class="font-display text-3xl font-bold text-[var(--plus)]">฿24,900</span>
+              <span class="text-sm text-[var(--ink-faint)] line-through font-mono">฿29,900</span>
             </div>
-            <h4 class="font-display font-semibold text-base text-[var(--ink)] mb-1">บริการดูแลและดันอันดับหมุดรายเดือน</h4>
-            <p class="text-xs text-[var(--ink-soft)] mb-4 leading-relaxed">โพสต์คอนเทนต์บน Maps 1-2 ครั้ง/สัปดาห์, อัปโหลดรูป Geo-tagging, ตอบรีวิว, ส่ง Report สิ้นเดือน</p>
+            <div class="mt-5 rounded-2xl border border-teal-200 bg-[var(--plus-soft)]/50 p-4 md:p-5">
+              <p class="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--plus)]">กรอบงาน</p>
+              <ul class="mt-3 space-y-2.5 text-[14.5px] text-[var(--ink-soft)]">
+                <li class="flex gap-2"><span class="text-[var(--plus)] font-bold">✓</span><span><strong>ครบ Local SEO Site:</strong> รวม Google Business + โครงฐานไม่เกิน 10 หน้า</span></li>
+                <li class="flex gap-2"><span class="text-[var(--plus)] font-bold">✓</span><span><strong>หน้าหลักระบบร้าน 10–15:</strong> บริการ · ราคา · ทีม · แผนที่ · FAQ · ติดต่อ</span></li>
+                <li class="flex gap-2"><span class="text-[var(--plus)] font-bold">✓</span><span><strong>หน้าเจาะ SEO ~25:</strong> บริการ × ย่าน / คำค้นที่ลูกค้าใช้จริง</span></li>
+                <li class="flex gap-2"><span class="text-[var(--plus)] font-bold">✓</span><span><strong>รวมไม่เกิน 40 หน้า</strong> + ปุ่ม LINE / โทร / แผนที่</span></li>
+              </ul>
+            </div>
+            <p class="mt-6 border-l-[3px] border-[var(--plus)] pl-4 font-display text-[1.15rem] md:text-[1.25rem] font-semibold leading-snug text-[var(--ink)]">
+              เราจัดทำให้ดีที่สุด ทั้งคุณภาพ การออกแบบ และเน้นผลลัพธ์จริง<br>
+              <span class="text-[15px] md:text-[16px] font-medium text-[var(--ink-soft)]">ผลการค้นหาขึ้นกับแต่ละ keyword และแต่ละย่าน</span>
+            </p>
           </div>
-          <div class="font-display text-2xl font-bold text-[var(--purple)] border-t hairline pt-4 flex items-baseline gap-2 flex-wrap">
-            <span>฿2,500</span>
-            <span class="text-sm font-mono font-normal text-[var(--ink-faint)] line-through">฿3,500</span>
-            <span class="text-xs font-mono font-normal text-[var(--ink-faint)]">/ เดือน</span>
+          <div class="p-7 md:p-9 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/15 bg-[var(--plus)]">
+            <div>
+              <p class="font-mono text-[11px] font-bold uppercase tracking-wider text-teal-100">เหมาะกับใคร</p>
+              <p class="mt-4 font-display text-[1.3rem] md:text-[1.45rem] font-semibold leading-snug text-white">
+                ธุรกิจบริการที่อยากเจาะลึก<br class="hidden sm:block"> และเห็นเส้นทางชัดขึ้น
+              </p>
+              <ul class="mt-5 space-y-3.5 text-[15px] md:text-[15.5px] leading-[1.55] text-teal-50">
+                <li class="flex gap-2.5"><span class="text-teal-200 font-bold shrink-0">✓</span><span>อยากขยายคำค้น SEO ให้กว้างและลึกกว่าแพ็ก ≤10 หน้า</span></li>
+                <li class="flex gap-2.5"><span class="text-teal-200 font-bold shrink-0">✓</span><span>มีหลายบริการ อยากแยกหน้าเขียนให้ชัด ไม่เบียดรวมหน้าเดียว</span></li>
+                <li class="flex gap-2.5"><span class="text-teal-200 font-bold shrink-0">✓</span><span>อยากมีพื้นที่ลงบทความ/เนื้อหาต่อเนื่อง ให้เว็บดูมืออาชีพและอัปเดตได้เรื่อยๆ</span></li>
+                <li class="flex gap-2.5"><span class="text-teal-200 font-bold shrink-0">✓</span><span>ลงทุนเพิ่มอีกนิด เพื่อครอบคลุม keyword ได้มากขึ้น — โอกาสเห็นผลชัดขึ้นบนหลายคำค้น</span></li>
+              </ul>
+            </div>
+            <div class="mt-8 space-y-3">
+              <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="block text-center rounded-full bg-white py-3.5 text-[13px] font-semibold text-[var(--plus)] hover:bg-teal-50 transition">สนใจ Plus ฿24,900</a>
+              <a href="/showcase/results/" target="_top" class="block text-center border border-white/30 rounded-full py-3 text-[12px] font-semibold text-white/95 hover:bg-white/10 transition">ดูผลงาน →</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
+    <div class="max-w-4xl mx-auto border-t hairline pt-10">
+      <h3 class="font-display text-lg font-semibold text-center mb-2">มีเพื่อนช่วยดูแลต่อ — ไม่ใช่จ้างดันคีย์ทีละตัว</h3>
+      <p class="text-center text-[13.5px] text-[var(--ink-soft)] mb-6 max-w-xl mx-auto leading-relaxed">
+        หลายที่คิดค่าดัน keyword หลักพันต่อคำ เราเน้นดูแลร้านคุณต่อเนื่อง จากข้อมูลจริงใน Google — ไล่จุดที่มีโอกาส ไม่ขายฝันอันดับ
+      </p>
+
+      <div class="rounded-2xl border border-purple-200 bg-white p-5 md:p-7 mb-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <h4 class="font-display text-xl font-semibold text-[var(--ink)]">Local Care รายเดือน</h4>
+          <span class="font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-50 text-[var(--purple)]">ดูแลต่อเนื่อง</span>
+        </div>
+        <p class="mt-3 text-[14px] text-[var(--ink-soft)] leading-relaxed max-w-2xl">
+          เหมือนมีเพื่อนช่วยดูแลต่อเนื่อง — เราไม่ได้ล็อกคีย์เดียว แต่ดูคำค้นที่มีคุณค่าต่อเว็บ มีคนค้นจริง แล้วไล่ดันจุดที่น่าสนใจ พร้อมช่วยอัปเดตข้อความและโปรโมชั่นทางร้านเมื่อต้องการ
+        </p>
+        <ul class="mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-[13px] text-[var(--ink-soft)]">
+          <li class="flex gap-2"><span class="text-[var(--purple)] font-bold">✓</span><span>ดูคำค้นจาก Search Console แล้วไล่จุดที่มีคุณค่า</span></li>
+          <li class="flex gap-2"><span class="text-[var(--purple)] font-bold">✓</span><span>เจอคีย์ที่น่าสนใจ ช่วยดันเสริม — อัปเดต / เขียนบทความเสริมตามคีย์</span></li>
+          <li class="flex gap-2"><span class="text-[var(--purple)] font-bold">✓</span><span>แก้ข้อความ / โปรโมชั่นบนเว็บเมื่อร้านส่งมา</span></li>
+          <li class="flex gap-2"><span class="text-[var(--purple)] font-bold">✓</span><span>ดูแลหมุด Maps ให้ข้อมูลและรูปสด ตามรอบ</span></li>
+          <li class="flex gap-2 sm:col-span-2"><span class="text-[var(--purple)] font-bold">✓</span><span>สรุปผลการค้นหารายเดือน — คีย์ที่เพิ่ม คนเข้า และคลิกจาก Google</span></li>
+        </ul>
+
+        <div class="mt-6 max-w-md">
+          <p class="text-[13px] text-[var(--ink-soft)] tracking-wide">
+            ราคารายเดือน <span class="font-semibold text-[var(--ink)] tabular-nums">฿3,500</span>
+          </p>
+          <div class="mt-4 h-px w-10 bg-[var(--plus)]/40"></div>
+          <p class="mt-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--plus)]">
+            พิเศษ · ชำระ 3 เดือนขึ้นไป
+          </p>
+          <div class="mt-3 rounded-2xl border-2 border-[var(--plus)] bg-gradient-to-br from-white to-[var(--plus-soft)]/60 px-5 py-5 shadow-sm">
+            <p class="font-display text-2xl md:text-[1.75rem] font-bold text-[var(--plus)] tracking-tight leading-none tabular-nums">
+              รวม ฿7,500
+            </p>
+            <p class="mt-3 text-[13.5px] text-[var(--ink-soft)] leading-relaxed">
+              สำหรับ 3 เดือน · เฉลี่ย <span class="font-medium text-[var(--ink)] tabular-nums">฿2,500</span> / เดือน
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-2xl border hairline bg-[var(--bg)] p-5">
+        <h4 class="font-semibold text-[15px]">ดูแลโครงสร้างรายปี</h4>
+        <p class="mt-1 text-[13px] text-[var(--ink-soft)] leading-relaxed">โดเมน โฮสต์ SSL — ปีที่ 2 เป็นต้นไป ให้เว็บเดินต่อได้สบาย</p>
+        <p class="mt-4 font-display text-xl font-bold">฿2,500 <span class="text-[12px] font-mono font-normal text-[var(--ink-faint)]">/ ปี</span></p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============ FAQS ============ -->
-<section class="section-pad bg-white reveal border-t hairline">
+<!-- FAQ -->
+<section class="section-pad reveal bg-[var(--bg-alt)] border-t hairline">
   <div class="max-w-3xl mx-auto px-5 md:px-8">
-    <div class="text-center mb-12">
-      <p class="eyebrow mb-3">QUESTIONS</p>
-      <h2 class="font-display font-semibold text-[clamp(2rem,4vw,2.6rem)]">คำถามที่พบบ่อย</h2>
+    <div class="text-center mb-10">
+      <p class="eyebrow mb-3">คำถามบ่อย</p>
+      <h2 class="font-display font-semibold text-[clamp(1.75rem,3.5vw,2.4rem)]">ก่อนตัดสินใจ</h2>
     </div>
-    <div id="faqList" class="space-y-3.5"></div>
+    <div id="faqList" class="space-y-3"></div>
   </div>
 </section>
 
-<!-- ============ FINAL CTA ============ -->
-<section id="final-cta" class="section-pad bg-[var(--dark)] text-white text-center relative overflow-hidden">
-  <div class="max-w-3xl mx-auto px-5 md:px-8 relative z-10">
-    <p class="eyebrow mb-4" style="color:var(--orange)">START YOUR PRESENCE</p>
-    <h2 class="font-display font-semibold text-[clamp(2.4rem,5.5vw,3.6rem)] leading-tight mb-6">
+<!-- CTA -->
+<section id="final-cta" class="section-pad bg-[var(--dark)] text-white text-center">
+  <div class="max-w-2xl mx-auto px-5 md:px-8">
+    <p class="eyebrow mb-4" style="color:var(--orange)">เริ่มต้น</p>
+    <h2 class="font-display font-semibold text-[clamp(2rem,4.5vw,3rem)] leading-tight mb-4">
       Your Business.<br><span class="grad-text">Your ONE.</span>
     </h2>
-    <p class="text-gray-400 text-sm md:text-base mb-10 max-w-xl mx-auto leading-relaxed">
-      ให้ทีมดีไซเนอร์ของ Project One ช่วยวิเคราะห์และออกแบบเว็บไซต์หน้าเดียวที่ทรงพลังและตอบโจทย์ธุรกิจของคุณจริง
+    <p class="text-white/60 text-[14.5px] mb-8 leading-relaxed">
+      บอกร้านอยู่ย่านไหนและอยากได้ลูกค้าแบบไหน — หรือชม Demo / ผลงานก่อนก็ได้
     </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a href="tel:0809969495" class="w-full sm:w-auto grad-bg text-white rounded-full px-8 py-4 font-medium text-sm hover:opacity-95 transition shadow-lg shadow-purple-500/20 inline-flex items-center justify-center gap-2">
-        <span>📞</span> โทร 080-996-9495
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="w-full sm:w-auto inline-flex justify-center rounded-full grad-bg px-8 py-3.5 text-[14px] font-semibold text-white hover:opacity-95 transition">
+        ทัก LINE @masterpuch
       </a>
-      <a href="demo.html" class="w-full sm:w-auto border border-white/20 bg-white/5 rounded-full px-8 py-4 font-medium text-sm text-white hover:bg-white/10 transition">
-        ชมตัวอย่าง Demo 30 ธุรกิจ
+      <a href="demo.html" class="w-full sm:w-auto inline-flex justify-center rounded-full border border-white/20 px-8 py-3.5 text-[14px] font-semibold text-white hover:bg-white/10 transition">
+        ชม Demo
       </a>
     </div>
-    <p class="mt-14 font-mono text-xs text-gray-500 uppercase tracking-widest">Project One — Level Up Your Business Presence.</p>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="border-t hairline py-12 bg-[var(--bg)] text-xs text-[var(--ink-faint)]">
-  <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+<footer class="border-t hairline py-10 bg-[var(--bg)] text-xs text-[var(--ink-faint)]">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-5">
     <div class="flex items-center gap-3 font-display font-bold text-base text-[var(--ink)]">
-      <img src="./images/logo.webp" alt="Project One Logo" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-8 w-auto object-contain">
-      <span>Project One</span>
+      <img src="./images/logo.webp" alt="PuchUp" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-8 w-auto object-contain">
+      <span>Project ONE</span>
     </div>
-    <div class="flex flex-wrap items-center justify-center gap-6 font-mono text-xs text-[var(--ink-soft)]">
-      <a href="tel:0809969495" class="hover:text-[var(--purple)] transition">📞 080-996-9495</a>
+    <div class="flex flex-wrap gap-5 text-[var(--ink-soft)]">
+      <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="hover:text-[var(--purple)]">LINE @masterpuch</a>
+      <a href="/showcase/results/" target="_top" class="hover:text-[var(--purple)]">ผลงาน</a>
+      <a href="/guides/" target="_top" class="hover:text-[var(--purple)]">คู่มือ</a>
     </div>
-    <p>© 2026 Project One. All rights reserved.</p>
+    <p>© 2026 PuchUp · Project ONE</p>
   </div>
 </footer>
 
 <script>
-/* Google tabs toggle */
-document.querySelectorAll('[data-gtab]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('[data-gtab]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.gpanel').forEach(p=>p.classList.add('hidden'));
-    document.getElementById('panel-'+btn.dataset.gtab).classList.remove('hidden');
-  });
-});
-
-/* FAQ logic */
 const faqs = [
-  { q:'Project ONE ต่างจาก Landing Page ราคาถูกทั่วไปอย่างไร?', a:'Landing Page ส่วนใหญ่ออกแบบมาเพื่อขายสินค้าชิ้นเดียวแบบรีบปิดการขาย แต่ Project ONE ออกแบบมาเพื่อเป็น "ตัวตนดิจิทัลของธุรกิจ" ที่รวบรวมทั้งเรื่องเล่า ความเชี่ยวชาญ สินค้า/บริการ รีวิว แผนที่ และระบบนำทางไว้ครบถ้วนในที่เดียว' },
-  { q:'Local SEO Site ฿17,900 ต่างจาก ฿12,900 อย่างไร?', a:'แพ็กเกจ ฿12,900 เป็น One-Page + Google Business ส่วน ฿17,900 คือ addon ขยายเนื้อหาให้เข้มขึ้น ไม่เกิน 10 หน้า เน้น SEO ท้องถิ่น (เช่นเคสบ้านทันตแพทย์) ยังรวม Google Business Setup ครบ' },
-  { q:'มีหน้าร้านจริง ต้องเตรียมข้อมูลอะไรบ้าง?', a:'เตรียมเพียงรูปถ่ายบรรยากาศร้าน เมนู/บริการ ข้อมูลเวลาเปิด-ปิด และลิงก์ Google Maps ทางทีม Project One จะนำมาร้อยเรียงสถาปัตยกรรมข้อมูลให้ทั้งหมด' },
-  { q:'สามารถเชื่อมต่อกับ Google Business Profile ได้อย่างไร?', a:'เราจะวางโครงสร้าง Local SEO และเชื่อมพิกัด รวมถึงจัดวางปุ่ม Google Maps และดึงรีวิวจริงมาแสดงบนหน้าเว็บ เพื่อให้ลูกค้าที่ค้นหาบน Google มั่นใจและกดนำทางมาได้ทันที' },
-  { q:'บริการดันอันดับหมุดรายเดือนทำอะไรบ้าง?', a:'โพสต์คอนเทนต์บน Maps 1–2 ครั้ง/สัปดาห์ อัปโหลดรูป Geo-tagging ตอบรีวิว และส่ง Report สิ้นเดือน — ราคาพิเศษ ฿2,500/เดือน (จาก ฿3,500)' },
+  { q:'ทำไมถึงเชียร์หน้าเดียวเป็นจุดเริ่ม?', a:'เพราะลูกค้าบนมือถือมีเวลาสั้น หน้าเดียวที่เรียงข้อมูลถูกทางช่วยให้ตัดสินใจทักได้เร็ว เมื่อธุรกิจต้องการเจาะคำค้นมากขึ้นค่อยขยายหน้าได้' },
+  { q:'ต่างจาก Landing ราคาถูกอย่างไร?', a:'Landing ถูกมักจบที่หน้าสวย Project ONE วางเส้นทางจากค้นหา/หมุด ถึงปุ่ม LINE โทร นำทาง และขยาย SEO ได้ตามแพ็ก' },
+  { q:'เริ่มแพ็กไหนดี?', a:'หลายร้านเริ่ม Get Local Customers ฿12,900 เพราะได้หน้าเดียวคู่หมุด ถ้ามีหมุดพร้อมแล้วเริ่ม Starter ได้ เมื่ออยากแยกบริการลึกขึ้นค่อยไป Local SEO หรือ Plus' },
+  { q:'Plus ต่างจาก Local SEO ≤10 หน้าอย่างไร?', a:'≤10 หน้าเหมาะตอนเริ่มแยกบริการ Plus เพิ่มหน้าเจาะคำค้นรวมไม่เกิน 40 หน้า เมื่ออยากครอบคลุมลึกกว่าในงบเดียว ผลไม่การันตีทุกเคส' },
 ];
-document.getElementById('faqList').innerHTML = faqs.map((f,i)=>`
-  <div class="border hairline rounded-2xl bg-white overflow-hidden shadow-sm">
-    <button class="faq-q w-full text-left px-6 py-4 flex items-center justify-between gap-4 font-medium text-sm text-[var(--ink)]">
+document.getElementById('faqList').innerHTML = faqs.map((f)=>`
+  <div class="border hairline rounded-2xl bg-white overflow-hidden">
+    <button type="button" class="faq-q w-full text-left px-5 py-4 flex items-center justify-between gap-4 font-medium text-[14px] text-[var(--ink)]">
       <span>${f.q}</span>
-      <span class="faq-icon text-[var(--ink-faint)] font-mono text-base">+</span>
+      <span class="faq-icon text-[var(--ink-faint)] font-mono">+</span>
     </button>
-    <div class="faq-a hidden px-6 pb-5 text-[var(--ink-soft)] text-xs leading-relaxed border-t hairline pt-3">${f.a}</div>
+    <div class="faq-a hidden px-5 pb-4 text-[var(--ink-soft)] text-[13px] leading-relaxed border-t hairline pt-3">${f.a}</div>
   </div>
 `).join('');
 document.querySelectorAll('.faq-q').forEach(btn=>{
@@ -700,8 +583,6 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
     if(!open){ ans.classList.remove('hidden'); icon.textContent='–'; }
   });
 });
-
-/* Reveal on scroll */
 const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 },{ threshold:.08 });

@@ -21,7 +21,7 @@ export function SiteFooter() {
             <p className="mt-4 text-sm leading-relaxed text-base/60">
               {site.tagline}
               <br />
-              เว็บไซต์และระบบดิจิทัลที่ช่วยธุรกิจทำงานง่ายขึ้น
+              ระบบที่ค้นหาเจอ ได้ลูกค้าจริง — ไม่ใช่แค่เว็บโชว์
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-3">

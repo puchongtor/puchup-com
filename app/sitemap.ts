@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { allCaseSlugs } from "@/lib/case-stories";
+import { allGuideSlugs } from "@/lib/guides/catalog";
 import { allDemoSlugs } from "@/lib/project-one/slugs";
 import { site } from "@/lib/site";
 
@@ -27,13 +28,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "showcase/aeropulse/",
     "showcase/project-one/",
     "showcase/results/",
+    "guides/",
     "how-we-work/",
   ];
 
   const demos = allDemoSlugs().map((slug) => `ProjectONE/${slug}/`);
   const cases = allCaseSlugs().map((slug) => `showcase/results/${slug}/`);
+  const guides = allGuideSlugs().map((slug) => `guides/${slug}/`);
 
-  return [...core, ...demos, ...cases].map((path) => ({
+  return [...core, ...demos, ...cases, ...guides].map((path) => ({
     url: `${site.url}/${path}`,
     lastModified: new Date(),
   }));

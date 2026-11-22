@@ -8,7 +8,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Showcase",
   description:
-    "ตัวอย่างงานและระบบของ PuchUp — ผลงานที่เห็นผล, AeroPulse, Project ONE และเว็บธุรกิจที่เปิดใช้แล้ว",
+    "ตัวอย่างงานและระบบของ PuchUp — ผลงานที่เห็นผล, ความเร็วเว็บพร้อม SEO, AeroPulse, Project ONE และเว็บธุรกิจที่เปิดใช้แล้ว",
 };
 
 function CaseCard(props: {
@@ -109,20 +109,82 @@ export default function ShowcasePage() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {caseStories.slice(0, 2).map((story) => (
-            <CaseCard
-              key={story.slug}
-              name={story.client}
-              nameTh={story.titleTh}
-              blurb={story.excerpt}
-              href={`/showcase/results/${story.slug}/`}
-              product={story.product}
-              tags={story.tags.slice(0, 4)}
-              image={story.cover}
-              statusLabel="เห็นผลแล้ว"
-            />
+        <ul className="mt-6 divide-y divide-slate-200/70 overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80">
+          {caseStories.map((story) => (
+            <li key={story.slug}>
+              <Link
+                href={`/showcase/results/${story.slug}/`}
+                className="group flex gap-3 px-3 py-3 transition hover:bg-cream/40 sm:gap-4 sm:px-4 sm:py-3.5"
+              >
+                <div className="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg bg-navy sm:h-[4.5rem] sm:w-28">
+                  <Image
+                    src={story.cover}
+                    alt=""
+                    fill
+                    className="object-cover object-center transition duration-300 group-hover:scale-[1.03]"
+                    sizes="112px"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-muted">
+                    <span className="font-medium text-aorange">{story.chapterLabel}</span>
+                    <span aria-hidden>·</span>
+                    <span>{story.publishedLabel}</span>
+                  </div>
+                  <h3 className="mt-1 truncate text-[15px] font-semibold tracking-tight text-ink group-hover:text-aorange sm:text-[16px]">
+                    {story.client}
+                  </h3>
+                  <p className="mt-0.5 line-clamp-2 text-[13px] leading-[1.5] text-muted">
+                    {story.titleTh}
+                  </p>
+                </div>
+                <span className="hidden shrink-0 self-center text-[13px] font-semibold text-aorange sm:inline">
+                  อ่าน →
+                </span>
+              </Link>
+            </li>
           ))}
+        </ul>
+
+        <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200/60 bg-navy text-base md:grid md:grid-cols-[1.05fr_0.95fr]">
+          <div className="p-6 md:p-8 lg:p-10">
+            <p className="eyebrow text-[11px] uppercase tracking-[0.16em] text-aamber">
+              Web quality
+            </p>
+            <h2 className="mt-2 text-[1.45rem] font-semibold tracking-[-0.02em] md:text-2xl">
+              {showcaseHub.qualityHeading}
+            </h2>
+            <p className="mt-3 text-[14.5px] leading-[1.7] text-base/70">
+              {showcaseHub.qualityBody}
+            </p>
+            <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {showcaseHub.qualityMetrics.map((m) => (
+                <div
+                  key={m.label}
+                  className="rounded-xl border border-base/15 bg-base/5 px-3 py-3 text-center"
+                >
+                  <p className="text-[1.35rem] font-semibold tracking-tight text-aamber">{m.value}</p>
+                  <p className="mt-0.5 text-[10px] uppercase tracking-wide text-base/55">{m.label}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-[12px] leading-[1.55] text-base/50">{showcaseHub.qualityNote}</p>
+            <Link
+              href={showcaseHub.qualityHref}
+              className="mt-5 inline-flex text-[13.5px] font-semibold text-aamber transition hover:underline"
+            >
+              ดูเคสผลงาน →
+            </Link>
+          </div>
+          <div className="relative min-h-[220px] border-t border-base/10 md:min-h-full md:border-l md:border-t-0">
+            <Image
+              src={showcaseHub.qualityImage}
+              alt="PageSpeed Insights คะแนนประสิทธิภาพ 100 บนมือถือ"
+              fill
+              className="object-cover object-center"
+              sizes="(max-width:768px) 100vw, 50vw"
+            />
+          </div>
         </div>
 
         <div className="mt-20 flex flex-col gap-3 border-t border-cream pt-14 sm:flex-row sm:items-end sm:justify-between">

@@ -32,9 +32,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   return {
-    title: "Project ONE | One Page. Full Business.",
+    title: "Project ONE | ระบบหาลูกค้าหน้าร้าน",
     description:
-      "เว็บท้องถิ่น × Google Business — จากหน้าเดียวถึงขยาย SEO ไม่เกิน 10 หน้า ให้ลูกค้ารู้จัก ตัดสินใจ และมาที่ร้าน",
+      "ระบบให้คนในย่านค้นหาเจอ แล้วทัก LINE หรือมาที่ร้าน — จากหน้าเดียวถึง Local SEO Plus ไม่เกิน 40 หน้า เริ่มต้น 9,900 บาท",
   };
 }
 

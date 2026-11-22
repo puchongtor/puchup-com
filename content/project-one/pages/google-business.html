@@ -119,24 +119,29 @@
 </div>
 
 <!-- ============ NAVBAR ============ -->
-<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
-    <a href="index.html" class="flex items-center gap-3 shrink-0 group">
-      <img src="./images/logo.webp" alt="PuchUp Project One" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105">
-    </a>
+<nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm bg-white/90 backdrop-blur-md">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="flex items-center justify-between h-16 md:h-[4.25rem] gap-3">
+      <a href="/" class="flex items-center gap-2.5 shrink-0 group" target="_top">
+        <img src="./images/logo.webp" alt="PuchUp" onerror="this.src='./images/logo.png'; this.onerror=null;" class="h-8 w-auto object-contain transition-transform group-hover:scale-105">
+        <span class="leading-tight">
+          <span class="block text-[13px] font-semibold text-[var(--ink)]">PuchUp</span>
+          <span class="block text-[10px] font-mono text-[var(--ink-faint)] tracking-wide">หมุด Google Maps</span>
+        </span>
+      </a>
 
-    <div class="hidden lg:flex items-center gap-7">
-      <a href="#what-they-see" class="navlink font-semibold">ลูกค้าเห็นอะไรบน Google</a>
-      <a href="#search-test" class="navlink text-[var(--blue-dark)]">ลองค้นธุรกิจตัวเอง</a>
-      <a href="#assessment" class="navlink">ประเมินความพร้อม</a>
-      <a href="#elements" class="navlink">5 องค์ประกอบ</a>
-      <a href="#google-website" class="navlink">Google + เว็บไซต์</a>
-      <a href="demo.html" class="navlink font-semibold text-amber-700">Project One Demo→</a>
-    </div>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="/" class="navlink" target="_top">หน้าแรก</a>
+        <a href="/ProjectONE/" class="navlink" target="_top">Project ONE</a>
+        <a href="/showcase/" class="navlink" target="_top">Showcase</a>
+        <span class="h-4 w-px bg-[var(--line)]" aria-hidden="true"></span>
+        <a href="#what-they-see" class="navlink font-semibold">ลูกค้าเห็นอะไร</a>
+        <a href="#search-test" class="navlink text-[var(--blue-dark)]">ลองค้นธุรกิจตัวเอง</a>
+        <a href="demo.html" class="navlink">ตัวอย่าง Demo</a>
+      </div>
 
-    <div class="flex items-center gap-3 shrink-0">
-      <a href="https://line.me/ti/p/~@masterpuch" target="_blank" rel="noopener" class="text-xs font-mono font-bold tracking-wider uppercase bg-[var(--ink)] text-white px-5 py-3 rounded-full hover:opacity-90 transition inline-flex items-center gap-1.5 shadow-sm">
-        <span>💬</span> ติดต่อทาง LINE →
+      <a href="/contact/" class="inline-flex items-center rounded-xl bg-[var(--ink)] px-3.5 py-2 text-[12px] font-semibold text-white hover:opacity-90 transition" target="_top">
+        คุยกับ PuchUp
       </a>
     </div>
   </div>
@@ -147,10 +152,10 @@
   <div class="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
     <div class="lg:col-span-6 space-y-6">
       <div class="inline-flex items-center gap-2 bg-[var(--blue-light)] border border-[var(--blue)]/30 px-4 py-2 rounded-full text-xs md:text-sm font-mono text-[var(--blue-dark)] font-semibold">
-        <span class="w-2.5 h-2.5 rounded-full bg-[var(--blue)] animate-pulse"></span> หน้าร้านดิจิทัล · ด่านแรกก่อนลูกค้าตัดสินใจ
+        <span class="w-2.5 h-2.5 rounded-full bg-[var(--blue)] animate-pulse"></span> หมุด Google Maps · ด่านแรกก่อนลูกค้าตัดสินใจ
       </div>
       <h1 class="font-display text-[clamp(2.4rem,5.5vw,4.4rem)] font-bold leading-[1.15] text-[var(--ink)]">
-        หน้าร้านของคุณบน Google<br>
+        หมุด Google Maps ของร้านคุณ<br>
         <span class="text-[var(--blue)]">ที่ลูกค้าเห็นก่อนเข้าเว็บไซต์</span>
       </h1>
       <p class="text-lg md:text-xl text-[var(--ink-soft)] font-light leading-relaxed max-w-xl">
@@ -609,7 +614,7 @@
       <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#F8FAFC] border hairline">
         <div class="w-12 h-12 rounded-xl bg-sky-100 text-[var(--blue)] flex items-center justify-center font-bold text-xl">1</div>
         <div>
-          <strong class="block text-sm text-[var(--ink)]">Google Business Profile (หน้าร้านบน Google)</strong>
+          <strong class="block text-sm text-[var(--ink)]">Google Business Profile (หมุด / โปรไฟล์ร้านบน Google)</strong>
           <span class="text-xs text-stone-500 font-light">สร้างความประทับใจแรก แสดงรีวิว รูปภาพ และดึงคนเข้าสู่เว็บไซต์</span>
         </div>
       </div>
@@ -722,7 +727,7 @@
 <!-- Bottom Mobile Sticky Bar -->
 <div id="mobileBar" class="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t hairline px-5 py-3.5 flex items-center justify-between shadow-2xl">
   <div>
-    <span class="text-xs text-[var(--blue-dark)] font-mono block">หน้าร้านบน Google</span>
+    <span class="text-xs text-[var(--blue-dark)] font-mono block">หมุด Google Maps</span>
     <span class="font-display text-base font-bold text-[var(--ink)]">Project One</span>
   </div>
   <div class="flex gap-2">

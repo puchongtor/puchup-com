@@ -4,12 +4,12 @@ export const site = {
   url: "https://www.puchup.com",
   tagline: "Level up your business",
   description:
-    "PuchUp สร้างเว็บไซต์และระบบดิจิทัลที่ช่วยธุรกิจหาลูกค้า ปิดการขาย และทำงานได้เร็วขึ้น",
+    "PuchUp สร้างระบบที่ช่วยให้ธุรกิจถูกค้นหาเจอ ได้ลูกค้าจริง และปิดการขายได้เร็วขึ้น — ไม่ใช่แค่เว็บโชว์",
   email: "hello@puchup.com",
   year: 2026,
   philosophyLines: [
-    "PuchUp ไม่ได้แค่สร้างเว็บไซต์",
-    "PuchUp สร้างระบบที่ช่วยให้ธุรกิจทำงานได้ดีขึ้น",
+    "PuchUp ไม่ได้แค่สร้างเว็บไซต์ไว้โชว์",
+    "PuchUp สร้างระบบที่ช่วยให้ธุรกิจถูกค้นหาเจอ และได้ลูกค้าจริง",
   ] as const,
   cta: {
     primary: "คุยกับ PuchUp",
@@ -18,13 +18,46 @@ export const site = {
   },
 } as const;
 
-/** Slim primary navigation — homepage is the product launchpad */
-export const navLinks = [
-  { href: "/#products", label: "Products & Services" },
-  { href: "/showcase/", label: "Showcase" },
+export type NavChild = {
+  href: string;
+  label: string;
+  note?: string;
+};
+
+export type NavLink = {
+  href: string;
+  label: string;
+  children?: NavChild[];
+};
+
+/** Slim primary navigation — Products / Showcase มีเมนูย่อยหาทางลัดได้ */
+export const navLinks: NavLink[] = [
+  {
+    href: "/products/",
+    label: "Products",
+    children: [
+      { href: "/ProjectONE/", label: "Project ONE", note: "หาลูกค้าหน้าร้าน" },
+      { href: "/corporate/", label: "Corporate Site", note: "เว็บบริษัท SEO" },
+      { href: "/shopguide/", label: "ShopGuide", note: "แชท AI × สินค้า" },
+      { href: "/sale/", label: "SaleDesk", note: "ทีมขาย AI" },
+      { href: "/partner/", label: "Partner", note: "พาร์ทเนอร์การตลาด" },
+      { href: "/opscraft/", label: "OpsCraft", note: "ระบบตามเคส" },
+    ],
+  },
+  {
+    href: "/showcase/",
+    label: "Showcase",
+    children: [
+      { href: "/showcase/results/", label: "ผลงานที่เห็นผล", note: "รายงานตามช่วงเวลา" },
+      { href: "/showcase/project-one/", label: "Project ONE Demo", note: "ตัวอย่างหลายธุรกิจ" },
+      { href: "/showcase/aeropulse/", label: "ShopGuide Demo", note: "AeroPulse" },
+      { href: "/showcase/", label: "ดู Showcase ทั้งหมด" },
+    ],
+  },
+  { href: "/guides/", label: "Guides" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
-] as const;
+];
 
 export type CatalogProduct = {
   id: string;
@@ -43,14 +76,14 @@ export const catalogProducts: CatalogProduct[] = [
   {
     id: "project-one",
     name: "Project ONE",
-    nameTh: "เว็บท้องถิ่น × Google Business",
+    nameTh: "ระบบหาลูกค้าหน้าร้าน × Google Business",
     href: "/ProjectONE/",
     blurb:
-      "เว็บท้องถิ่นเชื่อม Google Business — จากหน้าเดียวถึงขยาย SEO ไม่เกิน 10 หน้า ให้ลูกค้ารู้จัก ตัดสินใจ และมาที่ร้าน",
+      "ไม่ใช่เว็บโชว์ — เป็นระบบให้คนในย่านค้นหาเจอ แล้วโทร LINE หรือมาที่ร้าน จากหน้าเดียวถึง Local SEO Plus ไม่เกิน 40 หน้า",
     price: "เริ่มต้น 9,900 บาท",
     status: "พร้อมขาย",
     image: "/images/home/product-project-one.jpg",
-    accent: "จากร้านจริงสู่หน้าเว็บ",
+    accent: "ค้นหาเจอ ได้ลูกค้าจริง",
   },
   {
     id: "corporate",

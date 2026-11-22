@@ -174,6 +174,14 @@ export function rewriteProjectOneHtml(html: string, options: RewriteOptions = {}
     /href=(["'])(\/ProjectONE\/[^"']*)\1(?![^>]*target=)/gi,
     'href=$1$2$1 target="_top"',
   );
+  out = out.replace(
+    /href=(["'])(\/(?:showcase|guides|contact|about|products|corporate|shopguide|partner|opscraft|sale|how-we-work)\/[^"']*)\1(?![^>]*target=)/gi,
+    'href=$1$2$1 target="_top"',
+  );
+  out = out.replace(
+    /href=(["'])\/\1(?![^>]*target=)/gi,
+    'href=$1/$1 target="_top"',
+  );
 
   if (options.demoSlug) {
     // Parent React chrome owns the sticky banner — strip thin legacy bars

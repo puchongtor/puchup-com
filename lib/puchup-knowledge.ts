@@ -8,9 +8,9 @@ export const LINE_OA_ID = "@masterpuch";
 /** Suggestion chips on /contact */
 export const contactSuggestionChips = [
   "สนใจ Project ONE",
+  "อยากอ่านคู่มือระบบเว็บ",
   "เว็บบริษัทราคาเท่าไหร่",
   "อยากดู SaleDesk",
-  "ShopGuide ทำงานยังไง",
   "อยากคุยกับทีมทาง LINE",
 ] as const;
 
@@ -42,7 +42,7 @@ export function buildPuchupKnowledgeText(): string {
     products,
     "",
     "ราคาอ้างอิง:",
-    "- Project ONE: Starter Web 9,900 · Local Acquisition 12,900 · Local SEO Site (≤10 หน้า) 17,900 · ดูแลหมุดรายเดือนพิเศษ 2,500 (จาก 3,500)",
+    "- Project ONE: Starter 9,900 · Get Local Customers 12,900 · Local SEO 17,900 · Plus 24,900 · Local Care รายเดือน 3,500 · พิเศษชำระ 3 เดือนขึ้นไป 2,500/เดือน รวม 7,500 (เพื่อนดูแลต่อเนื่อง · ดูคำค้นจาก Search Console แล้วดันเสริม + อัปเดต/เขียนบทความตามคีย์ · แก้ข้อความ/โปรโมชั่นเมื่อร้านส่ง · ดูแลหมุดตามรอบ · สรุปผลการค้นหารายเดือน: คีย์ที่เพิ่ม คนเข้า คลิก · ไม่สัญญาผลตายตัว)",
     "- Corporate Site เริ่มต้น 25,000 บาท",
     "- ShopGuide เริ่มต้น 35,000 บาท + AI รายเดือนประมาณ 990–1,490 บาท",
     "- SaleDesk เริ่มต้น 19,000 บาท + รายเดือนทีม 1–5 คน ≈ 1,990–2,990 · 6–10 คน ≈ 3,490–4,990",
@@ -51,6 +51,8 @@ export function buildPuchupKnowledgeText(): string {
     "",
     `${showcaseHub.title}:`,
     showcase,
+    "",
+    "Guides: /guides/ — คู่มือราคาทำเว็บร้าน (9,900–24,900), คาดหวังขึ้น Google, หน้าเดียว vs บริการ+ย่าน, เว็บช้าเสียลูกค้า, เขียนหน้าบริการ (AI), LINE OA รับลูกค้า, เว็บไซต์ AI 2027, Vercel, เส้นทาง Google→ร้าน, หมุด+เว็บ, คลินิก/ความงาม/สปา, คาเฟ่, ร้านอาหาร, อู่/ล้างรถ",
     "",
     "ผลงานจริง:",
     works,
@@ -63,11 +65,11 @@ export function buildPuchupKnowledgeText(): string {
 /** Local fallback when live Contact API is unavailable */
 export function localKnowledgeReply(message: string): string {
   const m = message.toLowerCase();
-  if (/project\s*one|หน้าเดียว|local seo|google business|บ้านทันต|baandental/.test(m)) {
-    return "Project ONE มี Starter Web 9,900 · Local Acquisition (เว็บ+Google Business) 12,900 · ขยายเนื้อหา SEO ไม่เกิน 10 หน้า 17,900 · ดูแลหมุดรายเดือนพิเศษ 2,500 (จาก 3,500) — ดูเคสบ้านทันตแพทย์ได้ครับ";
+  if (/project\s*one|หน้าเดียว|local seo|google business|บ้านทันต|baandental|guides|คู่มือ|คลินิกทันต/.test(m)) {
+    return "Project ONE คือระบบหาลูกค้าหน้าร้าน ไม่ใช่เว็บโชว์ — Starter 9,900 · Local Acquisition 12,900 · Local SEO ≤10 หน้า 17,900 · Local SEO Plus ≤40 หน้า 24,900 · ดูผลงานที่ /showcase/results/ ได้ครับ";
   }
-  if (/ราคา|เท่าไหร่|กี่บาท|corporate/.test(m)) {
-    return `Project ONE เริ่ม 9,900–17,900 · Corporate เริ่มต้น 25,000 · ShopGuide เริ่มต้น 35,000 + AI รายเดือนเล็กน้อย · SaleDesk เริ่มต้น 19,000 + รายเดือนตามขนาดทีม · Partner/OpsCraft คุยรายละเอียดกันครับ — LINE OA ${LINE_OA_ID}`;
+  if (/ราคา|เท่าไหร่|กี่บาท|corporate|plus/.test(m)) {
+    return `Project ONE: 9,900 / 12,900 / 17,900 (≤10 หน้า) / Plus 24,900 (≤40 หน้า) · Corporate เริ่มต้น 25,000 · ShopGuide เริ่มต้น 35,000 + AI รายเดือน · SaleDesk เริ่มต้น 19,000 + รายเดือนตามทีม · Partner/OpsCraft คุยรายละเอียด — LINE OA ${LINE_OA_ID}`;
   }
   if (/sale|saledesk|ทีมขาย/.test(m)) {
     return "SaleDesk ติดตั้งเริ่มต้น 19,000 บาท มีรายเดือนแบบช่วงทีม 1–5 คน / 6–10 คน (คิดช่วงทีม ไม่คิดรายหัว) — ช่วยรายงานมีหลักฐาน เลขา AI ผู้จัดการเห็นงานค้าง ไม่ใช่ CRM เต็มครับ";
@@ -82,7 +84,7 @@ export function localKnowledgeReply(message: string): string {
     return "OpsCraft ออกแบบระบบลดขั้นตอนตามวิธีทำงานของธุรกิจคุณ — ทีมจะประเมินขอบเขตงานและงบหลังทำความเข้าใจปัญหาครับ";
   }
   if (/ผลงาน|works|ตัวอย่าง|showcase/.test(m)) {
-    return "ผลงานจริงมี Baan Dental (Project ONE + เคส Local SEO ที่เห็นผลเร็ว), Parts.PuchUp (Partner แพลตฟอร์มหาอะไหล่), Advance Pro, Amethez และ Rabiangprai Valley — อ่านเคสผลงานได้ที่ /showcase/results/ ตัวอย่างระบบมี AeroPulse กับ Project ONE ครับ";
+    return "ผลงานจริงรายงานตามช่วงเวลาหลังขึ้นเว็บ เช่น บ้านทันตแพทย์ (1 สัปดาห์) และ Advance Pro (3 สัปดาห์: คำค้นสินค้าขึ้นหน้า 1, ทัก LINE 20+, เปิดใบเสนอราคา) — ครบ 1 เดือนจะเป็นบทความใหม่ ผลไม่การันตีทุกเคส อ่านที่ /showcase/results/ ครับ";
   }
   if (/ไลน์|line|คุยกับทีม|คุยกับคน|ติดต่อ/.test(m)) {
     return `คุยกับทีมตรงๆ ได้ที่ LINE OA ${LINE_OA_ID} เลยครับ กดปุ่มสีเขียวด้านบนหรือด้านล่างแชทนี้ได้`;

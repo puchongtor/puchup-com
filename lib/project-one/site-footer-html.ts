@@ -58,7 +58,7 @@ export function buildProjectOneSiteFooterHtml(variant: "marketing" | "demo" = "m
         <a href="/" target="_top" aria-label="PuchUp — กลับหน้าหลัก">
           <img class="po-sf-logo" src="/brand/logo-horizontal-dark.png" width="640" height="214" alt="PuchUp — Level up your business & life" />
         </a>
-        <p class="po-sf-tag">${escapeHtml(site.tagline)}<br>เว็บไซต์และระบบดิจิทัลที่ช่วยธุรกิจทำงานง่ายขึ้น</p>
+        <p class="po-sf-tag">${escapeHtml(site.tagline)}<br>ระบบที่ค้นหาเจอ ได้ลูกค้าจริง — ไม่ใช่แค่เว็บโชว์</p>
       </div>
       <div class="po-sf-cols">
         <div class="po-sf-col">

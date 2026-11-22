@@ -43,6 +43,46 @@
       "source": "/demo/:path*",
       "destination": "/ProjectONE/demo/",
       "permanent": false
+    },
+    {
+      "source": "/solutions",
+      "destination": "/guides/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/",
+      "destination": "/guides/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/dental-clinic-seo",
+      "destination": "/guides/dental-clinic-website/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/dental-clinic-seo/",
+      "destination": "/guides/dental-clinic-website/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/local-business-seo",
+      "destination": "/guides/storefront-website/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/local-business-seo/",
+      "destination": "/guides/storefront-website/",
+      "permanent": true
+    },
+    {
+      "source": "/showcase/results/advancepro-scale-speed-seo",
+      "destination": "/showcase/results/advancepro-launch-product-keywords/",
+      "permanent": true
+    },
+    {
+      "source": "/showcase/results/advancepro-scale-speed-seo/",
+      "destination": "/showcase/results/advancepro-launch-product-keywords/",
+      "permanent": true
     }
   ],
   "rewrites": [

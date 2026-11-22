@@ -190,7 +190,7 @@ export default function AboutPage() {
           <div className="max-w-xl">
             <h2 className="text-2xl font-bold text-ink md:text-3xl">เล่าธุรกิจให้เราฟัง</h2>
             <p className="mt-2 text-[15px] leading-relaxed text-muted">
-              ไม่ต้องใช้คำศัพท์เทคนิค — บอกปัญหาที่เจอจริง เดี๋ยวช่วยคิดว่าระบบแบบไหนเหมาะ
+              เล่าเป็นภาษาธุรกิจได้เลย — ปัญหาที่เจอจริง แล้วเราช่วยดูว่าระบบแบบไหนเหมาะ
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

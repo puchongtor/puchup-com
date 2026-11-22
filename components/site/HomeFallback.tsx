@@ -51,7 +51,7 @@ export function HomeFallback() {
               {site.tagline}
             </p>
             <p className="mt-3 max-w-lg text-[15.5px] leading-relaxed text-base/65">
-              เว็บไซต์และระบบดิจิทัลที่ช่วยธุรกิจหาลูกค้า ปิดการขาย และทำงานได้เร็วขึ้น
+              ไม่ใช่แค่เว็บโชว์ — แต่เป็นระบบที่ค้นหาเจอ ได้ลูกค้าจริง และช่วยธุรกิจปิดการขายได้เร็วขึ้น
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -200,6 +200,28 @@ export function HomeFallback() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-cream bg-cream/40">
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 md:px-8 md:py-16 lg:px-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-xl">
+              <p className="eyebrow text-[11px] uppercase text-apurple">Guides</p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-ink md:text-3xl">
+                คู่มือสำหรับเจ้าของร้าน
+              </h2>
+              <p className="mt-3 text-[15px] leading-relaxed text-muted">
+                รวมคำตอบเรื่องเว็บ หมุด Google และโซเชียล ที่ช่วยให้ตัดสินใจได้ก่อนเริ่มงาน
+              </p>
+            </div>
+            <Link
+              href="/guides/"
+              className="inline-flex rounded-xl bg-navy px-5 py-3 text-[14px] font-semibold text-base transition hover:opacity-90"
+            >
+              เปิดคู่มือ →
+            </Link>
           </div>
         </div>
       </section>

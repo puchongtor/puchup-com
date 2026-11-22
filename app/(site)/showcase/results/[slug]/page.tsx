@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import {
   allCaseSlugs,
   getCaseStory,
+  getSeriesStories,
   type CaseBlock,
 } from "@/lib/case-stories";
 import { site } from "@/lib/site";
@@ -75,6 +76,9 @@ export default async function CaseStoryPage({ params }: Props) {
   const story = getCaseStory(slug);
   if (!story) notFound();
 
+  const series = getSeriesStories(story.seriesKey);
+  const otherChapters = series.filter((s) => s.slug !== story.slug);
+
   return (
     <article className="bg-base">
       <div className="border-b border-cream bg-navy text-base">
@@ -86,7 +90,7 @@ export default async function CaseStoryPage({ params }: Props) {
             ← ผลงานที่เห็นผล
           </Link>
           <p className="eyebrow mt-6 text-[11px] uppercase tracking-[0.16em] text-aamber">
-            Case Story · {story.publishedLabel}
+            Case Story · {story.chapterLabel}
           </p>
           <h1 className="mt-3 max-w-3xl text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.025em] md:text-4xl lg:text-[2.6rem]">
             {story.titleTh}
@@ -97,6 +101,9 @@ export default async function CaseStoryPage({ params }: Props) {
           <div className="mt-6 flex flex-wrap gap-3 text-[13px] text-base/65">
             <span className="rounded-lg border border-base/15 bg-base/5 px-3 py-1.5">
               {story.client}
+            </span>
+            <span className="rounded-lg border border-base/15 bg-base/5 px-3 py-1.5">
+              {story.publishedLabel}
             </span>
             {story.location ? (
               <span className="rounded-lg border border-base/15 bg-base/5 px-3 py-1.5">
@@ -139,6 +146,36 @@ export default async function CaseStoryPage({ params }: Props) {
           {story.blocks.map((block, i) => (
             <Block key={`${block.type}-${i}`} block={block} />
           ))}
+
+          <div className="rounded-2xl border border-slate-200/60 bg-cream/40 p-5 md:p-6">
+            <p className="text-[13px] font-semibold text-ink">รายงานผล · {story.client}</p>
+            <p className="mt-1 text-[13.5px] leading-[1.6] text-muted">
+              แต่ละช่วงเวลาหลังขึ้นเว็บเป็นบทความแยก — ไม่ยัดอัปเดตลงหน้าเดิม
+            </p>
+            <ul className="mt-4 space-y-2">
+              {series.map((item) => (
+                <li key={item.slug}>
+                  {item.slug === story.slug ? (
+                    <span className="text-[14px] font-medium text-aorange">
+                      {item.chapterLabel} · กำลังอ่าน
+                    </span>
+                  ) : (
+                    <Link
+                      href={`/showcase/results/${item.slug}/`}
+                      className="text-[14px] font-medium text-ink transition hover:text-aorange"
+                    >
+                      {item.chapterLabel} →
+                    </Link>
+                  )}
+                </li>
+              ))}
+              {otherChapters.length === 0 ? (
+                <li className="text-[13.5px] text-muted">
+                  รายงานถัดไป เช่น หลังทำเว็บครบ 1 เดือน จะเพิ่มเมื่อมีข้อมูลใหม่
+                </li>
+              ) : null}
+            </ul>
+          </div>
         </div>
 
         <aside className="md:sticky md:top-24 md:self-start">

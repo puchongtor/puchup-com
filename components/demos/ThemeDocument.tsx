@@ -60,12 +60,14 @@ export function ThemeDocument({ title, srcDoc }: Props) {
             url.pathname.startsWith("/sale") ||
             url.pathname.startsWith("/contact") ||
             url.pathname.startsWith("/showcase") ||
+            url.pathname.startsWith("/guides") ||
             url.pathname.startsWith("/about") ||
             url.pathname.startsWith("/products") ||
             url.pathname.startsWith("/corporate") ||
             url.pathname.startsWith("/shopguide") ||
             url.pathname.startsWith("/partner") ||
             url.pathname.startsWith("/opscraft") ||
+            url.pathname.startsWith("/how-we-work") ||
             url.pathname.endsWith(".html"))
         ) {
           event.preventDefault();
