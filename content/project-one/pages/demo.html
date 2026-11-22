@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project One — Business Showroom | เว็บไซต์หน้าเดียวที่ตอบโจทย์ธุรกิจท้องถิ่น</title>
-<meta name="description" content="สำรวจโชว์รูมตัวอย่างเว็บไซต์ธุรกิจท้องถิ่นใน Project One ดีไซน์เฉพาะทาง เชื่อมต่อ Google Maps, รีวิว และระบบปิดการขายอย่างสมบูรณ์แบบ">
+<title>โชว์รูม Project ONE | เว็บหน้าเดียวและ Local SEO Plus</title>
+<meta name="description" content="เลือกดูตัวอย่างเว็บหน้าเดียวตามธุรกิจ หรือเทียบกับ Local SEO Plus ที่แยกหน้าบริการและสาขา">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -75,6 +75,13 @@
     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
   }
   .reveal.in { opacity: 1; transform: translateY(0); }
+  [hidden] { display: none !important; }
+  .format-option { display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: white; border-radius: 1rem; padding: 1.1rem 1.25rem; }
+  .format-option[aria-pressed="true"] { border-color: var(--ink); color: white; background: var(--ink); }
+  .format-option span { display: block; margin-top: .25rem; color: var(--ink-soft); }
+  .format-option[aria-pressed="true"] span { color: #e4e5ed; }
+  .format-option:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .reveal, .biz-card { transition: none; } }
 </style>
 </head>
 <body class="overflow-x-hidden">
@@ -110,6 +117,58 @@
 <section id="showroom" class="pt-28 md:pt-32 pb-12 px-6 bg-[var(--bg)]">
   <div class="max-w-7xl mx-auto">
 
+    <header class="mb-10 max-w-3xl">
+      <p class="mb-2 text-sm font-semibold text-[var(--purple)]">Project ONE</p>
+      <h1 class="font-display text-4xl md:text-6xl font-semibold leading-tight">โชว์รูมเว็บไซต์ธุรกิจ</h1>
+      <p class="mt-4 text-[var(--ink-soft)]">ลองเปิดเว็บจริงของแต่ละรูปแบบ แล้วดูว่าแบบไหนเหมาะกับบริการและสาขาของคุณ</p>
+    </header>
+
+    <div class="grid gap-3 sm:grid-cols-2 mb-12" role="group" aria-label="เลือกรูปแบบเว็บไซต์">
+      <button type="button" class="format-option" data-format="one-page" aria-pressed="true" aria-controls="one-page-catalog">
+        <strong class="text-xl">เว็บหน้าเดียว</strong>
+        <span>รวมบริการ รีวิว แผนที่ และปุ่มติดต่อในหน้าเดียว</span>
+      </button>
+      <button type="button" class="format-option" data-format="plus" aria-pressed="false" aria-controls="plus-catalog">
+        <strong class="text-xl">Local SEO Plus</strong>
+        <span>แยกหน้าตามบริการและสาขา ให้ลูกค้าเข้าไปดูเรื่องที่ค้นหาได้ตรงหน้า</span>
+      </button>
+    </div>
+
+    <section id="plus-catalog" hidden aria-labelledby="plus-heading">
+      <div class="mb-6">
+        <h2 id="plus-heading" class="font-display text-3xl font-semibold">เทียบสองแบบในธุรกิจทันตกรรม</h2>
+        <p class="mt-2 text-[var(--ink-soft)]">เปิดเดโมทั้งสองฝั่ง แล้วลองหาเวลาเปิดคลินิกหรือข้อมูลบริการที่สนใจ</p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="overflow-hidden rounded-2xl border border-[var(--line)] bg-white">
+          <img src="./images/dental-hero.webp" alt="บรรยากาศของตัวอย่างคลินิกบ้านฟันดี" class="aspect-[16/8] w-full object-cover" loading="lazy">
+          <div class="p-6">
+            <p class="text-sm font-semibold text-[var(--purple)]">เว็บหน้าเดียว</p>
+            <h3 class="mt-1 font-display text-2xl font-semibold">บ้านฟันดี คลินิกทันตกรรม</h3>
+            <p class="mt-3 text-[var(--ink-soft)]">เลื่อนดูบริการ ทีมคุณหมอ และข้อมูลคลินิกในหน้าเดียว แล้วกดติดต่อได้เลย</p>
+            <a href="/ProjectONE/dental/" target="_top" class="mt-5 inline-block rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-semibold text-white">เปิดตัวอย่างเว็บหน้าเดียว →</a>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl border border-[var(--line)] bg-white">
+          <img src="/lynera-dental/assets/H01.jpg" alt="พื้นที่ต้อนรับของตัวอย่างคลินิกไลเนรา" class="aspect-[16/8] w-full object-cover" loading="lazy">
+          <div class="p-6">
+            <p class="text-sm font-semibold text-teal-700">Local SEO Plus · ตัวอย่างโครงเว็บแบบขยาย</p>
+            <h3 class="mt-1 font-display text-2xl font-semibold">ไลเนรา เดนทัล</h3>
+            <p class="mt-3 text-[var(--ink-soft)]">เปิดหน้าบริการ ราคา ทีมทันตแพทย์ หรือสาขาได้โดยตรง แพ็กเกจ Plus รองรับไม่เกิน 40 หน้า ส่วนเดโมนี้แสดงโครงเว็บที่ขยายเกินกรอบแพ็กเกจ</p>
+            <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-teal-800">
+              <a href="/lynera-dental/services/" target="_top" class="underline underline-offset-4">หน้าบริการ</a>
+              <a href="/lynera-dental/prices/" target="_top" class="underline underline-offset-4">หน้าราคา</a>
+              <a href="/lynera-dental/branches/" target="_top" class="underline underline-offset-4">หน้าสาขา</a>
+            </div>
+            <a href="/lynera-dental/" target="_top" class="mt-5 inline-block rounded-full bg-teal-800 px-5 py-3 text-sm font-semibold text-white">เปิดตัวอย่างเว็บหลายหน้า →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="one-page-catalog" aria-labelledby="one-page-heading">
+    <h2 id="one-page-heading" class="mb-6 font-display text-3xl font-semibold">เว็บหน้าเดียวตามประเภทธุรกิจ</h2>
+
     <!-- Search Box -->
     <div class="max-w-2xl mx-auto mb-6">
       <input id="bizSearch" type="text" placeholder="🔍 ค้นหาประเภทธุรกิจ เช่น อาหาร, ทำฟัน, แอร์, พิซซ่า, รถยนต์, กายภาพ..." class="w-full rounded-full border border-[var(--line)] bg-white px-6 py-4 text-sm outline-none focus:border-[var(--purple)] transition-all shadow-sm">
@@ -129,6 +188,7 @@
     <!-- Catalog Grid by Category -->
     <div id="catalog" class="space-y-16"></div>
     <p id="noResults" class="hidden text-center text-[var(--ink-soft)] py-16 font-medium">ไม่พบธุรกิจที่คุณค้นหา? ลองพิมพ์คำค้นหาอื่น</p>
+    </section>
   </div>
 </section>
 
@@ -255,14 +315,13 @@ function buildShowroomHTML() {
                 <img src="${item.img}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/60 via-transparent to-transparent opacity-70"></div>
                 <span class="absolute bottom-3 left-3 text-[10px] font-mono bg-white/95 text-[var(--ink)] font-bold px-2.5 py-1 rounded-md backdrop-blur-sm shadow-sm">
-                  ${item.file}
+                  เว็บหน้าเดียว
                 </span>
               </div>
               <div class="p-5">
                 <span class="text-[10px] font-mono tracking-wider text-[var(--purple)] uppercase font-bold block mb-1">${item.kind}</span>
                 <h4 class="font-display font-semibold text-lg text-[var(--ink)] mb-3 leading-snug group-hover:text-[var(--purple)] transition-colors">${item.name}</h4>
                 <div class="bg-[var(--bg-alt)] p-3 rounded-xl border border-[var(--line)] text-[11px] text-[var(--ink-soft)] leading-relaxed">
-                  <strong class="text-[var(--ink)] block mb-0.5 font-mono text-[10px] uppercase text-[var(--orange)]">Architecture Stack</strong>
                   ${item.focus}
                 </div>
               </div>
@@ -291,6 +350,28 @@ function buildShowroomHTML() {
 }
 
 buildShowroomHTML();
+
+const formatButtons = [...document.querySelectorAll('[data-format]')];
+const onePageCatalog = document.getElementById('one-page-catalog');
+const plusCatalog = document.getElementById('plus-catalog');
+const showroomWindow = window.parent;
+
+function showFormat(format) {
+  const showPlus = format === 'plus';
+  onePageCatalog.hidden = showPlus;
+  plusCatalog.hidden = !showPlus;
+  formatButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.format === format)));
+}
+
+showFormat(new URLSearchParams(showroomWindow.location.search).get('format') === 'plus' ? 'plus' : 'one-page');
+formatButtons.forEach(button => button.addEventListener('click', () => {
+  const format = button.dataset.format;
+  showFormat(format);
+  const url = new URL(showroomWindow.location.href);
+  if (format === 'plus') url.searchParams.set('format', 'plus');
+  else url.searchParams.delete('format');
+  showroomWindow.history.replaceState(showroomWindow.history.state, '', url);
+}));
 
 /* ============ SEARCH & FILTER LOGIC ============ */
 const bizSearch = document.getElementById('bizSearch');

@@ -8,7 +8,7 @@ export const revalidate = false;
 export const metadata: Metadata = {
   title: "Project ONE — Business Showroom",
   description:
-    "สำรวจโชว์รูมตัวอย่างเว็บไซต์ธุรกิจท้องถิ่นใน Project ONE — หน้าเดียวจบ ปิดการขายด้วย LINE และ Google Maps",
+    "เปรียบเทียบตัวอย่างเว็บหน้าเดียวกับ Local SEO Plus ที่แยกหน้าบริการและสาขาในโชว์รูม Project ONE",
 };
 
 /**
