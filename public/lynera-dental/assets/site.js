@@ -5,6 +5,26 @@ menu?.addEventListener('click', () => {
   document.getElementById('main-menu').classList.toggle('open', !isOpen);
 });
 
+const branchDialog = document.getElementById('branch-dialog');
+if (branchDialog && typeof branchDialog.showModal === 'function') {
+  const branchLinks = [...branchDialog.querySelectorAll('[data-branch]')];
+  document.addEventListener('click', event => {
+    const link = event.target.closest('[data-choose-branch]');
+    if (!link || event.button || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    const destination = new URL(link.href);
+    for (const branchLink of branchLinks) {
+      const branchUrl = new URL(destination);
+      branchUrl.searchParams.set('branch', branchLink.dataset.branch);
+      branchLink.href = branchUrl.href;
+    }
+    if (!branchDialog.open) branchDialog.showModal();
+  });
+  branchDialog.addEventListener('click', event => {
+    if (event.target === branchDialog) branchDialog.close();
+  });
+}
+
 for (const list of document.querySelectorAll('[data-filter-list]')) {
   const filters = [...list.querySelectorAll('[data-filter]')];
   const search = list.querySelector('[data-search]');
@@ -38,11 +58,18 @@ if (form) {
   };
   preselect('branch');
   preselect('service');
+  const chatBranch = document.querySelector('[data-chat-branch]');
+  const updateChatBranch = () => {
+    const selected = form.elements.branch.selectedOptions[0];
+    chatBranch.textContent = selected.value ? `ไลเนรา เดนทัล · ${selected.textContent}` : 'ไลเนรา เดนทัล';
+  };
+  updateChatBranch();
   if (selectedDoctor) {
     doctor.hidden = false;
     doctor.textContent = `คุณหมอตัวอย่าง · ${selectedDoctor}`;
   }
   form.elements.branch.addEventListener('change', () => {
+    updateChatBranch();
     selectedDoctor = '';
     doctor.hidden = true;
   });
@@ -57,6 +84,7 @@ if (form) {
   });
   result.querySelector('[data-reset]').addEventListener('click', () => {
     form.reset();
+    updateChatBranch();
     selectedDoctor = '';
     doctor.hidden = true;
     result.hidden = true;
