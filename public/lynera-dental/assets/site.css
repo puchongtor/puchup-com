@@ -106,6 +106,107 @@
 .google-map p { padding: .4rem 1rem .65rem; color: var(--quiet); font-size: .9rem; }
 .google-map iframe { display: block; width: 100%; height: clamp(220px, 32vw, 340px); border: 0; background: var(--paper); }
 .google-map > a { display: inline-block; padding: .75rem 1rem; }
+.section-heading { font-size: clamp(1.55rem, 3vw, 2.5rem); line-height: 1.28; letter-spacing: -.032em; }
+
+html { scroll-padding-top: 80px; }
+.host-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #22314b;
+  box-shadow: 0 2px 10px #10182c25;
+}
+.host-contact span { color: #dbe8ff; font-weight: 700; }
+
+.about-page h2 { font-size: clamp(1.85rem, 3.8vw, 3.35rem); line-height: 1.26; text-wrap: balance; }
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 43fr) minmax(0, 57fr);
+  min-height: clamp(510px, 49vw, 700px);
+  color: #fffdf2;
+  background: #17372e;
+}
+.about-hero-copy {
+  width: auto;
+  margin: 0;
+  align-self: center;
+  padding: clamp(40px, 7vw, 90px) clamp(23px, 4vw, 54px);
+  padding-left: max(var(--gap), calc((100vw - 1210px) / 2));
+}
+.about-kicker {
+  padding-top: 1rem;
+  color: #ead3a4;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .23em;
+  border-top: 1px solid #cfb88b;
+  width: max-content;
+  margin-bottom: 1.25rem;
+}
+.about-hero h1 {
+  font-size: clamp(2.6rem, 5.5vw, 5.75rem);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.about-hero-lead { max-width: 33ch; color: #e2ebe1; margin-top: 1.4rem; }
+.about-hero .actions { margin-top: 1.8rem; gap: .8rem 1.15rem; }
+.about-primary {
+  display: inline-block;
+  border-radius: 2rem;
+  padding: .7rem 1.15rem;
+  background: #f4e8d0;
+  color: #17372e;
+  font-weight: 700;
+}
+.about-primary:hover { background: #fffdf2; }
+.about-hero-link, .about-story-copy > a { text-decoration: underline; text-underline-offset: .24em; }
+.about-hero-visual { position: relative; margin: 0; min-width: 0; min-height: 300px; }
+.about-hero-image { position: absolute; width: 100%; height: 100%; inset: 0; object-fit: cover; object-position: 55% center; }
+.about-hero-visual figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 2.4rem 1.25rem .9rem;
+  background: linear-gradient(transparent, #122c24dc);
+  color: #fffdf2;
+  text-align: right;
+}
+.about-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: clamp(28px, 5.5vw, 82px);
+  align-items: center;
+  padding-block: clamp(48px, 8vw, 112px);
+}
+.about-story figure { margin: 0; }
+.about-story-image { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 49% center; border-radius: 1rem; }
+.about-story-copy > p { max-width: 44ch; margin-top: .85rem; color: var(--quiet); }
+.about-care-list { margin: 1.4rem 0; }
+.about-care-list div { border-top: 1px solid var(--line); padding: .7rem 0; }
+.about-care-list div:last-child { border-bottom: 1px solid var(--line); }
+.about-care-list dt { font-weight: 700; }
+.about-care-list dd { color: var(--quiet); margin: .2rem 0 0; }
+.about-team { background: #e8eee6; padding-block: clamp(44px, 6.7vw, 90px); }
+.about-team .doctor-card .card-img { aspect-ratio: 4 / 4; }
+.about-locations { padding-block: clamp(48px, 7vw, 104px); }
+.about-branch-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.about-branch { position: relative; isolation: isolate; overflow: hidden; border-radius: .9rem; background: #17372e; color: #fffdf2; }
+.about-branch-image { width: 100%; aspect-ratio: 8 / 5; object-fit: cover; }
+.about-branch-caption { position: absolute; inset: auto 0 0; display: grid; gap: .15rem; padding: 2.7rem 1.15rem .95rem; background: linear-gradient(transparent, #122c24 92%); }
+.about-branch-caption strong { font-size: clamp(1.2rem, 2.7vw, 1.95rem); line-height: 1.25; }
+.about-branch:hover .about-branch-caption > span { text-decoration: underline; }
+.about-locations > .media-note { margin-top: .65rem; }
+@media(max-width: 760px) {
+  .about-hero, .about-story, .about-branch-grid { grid-template-columns: 1fr; }
+  .about-hero { min-height: 0; }
+  .about-hero-copy { padding: 42px var(--gap) 34px; }
+  .about-hero-visual { min-height: 0; aspect-ratio: 5 / 3; }
+  .about-story figure { order: 1; }
+  .about-story-image { aspect-ratio: 5 / 3; }
+  .about-team .grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 195px), 1fr)); }
+}
 @media(max-width: 470px) {
   .branch-options { grid-template-columns: 1fr; gap: 10px; }
   .branch-option { grid-template-columns: minmax(85px, 28%) 1fr; }
