@@ -15,14 +15,23 @@
   font-size: .9rem;
 }
 .hero-branches a { text-decoration: underline; text-underline-offset: .24em; }
-.line-booking {
+.line-float {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
   background: #12683e;
   border-color: #12683e;
 }
-.line-booking:hover { background: #0c4f2e; }
+.line-float:hover { background: #0c4f2e; }
+.booking-link {
+  color: var(--quiet);
+  font-size: .9rem;
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+.booking-link:hover { color: var(--forest); }
+.intro .wrap > .booking-link { display: inline-block; margin-top: 1rem; }
 .line-mark {
   display: inline-grid;
   place-items: center;
@@ -85,6 +94,18 @@
 .branch-line-action { display: flex; align-items: center; gap: 5px; margin-top: 9px; color: #12683e; font-weight: 700; }
 .branch-line-action .line-mark { background: #12683e; color: #fff; }
 .branch-note { display: block; color: var(--quiet); font-size: .82rem; margin-block: .4rem .8rem; }
+.review-meta, .review-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; }
+.review-meta { margin-bottom: .55rem; }
+.review-stars { color: #8f5d0b; letter-spacing: .12em; }
+.review-sample, .google-review small { color: var(--quiet); font-size: .82rem; }
+.google-review blockquote { margin: .65rem 0; color: var(--ink); }
+.grid:has(.google-review) { grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr)); }
+.map-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 1rem; }
+.google-map { background: var(--white); border: 1px solid var(--line); border-radius: .85rem; overflow: hidden; }
+.google-map h3 { padding: .85rem 1rem 0; }
+.google-map p { padding: .4rem 1rem .65rem; color: var(--quiet); font-size: .9rem; }
+.google-map iframe { display: block; width: 100%; height: clamp(220px, 32vw, 340px); border: 0; background: var(--paper); }
+.google-map > a { display: inline-block; padding: .75rem 1rem; }
 @media(max-width: 470px) {
   .branch-options { grid-template-columns: 1fr; gap: 10px; }
   .branch-option { grid-template-columns: minmax(85px, 28%) 1fr; }
