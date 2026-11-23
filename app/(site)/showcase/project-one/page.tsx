@@ -164,9 +164,9 @@ export default function ProjectOneShowcasePage() {
             เลือกดูตามประเภทธุรกิจ
           </h2>
           <p className="mt-3 max-w-xl text-[15px] leading-[1.7] text-muted">
-            เปิดตัวอย่างที่ใกล้กับธุรกิจของคุณ — แต่ละแบบเป็นเว็บหน้าเดียวพร้อมแนวทางปิดการขาย
+            ดูบริการทำเว็บสำหรับธุรกิจของคุณ และลองเปิดตัวอย่างเว็บไซต์หน้าเดียวด้านล่าง
           </p>
-          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-apurple">
+          <div id="industry-services" className="mt-5 flex scroll-mt-28 flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-apurple">
             <Link href="/ProjectONE/resort-website/" className="underline underline-offset-4">รับทำเว็บไซต์ที่พักและรีสอร์ท</Link>
             <Link href="/ProjectONE/dental-clinic-website/" className="underline underline-offset-4">รับทำเว็บไซต์คลินิกทันตกรรม</Link>
             <Link href="/ProjectONE/pilates-studio-website/" className="underline underline-offset-4">รับทำเว็บไซต์สตูดิโอพิลาทิส</Link>

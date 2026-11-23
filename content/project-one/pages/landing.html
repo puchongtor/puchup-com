@@ -73,6 +73,11 @@
     transition: color 0.2s ease;
   }
   .nav-link:hover { color: var(--purple); }
+  .industry-nav summary { cursor: pointer; list-style: none; white-space: nowrap; }
+  .industry-nav summary::-webkit-details-marker { display: none; }
+  .industry-nav summary::after { content: '▾'; margin-inline-start: .3rem; }
+  .industry-nav a:focus-visible, .industry-nav summary:focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; }
+  #industries { scroll-margin-top: 8rem; }
 </style>
 </head>
 <body class="antialiased">
@@ -94,6 +99,15 @@
         <a href="#one" class="nav-link">ทำไมหน้าเดียว</a>
         <a href="#works" class="nav-link">ผลงาน</a>
         <a href="#pricing" class="nav-link">แพ็กเกจ</a>
+        <details class="industry-nav relative">
+          <summary class="nav-link">เว็บไซต์ตามธุรกิจ</summary>
+          <div class="absolute right-0 top-full mt-3 grid min-w-52 gap-1 rounded-xl border hairline bg-white p-2 shadow-lg">
+            <a href="/ProjectONE/dental-clinic-website/" target="_top" class="nav-link block rounded-lg px-3 py-2 hover:bg-slate-50">คลินิกทันตกรรม</a>
+            <a href="/ProjectONE/resort-website/" target="_top" class="nav-link block rounded-lg px-3 py-2 hover:bg-slate-50">ที่พักและรีสอร์ท</a>
+            <a href="/ProjectONE/pilates-studio-website/" target="_top" class="nav-link block rounded-lg px-3 py-2 hover:bg-slate-50">สตูดิโอพิลาทิส</a>
+            <a href="/ProjectONE/auto-repair-shop-website/" target="_top" class="nav-link block rounded-lg px-3 py-2 hover:bg-slate-50">อู่และศูนย์บริการรถยนต์</a>
+          </div>
+        </details>
         <a href="demo.html" class="nav-link">Demo</a>
       </div>
       <div class="flex items-center gap-2 md:gap-3">
@@ -103,6 +117,7 @@
       </div>
     </div>
     <div class="flex lg:hidden items-center gap-4 overflow-x-auto pb-3 text-[12px] font-medium text-[var(--ink-soft)]">
+      <a href="#industries" class="whitespace-nowrap hover:text-[var(--purple)]">เว็บไซต์ตามธุรกิจ</a>
       <a href="#one" class="whitespace-nowrap hover:text-[var(--purple)]">ทำไมหน้าเดียว</a>
       <a href="#works" class="whitespace-nowrap hover:text-[var(--purple)]">ผลงาน</a>
       <a href="#pricing" class="whitespace-nowrap hover:text-[var(--purple)]">แพ็กเกจ</a>
@@ -454,9 +469,12 @@
             <div class="mt-8 space-y-3">
               <a href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener" class="block text-center rounded-full bg-white py-3.5 text-[13px] font-semibold text-[var(--plus)] hover:bg-teal-50 transition">สนใจ Plus ฿24,900</a>
               <a href="/ProjectONE/demo/?format=plus" target="_top" class="block text-center border border-white/30 rounded-full py-3 text-[12px] font-semibold text-white/95 hover:bg-white/10 transition">ดูตัวอย่าง Local SEO Plus →</a>
-              <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-center text-[12px] font-semibold text-white">
+              <div id="industries" class="grid grid-cols-1 gap-3 rounded-xl border border-white/30 px-3 py-4 text-center text-[13px] font-semibold text-white sm:grid-cols-2">
+                <p class="sm:col-span-2">บริการทำเว็บไซต์ตามธุรกิจ</p>
                 <a href="/ProjectONE/resort-website/" target="_top" class="underline underline-offset-4">ทำเว็บไซต์ที่พักและรีสอร์ท</a>
                 <a href="/ProjectONE/dental-clinic-website/" target="_top" class="underline underline-offset-4">ทำเว็บไซต์คลินิกทันตกรรม</a>
+                <a href="/ProjectONE/pilates-studio-website/" target="_top" class="underline underline-offset-4">ทำเว็บไซต์สตูดิโอพิลาทิส</a>
+                <a href="/ProjectONE/auto-repair-shop-website/" target="_top" class="underline underline-offset-4">ทำเว็บไซต์อู่และศูนย์บริการรถยนต์</a>
               </div>
               <a href="/showcase/results/" target="_top" class="block text-center border border-white/30 rounded-full py-3 text-[12px] font-semibold text-white/95 hover:bg-white/10 transition">ดูผลงาน →</a>
             </div>

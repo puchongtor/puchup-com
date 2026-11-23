@@ -50,6 +50,7 @@ export const navLinks: NavLink[] = [
     children: [
       { href: "/showcase/results/", label: "ผลงานที่เห็นผล", note: "รายงานตามช่วงเวลา" },
       { href: "/showcase/project-one/", label: "Project ONE Demo", note: "ตัวอย่างหลายธุรกิจ" },
+      { href: "/showcase/project-one/#industry-services", label: "เว็บไซต์ตามธุรกิจ", note: "ดูบริการแยกตามธุรกิจ" },
       { href: "/showcase/aeropulse/", label: "ShopGuide Demo", note: "AeroPulse" },
       { href: "/showcase/", label: "ดู Showcase ทั้งหมด" },
     ],
