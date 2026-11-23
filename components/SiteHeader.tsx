@@ -60,9 +60,11 @@ function DesktopNavItem({ link }: { link: NavLink }) {
               ไปหน้า {link.label} →
             </Link>
             <ul className="mt-0.5 space-y-0.5">
-              {link.children.map((child) => (
+              {link.children.map((child) => {
+                const ChildLink = child.href.includes("#") ? "a" : Link;
+                return (
                 <li key={child.href + child.label}>
-                  <Link
+                  <ChildLink
                     href={child.href}
                     className="block rounded-xl px-3 py-2.5 transition hover:bg-cream/80"
                     onClick={() => setOpen(false)}
@@ -71,9 +73,10 @@ function DesktopNavItem({ link }: { link: NavLink }) {
                     {child.note ? (
                       <span className="mt-0.5 block text-[12px] text-muted">{child.note}</span>
                     ) : null}
-                  </Link>
+                  </ChildLink>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -154,8 +157,10 @@ export function SiteHeader() {
                     >
                       ไปหน้า {link.label} →
                     </Link>
-                    {link.children.map((child) => (
-                      <Link
+                    {link.children.map((child) => {
+                      const ChildLink = child.href.includes("#") ? "a" : Link;
+                      return (
+                      <ChildLink
                         key={child.href + child.label}
                         href={child.href}
                         className="block rounded-lg py-2"
@@ -165,8 +170,9 @@ export function SiteHeader() {
                         {child.note ? (
                           <span className="mt-0.5 block text-[12px] text-muted">{child.note}</span>
                         ) : null}
-                      </Link>
-                    ))}
+                      </ChildLink>
+                      );
+                    })}
                   </div>
                 ) : null}
               </div>
