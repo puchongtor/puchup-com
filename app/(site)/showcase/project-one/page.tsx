@@ -166,6 +166,10 @@ export default function ProjectOneShowcasePage() {
           <p className="mt-3 max-w-xl text-[15px] leading-[1.7] text-muted">
             เปิดตัวอย่างที่ใกล้กับธุรกิจของคุณ — แต่ละแบบเป็นเว็บหน้าเดียวพร้อมแนวทางปิดการขาย
           </p>
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-apurple">
+            <Link href="/ProjectONE/resort-website/" className="underline underline-offset-4">รับทำเว็บไซต์ที่พักและรีสอร์ท</Link>
+            <Link href="/ProjectONE/dental-clinic-website/" className="underline underline-offset-4">รับทำเว็บไซต์คลินิกทันตกรรม</Link>
+          </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((item) => (

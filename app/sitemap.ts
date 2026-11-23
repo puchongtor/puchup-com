@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { allCaseSlugs } from "@/lib/case-stories";
 import { allGuideSlugs } from "@/lib/guides/catalog";
 import { allDemoSlugs } from "@/lib/project-one/slugs";
+import { industryPages } from "./ProjectONE/_industry/content";
 import { site } from "@/lib/site";
 
 export const dynamic = "force-static";
@@ -33,10 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const demos = allDemoSlugs().map((slug) => `ProjectONE/${slug}/`);
+  const industries = industryPages.map(({ slug }) => `ProjectONE/${slug}/`);
   const cases = allCaseSlugs().map((slug) => `showcase/results/${slug}/`);
   const guides = allGuideSlugs().map((slug) => `guides/${slug}/`);
 
-  return [...core, ...demos, ...cases, ...guides].map((path) => ({
+  return [...core, ...industries, ...demos, ...cases, ...guides].map((path) => ({
     url: `${site.url}/${path}`,
     lastModified: new Date(),
   }));

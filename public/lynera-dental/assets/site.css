@@ -213,3 +213,66 @@ html { scroll-padding-top: 80px; }
   .branch-option-photo { height: 100%; }
   .line-float { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); }
 }
+:root {
+  --paper: #f8fbfc;
+  --white: #fff;
+  --ink: #122e3c;
+  --forest: #07596a;
+  --quiet: #425965;
+  --rust: #1a6478;
+  --line: #d4e2e8;
+  --sand: #e7f1f5;
+}
+
+.hero, .intro { background: #edf5f8; }
+.hero-photo { object-position: center; border-radius: 18px; }
+.hero figcaption { background: #f7fcffe8; }
+.about-hero, .site-footer { background: #142e3b; }
+.about-team { background: #e8f2f5; }
+.deal-content { background: linear-gradient(155deg, #fff, #edf5f8); }
+.about-primary { background: #f8fcfd; }
+.care-space {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #142e3b;
+  color: #fff;
+}
+.care-space figure { min-height: 300px; position: relative; }
+.care-space-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.care-space-copy { align-self: center; padding: clamp(24px, 4.2vw, 64px); }
+.care-space-copy h2 { font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.32; }
+.care-space-copy p { color: #d6e6ed; margin-block: .9rem 1.1rem; }
+.care-space-copy .text-link { color: #e8f9ff; }
+.article-cover {
+  width: min(100%, 960px);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 18px;
+}
+.video-grid-preview {
+  max-width: 870px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+}
+.video-grid .clip { min-width: 0; }
+.video-grid .clip video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
+}
+@media (min-width: 660px) {
+  .hero .hero-photo { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 610px) {
+  .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .care-space { grid-template-columns: 1fr; }
+  .care-space figure { min-height: 0; aspect-ratio: 16 / 9; }
+}

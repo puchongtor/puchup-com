@@ -109,10 +109,10 @@ export function GuideArticleView({ guide }: { guide: GuideArticle }) {
               ผลงานที่เห็นผล
             </Link>
             <Link
-              href="/ProjectONE/"
+              href={guide.slug === "dental-clinic-website" ? "/ProjectONE/dental-clinic-website/" : "/ProjectONE/"}
               className="inline-flex rounded-xl border border-navy/15 px-4 py-2.5 text-[14px] font-semibold text-ink"
             >
-              Project ONE
+              {guide.slug === "dental-clinic-website" ? "ดูบริการทำเว็บไซต์คลินิกทันตกรรม" : "Project ONE"}
             </Link>
           </div>
         </div>
