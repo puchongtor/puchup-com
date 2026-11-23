@@ -60,10 +60,11 @@ function DesktopNavItem({ link }: { link: NavLink }) {
               ไปหน้า {link.label} →
             </Link>
             <ul className="mt-0.5 space-y-0.5">
-              {link.children.map((child) => {
+              {link.children.map((child, index) => {
                 const ChildLink = child.href.includes("#") ? "a" : Link;
                 return (
                 <li key={child.href + child.label}>
+                  {child.group && child.group !== link.children?.[index - 1]?.group ? <p className="px-3 pb-1 pt-3 text-[11px] font-bold tracking-wide text-slate-500">{child.group}</p> : null}
                   <ChildLink
                     href={child.href}
                     className="block rounded-xl px-3 py-2.5 transition hover:bg-cream/80"
@@ -117,7 +118,7 @@ export function SiteHeader() {
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="flex h-9 w-9 shrink-0 items-center justify-center text-ink lg:hidden"
-          aria-label="Menu"
+          aria-label={open ? "ปิดเมนู" : "เปิดเมนู"}
           aria-expanded={open}
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -126,7 +127,7 @@ export function SiteHeader() {
         </button>
       </div>
       {open ? (
-        <div className="flex flex-col gap-1 border-t border-cream bg-base px-5 py-3 lg:hidden">
+        <div className="flex max-h-[calc(100dvh-4rem)] flex-col gap-1 overflow-y-auto border-t border-cream bg-base px-5 py-3 lg:hidden">
           {navLinks.map((link) =>
             link.children?.length ? (
               <div key={link.href + link.label} className="border-b border-cream/80 py-1">
@@ -157,11 +158,12 @@ export function SiteHeader() {
                     >
                       ไปหน้า {link.label} →
                     </Link>
-                    {link.children.map((child) => {
+                    {link.children.map((child, index) => {
                       const ChildLink = child.href.includes("#") ? "a" : Link;
                       return (
+                      <div key={child.href + child.label}>
+                      {child.group && child.group !== link.children?.[index - 1]?.group ? <p className="pb-1 pt-3 text-[11px] font-bold tracking-wide text-slate-500">{child.group}</p> : null}
                       <ChildLink
-                        key={child.href + child.label}
                         href={child.href}
                         className="block rounded-lg py-2"
                         onClick={() => setOpen(false)}
@@ -171,6 +173,7 @@ export function SiteHeader() {
                           <span className="mt-0.5 block text-[12px] text-muted">{child.note}</span>
                         ) : null}
                       </ChildLink>
+                      </div>
                       );
                     })}
                   </div>

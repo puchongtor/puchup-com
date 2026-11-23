@@ -213,3 +213,13 @@ html{scroll-padding-top:85px}
  .brand strong{font-size:1.05rem}
  .footer{grid-template-columns:1fr 1fr}
 }
+
+/* Homepage maps show approximate areas for this fictional demo. */
+.demo-maps{margin-top:36px;padding:clamp(22px,4vw,38px);background:#edf1f0;border:1px solid var(--line);border-radius:12px}
+.demo-map-head h3{font-size:clamp(24px,3vw,32px);margin:7px 0}.demo-map-head p:not(.label){color:var(--body);max-width:680px;line-height:1.7}
+.demo-map-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}
+.demo-map-grid article{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.demo-map-frame{height:280px;background:#e5e9e6}.demo-map-frame iframe{width:100%;height:100%;border:0;display:block}
+.demo-map-info{padding:18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.demo-map-info h4{font-size:20px;margin:0}.demo-map-info p{margin:4px 0 0;color:var(--body);font-size:14px}.demo-map-info a{font-weight:700;color:#165f55;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:700px){.demo-map-grid{grid-template-columns:1fr}.demo-map-frame{height:230px}}
