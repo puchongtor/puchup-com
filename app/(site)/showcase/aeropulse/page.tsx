@@ -1,102 +1,72 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { site } from "@/lib/site";
+import styles from "./aeropulse.module.css";
 
-export const metadata: Metadata = { title: "AeroPulse — Showcase" };
+export const metadata: Metadata = {
+  title: "AeroPulse — AI Bike Shopping Experience | PuchUp",
+  description: "สำรวจ AeroPulse ตัวอย่างระบบช่วยเลือกจักรยานจาก PuchUp ที่เปลี่ยนการเลือกสินค้าซับซ้อนให้เป็นประสบการณ์ที่เข้าใจง่าย",
+};
 
-const journey = [
-  "บอกความต้องการผ่านคำถามสั้นๆ หรือแชทกับผู้ช่วย",
-  "ระบบคัดรุ่นที่เหมาะกับงบ เส้นทาง และประสบการณ์",
-  "ดูผลลัพธ์พร้อมเหตุผลที่แนะนำ",
-  "เปรียบเทียบรุ่นและเช็คสต็อกตามไซซ์",
-  "ส่งสรุปไปยังทีมร้านทาง LINE",
-  "ร้านติดต่อต่อได้โดยไม่ต้องถามซ้ำ",
+const steps = [
+  { n: "01", title: "เริ่มจากคน ไม่ใช่สเปก", text: "ลูกค้าบอกงบ เส้นทาง และประสบการณ์ ผ่านคำถามสั้น ๆ หรือพูดคุยกับผู้ช่วย" },
+  { n: "02", title: "ค้นพบรุ่นที่เหมาะ", text: "ระบบช่วยคัดจักรยานที่ตรงโจทย์ พร้อมเหตุผลประกอบการแนะนำที่เข้าใจง่าย" },
+  { n: "03", title: "มั่นใจก่อนตัดสินใจ", text: "เปรียบเทียบตัวเลือก ดูรายละเอียด และตรวจสอบไซซ์หรือสต็อกในระบบตัวอย่าง" },
+  { n: "04", title: "ส่งต่อให้ร้านอย่างลื่นไหล", text: "สรุปความต้องการส่งต่อทาง LINE เพื่อให้ทีมร้านพูดคุยต่อได้อย่างมีบริบท" },
+];
+
+const bikes = [
+  { image: "/images/products/shopguide/sg-bike-aero.jpg", label: "SPEED / PERFORMANCE", title: "Aero", text: "สำหรับคนที่มองหาความเร็วและความคล่องตัว" },
+  { image: "/images/products/shopguide/sg-bike-endurance.jpg", label: "COMFORT / DISTANCE", title: "Endurance", text: "สำหรับการปั่นไกลที่อยากให้ทุกระยะสบายขึ้น" },
+  { image: "/images/products/shopguide/sg-bike-gravel.jpg", label: "FREEDOM / ADVENTURE", title: "Gravel", text: "สำหรับเส้นทางที่ไม่ได้มีแค่ถนนเรียบ" },
 ];
 
 export default function AeroPulsePage() {
   return (
-    <section className="bg-base">
-      <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-24">
-        <Link href="/showcase/" className="text-[14px] font-medium text-muted hover:text-ink">
-          ← กลับ Showcase
-        </Link>
-        <div className="mt-6 mb-8">
-          <span className="eyebrow mb-4 inline-block rounded-full bg-aamber/15 px-2.5 py-1 text-[10px] uppercase text-aamber">
-            ตัวอย่างระบบ · ShopGuide
-          </span>
-          <h1 className="mb-4 text-4xl font-semibold tracking-[-0.025em] md:text-5xl">
-            ช่วยลูกค้าเลือกจักรยานได้เร็วขึ้น
-            <br />
-            โดยไม่ต้องไล่สเปกเองทั้งร้าน
-          </h1>
-          <p className="text-[17px] text-muted">AeroPulse Bike Studio</p>
+    <div className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroImage} />
+        <div className={styles.heroShade} />
+        <div className={styles.heroContent}>
+          <Link href="/showcase/" className={styles.back}>← กลับไป Showcase</Link>
+          <div className={styles.heroMain}>
+            <p className={styles.eyebrow}><span /> PUCHUP SHOWCASE / SHOPGUIDE</p>
+            <h1>THE RIGHT BIKE.<br /><em>THE RIGHT RIDE.</em></h1>
+            <div className={styles.heroBottom}>
+              <div><p className={styles.heroThai}>จักรยานที่ใช่<br />เริ่มจากการเข้าใจคนปั่น</p><p className={styles.heroDesc}>AeroPulse Bike Studio คือเว็บไซต์ตัวอย่างที่เปลี่ยนคำถามเรื่องจักรยาน ให้กลายเป็นประสบการณ์เลือกสินค้าที่สนุกและเข้าใจง่าย</p></div>
+              <a href="https://aeropulse.puchup.com" target="_blank" rel="noreferrer" className={styles.primary}>สำรวจ AeroPulse <span>↗</span></a>
+            </div>
+          </div>
+          <div className={styles.heroFoot}><span>AN AI-ASSISTED SHOPPING EXPERIENCE</span><span>SCROLL TO EXPLORE ↓</span></div>
         </div>
+      </section>
 
-        <div className="space-y-10 text-[15px] leading-[1.7]">
-          <div>
-            <h2 className="mb-2 text-xl font-semibold">ความท้าทาย</h2>
-            <p className="text-muted">
-              สินค้ามีหลายรุ่น แต่ลูกค้ามักเลือกไม่ถูก ใช้เวลานาน หรือออกจากเว็บไปก่อนตัดสินใจ
-              ร้านจึงเสียโอกาสปิดการขาย
-            </p>
-          </div>
-          <div>
-            <h2 className="mb-2 text-xl font-semibold">แนวทาง</h2>
-            <p className="border-l-2 border-aorange/40 pl-4 font-medium text-ink">
-              เว็บไม่ควรแค่โชว์ข้อมูลให้ครบ — ควรช่วยลูกค้าไปถึงคำตอบที่ใช่เร็วขึ้น
-            </p>
-          </div>
-          <div>
-            <h2 className="mb-2 text-xl font-semibold">สิ่งที่ระบบทำได้</h2>
-            <p className="text-muted">
-              ผู้ช่วยแนะนำสินค้า คัดรุ่นที่เหมาะ เปรียบเทียบ เช็คสต็อก และส่งต่อทีมร้านทาง LINE
-              พร้อมบริบทที่คุยไว้ — เป็นแนวทางเดียวกับสินค้า{" "}
-              <Link href="/shopguide/" className="font-semibold text-aorange underline underline-offset-2">
-                ShopGuide
-              </Link>
-            </p>
-          </div>
-          <div>
-            <h2 className="mb-4 text-xl font-semibold">เส้นทางของลูกค้า</h2>
-            <ol className="grid gap-3 sm:grid-cols-2">
-              {journey.map((step, i) => (
-                <li key={step} className="rounded-xl2 border border-cream p-4">
-                  <span className="eyebrow text-[11px] text-apurple">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-2 font-medium">{step}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <a
-              href="https://aeropulse.puchup.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex text-[15px] font-semibold text-aorange underline underline-offset-4"
-            >
-              เปิดตัวอย่างระบบ →
-            </a>
-            <p className="mt-2 text-[13px] text-muted">
-              หรือดูพรีวิวบนไซต์ที่{" "}
-              <a href="/sites/aeropulse/" className="underline underline-offset-2">
-                /sites/aeropulse/
-              </a>
-            </p>
-          </div>
-        </div>
+      <div className={styles.ticker} aria-hidden="true"><span>DISCOVER YOUR RIDE</span><b>✳</b><span>MADE FOR EVERY RIDER</span><b>✳</b><span>DISCOVER YOUR RIDE</span><b>✳</b><span>MADE FOR EVERY RIDER</span></div>
 
-        <div className="mt-14 rounded-xl2 bg-navy p-8 text-center text-base">
-          <h2 className="mb-3 text-2xl font-semibold">สนใจระบบช่วยเลือกสินค้าแบบนี้?</h2>
-          <Link
-            href="/contact/"
-            className="mt-4 inline-flex rounded-xl bg-base px-5 py-3 text-[15px] font-semibold text-navy"
-          >
-            {site.cta.primary}
-          </Link>
+      <section className={styles.intro}>
+        <div><p className={styles.kicker}>THE CHALLENGE <span>01 / 04</span></p><h2>จักรยานมีหลายรุ่น<br /><em>แต่คำตอบที่ใช่มีแค่คุณ</em></h2></div>
+        <div className={styles.introText}><p>เสือหมอบหรือกราเวล? เฟรมแบบไหน? งบเท่านี้ควรเริ่มจากรุ่นไหนดี?</p><p>เมื่อข้อมูลมีมาก การเลือกอาจกลายเป็นเรื่องยาก AeroPulse จึงออกแบบให้ลูกค้าเริ่มจากสิ่งที่ตัวเองรู้ดีอยู่แล้ว — <strong>อยากปั่นแบบไหน</strong> — แล้วให้ระบบช่วยพาไปต่อ</p><Link href="/shopguide/">รู้จัก ShopGuide <span>↗</span></Link></div>
+      </section>
+
+      <section className={styles.experience}>
+        <div className={styles.experienceHead}><div><p className={styles.kicker}>THE EXPERIENCE <span>02 / 04</span></p><h2>FROM QUESTION<br /><em>TO CONFIDENCE.</em></h2></div><p>จากคำถามแรก สู่บทสนทนากับร้าน<br />ทุกขั้นตอนออกแบบมาให้ไปต่อได้ง่ายขึ้น</p></div>
+        <div className={styles.screenWrap}>
+          <div className={styles.screenBar}><div><i /><i /><i /></div><span>AEROPULSE / BIKE FINDER</span><span>INTERACTIVE DEMO</span></div>
+          <img src="/images/products/shopguide/aeropulse-finder.png" alt="ตัวอย่างหน้าระบบค้นหาจักรยาน AeroPulse" loading="lazy" />
+          <div className={styles.screenCaption}><span>01 — DISCOVER YOUR MATCH</span><a href="https://aeropulse.puchup.com" target="_blank" rel="noreferrer">ทดลองระบบจริง ↗</a></div>
         </div>
-      </div>
-    </section>
+        <div className={styles.steps}>{steps.map((step) => <article key={step.n}><span>{step.n} /</span><h3>{step.title}</h3><p>{step.text}</p></article>)}</div>
+      </section>
+
+      <section className={styles.bikeSection}>
+        <div className={styles.sectionHead}><div><p className={styles.kicker}>FIND YOUR STYLE <span>03 / 04</span></p><h2>ONE PASSION.<br /><em>YOUR OWN WAY.</em></h2></div><p>ทุกคนมีเส้นทางของตัวเอง<br />หน้าร้านก็ควรช่วยค้นหาสิ่งที่เหมาะกับแต่ละคน</p></div>
+        <div className={styles.bikeGrid}>{bikes.map((bike) => <article className={styles.bikeCard} key={bike.title}><div className={styles.bikeImage}><img src={bike.image} alt={`ตัวอย่างจักรยานประเภท ${bike.title}`} loading="lazy" /><span>↗</span></div><p>{bike.label}</p><h3>{bike.title}</h3><div>{bike.text}</div></article>)}</div>
+        <p className={styles.disclaimer}>ภาพและข้อมูลแสดงแนวคิดของเว็บไซต์ตัวอย่าง ไม่ใช่การรับประกันความพร้อมของสินค้า</p>
+      </section>
+
+      <section className={styles.closing}>
+        <div className={styles.closingImage} />
+        <div className={styles.closingContent}><p className={styles.kicker}>YOUR NEXT MOVE <span>04 / 04</span></p><h2>MAKE EVERY<br /><em>CHOICE COUNT.</em></h2><p>เมื่อลูกค้าเข้าใจตัวเลือกได้ง่ายขึ้น<br />การเริ่มต้นบทสนทนากับร้านก็ง่ายขึ้นเช่นกัน</p><div className={styles.actions}><a href="https://aeropulse.puchup.com" target="_blank" rel="noreferrer" className={styles.primary}>เปิดตัวอย่าง AeroPulse <span>↗</span></a><Link href="/contact/" className={styles.outline}>พูดคุยกับ PuchUp <span>↗</span></Link></div><p className={styles.small}>AeroPulse เป็นเว็บไซต์ตัวอย่างเพื่อแสดงแนวทางการทำงานของ ShopGuide</p></div>
+      </section>
+    </div>
   );
 }
