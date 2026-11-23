@@ -169,6 +169,8 @@ export default function ProjectOneShowcasePage() {
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-apurple">
             <Link href="/ProjectONE/resort-website/" className="underline underline-offset-4">รับทำเว็บไซต์ที่พักและรีสอร์ท</Link>
             <Link href="/ProjectONE/dental-clinic-website/" className="underline underline-offset-4">รับทำเว็บไซต์คลินิกทันตกรรม</Link>
+            <Link href="/ProjectONE/pilates-studio-website/" className="underline underline-offset-4">รับทำเว็บไซต์สตูดิโอพิลาทิส</Link>
+            <Link href="/ProjectONE/auto-repair-shop-website/" className="underline underline-offset-4">รับทำเว็บไซต์ศูนย์บริการรถยนต์</Link>
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

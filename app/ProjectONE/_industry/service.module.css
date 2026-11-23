@@ -19,6 +19,20 @@
   --wash: #f7efe6;
 }
 
+.page[data-industry="pilates-studio-website"] {
+  --dark: #24382c;
+  --action: #34513e;
+  --accent: #d9e9cf;
+  --wash: #ecf0e5;
+}
+
+.page[data-industry="auto-repair-shop-website"] {
+  --dark: #162737;
+  --action: #224f70;
+  --accent: #c4e2f5;
+  --wash: #e9f0f6;
+}
+
 .wrap {
   width: min(1160px, calc(100% - 48px));
   margin-inline: auto;
@@ -93,6 +107,9 @@
 .lead { align-items: start; }
 .lead p { max-width: 63ch; }
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 28px; }
+@media (min-width: 761px) {
+  .page[data-industry="pilates-studio-website"] .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .grid article { border-top: 1px solid var(--action); padding-top: 17px; }
 .grid p, .case p, .contact p { margin-top: 9px; }
 

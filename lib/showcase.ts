@@ -20,6 +20,7 @@ export type ShowcaseCase = {
   tags: string[];
   image: string;
   statusLabel: string;
+  linkLabel?: string;
 };
 
 export const conceptCases: ShowcaseCase[] = [
@@ -42,12 +43,38 @@ export const conceptCases: ShowcaseCase[] = [
     name: "Project ONE",
     nameTh: "ระบบหาลูกค้าหน้าร้าน × Google Business",
     blurb:
-      "ตัวอย่างระบบหาลูกค้าท้องถิ่นหลายประเภทธุรกิจ — หน้าเดียวหรือขยาย SEO ไม่เกิน 10 หน้า พร้อมเชื่อม Google Business รวมเคสจริงอย่างบ้านทันตแพทย์",
+      "ตัวอย่างเว็บไซต์ธุรกิจท้องถิ่น ทั้งเว็บหน้าเดียวและ Local SEO Plus พร้อมหน้าบริการ สาขา และช่องทางติดต่อที่เข้ากับแต่ละธุรกิจ",
     href: "/showcase/project-one/",
     product: "Project ONE",
     tags: ["หน้าเดียว", "Google Business", "หลายธุรกิจ"],
     image: "/images/showcase/project-one/p1-hero-storefront.jpg",
     statusLabel: "ตัวอย่างหลายธุรกิจ",
+  },
+  {
+    id: "stillform-pilates",
+    kind: "concept",
+    name: "Stillform Pilates",
+    nameTh: "เว็บไซต์สตูดิโอพิลาทิสสองสาขา",
+    blurb: "ให้มือใหม่เปรียบเทียบคลาส ราคา และครู แล้วเลือกรอบที่อารีย์หรือบางนาเพื่อเตรียมข้อความขอจองคลาสแรกทาง LINE",
+    href: "/stillform-pilates/",
+    product: "Project ONE · Local SEO Plus",
+    tags: ["ตารางคลาส", "แพ็กเกจ", "Google Maps", "ขอจองผ่าน LINE"],
+    image: "/stillform-pilates/assets/hero.webp",
+    statusLabel: "เว็บไซต์ตัวอย่าง",
+    linkLabel: "เปิดเว็บสตูดิโอพิลาทิส",
+  },
+  {
+    id: "axle-bay-auto",
+    kind: "concept",
+    name: "Axle Bay Auto Service",
+    nameTh: "เว็บไซต์ศูนย์บริการรถยนต์สองสาขา",
+    blurb: "ให้คนขับดูงานที่ศูนย์รับ อ่านบทความคุยกับช่าง เลือกสาขา และเริ่มนัดคิวหรือขอประเมินค่าซ่อมทาง LINE",
+    href: "/axle-bay-auto/",
+    product: "Project ONE · Local SEO Plus",
+    tags: ["นัดคิว", "ประเมินค่าซ่อม", "แผนที่แยกสาขา", "บทความ"],
+    image: "/axle-bay-auto/assets/hero.webp",
+    statusLabel: "เว็บไซต์ตัวอย่าง",
+    linkLabel: "เปิดเว็บศูนย์บริการรถยนต์",
   },
 ];
 

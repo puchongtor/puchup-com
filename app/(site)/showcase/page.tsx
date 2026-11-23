@@ -21,6 +21,7 @@ function CaseCard(props: {
   tags: string[];
   image: string;
   statusLabel: string;
+  linkLabel?: string;
 }) {
   const inner = (
     <>
@@ -54,7 +55,7 @@ function CaseCard(props: {
           ))}
         </ul>
         <p className="mt-5 text-[13.5px] font-semibold text-aorange">
-          {props.external ? "เปิดเว็บไซต์ →" : "ดูรายละเอียด →"}
+          {props.linkLabel ?? (props.external ? "เปิดเว็บไซต์ →" : "ดูรายละเอียด →")}
         </p>
       </div>
     </>
@@ -70,6 +71,7 @@ function CaseCard(props: {
       </a>
     );
   }
+  if (props.linkLabel) return <a href={props.href} className={className}>{inner}</a>;
   return (
     <Link href={props.href} className={className}>
       {inner}
