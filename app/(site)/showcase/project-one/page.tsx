@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Project ONE — Showcase",
-  description: "ตัวอย่างเว็บท้องถิ่น × Google Business — หน้าเดียวหรือขยาย SEO ไม่เกิน 10 หน้า",
+  description: "ตัวอย่างเว็บไซต์ธุรกิจท้องถิ่น ทั้งเว็บหน้าเดียวและ Local SEO Plus พร้อมหน้าบริการและสาขา",
 };
 
 const IMG = "/images/showcase/project-one";
@@ -62,6 +62,13 @@ const featured = [
   },
 ] as const;
 
+const plusExamples = [
+ { name: "Lynera Dental", type: "คลินิกทันตกรรม", description: "นำเสนอทีมแพทย์ บริการ ราคา และข้อมูลสาขา ให้ผู้สนใจสำรวจได้ก่อนนัด", image: "/lynera-dental/assets/H01.jpg", href: "/lynera-dental/", detail: "บริการ · ราคา · สาขา" },
+ { name: "Vana Vale Khao Yai", type: "ที่พักและรีสอร์ท", description: "เปิดประสบการณ์ที่พัก เปรียบเทียบห้อง และสำรวจสถานที่ใกล้เคียง", image: "/vana-vale-khao-yai/assets/VV01.jpg", href: "/vana-vale-khao-yai/", detail: "ห้องพัก · เที่ยวเขาใหญ่ · ติดต่อ" },
+ { name: "Stillform Pilates", type: "สตูดิโอพิลาทิส", description: "ดูคลาส ครู ตารางเรียน และทดลองเส้นทางจองคลาสแรก", image: "/stillform-pilates/assets/hero.webp", href: "/stillform-pilates/", detail: "คลาส · ตารางเรียน · สาขา" },
+ { name: "Axle Bay Auto Service", type: "ศูนย์บริการรถยนต์", description: "ดูบริการและสาขา พร้อมทดลองนัดจองคิวหรือส่งข้อมูลประเมินค่าซ่อม", image: "/axle-bay-auto/assets/hero.webp", href: "/axle-bay-auto/", detail: "บริการ · สาขา · ประเมินค่าซ่อม" },
+] as const;
+
 const outcomes = [
   {
     title: "หน้าเดียวชัดเจน",
@@ -101,19 +108,19 @@ export default function ProjectOneShowcasePage() {
             ตัวอย่างระบบ · Project ONE
           </p>
           <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.025em] md:text-5xl lg:text-[3.25rem]">
-            เว็บหน้าเดียวที่ช่วยให้ลูกค้า
+            เว็บไซต์ที่ช่วยให้ลูกค้า
             <br />
             รู้จัก ตัดสินใจ และอยากมาที่ร้าน
           </h1>
           <p className="mt-5 max-w-xl text-[16px] leading-[1.7] text-base/70">
-            Project ONE × Google Business — ดูตัวอย่างตามประเภทธุรกิจที่ใกล้กับคุณ
+            ดูทั้งเว็บไซต์หน้าเดียวและ Local SEO Plus ที่แยกหน้าบริการ สาขา และข้อมูลสำคัญให้เหมาะกับธุรกิจ
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/ProjectONE/demo/"
+              href="#local-seo-plus"
               className="inline-flex rounded-xl bg-base px-5 py-3 text-[15px] font-semibold text-navy transition hover:opacity-90"
             >
-              ดูตัวอย่างทั้งหมด
+              ดูตัวอย่าง Local SEO Plus
             </Link>
             <Link
               href="/ProjectONE/"
@@ -125,12 +132,42 @@ export default function ProjectOneShowcasePage() {
         </div>
       </div>
 
+      {/* Local SEO Plus demos */}
+      <section id="local-seo-plus" className="scroll-mt-24 bg-[#f4f6f4]">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 md:px-8 md:py-24 lg:px-8">
+          <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end">
+            <div><p className="eyebrow text-[11px] uppercase tracking-[0.16em] text-apurple">Project ONE · Local SEO Plus</p>
+              <h2 className="mt-3 max-w-3xl text-[2rem] font-semibold leading-tight tracking-tight text-ink md:text-4xl">ตัวอย่างเว็บไซต์ Local SEO Plus</h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">ต่างจากเว็บหน้าเดียว ตัวอย่างชุดนี้แยกหน้าบริการ สาขา และเนื้อหาที่เกี่ยวข้อง เพื่อให้ผู้ชมสำรวจข้อมูลได้ตามความสนใจ และเตรียมโครงสร้างสำหรับการค้นหา</p>
+            </div>
+            <a href="/ProjectONE/demo/?format=plus" className="inline-flex w-fit rounded-xl border border-navy/20 px-5 py-3 text-sm font-semibold text-ink transition hover:bg-white">ดูโชว์รูม Local SEO Plus</a>
+          </div>
+          <p className="mt-6 text-sm leading-relaxed text-muted">ทั้งหมดเป็นเว็บไซต์สาธิต ธุรกิจ ข้อมูล และผลลัพธ์ที่แสดงจัดทำขึ้นเพื่อเป็นตัวอย่าง</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {plusExamples.map((item) => (
+              <article key={item.name} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <div className="relative aspect-[16/9] overflow-hidden bg-navy">
+                  <Image src={item.image} alt={"ภาพตัวอย่างเว็บไซต์ " + item.name} fill className="object-cover transition duration-500 group-hover:scale-[1.04]" sizes="(max-width:768px) 100vw, 50vw" />
+                  <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold text-navy">DEMO · {item.type}</span>
+                </div>
+                <div className="p-6"><p className="text-xs font-bold uppercase tracking-wider text-apurple">Local SEO Plus</p>
+                  <h3 className="mt-2 text-2xl font-semibold text-ink">{item.name}</h3>
+                  <p className="mt-2 min-h-[3rem] text-sm leading-relaxed text-muted">{item.description}</p>
+                  <p className="mt-4 text-xs font-semibold text-ink">{item.detail}</p>
+                  <a href={item.href} className="mt-5 inline-flex rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-base transition hover:opacity-85">เปิดเว็บไซต์ตัวอย่าง</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Split: who + phone visual */}
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 sm:px-6 md:grid-cols-2 md:gap-14 md:px-8 md:py-24 lg:px-8">
         <div>
           <p className="eyebrow text-[11px] uppercase tracking-[0.16em] text-aorange">เหมาะกับใคร</p>
           <h2 className="mt-3 text-[2rem] font-semibold leading-[1.15] tracking-[-0.02em] text-ink md:text-4xl">
-            ธุรกิจที่มีหน้าร้านหรือจุดให้บริการจริง
+            เว็บหน้าเดียวสำหรับธุรกิจที่มีหน้าร้าน
           </h2>
           <p className="mt-4 text-[15px] leading-[1.7] text-muted">
             อยากให้คนค้นหาเจอ เชื่อถือ แล้วตัดสินใจมาที่สถานที่ — โดยไม่ต้องดูแลเว็บหลายหน้า
@@ -238,3 +275,4 @@ export default function ProjectOneShowcasePage() {
     </section>
   );
 }
+
