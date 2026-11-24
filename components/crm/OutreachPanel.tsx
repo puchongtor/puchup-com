@@ -21,7 +21,7 @@ import {
 } from "@/lib/crm/model";
 import { Field, GhostButton, PrimaryButton, inputClass } from "./ui";
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 
 function enteredDate(iso: string): string {
   const day = iso.slice(0, 10);
@@ -63,9 +63,13 @@ export function OutreachPanel({
   const [channelNote, setChannelNote] = useState("");
   const [note, setNote] = useState("");
   const [editing, setEditing] = useState<OutreachLead | null>(null);
-  const [pagination, setPagination] = useState({ query, statusFilter, page: 1 });
+  const [pagination, setPagination] = useState<{
+    query: string;
+    statusFilter: OutreachStatus | null;
+    pages: Partial<Record<OutreachStatus, number>>;
+  }>({ query, statusFilter, pages: {} });
   const filtersChanged = pagination.query !== query || pagination.statusFilter !== statusFilter;
-  if (filtersChanged) setPagination({ query, statusFilter, page: 1 });
+  if (filtersChanged) setPagination({ query, statusFilter, pages: {} });
 
   const searched = useMemo(() => {
     const q = query.trim().toLocaleLowerCase("th");
@@ -92,17 +96,19 @@ export function OutreachPanel({
     [searched, statusFilter],
   );
 
-  const pageCount = Math.max(1, Math.ceil(listed.length / PAGE_SIZE));
-  const page = filtersChanged ? 1 : Math.min(pagination.page, pageCount);
-  const offset = (page - 1) * PAGE_SIZE;
-  const visibleLeads = listed.slice(offset, offset + PAGE_SIZE);
-  const visibleGroups = OUTREACH_STATUSES.map((status) => ({
-    ...status,
-    rows: visibleLeads.filter((lead) => lead.status === status.id),
-  })).filter((group) => group.rows.length > 0);
+  const groups = OUTREACH_STATUSES.map((status) => {
+    const rows = listed.filter((lead) => lead.status === status.id);
+    const pageCount = Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+    const page = filtersChanged ? 1 : Math.min(pagination.pages[status.id] ?? 1, pageCount);
+    const offset = (page - 1) * PAGE_SIZE;
+    return { ...status, total: rows.length, page, pageCount, offset, rows: rows.slice(offset, offset + PAGE_SIZE) };
+  }).filter((group) => group.total > 0);
 
-  function goToPage(nextPage: number) {
-    setPagination({ query, statusFilter, page: nextPage });
+  function goToPage(status: OutreachStatus, nextPage: number) {
+    setPagination((current) => ({
+      ...current,
+      pages: { ...current.pages, [status]: nextPage },
+    }));
   }
 
   function resetForm() {
@@ -135,7 +141,7 @@ export function OutreachPanel({
       note: note.trim(),
     };
     onChange(sortOutreachLeads([lead, ...leads]));
-    goToPage(1);
+    goToPage(lead.status, 1);
     resetForm();
     onFlash(source === "inbound" ? "บันทึกแล้ว — ลูกค้าทักเข้ามา" : "บันทึกแล้ว — เราส่งข้อความ");
   }
@@ -387,7 +393,7 @@ export function OutreachPanel({
           </div>
         ) : (
           <>
-            {visibleGroups.map((group) => (
+            {groups.map((group) => (
               <section
                 key={group.id}
                 aria-labelledby={`outreach-status-${group.id}`}
@@ -395,7 +401,7 @@ export function OutreachPanel({
               >
                 <div className="flex items-center justify-between gap-2 border-b border-slate-200/60 px-4 py-2.5">
                   <h3 id={`outreach-status-${group.id}`} className="text-sm font-semibold text-ink">{group.label}</h3>
-                  <p className="text-xs text-muted">{group.rows.length} ราย</p>
+                  <p className="text-xs text-muted">{group.total} ราย</p>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full min-w-[1000px] table-fixed border-collapse text-left text-sm">
@@ -463,23 +469,26 @@ export function OutreachPanel({
                     </tbody>
                   </table>
                 </div>
+                {group.pageCount > 1 ? (
+                  <nav
+                    aria-label={`หน้ารายการ ${group.label}`}
+                    className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200/60 px-4 py-2.5"
+                  >
+                    <p className="text-sm text-muted" aria-live="polite">
+                      รายการ {group.offset + 1}–{group.offset + group.rows.length} จาก {group.total}
+                    </p>
+                    <div className="flex gap-2">
+                      <PrimaryButton disabled={group.page === 1} onClick={() => goToPage(group.id, group.page - 1)}>
+                        ก่อนหน้า
+                      </PrimaryButton>
+                      <PrimaryButton disabled={group.page === group.pageCount} onClick={() => goToPage(group.id, group.page + 1)}>
+                        ดูต่อ
+                      </PrimaryButton>
+                    </div>
+                  </nav>
+                ) : null}
               </section>
             ))}
-            {pageCount > 1 ? (
-              <nav aria-label="หน้ารายการกำลังติดต่อ" className="flex flex-wrap items-center justify-between gap-3">
-                <p className="text-sm text-muted" aria-live="polite">
-                  รายการ {offset + 1}–{offset + visibleLeads.length} จาก {listed.length} · หน้า {page} / {pageCount}
-                </p>
-                <div className="flex gap-2">
-                  <PrimaryButton disabled={page === 1} onClick={() => goToPage(page - 1)}>
-                    ก่อนหน้า
-                  </PrimaryButton>
-                  <PrimaryButton disabled={page === pageCount} onClick={() => goToPage(page + 1)}>
-                    ถัดไป
-                  </PrimaryButton>
-                </div>
-              </nav>
-            ) : null}
           </>
         )}
       </div>
