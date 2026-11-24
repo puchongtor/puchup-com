@@ -1,8 +1,10 @@
 import { autoService } from "../_industry/content";
-import { ServicePage, serviceMetadata } from "../_industry/ServicePage";
+import { serviceMetadata } from "../_industry/ServicePage";
+import { IndustrySalesPage } from "../_industry/IndustrySalesPage";
+import { autoSales } from "../_industry/sales-content";
 
 export const metadata = serviceMetadata(autoService);
 
 export default function AutoRepairShopWebsitePage() {
-  return <ServicePage industry={autoService} />;
+  return <IndustrySalesPage industry={autoService} sales={autoSales} />;
 }

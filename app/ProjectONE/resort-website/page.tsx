@@ -1,8 +1,10 @@
 import { resort } from "../_industry/content";
-import { ServicePage, serviceMetadata } from "../_industry/ServicePage";
+import { serviceMetadata } from "../_industry/ServicePage";
+import { IndustrySalesPage } from "../_industry/IndustrySalesPage";
+import { resortSales } from "../_industry/sales-content";
 
 export const metadata = serviceMetadata(resort);
 
 export default function ResortWebsitePage() {
-  return <ServicePage industry={resort} />;
+  return <IndustrySalesPage industry={resort} sales={resortSales} />;
 }
