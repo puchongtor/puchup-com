@@ -62,11 +62,42 @@ const featured = [
   },
 ] as const;
 
-// The showroom is the full catalog. Feature one example per industry here.
 const featuredPlusExamples = [
-  { name: "Lynera Dental", type: "คลินิกทันตกรรม", image: "/lynera-dental/assets/H01.jpg", href: "/lynera-dental/" },
-  { name: "Tamarind Tide Pranburi", type: "บ้านพักติดทะเล", image: "/tamarind-tide-pranburi/assets/hero.webp", href: "/tamarind-tide-pranburi/" },
-  { name: "Axle Bay Auto Service", type: "ศูนย์บริการรถยนต์", image: "/axle-bay-auto/assets/hero.webp", href: "/axle-bay-auto/" },
+  {
+    name: "Lynera Dental",
+    type: "คลินิกทันตกรรม",
+    description: "ดูบริการ ราคา และทีมทันตแพทย์ ก่อนเลือกสาขาเพื่อนัดหมาย",
+    image: "/lynera-dental/assets/H01.jpg",
+    href: "/lynera-dental/",
+  },
+  {
+    name: "Vana Vale Khao Yai",
+    type: "รีสอร์ทเขาใหญ่",
+    description: "เปรียบเทียบห้องพัก วางแผนเที่ยวเขาใหญ่ และสอบถามห้องว่าง",
+    image: "/vana-vale-khao-yai/assets/VV01.jpg",
+    href: "/vana-vale-khao-yai/",
+  },
+  {
+    name: "Tamarind Tide Pranburi",
+    type: "บ้านพักติดทะเล",
+    description: "สำรวจห้องพัก 5 แบบ ดูโปรพิเศษ และวางแผนทริปริมทะเล",
+    image: "/tamarind-tide-pranburi/assets/hero.webp",
+    href: "/tamarind-tide-pranburi/",
+  },
+  {
+    name: "Stillform Pilates",
+    type: "สตูดิโอพิลาทิส",
+    description: "รู้จักครูและคลาส ดูตารางแยกสาขา แล้วเลือกจองคลาสแรก",
+    image: "/stillform-pilates/assets/hero.webp",
+    href: "/stillform-pilates/",
+  },
+  {
+    name: "Axle Bay Auto Service",
+    type: "ศูนย์บริการรถยนต์",
+    description: "ดูบริการของแต่ละสาขา นัดคิว หรือส่งอาการรถเพื่อขอประเมิน",
+    image: "/axle-bay-auto/assets/hero.webp",
+    href: "/axle-bay-auto/",
+  },
 ] as const;
 
 const outcomes = [
@@ -142,18 +173,19 @@ export default function ProjectOneShowcasePage() {
             </div>
             <a href="/ProjectONE/demo/?format=plus" className="inline-flex items-center gap-2 rounded-lg border border-navy/20 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-white">ดูตัวอย่างทั้งหมด <span aria-hidden="true">→</span></a>
           </div>
-          <ul className="mt-5 grid gap-2.5 md:grid-cols-3">
+          <ul className="mt-6 grid gap-3 md:grid-cols-2 md:gap-4">
             {featuredPlusExamples.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="group flex h-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-2.5 transition hover:border-navy/30 hover:shadow-sm">
-                  <div className="relative h-12 w-[4.5rem] shrink-0 overflow-hidden rounded-md bg-navy">
-                    <Image src={item.image} alt="" fill className="object-cover" sizes="72px" />
+                <a href={item.href} className="group flex h-full min-h-28 gap-3 rounded-xl border border-slate-200 bg-white p-2.5 transition hover:border-navy/30 hover:shadow-sm sm:gap-4 sm:p-3">
+                  <div className="relative w-[6rem] shrink-0 overflow-hidden rounded-lg bg-navy sm:w-[8rem] lg:w-[9.5rem]">
+                    <Image src={item.image} alt="" fill className="object-cover transition-transform duration-300 motion-safe:group-hover:scale-[1.04]" sizes="(min-width: 1024px) 152px, (min-width: 640px) 128px, 96px" />
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs text-muted">{item.type}</p>
-                    <h3 className="mt-0.5 text-sm font-semibold leading-snug text-ink group-hover:underline">{item.name}</h3>
+                  <div className="min-w-0 flex-1 self-center py-1">
+                    <p className="text-xs font-medium text-apurple">{item.type}</p>
+                    <h3 className="mt-0.5 text-base font-semibold leading-snug text-ink group-hover:underline sm:text-lg">{item.name}</h3>
+                    <p className="mt-1 text-sm leading-snug text-muted">{item.description}</p>
                   </div>
-                  <span aria-hidden="true" className="pr-1 text-ink/60">↗</span>
+                  <span aria-hidden="true" className="shrink-0 self-start pt-0.5 text-ink/60">↗</span>
                 </a>
               </li>
             ))}
