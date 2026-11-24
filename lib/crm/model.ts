@@ -609,7 +609,7 @@ export function normalizeOutreachName(name: string): string {
 }
 
 export function sortOutreachLeads(leads: OutreachLead[]): OutreachLead[] {
-  return [...leads].sort((a, b) => a.name.localeCompare(b.name, "th", { sensitivity: "base" }));
+  return [...leads].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
 export function findOutreachByName(leads: OutreachLead[], name: string, exceptId?: string): OutreachLead | undefined {

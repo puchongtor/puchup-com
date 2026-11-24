@@ -19,12 +19,14 @@ import {
   type OutreachSource,
   type OutreachStatus,
 } from "@/lib/crm/model";
+import { Field, GhostButton, PrimaryButton, inputClass } from "./ui";
+
+const PAGE_SIZE = 20;
 
 function enteredDate(iso: string): string {
   const day = iso.slice(0, 10);
   return /^\d{4}-\d{2}-\d{2}$/.test(day) ? formatThaiDate(day) : "—";
 }
-import { Field, GhostButton, PrimaryButton, inputClass } from "./ui";
 
 function statusTone(status: OutreachStatus) {
   switch (status) {
@@ -61,6 +63,9 @@ export function OutreachPanel({
   const [channelNote, setChannelNote] = useState("");
   const [note, setNote] = useState("");
   const [editing, setEditing] = useState<OutreachLead | null>(null);
+  const [pagination, setPagination] = useState({ query, statusFilter, page: 1 });
+  const filtersChanged = pagination.query !== query || pagination.statusFilter !== statusFilter;
+  if (filtersChanged) setPagination({ query, statusFilter, page: 1 });
 
   const searched = useMemo(() => {
     const q = query.trim().toLocaleLowerCase("th");
@@ -87,13 +92,14 @@ export function OutreachPanel({
     [searched, statusFilter],
   );
 
-  const grouped = useMemo(() => {
-    if (statusFilter) return [{ status: statusFilter, rows: listed }];
-    return OUTREACH_STATUSES.map((item) => ({
-      status: item.id,
-      rows: listed.filter((lead) => lead.status === item.id),
-    })).filter((group) => group.rows.length > 0);
-  }, [listed, statusFilter]);
+  const pageCount = Math.max(1, Math.ceil(listed.length / PAGE_SIZE));
+  const page = filtersChanged ? 1 : Math.min(pagination.page, pageCount);
+  const offset = (page - 1) * PAGE_SIZE;
+  const visibleLeads = listed.slice(offset, offset + PAGE_SIZE);
+
+  function goToPage(nextPage: number) {
+    setPagination({ query, statusFilter, page: nextPage });
+  }
 
   function resetForm() {
     setName("");
@@ -125,6 +131,7 @@ export function OutreachPanel({
       note: note.trim(),
     };
     onChange(sortOutreachLeads([lead, ...leads]));
+    goToPage(1);
     resetForm();
     onFlash(source === "inbound" ? "บันทึกแล้ว — ลูกค้าทักเข้ามา" : "บันทึกแล้ว — เราส่งข้อความ");
   }
@@ -176,14 +183,14 @@ export function OutreachPanel({
   }
 
   return (
-    <div className="grid gap-6">
+    <div className="grid min-w-0 gap-6">
       <form
         onSubmit={saveNew}
         className="rounded-2xl border border-slate-200/60 bg-white/80 p-5 shadow-sm sm:p-6"
       >
         <h2 className="text-lg font-semibold text-ink">กำลังติดต่อ</h2>
         <p className="mt-1 text-sm leading-6 text-muted">
-          บันทึกชื่อกับช่องทางที่คุยแล้ว ทั้งคลินิก ร้าน หรือธุรกิจอื่น รวมรายการเดียวเรียงตามชื่อ กันส่งซ้ำ
+          บันทึกชื่อกับช่องทางที่คุยแล้ว ทั้งคลินิก ร้าน หรือธุรกิจอื่น เพื่อช่วยเช็กก่อนส่งซ้ำ
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
@@ -355,13 +362,14 @@ export function OutreachPanel({
         </div>
       ) : null}
 
-      <div className="grid gap-3">
+      <div className="grid min-w-0 gap-3">
         <p className="text-sm text-muted">
           {statusFilter
             ? `${OUTREACH_STATUSES.find((item) => item.id === statusFilter)?.label || ""} ${listed.length} ราย`
             : query.trim()
               ? `พบ ${listed.length} จาก ${leads.length} ราย`
-              : `${leads.length} ราย · แยกตามสถานะ · เรียงตามชื่อ`}
+              : `${leads.length} ราย`}
+          {" · ล่าสุดก่อน"}
           {statusFilter ? (
             <button type="button" onClick={() => onStatusFilterChange(null)} className="ml-2 font-medium text-apurple">
               ดูทั้งหมด
@@ -374,81 +382,89 @@ export function OutreachPanel({
             {leads.length === 0 ? "ยังไม่มีรายการกำลังติดต่อ" : "ไม่มีรายการในสถานะนี้"}
           </div>
         ) : (
-          <div className="grid gap-4">
-            {grouped.map((group) => (
-              <section key={group.status} className="overflow-x-auto rounded-2xl border border-slate-200/60 bg-white/80 shadow-sm">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200/60 px-4 py-2.5">
-                  <h3 className="text-sm font-semibold text-ink">
-                    {OUTREACH_STATUSES.find((item) => item.id === group.status)?.label}
-                  </h3>
-                  <p className="text-xs text-muted">{group.rows.length} ราย</p>
-                </div>
-                <table className="w-full min-w-[1080px] table-fixed border-collapse text-left text-sm">
-                  <colgroup>
-                    <col className="w-[12%]" />
-                    <col className="w-[18%]" />
-                    <col className="w-[9%]" />
-                    <col className="w-[10%]" />
-                    <col className="w-[15%]" />
-                    <col className="w-[36%]" />
-                  </colgroup>
-                  <thead>
-                    <tr className="border-b border-slate-200/60 text-xs font-medium text-muted">
-                      <th className="px-3 py-2.5 font-medium">วันที่ใส่</th>
-                      <th className="px-3 py-2.5 font-medium">ชื่อ</th>
-                      <th className="px-3 py-2.5 font-medium">ประเภท</th>
-                      <th className="px-3 py-2.5 font-medium">แหล่ง</th>
-                      <th className="px-3 py-2.5 font-medium">ช่องทาง</th>
-                      <th className="px-3 py-2.5 font-medium">สถานะ</th>
+          <>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200/60 bg-white/80 shadow-sm">
+              <table className="w-full min-w-[1000px] table-fixed border-collapse text-left text-sm">
+                <colgroup>
+                  <col className="w-[11%]" />
+                  <col className="w-[30%]" />
+                  <col className="w-[7%]" />
+                  <col className="w-[7%]" />
+                  <col className="w-[9%]" />
+                  <col className="w-[36%]" />
+                </colgroup>
+                <thead>
+                  <tr className="border-b border-slate-200/60 text-xs font-medium text-muted">
+                    <th aria-sort="descending" className="px-3 py-2.5 font-medium">วันที่ใส่</th>
+                    <th className="px-3 py-2.5 font-medium">ชื่อ</th>
+                    <th className="px-3 py-2.5 font-medium">ประเภท</th>
+                    <th className="px-3 py-2.5 font-medium">แหล่ง</th>
+                    <th className="px-3 py-2.5 font-medium">ช่องทาง</th>
+                    <th className="px-3 py-2.5 font-medium">สถานะ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {visibleLeads.map((lead) => (
+                    <tr key={lead.id} className="border-b border-slate-200/60 last:border-b-0">
+                      <td className="overflow-hidden px-3 py-2.5 whitespace-nowrap text-muted">
+                        {enteredDate(lead.createdAt)}
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5">
+                        <button
+                          type="button"
+                          onClick={() => setEditing(lead)}
+                          className="block w-full [overflow-wrap:anywhere] text-left font-semibold text-ink"
+                        >
+                          {lead.name}
+                        </button>
+                        {lead.note ? <p className="mt-0.5 truncate text-xs text-muted">{lead.note}</p> : null}
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5 text-muted">{outreachKindLabel(lead.kind)}</td>
+                      <td className="overflow-hidden px-3 py-2.5 text-muted">
+                        {lead.source === "outbound" ? "เราส่ง" : "เขาทัก"}
+                      </td>
+                      <td className="overflow-hidden px-3 py-2.5">
+                        <p className="truncate text-ink">{outreachChannelLabel(lead.channel)}</p>
+                        {lead.channelNote ? <p className="mt-0.5 truncate text-xs text-muted">{lead.channelNote}</p> : null}
+                      </td>
+                      <td className="px-3 py-2.5">
+                        <div className="flex flex-wrap gap-1.5">
+                          {OUTREACH_STATUSES.map((item) => (
+                            <button
+                              key={item.id}
+                              type="button"
+                              onClick={() => setStatus(lead.id, item.id)}
+                              aria-pressed={lead.status === item.id}
+                              className={`rounded-full border px-2.5 py-1 text-xs font-medium ${
+                                lead.status === item.id ? statusTone(item.id) : "border-slate-200/60 bg-white text-muted"
+                              }`}
+                            >
+                              {item.label}
+                            </button>
+                          ))}
+                        </div>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {group.rows.map((lead) => (
-                      <tr key={lead.id} className="border-b border-slate-200/60 last:border-b-0">
-                        <td className="overflow-hidden px-3 py-2.5 whitespace-nowrap text-muted">
-                          {enteredDate(lead.createdAt)}
-                        </td>
-                        <td className="overflow-hidden px-3 py-2.5">
-                          <button
-                            type="button"
-                            onClick={() => setEditing(lead)}
-                            className="block w-full truncate text-left font-semibold text-ink"
-                          >
-                            {lead.name}
-                          </button>
-                          {lead.note ? <p className="mt-0.5 truncate text-xs text-muted">{lead.note}</p> : null}
-                        </td>
-                        <td className="overflow-hidden px-3 py-2.5 text-muted">{outreachKindLabel(lead.kind)}</td>
-                        <td className="overflow-hidden px-3 py-2.5 text-muted">
-                          {lead.source === "outbound" ? "เราส่ง" : "เขาทัก"}
-                        </td>
-                        <td className="overflow-hidden px-3 py-2.5">
-                          <p className="truncate text-ink">{outreachChannelLabel(lead.channel)}</p>
-                          {lead.channelNote ? <p className="mt-0.5 truncate text-xs text-muted">{lead.channelNote}</p> : null}
-                        </td>
-                        <td className="px-3 py-2.5">
-                          <div className="flex flex-wrap gap-1.5">
-                            {OUTREACH_STATUSES.map((item) => (
-                              <button
-                                key={item.id}
-                                type="button"
-                                onClick={() => setStatus(lead.id, item.id)}
-                                className={`rounded-full border px-2.5 py-1 text-xs font-medium ${
-                                  lead.status === item.id ? statusTone(item.id) : "border-slate-200/60 bg-white text-muted"
-                                }`}
-                              >
-                                {item.label}
-                              </button>
-                            ))}
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </section>
-            ))}
-          </div>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {pageCount > 1 ? (
+              <nav aria-label="หน้ารายการกำลังติดต่อ" className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-sm text-muted" aria-live="polite">
+                  รายการ {offset + 1}–{offset + visibleLeads.length} จาก {listed.length} · หน้า {page} / {pageCount}
+                </p>
+                <div className="flex gap-2">
+                  <PrimaryButton disabled={page === 1} onClick={() => goToPage(page - 1)}>
+                    ก่อนหน้า
+                  </PrimaryButton>
+                  <PrimaryButton disabled={page === pageCount} onClick={() => goToPage(page + 1)}>
+                    ถัดไป
+                  </PrimaryButton>
+                </div>
+              </nav>
+            ) : null}
+          </>
         )}
       </div>
     </div>
