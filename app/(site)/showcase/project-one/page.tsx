@@ -65,6 +65,7 @@ const featured = [
 const plusExamples = [
  { name: "Lynera Dental", type: "คลินิกทันตกรรม", description: "นำเสนอทีมแพทย์ บริการ ราคา และข้อมูลสาขา ให้ผู้สนใจสำรวจได้ก่อนนัด", image: "/lynera-dental/assets/H01.jpg", href: "/lynera-dental/", detail: "บริการ · ราคา · สาขา" },
  { name: "Vana Vale Khao Yai", type: "ที่พักและรีสอร์ท", description: "เปิดประสบการณ์ที่พัก เปรียบเทียบห้อง และสำรวจสถานที่ใกล้เคียง", image: "/vana-vale-khao-yai/assets/VV01.jpg", href: "/vana-vale-khao-yai/", detail: "ห้องพัก · เที่ยวเขาใหญ่ · ติดต่อ" },
+ { name: "Tamarind Tide Pranburi", type: "บ้านพักติดทะเล", description: "ดูห้องพัก 5 แบบ โปรพิเศษ คลิปบรรยากาศ และไอเดียจัดทริปกับครอบครัวหรือกลุ่มเพื่อน", image: "/tamarind-tide-pranburi/assets/hero.webp", href: "/tamarind-tide-pranburi/", detail: "โปรพิเศษ · ห้องพัก · สอบถามทาง LINE" },
  { name: "Stillform Pilates", type: "สตูดิโอพิลาทิส", description: "ดูคลาส ครู ตารางเรียน และทดลองเส้นทางจองคลาสแรก", image: "/stillform-pilates/assets/hero.webp", href: "/stillform-pilates/", detail: "คลาส · ตารางเรียน · สาขา" },
  { name: "Axle Bay Auto Service", type: "ศูนย์บริการรถยนต์", description: "ดูบริการและสาขา พร้อมทดลองนัดจองคิวหรือส่งข้อมูลประเมินค่าซ่อม", image: "/axle-bay-auto/assets/hero.webp", href: "/axle-bay-auto/", detail: "บริการ · สาขา · ประเมินค่าซ่อม" },
 ] as const;

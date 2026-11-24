@@ -5,6 +5,7 @@ import type { SalesContent } from "./sales-content";
 import styles from "./sales.module.css";
 
 type Industry = (typeof industryPages)[number];
+type SalesExample = { name: string; path: string; image: string; kind: string; description: string };
 const assetBase = "/images/project-one/sales/";
 const plans = [
   { name: "Starter Web", price: "9,900", size: "เว็บไซต์หน้าเดียว" },
@@ -17,13 +18,18 @@ function LineButton({ label }: { label: string }) {
   return <a className={styles.primary} href="https://line.me/R/ti/p/@masterpuch" target="_blank" rel="noopener noreferrer">{label}</a>;
 }
 
-export function IndustrySalesPage({ industry, sales }: { industry: Industry; sales: SalesContent }) {
+export function IndustrySalesPage({ industry, sales, additionalExamples = [] }: {
+  industry: Industry;
+  sales: SalesContent;
+  additionalExamples?: SalesExample[];
+}) {
   const { demo } = industry;
   const starterImage = assetBase + sales.theme + "-starter.webp";
   const expandedImage = assetBase + sales.theme + "-plus.webp";
   const examples = [
     { name: sales.starter.title, path: sales.starter.path, image: starterImage, kind: "Starter Web · เว็บไซต์ตัวอย่างหน้าเดียว", description: sales.starter.detail },
     { name: demo.name, path: demo.path, image: expandedImage, kind: "Local SEO Plus · เว็บไซต์ตัวอย่างหลายหน้า", description: sales.expanded },
+    ...additionalExamples,
   ];
   const setup = [
     ["สรุปขอบเขตจากงานจริง", sales.intake],
@@ -51,7 +57,7 @@ export function IndustrySalesPage({ industry, sales }: { industry: Industry; sal
 
         <section id="examples" className={styles.section}><div className={styles.wrap}>
           <div className={styles.heading}><h2>เห็นหน้าเว็บก่อนเลือกแพ็กเกจ</h2><p>ลองเทียบเว็บไซต์หน้าเดียวกับเว็บไซต์ที่แยกข้อมูลตามสิ่งที่ลูกค้าต้องการดู</p></div>
-          <div className={styles.previewGrid}>{examples.map(item => (
+          <div className={styles.previewGrid} data-three={examples.length === 3 || undefined}>{examples.map(item => (
             <article className={styles.previewCard} key={item.path}>
               <div className={styles.previewImage}><img src={item.image} alt={"ภาพหน้าแรก " + item.name} width={1100} height={697} loading="lazy" /></div>
               <div className={styles.previewCopy}><p className={styles.kicker}>{item.kind}</p><h3>{item.name}</h3><p>{item.description}</p><a className={styles.textLink} href={item.path} target="_blank" rel="noopener noreferrer">เปิดเว็บตัวอย่าง {item.name}</a></div>
