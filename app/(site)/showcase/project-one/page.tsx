@@ -62,12 +62,11 @@ const featured = [
   },
 ] as const;
 
-const plusExamples = [
- { name: "Lynera Dental", type: "คลินิกทันตกรรม", description: "นำเสนอทีมแพทย์ บริการ ราคา และข้อมูลสาขา ให้ผู้สนใจสำรวจได้ก่อนนัด", image: "/lynera-dental/assets/H01.jpg", href: "/lynera-dental/", detail: "บริการ · ราคา · สาขา" },
- { name: "Vana Vale Khao Yai", type: "ที่พักและรีสอร์ท", description: "เปิดประสบการณ์ที่พัก เปรียบเทียบห้อง และสำรวจสถานที่ใกล้เคียง", image: "/vana-vale-khao-yai/assets/VV01.jpg", href: "/vana-vale-khao-yai/", detail: "ห้องพัก · เที่ยวเขาใหญ่ · ติดต่อ" },
- { name: "Tamarind Tide Pranburi", type: "บ้านพักติดทะเล", description: "ดูห้องพัก 5 แบบ โปรพิเศษ คลิปบรรยากาศ และไอเดียจัดทริปกับครอบครัวหรือกลุ่มเพื่อน", image: "/tamarind-tide-pranburi/assets/hero.webp", href: "/tamarind-tide-pranburi/", detail: "โปรพิเศษ · ห้องพัก · สอบถามทาง LINE" },
- { name: "Stillform Pilates", type: "สตูดิโอพิลาทิส", description: "ดูคลาส ครู ตารางเรียน และทดลองเส้นทางจองคลาสแรก", image: "/stillform-pilates/assets/hero.webp", href: "/stillform-pilates/", detail: "คลาส · ตารางเรียน · สาขา" },
- { name: "Axle Bay Auto Service", type: "ศูนย์บริการรถยนต์", description: "ดูบริการและสาขา พร้อมทดลองนัดจองคิวหรือส่งข้อมูลประเมินค่าซ่อม", image: "/axle-bay-auto/assets/hero.webp", href: "/axle-bay-auto/", detail: "บริการ · สาขา · ประเมินค่าซ่อม" },
+// The showroom is the full catalog. Feature one example per industry here.
+const featuredPlusExamples = [
+  { name: "Lynera Dental", type: "คลินิกทันตกรรม", image: "/lynera-dental/assets/H01.jpg", href: "/lynera-dental/" },
+  { name: "Tamarind Tide Pranburi", type: "บ้านพักติดทะเล", image: "/tamarind-tide-pranburi/assets/hero.webp", href: "/tamarind-tide-pranburi/" },
+  { name: "Axle Bay Auto Service", type: "ศูนย์บริการรถยนต์", image: "/axle-bay-auto/assets/hero.webp", href: "/axle-bay-auto/" },
 ] as const;
 
 const outcomes = [
@@ -134,32 +133,31 @@ export default function ProjectOneShowcasePage() {
       </div>
 
       {/* Local SEO Plus demos */}
-      <section id="local-seo-plus" className="scroll-mt-24 bg-[#f4f6f4]">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-6 md:px-8 md:py-24 lg:px-8">
-          <div className="grid gap-7 md:grid-cols-[1fr_auto] md:items-end">
-            <div><p className="eyebrow text-[11px] uppercase tracking-[0.16em] text-apurple">Project ONE · Local SEO Plus</p>
-              <h2 className="mt-3 max-w-3xl text-[2rem] font-semibold leading-tight tracking-tight text-ink md:text-4xl">ตัวอย่างเว็บไซต์ Local SEO Plus</h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">ต่างจากเว็บหน้าเดียว ตัวอย่างชุดนี้แยกหน้าบริการ สาขา และเนื้อหาที่เกี่ยวข้อง เพื่อให้ผู้ชมสำรวจข้อมูลได้ตามความสนใจ และเตรียมโครงสร้างสำหรับการค้นหา</p>
+      <section id="local-seo-plus" aria-labelledby="plus-examples-title" className="scroll-mt-24 bg-[#f4f6f4]">
+        <div className="mx-auto max-w-6xl px-5 py-9 sm:px-6 md:px-8 md:py-12">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 id="plus-examples-title" className="text-2xl font-semibold leading-tight tracking-tight text-ink md:text-3xl">ตัวอย่างเว็บไซต์ Local SEO Plus</h2>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted">เว็บสาธิตแบบหลายหน้า แยกข้อมูลตามบริการ สาขา หรือประเภทห้องพัก</p>
             </div>
-            <a href="/ProjectONE/demo/?format=plus" className="inline-flex w-fit rounded-xl border border-navy/20 px-5 py-3 text-sm font-semibold text-ink transition hover:bg-white">ดูโชว์รูม Local SEO Plus</a>
+            <a href="/ProjectONE/demo/?format=plus" className="inline-flex items-center gap-2 rounded-lg border border-navy/20 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-white">ดูตัวอย่างทั้งหมด <span aria-hidden="true">→</span></a>
           </div>
-          <p className="mt-6 text-sm leading-relaxed text-muted">ทั้งหมดเป็นเว็บไซต์สาธิต ธุรกิจ ข้อมูล และผลลัพธ์ที่แสดงจัดทำขึ้นเพื่อเป็นตัวอย่าง</p>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {plusExamples.map((item) => (
-              <article key={item.name} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                <div className="relative aspect-[16/9] overflow-hidden bg-navy">
-                  <Image src={item.image} alt={"ภาพตัวอย่างเว็บไซต์ " + item.name} fill className="object-cover transition duration-500 group-hover:scale-[1.04]" sizes="(max-width:768px) 100vw, 50vw" />
-                  <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold text-navy">DEMO · {item.type}</span>
-                </div>
-                <div className="p-6"><p className="text-xs font-bold uppercase tracking-wider text-apurple">Local SEO Plus</p>
-                  <h3 className="mt-2 text-2xl font-semibold text-ink">{item.name}</h3>
-                  <p className="mt-2 min-h-[3rem] text-sm leading-relaxed text-muted">{item.description}</p>
-                  <p className="mt-4 text-xs font-semibold text-ink">{item.detail}</p>
-                  <a href={item.href} className="mt-5 inline-flex rounded-xl bg-navy px-5 py-3 text-sm font-semibold text-base transition hover:opacity-85">เปิดเว็บไซต์ตัวอย่าง</a>
-                </div>
-              </article>
+          <ul className="mt-5 grid gap-2.5 md:grid-cols-3">
+            {featuredPlusExamples.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} className="group flex h-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-2.5 transition hover:border-navy/30 hover:shadow-sm">
+                  <div className="relative h-12 w-[4.5rem] shrink-0 overflow-hidden rounded-md bg-navy">
+                    <Image src={item.image} alt="" fill className="object-cover" sizes="72px" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs text-muted">{item.type}</p>
+                    <h3 className="mt-0.5 text-sm font-semibold leading-snug text-ink group-hover:underline">{item.name}</h3>
+                  </div>
+                  <span aria-hidden="true" className="pr-1 text-ink/60">↗</span>
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
