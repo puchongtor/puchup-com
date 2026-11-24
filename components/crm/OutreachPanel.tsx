@@ -186,7 +186,7 @@ export function OutreachPanel({
   }
 
   function removeLead(lead: OutreachLead) {
-    if (!window.confirm(`ลบ ${lead.name} ออกจากกำลังติดต่อ ?`)) return;
+    if (!window.confirm(`ยืนยันการลบ “${lead.name}” ออกจากรายการกำลังติดต่อหรือไม่?`)) return;
     onChange(leads.filter((item) => item.id !== lead.id));
     if (editing?.id === lead.id) setEditing(null);
     onFlash("ลบแล้ว");
@@ -404,14 +404,15 @@ export function OutreachPanel({
                   <p className="text-xs text-muted">{group.total} ราย</p>
                 </div>
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[1000px] table-fixed border-collapse text-left text-sm">
+                  <table className="w-full min-w-[1040px] table-fixed border-collapse text-left text-sm">
                     <colgroup>
                       <col className="w-[11%]" />
                       <col className="w-[30%]" />
                       <col className="w-[7%]" />
                       <col className="w-[7%]" />
                       <col className="w-[9%]" />
-                      <col className="w-[36%]" />
+                      <col className="w-[30%]" />
+                      <col className="w-[6%]" />
                     </colgroup>
                     <thead>
                       <tr className="border-b border-slate-200/60 text-xs font-medium text-muted">
@@ -421,6 +422,7 @@ export function OutreachPanel({
                         <th className="px-3 py-2.5 font-medium">แหล่ง</th>
                         <th className="px-3 py-2.5 font-medium">ช่องทาง</th>
                         <th className="px-3 py-2.5 font-medium">สถานะ</th>
+                        <th className="px-3 py-2.5 font-medium"><span className="sr-only">จัดการรายการ</span></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -463,6 +465,16 @@ export function OutreachPanel({
                                 </button>
                               ))}
                             </div>
+                          </td>
+                          <td className="px-3 py-2.5 text-right">
+                            <button
+                              type="button"
+                              onClick={() => removeLead(lead)}
+                              aria-label={`ลบ ${lead.name}`}
+                              className="whitespace-nowrap rounded-full border border-red-200 px-2.5 py-1 text-xs font-medium text-red-700 hover:bg-red-50"
+                            >
+                              ลบ
+                            </button>
                           </td>
                         </tr>
                       ))}
