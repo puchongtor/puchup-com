@@ -96,6 +96,10 @@ export function OutreachPanel({
   const page = filtersChanged ? 1 : Math.min(pagination.page, pageCount);
   const offset = (page - 1) * PAGE_SIZE;
   const visibleLeads = listed.slice(offset, offset + PAGE_SIZE);
+  const visibleGroups = OUTREACH_STATUSES.map((status) => ({
+    ...status,
+    rows: visibleLeads.filter((lead) => lead.status === status.id),
+  })).filter((group) => group.rows.length > 0);
 
   function goToPage(nextPage: number) {
     setPagination({ query, statusFilter, page: nextPage });
@@ -369,7 +373,7 @@ export function OutreachPanel({
             : query.trim()
               ? `พบ ${listed.length} จาก ${leads.length} ราย`
               : `${leads.length} ราย`}
-          {" · ล่าสุดก่อน"}
+          {" · แยกตามสถานะ · ล่าสุดก่อน"}
           {statusFilter ? (
             <button type="button" onClick={() => onStatusFilterChange(null)} className="ml-2 font-medium text-apurple">
               ดูทั้งหมด
@@ -383,72 +387,84 @@ export function OutreachPanel({
           </div>
         ) : (
           <>
-            <div className="overflow-x-auto rounded-2xl border border-slate-200/60 bg-white/80 shadow-sm">
-              <table className="w-full min-w-[1000px] table-fixed border-collapse text-left text-sm">
-                <colgroup>
-                  <col className="w-[11%]" />
-                  <col className="w-[30%]" />
-                  <col className="w-[7%]" />
-                  <col className="w-[7%]" />
-                  <col className="w-[9%]" />
-                  <col className="w-[36%]" />
-                </colgroup>
-                <thead>
-                  <tr className="border-b border-slate-200/60 text-xs font-medium text-muted">
-                    <th aria-sort="descending" className="px-3 py-2.5 font-medium">วันที่ใส่</th>
-                    <th className="px-3 py-2.5 font-medium">ชื่อ</th>
-                    <th className="px-3 py-2.5 font-medium">ประเภท</th>
-                    <th className="px-3 py-2.5 font-medium">แหล่ง</th>
-                    <th className="px-3 py-2.5 font-medium">ช่องทาง</th>
-                    <th className="px-3 py-2.5 font-medium">สถานะ</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {visibleLeads.map((lead) => (
-                    <tr key={lead.id} className="border-b border-slate-200/60 last:border-b-0">
-                      <td className="overflow-hidden px-3 py-2.5 whitespace-nowrap text-muted">
-                        {enteredDate(lead.createdAt)}
-                      </td>
-                      <td className="overflow-hidden px-3 py-2.5">
-                        <button
-                          type="button"
-                          onClick={() => setEditing(lead)}
-                          className="block w-full [overflow-wrap:anywhere] text-left font-semibold text-ink"
-                        >
-                          {lead.name}
-                        </button>
-                        {lead.note ? <p className="mt-0.5 truncate text-xs text-muted">{lead.note}</p> : null}
-                      </td>
-                      <td className="overflow-hidden px-3 py-2.5 text-muted">{outreachKindLabel(lead.kind)}</td>
-                      <td className="overflow-hidden px-3 py-2.5 text-muted">
-                        {lead.source === "outbound" ? "เราส่ง" : "เขาทัก"}
-                      </td>
-                      <td className="overflow-hidden px-3 py-2.5">
-                        <p className="truncate text-ink">{outreachChannelLabel(lead.channel)}</p>
-                        {lead.channelNote ? <p className="mt-0.5 truncate text-xs text-muted">{lead.channelNote}</p> : null}
-                      </td>
-                      <td className="px-3 py-2.5">
-                        <div className="flex flex-wrap gap-1.5">
-                          {OUTREACH_STATUSES.map((item) => (
+            {visibleGroups.map((group) => (
+              <section
+                key={group.id}
+                aria-labelledby={`outreach-status-${group.id}`}
+                className="overflow-hidden rounded-2xl border border-slate-200/60 bg-white/80 shadow-sm"
+              >
+                <div className="flex items-center justify-between gap-2 border-b border-slate-200/60 px-4 py-2.5">
+                  <h3 id={`outreach-status-${group.id}`} className="text-sm font-semibold text-ink">{group.label}</h3>
+                  <p className="text-xs text-muted">{group.rows.length} ราย</p>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[1000px] table-fixed border-collapse text-left text-sm">
+                    <colgroup>
+                      <col className="w-[11%]" />
+                      <col className="w-[30%]" />
+                      <col className="w-[7%]" />
+                      <col className="w-[7%]" />
+                      <col className="w-[9%]" />
+                      <col className="w-[36%]" />
+                    </colgroup>
+                    <thead>
+                      <tr className="border-b border-slate-200/60 text-xs font-medium text-muted">
+                        <th aria-sort="descending" className="px-3 py-2.5 font-medium">วันที่ใส่</th>
+                        <th className="px-3 py-2.5 font-medium">ชื่อ</th>
+                        <th className="px-3 py-2.5 font-medium">ประเภท</th>
+                        <th className="px-3 py-2.5 font-medium">แหล่ง</th>
+                        <th className="px-3 py-2.5 font-medium">ช่องทาง</th>
+                        <th className="px-3 py-2.5 font-medium">สถานะ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {group.rows.map((lead) => (
+                        <tr key={lead.id} className="border-b border-slate-200/60 last:border-b-0">
+                          <td className="overflow-hidden px-3 py-2.5 whitespace-nowrap text-muted">
+                            {enteredDate(lead.createdAt)}
+                          </td>
+                          <td className="overflow-hidden px-3 py-2.5">
                             <button
-                              key={item.id}
                               type="button"
-                              onClick={() => setStatus(lead.id, item.id)}
-                              aria-pressed={lead.status === item.id}
-                              className={`rounded-full border px-2.5 py-1 text-xs font-medium ${
-                                lead.status === item.id ? statusTone(item.id) : "border-slate-200/60 bg-white text-muted"
-                              }`}
+                              onClick={() => setEditing(lead)}
+                              className="block w-full [overflow-wrap:anywhere] text-left font-semibold text-ink"
                             >
-                              {item.label}
+                              {lead.name}
                             </button>
-                          ))}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                            {lead.note ? <p className="mt-0.5 truncate text-xs text-muted">{lead.note}</p> : null}
+                          </td>
+                          <td className="overflow-hidden px-3 py-2.5 text-muted">{outreachKindLabel(lead.kind)}</td>
+                          <td className="overflow-hidden px-3 py-2.5 text-muted">
+                            {lead.source === "outbound" ? "เราส่ง" : "เขาทัก"}
+                          </td>
+                          <td className="overflow-hidden px-3 py-2.5">
+                            <p className="truncate text-ink">{outreachChannelLabel(lead.channel)}</p>
+                            {lead.channelNote ? <p className="mt-0.5 truncate text-xs text-muted">{lead.channelNote}</p> : null}
+                          </td>
+                          <td className="px-3 py-2.5">
+                            <div className="flex flex-wrap gap-1.5">
+                              {OUTREACH_STATUSES.map((item) => (
+                                <button
+                                  key={item.id}
+                                  type="button"
+                                  onClick={() => setStatus(lead.id, item.id)}
+                                  aria-pressed={lead.status === item.id}
+                                  className={`rounded-full border px-2.5 py-1 text-xs font-medium ${
+                                    lead.status === item.id ? statusTone(item.id) : "border-slate-200/60 bg-white text-muted"
+                                  }`}
+                                >
+                                  {item.label}
+                                </button>
+                              ))}
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            ))}
             {pageCount > 1 ? (
               <nav aria-label="หน้ารายการกำลังติดต่อ" className="flex flex-wrap items-center justify-between gap-3">
                 <p className="text-sm text-muted" aria-live="polite">
