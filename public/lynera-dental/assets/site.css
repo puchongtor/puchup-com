@@ -276,3 +276,26 @@ html { scroll-padding-top: 80px; }
   .care-space { grid-template-columns: 1fr; }
   .care-space figure { min-height: 0; aspect-ratio: 16 / 9; }
 }
+.deal{--poster:#174e42;--poster-soft:#edf6ed;display:flex;flex-direction:column}
+.deal#bright{--poster:#493c79;--poster-soft:#f2eefb}
+.deal#retain{--poster:#14546a;--poster-soft:#ebf5f8}
+.deal-visual{position:relative;isolation:isolate;overflow:hidden;background:var(--poster-soft)}
+.deal-visual .deal-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% center;z-index:-2}
+.deal-visual::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--poster-soft) 1%,color-mix(in srgb,var(--poster-soft) 94%,transparent) 43%,transparent 73%);pointer-events:none}
+.deal-poster-copy{position:relative;display:grid;align-content:space-between;justify-items:start;gap:.75rem;min-height:265px;padding:clamp(14px,1.8vw,22px);width:72%;color:var(--poster)}
+.deal-visual .deal-brand{position:static;display:inline-flex;flex-wrap:nowrap;gap:7px;border-radius:8px;background:#ffffffed;border:0;box-shadow:none;padding:3px 8px 3px 3px;white-space:nowrap;font-size:.76rem}
+.deal-visual .deal-brand img{border-radius:5px}
+.deal-poster-copy h3{font-size:clamp(1.33rem,2.25vw,2.15rem);font-weight:800;line-height:1.25;text-wrap:balance}
+.deal-poster-copy .deal-label{font-size:.79rem;font-weight:700;margin:0 0 .22rem}
+.deal-was{font-size:.8rem;margin-bottom:.3rem}
+.deal-poster-copy .deal-price{display:inline-flex;align-items:baseline;gap:.38rem;padding:.31rem .6rem;background:var(--poster);color:#fff;border-radius:7px;box-shadow:0 7px 15px #10243324}
+.deal-poster-copy .deal-price strong{color:inherit;font-size:clamp(1.6rem,3vw,2.55rem);font-variant-numeric:tabular-nums}
+.deal-price span{font-size:.71rem;font-weight:700}
+.deal-demo{font-size:.73rem;font-weight:700}
+.deal-content{background:#fff;display:flex;flex:1;flex-direction:column}
+.deal-content>strong{color:var(--poster)}
+.deal-content .actions{margin-top:auto;padding-top:.55rem}
+@media(max-width:610px){
+  .deal-poster-copy{min-height:235px;width:73%;gap:.62rem}
+  .deal-poster-copy h3{font-size:clamp(1.3rem,5.3vw,1.9rem)}
+}
