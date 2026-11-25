@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { site } from "@/lib/site";
-import { companyDetails, companyImage, companyMedia, demoEntries, demoPageHref, demoSections, detailKeys, editorialImage, findCompany, sectionKeys, type DetailKey, type SectionKey } from "@/lib/corporate-demo/demo";
+import { companyAreaImage, companyDetails, companyImage, companyMedia, demoEntries, demoPageHref, demoSections, detailKeys, editorialImage, findCompany, sectionKeys, serviceImage, type DetailKey, type SectionKey } from "@/lib/corporate-demo/demo";
 import { caseStudyImage } from "@/lib/corporate-demo/project-media";
+import { companyVideos, type CompanyVideo } from "@/lib/corporate-demo/videos";
 import { BriefForm } from "../brief-form";
 import styles from "../showroom.module.css";
 
@@ -55,9 +56,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { niche, path = [] } = await params;
   const { details, title, description, section, item } = resolve(niche, path);
   const url = demoPageHref(niche, ...path);
-  const image = section === "field-notes" && item
-    ? editorialImage(niche, item.slug)
-    : section === "projects" && item ? caseStudyImage(details.asset, item.slug) : companyImage(niche);
+  let image = companyImage(niche, section === "about" ? "team" : "cover");
+  if (section === "field-notes" && item) image = editorialImage(niche, item.slug);
+  if (section === "projects" && item) image = caseStudyImage(details.asset, item.slug);
+  if (section === "services" && item) image = serviceImage(details.asset, item.slug).src;
+  if (section === "areas" && !item) image = companyAreaImage(niche);
   return {
     title: `${title} | ${details.brand}`,
     description,
@@ -73,7 +76,8 @@ function Grid({ niche, section, items, hideImageFor }: { niche: string; section:
     <div className={styles.grid}>
       {items.map(entry => {
         const image = section === "field-notes" ? editorialImage(niche, entry.slug)
-          : section === "projects" && asset ? caseStudyImage(asset, entry.slug) : undefined;
+          : section === "projects" && asset ? caseStudyImage(asset, entry.slug)
+          : section === "services" && asset ? serviceImage(asset, entry.slug).src : undefined;
         return (
           <Link key={entry.slug} href={demoPageHref(niche, section, entry.slug)} className={styles.card}>
             {image && entry.slug !== hideImageFor && <Image className={styles.cardImage} src={image} alt="" width={720} height={405} sizes="(max-width: 680px) 100vw, 33vw" />}
@@ -94,13 +98,26 @@ function Photo({ niche, alt, work }: { niche: string; alt: string; work?: boolea
   return <Image className={styles.photo} src={companyImage(niche, work ? "work" : "cover")} alt={alt} width={1344} height={756} sizes="(max-width: 760px) 100vw, 850px" />;
 }
 
+function VideoPreview({ asset, niche, clip }: { asset: string; niche: string; clip: CompanyVideo }) {
+  const source = `${companyMedia}videos/${asset}/${clip.id}`;
+  return (
+    <figure className={styles.clip}>
+      <video controls muted playsInline preload="none" poster={asset === "pest" ? companyImage(niche, "work") : `${source}.webp`} aria-label={clip.title}>
+        <source src={asset === "pest" ? `${companyMedia}pest.mp4` : `${source}.mp4`} type="video/mp4" />
+      </video>
+      <figcaption>{clip.title} · วิดีโอจำลองจาก AI</figcaption>
+    </figure>
+  );
+}
+
 export default async function CompanyDemoPage({ params }: Props) {
   const { niche: slug, path = [] } = await params;
   const { niche, details, entries, sections, section, item, title, description, detail } = resolve(slug, path);
   const link = (...segments: string[]) => demoPageHref(slug, ...segments);
   const check = <ul className={styles.checklist}>{details.checklist.map(label => <li key={label}>{label}</li>)}</ul>;
   const steps = <ol className={styles.steps}>{details.process.map(([label, body]) => <li key={label}><h3>{label}</h3><p>{body}</p></li>)}</ol>;
-  const clip = <figure className={styles.clip}><video controls muted playsInline preload="none" poster={companyImage(slug, "work")} aria-label={`คลิปประกอบ${niche.title}`}><source src={`${companyMedia}${details.asset}.mp4`} type="video/mp4" /></video><figcaption>คลิปพรีวิวจากภาพจำลองลักษณะงาน</figcaption></figure>;
+  const video = companyVideos[details.asset];
+  const clip = video ? <VideoPreview asset={details.asset} niche={slug} clip={video} /> : null;
   const callout = <section className={styles.callout}><div className={styles.wrap}><h2>เตรียมข้อมูลให้ทีมประเมินงาน</h2><Link className={styles.action} href={link("quote")}>สร้างบรีฟขอราคา</Link></div></section>;
 
   if (!section) return <>
@@ -109,7 +126,7 @@ export default async function CompanyDemoPage({ params }: Props) {
       <div className={styles.wrap}><div className={styles.heroCopy}><p>{niche.title}</p><h1>{title}</h1><p>{description}</p><div className={styles.actions}><Link className={styles.action} href={link("quote")}>ส่งบรีฟขอราคา</Link><Link className={styles.outline} href={link("projects")}>ดูกรณีศึกษา</Link></div></div></div>
     </section>
     <div className={styles.block}><div className={styles.wrap}>
-      <HomeIntroSections {...{ niche, details, entries, steps, clip, slug }} />
+      <HomeIntroSections {...{ niche, details, entries, steps, slug }} clip={clip ?? <Photo niche={slug} alt={`ภาพประกอบงาน${niche.title}`} work />} />
       <section><h2>{details.notebook}</h2><Grid niche={slug} section="field-notes" items={entries["field-notes"].slice(0, 3)} /><Link className={styles.inline} href={link("field-notes")}>อ่านหัวข้อทั้งหมด</Link></section>
       <section><h2>พื้นที่และข้อจำกัดหน้างาน</h2><Grid niche={slug} section="areas" items={entries.areas} /></section>
     </div></div>
@@ -120,6 +137,8 @@ export default async function CompanyDemoPage({ params }: Props) {
   const caseStudy = section === "projects" && item;
   const area = section === "areas" && item;
   const service = section === "services" && item;
+  const servicePhoto = service ? serviceImage(details.asset, service.slug) : undefined;
+  const areaOverview = section === "areas" && !item;
   const relatedProjects = item?.location ? entries.projects.filter(entry => entry.location !== item.location).slice(0, 3) : entries.projects.slice(0, 3);
   const articleExample = article ? entries.projects[entries["field-notes"].findIndex(entry => entry.slug === item.slug)] : undefined;
   const nearbyProjects = area ? entries.projects.filter(entry => entry.location.includes(item.title)).slice(0, 3) : [];
@@ -133,22 +152,73 @@ export default async function CompanyDemoPage({ params }: Props) {
 
   return <>
     {json && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(json).replace(/</g, "\\u003c") }} />}
-    <header className={styles.pageHead}><div className={styles.wrap}>
-      <nav aria-label="เส้นทางหน้า"><Link href={link()}>หน้าแรก</Link>{item && <Link href={link(section)}>{sections[section]}</Link>}</nav>
-      {item?.location && <p className={styles.kicker}>{item.location} · กรณีจำลอง</p>}
-      <h1>{title}</h1>
-      {!item && <p>{details.description}</p>}
+    <header className={styles.pageHead}><div className={areaOverview ? `${styles.wrap} ${styles.areaHead}` : styles.wrap}>
+      <div>
+        <nav aria-label="เส้นทางหน้า"><Link href={link()}>หน้าแรก</Link>{item && <Link href={link(section)}>{sections[section]}</Link>}</nav>
+        {item?.location && <p className={styles.kicker}>{item.location} · กรณีจำลอง</p>}
+        <h1>{title}</h1>
+        {!item && <p>{areaOverview ? `เลือกพื้นที่เพื่อดูตัวอย่างหน้างานและข้อมูลที่ควรเตรียมก่อนติดต่อทีม ${details.brand}` : details.description}</p>}
+      </div>
+      {areaOverview && (
+        <figure>
+          <Image className={styles.photo} src={companyAreaImage(slug)} alt={`ภาพประกอบประเภทพื้นที่สำหรับงาน${niche.title}`} width={1344} height={756} sizes="(max-width: 680px) 100vw, 560px" preload />
+          <figcaption>ภาพประกอบลักษณะพื้นที่ให้บริการ สร้างด้วย AI</figcaption>
+        </figure>
+      )}
     </div></header>
     <div className={styles.block}><div className={styles.wrap}>
       {section === "quote" && <BriefForm fields={[...niche.brief, "ชื่อผู้ประสานงานหรือเบอร์ติดต่อกลับ"]} offer={`ขอข้อมูล${niche.title}`} />}
       {!item && detail.length > 0 && <>
+        {areaOverview && <h2>เลือกพื้นที่หน้างาน</h2>}
         {section === "projects" && <p>แต่ละกรณีเป็นโจทย์สมมติ ระบุพื้นที่และเกณฑ์ที่ใช้ตรวจงานเพื่อให้เห็นวิธีประสานงาน</p>}
         <Grid niche={slug} section={section as DetailKey} items={detail} />
         {(section === "projects" || section === "services") && clip}
       </>}
-      {section === "about" && <article className={styles.copy}><Photo niche={slug} alt={`ภาพประกอบทีมสำหรับ${niche.title}`} work /><h2>ข้อมูลที่ลูกค้าใช้ตัดสินใจ</h2><p>{niche.evidence}</p><h2>ลำดับการประสานงาน</h2>{steps}<h2>ขอบเขตที่ควรยืนยันกับทีม</h2>{check}<p>ค้นคว้ารูปแบบบริการจาก <a href={details.source.url}>{details.source.label}</a> บริษัทและกรณีในเว็บไซต์นี้เป็นข้อมูลสมมติ</p></article>}
-      {section === "process" && <article className={styles.copy}><h2>จากข้อมูลหน้างานถึงการตรวจรับ</h2>{steps}<h2>รายการก่อนเริ่มงาน</h2>{check}{clip}</article>}
-      {service && <article className={styles.copy}><Photo niche={slug} alt={`ภาพประกอบงาน${item.title}`} work /><h2>ขอบเขตและเกณฑ์ที่ใช้ประเมิน</h2><p>{niche.evidence}</p>{item.example && <><h2>โจทย์ที่ใช้คุยก่อนเริ่ม</h2><p>{item.example[2]}</p></>}<h2>ข้อมูลที่ต้องเตรียม</h2>{check}{steps}<Link className={styles.inline} href={link("projects")}>ดูกรณีศึกษาที่เกี่ยวข้อง</Link></article>}
+      {section === "about" && (
+        <article className={styles.copy}>
+          <figure>
+            <Image className={styles.photo} src={companyImage(slug, "team")} alt={`ภาพจำลองทีมงาน ${details.brand} ยืนเรียงกัน`} width={1360} height={760} sizes="(max-width: 900px) 100vw, 860px" />
+            <figcaption>ภาพหมู่ทีมงานสมมติ สร้างด้วย AI</figcaption>
+          </figure>
+          <h2>การทำงานของทีม{details.brand}</h2>
+          <p>{niche.evidence}</p>
+          <h2>ลำดับการประสานงาน</h2>
+          {steps}
+          <h2>ขอบเขตที่ควรยืนยันกับทีม</h2>
+          {check}
+          <p>ค้นคว้ารูปแบบบริการจาก <a href={details.source.url}>{details.source.label}</a> บริษัทและกรณีในเว็บไซต์นี้เป็นข้อมูลสมมติ</p>
+        </article>
+      )}
+      {section === "process" && (
+        <>
+          <article className={styles.copy}>
+            <h2>จากข้อมูลหน้างานถึงการตรวจรับ</h2>
+            {steps}
+            <h2>รายการก่อนเริ่มงาน</h2>
+            {check}
+          </article>
+          {clip && (
+            <section className={styles.workVideo}>
+              <h2>คลิปประกอบลักษณะงาน</h2>
+              {clip}
+            </section>
+          )}
+        </>
+      )}
+      {service && servicePhoto && (
+        <article className={styles.copy}>
+          <figure style={{ maxWidth: servicePhoto.width }}>
+            <Image className={styles.photo} {...servicePhoto} alt={`ภาพจำลองบริการ ${service.title}`} sizes={`(max-width: 760px) 100vw, ${Math.min(servicePhoto.width, 860)}px`} />
+            <figcaption>ภาพประกอบลักษณะงาน สร้างด้วย AI</figcaption>
+          </figure>
+          <h2>ขอบเขตและเกณฑ์ที่ใช้ประเมิน</h2>
+          <p>{niche.evidence}</p>
+          {item.example && <><h2>โจทย์ที่ใช้คุยก่อนเริ่ม</h2><p>{item.example[2]}</p></>}
+          <h2>ข้อมูลที่ต้องเตรียม</h2>
+          {check}{steps}
+          <Link className={styles.inline} href={link("projects")}>ดูกรณีศึกษาที่เกี่ยวข้อง</Link>
+        </article>
+      )}
       {caseStudy && <article className={styles.copy}><figure><CasePhoto asset={details.asset} item={caseStudy} eager /><figcaption>ภาพจำลองกรณีศึกษา · {item.location} · สร้างด้วย AI</figcaption></figure><h2>โจทย์และเกณฑ์ตรวจรับ</h2><p>{item.story}</p><h2>จุดที่ทีมใช้ประสานกับเจ้าของพื้นที่</h2>{steps}<h2>กรณีอื่นที่นำไปเทียบได้</h2><Grid niche={slug} section="projects" items={relatedProjects} /></article>}
       {area && <article className={styles.copy}>
         {areaLead && <figure><CasePhoto asset={details.asset} item={areaLead} eager /><figcaption>ภาพจำลอง · {areaLead.title} · {areaLead.location}</figcaption></figure>}

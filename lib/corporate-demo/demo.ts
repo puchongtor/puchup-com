@@ -14,14 +14,39 @@ export const companyMedia = "/images/demos/corporate/";
 
 export function editorialImage(slug: string, article: string) {
   const asset = companyDetails[slug]?.asset;
-  return asset ? `${companyMedia}editorial/${asset}-${article}.webp` : companyImage(slug, "work");
+  const version = asset === "pest" ? "-v2" : "";
+  return asset ? `${companyMedia}editorial/${asset}-${article}${version}.webp` : companyImage(slug, "work");
 }
 
-export function companyImage(slug: string, variant: "cover" | "work" = "cover") {
+export function companyImage(slug: string, variant: "cover" | "work" | "team" = "cover") {
   const asset = companyDetails[slug]?.asset;
   if (asset) return `${companyMedia}${asset}-${variant}.webp`;
   if (slug === "crane-rental") return "/images/demos/crane-rental/mobile-crane.webp";
   return "/images/products/corporate/hero.jpg";
+}
+
+const serviceLibrary: Partial<Record<string, Partial<Record<string, number | "cover" | "work">>>> = {
+  home: { "service-5": 4 },
+  renovation: { "service-1": 1, "service-3": 2, "service-4": 6, "service-5": 3, "service-6": 7 },
+  machinery: { "service-1": 4, "service-2": "work", "service-3": 7, "service-4": "cover", "service-5": 8 },
+  solar: { "service-1": 3, "service-5": 8, "service-6": 4 },
+  epoxy: { "service-2": "cover", "service-3": "work", "service-4": 7, "service-5": 5, "service-6": 8 },
+  waterproof: { "service-1": 5, "service-2": "cover", "service-3": "work", "service-4": 1, "service-5": 6, "service-6": 4 },
+};
+
+export function serviceImage(asset: string, service: string) {
+  const selected = serviceLibrary[asset]?.[service];
+  if (typeof selected === "number") {
+    return { src: `${companyMedia}editorial/${asset}-note-${selected}.webp`, width: 680, height: 383 };
+  }
+  if (selected) {
+    return { src: `${companyMedia}${asset}-${selected}.webp`, width: selected === "work" ? 1376 : 1344, height: selected === "work" ? 768 : 756 };
+  }
+  return { src: `${companyMedia}services/${asset}/${service}.webp`, width: 1344, height: 756 };
+}
+
+export function companyAreaImage(niche: string) {
+  return niche === "high-rise-glass-cleaning" ? `${companyMedia}glass-areas.webp` : companyImage(niche);
 }
 
 export function findCompany(slug: string) {

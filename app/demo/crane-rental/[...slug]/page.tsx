@@ -63,20 +63,29 @@ export default async function CraneDetailPage({ params }: Props) {
   const area = slug === "areas" && entry && areaContent[entry.slug] ? entry : undefined;
   const vehicleList = slug === "mobile" || slug === "hiab";
   const photo = pagePhoto(entry?.slug ?? slug);
+  const areaOverview = slug === "areas" && !entry;
   const projectLocation = slug === "projects" && entry ? projectLocations[entry.slug] : undefined;
   const nextGuide = slug === "hiab" || entry?.slug.startsWith("truck-") ? "truck-transport" : "quote-checklist";
   const hasCards = !entry && (group || vehicleList);
   return (
     <>
       <div className={styles.pageHero}>
-        <div className={styles.container}>
-          <nav className={styles.breadcrumb} aria-label="เส้นทางหน้า">
-            <Link href={href()}>หน้าแรก</Link>
-            {entry && group && <><span aria-hidden="true">/</span><Link href={href(group.slug)}>{group.label}</Link></>}
-          </nav>
-          {group && <p className={styles.kicker}>{group.label}</p>}
-          <h1>{title}</h1>
-          <p>{intro}</p>
+        <div className={areaOverview ? `${styles.container} ${styles.areaHead}` : styles.container}>
+          <div>
+            <nav className={styles.breadcrumb} aria-label="เส้นทางหน้า">
+              <Link href={href()}>หน้าแรก</Link>
+              {entry && group && <><span aria-hidden="true">/</span><Link href={href(group.slug)}>{group.label}</Link></>}
+            </nav>
+            {group && <p className={styles.kicker}>{group.label}</p>}
+            <h1>{title}</h1>
+            <p>{intro}</p>
+          </div>
+          {areaOverview && photo && (
+            <figure>
+              <Image src={mediaPath + photo[0]} alt={photo[1]} width={1344} height={756} sizes="(max-width: 720px) 100vw, 550px" preload />
+              <figcaption>ภาพประกอบลักษณะพื้นที่ให้บริการ สร้างด้วย AI</figcaption>
+            </figure>
+          )}
         </div>
       </div>
       {article ? <CraneArticleView article={article} /> : area ? <CraneAreaView slug={area.slug} name={area.title} /> : <>
@@ -90,7 +99,7 @@ export default async function CraneDetailPage({ params }: Props) {
           {slug === "projects" && entry ? <figure className={styles.projectFigure}>
             <Image src={caseStudyImage("crane", entry.slug)} alt={`ภาพจำลอง${title} ${projectLocation ?? ""}`.trim()} width={720} height={405} sizes="(max-width: 720px) 100vw, 900px" loading="eager" />
             <figcaption>ภาพจำลองกรณีศึกษา · {projectLocation} · สร้างด้วย AI</figcaption>
-          </figure> : photo && <Image className={styles.detailPhoto}
+          </figure> : !areaOverview && slug !== "about" && photo && <Image className={styles.detailPhoto}
             src={mediaPath + photo[0]}
             alt={photo[1]}
             width={900} height={406} sizes="(max-width: 720px) 100vw, 900px" />}
@@ -115,6 +124,19 @@ export default async function CraneDetailPage({ params }: Props) {
               </dl>
               <Link className={styles.textLink} href={href("guides/site-documents")}>อ่านเรื่องเอกสารเข้าโรงงาน</Link>
             </div>
+          )}
+          {slug === "about" && photo && (
+            <article className={styles.prose}>
+              <figure className={styles.projectFigure}>
+                <Image src={mediaPath + photo[0]} alt={photo[1]} width={1360} height={760} sizes="(max-width: 900px) 100vw, 900px" />
+                <figcaption>ภาพหมู่ทีมงานสมมติ สร้างด้วย AI</figcaption>
+              </figure>
+              <h2>ใครดูเรื่องอะไรในแต่ละงาน</h2>
+              <p>ทีมประสานงานรับพิกัด รูปทางเข้า และข้อจำกัดเวลาจากลูกค้า ทีมรถทวนประเภทรถและข้อมูลของที่จะยก ส่วนผู้ประสานงานหน้างานยืนยันจุดรับ จุดวาง และช่องทางติดต่อกับผู้ดูแลพื้นที่</p>
+              <h2>สิ่งที่ทวนก่อนเข้าพื้นที่</h2>
+              <p>ทวนรายชื่อผู้เข้าพื้นที่ เอกสารตามที่ไซต์กำหนด และเวลาที่อนุญาตให้เข้าทำงานร่วมกับลูกค้า หากข้อมูลหน้างานมีการเปลี่ยนแปลง ทีมจะแจ้งผู้ประสานงานก่อนยืนยันรอบใหม่</p>
+              <Link className={styles.textLink} href={href("safety")}>ดูเอกสารและการเตรียมหน้างาน</Link>
+            </article>
           )}
           {hasCards && (
             <>

@@ -17,6 +17,8 @@ export const photo = {
   rooftop: ["site-rooftop.webp", "อุปกรณ์ปรับอากาศบนดาดฟ้าอาคารอุตสาหกรรม"],
   yard: ["site-yard.webp", "ลานรับส่งสินค้าที่มีวัสดุและรถบรรทุก"],
   survey: ["site-survey.webp", "ทีมงานสำรวจตำแหน่งรับส่งของในลานโรงงาน"],
+  serviceSteel: ["service-steel.webp", "รถเครนที่ไซต์ติดตั้งโครงอาคารเหล็ก"],
+  serviceRooftop: ["service-rooftop.webp", "ลานเตรียมอุปกรณ์ก่อนประสานงานยกขึ้นอาคาร"],
 } as const;
 
 export type CranePhoto = (typeof photo)[keyof typeof photo];
@@ -41,12 +43,14 @@ const photosByPage: Record<string, CranePhoto> = {
   fleet: photo.crane, services: photo.machinery, projects: photo.steel, areas: photo.yard, guides: photo.survey,
   "mobile-25": photo.compactCrane, "mobile-50": photo.allTerrainCrane, "mobile-80": photo.heavyCrane,
   "truck-3": photo.compactTruck, "truck-5": photo.mediumTruck, "truck-8": photo.heavyTruck,
-  machinery: photo.machinery, containers: photo.containers, steel: photo.steel, rooftop: photo.rooftop, yard: photo.yard,
+  machinery: photo.machinery, containers: photo.containers, steel: photo.serviceSteel, rooftop: photo.serviceRooftop, yard: photo.yard,
   "factory-line": photo.machinery, "site-office": photo.containers, "warehouse-steel": photo.steel,
   "office-rooftop": photo.rooftop, "loading-yard": photo.yard, "new-production-floor": photo.survey,
 };
 
 export function pagePhoto(slug: string): readonly [string, string] | undefined {
+  if (slug === "about") return ["crane-team.webp", "ภาพจำลองทีมยกงาน เครน ยืนเรียงหน้ารถเครนในลาน"];
+  if (slug === "areas") return ["area-chonburi-work.webp", "ภาพประกอบงานยกและขนย้ายในลานโลจิสติกส์ชายฝั่งทะเลตะวันออก"];
   const area = areaContent[slug];
   if (area) return [`area-${slug}-work.webp`, area.coverAlt];
   return articlePhoto(slug)?.cover ?? photosByPage[slug];
