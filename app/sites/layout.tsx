@@ -1,4 +1,5 @@
 /** Isolated shell for demo / subdomain sites — no main marketing chrome. */
+import { DemoDisclosureAssets } from "@/components/demos/DemoDisclosureAssets";
 
 export const dynamic = "force-static";
 export const revalidate = false;
@@ -7,5 +8,5 @@ export default function SitesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <><DemoDisclosureAssets />{children}</>;
 }

@@ -3,31 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>บ้านบางกอก บูทีคโฮเทล | Baan Bangkok Boutique Hotel</title>
-<meta name="description" content="บ้านบางกอก บูทีคโฮเทล ที่พักสไตล์ Thai Heritage ร่วมสมัย ริมแม่น้ำเจ้าพระยา ถนนพระอาทิตย์ เขตพระนคร กรุงเทพฯ">
+<title>ตัวอย่างเว็บไซต์โรงแรม | บ้านบางกอก (ชื่อสมมุติ) — PuchUp</title>
+<meta name="description" content="ตัวอย่างงานออกแบบเว็บไซต์โรงแรมโดย PuchUp ชื่อที่พักและข้อมูลทั้งหมดเป็นข้อมูลสมมุติ เปิดให้ทดลองชมเท่านั้น">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Serif+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Hotel",
-  "name": "บ้านบางกอก บูทีคโฮเทล",
-  "alternateName": "Baan Bangkok Boutique Hotel",
-  "description": "ที่พักบูทีคสไตล์ Thai Heritage ร่วมสมัย ริมแม่น้ำเจ้าพระยา ถนนพระอาทิตย์ เขตพระนคร กรุงเทพมหานคร",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "48 ถนนพระอาทิตย์ แขวงชนะสงคราม",
-    "addressLocality": "เขตพระนคร",
-    "addressRegion": "กรุงเทพมหานคร",
-    "postalCode": "10200",
-    "addressCountry": "TH"
-  },
-  "telephone": "+6621234567",
-  "priceRange": "฿฿฿"
-}
-</script>
 <style>
   :root {
     --bg: #F9F6F0;
@@ -42,7 +23,7 @@
     --line-dark: #D2C6B5;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
   body {
     background-color: var(--bg);
     color: var(--ink);
@@ -146,6 +127,20 @@
   }
 
   #mobileBar { backdrop-filter: blur(14px); }
+  #line-demo-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(28rem, calc(100% - 2rem));
+    max-height: calc(100% - 2rem);
+    padding: clamp(1rem, 5vw, 1.75rem);
+    border: 1px solid var(--line);
+    border-radius: .75rem;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-y: auto;
+  }
+  #line-demo-dialog::backdrop { background: rgb(28 25 23 / 64%); }
   @media (prefers-reduced-motion: reduce) { .reveal { transition: none; } }
 </style>
 </head>
@@ -158,22 +153,22 @@
 
 <!-- ============ NAVBAR ============ -->
 <nav id="mainnav" class="sticky top-0 z-50 border-b hairline sticky-nav shadow-sm">
-  <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between gap-8">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 md:px-10 h-20 flex items-center justify-between gap-3 md:gap-5">
     
-    <a href="#hero" class="flex items-center gap-3.5 shrink-0 group">
-      <div class="w-11 h-11 rounded-sm border-2 border-[var(--terracotta)] flex items-center justify-center transition-colors group-hover:bg-[var(--terracotta)]">
+    <a href="#hero" class="flex items-center gap-2 sm:gap-3.5 min-w-0 group">
+      <div class="w-9 h-9 sm:w-11 sm:h-11 shrink-0 rounded-sm border-2 border-[var(--terracotta)] flex items-center justify-center transition-colors group-hover:bg-[var(--terracotta)]">
         <svg viewBox="0 0 32 32" class="w-6 h-6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6 26V14C6 8.5 10.5 4 16 4C21.5 4 26 8.5 26 14V26" stroke="var(--terracotta)" stroke-width="1.8" stroke-linecap="round" class="group-hover:stroke-white"/>
           <path d="M9 22C12 20.5 14 20.5 16 22C18 23.5 20 23.5 23 22" stroke="var(--terracotta)" stroke-width="1.6" stroke-linecap="round" class="group-hover:stroke-white"/>
         </svg>
       </div>
       <div>
-        <span class="font-display text-xl md:text-2xl font-bold tracking-[0.08em] leading-none block text-[var(--ink)]">BAAN BANGKOK</span>
-        <span class="text-xs text-[var(--ink-faint)] tracking-[0.24em] font-mono uppercase block mt-1 font-semibold">Chao Phraya Boutique Hotel</span>
+        <span class="font-display text-base sm:text-xl md:text-2xl font-bold tracking-[0.08em] leading-none block text-[var(--ink)]">BAAN BANGKOK</span>
+        <span class="text-xs text-[var(--ink-faint)] block mt-1 font-semibold">ชื่อสมมุติ</span>
       </div>
     </a>
 
-    <div class="hidden lg:flex items-center gap-7 text-sm">
+    <div class="hidden xl:flex items-center gap-3 text-sm">
       <a href="#about" class="navlink">เรื่องราว</a>
       <a href="#rooms" class="navlink">ห้องพักริมน้ำ</a>
       <a href="#dining" class="navlink">อาหารริมเจ้าพระยา</a>
@@ -181,12 +176,10 @@
       <a href="#location" class="navlink">ย่านพระนคร & การเดินทาง</a>
     </div>
 
-    <div class="flex items-center gap-5 shrink-0">
-      <a href="tel:+6621234567" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-[var(--ink-soft)] hover:text-[var(--terracotta)] font-medium">
-        <span>📞</span> +66 (0) 2 123 4567
-      </a>
-      <a href="#booking" class="btn-primary px-6 py-2.5 rounded-sm shadow-sm text-sm">
-        จองห้องพัก
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="#hotel-contact" class="hidden md:inline-flex navlink">ติดต่อ</a>
+      <a href="#booking" class="btn-primary px-3 sm:px-6 py-2.5 rounded-sm shadow-sm text-sm">
+        ทดลองจอง
       </a>
     </div>
 
@@ -212,7 +205,7 @@
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
       <a href="#booking" class="btn-primary w-full sm:w-auto px-9 py-4 rounded-sm text-center text-base">
-        ตรวจสอบห้องว่างและราคาตรง
+        ทดลองตรวจสอบห้องว่าง
       </a>
       <a href="#rooms" class="btn-outline border-[#E5DDD0] text-[#FAF7F2] hover:bg-[#FAF7F2] hover:text-[#1C1917] w-full sm:w-auto px-9 py-4 rounded-sm text-center text-base">
         เลือกชมห้องพัก
@@ -633,9 +626,9 @@
     <div class="grid lg:grid-cols-12 gap-8 items-stretch">
       <div class="lg:col-span-5 bg-white p-8 md:p-10 rounded-sm border hairline flex flex-col justify-between shadow-sm">
         <div>
-          <h3 class="font-display text-2xl font-bold mb-3">บ้านบางกอก บูทีคโฮเทล</h3>
+          <h3 class="font-display text-2xl font-bold mb-3">บ้านบางกอก บูทีคโฮเทล <span class="text-sm font-normal">(ชื่อสมมุติ)</span></h3>
           <p class="text-sm text-[var(--ink-soft)] leading-relaxed font-light mb-6">
-            48 ถนนพระอาทิตย์ แขวงชนะสงคราม เขตพระนคร กรุงเทพฯ 10200
+            ทำเลสมมุติในย่านถนนพระอาทิตย์ เขตพระนคร กรุงเทพฯ
           </p>
 
           <div class="space-y-4 text-sm font-light text-[var(--ink-soft)] border-t hairline pt-6">
@@ -655,24 +648,14 @@
         </div>
 
         <div class="flex flex-wrap gap-4 pt-8 border-t hairline mt-6">
-          <a href="https://maps.google.com/?q=Phra+Athit+Road+Bangkok" target="_blank" rel="noopener" class="btn-primary flex-1 text-center py-3.5 rounded-sm text-sm">
-            เปิด Google Maps นำทาง
-          </a>
-          <a href="tel:+6621234567" class="btn-outline flex-1 text-center py-3.5 rounded-sm text-sm">
-            โทรติดต่อฟรอนต์
+          <a href="#hotel-contact" class="btn-outline flex-1 text-center py-3.5 rounded-sm text-sm">
+            ดูช่องทางติดต่อสมมุติ
           </a>
         </div>
       </div>
 
       <div class="lg:col-span-7 rounded-sm overflow-hidden border hairline min-h-[380px] shadow-sm">
-        <iframe 
-          title="Baan Bangkok Hotel Map"
-          class="w-full h-full"
-          style="border:0; min-height: 380px;" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade" 
-          src="https://www.google.com/maps?q=Phra+Athit+Road,Phra+Nakhon,Bangkok,Thailand&output=embed">
-        </iframe>
+        <img src="./images/hotel-hero.webp" alt="ภาพตัวอย่างบรรยากาศริมแม่น้ำเจ้าพระยา" loading="lazy" class="w-full h-full min-h-[380px] object-cover">
       </div>
     </div>
   </div>
@@ -683,25 +666,25 @@
   <div class="max-w-4xl mx-auto text-center">
     <p class="eyebrow text-[#D89B88] mb-3">Direct Reservation & Best Rates</p>
     <h2 class="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-normal leading-tight mb-6">
-      จองตรงกับบ้านบางกอก
+      ทดลองจองห้องพัก
     </h2>
     <p class="text-[#DCD4CA] text-lg font-light max-w-xl mx-auto leading-relaxed mb-10">
-      รับสิทธิ์การันตีราคาดีที่สุด พร้อมชุดน้ำชายามบ่ายริมแม่น้ำเจ้าพระยาฟรีเมื่อจองตรงผ่านเว็บไซต์
+      เลือกวันเข้าพักและจำนวนผู้เข้าพักเพื่อดูตัวอย่างขั้นตอนการจอง
     </p>
 
     <div class="bg-[#24201D] p-7 md:p-9 rounded-sm border border-white/10 shadow-2xl text-left mb-8">
-      <form id="bookingForm" onsubmit="event.preventDefault(); alert('ระบบกำลังค้นหาห้องว่างริมแม่น้ำเจ้าพระยาพร้อมราคาพิเศษ...');" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-end">
+      <form id="bookingForm" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-end">
         <div>
-          <label class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">วันเช็กอิน</label>
+          <label for="checkin" class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">วันเช็กอิน</label>
           <input type="date" id="checkin" class="w-full bg-[#161412] border border-white/20 rounded-sm px-4 py-3.5 text-sm text-[#FAF7F2] focus:outline-none focus:border-[#D89B88]" required>
         </div>
         <div>
-          <label class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">วันเช็กเอาต์</label>
+          <label for="checkout" class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">วันเช็กเอาต์</label>
           <input type="date" id="checkout" class="w-full bg-[#161412] border border-white/20 rounded-sm px-4 py-3.5 text-sm text-[#FAF7F2] focus:outline-none focus:border-[#D89B88]" required>
         </div>
         <div>
-          <label class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">จำนวนผู้เข้าพัก</label>
-          <select class="w-full bg-[#161412] border border-white/20 rounded-sm px-4 py-3.5 text-sm text-[#FAF7F2] focus:outline-none focus:border-[#D89B88]">
+          <label for="guestCount" class="block text-xs font-mono text-[#DCD4C9] uppercase tracking-wider mb-2 font-semibold">จำนวนผู้เข้าพัก</label>
+          <select id="guestCount" class="w-full bg-[#161412] border border-white/20 rounded-sm px-4 py-3.5 text-sm text-[#FAF7F2] focus:outline-none focus:border-[#D89B88]">
             <option value="2">2 ท่าน (1 ห้อง)</option>
             <option value="1">1 ท่าน (1 ห้อง)</option>
             <option value="4">4 ท่าน (2 ห้อง)</option>
@@ -715,12 +698,13 @@
           </button>
         </div>
       </form>
+      <p id="bookingStatus" role="status" class="text-sm text-[#F1C8B9]"></p>
     </div>
 
-    <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-[#BDB4A8] font-mono">
-      <span>🔒 การันตีราคาดีที่สุด และยกเลิกฟรีล่วงหน้า 48 ชม.</span>
-      <span>•</span>
-      <span>💬 สอบถามทาง LINE: @baanbangkok</span>
+    <div id="hotel-contact" class="border-t border-white/15 pt-8 text-center">
+      <h2 class="font-display text-2xl text-[#FAF7F2]">ติดต่อสอบถาม</h2>
+      <p class="mt-2 mb-5 text-[#DCD4CA]">(เป็นเว็บไซต์ตัวอย่าง สำหรับการออกแบบ Puchup)</p>
+      <button id="open-line-demo" type="button" aria-haspopup="dialog" class="btn-primary px-6 py-3 rounded-sm">ทดลองแชต LINE</button>
     </div>
   </div>
 </section>
@@ -743,11 +727,7 @@
     </div>
     <div>
       <p class="font-mono text-[#D89B88] uppercase tracking-widest mb-3 font-semibold">ติดต่อสอบถาม</p>
-      <ul class="space-y-2 text-[#A89F93]">
-        <li>โทร: +66 (0) 2 123 4567</li>
-        <li>อีเมล: stay@baanbangkokhotel.com</li>
-        <li>LINE: @baanbangkok</li>
-      </ul>
+      <p class="text-[#A89F93]">(เป็นเว็บไซต์ตัวอย่าง สำหรับการออกแบบ Puchup)</p>
     </div>
     <div>
       <p class="font-mono text-[#D89B88] uppercase tracking-widest mb-3 font-semibold">เวลาบริการ</p>
@@ -770,16 +750,37 @@
     <span class="text-xs text-[var(--ink-faint)] font-mono">/คืน</span>
   </div>
   <div class="flex gap-2.5">
-    <a href="tel:+6621234567" class="btn-outline px-3.5 py-2.5 rounded-sm text-sm flex items-center justify-center">
-      📞
+    <a href="#hotel-contact" class="btn-outline px-3 py-2.5 rounded-sm text-sm flex items-center justify-center">
+      ติดต่อ
     </a>
-    <a href="#booking" class="btn-primary px-6 py-2.5 rounded-sm text-sm">
-      จองห้องพัก
+    <a href="#booking" class="btn-primary px-3 sm:px-6 py-2.5 rounded-sm text-sm">
+      ทดลองจอง
     </a>
   </div>
 </div>
 
+<dialog id="line-demo-dialog" aria-labelledby="line-demo-title">
+  <p class="mb-1 text-sm font-semibold text-[var(--terracotta)]">เว็บไซต์ตัวอย่าง</p>
+  <h2 id="line-demo-title" class="font-display text-2xl font-bold">ตัวอย่างแชต LINE</h2>
+  <p class="mt-2 mb-4 text-sm text-[var(--ink-soft)]">บ้านบางกอก บูทีคโฮเทลเป็นชื่อสมมุติ ตัวอย่างนี้ไม่เปิด LINE ไม่ส่งข้อความ และไม่รับจองห้องพัก</p>
+  <div class="border-l-2 border-[var(--terracotta)] pl-3 mb-5">
+    <p class="text-sm text-[var(--ink-faint)]">ข้อความจำลองจากที่พัก</p>
+    <p>สวัสดีค่ะ สนใจเข้าพักวันไหน และพักกี่ท่านคะ?</p>
+  </div>
+  <form method="dialog"><button type="submit" class="btn-primary px-5 py-3 rounded-sm">ปิดตัวอย่าง</button></form>
+</dialog>
+
 <script>
+document.getElementById('open-line-demo').addEventListener('click', () => {
+  document.getElementById('line-demo-dialog').showModal();
+});
+document.getElementById('bookingForm').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const status = document.getElementById('bookingStatus');
+  status.textContent = 'นี่คือการทดลองใช้งาน ไม่มีการตรวจสอบห้องว่างหรือส่งคำขอจอง';
+  status.classList.add('mt-4');
+});
+
 const today = new Date();
 const tomorrow = new Date(today);
 tomorrow.setDate(tomorrow.getDate() + 1);

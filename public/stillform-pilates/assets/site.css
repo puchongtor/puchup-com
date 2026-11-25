@@ -17,13 +17,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wrap{width:min(100% - 88px,1340px);margin-inline:auto}
 .skip{position:fixed;top:8px;left:8px;transform:translateY(-180%);padding:.65rem 1rem;background:white;z-index:20}
 .skip:focus{transform:translateY(0)}
-.sample{background:#182737;color:#f8f5ee;font-size:.875rem}
+.sample{background:#283a2d;color:#f8f5ee;font-size:.875rem}
 .sample>.wrap,.sample>.wrap>div{display:flex;gap:.65rem 1.4rem;align-items:center}
 .sample>.wrap{justify-content:space-between;min-height:39px;flex-wrap:wrap;padding-block:.35rem}
 .sample a{text-decoration:none}
 .sample a:hover{text-decoration:underline;color:#fff}
 .sample .contact-line{color:#dce8c9}
-.nav{position:sticky;top:0;background:rgba(248,245,238,.97);border-bottom:1px solid var(--line);z-index:8}
+.sample-top{position:sticky;top:0;z-index:20}
+.sample-top .puchup-demo-ribbon{position:relative}
+.nav{position:relative;background:rgba(248,245,238,.97);border-bottom:1px solid var(--line);z-index:8}
 .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:78px;position:relative}
 .brand{display:inline-flex;align-items:center;gap:.48rem;text-decoration:none;flex:none}
 .brand svg{width:42px;height:42px}

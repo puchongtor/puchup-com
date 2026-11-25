@@ -2,10 +2,12 @@
 
 import { useMemo } from "react";
 import type { CodeEmbed } from "@/lib/sanity/types";
+import { addDemoDisclosureAssets } from "@/lib/demos/disclosure";
 
 type Props = {
   embed: CodeEmbed;
   className?: string;
+  demoDisclosure?: boolean;
 };
 
 /**
@@ -13,8 +15,11 @@ type Props = {
  * fullPage: edge-to-edge viewport height, no chrome.
  * If `html` is a full document (&lt;!DOCTYPE / &lt;html), use it as srcDoc as-is.
  */
-export function SafeCodeRunner({ embed, className = "" }: Props) {
-  const srcDoc = useMemo(() => buildSrcDoc(embed), [embed]);
+export function SafeCodeRunner({ embed, className = "", demoDisclosure = false }: Props) {
+  const srcDoc = useMemo(() => {
+    const html = buildSrcDoc(embed);
+    return demoDisclosure ? addDemoDisclosureAssets(html) : html;
+  }, [embed, demoDisclosure]);
   const minHeight = embed.minHeight ?? 480;
   const fullPage = Boolean(embed.fullPage);
 

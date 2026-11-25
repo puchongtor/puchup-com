@@ -60,7 +60,7 @@ export function QuoteForm() {
         <label className={styles.full}>รายละเอียดเพิ่มเติม
           <textarea name="notes" rows={4} maxLength={1200} placeholder="ช่วงเวลาเข้าไซต์ ทางเข้าจำกัด หรือเอกสารที่ผู้ดูแลพื้นที่ขอ" />
         </label>
-        <div className={styles.full}><button className={styles.button} type="submit" disabled={!ready}>สร้างบรีฟขอราคา</button></div>
+        <div className={styles.full}><button data-puchup-demo-action className={styles.button} type="submit" disabled={!ready}>สร้างบรีฟขอราคา</button></div>
       </form>
       {brief && (
         <section className={styles.result} aria-labelledby="brief-title">

@@ -13,7 +13,7 @@ button { cursor: pointer; }
 .skip { position: absolute; z-index: 9; top: -100px; padding: .6rem 1rem; background: white; }
 .skip:focus { top: 1rem; }
 html { scroll-padding-top: 80px; }
-.host-bar { position: sticky; top: 0; z-index: 5; background: #22314b; color: #f7f3ea; font-size: .86rem; box-shadow: 0 2px 10px #10182c25; }
+.host-bar { position: sticky; top: 0; z-index: 5; background: #293a31; color: #f7f3ea; font-size: .86rem; box-shadow: 0 2px 10px #10182c25; }
 .host-inner, .host-inner > div { display: flex; align-items: center; }
 .host-inner { width: min(1210px, 100% - 2 * clamp(22px, 4vw, 48px)); margin-inline: auto; justify-content: space-between; gap: 10px; min-height: 39px; }
 .host-inner > div { flex-wrap: wrap; gap: clamp(9px, 2vw, 26px); }

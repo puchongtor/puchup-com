@@ -3,6 +3,7 @@ import { PortableTextRenderer } from "@/components/sanity/PortableTextRenderer";
 import { SafeCodeRunner } from "@/components/sanity/SafeCodeRunner";
 import { imageUrl } from "@/lib/sanity/image";
 import type { DemoSite } from "@/lib/sanity/types";
+import { DemoAction } from "@/components/demos/DemoAction";
 
 export function DemoSiteView({ site }: { site: DemoSite }) {
   const brand = site.brandDetails;
@@ -21,7 +22,7 @@ export function DemoSiteView({ site }: { site: DemoSite }) {
   if (fullPage && site.codeEmbed) {
     return (
       <div className="min-h-dvh bg-white">
-        <SafeCodeRunner embed={site.codeEmbed} />
+        <SafeCodeRunner embed={site.codeEmbed} demoDisclosure />
       </div>
     );
   }
@@ -62,9 +63,10 @@ export function DemoSiteView({ site }: { site: DemoSite }) {
           </div>
           {brand.menuLinks?.length ? (
             <nav className="hidden items-center gap-5 text-sm font-medium md:flex">
-              {brand.menuLinks.map((link) => (
-                <a
-                  key={`${link.href}-${link.label}`}
+              {brand.menuLinks.map((link) => {
+                const key = `${link.href}-${link.label}`;
+                const anchor = <a
+                  key={key}
                   href={link.href}
                   {...(link.openInNewTab
                     ? { target: "_blank", rel: "noopener noreferrer" }
@@ -72,8 +74,11 @@ export function DemoSiteView({ site }: { site: DemoSite }) {
                   className="hover:opacity-70"
                 >
                   {link.label}
-                </a>
-              ))}
+                </a>;
+                return /จอง|นัด|ห้องว่าง|ขอราคา/.test(link.label) || /(?:booking|reservation|appointment|quote)(?:\/|$)/i.test(link.href)
+                  ? <DemoAction key={key}>{anchor}</DemoAction>
+                  : anchor;
+              })}
             </nav>
           ) : null}
         </div>
@@ -89,7 +94,7 @@ export function DemoSiteView({ site }: { site: DemoSite }) {
           ) : null}
         </section>
 
-        {site.codeEmbed ? <SafeCodeRunner embed={site.codeEmbed} /> : null}
+        {site.codeEmbed ? <SafeCodeRunner embed={site.codeEmbed} demoDisclosure /> : null}
 
         {site.imagePrompts?.length ? (
           <section>

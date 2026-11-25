@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 type Props = {
   title: string;
   srcDoc: string;
+  fitContainer?: boolean;
 };
 
 /**
@@ -14,7 +15,7 @@ type Props = {
  * Sandboxed iframes often block target=_top navigation — we bridge
  * in-app Project ONE links to the parent window on user click.
  */
-export function ThemeDocument({ title, srcDoc }: Props) {
+export function ThemeDocument({ title, srcDoc, fitContainer }: Props) {
   const ref = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -101,7 +102,7 @@ export function ThemeDocument({ title, srcDoc }: Props) {
       ref={ref}
       title={title}
       srcDoc={srcDoc}
-      className="block h-full min-h-dvh w-full border-0"
+      className={`block h-full w-full border-0${fitContainer ? "" : " min-h-dvh"}`}
       sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-top-navigation allow-top-navigation-by-user-activation"
     />
   );

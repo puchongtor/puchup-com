@@ -1,3 +1,4 @@
+import { DemoDisclosureAssets } from "@/components/demos/DemoDisclosureAssets";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Menu, MessageCircle, Phone } from "lucide-react";
@@ -19,6 +20,7 @@ function Navigation() {
 export default function CraneLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.site}>
+      <DemoDisclosureAssets />
       <div className={styles.demoBar}>
         <div className={styles.container}>
           <span>เว็บไซต์ตัวอย่าง · แบรนด์สมมติ</span>
@@ -36,7 +38,7 @@ export default function CraneLayout({ children }: { children: React.ReactNode })
             <span>ยกงาน<span className={styles.brandAccent}> เครน</span><small>รถเครนและรถเฮี๊ยบ</small></span>
           </Link>
           <nav aria-label="เมนูหลัก" className={styles.navigation}><Navigation /></nav>
-          <Link href={href("quote")} className={styles.button}>ขอใบเสนอราคา</Link>
+          <Link data-puchup-demo-action href={href("quote")} className={styles.button}>ขอใบเสนอราคา</Link>
           <details className={styles.mobileNav}>
             <summary aria-label="เมนูหลัก"><Menu aria-hidden="true" /></summary>
             <nav aria-label="เมนูมือถือ"><Navigation /></nav>

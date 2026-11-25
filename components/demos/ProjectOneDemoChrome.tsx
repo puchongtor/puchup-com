@@ -1,47 +1,20 @@
-import Link from "next/link";
+import type { ReactNode } from "react";
+import { DemoBanner } from "./DemoBanner";
 
-type Props = {
-  businessType?: string;
-  children: React.ReactNode;
+const bannerColors: Record<string, string> = {
+  restaurant: "#35261c", cafe: "#38281e", bakery: "#463122", customcake: "#522c39", pizzeria: "#48291f",
+  dental: "#16373b", aesthetic: "#3a2925", "rebalance-physio": "#173a31", optometry: "#173144", tcmclinic: "#253a29",
+  hotel: "#302019", massagespa: "#3c3125", petstore: "#3b3024", petcare: "#493628", airservice: "#163248",
+  curtain: "#3a3027", autogarage: "#242e3d", carwash: "#142c42", windowtint: "#152c37", bicycle: "#233a2b",
+  accounting: "#18283e", artstudio: "#442e25", florist: "#382c34", stone: "#302b23", printing: "#263149",
+  phonerepair: "#19283d", laundry: "#153745", pilates: "#112a2b", muaythaigym: "#401f23",
 };
 
-/**
- * Sticky demo notice above ThemeDocument iframe — always visible
- * so visitors never mistake the sample for a real shop.
- */
-export function ProjectOneDemoChrome({ businessType, children }: Props) {
-  const label = businessType || "ร้าน/ธุรกิจ";
-
+export function ProjectOneDemoChrome({ slug, children }: { slug: string; children: ReactNode }) {
   return (
-    <div className="flex h-dvh flex-col bg-[#0c1222]">
-      <aside
-        role="note"
-        className="sticky top-0 z-[100] shrink-0 border-b border-white/15 bg-[#0c1222] px-4 py-3.5 text-center shadow-[0_10px_28px_rgba(0,0,0,0.28)] sm:py-4"
-      >
-        <p className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-2 gap-y-1 font-mono text-[11px] leading-relaxed tracking-[0.02em] text-[#f5f4f2] sm:text-[12px]">
-          <strong className="font-bold tracking-[0.08em] text-white">
-            <Link href="/" className="hover:text-[#f0c674]">
-              PUCHUP
-            </Link>{" "}
-            <Link href="/ProjectONE/" className="hover:text-[#f0c674]">
-              PROJECT ONE
-            </Link>{" "}
-            — DEMO
-          </strong>
-          <span className="text-white/75">
-            · เว็บไซต์ตัวอย่างเพื่อสาธิต ไม่ใช่{label}จริง ·
-          </span>
-          <Link
-            href="/ProjectONE/demo/"
-            className="font-bold text-[#f0c674] underline underline-offset-2 hover:text-[#ffd98a]"
-          >
-            ดูตัวอย่างธุรกิจอื่น →
-          </Link>
-        </p>
-      </aside>
-      <div className="relative min-h-0 flex-1 bg-[#FCFAF5]">
-        <div className="absolute inset-0">{children}</div>
-      </div>
+    <div className="flex h-dvh flex-col bg-[#FCFAF5]">
+      <DemoBanner background={bannerColors[slug]} />
+      <div className="min-h-0 flex-1 overflow-auto">{children}</div>
     </div>
   );
 }

@@ -18,7 +18,7 @@ export function BriefForm({ fields, offer }: { fields: string[]; offer: string }
       setStatus("");
     }}>
       {fields.map((field, index) => <label key={field}>{field}<input name={String(index)} maxLength={260} required /></label>)}
-      <button disabled={!ready} className={styles.action}>สร้างบรีฟขอราคา</button>
+      <button data-puchup-demo-action disabled={!ready} className={styles.action}>สร้างบรีฟขอราคา</button>
     </form>
     {result && <section className={styles.formResult}>
       <h2>บรีฟที่พร้อมส่ง</h2>

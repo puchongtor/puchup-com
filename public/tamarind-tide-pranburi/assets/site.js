@@ -23,9 +23,7 @@ if (form) {
   const error = form.querySelector('.form-error');
   const result = document.querySelector('.booking-result');
   const message = result.querySelector('textarea');
-  const goToLine = result.querySelector('[data-line]');
   const status = result.querySelector('[data-status]');
-  const account = form.dataset.lineId;
   const localDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit' });
   const displayDate = new Intl.DateTimeFormat('th-TH', { dateStyle: 'long', timeZone: 'UTC' });
   const dateFromValue = value => new Date(value + 'T12:00:00Z');
@@ -60,7 +58,6 @@ if (form) {
   form.addEventListener('input', () => {
     result.hidden = true;
     error.textContent = '';
-    goToLine.removeAttribute('href');
   });
 
   form.addEventListener('submit', event => {
@@ -77,7 +74,7 @@ if (form) {
       return;
     }
     message.value = [
-      'สวัสดีค่ะ/ครับ ขอสอบถามห้องว่างที่ Tamarind Tide Pranburi',
+      '[ข้อความตัวอย่าง] สวัสดีค่ะ/ครับ ขอสอบถามห้องว่างที่ Tamarind Tide Pranburi',
       'ห้องที่สนใจ: ' + selected.textContent,
       ...(updateOffer() ? [offerNote.textContent] : []),
       'เช็กอิน: ' + displayDate.format(dateFromValue(arrival.value)),
@@ -85,10 +82,6 @@ if (form) {
       `ผู้เข้าพัก: ผู้ใหญ่ ${adults.value} คน เด็ก ${children.value} คน`,
       'รบกวนแจ้งห้องว่าง ราคา และเงื่อนไขเข้าพักด้วยค่ะ/ครับ',
     ].join('\n');
-    if (account) {
-      goToLine.href = 'https://line.me/R/oaMessage/' + encodeURIComponent(account) + '/?' + encodeURIComponent(message.value);
-      goToLine.hidden = false;
-    }
     status.textContent = '';
     result.hidden = false;
     result.querySelector('h2').focus();

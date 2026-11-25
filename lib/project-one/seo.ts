@@ -489,10 +489,14 @@ export function getDemoSeo(slug: string): DemoSeoProfile | null {
 }
 
 export function demoSeoTitle(profile: DemoSeoProfile): string {
+  if (profile.slug === "hotel") return "ตัวอย่างเว็บไซต์โรงแรม | บ้านบางกอก (ชื่อสมมุติ) — PuchUp";
   return `${profile.primary} | ตัวอย่างเว็บ Project ONE — PuchUp`;
 }
 
 export function demoSeoDescription(profile: DemoSeoProfile): string {
+  if (profile.slug === "hotel") {
+    return "ตัวอย่างงานออกแบบเว็บไซต์โรงแรมโดย PuchUp ชื่อที่พักและข้อมูลทั้งหมดเป็นข้อมูลสมมุติ เปิดให้ทดลองชมเท่านั้น";
+  }
   const kw = profile.keywords.slice(0, 4).join(" · ");
   return (
     `ตัวอย่างเว็บ${profile.businessType}${profile.location} สไตล์ Project ONE — ` +

@@ -52,7 +52,7 @@ export function QuoteCallout({ topic }: { topic?: string }) {
     <section className={styles.callout}>
       <div className={styles.container}>
         <div><h2>ให้ทีมประเมินจากหน้างาน</h2><p>เตรียมน้ำหนัก พิกัด และวันใช้งาน เพื่อเริ่มขอใบเสนอราคา</p></div>
-        <Link href={topic ? `${href("quote")}?work=${encodeURIComponent(topic)}` : href("quote")} className={styles.button}>ส่งรายละเอียดงาน</Link>
+        <Link data-puchup-demo-action href={topic ? `${href("quote")}?work=${encodeURIComponent(topic)}` : href("quote")} className={styles.button}>ส่งรายละเอียดงาน</Link>
       </div>
     </section>
   );

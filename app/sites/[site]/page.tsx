@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DemoSiteView } from "@/components/sanity/DemoSiteView";
+import { DemoBanner } from "@/components/demos/DemoBanner";
 import {
   getLocalDemoSite,
   LOCAL_DEMO_SUBDOMAINS,
@@ -64,7 +65,11 @@ export default async function DemoSitePage({ params }: Props) {
     notFound();
   }
 
-  return <DemoSiteView site={data} />;
+  const primary = data.brandDetails.theme?.primary;
+  const background = primary && /^#[0-9a-f]{6}$/i.test(primary)
+    ? `color-mix(in srgb, ${primary} 55%, #101719)`
+    : undefined;
+  return <><DemoBanner background={background} /><DemoSiteView site={data} /></>;
 }
 
 async function resolveDemoSite(subdomain: string): Promise<DemoSite | null> {

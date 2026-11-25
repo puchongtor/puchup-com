@@ -17,7 +17,6 @@ import {
 import {
   buildDemoJsonLd,
   buildDemoMetadata,
-  getDemoSeo,
 } from "@/lib/project-one/seo";
 import { sanityFetch } from "@/lib/sanity/client";
 import {
@@ -51,6 +50,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const canonical = canonicalDemoSlug(slug);
+  const base = buildDemoMetadata(canonical);
+  if (canonical === "hotel") return base;
+
   const cms = await sanityFetch<ProjectOneDemo>({
     query: projectOneDemoBySlugQuery,
     params: { slug: canonical },
@@ -58,7 +60,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 
   // Prefer Cursor SEO pack for live HTML themes; CMS can override title/desc if set
-  const base = buildDemoMetadata(canonical);
   if (cms?.seo?.metaTitle || cms?.seo?.metaDescription) {
     return {
       ...base,
@@ -75,10 +76,9 @@ export default async function ProjectOneBusinessPage({ params }: Props) {
   const canonical = canonicalDemoSlug(slug);
   const item = findShowroomItem(canonical);
   const jsonLd = buildDemoJsonLd(canonical);
-  const seo = getDemoSeo(canonical);
-  const businessType = seo?.businessType || item?.kind;
+  const hotelDemo = canonical === "hotel";
 
-  const cms = await sanityFetch<ProjectOneDemo>({
+  const cms = hotelDemo ? null : await sanityFetch<ProjectOneDemo>({
     query: projectOneDemoBySlugQuery,
     params: { slug: canonical },
     tags: [`projectOneDemo:${canonical}`],
@@ -95,7 +95,7 @@ export default async function ProjectOneBusinessPage({ params }: Props) {
     return (
       <>
         {jsonLdTag}
-        <ProjectOneDemoChrome businessType={cms.businessType || businessType}>
+        <ProjectOneDemoChrome slug={canonical}>
           <ProjectOneCmsView demo={cms} />
         </ProjectOneDemoChrome>
       </>
@@ -108,8 +108,8 @@ export default async function ProjectOneBusinessPage({ params }: Props) {
       return (
         <>
           {jsonLdTag}
-          <ProjectOneDemoChrome businessType={businessType}>
-            <ThemeDocument title={item?.name || canonical} srcDoc={html} />
+          <ProjectOneDemoChrome slug={canonical}>
+            <ThemeDocument title={item?.name || canonical} srcDoc={html} fitContainer />
           </ProjectOneDemoChrome>
         </>
       );

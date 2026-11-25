@@ -118,12 +118,12 @@ export default async function CompanyDemoPage({ params }: Props) {
   const steps = <ol className={styles.steps}>{details.process.map(([label, body]) => <li key={label}><h3>{label}</h3><p>{body}</p></li>)}</ol>;
   const video = companyVideos[details.asset];
   const clip = video ? <VideoPreview asset={details.asset} niche={slug} clip={video} /> : null;
-  const callout = <section className={styles.callout}><div className={styles.wrap}><h2>เตรียมข้อมูลให้ทีมประเมินงาน</h2><Link className={styles.action} href={link("quote")}>สร้างบรีฟขอราคา</Link></div></section>;
+  const callout = <section className={styles.callout}><div className={styles.wrap}><h2>เตรียมข้อมูลให้ทีมประเมินงาน</h2><Link data-puchup-demo-action className={styles.action} href={link("quote")}>สร้างบรีฟขอราคา</Link></div></section>;
 
   if (!section) return <>
     <section className={styles.hero}>
       <Image src={companyImage(slug)} alt={`ภาพประกอบ${niche.title}`} fill preload sizes="100vw" />
-      <div className={styles.wrap}><div className={styles.heroCopy}><p>{niche.title}</p><h1>{title}</h1><p>{description}</p><div className={styles.actions}><Link className={styles.action} href={link("quote")}>ส่งบรีฟขอราคา</Link><Link className={styles.outline} href={link("projects")}>ดูกรณีศึกษา</Link></div></div></div>
+      <div className={styles.wrap}><div className={styles.heroCopy}><p>{niche.title}</p><h1>{title}</h1><p>{description}</p><div className={styles.actions}><Link data-puchup-demo-action className={styles.action} href={link("quote")}>ส่งบรีฟขอราคา</Link><Link className={styles.outline} href={link("projects")}>ดูกรณีศึกษา</Link></div></div></div>
     </section>
     <div className={styles.block}><div className={styles.wrap}>
       <HomeIntroSections {...{ niche, details, entries, steps, slug }} clip={clip ?? <Photo niche={slug} alt={`ภาพประกอบงาน${niche.title}`} work />} />

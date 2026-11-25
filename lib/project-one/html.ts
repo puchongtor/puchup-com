@@ -15,6 +15,7 @@ import {
 } from "@/lib/project-one/seo";
 import { buildProjectOneSiteFooterHtml } from "@/lib/project-one/site-footer-html";
 import { site } from "@/lib/site";
+import { addDemoDisclosureAssets } from "@/lib/demos/disclosure";
 
 export {
   DEMO_THEME_FILES,
@@ -104,7 +105,7 @@ export function rewriteProjectOneHtml(html: string, options: RewriteOptions = {}
   let out = html;
 
   if (options.demoSlug) {
-    out = injectDemoSeoHead(out, options.demoSlug);
+    out = addDemoDisclosureAssets(injectDemoSeoHead(out, options.demoSlug));
   }
 
   // Ensure srcDoc iframe resolves /assets against site origin

@@ -21,6 +21,7 @@
   font: 17px/1.65 Sarabun, system-ui, sans-serif;
   color: var(--ink);
   background: var(--paper);
+  scroll-padding-top: 9rem;
 }
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; }
@@ -32,11 +33,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .skip { position: fixed; left: 1rem; top: -10rem; z-index: 9; padding: .5rem 1rem; background: var(--light); }
 .skip:focus { top: 1rem; }
 .shell { width: min(100% - 3.5rem, 1280px); margin-inline: auto; }
-.demo { min-height: 36px; padding: 5px max(1.75rem, calc((100% - 1280px)/2)); display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #fff; background: #112a2b; font-size: .76rem; }
+.site-top { position: sticky; top: 0; z-index: 5; }
+.demo { min-height: 48px; padding: 8px max(1.75rem, calc((100% - 1280px)/2)); display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #fff; background: #112a2b; font-size: .76rem; }
+.demo strong { flex: none; color: #fff4df; font-size: 1.08rem; line-height: 1.25; }
 .demo div { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem 1.2rem; }
 .demo a { text-decoration: none; }
 .demo a:hover, .mast nav a:hover { text-decoration: underline; }
-.mast { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1px solid var(--border); }
+.mast { position: relative; background: var(--paper); border-bottom: 1px solid var(--border); }
 .mast-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; line-height: 1.05; white-space: nowrap; }
 .brand b { font: 500 1.55rem/1 Georgia, serif; }
@@ -52,6 +55,29 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .button.ghost { background: #0c2c2e56; border-color: #fff9; color: white; }
 .button.outline { background: transparent; color: var(--deep); }
 .button.compact { min-height: 42px; padding: .45rem .85rem; font-size: .88rem; }
+.booking-button {
+  --booking-padding: .67rem;
+  --booking-note-color: #e4eeeb;
+  position: relative;
+  padding-block: calc(var(--booking-padding) - 5px) calc(var(--booking-padding) + 5px);
+  background: linear-gradient(150deg, #386564, #1d4648 70%, #143638);
+  box-shadow: inset 0 0 0 1px #e7f0e825, 0 2px 5px #102a2b24;
+  white-space: nowrap;
+}
+.booking-button.compact { --booking-padding: .45rem; padding-block: calc(var(--booking-padding) - 5px) calc(var(--booking-padding) + 5px); }
+.booking-button.light { --booking-note-color: #385552; background: linear-gradient(150deg, #fff0d6, #ead4ae); border-color: #ead4ae; }
+.booking-button.ghost { --booking-note-color: #f0ebe0; background: linear-gradient(150deg, #315859, #183a3dbd); }
+.booking-button.outline { --booking-note-color: #3b5855; background: linear-gradient(150deg, #fffdf6, #f3eee3); }
+.booking-note {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-end: 2px;
+  translate: -50% 0;
+  color: var(--booking-note-color);
+  font-size: .625rem;
+  font-weight: 400;
+  line-height: 1.12;
+}
 .hero { min-height: 49vh; display: grid; align-items: end; position: relative; isolation: isolate; color: white; background: var(--deep); }
 .hero-home { min-height: clamp(550px, 77vh, 820px); align-items: center; }
 .hero img, .hero::after { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
@@ -130,7 +156,7 @@ summary { cursor: pointer; }
 .details-grid h2, .room-detail aside h2, .booking-result h2 { font-size: 1.5rem; }
 .room-detail .section-head { margin-top: 1.15rem; }
 .room-detail aside, .form-panel { padding: clamp(1.1rem, 3vw, 2rem); background: var(--sand); border: 1px solid var(--border); align-self: start; }
-.room-detail aside .button { display: flex; margin-top: .85rem; }
+.room-detail aside .booking-button { margin-top: .85rem; }
 .price { margin-top: .85rem; }
 .price strong { font-size: 1.65rem; }
 .room-spec { margin: 0; }
@@ -150,7 +176,7 @@ summary { cursor: pointer; }
 @media (max-width: 850px) {
   .mast-inner > nav { display: none; }
   .mast-inner { justify-content: start; gap: .65rem; min-height: 65px; }
-  .mast-inner > .button { margin-left: auto; }
+  .mast-inner > .booking-button { margin-left: auto; }
   .mobile-menu { display: block; }
   .mobile-menu nav { position: absolute; padding: .7rem 1rem; background: var(--light); top: 100%; right: 1rem; border: 1px solid var(--border); flex-direction: column; gap: .5rem; }
   .room-card, .room-card:nth-child(n+4) { grid-column: span 3; }
@@ -159,8 +185,7 @@ summary { cursor: pointer; }
 }
 @media (max-width: 560px) {
   .shell { width: calc(100% - 2rem); }
-  .demo { padding-inline: 1rem; align-items: start; line-height: 1.35; }
-  .demo > span { white-space: nowrap; }
+  .demo { padding-inline: 1rem; line-height: 1.35; }
   .demo div { justify-content: end; gap: .25rem .65rem; }
   .brand b { font-size: 1.15rem; }
   .brand-mark { width: 33px; }
@@ -182,6 +207,14 @@ summary { cursor: pointer; }
   .room-photo img { transition: none; }
 }
 
+@media (max-width: 360px) {
+  .mast-inner { gap: .35rem; }
+  .mast .brand { gap: 6px; }
+  .mast .brand b { font-size: 1rem; }
+  .mast .brand-mark { width: 28px; }
+  .mast .booking-button > span { display: none; }
+}
+
 .specials { background: #f0e9da; }
 .offer-grid, .review-grid, .journal-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
 .offer-card { background: var(--light); border: 1px solid #daceb9; }
@@ -201,7 +234,7 @@ summary { cursor: pointer; }
 .offer-details { display: grid; gap: .45rem; padding: 1.05rem; }
 .offer-details > p { font-weight: 700; }
 .offer-details > small { color: var(--muted); }
-.offer-details .button { margin-top: .2rem; }
+.offer-details .booking-button { margin-top: .2rem; }
 .films { background: #e7ebe1; }
 .film-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
 .film-card video, .film-card > img { width: 100%; aspect-ratio: 9/16; display: block; background: var(--deep); object-fit: cover; border-radius: 5px; }
@@ -249,4 +282,3 @@ summary { cursor: pointer; }
   .offer-art { min-height: 265px; }
   .review-summary { grid-template-columns: 1fr; }
 }
-.specials[id] { scroll-margin-top: 78px; }

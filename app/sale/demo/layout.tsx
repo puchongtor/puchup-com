@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { saleDesk } from "@/lib/saledesk";
+import { DemoBanner } from "@/components/demos/DemoBanner";
 
 export const dynamic = "force-static";
 
@@ -15,5 +16,5 @@ export default function SaleDemoLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <><DemoBanner background="#282522" />{children}</>;
 }

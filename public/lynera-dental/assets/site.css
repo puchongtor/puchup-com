@@ -113,10 +113,10 @@ html { scroll-padding-top: 80px; }
   position: sticky;
   top: 0;
   z-index: 5;
-  background: #22314b;
+  background: var(--ink);
   box-shadow: 0 2px 10px #10182c25;
 }
-.host-contact span { color: #dbe8ff; font-weight: 700; }
+.host-contact span { color: #e1efdf; font-weight: 700; }
 
 .about-page h2 { font-size: clamp(1.85rem, 3.8vw, 3.35rem); line-height: 1.26; text-wrap: balance; }
 .about-hero {

@@ -24,7 +24,7 @@ export default function CraneHome() {
           <h1>รถเครนและรถเฮี๊ยบ<br />สำหรับงานโรงงาน<br />และไซต์ก่อสร้าง</h1>
           <p className={styles.heroIntro}>เริ่มจากน้ำหนักของ พิกัด และวันใช้งาน เพื่อให้ทีมประเมินประเภทรถและเตรียมใบเสนอราคาได้ตรงกับงาน</p>
           <div className={styles.actions}>
-            <Link href={href("quote")} className={styles.button}>ส่งรายละเอียดขอราคา</Link>
+            <Link data-puchup-demo-action href={href("quote")} className={styles.button}>ส่งรายละเอียดขอราคา</Link>
             <Link href={href("fleet")} className={styles.outline}>ดูรถและอุปกรณ์</Link>
           </div>
         </div>
@@ -34,7 +34,7 @@ export default function CraneHome() {
           <Link href={href("fleet")}><Truck aria-hidden="true" /> เลือกประเภทรถ</Link>
           <Link href={href("areas")}><MapPin aria-hidden="true" /> ดูพื้นที่ให้บริการ</Link>
           <Link href={href("safety")}><ShieldCheck aria-hidden="true" /> เตรียมเอกสารเข้าไซต์</Link>
-          <Link href={href("quote")}><ClipboardList aria-hidden="true" /> เตรียมบรีฟหน้างาน</Link>
+          <Link data-puchup-demo-action href={href("quote")}><ClipboardList aria-hidden="true" /> เตรียมบรีฟหน้างาน</Link>
         </div>
       </div>
       <section className={styles.section}>
