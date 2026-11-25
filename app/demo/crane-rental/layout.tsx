@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Factory, Menu, MessageCircle, Phone } from "lucide-react";
+import { Menu, MessageCircle, Phone } from "lucide-react";
+import { DemoBrandMark } from "@/components/corporate/DemoBrandMark";
 import { saleHref } from "@/lib/corporate-demo/collection";
 import { LINE_OA_ID, LINE_OA_URL } from "@/lib/puchup-knowledge";
 import { href, primaryLinks } from "./data";
@@ -31,7 +32,7 @@ export default function CraneLayout({ children }: { children: React.ReactNode })
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <Link href={href()} className={styles.brand}>
-            <span className={styles.brandIcon}><Factory size={23} aria-hidden="true" /></span>
+            <DemoBrandMark niche="crane-rental" />
             <span>ยกงาน<span className={styles.brandAccent}> เครน</span><small>รถเครนและรถเฮี๊ยบ</small></span>
           </Link>
           <nav aria-label="เมนูหลัก" className={styles.navigation}><Navigation /></nav>
@@ -45,7 +46,7 @@ export default function CraneLayout({ children }: { children: React.ReactNode })
       <main>{children}</main>
       <footer className={styles.footer}>
         <div className={styles.container}>
-          <div><Link href={href()} className={styles.footerBrand}>ยกงาน เครน</Link><p>เว็บไซต์ตัวอย่างสำหรับธุรกิจรถเครนและรถเฮี๊ยบ โดย PuchUp</p></div>
+          <div><Link href={href()} className={styles.footerBrand}><DemoBrandMark niche="crane-rental" />ยกงาน เครน</Link><p>เว็บไซต์ตัวอย่างสำหรับธุรกิจรถเครนและรถเฮี๊ยบ โดย PuchUp</p></div>
           <nav aria-label="เมนูท้ายเว็บ"><Navigation /></nav>
         </div>
       </footer>

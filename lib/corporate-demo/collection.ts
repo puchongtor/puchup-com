@@ -8,6 +8,7 @@ export const flagshipSites = [
   "high-rise-glass-cleaning", "post-construction-cleaning", "landscape-design", "fountain-installation",
   "home-builder", "home-renovation", "crane-rental", "machinery-moving",
   "storefront-signage", "solar-rooftop", "epoxy-flooring", "waterproofing",
+  "termite-and-pest-control",
 ] as const;
 
 export function saleHref(slug: string) {

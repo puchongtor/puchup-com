@@ -27,7 +27,6 @@
 .headerContent { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .brand { display: inline-flex; gap: 10px; align-items: center; font-size: 1.45rem; font-weight: 700; line-height: 1.1; white-space: nowrap; }
 .brand small { display: block; color: #c8d0d8; font-size: .875rem; font-weight: 500; margin-top: 4px; }
-.brandIcon { color: var(--ink); background: var(--orange); border-radius: 4px; padding: 9px; }
 .brandAccent { color: var(--orange); }
 .navigation { display: flex; align-items: center; gap: clamp(12px, 1.5vw, 24px); font-size: .94rem; white-space: nowrap; }
 .navigation a:hover, .footer nav a:hover { color: var(--orange); }
@@ -158,7 +157,7 @@ h2 + .chips { margin-top: 20px; }
 .callout .button { flex-shrink: 0; }
 .footer { background: #0e1720; color: #c7d1da; padding-block: 34px; }
 .footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.footerBrand { font-size: 1.35rem; color: #fff; font-weight: 700; }
+.footerBrand { display: inline-flex; align-items: center; gap: 9px; font-size: 1.35rem; color: #fff; font-weight: 700; }
 .footer p { margin-top: 5px; }
 .footer nav { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; }
 
@@ -188,7 +187,6 @@ h2 + .chips { margin-top: 20px; }
   .demoContact { column-gap: 12px; }
   .headerContent { gap: 7px; min-height: 67px; }
   .brand { font-size: 1.15rem; gap: 6px; }
-  .brandIcon { padding: 5px; }
   .brand small { font-size: .76rem; }
   .headerContent > .button { font-size: .86rem; min-height: 42px; padding-inline: 8px; }
   .hero .container { min-height: 535px; padding-block: 58px; }
@@ -203,7 +201,6 @@ h2 + .chips { margin-top: 20px; }
 
 @media (max-width: 370px) {
   .headerContent, .demoBar .container { padding-inline: 12px; }
-  .brandIcon { display: none; }
   .hero h1 { font-size: 2.05rem; }
 }
 

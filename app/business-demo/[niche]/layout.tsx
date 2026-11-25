@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Menu, MessageCircle, Phone } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
+import { DemoBrandMark } from "@/components/corporate/DemoBrandMark";
 import { saleHref } from "@/lib/corporate-demo/collection";
 import { demoPageHref, demoSections, findCompany } from "@/lib/corporate-demo/demo";
 import { corporateContact } from "@/lib/corporate-demo/packages";
@@ -21,14 +22,14 @@ export default async function CompanyLayout({ children, params }: { children: Re
       <div><Link href={saleHref(niche)}>สนใจทำเว็บกับ PuchUp</Link><a href={corporateContact.telephone}><Phone size={15} aria-hidden="true" /> {corporateContact.phone}</a><a className={styles.line} href={corporateContact.lineUrl}><MessageCircle size={15} aria-hidden="true" /> LINE {corporateContact.line}</a></div>
     </div></div>
     <header className={styles.header}><div className={styles.wrap}>
-      <Link href={demoPageHref(niche)} className={styles.brand}>{details.brand}<small>{company.niche.title}</small></Link>
+      <Link href={demoPageHref(niche)} className={styles.brand}><DemoBrandMark niche={niche} /><span>{details.brand}<small>{company.niche.title}</small></span></Link>
       <nav className={styles.nav} aria-label="เมนูหลัก">{navigation}</nav>
       <Link className={styles.action} href={demoPageHref(niche, "quote")}>ขอราคา</Link>
       <details className={styles.mobile}><summary aria-label="เมนู"><Menu size={24} aria-hidden="true" /></summary><nav aria-label="เมนูมือถือ">{navigation}</nav></details>
     </div></header>
     <main>{children}</main>
     <footer className={styles.footer}><div className={styles.wrap}>
-      <div><Link className={styles.brand} href={demoPageHref(niche)}>{details.brand}</Link><p>เว็บตัวอย่างและภาพจำลองเพื่อประกอบการออกแบบ โดย PuchUp</p></div>
+      <div><Link className={styles.brand} href={demoPageHref(niche)}><DemoBrandMark niche={niche} />{details.brand}</Link><p>เว็บตัวอย่างและภาพจำลองเพื่อประกอบการออกแบบ โดย PuchUp</p></div>
       <nav aria-label="เมนูท้ายเว็บ">{navigation}</nav>
     </div></footer>
   </div>;

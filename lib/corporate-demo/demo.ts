@@ -2,10 +2,14 @@ import { findNiche } from "./catalog";
 import { demoHref } from "./collection";
 import { buildingDetails } from "./details-building";
 import { industryDetails } from "./details-industry";
+import { pestControlDetails } from "./details-pest-control";
 import { specialtyDetails } from "./details-specialties";
 import type { CompanyDetails } from "./types";
 
-export const companyDetails: Record<string, CompanyDetails> = { ...buildingDetails, ...industryDetails, ...specialtyDetails };
+export const companyDetails: Record<string, CompanyDetails> = {
+  ...buildingDetails, ...industryDetails, ...specialtyDetails,
+  "termite-and-pest-control": pestControlDetails,
+};
 export const companyMedia = "/images/demos/corporate/";
 
 export function editorialImage(slug: string, article: string) {
