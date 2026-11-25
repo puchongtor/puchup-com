@@ -1,4 +1,5 @@
 import { baht, corporatePackages } from "./corporate-demo/packages";
+import { saledeskProduct } from "./products/saledesk";
 
 export const site = {
   name: "PuchUp",
@@ -133,7 +134,7 @@ export const catalogProducts: CatalogProduct[] = [
       "ช่วยทีมขายบันทึกงานเยี่ยม มีเลขา AI และให้ผู้จัดการเห็นงานค้างได้ชัด — เหมาะกับทีมภาคสนาม",
     price: "เริ่มต้น 19,000 บาท + รายเดือนตามทีม",
     status: "พร้อมขาย",
-    image: "/images/products/saledesk/hero.jpg",
+    image: saledeskProduct.images.hero,
     accent: "ปิดดีลได้เร็วขึ้น",
   },
   {

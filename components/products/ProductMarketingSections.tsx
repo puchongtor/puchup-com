@@ -11,6 +11,7 @@ export function ProductHero(props: {
   tagline: string;
   note?: string;
   heroImage: string;
+  heroImagePanel?: { alt: string };
   primaryHref?: string;
   primaryLabel?: string;
   secondaryHref?: string;
@@ -19,50 +20,67 @@ export function ProductHero(props: {
 }) {
   return (
     <div className="relative overflow-hidden bg-navy text-base">
-      <Image src={props.heroImage} alt="" fill priority className="object-cover opacity-45" sizes="100vw" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/88 to-navy/55" />
-      <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-6 md:px-8 md:py-24 lg:px-8">
-        <Link href="/#products" className="text-[13px] font-medium text-base/60 transition hover:text-base">
-          ← Products & Services
-        </Link>
-        <p className="eyebrow mt-6 text-[11px] uppercase text-aamber">
-          {props.status} · {props.priceLabel}
-        </p>
-        <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.025em] md:text-5xl lg:text-[3.5rem]">
-          {props.name}
-        </h1>
-        <p className="mt-2 text-lg font-medium tracking-tight text-base/85 md:text-xl">{props.nameTh}</p>
-        <p className="mt-5 max-w-2xl text-[16px] leading-[1.7] text-base/70">{props.tagline}</p>
-        {props.note ? (
-          <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-base/50">{props.note}</p>
-        ) : null}
-        <div className="mt-9 flex flex-wrap gap-3">
-          <Link
-            href={props.primaryHref || "/contact/"}
-            className="inline-flex rounded-xl bg-base px-5 py-3 text-[15px] font-semibold text-navy transition hover:opacity-90"
-          >
-            {props.primaryLabel || site.cta.primary}
+      {!props.heroImagePanel && (
+        <>
+          <Image src={props.heroImage} alt="" fill priority className="object-cover opacity-45" sizes="100vw" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/88 to-navy/55" />
+        </>
+      )}
+      <div className={`relative mx-auto max-w-6xl px-5 py-16 sm:px-6 md:px-8 md:py-24 lg:px-8${props.heroImagePanel ? " grid items-center gap-8 md:grid-cols-[0.9fr_1.1fr] lg:gap-12" : ""}`}>
+        <div>
+          <Link href="/#products" className="text-[13px] font-medium text-base/60 transition hover:text-base">
+            ← Products & Services
           </Link>
-          {props.secondaryHref ? (
-            props.secondaryExternal ? (
-              <a
-                href={props.secondaryHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex rounded-xl border border-base/30 px-5 py-3 text-[15px] font-semibold text-base transition hover:bg-base/10"
-              >
-                {props.secondaryLabel}
-              </a>
-            ) : (
-              <Link
-                href={props.secondaryHref}
-                className="inline-flex rounded-xl border border-base/30 px-5 py-3 text-[15px] font-semibold text-base transition hover:bg-base/10"
-              >
-                {props.secondaryLabel}
-              </Link>
-            )
+          <p className="eyebrow mt-6 text-[11px] uppercase text-aamber">
+            {props.status} · {props.priceLabel}
+          </p>
+          <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.025em] md:text-5xl lg:text-[3.5rem]">
+            {props.name}
+          </h1>
+          <p className="mt-2 text-lg font-medium tracking-tight text-base/85 md:text-xl">{props.nameTh}</p>
+          <p className="mt-5 max-w-2xl text-[16px] leading-[1.7] text-base/70">{props.tagline}</p>
+          {props.note ? (
+            <p className="mt-3 max-w-2xl text-[14px] leading-relaxed text-base/50">{props.note}</p>
           ) : null}
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link
+              href={props.primaryHref || "/contact/"}
+              className="inline-flex rounded-xl bg-base px-5 py-3 text-[15px] font-semibold text-navy transition hover:opacity-90"
+            >
+              {props.primaryLabel || site.cta.primary}
+            </Link>
+            {props.secondaryHref ? (
+              props.secondaryExternal ? (
+                <a
+                  href={props.secondaryHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-xl border border-base/30 px-5 py-3 text-[15px] font-semibold text-base transition hover:bg-base/10"
+                >
+                  {props.secondaryLabel}
+                </a>
+              ) : (
+                <Link
+                  href={props.secondaryHref}
+                  className="inline-flex rounded-xl border border-base/30 px-5 py-3 text-[15px] font-semibold text-base transition hover:bg-base/10"
+                >
+                  {props.secondaryLabel}
+                </Link>
+              )
+            ) : null}
+          </div>
         </div>
+        {props.heroImagePanel && (
+          <Image
+            src={props.heroImage}
+            alt={props.heroImagePanel.alt}
+            width={1448}
+            height={1086}
+            preload
+            sizes="(max-width: 767px) 100vw, (max-width: 1152px) 50vw, 570px"
+            className="h-auto w-full rounded-2xl border border-base/15"
+          />
+        )}
       </div>
     </div>
   );

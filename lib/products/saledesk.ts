@@ -11,7 +11,7 @@ export const saledeskProduct = {
     "ระบบช่วยทีมขายภาคสนาม — ไม่ใช่ CRM เต็มรูปแบบ แต่ทำให้ข้อมูลจากหน้างานเข้าถึงผู้จัดการได้จริง",
   sampleCompany: "Meridian Parts · บริษัท เมอริเดียน พาร์ทส์ จำกัด",
   images: {
-    hero: "/images/products/saledesk/hero.jpg",
+    hero: "/images/products/saledesk/hero-field-report.webp",
     problem: "/images/products/saledesk/problem.jpg",
     manager: "/images/products/saledesk/manager.jpg",
   },

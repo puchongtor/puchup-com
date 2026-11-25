@@ -1,11 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { brandAssets } from "@/components/Logo";
-import { catalogProducts, labProducts, site } from "@/lib/site";
+import { WebsiteExamples, type WebsiteExample } from "@/components/site/WebsiteExamples";
+import { findNiche } from "@/lib/corporate-demo/catalog";
+import { demoHref, flagshipSites } from "@/lib/corporate-demo/collection";
+import { companyImage } from "@/lib/corporate-demo/demo";
+import { featuredPlusExamples } from "@/lib/project-one/plus-examples";
+import { catalogProducts, site } from "@/lib/site";
 import { realWorks } from "@/lib/works";
 
 const heroProducts = catalogProducts.slice(0, 3);
 const heroWorks = realWorks.slice(0, 3);
+
+const websiteExamples: WebsiteExample[] = [
+  ...featuredPlusExamples.map(({ type, href, image }): WebsiteExample => ({ type: "plus", title: type, href, image })),
+  ...flagshipSites.flatMap((slug): WebsiteExample[] => {
+    const niche = findNiche(slug);
+    return niche ? [{ type: "corporate", title: niche.title, href: demoHref(slug), image: companyImage(slug) }] : [];
+  }),
+];
 
 export function HomeFallback() {
   return (
@@ -233,7 +246,7 @@ export function HomeFallback() {
               <p className="eyebrow text-[11px] uppercase text-aamber">Showcase</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">งานที่เปิดใช้แล้ว</h2>
               <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-base/65">
-                เว็บไซต์ที่ลูกค้าใช้งานจริง — และตัวอย่างระบบเพิ่มเติมใน Showcase
+                เว็บไซต์ที่ลูกค้าเปิดให้บริการและใช้งานจริง
               </p>
             </div>
             <Link
@@ -273,30 +286,7 @@ export function HomeFallback() {
         </div>
       </section>
 
-      <section className="border-t border-cream bg-cream/50">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-12 sm:px-6 md:flex-row md:items-center md:justify-between md:px-8 lg:px-8">
-          <div>
-            <p className="eyebrow text-[11px] uppercase text-muted">Lab</p>
-            <h2 className="mt-2 text-xl font-bold text-ink md:text-2xl">กำลังพัฒนา</h2>
-            <ul className="mt-3 space-y-1.5">
-              {labProducts.map((lab) => (
-                <li key={lab.name} className="text-[14.5px] text-muted">
-                  <span className="font-semibold text-ink">{lab.name}</span>
-                  {" — "}
-                  {lab.body}
-                  <span className="ml-2 text-[12px] text-apurple">{lab.status}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Link
-            href="/contact/"
-            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-navy px-5 py-3 text-[14px] font-semibold text-base transition hover:opacity-90"
-          >
-            มีไอเดียอื่น? คุยกับเรา
-          </Link>
-        </div>
-      </section>
+      <WebsiteExamples examples={websiteExamples} />
     </>
   );
 }

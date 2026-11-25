@@ -35,6 +35,7 @@ export default function SaleDeskLandingPage() {
         tagline={p.tagline}
         note={`DEMO · ตัวอย่างองค์กร: ${p.sampleCompany}`}
         heroImage={p.images.hero}
+        heroImagePanel={{ alt: "ภาพประกอบรายงานเยี่ยมลูกค้าบนมือถือและรายการติดตามงานของผู้จัดการบนแล็ปท็อป" }}
         secondaryHref={saleDesk.demoPath}
         secondaryLabel="เปิดตัวอย่างเชิงโต้ตอบ"
       />
