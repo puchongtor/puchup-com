@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Factory, Menu, MessageCircle, Phone } from "lucide-react";
+import { saleHref } from "@/lib/corporate-demo/collection";
 import { LINE_OA_ID, LINE_OA_URL } from "@/lib/puchup-knowledge";
 import { href, primaryLinks } from "./data";
 import styles from "./demo.module.css";
@@ -21,7 +22,7 @@ export default function CraneLayout({ children }: { children: React.ReactNode })
         <div className={styles.container}>
           <span>เว็บไซต์ตัวอย่าง · แบรนด์สมมติ</span>
           <div className={styles.demoContact}>
-            <Link href="/corporate/">สนใจทำเว็บกับ PuchUp</Link>
+            <Link href={saleHref("crane-rental")}>สนใจทำเว็บกับ PuchUp</Link>
             <a href="tel:+66880899895"><Phone size={15} aria-hidden="true" />088-089-9895</a>
             <a href={LINE_OA_URL} className={styles.demoLine}><MessageCircle size={15} aria-hidden="true" />LINE {LINE_OA_ID}</a>
           </div>

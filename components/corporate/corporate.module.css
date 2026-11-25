@@ -87,6 +87,8 @@
 .proof { margin-block:28px 12px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:clamp(20px,5vw,48px); }
 .proof img { width:100%; max-height:350px; object-fit:cover; border-radius:6px; }
 .proof .inline { margin-top:12px; }
+.websiteOptions { background:#f0f2ed; scroll-margin-top:72px; }
+.websiteOptionsGrid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .closing { background:#17353e; color:white; }
 .closing p { color:#e1ecee; margin-top:14px; }
 .closing .inline { color:#f9bd93; margin-top:15px; }
@@ -94,7 +96,7 @@
 @media(max-width:690px) {
   .wrap { width:calc(100% - 34px); }
   .hero::after { background:linear-gradient(90deg,#10212bfa,#10212b85); }
-  .flagships,.process,.priceGrid,.proof,.seoCareGrid { grid-template-columns:1fr; }
+  .flagships,.process,.priceGrid,.proof,.seoCareGrid,.websiteOptionsGrid { grid-template-columns:1fr; }
   .promotion { grid-template-columns:auto minmax(0,1fr); }
   .promotionDeadline { grid-column:1 / -1; justify-self:start; }
   .topPromotion .wrap { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:3px 8px; }
