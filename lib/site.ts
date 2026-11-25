@@ -1,3 +1,5 @@
+import { baht, corporatePackages } from "./corporate-demo/packages";
+
 export const site = {
   name: "PuchUp",
   domain: "puchup.com",
@@ -92,8 +94,8 @@ export const catalogProducts: CatalogProduct[] = [
     nameTh: "เว็บบริษัท SEO / AEO",
     href: "/corporate/",
     blurb:
-      "เว็บไซต์บริษัท 20–30 หน้า โครงสร้างชัด เน้นค้นหาเจอและตอบคำถามธุรกิจได้",
-    price: "เริ่มต้น 25,000 บาท",
+      "เว็บไซต์บริษัท 10–40 หน้า ออกแบบตามสายงาน วาง SEO พื้นฐานครบทุกหน้า",
+    price: `เริ่มต้น ${baht(corporatePackages[0].price)} บาท`,
     status: "พร้อมขาย",
     image: "/images/products/corporate/hero.jpg",
     accent: "สร้างความน่าเชื่อถือ",

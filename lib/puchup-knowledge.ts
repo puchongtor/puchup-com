@@ -1,9 +1,22 @@
 import { catalogProducts, labProducts, site } from "@/lib/site";
 import { realWorks } from "@/lib/works";
 import { conceptCases, showcaseHub } from "@/lib/showcase";
+import { baht, corporateDiscount, corporatePackages, corporatePromotionLabel, corporateSeoPlans, discountedPrice, isCorporatePromotionActive } from "@/lib/corporate-demo/packages";
 
 export const LINE_OA_URL = "https://line.me/R/ti/p/@masterpuch";
 export const LINE_OA_ID = "@masterpuch";
+
+function corporatePricingText() {
+  const regular = corporatePackages.map(plan => `${plan.name} ${baht(plan.price)} บาท (${plan.pages} หน้า รวมคู่มือและคำถามที่พบบ่อย ${plan.seoPages} หน้า)`).join(" · ");
+  const promo = isCorporatePromotionActive()
+    ? ` · โปรลด ${corporateDiscount}% ถึง ${corporatePromotionLabel}: ${corporatePackages.map(plan => `${plan.name} ${baht(discountedPrice(plan.price))} บาท`).join(" / ")}`
+    : "";
+  return `Corporate Site: ${regular}${promo} · ทุกแพ็กเกจวาง SEO พื้นฐานครบทุกหน้าที่ส่งมอบ · เว็บ SEO ขั้นสูงหรือเกิน 40 หน้า ขอใบเสนอราคาตามงาน`;
+}
+
+function corporateSeoText() {
+  return corporateSeoPlans.map(plan => `${plan.name} ${baht(plan.price)} บาท/เดือน (${plan.work.join(" · ")})`).join(" · ");
+}
 
 /** Suggestion chips on /contact */
 export const contactSuggestionChips = [
@@ -42,8 +55,9 @@ export function buildPuchupKnowledgeText(): string {
     products,
     "",
     "ราคาอ้างอิง:",
-    "- Project ONE: Starter 9,900 · Get Local Customers 12,900 · Local SEO 17,900 · Plus 24,900 · Local Care รายเดือน 3,500 · พิเศษชำระ 3 เดือนขึ้นไป 2,500/เดือน รวม 7,500 (เพื่อนดูแลต่อเนื่อง · ดูคำค้นจาก Search Console แล้วดันเสริม + อัปเดต/เขียนบทความตามคีย์ · แก้ข้อความ/โปรโมชั่นเมื่อร้านส่ง · ดูแลหมุดตามรอบ · สรุปผลการค้นหารายเดือน: คีย์ที่เพิ่ม คนเข้า คลิก · ไม่สัญญาผลตายตัว)",
-    "- Corporate Site เริ่มต้น 25,000 บาท",
+    "- Project ONE: Starter 9,900 · Get Local Customers 12,900 · Local SEO 17,900 · Plus 24,900 · Local Care 3,500 บาท/เดือน หรือ 7,500 บาท/3 เดือน ดูแล SEO ทั้งเว็บและเขียนบทความใหม่ 1–2 เรื่องต่อสัปดาห์ พร้อมอัปเดตข้อมูลร้านและดูแลหมุดตามรอบ",
+    `- ${corporatePricingText()}`,
+    `- บริการรายเดือน Corporate: ${corporateSeoText()}`,
     "- ShopGuide เริ่มต้น 35,000 บาท + AI รายเดือนประมาณ 990–1,490 บาท",
     "- SaleDesk เริ่มต้น 19,000 บาท + รายเดือนทีม 1–5 คน ≈ 1,990–2,990 · 6–10 คน ≈ 3,490–4,990",
     "- Partner: รายละเอียดตามข้อตกลง (ห้ามใช้คำว่าแบ่งกำไร)",
@@ -65,11 +79,17 @@ export function buildPuchupKnowledgeText(): string {
 /** Local fallback when live Contact API is unavailable */
 export function localKnowledgeReply(message: string): string {
   const m = message.toLowerCase();
+  if (/project\s*one|local care/.test(m) && /รายเดือน|local care|เขียนบทความ|ดูแล seo/.test(m)) {
+    return "Project ONE Local Care 3,500 บาท/เดือน หรือ 7,500 บาท/3 เดือน ดูแล SEO ทั้งเว็บและเขียนบทความใหม่ 1–2 เรื่องต่อสัปดาห์ครับ";
+  }
   if (/project\s*one|หน้าเดียว|local seo|google business|บ้านทันต|baandental|guides|คู่มือ|คลินิกทันต/.test(m)) {
     return "Project ONE คือระบบหาลูกค้าหน้าร้าน ไม่ใช่เว็บโชว์ — Starter 9,900 · Local Acquisition 12,900 · Local SEO ≤10 หน้า 17,900 · Local SEO Plus ≤40 หน้า 24,900 · ดูผลงานที่ /showcase/results/ ได้ครับ";
   }
+  if (/seo.*รายเดือน|รายเดือน.*seo|เขียนบทความ|ดูแล seo/.test(m)) {
+    return `${corporateSeoText()} · ดูรายละเอียดที่ /corporate/#seo-care ครับ`;
+  }
   if (/ราคา|เท่าไหร่|กี่บาท|corporate|plus/.test(m)) {
-    return `Project ONE: 9,900 / 12,900 / 17,900 (≤10 หน้า) / Plus 24,900 (≤40 หน้า) · Corporate เริ่มต้น 25,000 · ShopGuide เริ่มต้น 35,000 + AI รายเดือน · SaleDesk เริ่มต้น 19,000 + รายเดือนตามทีม · Partner/OpsCraft คุยรายละเอียด — LINE OA ${LINE_OA_ID}`;
+    return `Project ONE: 9,900 / 12,900 / 17,900 (≤10 หน้า) / Plus 24,900 (≤40 หน้า) · ${corporatePricingText()} · ShopGuide เริ่มต้น 35,000 + AI รายเดือน · SaleDesk เริ่มต้น 19,000 + รายเดือนตามทีม · Partner/OpsCraft คุยรายละเอียด — LINE OA ${LINE_OA_ID}`;
   }
   if (/sale|saledesk|ทีมขาย/.test(m)) {
     return "SaleDesk ติดตั้งเริ่มต้น 19,000 บาท มีรายเดือนแบบช่วงทีม 1–5 คน / 6–10 คน (คิดช่วงทีม ไม่คิดรายหัว) — ช่วยรายงานมีหลักฐาน เลขา AI ผู้จัดการเห็นงานค้าง ไม่ใช่ CRM เต็มครับ";

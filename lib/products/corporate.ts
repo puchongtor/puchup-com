@@ -3,17 +3,19 @@
  * Evidence: Advance Pro live site as B2B corporate reference
  */
 
+import { baht, corporatePackages } from "@/lib/corporate-demo/packages";
+
 export const corporateProduct = {
   id: "corporate",
   name: "Corporate Site",
   nameTh: "เว็บบริษัท SEO / AEO",
   status: "พร้อมขาย",
-  priceLabel: "เริ่มต้น 25,000 บาท",
+  priceLabel: `เริ่มต้น ${baht(corporatePackages[0].price)} บาท`,
   priceNote:
-    "ราคาเริ่มต้นตามขอบเขตพื้นฐาน 20–30 หน้า — หากต้องการแคตตาล็อกหนา หลายภาษา หรือระบบพิเศษ จะประเมินเพิ่มตามงานจริง",
+    "เลือกขอบเขต 10, 20 หรือ 40 หน้า พร้อม SEO พื้นฐานครบทุกหน้า งานหลายภาษาหรือระบบเฉพาะประเมินราคาเพิ่มตามขอบเขต",
   tagline: "สร้างความน่าเชื่อถือให้บริษัท ถูกค้นหาเจอ และตอบคำถามธุรกิจได้",
   blurb:
-    "เว็บไซต์บริษัท 20–30 หน้า โครงสร้างชัด เน้น SEO และ AEO ให้ลูกค้าหาเจอ เชื่อถือ และติดต่อได้ — ไม่ใช่แค่หน้าสวยไว้โชว์",
+    "เว็บไซต์บริษัท 10–40 หน้า ออกแบบตามสายงาน พร้อม SEO และช่องทางรับบรีฟขอราคา",
   href: "/corporate/",
   images: {
     hero: "/images/products/corporate/hero.jpg",
@@ -23,7 +25,7 @@ export const corporateProduct = {
     handoff: "/images/products/corporate/handoff.jpg",
   },
   vsProjectOne:
-    "ต่างจาก Project ONE ที่โฟกัสธุรกิจท้องถิ่น (หน้าเดียวหรือขยาย SEO ไม่เกิน 10 หน้า × Google Business) — Corporate Site คือโครง 20–30 หน้าของบริษัท ที่ต้องการความลึก ความน่าเชื่อถือ และการค้นหาเจอในระยะยาว",
+    "Corporate Site มีหน้าบริการ ผลงาน พื้นที่ และบทความตามสายงาน เลือกปริมาณเนื้อหาได้ตามแพ็กเกจ",
 } as const;
 
 export const corporateProblems = [
@@ -43,7 +45,7 @@ export const corporateProblems = [
 
 export const corporateOutcomes = [
   {
-    title: "โครง 20–30 หน้าที่อ่านรู้เรื่อง",
+    title: "โครงหน้าบริษัทที่อ่านรู้เรื่อง",
     body: "จัดหมวดเกี่ยวกับบริษัท สินค้า/บริการ ความน่าเชื่อถือ และช่องทางติดต่อ ให้ลูกค้าเดินเส้นทางตัดสินใจได้",
   },
   {
@@ -86,7 +88,7 @@ export const corporateSeoPoints = [
 export const corporateSteps = [
   { n: "01", title: "Listen", body: "ฟังธุรกิจ ลูกค้าเป้าหมาย และสิ่งที่เว็บต้องช่วยปิด" },
   { n: "02", title: "Design", body: "ออกแบบโครงหน้าและเส้นทางอ่านให้ตรงการตัดสินใจ" },
-  { n: "03", title: "Build", body: "สร้าง 20–30 หน้า พร้อมเนื้อหาเริ่มต้นตามข้อมูลที่ให้" },
+  { n: "03", title: "Build", body: "สร้างตามขอบเขตแพ็กเกจ พร้อมเนื้อหาเริ่มต้นตามข้อมูลที่ให้" },
   { n: "04", title: "Handoff", body: "ส่งมอบ พร้อมวิธีอัปเดตต่อ และการปรับจากของจริง" },
 ] as const;
 

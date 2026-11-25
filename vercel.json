@@ -40,7 +40,7 @@
       "permanent": false
     },
     {
-      "source": "/demo/:path*",
+      "source": "/demo/:path((?!crane-rental(?:/|$)).*)",
       "destination": "/ProjectONE/demo/",
       "permanent": false
     },
