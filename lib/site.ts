@@ -53,7 +53,8 @@ export const navLinks: NavLink[] = [
     label: "Showcase",
     children: [
       { group: "ผลงานจริง", href: "/showcase/results/", label: "ผลลัพธ์จากงานจริง", note: "ตัวอย่างผลลัพธ์และเรื่องราวของลูกค้า" },
-      { group: "เว็บไซต์ตัวอย่าง", href: "/showcase/project-one/", label: "ดูเว็บตัวอย่างตามธุรกิจ", note: "คลินิก รีสอร์ท พิลาทิส และศูนย์รถ" },
+      { group: "เว็บไซต์ตัวอย่าง", href: "/corporate/#industries", label: "Corporate · เว็บบริษัทตัวอย่าง", note: "รถเครน รับสร้างบ้าน จัดสวน และธุรกิจบริการ" },
+      { group: "เว็บไซต์ตัวอย่าง", href: "/showcase/project-one/", label: "Project ONE · เว็บหน้าร้านตัวอย่าง", note: "คลินิก รีสอร์ท พิลาทิส และศูนย์บริการรถยนต์" },
       { group: "เว็บไซต์ตัวอย่าง", href: "/showcase/project-one/#industry-services", label: "บริการเว็บไซต์ตามธุรกิจ", note: "ดูแนวทางและบริการสำหรับแต่ละธุรกิจ" },
       { group: "ตัวอย่างระบบ", href: "/showcase/aeropulse/", label: "AeroPulse · ระบบช่วยเลือกสินค้า", note: "สัมผัสประสบการณ์ ShopGuide" },
     ],
